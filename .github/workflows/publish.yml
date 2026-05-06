@@ -1,0 +1,49 @@
+name: publish package
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - name: Install apt dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install libcurl4-openssl-dev libssl-dev
+      - uses: actions/checkout@v6.0.2
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
+        with:
+          # Install a specific version of uv.
+          version: "0.9.11"
+          enable-cache: true
+
+      - name: "Set up Python"
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+        with:
+          python-version-file: ".python-version"
+
+      - name: Install dependencies
+        run: |
+          cd aieng-topic-impl
+          uv venv .venv
+          source .venv/bin/activate
+          uv sync --all-extras --dev
+
+      - name: Build package
+        run: cd aieng-topic-impl && source .venv/bin/activate && uv build
+
+      - name: Publish package
+        uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b
+        with:
+          packages-dir: dist/
