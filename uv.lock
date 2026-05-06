@@ -48,7 +48,7 @@ dev = [
 requires-dist = [
     { name = "aieng-topic-impl", editable = "aieng-topic-impl" },
     { name = "filelock", specifier = "==3.29.0" },
-    { name = "jupyter-server", specifier = ">=2.18.0" },
+    { name = "jupyter-server", specifier = ">=2.18.2" },
     { name = "jupyterlab", specifier = ">=4.5.7" },
     { name = "nbconvert", specifier = ">=7.17.0" },
     { name = "pip", specifier = ">=26.1.1" },
@@ -904,7 +904,7 @@ wheels = [
 
 [[package]]
 name = "jupyter-server"
-version = "2.18.1"
+version = "2.18.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
@@ -926,9 +926,9 @@ dependencies = [
     { name = "traitlets" },
     { name = "websocket-client" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/33/b0/666586d557a71a58cd9960b154fb9aee0ed81dd62a50371195ab95731909/jupyter_server-2.18.1.tar.gz", hash = "sha256:f62be526369b791625e03bd658070563c1a4e9a0a2f439ea1f9dbacea5f7191a", size = 752024, upload-time = "2026-05-05T09:17:51.101Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ca/15/1eacb0fcb79ef86e8a0a79a708e6ad7435f6f223097dd29a4ce861fabc44/jupyter_server-2.18.2.tar.gz", hash = "sha256:06b4f40d8a7a00bb39d5216859c81374a0e7cfefe6d8a5a7facc5a5c37c679a7", size = 753177, upload-time = "2026-05-06T07:04:36.274Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a4/45/bfe3779fd06714a379128f2c4eaf7c99414f0eb081f9f34c135f6b3d511c/jupyter_server-2.18.1-py3-none-any.whl", hash = "sha256:db0374d52a975f88a92a7f20de44e08ef5be9763ba7e99630baf16c46ac8dbf0", size = 391844, upload-time = "2026-05-05T09:17:48.521Z" },
+    { url = "https://files.pythonhosted.org/packages/e2/50/ecf4f70d65bdb7519b28a33d1b2fee8a4b4ba1ae1a92f15d97e877c5de21/jupyter_server-2.18.2-py3-none-any.whl", hash = "sha256:fa5e46539ded65791838035a2b6001f13e54d5f64b8b3752eb1e91fdd641a5b8", size = 391907, upload-time = "2026-05-06T07:04:34.014Z" },
 ]
 
 [[package]]
