@@ -1,0 +1,26 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Lint & Test
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Vscode
+.vscode
+
+# macos
+*.DS_Store
+
+# ipynb checkpoints
+**.ipynb_checkpoints
+
+.env
