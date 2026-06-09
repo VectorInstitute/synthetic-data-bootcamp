@@ -4,10 +4,9 @@ version = "0.1.1"
 description = ""
 authors = [ {name = "Vector AI Engineering", email = "ai_engineering@vectorinstitute.ai"}]
 readme = "README.md"
-repository = "https://github.com/VectorInstitute/aieng-template-implementation"
 requires-python = ">=3.12"
 dependencies = [
-    "aieng-topic-impl",
+    "aieng-synthetic-data",
     "filelock==3.29.0",
     "jupyter-server>=2.18.0",
     "jupyterlab>=4.5.7",
@@ -35,11 +34,11 @@ dev = [
 
 [tool.uv.workspace]
 members = [
-  "aieng-topic-impl",
+  "aieng-synthetic-data",
 ]
 
 [tool.uv.sources]
-aieng-topic-impl = { workspace = true }
+aieng-synthetic-data = { workspace = true }
 
 [tool.mypy]
 ignore_missing_imports = true
