@@ -1,0 +1,1 @@
+"""Utilities for generating image synthetic data."""
