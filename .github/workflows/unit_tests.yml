@@ -51,10 +51,9 @@ jobs:
         with:
           python-version-file: ".python-version"
 
-      - name: Install dependencies and check code
+      - name: Install dependencies and run tests
         run: |
-          cd aieng-synthetic-data
           uv venv .venv
           source .venv/bin/activate
           uv sync --all-extras --dev
-          uv run pytest -m "not integration_test" tests
+          uv run --directory aieng-synthetic-data pytest -m "not integration_test" tests
