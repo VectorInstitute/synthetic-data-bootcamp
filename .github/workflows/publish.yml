@@ -35,13 +35,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd aieng-topic-impl
+          cd aieng-synthetic-data
           uv venv .venv
           source .venv/bin/activate
           uv sync --all-extras --dev
 
       - name: Build package
-        run: cd aieng-topic-impl && source .venv/bin/activate && uv build
+        run: cd aieng-synthetic-data && source .venv/bin/activate && uv build
 
       - name: Publish package
         uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b
