@@ -1,0 +1,159 @@
+"""Unit tests for text synthetic data utilities."""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+from aieng.syn_data.text.clients import extract_json_text
+from aieng.syn_data.text.documents import (
+    chunk_text_into_paragraphs,
+    sample_test_paragraphs,
+)
+from aieng.syn_data.text.io import read_jsonl, write_jsonl
+from aieng.syn_data.text.pipeline import (
+    build_paragraph_splits,
+    effective_synthetic_target,
+    effective_test_holdout,
+)
+from aieng.syn_data.text.quality import apply_heuristic_filters
+from aieng.syn_data.text.rag import grounding_overlap_score, retrieve_paragraphs
+from aieng.syn_data.text.schemas import (
+    DocumentRole,
+    FailureMode,
+    Paragraph,
+    ParagraphSplit,
+    QASample,
+)
+from aieng.syn_data.text.sft import qa_samples_to_messages
+
+
+def _paragraph(doc_id: str, index: int, text: str) -> Paragraph:
+    return Paragraph(
+        doc_id=doc_id,
+        para_id=f"{doc_id}::p{index:04d}",
+        text=text,
+        role=DocumentRole.POLICY_DENSE,
+        split=ParagraphSplit.TRAIN,
+        index=index,
+    )
+
+
+def test_extract_json_text_from_markdown_fence() -> None:
+    raw = (
+        "4. **Drafting the JSON:**\n"
+        "```json\n"
+        '{"question": "What is APR?", "gold_answer": "Annual Percentage Rate."}\n'
+        "```"
+    )
+    assert json.loads(extract_json_text(raw)) == {
+        "question": "What is APR?",
+        "gold_answer": "Annual Percentage Rate.",
+    }
+
+
+def test_extract_json_text_from_embedded_object() -> None:
+    raw = 'Here is the result: {"topics": ["billing", "fees"]} thanks.'
+    assert json.loads(extract_json_text(raw)) == {"topics": ["billing", "fees"]}
+
+
+def test_chunk_text_into_paragraphs_merges_short_sections() -> None:
+    text = "Short.\n\nAlso brief."
+    chunks = chunk_text_into_paragraphs(text, min_chars=30)
+    assert len(chunks) == 1
+    assert "Short." in chunks[0]
+    assert "Also brief." in chunks[0]
+
+
+def test_sample_test_paragraphs_holdout(tmp_path: Path) -> None:
+    paragraphs = [
+        _paragraph("doc", index, f"Paragraph {index} with enough content to count.")
+        for index in range(6)
+    ]
+    test_paras, train_paras = sample_test_paragraphs(paragraphs, n_test=2, seed=7)
+    assert len(test_paras) == 2
+    assert len(train_paras) == 4
+    assert all(item.split is ParagraphSplit.TEST for item in test_paras)
+
+
+def test_apply_heuristic_filters_rejects_duplicates() -> None:
+    sample = QASample(
+        id="1",
+        question="What is the grace period?",
+        gold_answer="21 days after the close of the billing cycle.",
+        doc_id="doc",
+        para_id="doc::p0001",
+    )
+    duplicate = QASample(
+        id="2",
+        question="what is the grace period?",
+        gold_answer="21 days.",
+        doc_id="doc",
+        para_id="doc::p0002",
+    )
+    kept, rejected = apply_heuristic_filters([sample, duplicate])
+    assert len(kept) == 1
+    assert rejected[0]["reason"] == "duplicate_question"
+
+
+def test_retrieve_paragraphs_returns_best_match() -> None:
+    paragraphs = [
+        _paragraph(
+            "doc", 0, "Annual percentage rate and finance charges for purchases."
+        ),
+        _paragraph("doc", 1, "Refund policy for damaged goods and shipping delays."),
+    ]
+    results = retrieve_paragraphs("What is the APR for purchases?", paragraphs, top_k=1)
+    assert len(results) == 1
+    assert "Annual percentage rate" in results[0].text
+
+
+def test_grounding_overlap_score() -> None:
+    score = grounding_overlap_score(
+        "The grace period is 21 days after the billing cycle closes.",
+        "Your grace period for new purchases is 21 days after the close of the billing cycle.",
+    )
+    assert score > 0.4
+
+
+def test_jsonl_roundtrip(tmp_path: Path) -> None:
+    path = tmp_path / "records.jsonl"
+    write_jsonl(path, [{"id": "a", "value": 1}, {"id": "b", "value": 2}])
+    records = read_jsonl(path)
+    assert records == [{"id": "a", "value": 1}, {"id": "b", "value": 2}]
+
+
+def test_failure_mode_enum_values() -> None:
+    assert FailureMode.REFUSAL_CALIBRATION.value == "refusal_calibration"
+
+
+def test_effective_test_holdout() -> None:
+    assert effective_test_holdout(7, requested=8) == 6
+    assert effective_test_holdout(2, requested=8) == 1
+
+
+def test_build_paragraph_splits_assigns_train_and_test() -> None:
+    paragraphs = build_paragraph_splits("finance", n_test_per_doc=2, seed=7)
+    splits = {paragraph.split for paragraph in paragraphs}
+    assert ParagraphSplit.TEST in splits
+    assert ParagraphSplit.TRAIN in splits
+
+
+def test_effective_synthetic_target_scales_with_train_size() -> None:
+    train = [
+        _paragraph("doc", index, f"Train paragraph {index} with enough content.")
+        for index in range(5)
+    ]
+    assert effective_synthetic_target(train, requested=500) == 20
+
+
+def test_qa_samples_to_messages_format() -> None:
+    sample = QASample(
+        id="1",
+        question="What is APR?",
+        gold_answer="Annual Percentage Rate.",
+        doc_id="doc",
+        para_id="doc::p0001",
+    )
+    rows = qa_samples_to_messages([sample])
+    assert rows[0]["messages"][-1]["role"] == "assistant"
