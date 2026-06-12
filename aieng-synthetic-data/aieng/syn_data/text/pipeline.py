@@ -15,8 +15,9 @@ from aieng.syn_data.text.config import (
     DEFAULT_TEST_PARAS_PER_DOC,
     DOCUMENT_ROLE_BY_FAILURE,
 )
-from aieng.syn_data.text.datasets import list_domain_documents, load_document_text
+from aieng.syn_data.text.datasets import list_domain_documents
 from aieng.syn_data.text.documents import (
+    load_document_text,
     paragraphs_from_document,
     sample_test_paragraphs,
 )
@@ -43,7 +44,9 @@ from aieng.syn_data.text.schemas import (
 )
 
 
-def effective_test_holdout(n_paragraphs: int, requested: int = DEFAULT_TEST_PARAS_PER_DOC) -> int:
+def effective_test_holdout(
+    n_paragraphs: int, requested: int = DEFAULT_TEST_PARAS_PER_DOC
+) -> int:
     """Choose a safe test holdout count that leaves at least one train paragraph."""
     if n_paragraphs <= 2:
         return 1
@@ -102,7 +105,10 @@ def generate_test_qa_batch(
     *,
     questions_per_para: int = 2,
 ) -> list[QASample]:
-    """Generate held-out, hard-to-answer test Q&A from test paragraphs using the teacher model."""
+    """Generate held-out, hard-to-answer test Q&A from test paragraphs.
+
+    Uses the teacher model.
+    """
     samples: list[QASample] = []
     for paragraph in test_paragraphs:
         modes = failure_modes_for_paragraph(paragraph)
@@ -154,8 +160,8 @@ def generate_raw_synthetic_corpus(
     *,
     max_paragraphs: int = 5,
 ) -> list[QASample]:
-    """
-    Generate a small raw corpus using every prompting strategy:
+    """Generate a small raw corpus using every prompting strategy.
+
     For each train paragraph run all strategies and collect everything.
     """
     selected = train_paragraphs[:max_paragraphs]
@@ -166,7 +172,7 @@ def generate_raw_synthetic_corpus(
     # Here we use zero-shot as a simple baseline.
     seed = zero_shot_generate(teacher, selected[0])
     samples: list[QASample] = []
-    
+
     # For each paragraph, generate a sample using each strategy.
     for paragraph in selected:
         generated = compare_generation_strategies(

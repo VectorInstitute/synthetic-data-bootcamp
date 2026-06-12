@@ -18,7 +18,9 @@ def tokenize(text: str) -> list[str]:
     return re.findall(r"[a-z0-9]+", text.lower())
 
 
-def build_tfidf_index(paragraphs: list[Paragraph]) -> tuple[list[Counter[str]], dict[str, float]]:
+def build_tfidf_index(
+    paragraphs: list[Paragraph],
+) -> tuple[list[Counter[str]], dict[str, float]]:
     """Build a lightweight TF-IDF representation for paragraphs."""
     doc_freq: Counter[str] = Counter()
     term_counters: list[Counter[str]] = []
@@ -41,8 +43,7 @@ def tfidf_vector(counts: Counter[str], idf: dict[str, float]) -> dict[str, float
     """Convert a term count vector into a TF-IDF vector."""
     total = sum(counts.values()) or 1
     return {
-        term: (count / total) * idf.get(term, 0.0)
-        for term, count in counts.items()
+        term: (count / total) * idf.get(term, 0.0) for term, count in counts.items()
     }
 
 

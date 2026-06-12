@@ -9,7 +9,9 @@ from aieng.syn_data.text.evaluation import DEFAULT_EVAL_SYSTEM, build_eval_promp
 from aieng.syn_data.text.schemas import QASample
 
 
-def qa_samples_to_messages(samples: list[QASample]) -> list[dict[str, list[dict[str, str]]]]:
+def qa_samples_to_messages(
+    samples: list[QASample],
+) -> list[dict[str, list[dict[str, str]]]]:
     """Convert Q&A samples into chat-format training rows."""
     rows: list[dict[str, list[dict[str, str]]]] = []
     for sample in samples:
@@ -80,13 +82,18 @@ def train_lora_sft(
                 "You are on macOS: run notebook 05 with RUN_SFT=0 locally, "
                 "or use a Linux NVIDIA GPU (Colab, GCP GPU VM, etc.).",
             )
-        elif not Path("/usr/bin/nvidia-smi").exists() and not Path("/usr/local/nvidia/bin/nvidia-smi").exists():
+        elif (
+            not Path("/usr/bin/nvidia-smi").exists()
+            and not Path("/usr/local/nvidia/bin/nvidia-smi").exists()
+        ):
             hints.append(
                 "No NVIDIA driver visible in this environment. "
                 "If using Docker, start the container with --gpus all and install "
                 "nvidia-container-toolkit on the host.",
             )
-        hints.append(f"torch={torch.__version__}, cuda_build={torch.version.cuda}, platform={sys.platform}")
+        hints.append(
+            f"torch={torch.__version__}, cuda_build={torch.version.cuda}, platform={sys.platform}"
+        )
         raise RuntimeError("\n".join(hints))
 
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -154,7 +161,9 @@ class PeftInferenceClient:
             bnb_4bit_use_double_quant=True,
             bnb_4bit_quant_type="nf4",
         )
-        self.tokenizer = AutoTokenizer.from_pretrained(base_model, trust_remote_code=True)
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            base_model, trust_remote_code=True
+        )
         base = AutoModelForCausalLM.from_pretrained(
             base_model,
             quantization_config=quant_config,

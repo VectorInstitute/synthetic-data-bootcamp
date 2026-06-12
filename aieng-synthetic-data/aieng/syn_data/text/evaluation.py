@@ -83,8 +83,10 @@ def summarize_judge_scores(scores: list[JudgeScore]) -> dict[str, float]:
     return {
         "correctness": sum(score.correctness for score in scores) / total,
         "coherence": sum(score.coherence for score in scores) / total,
-        "instruction_following": sum(score.instruction_following for score in scores) / total,
-        "factual_plausibility": sum(score.factual_plausibility for score in scores) / total,
+        "instruction_following": sum(score.instruction_following for score in scores)
+        / total,
+        "factual_plausibility": sum(score.factual_plausibility for score in scores)
+        / total,
         "average": sum(score.average for score in scores) / total,
     }
 
@@ -99,7 +101,10 @@ def summarize_by_failure_mode(
         sample = samples_by_id.get(score.sample_id)
         key = sample.failure_mode.value if sample and sample.failure_mode else "unknown"
         grouped[key].append(score)
-    return {key: summarize_judge_scores(grouped_scores) for key, grouped_scores in grouped.items()}
+    return {
+        key: summarize_judge_scores(grouped_scores)
+        for key, grouped_scores in grouped.items()
+    }
 
 
 def compare_summaries(
