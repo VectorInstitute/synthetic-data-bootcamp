@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from collections.abc import Callable, Iterable, Iterator
 from pathlib import Path
-from typing import TypeVar
+from typing import Any, TypeVar, cast
 
 
 T = TypeVar("T")
@@ -17,13 +17,15 @@ def ensure_parent(path: Path) -> Path:
     return path
 
 
-def read_json(path: Path) -> dict | list:
+def read_json(path: Path) -> dict[str, Any] | list[Any]:
     """Load a JSON file."""
     with path.open(encoding="utf-8") as handle:
-        return json.load(handle)
+        return cast(dict[str, Any] | list[Any], json.load(handle))
 
 
-def write_json(path: Path, payload: dict | list, *, indent: int = 2) -> Path:
+def write_json(
+    path: Path, payload: dict[str, Any] | list[Any], *, indent: int = 2
+) -> Path:
     """Write a JSON file, creating parent directories as needed."""
     ensure_parent(path)
     with path.open("w", encoding="utf-8") as handle:
@@ -32,11 +34,11 @@ def write_json(path: Path, payload: dict | list, *, indent: int = 2) -> Path:
     return path
 
 
-def read_jsonl(path: Path) -> list[dict]:
+def read_jsonl(path: Path) -> list[dict[str, Any]]:
     """Load all records from a JSONL file."""
     if not path.exists():
         return []
-    records: list[dict] = []
+    records: list[dict[str, Any]] = []
     with path.open(encoding="utf-8") as handle:
         for line in handle:
             stripped = line.strip()
@@ -45,7 +47,7 @@ def read_jsonl(path: Path) -> list[dict]:
     return records
 
 
-def iter_jsonl(path: Path) -> Iterator[dict]:
+def iter_jsonl(path: Path) -> Iterator[dict[str, Any]]:
     """Stream records from a JSONL file."""
     with path.open(encoding="utf-8") as handle:
         for line in handle:
@@ -56,7 +58,7 @@ def iter_jsonl(path: Path) -> Iterator[dict]:
 
 def write_jsonl(
     path: Path,
-    records: Iterable[dict],
+    records: Iterable[dict[str, Any]],
     *,
     append: bool = False,
 ) -> Path:
@@ -72,7 +74,7 @@ def write_jsonl(
 
 def load_typed_jsonl(
     path: Path,
-    factory: Callable[[dict], T],
+    factory: Callable[[dict[str, Any]], T],
 ) -> list[T]:
     """Load JSONL records into typed objects."""
     return [factory(record) for record in read_jsonl(path)]
@@ -82,7 +84,7 @@ def save_typed_jsonl(
     path: Path,
     records: Iterable[T],
     *,
-    to_dict: Callable[[T], dict],
+    to_dict: Callable[[T], dict[str, Any]],
     append: bool = False,
 ) -> Path:
     """Save typed objects to JSONL."""

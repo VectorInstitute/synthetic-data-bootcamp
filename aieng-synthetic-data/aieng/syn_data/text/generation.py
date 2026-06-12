@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import logging
 import uuid
-from typing import Any
+from typing import Any, cast
 
 from aieng.syn_data.text.clients import LLMClient, extract_json_text
 from aieng.syn_data.text.config import FAILURE_MODE_GUIDANCE
@@ -15,6 +15,7 @@ from aieng.syn_data.text.schemas import (
     Paragraph,
     QASample,
 )
+
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +51,12 @@ def zero_shot_generate(
     prompt = _base_generation_prompt(paragraph, failure_mode=failure_mode)
     payload = _parse_generation_response(client, prompt)
     logger.info(f"Payload: {payload}")
-    return _to_qa_sample(paragraph, payload, strategy=GenerationStrategy.ZERO_SHOT, failure_mode=failure_mode)
+    return _to_qa_sample(
+        paragraph,
+        payload,
+        strategy=GenerationStrategy.ZERO_SHOT,
+        failure_mode=failure_mode,
+    )
 
 
 def one_shot_generate(
@@ -69,7 +75,12 @@ def one_shot_generate(
         extra_instruction=extra,
     )
     payload = _parse_generation_response(client, prompt)
-    return _to_qa_sample(paragraph, payload, strategy=GenerationStrategy.ONE_SHOT, failure_mode=failure_mode)
+    return _to_qa_sample(
+        paragraph,
+        payload,
+        strategy=GenerationStrategy.ONE_SHOT,
+        failure_mode=failure_mode,
+    )
 
 
 def few_shot_generate(
@@ -92,7 +103,12 @@ def few_shot_generate(
         extra_instruction=extra,
     )
     payload = _parse_generation_response(client, prompt)
-    return _to_qa_sample(paragraph, payload, strategy=GenerationStrategy.FEW_SHOT, failure_mode=failure_mode)
+    return _to_qa_sample(
+        paragraph,
+        payload,
+        strategy=GenerationStrategy.FEW_SHOT,
+        failure_mode=failure_mode,
+    )
 
 
 def topic_controlled_generate(
@@ -103,8 +119,11 @@ def topic_controlled_generate(
     failure_mode: FailureMode | None = None,
 ) -> QASample:
     """Generate topics for the passage, pick one, then generate a Q&A pair.
-    Run a two-step generation — first extract policy topics from the passage, then generate Q&A focused on one chosen topic. 
-    Used in the test-set pipeline (generate_test_qa_batch) to get targeted, diverse questions per paragraph instead of one generic Q&A.
+
+    Run a two-step generation — first extract policy topics from the passage,
+    then generate Q&A focused on one chosen topic. Used in the test-set
+    pipeline (generate_test_qa_batch) to get targeted, diverse questions per
+    paragraph instead of one generic Q&A.
     """
     topic_list = topics or _generate_topics(client, paragraph)
     topic = topic_list[0] if topic_list else "general policy interpretation"
@@ -115,13 +134,20 @@ def topic_controlled_generate(
         extra_instruction=extra,
     )
     payload = _parse_generation_response(client, prompt)
-    sample = _to_qa_sample(paragraph, payload, strategy=GenerationStrategy.TOPIC_CONTROLLED, failure_mode=failure_mode)
+    sample = _to_qa_sample(
+        paragraph,
+        payload,
+        strategy=GenerationStrategy.TOPIC_CONTROLLED,
+        failure_mode=failure_mode,
+    )
     sample.metadata["topic"] = topic
     sample.metadata["candidate_topics"] = topic_list
     return sample
 
 
-def _generate_topics(client: LLMClient, paragraph: Paragraph, *, n_topics: int = 5) -> list[str]:
+def _generate_topics(
+    client: LLMClient, paragraph: Paragraph, *, n_topics: int = 5
+) -> list[str]:
     prompt = (
         f"List {n_topics} concise policy topics present in the passage.\n"
         'Return JSON: {"topics": ["..."]}\n'
@@ -136,13 +162,18 @@ def _generate_topics(client: LLMClient, paragraph: Paragraph, *, n_topics: int =
 
 def _parse_generation_response(client: LLMClient, prompt: str) -> dict[str, Any]:
     if hasattr(client, "complete_json"):
-        return client.complete_json(
-            prompt,
-            system="You generate grounded policy Q&A.",
-            max_tokens=2048,
+        return cast(
+            dict[str, Any],
+            client.complete_json(
+                prompt,
+                system="You generate grounded policy Q&A.",
+                max_tokens=2048,
+            ),
         )
-    raw = client.complete(prompt, system="You generate grounded policy Q&A.", max_tokens=2048)
-    return json.loads(extract_json_text(raw))
+    raw = client.complete(
+        prompt, system="You generate grounded policy Q&A.", max_tokens=2048
+    )
+    return cast(dict[str, Any], json.loads(extract_json_text(raw)))
 
 
 def _to_qa_sample(
