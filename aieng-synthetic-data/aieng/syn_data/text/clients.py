@@ -7,9 +7,10 @@ import logging
 import os
 import re
 from dataclasses import dataclass
-from typing import Any, Protocol
+from typing import Any, Protocol, cast
 
 import requests
+
 
 logger = logging.getLogger(__name__)
 
@@ -48,6 +49,7 @@ def extract_json_text(raw: str) -> str:
             if depth == 0:
                 return text[start : index + 1]
     return text[start:]
+
 
 class LLMClient(Protocol):
     """Minimal interface for text generation used across notebooks."""
@@ -138,7 +140,7 @@ class OpenAICompatibleClient:
         )
         response.raise_for_status()
         payload = response.json()
-        return payload["choices"][0]["message"]["content"]
+        return str(payload["choices"][0]["message"]["content"])
 
     def complete_json(
         self,
@@ -181,7 +183,7 @@ class OpenAICompatibleClient:
         cleaned = extract_json_text(raw)
         logger.debug("Extracted JSON payload: %s", cleaned)
         try:
-            return json.loads(cleaned)
+            return cast(dict[str, Any], json.loads(cleaned))
         except json.JSONDecodeError as exc:
             snippet = cleaned[:300] + ("..." if len(cleaned) > 300 else "")
             msg = f"Failed to parse model JSON ({exc.msg}): {snippet!r}"

@@ -81,7 +81,9 @@ def judge_response(
     """Score a model answer using absolute LLM-as-judge evaluation."""
     prompt = build_absolute_judge_prompt(sample, model_answer)
     if hasattr(client, "complete_json"):
-        payload = client.complete_json(prompt, system=JUDGE_SYSTEM_PROMPT, temperature=0.0)
+        payload = client.complete_json(
+            prompt, system=JUDGE_SYSTEM_PROMPT, temperature=0.0
+        )
     else:
         raw = client.complete(prompt, system=JUDGE_SYSTEM_PROMPT, temperature=0.0)
         payload = json.loads(raw)
