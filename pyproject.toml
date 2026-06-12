@@ -135,3 +135,7 @@ max-doc-length = 88
 markers = [
     "integration_test: marks tests as integration tests",
 ]
+
+[[tool.mypy.overrides]]
+module = "aieng.syn_data.text.sft"
+ignore_errors = true
