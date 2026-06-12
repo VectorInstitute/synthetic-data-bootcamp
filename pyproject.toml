@@ -1,12 +1,13 @@
 [project]
-name = "aieng-synthetic-data"
+name = "synthetic-data-bootcamp"
 version = "0.1.1"
-description = ""
+description = "Synthetic data bootcamp workspace for policy-document QA alignment"
 authors = [ {name = "Vector AI Engineering", email = "ai_engineering@vectorinstitute.ai"}]
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "aieng-synthetic-data",
+    "python-dotenv>=1.0.0",
     "filelock==3.29.0",
     "jupyter-server>=2.18.0",
     "jupyterlab>=4.5.7",
@@ -30,6 +31,15 @@ dev = [
     "pytest-cov>=6.0.0",
     "pytest-mock>=3.14.0",
     "ruff>=0.15.12",
+]
+text-sft = [
+    "accelerate",
+    "bitsandbytes",
+    "datasets",
+    "peft",
+    "torch",
+    "transformers",
+    "trl",
 ]
 
 [tool.uv.workspace]

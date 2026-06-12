@@ -24,3 +24,16 @@ wheels/
 **.ipynb_checkpoints
 
 .env
+
+# QA text generation — generated artifacts (sample source excerpts in documents/*.txt are kept)
+implementations/qa_text_generation/data/paragraphs.jsonl
+implementations/qa_text_generation/data/results/*
+!implementations/qa_text_generation/data/results/.gitkeep
+implementations/qa_text_generation/data/synthetic/*
+!implementations/qa_text_generation/data/synthetic/.gitkeep
+implementations/qa_text_generation/data/test/*
+!implementations/qa_text_generation/data/test/.gitkeep
+implementations/qa_text_generation/data/documents/*
+!implementations/qa_text_generation/data/documents/*.txt
+implementations/qa_text_generation/models/*
+!implementations/qa_text_generation/models/.gitkeep
