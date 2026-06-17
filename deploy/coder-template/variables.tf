@@ -14,6 +14,12 @@ variable "machine_type" {
   type = string
 }
 
+variable "boot_disk_size" {
+  type        = number
+  description = "Boot disk size in GB. Must be large enough to pull and extract the container image (GPU images require more space)."
+  default     = 30
+}
+
 variable "pd_size" {
   type = number
 }

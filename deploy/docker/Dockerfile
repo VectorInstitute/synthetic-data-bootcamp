@@ -1,4 +1,8 @@
-FROM ubuntu:24.04
+# ARG must come before FROM to be usable in the FROM instruction.
+# Default is CPU-only Ubuntu 24.04. For GPU support, build with:
+#   docker build --build-arg BASE_IMAGE=nvidia/cuda:12.6.3-cudnn-runtime-ubuntu24.04 -t <image>:gpu .
+ARG BASE_IMAGE=ubuntu:24.04
+FROM ${BASE_IMAGE}
 
 # Install system dependencies
 RUN apt-get update && \
