@@ -24,3 +24,10 @@ wheels/
 **.ipynb_checkpoints
 
 .env
+.terraform
+
+# ignore all data files, keep directory structure via .gitkeep
+implementations/qa_text_generation/data/**
+!implementations/qa_text_generation/data/**/
+!implementations/qa_text_generation/data/**/.gitkeep
+
