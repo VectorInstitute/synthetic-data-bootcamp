@@ -1,12 +1,21 @@
-project = "my-gcp-project" # This must match your GCP project id
-region = "us-central1"
-zone = "us-central1-a"
-machine_type = "e2-medium"
-pd_size = 10
-github_repo = "github_repo_url"
-github_branch = "main"
-github_app_id = "primary-github"
-container_image = "docker_image:tag"
-jupyterlab = "true"
-codeserver = "true"
-streamlit = "true"
+# Copy to terraform.tfvars and fill in real values. Do not commit terraform.tfvars.
+#
+# Coder auto-loads this file from deploy/coder-template/ when you run:
+#   coder templates push <template-name>
+
+project               = "pets-3-bootcamp" # GCP project id
+region                = "northamerica-northeast2"
+zone                  = "northamerica-northeast2-b"
+pd_size               = 50
+boot_disk_size        = 30
+github_repo           = "https://github.com/VectorInstitute/synthetic-data-bootcamp.git"
+github_branch         = "main"
+github_app_id         = "primary-github" # shared Coder on platform.vectorinstitute.ai
+container_image       = "us-central1-docker.pkg.dev/pets-3-bootcamp/coder/synthetic-data-generation-bootcamp:latest"
+service_account_email = "pet-3-coder-sa@pets-3-bootcamp.iam.gserviceaccount.com"
+jupyterlab            = "true"
+codeserver            = "true"
+streamlit             = "true"
+token_service_url     = "https://your-token-service.run.app"
+bootcamp_name         = "pets-3-bootcamp"
+firebase_api_key      = "your-firebase-web-api-key"

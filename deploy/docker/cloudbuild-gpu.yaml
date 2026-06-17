@@ -1,0 +1,19 @@
+steps:
+  # GPU image (nvidia/cuda base)
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -f
+      - deploy/docker/Dockerfile
+      - --build-arg
+      - BASE_IMAGE=nvidia/cuda:12.6.3-cudnn-runtime-ubuntu24.04
+      - -t
+      - us-central1-docker.pkg.dev/pets-3-bootcamp/coder/synthetic-data-generation-bootcamp:gpu
+      - .
+
+images:
+  - us-central1-docker.pkg.dev/pets-3-bootcamp/coder/synthetic-data-generation-bootcamp:gpu
+
+options:
+  machineType: E2_HIGHCPU_8
+  logging: CLOUD_LOGGING_ONLY
