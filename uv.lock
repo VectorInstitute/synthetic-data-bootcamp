@@ -1214,6 +1214,15 @@ wheels = [
 ]
 
 [[package]]
+name = "json-repair"
+version = "0.61.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/59/c0/1cb689126eacd166fd5a78370f095c7d3a250808dabeda129300e5280110/json_repair-0.61.0.tar.gz", hash = "sha256:48759cc6c3052814c797d1d56787d9e1d451603a8760a55d619e97d2f49353d6", size = 50055, upload-time = "2026-06-16T12:18:33.32Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e2/b9/e996902245d5e12e55b0b2e667d3e83a4636dec3692e405e5b8ea0868263/json_repair-0.61.0-py3-none-any.whl", hash = "sha256:ee9fe5f95fcb2713d72d4495b67b794b62ff2cd24d6dba3bfb3173d9f7ab0f7d", size = 48490, upload-time = "2026-06-16T12:18:31.883Z" },
+]
+
+[[package]]
 name = "json5"
 version = "0.12.1"
 source = { registry = "https://pypi.org/simple" }
@@ -3221,6 +3230,7 @@ dependencies = [
     { name = "pygments" },
     { name = "python-dotenv" },
     { name = "requests" },
+    { name = "rich" },
     { name = "urllib3" },
     { name = "virtualenv" },
 ]
@@ -3242,6 +3252,7 @@ text-sft = [
     { name = "accelerate" },
     { name = "bitsandbytes" },
     { name = "datasets" },
+    { name = "json-repair" },
     { name = "peft" },
     { name = "torch" },
     { name = "transformers" },
@@ -3259,6 +3270,7 @@ requires-dist = [
     { name = "pygments", specifier = ">=2.20.0" },
     { name = "python-dotenv", specifier = ">=1.0.0" },
     { name = "requests", specifier = ">=2.33.0" },
+    { name = "rich", specifier = ">=14.2.0" },
     { name = "urllib3", specifier = ">=2.7.0" },
     { name = "virtualenv", specifier = "==21.3.1" },
 ]
@@ -3280,6 +3292,7 @@ text-sft = [
     { name = "accelerate" },
     { name = "bitsandbytes" },
     { name = "datasets" },
+    { name = "json-repair", specifier = ">=0.61.0" },
     { name = "peft" },
     { name = "torch" },
     { name = "transformers" },
