@@ -17,6 +17,7 @@ dependencies = [
     "requests>=2.33.0",
     "urllib3>=2.7.0",
     "virtualenv==21.3.1",
+    "rich>=14.2.0",
 ]
 
 [dependency-groups]
@@ -36,6 +37,7 @@ text-sft = [
     "accelerate",
     "bitsandbytes",
     "datasets",
+    "json-repair>=0.61.0",
     "peft",
     "torch",
     "transformers",
