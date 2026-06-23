@@ -126,7 +126,6 @@ def train_lora_sft(
 
     trainer = SFTTrainer(
         model=model,
-        tokenizer=tokenizer,
         train_dataset=dataset,
         args=TrainingArguments(
             output_dir=str(output_dir),
@@ -139,7 +138,6 @@ def train_lora_sft(
             report_to="none",
         ),
         formatting_func=formatting_func,
-        max_seq_length=max_seq_length,
     )
     trainer.train()
     model.save_pretrained(output_dir)
