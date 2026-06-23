@@ -87,10 +87,10 @@ uv pip install torch transformers peft trl bitsandbytes accelerate datasets
 
 ## Docker + GCP (Ollama for the small model)
 
+**For local development - skip on Coder**
 The Dockerfile installs **Ollama** and starts it via `scripts/setup.sh`. On first boot
 it pulls `qwen2.5:3b-instruct` (~2 GB). Teacher and judge still use your cloud API key.
 
-**Build and run locally:**
 
 ```bash
 docker build -t synthetic-data-bootcamp .
@@ -129,8 +129,31 @@ docker run --rm --gpus all -p 8888:8888 \
   -v ollama-models:/home/coder/.ollama \
   synthetic-data-bootcamp
 ```
+Then verify:
 
-3. Inside the container (or in a notebook cell), confirm CUDA is visible:
+```bash
+python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"
+```
+
+## Coder Workspace Setup
+
+On Coder, the equivalent of step 2 is:
+
+| Docker step | Coder native equivalent |
+|-------------|---------------------------|
+| `--gpus all` | Not needed — GPU is on the VM already |
+| `RUN_SFT=1` | Set in `.env` (you already have this) |
+| SFT deps at boot | `uv sync --dev --group text-sft` from repo root |
+
+1. Install Ollama and optional dependcies for suprevised fine-tuning(SFT):
+```sh
+curl -fsSL https://ollama.com/install.sh | sh
+bash scripts/start-ollama.sh
+# optional, for notebook 05 SFT on GPU:
+uv sync --dev --group text-sft   # with RUN_SFT=1 in .env
+```
+
+2. Inside the container (or in a notebook cell), confirm CUDA is visible:
 
 ```bash
 python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"
