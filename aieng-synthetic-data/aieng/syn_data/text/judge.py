@@ -8,6 +8,8 @@ from typing import Any
 from aieng.syn_data.text.clients import LLMClient
 from aieng.syn_data.text.schemas import JudgeScore, QASample
 
+from json_repair import repair_json
+
 
 JUDGE_SYSTEM_PROMPT = (
     "You are an expert evaluator for policy-document question answering. "
@@ -27,10 +29,20 @@ def build_absolute_judge_prompt(
         "- coherence\n"
         "- instruction_following\n"
         "- factual_plausibility\n"
-        "Also include a short 'reasoning' string.\n\n"
+        "Also include a short 1-2 sentence max 'reasoning' string, no text outside JSON.\n\n"
         f"Question:\n{sample.question}\n\n"
         f"Reference answer:\n{sample.gold_answer}\n\n"
         f"Model answer:\n{model_answer}\n"
+        "JSON format:"
+        """
+        {
+            "correctness": <number>,
+            "coherence": <number>,
+            "instruction_following": <number>,
+            "factual_plausibility": <number>,
+            "reasoning": "<reasoning>"
+        }
+        """
     )
 
 
@@ -80,13 +92,17 @@ def judge_response(
 ) -> JudgeScore:
     """Score a model answer using absolute LLM-as-judge evaluation."""
     prompt = build_absolute_judge_prompt(sample, model_answer)
+    max_tokens = 256
     if hasattr(client, "complete_json"):
         payload = client.complete_json(
-            prompt, system=JUDGE_SYSTEM_PROMPT, temperature=0.0
+            prompt, system=JUDGE_SYSTEM_PROMPT, temperature=0.0, max_tokens=max_tokens
         )
     else:
-        raw = client.complete(prompt, system=JUDGE_SYSTEM_PROMPT, temperature=0.0)
-        payload = json.loads(raw)
+        raw = client.complete(prompt, system=JUDGE_SYSTEM_PROMPT, temperature=0.0, max_tokens=max_tokens)
+
+        payload = json.loads(repair_json(raw))
+        if payload is None:
+            raise ValueError(f"Failed to parse model JSON: {raw}")
     return parse_judge_score(sample.id, payload)
 
 

@@ -6,13 +6,16 @@ import json
 import logging
 import os
 import re
+import time
 from dataclasses import dataclass
 from typing import Any, Protocol, cast
 
 import requests
-
+from json_repair import repair_json
 
 logger = logging.getLogger(__name__)
+# TODO: Change to INFO level for production
+logger.setLevel(logging.DEBUG)
 
 _FENCED_JSON = re.compile(r"```(?:json)?\s*([\s\S]*?)\s*```", re.IGNORECASE)
 
@@ -129,18 +132,38 @@ class OpenAICompatibleClient:
         if response_format is not None:
             body["response_format"] = response_format
 
-        response = requests.post(
-            f"{self.settings.base_url}/chat/completions",
-            headers={
-                "Authorization": f"Bearer {self.settings.api_key}",
-                "Content-Type": "application/json",
-            },
-            json=body,
-            timeout=self.settings.timeout_seconds,
-        )
-        response.raise_for_status()
-        payload = response.json()
-        return str(payload["choices"][0]["message"]["content"])
+        max_attempts = 5
+        retryable_statuses = {429, 500, 502, 503, 504}
+
+        for attempt in range(1, max_attempts + 1):
+            try:
+                response = requests.post(
+                    f"{self.settings.base_url}/chat/completions",
+                    headers={
+                        "Authorization": f"Bearer {self.settings.api_key}",
+                        "Content-Type": "application/json",
+                    },
+                    json=body,
+                    timeout=self.settings.timeout_seconds,
+                )
+                response.raise_for_status()
+                payload = response.json()
+                return str(payload["choices"][0]["message"]["content"])
+            except (requests.ConnectionError, requests.Timeout, requests.HTTPError) as exc:
+                status = exc.response.status_code if isinstance(exc, requests.HTTPError) and exc.response is not None else None
+                is_retryable = isinstance(exc, (requests.ConnectionError, requests.Timeout)) or status in retryable_statuses
+                if not is_retryable or attempt == max_attempts:
+                    raise
+                wait = min(2**attempt, 60)
+                logger.warning(
+                    "LLM request failed (attempt %d/%d, status=%s): %s. Retrying in %ds.",
+                    attempt,
+                    max_attempts,
+                    status,
+                    exc,
+                    wait,
+                )
+                time.sleep(wait)
 
     def complete_json(
         self,
@@ -148,7 +171,7 @@ class OpenAICompatibleClient:
         *,
         system: str | None = None,
         temperature: float = 0.0,
-        max_tokens: int = 2048,
+        max_tokens: int = 512,
     ) -> dict[str, Any]:
         """Request a JSON object response and parse it."""
         system_prompt = system or "You are a helpful assistant."
@@ -181,9 +204,9 @@ class OpenAICompatibleClient:
             )
 
         cleaned = extract_json_text(raw)
-        logger.debug("Extracted JSON payload: %s", cleaned)
+        logger.debug("*********** Extracted JSON payload: *********** \n%s\n*********** End of JSON payload ***********", cleaned)
         try:
-            return cast(dict[str, Any], json.loads(cleaned))
+            return cast(dict[str, Any], json.loads(repair_json(cleaned)))
         except json.JSONDecodeError as exc:
             snippet = cleaned[:300] + ("..." if len(cleaned) > 300 else "")
             msg = f"Failed to parse model JSON ({exc.msg}): {snippet!r}"
