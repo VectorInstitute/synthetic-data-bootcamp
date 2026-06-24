@@ -203,6 +203,10 @@ resource "coder_agent" "main" {
     # Wait a moment to ensure all installations are finalized
     sleep 2
 
+    # Start Ollama
+    echo "Starting Ollama..."
+    bash "/home/${local.username}/${local.repo_name}/scripts/start-ollama.sh" || echo "Ollama startup failed, continuing..."
+
     # Run automatic onboarding
     echo "Running automatic onboarding..."
     if command -v onboard &> /dev/null; then

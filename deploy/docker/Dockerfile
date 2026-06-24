@@ -26,6 +26,7 @@ RUN apt-get update && \
     apt-transport-https \
     gnupg \
     lsb-release \
+    zstd \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Neovim 0.11+ from GitHub releases using curl (wget not available yet at this stage).
@@ -45,6 +46,8 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.
     apt-get install -y google-cloud-cli && \
     rm -rf /var/lib/apt/lists/*
 
+# Install Ollama
+RUN curl -fsSL https://ollama.com/install.sh | sh
 
 # Setup the coder user account
 ARG USER=coder
