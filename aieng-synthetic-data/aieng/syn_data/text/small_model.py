@@ -5,11 +5,13 @@ from __future__ import annotations
 import os
 
 from aieng.syn_data.text.clients import LLMSettings, OpenAICompatibleClient
+import logging
 
+logger = logging.getLogger(__name__)
 
 def create_small_model_client(
     *,
-    default_model: str = "gpt-4o-mini",
+    default_model: str = "qwen2.5:3b-instruct",
 ) -> OpenAICompatibleClient:
     """Create a client for the small model under evaluation.
 
@@ -32,4 +34,5 @@ def create_small_model_client(
         base_url=os.getenv("SMALL_MODEL_BASE_URL")
         or os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1").rstrip("/"),
     )
+    logger.info("Creating small model client for model: %s", settings.model)
     return OpenAICompatibleClient(settings)
