@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from typing import Any
 
+import logging
 from aieng.syn_data.text.clients import LLMClient
 from aieng.syn_data.text.schemas import JudgeScore, QASample
 
@@ -15,6 +16,9 @@ JUDGE_SYSTEM_PROMPT = (
     "You are an expert evaluator for policy-document question answering. "
     "Score model outputs fairly and conservatively."
 )
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 def build_absolute_judge_prompt(
@@ -91,6 +95,7 @@ def judge_response(
     model_answer: str,
 ) -> JudgeScore:
     """Score a model answer using absolute LLM-as-judge evaluation."""
+    logger.info(f"Scoring model answer for sample: {sample.id} with model answer: {model_answer}")
     prompt = build_absolute_judge_prompt(sample, model_answer)
     max_tokens = 256
     if hasattr(client, "complete_json"):
