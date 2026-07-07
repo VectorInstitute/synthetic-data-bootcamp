@@ -149,7 +149,7 @@ On Coder, the equivalent of step 2 is:
 ```sh
 curl -fsSL https://ollama.com/install.sh | sh
 bash scripts/start-ollama.sh
-# optional, for notebook 05 SFT on GPU:
+# install text synthesis dependencies (e.g. json_repair)
 uv sync --dev --group text-sft   # with RUN_SFT=1 in .env
 ```
 
