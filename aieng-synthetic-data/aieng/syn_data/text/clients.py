@@ -148,7 +148,17 @@ class OpenAICompatibleClient:
                 )
                 response.raise_for_status()
                 payload = response.json()
-                return str(payload["choices"][0]["message"]["content"])
+                choice = payload["choices"][0]
+                content = choice["message"].get("content")
+                if content is None:
+                    finish_reason = choice.get("finish_reason")
+                    has_tool_calls = bool(choice["message"].get("tool_calls"))
+                    msg = (
+                        f"Model {self.settings.model} returned null content "
+                        f"(finish_reason={finish_reason!r}, tool_calls={has_tool_calls})."
+                    )
+                    raise ValueError(msg)
+                return str(content)
             except (requests.ConnectionError, requests.Timeout, requests.HTTPError) as exc:
                 status = exc.response.status_code if isinstance(exc, requests.HTTPError) and exc.response is not None else None
                 is_retryable = isinstance(exc, (requests.ConnectionError, requests.Timeout)) or status in retryable_statuses
@@ -206,11 +216,19 @@ class OpenAICompatibleClient:
         cleaned = extract_json_text(raw)
         logger.debug("*********** Extracted JSON payload: *********** \n%s\n*********** End of JSON payload ***********", cleaned)
         try:
-            return cast(dict[str, Any], json.loads(repair_json(cleaned)))
+            parsed = json.loads(repair_json(cleaned))
         except json.JSONDecodeError as exc:
             snippet = cleaned[:300] + ("..." if len(cleaned) > 300 else "")
             msg = f"Failed to parse model JSON ({exc.msg}): {snippet!r}"
             raise ValueError(msg) from exc
+        if not isinstance(parsed, dict):
+            raw_snippet = (raw[:300] + ("..." if len(raw) > 300 else "")) if raw else ""
+            msg = (
+                f"Model response did not contain a JSON object "
+                f"(got {type(parsed).__name__}): {raw_snippet!r}"
+            )
+            raise ValueError(msg)
+        return cast(dict[str, Any], parsed)
 
 
 def create_teacher_client(
