@@ -27,6 +27,7 @@ license = "MIT"
 dependencies = [
     "python-dotenv>=1.0.0",
     "requests>=2.33.0",
+    "json-repair>=0.61.0",
 ]
 
 [tool.hatch.build.targets.sdist]

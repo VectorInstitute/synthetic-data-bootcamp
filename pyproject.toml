@@ -40,7 +40,6 @@ text-sft = [
     "accelerate",
     "bitsandbytes",
     "datasets",
-    "json-repair>=0.61.0",
     "peft",
     "torch",
     "transformers",
