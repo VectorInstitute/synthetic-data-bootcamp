@@ -177,7 +177,8 @@ def generate_raw_synthetic_corpus(
     Returns
     -------
     list of QASample
-        List containing all generated QASample objects across all paragraphs and strategies.
+        List containing all generated QASample objects across all paragraphs and
+        strategies.
     """
     selected = train_paragraphs[:max_paragraphs]
     if not selected:
@@ -247,9 +248,11 @@ def generate_grounded_training_corpus(
     train_paragraphs : list of Paragraph
         A list of Paragraph objects from which to generate Q&A pairs.
     target_size : int, optional
-        The desired number of Q&A pairs to generate. If None, uses a default based on the data.
+        The desired number of Q&A pairs to generate. If None, uses a default based on
+        the data.
     min_overlap : float, default=0.15
-        Minimum required overlap score between the generated answer and the source passage.
+        Minimum required overlap score between the generated answer and the source
+        passage.
     seed : int, default=42
         Random seed for reproducibility.
 
@@ -270,8 +273,8 @@ def generate_grounded_training_corpus(
     samples: list[QASample] = []
     attempts = 0
 
-    # the loop allows up to max_attempts = goal * 3, so it tolerates ~33% rejection from the /
-    # overlap filter before giving up
+    # the loop allows up to max_attempts = goal * 3, so it tolerates ~33% rejection
+    # from the overlap filter before giving up
     max_attempts = goal * 3
 
     while len(samples) < goal and attempts < max_attempts:

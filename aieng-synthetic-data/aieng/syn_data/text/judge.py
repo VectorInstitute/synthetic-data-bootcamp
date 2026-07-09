@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import json
+import logging
 from typing import Any
 
-import logging
+from json_repair import repair_json
+
 from aieng.syn_data.text.clients import LLMClient
 from aieng.syn_data.text.schemas import JudgeScore, QASample
-
-from json_repair import repair_json
 
 
 JUDGE_SYSTEM_PROMPT = (
