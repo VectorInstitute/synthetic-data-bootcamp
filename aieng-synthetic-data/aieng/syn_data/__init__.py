@@ -1,4 +1,7 @@
+"""Synthetic data generation utilities and shared logging setup."""
+
 import logging
+
 
 _LOG_FORMAT = "%(asctime)s %(levelname)s %(name)s: %(message)s"
 _PACKAGE_LOGGER_NAME = __name__  # "aieng.syn_data"
@@ -24,7 +27,7 @@ def _setup_package_logger() -> None:
 
 
 def configure_logging() -> None:
-    """Optional: also configure the root logger (e.g. for app entry points)."""
+    """Configure the root logger as well (e.g. for app entry points)."""
     logging.basicConfig(level=logging.INFO, format=_LOG_FORMAT)
 
 
