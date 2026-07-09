@@ -206,4 +206,4 @@ class PeftInferenceClient:
                 temperature=max(temperature, 1e-5),
             )
         generated = outputs[0][inputs["input_ids"].shape[-1] :]
-        return self.tokenizer.decode(generated, skip_special_tokens=True).strip()
+        return str(self.tokenizer.decode(generated, skip_special_tokens=True)).strip()
