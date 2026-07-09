@@ -121,10 +121,11 @@ def topic_controlled_generate(
     """
     Generate a Q&A pair focused on a specific policy topic for a given paragraph.
 
-    This function operates in two steps: it first extracts a list of policy topics from the input paragraph
-    using the language model client, then selects one topic and prompts the model to generate a question
-    and answer focused on that topic. If topic extraction is skipped (by passing topics), the provided list
-    is used directly. This approach encourages targeted and diverse questions per paragraph.
+    This function operates in two steps: it first extracts a list of policy topics
+    from the input paragraph using the language model client, then selects one topic
+    and prompts the model to generate a question and answer focused on that topic. If
+    topic extraction is skipped (by passing topics), the provided list is used
+    directly. This approach encourages targeted and diverse questions per paragraph.
 
     Parameters
     ----------
@@ -133,7 +134,8 @@ def topic_controlled_generate(
     paragraph : Paragraph
         The paragraph from which to extract topics and generate Q&A.
     topics : list of str, optional
-        List of topics to use instead of generating them automatically. If None, topics will be extracted from the paragraph.
+        List of topics to use instead of generating them automatically. If None, topics
+        will be extracted from the paragraph.
     failure_mode : FailureMode or None, optional
         The small-model failure mode to condition the generation on.
 
@@ -144,7 +146,8 @@ def topic_controlled_generate(
 
     Notes
     -----
-    Used primarily in test set generation (`generate_test_qa_batch`) for targeted Q&A diversity.
+    Used primarily in test set generation (`generate_test_qa_batch`) for targeted Q&A
+    diversity.
     """
     topic_list = topics or _generate_topics(client, paragraph)
     topic = topic_list[0] if topic_list else "general policy interpretation"

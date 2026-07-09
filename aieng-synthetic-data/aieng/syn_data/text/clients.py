@@ -13,6 +13,7 @@ from typing import Any, Protocol, cast
 import requests
 from json_repair import repair_json
 
+
 logger = logging.getLogger(__name__)
 # TODO: Change to INFO level for production
 logger.setLevel(logging.DEBUG)
@@ -174,6 +175,9 @@ class OpenAICompatibleClient:
                     wait,
                 )
                 time.sleep(wait)
+
+        msg = f"LLM request to {self.settings.model} exhausted retries."
+        raise RuntimeError(msg)
 
     def complete_json(
         self,
