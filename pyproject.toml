@@ -117,6 +117,12 @@ ignore = [
 # Ignore import violations in all `__init__.py` files.
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["E402", "F401", "F403", "F811"]
+"*.ipynb" = ["D100", "E402", "B018"]
+
+[tool.nbqa.addopts]
+# Notebooks idiomatically spread imports across cells, use trailing expressions
+# for cell display, and don't have a module docstring.
+ruff = ["--extend-ignore=D100,E402,B018"]
 
 [tool.ruff.lint.pep8-naming]
 ignore-names = ["X*", "setUp"]
