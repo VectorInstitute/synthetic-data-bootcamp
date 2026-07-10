@@ -9,8 +9,11 @@ from aieng.syn_data.text.schemas import DocumentRole, DocumentSpec, FailureMode
 
 DEFAULT_DOMAIN = "finance"
 
-# Default relative paths under implementations/qa_text_generation/.
-IMPLEMENTATION_DIR = Path("implementations/qa_text_generation")
+# Repo-anchored paths under implementations/qa_text_generation/ so callers work
+# regardless of the current working directory (notebooks run from the repo root,
+# tests run from aieng-synthetic-data/).
+_REPO_ROOT = Path(__file__).resolve().parents[4]
+IMPLEMENTATION_DIR = _REPO_ROOT / "implementations/qa_text_generation"
 DATA_DIR = IMPLEMENTATION_DIR / "data"
 DOCUMENTS_DIR = DATA_DIR / "documents"
 PARAGRAPHS_PATH = DATA_DIR / "paragraphs.jsonl"
