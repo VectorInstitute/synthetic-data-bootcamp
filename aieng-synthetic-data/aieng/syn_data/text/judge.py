@@ -95,7 +95,9 @@ def judge_response(
     model_answer: str,
 ) -> JudgeScore:
     """Score a model answer using absolute LLM-as-judge evaluation."""
-    logger.info(f"Scoring model answer for sample: {sample.id} with model answer: {model_answer}")
+    logger.info(
+        f"Scoring model answer for sample: {sample.id} with model answer: {model_answer}"
+    )
     prompt = build_absolute_judge_prompt(sample, model_answer)
     max_tokens = 256
     if hasattr(client, "complete_json"):
@@ -103,7 +105,9 @@ def judge_response(
             prompt, system=JUDGE_SYSTEM_PROMPT, temperature=0.0, max_tokens=max_tokens
         )
     else:
-        raw = client.complete(prompt, system=JUDGE_SYSTEM_PROMPT, temperature=0.0, max_tokens=max_tokens)
+        raw = client.complete(
+            prompt, system=JUDGE_SYSTEM_PROMPT, temperature=0.0, max_tokens=max_tokens
+        )
 
         payload = json.loads(repair_json(raw))
         if payload is None:
