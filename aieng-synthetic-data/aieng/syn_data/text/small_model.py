@@ -10,6 +10,7 @@ from aieng.syn_data.text.clients import LLMSettings, OpenAICompatibleClient
 
 logger = logging.getLogger(__name__)
 
+
 def create_small_model_client(
     *,
     default_model: str = "qwen2.5:3b-instruct",
