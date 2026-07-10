@@ -160,9 +160,20 @@ class OpenAICompatibleClient:
                     )
                     raise ValueError(msg)
                 return str(content)
-            except (requests.ConnectionError, requests.Timeout, requests.HTTPError) as exc:
-                status = exc.response.status_code if isinstance(exc, requests.HTTPError) and exc.response is not None else None
-                is_retryable = isinstance(exc, (requests.ConnectionError, requests.Timeout)) or status in retryable_statuses
+            except (
+                requests.ConnectionError,
+                requests.Timeout,
+                requests.HTTPError,
+            ) as exc:
+                status = (
+                    exc.response.status_code
+                    if isinstance(exc, requests.HTTPError) and exc.response is not None
+                    else None
+                )
+                is_retryable = (
+                    isinstance(exc, (requests.ConnectionError, requests.Timeout))
+                    or status in retryable_statuses
+                )
                 if not is_retryable or attempt == max_attempts:
                     raise
                 wait = min(2**attempt, 60)
@@ -218,7 +229,10 @@ class OpenAICompatibleClient:
             )
 
         cleaned = extract_json_text(raw)
-        logger.debug("*********** Extracted JSON payload: *********** \n%s\n*********** End of JSON payload ***********", cleaned)
+        logger.debug(
+            "*********** Extracted JSON payload: *********** \n%s\n*********** End of JSON payload ***********",
+            cleaned,
+        )
         try:
             parsed = json.loads(repair_json(cleaned))
         except json.JSONDecodeError as exc:
