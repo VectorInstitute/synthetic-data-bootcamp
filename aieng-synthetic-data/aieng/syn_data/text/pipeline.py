@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import itertools
 import random
+import threading
 import uuid
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any
 
@@ -104,28 +106,72 @@ def generate_test_qa_batch(
     test_paragraphs: list[Paragraph],
     *,
     questions_per_para: int = 2,
+    max_concurrency: int = 4,
 ) -> list[QASample]:
     """Generate held-out, hard-to-answer test Q&A from test paragraphs.
 
-    Uses the teacher model.
+    Uses the teacher model. Generation calls are dispatched concurrently on a
+    thread pool (the work is I/O-bound on the teacher API); a semaphore caps
+    how many teacher calls are in flight at once, independent of how many
+    worker threads exist, so the batch respects the API's rate limits.
+
+    Parameters
+    ----------
+    teacher : LLMClient
+        The teacher language model client used for generation.
+    test_paragraphs : list of Paragraph
+        Held-out paragraphs to generate test questions from.
+    questions_per_para : int, optional
+        Number of questions to generate per paragraph (default is 2).
+    max_concurrency : int, optional
+        Maximum number of teacher calls allowed to run at the same time
+        (default is 4).
+
+    Returns
+    -------
+    list of QASample
+        Generated samples, in the same order as `test_paragraphs` and
+        `questions_per_para` would otherwise produce sequentially.
     """
-    samples: list[QASample] = []
+    tasks: list[tuple[Paragraph, int, FailureMode]] = []
     for paragraph in test_paragraphs:
         modes = failure_modes_for_paragraph(paragraph)
         if not modes:
             modes = [FailureMode.DOMAIN_VOCABULARY_DRIFT]
         for offset in range(questions_per_para):
             failure_mode = modes[offset % len(modes)]
+            tasks.append((paragraph, offset, failure_mode))
+
+    if not tasks:
+        return []
+
+    semaphore = threading.Semaphore(max_concurrency)
+
+    def _generate_one(
+        paragraph: Paragraph,
+        offset: int,
+        failure_mode: FailureMode,
+    ) -> QASample:
+        with semaphore:
             sample = topic_controlled_generate(
                 teacher,
                 paragraph,
                 failure_mode=failure_mode,
             )
-            sample.id = f"test-{paragraph.para_id}-{offset}"
-            sample.split = ParagraphSplit.TEST
-            sample.failure_mode = failure_mode
-            samples.append(sample)
-    return samples
+        sample.id = f"test-{paragraph.para_id}-{offset}"
+        sample.split = ParagraphSplit.TEST
+        sample.failure_mode = failure_mode
+        return sample
+
+    # More worker threads than max_concurrency lets threads queue up waiting on
+    # the semaphore without needing a thread per task for very large batches.
+    worker_count = max(1, min(len(tasks), max_concurrency * 2))
+    with ThreadPoolExecutor(max_workers=worker_count) as executor:
+        futures = [
+            executor.submit(_generate_one, paragraph, offset, failure_mode)
+            for paragraph, offset, failure_mode in tasks
+        ]
+        return [future.result() for future in futures]
 
 
 def compare_generation_strategies(

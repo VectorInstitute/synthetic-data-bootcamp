@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import threading
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Protocol
 
 from aieng.syn_data.text.schemas import JudgeScore, QASample
@@ -47,26 +49,56 @@ def run_inference(
     samples: list[QASample],
     *,
     system: str = DEFAULT_EVAL_SYSTEM,
+    max_concurrency: int = 4,
 ) -> list[dict[str, Any]]:
-    """Run the small model on a list of evaluation samples."""
-    predictions: list[dict[str, Any]] = []
-    for sample in samples:
+    """Run the small model on a list of evaluation samples.
+
+    Requests are dispatched concurrently on a thread pool (inference is
+    I/O-bound on the model API); a semaphore caps how many calls are in
+    flight at once so the batch respects the API's rate limits.
+
+    Parameters
+    ----------
+    client : InferenceClient
+        The small model client under evaluation.
+    samples : list of QASample
+        Evaluation samples to run inference on.
+    system : str, optional
+        System prompt to use for every completion.
+    max_concurrency : int, optional
+        Maximum number of inference calls allowed to run at the same time
+        (default is 4).
+
+    Returns
+    -------
+    list of dict
+        One prediction record per sample, in the same order as `samples`.
+    """
+    if not samples:
+        return []
+
+    semaphore = threading.Semaphore(max_concurrency)
+
+    def _run_one(sample: QASample) -> dict[str, Any]:
         prompt = build_eval_prompt(sample)
-        model_answer = client.complete(prompt, system=system, temperature=0.0)
-        predictions.append(
-            {
-                "id": sample.id,
-                "question": sample.question,
-                "gold_answer": sample.gold_answer,
-                "model_answer": model_answer,
-                "failure_mode": (
-                    sample.failure_mode.value if sample.failure_mode else None
-                ),
-                "doc_id": sample.doc_id,
-                "para_id": sample.para_id,
-            },
-        )
-    return predictions
+        with semaphore:
+            model_answer = client.complete(prompt, system=system, temperature=0.0)
+        return {
+            "id": sample.id,
+            "question": sample.question,
+            "gold_answer": sample.gold_answer,
+            "model_answer": model_answer,
+            "failure_mode": (
+                sample.failure_mode.value if sample.failure_mode else None
+            ),
+            "doc_id": sample.doc_id,
+            "para_id": sample.para_id,
+        }
+
+    worker_count = max(1, min(len(samples), max_concurrency * 2))
+    with ThreadPoolExecutor(max_workers=worker_count) as executor:
+        futures = [executor.submit(_run_one, sample) for sample in samples]
+        return [future.result() for future in futures]
 
 
 def summarize_judge_scores(scores: list[JudgeScore]) -> dict[str, float]:
