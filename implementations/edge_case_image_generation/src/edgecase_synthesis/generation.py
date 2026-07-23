@@ -278,20 +278,27 @@ class ControlNetEditor:
             # Silhouette primes the inpaint region so the model has a shape prior.
             working, obj_mask = _paste_object(working, edit_mask, prime_cfg, seed=seed)
 
+        width, height = working.size
         mask_pil = _mask_to_pil(obj_mask if obj_mask is not None else edit_mask)
+        if mask_pil.size != (width, height):
+            mask_pil = mask_pil.resize((width, height), Image.Resampling.NEAREST)
         gen_device = "cuda" if self.device.type == "cuda" else "cpu"
         generator = torch.Generator(device=gen_device).manual_seed(int(seed))
 
+        # SDXL defaults to 1024×1024 if width/height are omitted — must match the photo.
         generated = self.inpaint_pipe(
             prompt=prompt,
             negative_prompt=negative_prompt or None,
             image=working,
             mask_image=mask_pil,
+            height=height,
+            width=width,
             num_inference_steps=num_inference_steps,
             guidance_scale=guidance_scale,
             strength=strength,
             generator=generator,
         ).images[0]
+        generated = _ensure_same_size(generated, working)
 
         blur = float(edit_mask_cfg.get("composite_blur", 1.5))
         # Soft-lock unmasked pixels to the (primed) photo.
@@ -362,12 +369,15 @@ class ControlNetEditor:
             negative_prompt=negative_prompt or None,
             image=working,
             control_image=control_image,
+            height=height,
+            width=width,
             num_inference_steps=num_inference_steps,
             guidance_scale=guidance_scale,
             strength=strength,
             controlnet_conditioning_scale=scales,
             generator=generator,
         ).images[0]
+        generated = _ensure_same_size(generated, working)
 
         blur = float(edit_mask_cfg.get("composite_blur", 1.5))
         output = _composite_with_weight(working, generated, edit_weight, blur_sigma=blur)
@@ -673,6 +683,13 @@ def _prepare_winter_weight(
     return np.clip(cv2.GaussianBlur(weight, (0, 0), 2.0), 0.0, 1.0)
 
 
+def _ensure_same_size(image: Image.Image, reference: Image.Image) -> Image.Image:
+    """Resize ``image`` to ``reference`` size when a pipeline ignores width/height."""
+    if image.size == reference.size:
+        return image
+    return image.resize(reference.size, Image.Resampling.LANCZOS)
+
+
 def _composite_with_weight(
     original: Image.Image,
     generated: Image.Image,
@@ -680,9 +697,14 @@ def _composite_with_weight(
     *,
     blur_sigma: float = 1.5,
 ) -> Image.Image:
+    generated = _ensure_same_size(generated, original)
     base = np.array(original.convert("RGB"), dtype=np.float32)
     gen = np.array(generated.convert("RGB"), dtype=np.float32)
-    soft = cv2.GaussianBlur(weight.astype(np.float32), (0, 0), max(blur_sigma, 0.5))
+    h, w = base.shape[:2]
+    weight_arr = np.asarray(weight, dtype=np.float32)
+    if weight_arr.shape[:2] != (h, w):
+        weight_arr = cv2.resize(weight_arr, (w, h), interpolation=cv2.INTER_LINEAR)
+    soft = cv2.GaussianBlur(weight_arr, (0, 0), max(blur_sigma, 0.5))
     soft = np.clip(soft, 0.0, 1.0)[..., None]
     out = base * (1.0 - soft) + gen * soft
     return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
