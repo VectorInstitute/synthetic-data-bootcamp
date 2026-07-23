@@ -22,15 +22,15 @@ real photo
    └────────────────────────────────── OWL-ViT + SAM masks
                                                       │
                                                       ▼
-                                   (later) VLM judge → accept / retry / reject
+                                   VLM judge (RGB + prompt) → accept / retry / reject
 ```
 
 **Hardware profiles** (`configs/hardware/`): flip the stack with `load_config(overrides=["hardware=gpu_l4"])`.
 
-| Profile | Machine | Inserts | Weather | Depth / Seg / Annotate |
-|---------|---------|---------|---------|------------------------|
-| `cpu` | laptop / MPS | paste | SD 1.5 + depth CN | Base / B0 / OWL-B + MobileSAM |
-| `gpu_l4` | g2-standard-8, 1× L4 24 GB | **SDXL inpaint** | SDXL + depth CN | Large / B2 / OWL-L + SAM-B |
+| Profile | Machine | Inserts | Weather | Depth / Seg / Annotate | Judge |
+|---------|---------|---------|---------|------------------------|-------|
+| `cpu` | laptop / MPS | paste | SD 1.5 + depth CN | Base / B0 / OWL-B + MobileSAM | Qwen2.5-VL-**3B** |
+| `gpu_l4` | g2-standard-8, 1× L4 24 GB | **SDXL inpaint** | SDXL + depth CN | Large / B2 / OWL-L + SAM-B | Qwen2.5-VL-**7B** |
 
 Anomaly YAMLs use `method: auto` → `generation.default_anomaly_method` from the active profile.
 
@@ -296,16 +296,17 @@ Your Mac (MPS): treat like “8GB-class with different quirks” — prefer SD 1
 - Segmentation / RS19 GT → edit weights
 - Object inserts: paste (`cpu`) or SDXL inpaint (`gpu_l4`); weather via depth ControlNet
 - OWL-ViT + SAM annotation on the synthetic image (B/MobileSAM or L/SAM-B by profile)
+- **VLM judge** (Qwen2.5-VL-3B on `cpu`, 7B on `gpu_l4`) → accept / retry / reject
 - Artifact saving under `outputs/`
 
 **Still open / deferred from this notebook:**
 
 | Item | Notes |
 |------|--------|
-| **VLM judge loop** | Config stub exists (`judge.threshold: 8.5`) but no scoring cell yet |
+| **Retry loop** | Judge returns `retry`; regeneration loop is Notebook 2 |
 | **Grounded-SAM 2 swap** | Annotation quality upgrade |
 | **Batch over all samples** | Notebook runs primarily on `samples[0]` for generation |
-| **Realism polish** | Weather still hard — SDXL ControlNet on L4 is the upgrade path |
+| **Realism polish** | Weather / inserts still hard — iterate prompts + placement |
 | **More edge-case prompts** | Ice, fallen tree, fog — same pipeline, new prompts/masks |
 
 ### Notebook 2 — planned: batch dataset generation

@@ -8,14 +8,12 @@ defaults:
   - conditioning: default
   - generation: default
   - annotation: default
+  - judge: default
   - hardware: cpu          # last among profiles so model/device choices win
   - _self_
 
 data:
   max_images: 5
-
-judge:
-  threshold: 8.5
 
 output:
   format: coco

@@ -5,8 +5,8 @@ hardware:
   device: null  # auto: cuda > mps > cpu
   notes: >-
     Depth Anything V2 Base, SegFormer-B0, SD 1.5 ControlNet (optional),
-    OWL-ViT-B + MobileSAM. Object anomalies default to paste (SD 1.5 + depth
-    ControlNet fights new objects on the track plane).
+    OWL-ViT-B + MobileSAM, Qwen2.5-VL-3B judge (CLIP fallback if needed).
+    Object anomalies default to paste.
 
 conditioning:
   depth:
@@ -36,3 +36,13 @@ annotation:
   sam_model: mobile_sam.pt
   conf: 0.015
   max_detections: 20
+
+judge:
+  backend: qwen_vl
+  model_id: Qwen/Qwen2.5-VL-3B-Instruct
+  torch_dtype: float32
+  threshold: 8.0
+  max_new_tokens: 256
+  min_pixels: 200704      # 256 * 28 * 28
+  max_pixels: 401408      # 512 * 28 * 28
+  # If 3B is too heavy on a laptop, override: judge.backend=clip

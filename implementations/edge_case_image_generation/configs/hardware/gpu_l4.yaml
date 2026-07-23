@@ -5,8 +5,8 @@ hardware:
   device: cuda
   notes: >-
     Depth Anything V2 Large, SegFormer-B2, SDXL inpaint for object inserts,
-    SDXL + depth ControlNet for appearance/weather edits, OWL-ViT-L + SAM-B.
-    Fits comfortably in 24 GB at fp16 with attention slicing / VAE tiling.
+    SDXL + depth ControlNet for appearance/weather edits, OWL-ViT-L + SAM-B,
+    Qwen2.5-VL-7B judge (unload SDXL first to free VRAM).
 
 conditioning:
   depth:
@@ -40,3 +40,13 @@ annotation:
   sam_model: sam_b.pt
   conf: 0.02
   max_detections: 25
+
+judge:
+  backend: qwen_vl
+  # Full 7B judge — the quality gate we want on the L4.
+  model_id: Qwen/Qwen2.5-VL-7B-Instruct
+  torch_dtype: bfloat16
+  threshold: 8.5
+  max_new_tokens: 320
+  min_pixels: 200704       # 256 * 28 * 28
+  max_pixels: 1003520      # 1280 * 28 * 28

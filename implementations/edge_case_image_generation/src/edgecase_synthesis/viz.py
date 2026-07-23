@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -228,4 +229,59 @@ def save_annotation_artifact(
     root.mkdir(parents=True, exist_ok=True)
     path = root / f"{name}_annotated.png"
     Image.fromarray(annotation.overlay).save(path)
+    return path
+
+
+def show_judge_result(
+    image: Image.Image | np.ndarray,
+    judgment: Any,
+    *,
+    title: str | None = None,
+    figsize=(10, 4),
+):
+    """Show the judged RGB image with a scorecard (depth/seg are not used)."""
+    fig, axes = plt.subplots(1, 2, figsize=figsize, gridspec_kw={"width_ratios": [1.2, 1]})
+    show_image(image, title="Judged image (RGB only)", ax=axes[0])
+    axes[1].axis("off")
+    lines = [
+        f"decision: {getattr(judgment, 'decision', '?')}",
+        f"overall: {getattr(judgment, 'overall', '?')}  (threshold gate)",
+        f"prompt_faithfulness: {getattr(judgment, 'prompt_faithfulness', '?')}",
+        f"physical_plausibility: {getattr(judgment, 'physical_plausibility', '?')}",
+        f"annotation_correctness: {getattr(judgment, 'annotation_correctness', '?')}",
+        f"edge_case_present: {getattr(judgment, 'edge_case_present', '?')}",
+        f"backend: {getattr(judgment, 'backend', '?')}",
+        f"model: {getattr(judgment, 'model_id', '?')}",
+        "",
+        str(getattr(judgment, "rationale", "") or ""),
+    ]
+    axes[1].text(
+        0.0,
+        1.0,
+        "\n".join(lines),
+        va="top",
+        ha="left",
+        family="monospace",
+        fontsize=10,
+        wrap=True,
+        transform=axes[1].transAxes,
+    )
+    fig.suptitle(title or f"VLM judge — {getattr(judgment, 'anomaly_id', '')}", fontsize=13)
+    plt.tight_layout()
+    return fig, axes
+
+
+def save_judge_artifact(
+    name: str,
+    judgment: Any,
+    output_dir: Path | str,
+) -> Path:
+    """Persist judge JSON next to other notebook artifacts."""
+    import json
+
+    root = Path(output_dir) / "judgments"
+    root.mkdir(parents=True, exist_ok=True)
+    path = root / f"{name}_judge.json"
+    payload = judgment.to_dict() if hasattr(judgment, "to_dict") else dict(judgment)
+    path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     return path
