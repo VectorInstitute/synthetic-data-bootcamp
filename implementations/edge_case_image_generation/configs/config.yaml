@@ -1,0 +1,18 @@
+# Root Hydra config — override from CLI or notebooks:
+#   load_config(overrides=["data/source=wikimedia"])
+defaults:
+  - paths: default
+  - data/source@data: railsem19
+  - conditioning: default
+  - generation: default
+  - annotation: default
+  - _self_
+
+data:
+  max_images: 5
+
+judge:
+  threshold: 8.5
+
+output:
+  format: coco

@@ -1,0 +1,35 @@
+# RailSem19 — orange traffic cone on near trackbed.
+id: traffic_cone
+dataset: railsem19
+display_name: Traffic cone on track
+# paste = render+composite (depth ControlNet fights new objects on the track plane)
+method: paste
+prompt: >-
+  photorealistic bright orange traffic cone with white reflective stripe
+  standing upright on railway ballast, safety cone on train tracks,
+  sharp details, same camera angle and overcast lighting
+negative_prompt: >-
+  blurry blob, orange smear, no cone, deformed cone, floating cone,
+  night, cartoon, text, watermark, logo, multiple cones
+edit_mask:
+  mode: blob
+  # Small clean ellipse between the near rails (edit region, not cone shape).
+  y_start: 0.62
+  y_end: 0.86
+  x_center: 0.46
+  x_radius: 0.055
+  y_radius: 0.09
+  intersect_track: false
+  blur_sigma: 1.5
+  composite_blur: 1.2
+prime:
+  shape: cone
+  mix: 0.9
+  color: [255, 110, 30]
+strength: 0.82
+annotation_classes:
+  - traffic cone
+  - railway track
+  - train
+  - sky
+  - tree

@@ -1,0 +1,32 @@
+# RailSem19 — deer on the near track.
+id: deer_on_track
+dataset: railsem19
+display_name: Deer on track
+method: paste
+prompt: >-
+  photorealistic brown deer standing on railway trackbed facing the camera,
+  wild animal on train tracks, clear four-legged animal, same lighting
+negative_prompt: >-
+  blurry blob, deformed animal, extra limbs, floating animal, herd,
+  snow, night, cartoon, text, watermark, logo
+edit_mask:
+  mode: blob
+  y_start: 0.55
+  y_end: 0.85
+  x_center: 0.48
+  x_radius: 0.08
+  y_radius: 0.12
+  intersect_track: false
+  blur_sigma: 1.5
+  composite_blur: 1.2
+prime:
+  shape: deer
+  color: [130, 85, 45]
+strength: 0.82
+annotation_classes:
+  - deer
+  - animal on railway track
+  - railway track
+  - train
+  - sky
+  - tree

@@ -1,0 +1,27 @@
+# @package data
+name: nordland_hf
+label: "Nordland (Hugging Face) — Nordlandsbanen fall frames"
+license: "CC BY-NC-SA 4.0"
+attribution: >-
+  Nordland visual place recognition dataset (Somayeh-h/Nordland on Hugging Face).
+  Source footage: NRK Nordlandsbanen minute-by-minute.
+  https://huggingface.co/datasets/Somayeh-h/Nordland
+dataset_id: Somayeh-h/Nordland
+quality:
+  min_luminance_std: 12.0
+  min_luminance_mean: 18.0
+  min_luminance_range: 25.0
+  max_offset_skip: 100
+# Curated row offsets into the HF dataset viewer (fall season, forward track views).
+# Fetched via the datasets-server API — no multi-GB archive download.
+frames:
+  - offset: 0
+    save_as: nordland_fall_00285.png
+  - offset: 500
+    save_as: nordland_fall_00088.png
+  - offset: 2000
+    save_as: nordland_fall_29049.png
+  - offset: 5000
+    save_as: nordland_fall_11983.png
+  - offset: 10000
+    save_as: nordland_fall_09658.png

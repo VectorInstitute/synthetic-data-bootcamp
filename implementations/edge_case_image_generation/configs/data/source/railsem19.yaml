@@ -1,0 +1,22 @@
+# @package data
+name: railsem19
+label: "RailSem19 validation (local)"
+license: "RailSem19 terms — research / rail-road safety CV only (see data/rs19_val/license.txt)"
+attribution: >-
+  RailSem19 (AIT Austrian Institute of Technology).
+  https://wilddash.cc/railsem19
+  Local copy under data/rs19_val/
+dataset_root: ${paths.railsem19_dir}
+images_subdir: jpgs/rs19_val
+# Curated forward-facing cab / track views for notebook 1.
+frames:
+  - frame_id: rs00000
+    save_as: rs19_rs00000.jpg
+  - frame_id: rs00010
+    save_as: rs19_rs00010.jpg
+  - frame_id: rs00100
+    save_as: rs19_rs00100.jpg
+  - frame_id: rs00500
+    save_as: rs19_rs00500.jpg
+  - frame_id: rs02000
+    save_as: rs19_rs02000.jpg
