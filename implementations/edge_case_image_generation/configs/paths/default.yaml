@@ -1,7 +1,0 @@
-# @package paths
-project_root: ${oc.env:PROJECT_ROOT,.}
-samples_dir: ${paths.project_root}/data/samples
-outputs_dir: ${paths.project_root}/outputs
-l4r_archive_dir: ${paths.project_root}/data/l4r_nlb/archives
-l4r_extract_dir: ${paths.project_root}/data/l4r_nlb
-railsem19_dir: ${paths.project_root}/data/rs19_val
