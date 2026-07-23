@@ -30,11 +30,3 @@ wheels/
 implementations/qa_text_generation/data/**
 !implementations/qa_text_generation/data/**/
 !implementations/qa_text_generation/data/**/.gitkeep
-
-# edge_case_image_generation — ignore dataset/output payloads, keep .gitkeep dirs
-implementations/edge_case_image_generation/data/**
-!implementations/edge_case_image_generation/data/**/
-!implementations/edge_case_image_generation/data/**/.gitkeep
-implementations/edge_case_image_generation/outputs/**
-!implementations/edge_case_image_generation/outputs/**/
-!implementations/edge_case_image_generation/outputs/**/.gitkeep
