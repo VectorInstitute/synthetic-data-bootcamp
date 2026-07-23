@@ -3,6 +3,10 @@
 # (MobileSAM is for *annotation* masks. ControlNet-seg needs ADE20K colors.)
 detector_model: google/owlvit-base-patch32
 sam_model: mobile_sam.pt
+# OWL-ViT scores are low unless queries are "a photo of …" (handled in code).
+# Bare-noun max scores on rail scenes are often <0.02; keep threshold low.
+conf: 0.015
+max_detections: 20
 # Base nouns always useful on railway cab views:
 classes:
   - railway track
