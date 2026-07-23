@@ -11,20 +11,28 @@ real photo
    │
    ├─► Depth Anything V2  ──► depth map ────────┐
    │                                              │
-   ├─► Seg / RailSem19 GT ─► ADE20K colors ─────┼─► MultiControlNet (depth + seg)
-   │                         + edit mask         │         │
-   │                                              │         ▼
-   └──────────────────────────────────────────────┴─► SD 1.5 img2img (anomaly prompt)
-                                                        │
-                                                        ▼
-                                              soft composite (lock outside mask)
-                                                        │
-                                                        ▼
-                                        OWL-ViT boxes + MobileSAM masks
-                                                        │
-                                                        ▼
+   ├─► Seg / RailSem19 GT ─► ADE20K colors ─────┤
+   │                         + edit mask         │
+   │                                              ▼
+   │                    ┌─ paste (cpu) ─────────────────────────┐
+   │                    ├─ SDXL inpaint (gpu_l4) ───────────────┤──► soft composite
+   │                    └─ depth ControlNet img2img (weather) ──┘
+   │                                              │
+   │                                              ▼
+   └────────────────────────────────── OWL-ViT + SAM masks
+                                                      │
+                                                      ▼
                                    (later) VLM judge → accept / retry / reject
 ```
+
+**Hardware profiles** (`configs/hardware/`): flip the stack with `load_config(overrides=["hardware=gpu_l4"])`.
+
+| Profile | Machine | Inserts | Weather | Depth / Seg / Annotate |
+|---------|---------|---------|---------|------------------------|
+| `cpu` | laptop / MPS | paste | SD 1.5 + depth CN | Base / B0 / OWL-B + MobileSAM |
+| `gpu_l4` | g2-standard-8, 1× L4 24 GB | **SDXL inpaint** | SDXL + depth CN | Large / B2 / OWL-L + SAM-B |
+
+Anomaly YAMLs use `method: auto` → `generation.default_anomaly_method` from the active profile.
 
 **Anomaly configs (plug-and-play):** shared knobs in `configs/generation/default.yaml`;
 per-anomaly prompts / edit masks / optional overrides in
@@ -32,9 +40,10 @@ per-anomaly prompts / edit masks / optional overrides in
 (e.g. `railsem19/traffic_cone.yaml`). Notebook 1 workshop list:
 cone, fallen branch, deer, dog. Weather (`snow_on_rails`) remains on disk.
 
-**Design principle:** do not invent a new railway scene from text. Start from a real cab-view photo, lock geometry with depth + ADE20K seg, inject a rare attribute (cone, branch, animal, …), then label it.
+**Design principle:** do not invent a new railway scene from text. Start from a real cab-view photo, lock geometry with depth (+ ControlNet when needed), inject a rare attribute (cone, branch, animal, …), then label it.
 
-That is why we use **img2img + MultiControlNet**, not text-to-image alone.
+Object inserts prefer **paste** (CPU) or **true SDXL inpaint** (L4) — not depth ControlNet alone, which fights new objects on the track plane.
+
 
 ---
 
@@ -283,10 +292,10 @@ Your Mac (MPS): treat like “8GB-class with different quirks” — prefer SD 1
 **Done (walkthrough path):**
 
 - Load real images (RailSem19 curated samples; Nordland HF / others available)
-- Depth estimation + viz
+- Depth estimation + viz (Base on `cpu`, Large on `gpu_l4`)
 - Segmentation / RS19 GT → edit weights
-- SD 1.5 + depth ControlNet snow edit + winter grade
-- OWL-ViT + MobileSAM annotation on the synthetic image
+- Object inserts: paste (`cpu`) or SDXL inpaint (`gpu_l4`); weather via depth ControlNet
+- OWL-ViT + SAM annotation on the synthetic image (B/MobileSAM or L/SAM-B by profile)
 - Artifact saving under `outputs/`
 
 **Still open / deferred from this notebook:**
@@ -294,10 +303,9 @@ Your Mac (MPS): treat like “8GB-class with different quirks” — prefer SD 1
 | Item | Notes |
 |------|--------|
 | **VLM judge loop** | Config stub exists (`judge.threshold: 8.5`) but no scoring cell yet |
-| **True inpaint / MultiControlNet** | Intentionally avoided for SD 1.5 correctness; revisit with right checkpoints |
 | **Grounded-SAM 2 swap** | Annotation quality upgrade |
 | **Batch over all samples** | Notebook runs primarily on `samples[0]` for generation |
-| **Realism polish** | Snow/winter still the hard part on laptop SD 1.5 — tuning + optional model upgrade |
+| **Realism polish** | Weather still hard — SDXL ControlNet on L4 is the upgrade path |
 | **More edge-case prompts** | Ice, fallen tree, fog — same pipeline, new prompts/masks |
 
 ### Notebook 2 — planned: batch dataset generation

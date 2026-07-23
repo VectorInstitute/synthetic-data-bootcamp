@@ -1,14 +1,14 @@
 """Controlled image editing for edge-case anomalies.
 
-Two methods (set per anomaly YAML):
+Methods (per anomaly YAML, or ``auto`` → ``generation.default_anomaly_method``):
 
-- ``paste`` — render a cone/branch/animal layer and composite it onto the photo.
-  Fast, reliable on CPU/MPS. Depth ControlNet *fights* new objects (it re-locks
-  the region to “tracks”), so paste is the default for workshop inserts.
-- ``controlnet`` — SD 1.5 + depth ControlNet img2img (optional seg). Better for
-  appearance edits (e.g. snow) that should respect existing geometry.
+- ``paste`` — render a cone/branch/animal layer and composite (CPU / MPS default).
+- ``inpaint`` — SDXL inpaint after optional silhouette priming (GPU L4 default).
+- ``controlnet`` — depth ControlNet img2img (SD 1.5 or SDXL per ``generation.family``).
+  Best for appearance/weather edits (e.g. snow) that must respect geometry.
 
-Seg ControlNet: ``controlnet.use_seg: true`` (slower).
+Depth ControlNet *fights* inventing new objects on the track plane — prefer paste
+or inpaint for inserts, not controlnet.
 """
 
 from __future__ import annotations
@@ -43,48 +43,111 @@ class GenerationResult:
 
 
 class ControlNetEditor:
-    """Anomaly editor: paste inserts and/or SD 1.5 + depth ControlNet."""
+    """Anomaly editor: paste, SDXL inpaint, and/or depth ControlNet (SD 1.5 / SDXL)."""
 
     def __init__(
         self,
         *,
+        family: str = "sd15",
         base_model_id: str = "runwayml/stable-diffusion-v1-5",
+        inpaint_model_id: str | None = None,
         depth_controlnet_id: str = "lllyasviel/sd-controlnet-depth",
-        seg_controlnet_id: str = "lllyasviel/sd-controlnet-seg",
+        seg_controlnet_id: str | None = "lllyasviel/sd-controlnet-seg",
         use_seg: bool = False,
         device: str | None = None,
     ) -> None:
+        self.family = str(family).lower()
         self.base_model_id = base_model_id
+        self.inpaint_model_id = inpaint_model_id
         self.depth_controlnet_id = depth_controlnet_id
         self.seg_controlnet_id = seg_controlnet_id
-        self.use_seg = bool(use_seg)
+        self.use_seg = bool(use_seg) and bool(seg_controlnet_id)
         self.device = resolve_device(device)
-        self._pipe = None
+        self._controlnet_pipe = None
+        self._inpaint_pipe = None
 
     @property
     def pipe(self):
-        if self._pipe is None:
-            self._pipe = self._build_pipeline()
-        return self._pipe
+        """Lazy ControlNet img2img pipeline (weather / appearance)."""
+        if self._controlnet_pipe is None:
+            self._controlnet_pipe = self._build_controlnet_pipeline()
+        return self._controlnet_pipe
 
-    def _build_pipeline(self):
-        from diffusers import (
-            ControlNetModel,
-            MultiControlNetModel,
-            StableDiffusionControlNetImg2ImgPipeline,
-        )
+    @property
+    def inpaint_pipe(self):
+        """Lazy inpaint pipeline (object inserts on GPU)."""
+        if self._inpaint_pipe is None:
+            self._inpaint_pipe = self._build_inpaint_pipeline()
+        return self._inpaint_pipe
 
-        dtype = torch.float16 if self.device.type == "cuda" else torch.float32
+    def _dtype(self) -> torch.dtype:
+        return torch.float16 if self.device.type == "cuda" else torch.float32
+
+    def _place_pipe(self, pipe: Any) -> Any:
+        pipe.set_progress_bar_config(disable=False)
+        if hasattr(pipe, "enable_attention_slicing"):
+            pipe.enable_attention_slicing()
+        if self.device.type == "cuda":
+            if hasattr(pipe, "enable_vae_tiling"):
+                pipe.enable_vae_tiling()
+            # Offload keeps peak VRAM manageable on L4 when stacking CN + VAE.
+            if hasattr(pipe, "enable_model_cpu_offload"):
+                pipe.enable_model_cpu_offload()
+            else:
+                pipe.to(self.device)
+        else:
+            pipe.to(self.device)
+        return pipe
+
+    def _build_controlnet_pipeline(self):
+        from diffusers import ControlNetModel
+
+        dtype = self._dtype()
         depth_cn = ControlNetModel.from_pretrained(
             self.depth_controlnet_id,
             torch_dtype=dtype,
         )
-        if self.use_seg:
+
+        if self.family == "sdxl":
+            from diffusers import (
+                AutoencoderKL,
+                StableDiffusionXLControlNetImg2ImgPipeline,
+            )
+
+            controlnet: Any = depth_cn
+            if self.use_seg and self.seg_controlnet_id:
+                from diffusers import MultiControlNetModel
+
+                seg_cn = ControlNetModel.from_pretrained(
+                    self.seg_controlnet_id,
+                    torch_dtype=dtype,
+                )
+                controlnet = MultiControlNetModel([depth_cn, seg_cn])
+
+            # fp16-fixed VAE avoids NaNs with SDXL on CUDA.
+            vae = AutoencoderKL.from_pretrained(
+                "madebyollin/sdxl-vae-fp16-fix",
+                torch_dtype=dtype,
+            )
+            pipe = StableDiffusionXLControlNetImg2ImgPipeline.from_pretrained(
+                self.base_model_id,
+                controlnet=controlnet,
+                vae=vae,
+                torch_dtype=dtype,
+            )
+            return self._place_pipe(pipe)
+
+        from diffusers import (
+            MultiControlNetModel,
+            StableDiffusionControlNetImg2ImgPipeline,
+        )
+
+        if self.use_seg and self.seg_controlnet_id:
             seg_cn = ControlNetModel.from_pretrained(
                 self.seg_controlnet_id,
                 torch_dtype=dtype,
             )
-            controlnet: Any = MultiControlNetModel([depth_cn, seg_cn])
+            controlnet = MultiControlNetModel([depth_cn, seg_cn])
         else:
             controlnet = depth_cn
 
@@ -94,15 +157,23 @@ class ControlNetEditor:
             torch_dtype=dtype,
             safety_checker=None,
         )
-        pipe.set_progress_bar_config(disable=False)
-        pipe.enable_attention_slicing()
+        return self._place_pipe(pipe)
 
-        if self.device.type == "cuda":
-            pipe.enable_model_cpu_offload()
-        else:
-            pipe.to(self.device)
+    def _build_inpaint_pipeline(self):
+        if not self.inpaint_model_id:
+            raise ValueError(
+                "generation.inpaint_model_id is required for method=inpaint "
+                "(use hardware=gpu_l4 or set an SDXL inpaint checkpoint)."
+            )
+        from diffusers import AutoPipelineForInpainting
 
-        return pipe
+        dtype = self._dtype()
+        pipe = AutoPipelineForInpainting.from_pretrained(
+            self.inpaint_model_id,
+            torch_dtype=dtype,
+            variant="fp16" if dtype == torch.float16 else None,
+        )
+        return self._place_pipe(pipe)
 
     def generate_anomaly(
         self,
@@ -117,7 +188,7 @@ class ControlNetEditor:
 
         merged = merge_generation_anomaly(generation_cfg, anomaly_cfg)
         anom = merged.get("anomaly", anomaly_cfg)
-        method = str(anom.get("method", "paste")).lower()
+        method = _resolve_method(anom, merged)
         max_side = int(merged.get("max_side", 512))
         seed = int(merged.get("seed", 42))
         prompt = str(merged.get("prompt", ""))
@@ -147,6 +218,22 @@ class ControlNetEditor:
                 method="paste",
             )
 
+        if method == "inpaint":
+            return self._generate_inpaint(
+                original,
+                prompt=prompt,
+                negative_prompt=negative,
+                num_inference_steps=int(merged.get("num_inference_steps", 28)),
+                guidance_scale=float(merged.get("guidance_scale", 7.0)),
+                strength=float(merged.get("strength", 0.88)),
+                seed=seed,
+                edit_mask=edit_mask,
+                edit_weight=edit_weight,
+                edit_mask_cfg=edit_mask_cfg,
+                prime_cfg=prime_cfg or None,
+                anomaly_id=anomaly_id,
+            )
+
         # controlnet / img2img path (weather & appearance edits)
         return self._generate_controlnet(
             original,
@@ -166,6 +253,60 @@ class ControlNetEditor:
             snow_prime=merged.get("snow_prime"),
             winter_grade=merged.get("winter_grade"),
             anomaly_id=anomaly_id,
+        )
+
+    @torch.inference_mode()
+    def _generate_inpaint(
+        self,
+        original: Image.Image,
+        *,
+        prompt: str,
+        negative_prompt: str,
+        num_inference_steps: int,
+        guidance_scale: float,
+        strength: float,
+        seed: int,
+        edit_mask: np.ndarray,
+        edit_weight: np.ndarray,
+        edit_mask_cfg: dict[str, Any],
+        prime_cfg: dict[str, Any] | None,
+        anomaly_id: str | None,
+    ) -> GenerationResult:
+        working = original
+        obj_mask = edit_mask
+        if prime_cfg:
+            # Silhouette primes the inpaint region so the model has a shape prior.
+            working, obj_mask = _paste_object(working, edit_mask, prime_cfg, seed=seed)
+
+        mask_pil = _mask_to_pil(obj_mask if obj_mask is not None else edit_mask)
+        gen_device = "cuda" if self.device.type == "cuda" else "cpu"
+        generator = torch.Generator(device=gen_device).manual_seed(int(seed))
+
+        generated = self.inpaint_pipe(
+            prompt=prompt,
+            negative_prompt=negative_prompt or None,
+            image=working,
+            mask_image=mask_pil,
+            num_inference_steps=num_inference_steps,
+            guidance_scale=guidance_scale,
+            strength=strength,
+            generator=generator,
+        ).images[0]
+
+        blur = float(edit_mask_cfg.get("composite_blur", 1.5))
+        # Soft-lock unmasked pixels to the (primed) photo.
+        weight = edit_weight if edit_weight is not None else obj_mask.astype(np.float32)
+        if obj_mask is not None:
+            weight = np.maximum(weight.astype(np.float32), obj_mask.astype(np.float32))
+        output = _composite_with_weight(working, generated, weight, blur_sigma=blur)
+        return GenerationResult(
+            image=output,
+            prompt=prompt,
+            negative_prompt=negative_prompt,
+            seed=int(seed),
+            edit_mask=obj_mask if obj_mask is not None else edit_mask,
+            anomaly_id=anomaly_id,
+            method="inpaint",
         )
 
     @torch.inference_mode()
@@ -245,12 +386,43 @@ class ControlNetEditor:
         generation = cfg.get("generation", cfg)
         controlnet = generation.get("controlnet", {})
         return cls(
+            family=str(generation.get("family", "sd15")),
             base_model_id=generation.get("base_model_id", "runwayml/stable-diffusion-v1-5"),
+            inpaint_model_id=generation.get("inpaint_model_id"),
             depth_controlnet_id=controlnet.get("depth", "lllyasviel/sd-controlnet-depth"),
-            seg_controlnet_id=controlnet.get("seg", "lllyasviel/sd-controlnet-seg"),
+            seg_controlnet_id=controlnet.get("seg"),
             use_seg=bool(controlnet.get("use_seg", False)),
-            device=device,
+            device=_device_from_cfg(cfg, device),
         )
+
+
+def _device_from_cfg(cfg: Any, device: str | None) -> str | None:
+    if device is not None:
+        return device
+    hardware = cfg.get("hardware") if hasattr(cfg, "get") else None
+    if hardware is None:
+        return None
+    return hardware.get("device")
+
+
+def _resolve_method(anom: Any, merged: Any) -> str:
+    raw = anom.get("method") if hasattr(anom, "get") else None
+    if raw is None or str(raw).lower() in {"", "auto", "default"}:
+        return str(merged.get("default_anomaly_method", "paste")).lower()
+    return str(raw).lower()
+
+
+def _mask_to_pil(mask: np.ndarray) -> Image.Image:
+    """White = inpaint region (diffusers convention)."""
+    u8 = (np.asarray(mask).astype(np.float32) > 0.5).astype(np.uint8) * 255
+    # Slight dilate so the silhouette edge gets cleaned by the inpaint UNet.
+    if u8.any():
+        k = max(3, int(round(0.01 * max(u8.shape))))
+        if k % 2 == 0:
+            k += 1
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k))
+        u8 = cv2.dilate(u8, kernel, iterations=1)
+    return Image.fromarray(u8, mode="L")
 
 
 def _paste_object(

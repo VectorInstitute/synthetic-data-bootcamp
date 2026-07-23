@@ -1,11 +1,14 @@
 # Root Hydra config — override from CLI or notebooks:
-#   load_config(overrides=["data/source=wikimedia"])
+#   load_config(overrides=["hardware=gpu_l4"])   # g2-standard-8 / NVIDIA L4
+#   load_config(overrides=["hardware=cpu"])      # laptop / MPS
+#   load_config(overrides=["data/source@data=nordland_hf"])
 defaults:
   - paths: default
   - data/source@data: railsem19
   - conditioning: default
   - generation: default
   - annotation: default
+  - hardware: cpu          # last among profiles so model/device choices win
   - _self_
 
 data:

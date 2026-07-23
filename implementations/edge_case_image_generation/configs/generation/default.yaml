@@ -1,16 +1,17 @@
 # @package generation
-# Shared diffusion / ControlNet settings. Anomaly YAMLs live under
-# configs/generation/anomalies/<dataset>/<anomaly>.yaml
+# Shared generation settings. Hardware profiles override models / sizes / methods.
+# Anomaly YAMLs: configs/generation/anomalies/<dataset>/<anomaly>.yaml
+family: sd15
+default_anomaly_method: paste
 base_model_id: runwayml/stable-diffusion-v1-5
+inpaint_model_id: null
 controlnet:
   depth: lllyasviel/sd-controlnet-depth
   seg: lllyasviel/sd-controlnet-seg
-  # MultiControlNet (depth+seg) is ~2× slower. Off for laptop workshop demos.
   use_seg: false
 controlnet_scale:
   depth: 0.50
   seg: 0.35
-# Fast laptop defaults (raise steps/max_side on a bigger GPU).
 num_inference_steps: 16
 guidance_scale: 7.5
 strength: 0.78

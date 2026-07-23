@@ -1,0 +1,38 @@
+# @package _global_
+# Laptop / CPU (or Apple MPS) profile — small models, paste inserts.
+hardware:
+  name: cpu
+  device: null  # auto: cuda > mps > cpu
+  notes: >-
+    Depth Anything V2 Base, SegFormer-B0, SD 1.5 ControlNet (optional),
+    OWL-ViT-B + MobileSAM. Object anomalies default to paste (SD 1.5 + depth
+    ControlNet fights new objects on the track plane).
+
+conditioning:
+  depth:
+    model_id: depth-anything/Depth-Anything-V2-Base-hf
+  segmentation:
+    model_name: nvidia/segformer-b0-finetuned-ade-512-512
+
+generation:
+  family: sd15
+  default_anomaly_method: paste
+  base_model_id: runwayml/stable-diffusion-v1-5
+  inpaint_model_id: null
+  controlnet:
+    depth: lllyasviel/sd-controlnet-depth
+    seg: lllyasviel/sd-controlnet-seg
+    use_seg: false
+  controlnet_scale:
+    depth: 0.50
+    seg: 0.35
+  num_inference_steps: 16
+  guidance_scale: 7.5
+  strength: 0.78
+  max_side: 512
+
+annotation:
+  detector_model: google/owlvit-base-patch32
+  sam_model: mobile_sam.pt
+  conf: 0.015
+  max_detections: 20

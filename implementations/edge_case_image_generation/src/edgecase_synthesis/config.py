@@ -25,6 +25,7 @@ def load_config(
     Examples
     --------
     >>> cfg = load_config()
+    >>> cfg = load_config(overrides=["hardware=gpu_l4"])  # NVIDIA L4 / g2-standard-8
     >>> cfg = load_config(overrides=["data/source@data=wikimedia"])
     >>> cfg = load_config(overrides=["data.max_images=3"])
     """

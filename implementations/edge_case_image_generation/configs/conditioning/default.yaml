@@ -1,8 +1,6 @@
 # @package conditioning
+# Defaults; hardware/cpu.yaml and hardware/gpu_l4.yaml override model ids.
 depth:
-  # Base is still laptop-friendly and sharper than Small for rails/poles.
   model_id: depth-anything/Depth-Anything-V2-Base-hf
 segmentation:
-  # ADE20K SegFormer — colors match sd-controlnet-seg. MobileSAM random
-  # instance colors were breaking geometry on the right side of edits.
   model_name: nvidia/segformer-b0-finetuned-ade-512-512

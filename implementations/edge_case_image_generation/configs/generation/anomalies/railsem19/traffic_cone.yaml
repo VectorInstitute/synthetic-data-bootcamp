@@ -2,8 +2,8 @@
 id: traffic_cone
 dataset: railsem19
 display_name: Traffic cone on track
-# paste = render+composite (depth ControlNet fights new objects on the track plane)
-method: paste
+# auto → generation.default_anomaly_method (paste on cpu, inpaint on gpu_l4)
+method: auto
 prompt: >-
   photorealistic bright orange traffic cone with white reflective stripe
   standing upright on railway ballast, safety cone on train tracks,

@@ -1,5 +1,6 @@
 # RailSem19 — snow on rails (harder weather edit; kept for plug-and-play / reproducibility).
 # Not in generation.workshop_anomalies by default — opt in explicitly.
+# Always controlnet (SD 1.5 on cpu, SDXL depth CN on gpu_l4) — not an object insert.
 id: snow_on_rails
 dataset: railsem19
 display_name: Snow on rails

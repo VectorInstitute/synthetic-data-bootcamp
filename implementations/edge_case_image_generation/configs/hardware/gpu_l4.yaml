@@ -1,0 +1,40 @@
+# @package _global_
+# Google Cloud g2-standard-8 — 8 vCPU, 32 GB RAM, 1× NVIDIA L4 (24 GB).
+hardware:
+  name: gpu_l4
+  device: cuda
+  notes: >-
+    Depth Anything V2 Large, SegFormer-B2, SDXL inpaint for object inserts,
+    SDXL + depth ControlNet for appearance/weather edits, OWL-ViT-L + SAM-B.
+    Fits comfortably in 24 GB at fp16 with attention slicing / VAE tiling.
+
+conditioning:
+  depth:
+    model_id: depth-anything/Depth-Anything-V2-Large-hf
+  segmentation:
+    model_name: nvidia/segformer-b2-finetuned-ade-512-512
+
+generation:
+  family: sdxl
+  # Object anomalies (cone/branch/animal): true inpaint — avoids depth-CN fighting inserts.
+  default_anomaly_method: inpaint
+  base_model_id: stabilityai/stable-diffusion-xl-base-1.0
+  inpaint_model_id: diffusers/stable-diffusion-xl-1.0-inpainting-0.1
+  controlnet:
+    depth: diffusers/controlnet-depth-sdxl-1.0
+    # SDXL seg ControlNets are less standard; depth is enough for weather lock.
+    seg: null
+    use_seg: false
+  controlnet_scale:
+    depth: 0.55
+    seg: 0.40
+  num_inference_steps: 28
+  guidance_scale: 7.0
+  strength: 0.88
+  max_side: 1024
+
+annotation:
+  detector_model: google/owlvit-large-patch14
+  sam_model: sam_b.pt
+  conf: 0.02
+  max_detections: 25

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 import cv2
 import numpy as np
@@ -256,6 +257,19 @@ class DepthEstimator:
 
         return DepthResult(depth_map=depth_norm.astype(np.float32), colormap=colormap)
 
+    @classmethod
+    def from_config(cls, cfg: dict | Any, device: str | None = None):
+        conditioning = cfg.get("conditioning", cfg)
+        depth = conditioning.get("depth", conditioning)
+        if device is None:
+            hardware = cfg.get("hardware") if hasattr(cfg, "get") else None
+            if hardware is not None:
+                device = hardware.get("device")
+        return cls(
+            model_id=depth.get("model_id", "depth-anything/Depth-Anything-V2-Base-hf"),
+            device=device,
+        )
+
 
 class Segmenter:
     """ADE20K semantic segmentation for ControlNet-seg + track edit masks.
@@ -274,6 +288,21 @@ class Segmenter:
         self.device = resolve_device(device)
         self.processor = None
         self.model = None
+
+    @classmethod
+    def from_config(cls, cfg: dict | Any, device: str | None = None):
+        conditioning = cfg.get("conditioning", cfg)
+        seg = conditioning.get("segmentation", conditioning)
+        if device is None:
+            hardware = cfg.get("hardware") if hasattr(cfg, "get") else None
+            if hardware is not None:
+                device = hardware.get("device")
+        return cls(
+            model_name=seg.get(
+                "model_name", "nvidia/segformer-b0-finetuned-ade-512-512"
+            ),
+            device=device,
+        )
 
     def _ensure_model(self) -> None:
         if self.model is not None:

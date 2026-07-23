@@ -110,9 +110,9 @@ class OpenVocabAnnotator:
     ) -> AnnotationResult:
         """Detect open-vocab boxes, refine with SAM, optionally seed a known mask.
 
-        ``seed_mask`` / ``seed_label`` are for paste-style anomalies: OWL-ViT will
-        not recognize a drawn cone/animal, so we inject the edit mask as a
-        high-confidence detection for the anomaly class.
+        ``seed_mask`` / ``seed_label`` are for paste / early-inpaint anomalies:
+        OWL-ViT may miss drawn or freshly inpainted objects, so we inject the
+        edit mask as a high-confidence detection for the anomaly class.
         """
         pil_image = _to_pil(image)
         rgb = np.array(pil_image)
@@ -193,6 +193,10 @@ class OpenVocabAnnotator:
     @classmethod
     def from_config(cls, cfg: dict[str, Any] | Any, device: str | None = None):
         annotation = cfg.get("annotation", cfg)
+        if device is None:
+            hardware = cfg.get("hardware") if hasattr(cfg, "get") else None
+            if hardware is not None:
+                device = hardware.get("device")
         return cls(
             detector_model=annotation.get(
                 "detector_model", "google/owlvit-base-patch32"
