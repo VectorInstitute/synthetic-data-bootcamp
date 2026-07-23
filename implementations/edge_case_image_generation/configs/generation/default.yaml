@@ -1,0 +1,25 @@
+# @package generation
+# Shared diffusion / ControlNet settings. Anomaly YAMLs live under
+# configs/generation/anomalies/<dataset>/<anomaly>.yaml
+base_model_id: runwayml/stable-diffusion-v1-5
+controlnet:
+  depth: lllyasviel/sd-controlnet-depth
+  seg: lllyasviel/sd-controlnet-seg
+  # MultiControlNet (depth+seg) is ~2× slower. Off for laptop workshop demos.
+  use_seg: false
+controlnet_scale:
+  depth: 0.50
+  seg: 0.35
+# Fast laptop defaults (raise steps/max_side on a bigger GPU).
+num_inference_steps: 16
+guidance_scale: 7.5
+strength: 0.78
+seed: 42
+max_side: 512
+retries: 3
+anomaly_dataset: railsem19
+workshop_anomalies:
+  - traffic_cone
+  - fallen_branch
+  - deer_on_track
+  - dog_on_track

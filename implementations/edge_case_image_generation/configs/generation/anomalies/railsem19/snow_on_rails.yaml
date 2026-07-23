@@ -1,0 +1,29 @@
+# RailSem19 — snow on rails (harder weather edit; kept for plug-and-play / reproducibility).
+# Not in generation.workshop_anomalies by default — opt in explicitly.
+id: snow_on_rails
+dataset: railsem19
+display_name: Snow on rails
+method: controlnet
+prompt: >-
+  photorealistic winter railway scene after light snowfall, overcast cold day,
+  thin patchy snow along the rails and nearby ballast with gravel still visible,
+  dark steel rail heads clearly peeking through, mostly bare gravel between
+  the two tracks, frosted brown dormant vegetation on embankments, soft diffuse daylight
+negative_prompt: >-
+  thick unbroken white snow slab between tracks, solid carpet of snow filling
+  the track corridor, green grass, lush summer foliage, tropical plants, wet
+  dark ballast with no snow, night, cartoon, blurry, deformed rails, floating
+  objects, text, watermark, logo
+edit_mask:
+  mode: snow
+# Weather-specific extras (ignored by object-insert anomalies):
+snow_prime: 0.45
+winter_grade: 0.9
+strength: 0.55
+annotation_classes:
+  - snow on railway track
+  - snow covered ground
+  - railway track
+  - train
+  - sky
+  - tree

@@ -1,0 +1,24 @@
+# @package annotation
+# OWL-ViT + MobileSAM — lightweight local stand-in for Grounded-SAM 2.
+# (MobileSAM is for *annotation* masks. ControlNet-seg needs ADE20K colors.)
+detector_model: google/owlvit-base-patch32
+sam_model: mobile_sam.pt
+# Base nouns always useful on railway cab views:
+classes:
+  - railway track
+  - train
+  - sky
+  - tree
+  - traffic cone
+  - fallen tree
+  - deer
+  - dog
+edge_case_classes:
+  - traffic cone
+  - fallen tree
+  - branch on railway track
+  - deer
+  - dog
+  - animal on railway track
+  - snow on railway track
+  - snow covered ground
