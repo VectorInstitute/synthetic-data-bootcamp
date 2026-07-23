@@ -94,6 +94,8 @@ def merge_generation_anomaly(generation: DictConfig | dict, anomaly: DictConfig 
         "max_side",
         "snow_prime",
         "winter_grade",
+        "prime_on_inpaint",
+        "family",
     ):
         if key in anom and anom[key] is not None:
             base[key] = anom[key]

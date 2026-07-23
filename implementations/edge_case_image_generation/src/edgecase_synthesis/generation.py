@@ -194,16 +194,18 @@ class ControlNetEditor:
         prompt = str(merged.get("prompt", ""))
         negative = str(merged.get("negative_prompt", ""))
         anomaly_id = str(anom.get("id", ""))
-        edit_mask_cfg = dict(anom.get("edit_mask", {"mode": "blob"}))
+        edit_mask_cfg = dict(anom.get("edit_mask", {"mode": "track_blob"}))
         prime_cfg = dict(anom.get("prime", {})) if anom.get("prime") is not None else {}
+        family = str(merged.get("family", self.family)).lower()
 
-        original = _fit_max_side(image.convert("RGB"), max_side)
+        original = _fit_for_diffusion(image.convert("RGB"), max_side=max_side, family=family)
         width, height = original.size
         edit_mask, edit_weight = build_anomaly_edit_mask(
             segmentation,
             edit_mask_cfg,
             width=width,
             height=height,
+            depth=depth,
         )
 
         if method in {"paste", "composite"}:
@@ -219,18 +221,22 @@ class ControlNetEditor:
             )
 
         if method == "inpaint":
+            # Cartoon silhouette priming fights photoreal SDXL — off unless opted in.
+            use_prime = bool(merged.get("prime_on_inpaint", False)) or bool(
+                anom.get("prime_on_inpaint", False)
+            )
             return self._generate_inpaint(
                 original,
                 prompt=prompt,
                 negative_prompt=negative,
                 num_inference_steps=int(merged.get("num_inference_steps", 28)),
                 guidance_scale=float(merged.get("guidance_scale", 7.0)),
-                strength=float(merged.get("strength", 0.88)),
+                strength=float(merged.get("strength", 0.95)),
                 seed=seed,
                 edit_mask=edit_mask,
                 edit_weight=edit_weight,
                 edit_mask_cfg=edit_mask_cfg,
-                prime_cfg=prime_cfg or None,
+                prime_cfg=prime_cfg if use_prime else None,
                 anomaly_id=anomaly_id,
             )
 
@@ -275,11 +281,12 @@ class ControlNetEditor:
         working = original
         obj_mask = edit_mask
         if prime_cfg:
-            # Silhouette primes the inpaint region so the model has a shape prior.
+            # Optional silhouette prime (usually disabled for SDXL photorealism).
             working, obj_mask = _paste_object(working, edit_mask, prime_cfg, seed=seed)
 
         width, height = working.size
-        mask_pil = _mask_to_pil(obj_mask if obj_mask is not None else edit_mask)
+        mask_src = obj_mask if obj_mask is not None else edit_mask
+        mask_pil = _mask_to_pil(mask_src)
         if mask_pil.size != (width, height):
             mask_pil = mask_pil.resize((width, height), Image.Resampling.NEAREST)
         gen_device = "cuda" if self.device.type == "cuda" else "cpu"
@@ -295,23 +302,26 @@ class ControlNetEditor:
             width=width,
             num_inference_steps=num_inference_steps,
             guidance_scale=guidance_scale,
-            strength=strength,
+            strength=min(float(strength), 0.99),
             generator=generator,
         ).images[0]
-        generated = _ensure_same_size(generated, working)
+        generated = _ensure_same_size(generated, original)
 
-        blur = float(edit_mask_cfg.get("composite_blur", 1.5))
-        # Soft-lock unmasked pixels to the (primed) photo.
-        weight = edit_weight if edit_weight is not None else obj_mask.astype(np.float32)
-        if obj_mask is not None:
-            weight = np.maximum(weight.astype(np.float32), obj_mask.astype(np.float32))
-        output = _composite_with_weight(working, generated, weight, blur_sigma=blur)
+        # Keep source pixels outside the mask. Do NOT soft-blend against a
+        # cartoon-primed working image — that was the halo / sticker look.
+        feather = float(edit_mask_cfg.get("composite_blur", 0.8))
+        output = _composite_with_weight(
+            original,
+            generated,
+            mask_src.astype(np.float32),
+            blur_sigma=feather,
+        )
         return GenerationResult(
             image=output,
             prompt=prompt,
             negative_prompt=negative_prompt,
             seed=int(seed),
-            edit_mask=obj_mask if obj_mask is not None else edit_mask,
+            edit_mask=mask_src.astype(bool),
             anomaly_id=anomaly_id,
             method="inpaint",
         )
@@ -688,6 +698,27 @@ def _ensure_same_size(image: Image.Image, reference: Image.Image) -> Image.Image
     if image.size == reference.size:
         return image
     return image.resize(reference.size, Image.Resampling.LANCZOS)
+
+
+def _fit_for_diffusion(
+    image: Image.Image,
+    *,
+    max_side: int,
+    family: str,
+) -> Image.Image:
+    """Fit to ``max_side``, but upscale tiny frames so SDXL isn't starved for pixels."""
+    fitted = _fit_max_side(image, max_side)
+    if family != "sdxl":
+        return fitted
+    # Nordland-style ~640×360 frames look mushy at native res under SDXL.
+    min_long = min(int(max_side), 1024)
+    long_side = max(fitted.size)
+    if long_side >= min_long:
+        return fitted
+    scale = min_long / long_side
+    new_w = _round_to_multiple(max(8, int(round(fitted.size[0] * scale))), 8)
+    new_h = _round_to_multiple(max(8, int(round(fitted.size[1] * scale))), 8)
+    return fitted.resize((new_w, new_h), Image.Resampling.LANCZOS)
 
 
 def _composite_with_weight(

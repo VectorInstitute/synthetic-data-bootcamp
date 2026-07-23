@@ -1,4 +1,4 @@
-# RailSem19 — orange traffic cone on near trackbed.
+# Cab-view object insert — placement is dynamic (depth + track corridor).
 id: traffic_cone
 dataset: railsem19
 display_name: Traffic cone on track
@@ -7,26 +7,26 @@ method: auto
 prompt: >-
   photorealistic bright orange traffic cone with white reflective stripe
   standing upright on railway ballast, safety cone on train tracks,
-  sharp details, same camera angle and overcast lighting
+  matching scene lighting and motion blur, sharp details, same camera angle
 negative_prompt: >-
   blurry blob, orange smear, no cone, deformed cone, floating cone,
-  night, cartoon, text, watermark, logo, multiple cones
+  night, cartoon, sticker, plastic toy, text, watermark, logo, multiple cones
 edit_mask:
-  mode: blob
-  # Small clean ellipse between the near rails (edit region, not cone shape).
-  y_start: 0.62
-  y_end: 0.86
-  x_center: 0.46
-  x_radius: 0.055
-  y_radius: 0.09
-  intersect_track: false
-  blur_sigma: 1.5
-  composite_blur: 1.2
+  mode: track_blob
+  # Relative size vs local track width — no per-image x/y coordinates.
+  size_frac: 0.50
+  aspect: 1.45
+  y_lo: 0.52
+  y_hi: 0.90
+  blur_sigma: 1.2
+  composite_blur: 0.6
 prime:
   shape: cone
   mix: 0.9
   color: [255, 110, 30]
-strength: 0.82
+# Used only for method: paste (CPU). SDXL inpaint ignores this unless opted in.
+prime_on_inpaint: false
+strength: 0.96
 annotation_classes:
   - traffic cone
   - railway track

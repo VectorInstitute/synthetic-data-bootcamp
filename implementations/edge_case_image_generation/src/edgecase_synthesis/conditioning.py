@@ -443,17 +443,19 @@ def build_anomaly_edit_mask(
     *,
     width: int,
     height: int,
+    depth: DepthResult | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     """Build a boolean edit mask + soft weight for localized anomaly inserts.
 
     Modes (from anomaly YAML ``edit_mask.mode``):
 
-    - ``blob`` — clean ellipse on the near track (cone, animal, debris)
-    - ``strip`` — clean horizontal band across the track corridor (branch)
-    - ``snow`` — soft rail/trackbed weights from segmentation (weather path)
-
-    By default we do **not** intersect with jagged GT track labels — that made
-    nonsense-looking masks. Set ``intersect_track: true`` only if you want it.
+    - ``track_blob`` / ``auto`` — place a compact ellipse on the *detected* near
+      track corridor (depth + cab-view geometry; seg optional). No per-image
+      ``x_center`` required — scales across frames.
+    - ``track_strip`` — horizontal band across the detected track at an
+      auto-chosen near depth band (fallen branch / debris).
+    - ``blob`` / ``strip`` — legacy fixed normalized fractions (avoid for batch).
+    - ``snow`` — soft rail/trackbed weights from segmentation (weather path).
 
     Returns
     -------
@@ -461,8 +463,7 @@ def build_anomaly_edit_mask(
     edit_weight : float32 (H, W) in [0, 1] for priming / compositing
     """
     cfg = dict(edit_mask_cfg or {})
-    mode = str(cfg.get("mode", "blob")).lower()
-    intersect = bool(cfg.get("intersect_track", False))
+    mode = str(cfg.get("mode", "track_blob")).lower()
     blur_sigma = float(cfg.get("blur_sigma", 2.0))
 
     if mode == "snow":
@@ -470,15 +471,24 @@ def build_anomaly_edit_mask(
         mask = weight > 0.05
         return mask, weight
 
-    yy, xx = np.mgrid[0:height, 0:width]
-
-    if mode == "strip":
+    if mode in {"track_blob", "auto", "dynamic_blob"}:
+        mask = _dynamic_track_blob(segmentation, depth, width, height, cfg)
+    elif mode in {"track_strip", "dynamic_strip"}:
+        mask = _dynamic_track_strip(segmentation, depth, width, height, cfg)
+    elif mode == "strip":
+        yy, xx = np.mgrid[0:height, 0:width]
         y0 = float(cfg.get("y_start", 0.60))
         y1 = float(cfg.get("y_end", 0.78))
         x_margin = float(cfg.get("x_margin", 0.28))
         mask = (yy >= height * y0) & (yy <= height * y1)
         mask &= (xx >= width * x_margin) & (xx <= width * (1.0 - x_margin))
-    else:  # blob — clean ellipse (this is the *edit region*, not a cone silhouette)
+        if bool(cfg.get("intersect_track", False)):
+            track = _track_support_mask(segmentation, width, height, depth=depth)
+            clipped = mask & track
+            if float(clipped.mean()) >= 0.002:
+                mask = clipped
+    else:  # legacy blob with fixed fractions
+        yy, xx = np.mgrid[0:height, 0:width]
         y0 = float(cfg.get("y_start", 0.58))
         y1 = float(cfg.get("y_end", 0.88))
         cx = float(cfg.get("x_center", 0.48)) * width
@@ -486,24 +496,150 @@ def build_anomaly_edit_mask(
         ry = float(cfg.get("y_radius", 0.10)) * height
         cy = 0.5 * (y0 + y1) * height
         mask = ((xx - cx) / max(rx, 1.0)) ** 2 + ((yy - cy) / max(ry, 1.0)) ** 2 <= 1.0
+        if bool(cfg.get("intersect_track", False)):
+            track = _track_support_mask(segmentation, width, height, depth=depth)
+            clipped = mask & track
+            if float(clipped.mean()) >= 0.002:
+                mask = clipped
 
-    if intersect:
-        track = _track_support_mask(segmentation, width, height)
-        clipped = mask & track
-        if float(clipped.mean()) >= 0.002:
-            mask = clipped
-
-    # Light dilate for a little feather room, keep shape recognizable.
     mask = _dilate_mask(mask.astype(bool), iterations=1)
     weight = cv2.GaussianBlur(mask.astype(np.float32), (0, 0), max(blur_sigma, 0.5))
     weight = np.clip(weight, 0.0, 1.0)
     return mask, weight
 
 
+def _cab_track_corridor(height: int, width: int) -> np.ndarray:
+    """Perspective trapezoid where forward-facing cab rails usually sit."""
+    yy, xx = np.mgrid[0:height, 0:width]
+    # Narrow near the horizon, wider toward the camera.
+    t = np.clip((yy / max(height - 1, 1) - 0.30) / 0.70, 0.0, 1.0)
+    half = width * (0.06 + 0.40 * (t**1.15))
+    return (yy > height * 0.38) & (np.abs(xx - width * 0.5) < half)
+
+
+def _depth_nearness(depth: DepthResult | None, width: int, height: int) -> np.ndarray | None:
+    """Return float map in [0, 1] where larger ≈ closer to camera, or None."""
+    if depth is None or depth.depth_map is None:
+        return None
+    d = depth.depth_map.astype(np.float32)
+    if d.shape[:2] != (height, width):
+        d = cv2.resize(d, (width, height), interpolation=cv2.INTER_LINEAR)
+    # Depth Anything V2 relative depth: after min-max, warmer/brighter ≈ nearer
+    # in our viz — treat higher values as nearer.
+    lo, hi = float(np.quantile(d, 0.05)), float(np.quantile(d, 0.95))
+    if hi <= lo:
+        return np.zeros((height, width), dtype=np.float32)
+    return np.clip((d - lo) / (hi - lo), 0.0, 1.0)
+
+
+def _track_score_map(
+    segmentation: SegmentationResult | None,
+    depth: DepthResult | None,
+    width: int,
+    height: int,
+) -> np.ndarray:
+    """Per-pixel score for 'good place to drop a track anomaly'."""
+    corridor = _cab_track_corridor(height, width).astype(np.float32)
+    near = _depth_nearness(depth, width, height)
+    score = corridor.copy()
+    if near is not None:
+        # Prefer near ground inside the corridor (not far vanishing point).
+        score *= 0.35 + 0.65 * near
+    else:
+        yy = np.linspace(0, 1, height, dtype=np.float32)[:, None]
+        score *= 0.40 + 0.60 * np.broadcast_to(yy, (height, width))
+
+    track = _track_support_mask(segmentation, width, height, depth=depth)
+    if float(track.mean()) > 0.01:
+        # Boost semantic / GT track when available; never rely on it alone
+        # (ADE20K has no rail class — often fragmented on Nordland).
+        score = score * (0.55 + 0.45 * track.astype(np.float32))
+
+    return score
+
+
+def _pick_track_anchor(
+    score: np.ndarray,
+    *,
+    y_lo: float = 0.52,
+    y_hi: float = 0.88,
+) -> tuple[float, float, float]:
+    """Return (cx, cy, local_half_width) in pixel coords from a score map."""
+    h, w = score.shape
+    yy, xx = np.mgrid[0:h, 0:w]
+    band = (yy >= h * y_lo) & (yy <= h * y_hi) & (score > 0)
+    region = score * band.astype(np.float32)
+    if float(region.max()) <= 1e-6:
+        region = score
+        band = score > 0
+
+    # Soft threshold → mass for a stable centroid across frames.
+    thr = float(np.quantile(region[band], 0.70)) if band.any() else 0.0
+    mass = region >= max(thr, 1e-6)
+    if not mass.any():
+        return 0.5 * w, 0.72 * h, 0.10 * w
+
+    weights = region[mass]
+    cy = float(np.average(yy[mass], weights=weights))
+    cx = float(np.average(xx[mass], weights=weights))
+
+    # Local track half-width from corridor width at this row.
+    row = int(np.clip(round(cy), 0, h - 1))
+    row_mask = mass[row]
+    if row_mask.any():
+        xs = np.where(row_mask)[0]
+        half = 0.5 * float(xs.max() - xs.min() + 1)
+    else:
+        half = 0.12 * w
+    half = float(np.clip(half, 0.06 * w, 0.28 * w))
+    return cx, cy, half
+
+
+def _dynamic_track_blob(
+    segmentation: SegmentationResult | None,
+    depth: DepthResult | None,
+    width: int,
+    height: int,
+    cfg: dict,
+) -> np.ndarray:
+    """Ellipse on the auto-detected near track — no manual x/y per image."""
+    score = _track_score_map(segmentation, depth, width, height)
+    y_lo = float(cfg.get("y_lo", 0.52))
+    y_hi = float(cfg.get("y_hi", 0.90))
+    cx, cy, half = _pick_track_anchor(score, y_lo=y_lo, y_hi=y_hi)
+    size_frac = float(cfg.get("size_frac", 0.55))
+    aspect = float(cfg.get("aspect", 1.35))  # taller than wide for upright objects
+    rx = max(4.0, half * size_frac)
+    ry = max(4.0, rx * aspect)
+    yy, xx = np.mgrid[0:height, 0:width]
+    return ((xx - cx) / rx) ** 2 + ((yy - cy) / ry) ** 2 <= 1.0
+
+
+def _dynamic_track_strip(
+    segmentation: SegmentationResult | None,
+    depth: DepthResult | None,
+    width: int,
+    height: int,
+    cfg: dict,
+) -> np.ndarray:
+    """Horizontal debris strip across the auto-detected track corridor."""
+    score = _track_score_map(segmentation, depth, width, height)
+    y_lo = float(cfg.get("y_lo", 0.55))
+    y_hi = float(cfg.get("y_hi", 0.88))
+    cx, cy, half = _pick_track_anchor(score, y_lo=y_lo, y_hi=y_hi)
+    thickness = float(cfg.get("thickness_frac", 0.35)) * half
+    thickness = max(3.0, thickness)
+    # Span most of the local track width.
+    span = float(cfg.get("span_frac", 1.6)) * half
+    yy, xx = np.mgrid[0:height, 0:width]
+    return (np.abs(yy - cy) <= thickness) & (np.abs(xx - cx) <= span)
+
+
 def _track_support_mask(
     segmentation: SegmentationResult | None,
     width: int,
     height: int,
+    depth: DepthResult | None = None,
 ) -> np.ndarray:
     """Pixels that look like track / trackbed (or a cab-view prior)."""
     if segmentation is not None and segmentation.label_map is not None:
@@ -519,13 +655,14 @@ def _track_support_mask(
         mask = segmentation.edit_mask.astype(np.uint8)
         if mask.shape != (height, width):
             mask = cv2.resize(mask, (width, height), interpolation=cv2.INTER_NEAREST)
-        return mask.astype(bool)
+        if float(mask.mean()) > 0.01:
+            return mask.astype(bool)
 
-    yy, xx = np.mgrid[0:height, 0:width]
-    return (
-        (yy > height * 0.35)
-        & (np.abs(xx - width / 2) < (width * 0.12 + (yy / height) * width * 0.38))
-    )
+    corridor = _cab_track_corridor(height, width)
+    near = _depth_nearness(depth, width, height)
+    if near is not None:
+        return corridor & (near > 0.35)
+    return corridor
 
 
 def _snow_weight_at_size(

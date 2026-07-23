@@ -30,7 +30,9 @@ generation:
     seg: 0.40
   num_inference_steps: 28
   guidance_scale: 7.0
-  strength: 0.88
+  strength: 0.96
+  # Drawn silhouette primes are for CPU paste only — they make SDXL look like stickers.
+  prime_on_inpaint: false
   max_side: 1024
 
 annotation:
