@@ -1,0 +1,23 @@
+# Local env / caches
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+
+# Large / generated artifacts (keep folder placeholders via .gitkeep)
+outputs/*
+!outputs/.gitkeep
+*.pt
+*.pth
+*.onnx
+*.safetensors
+
+# Dataset contents (keep empty directory structure)
+data/samples/**
+!data/samples/.gitkeep
+data/rs19_val/**
+!data/rs19_val/.gitkeep
+data/l4r_nlb/**
+!data/l4r_nlb/.gitkeep
