@@ -1,33 +1,26 @@
-"""Load and prepare real images for the pipeline."""
+"""Load real images (and optional detection labels) from Hydra data sources."""
 
 from __future__ import annotations
 
-import shutil
+import json
 import time
-import zipfile
 from dataclasses import dataclass
 from io import BytesIO
 from pathlib import Path
-from typing import TYPE_CHECKING, Any
+from typing import Any
+from urllib.parse import urlencode
 
 import requests
 from omegaconf import DictConfig, OmegaConf
 from PIL import Image
 
-from edgecase_synthesis.image_quality import is_usable_sample_image
-
-if TYPE_CHECKING:
-    from collections.abc import Iterable
-
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".bmp"}
-USER_AGENT = "EdgeCaseSynthesis-Bootcamp/0.1 (educational)"
-ZENODO_RECORD_API = "https://zenodo.org/api/records/{record_id}"
-NORDLAND_HF_ROWS_API = "https://datasets-server.huggingface.co/rows"
+USER_AGENT = "edgecase-synthesis/0.2 (educational)"
 
 
 @dataclass(frozen=True)
 class ImageSample:
-    """A single real image ready for structure extraction."""
+    """A single real image ready for the pipeline."""
 
     path: Path
     image: Image.Image
@@ -39,9 +32,15 @@ class ImageSample:
 
 
 @dataclass(frozen=True)
-class DataSourceInfo:
-    """Resolved metadata for the active image source."""
+class DetectionBox:
+    """One ground-truth box (xyxy pixels) with a class name."""
 
+    label: str
+    bbox_xyxy: tuple[float, float, float, float]
+
+
+@dataclass(frozen=True)
+class DataSourceInfo:
     name: str
     label: str
     license: str
@@ -49,19 +48,14 @@ class DataSourceInfo:
 
 
 def project_root(start: Path | None = None) -> Path:
-    """Walk up from *start* until we find pyproject.toml."""
     current = (start or Path.cwd()).resolve()
     for candidate in [current, *current.parents]:
         if (candidate / "pyproject.toml").exists():
             return candidate
     raise FileNotFoundError(
-        "Could not locate project root (no pyproject.toml found). "
-        "Run notebooks from the repo or set PROJECT_ROOT."
+        "Could not locate project root (no pyproject.toml). "
+        "Run from the implementation folder or set PROJECT_ROOT."
     )
-
-
-def default_samples_dir(root: Path | None = None) -> Path:
-    return project_root(root) / "data" / "samples"
 
 
 def _as_dict(cfg: DictConfig | dict[str, Any]) -> dict[str, Any]:
@@ -80,13 +74,67 @@ def get_data_source_info(cfg: DictConfig | dict[str, Any]) -> DataSourceInfo:
     )
 
 
+def list_sample_images(samples_dir: Path | str) -> list[Path]:
+    root = Path(samples_dir)
+    if not root.exists():
+        return []
+    return sorted(
+        p for p in root.iterdir() if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS
+    )
+
+
+def load_sample_images(
+    samples_dir: Path | str | None = None,
+    *,
+    cfg: DictConfig | dict[str, Any] | None = None,
+) -> list[ImageSample]:
+    if cfg is None and samples_dir is None:
+        from edgecase_synthesis.config import load_config
+
+        cfg = load_config()
+    config = _as_dict(cfg) if cfg is not None else {}
+    root = Path(samples_dir or config["paths"]["samples_dir"])
+    max_images = int(config.get("data", {}).get("max_images", 0) or 0)
+    samples: list[ImageSample] = []
+    for path in list_sample_images(root):
+        image = Image.open(path).convert("RGB")
+        samples.append(ImageSample(path=path, image=image, name=path.stem))
+        if max_images and len(samples) >= max_images:
+            break
+    return samples
+
+
+def load_detection_labels(
+    samples_dir: Path | str | None = None,
+    *,
+    cfg: DictConfig | dict[str, Any] | None = None,
+) -> dict[str, list[DetectionBox]]:
+    """Load optional bbox labels written next to samples (labels.json)."""
+    if cfg is not None and samples_dir is None:
+        samples_dir = _as_dict(cfg)["paths"]["samples_dir"]
+    path = Path(samples_dir) / "labels.json"
+    if not path.exists():
+        return {}
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    out: dict[str, list[DetectionBox]] = {}
+    for name, boxes in raw.items():
+        out[name] = [
+            DetectionBox(
+                label=str(b["label"]),
+                bbox_xyxy=tuple(float(x) for x in b["bbox_xyxy"]),  # type: ignore[arg-type]
+            )
+            for b in boxes
+        ]
+    return out
+
+
 def prepare_sample_images(
     samples_dir: Path | None = None,
     *,
     cfg: DictConfig | dict[str, Any] | None = None,
     force: bool = False,
 ) -> list[Path]:
-    """Populate samples_dir from the Hydra-configured image source."""
+    """Populate samples_dir from the active Hydra data source."""
     if cfg is None:
         from edgecase_synthesis.config import load_config
 
@@ -95,527 +143,225 @@ def prepare_sample_images(
     config = _as_dict(cfg)
     target = (samples_dir or Path(config["paths"]["samples_dir"])).resolve()
     target.mkdir(parents=True, exist_ok=True)
+    source = config["data"]
+    kind = str(source.get("kind", source.get("name", "local"))).lower()
 
-    source_name = config["data"]["name"]
-    source_cfg = config["data"]
+    if not force and list_sample_images(target):
+        # Refresh labels.json if missing but source can provide it.
+        if kind in {"hf_detection", "neu_det"} and not (target / "labels.json").exists():
+            pass  # fall through to rebuild
+        else:
+            return list_sample_images(target)
 
-    if not force and _source_samples_complete(target, source_name, source_cfg):
-        return list_sample_images(target)
-
-    if source_name == "local":
+    if kind == "local":
         existing = list_sample_images(target)
         if existing:
             return existing
         raise FileNotFoundError(
-            f"No images in {target}. Add files manually or switch source with "
-            "load_config(overrides=['data/source@data=wikimedia'])."
+            f"No images in {target}. Drop files there or switch "
+            "data/source@data=neu_det|urls|nordland_hf."
         )
-    if source_name == "l4r_nlb":
-        return _prepare_l4r_samples(target, source_cfg, force=force)
-    if source_name == "nordland_hf":
-        return _prepare_nordland_hf_samples(target, source_cfg, force=force)
-    if source_name == "railsem19":
-        return _prepare_railsem19_samples(target, source_cfg, force=force)
-    if source_name == "wikimedia":
-        return _prepare_wikimedia_samples(target, source_cfg, force=force)
-
-    raise ValueError(f"Unsupported image source: {source_name}")
-
-
-def _source_samples_complete(
-    target: Path,
-    source_name: str,
-    source_cfg: dict[str, Any],
-) -> bool:
-    if source_name == "local":
-        return bool(list_sample_images(target))
-    if source_name == "wikimedia":
-        expected = [target / name for name in source_cfg.get("urls", {})]
-        return bool(expected) and all(path.exists() for path in expected)
-    if source_name == "l4r_nlb":
-        expected = [target / frame["save_as"] for frame in source_cfg.get("frames", [])]
-        return bool(expected) and all(path.exists() for path in expected)
-    if source_name == "nordland_hf":
-        expected = [target / frame["save_as"] for frame in source_cfg.get("frames", [])]
-        if not expected or not all(path.exists() for path in expected):
-            return False
-        quality_cfg = source_cfg.get("quality", {})
-        quality_kwargs = {
-            "min_luminance_std": float(quality_cfg.get("min_luminance_std", 12.0)),
-            "min_luminance_mean": float(quality_cfg.get("min_luminance_mean", 18.0)),
-            "min_luminance_range": float(quality_cfg.get("min_luminance_range", 25.0)),
-        }
-        return all(
-            is_usable_sample_image(load_image(path), **quality_kwargs)
-            for path in expected
-        )
-    if source_name == "railsem19":
-        expected = [target / frame["save_as"] for frame in source_cfg.get("frames", [])]
-        return bool(expected) and all(path.exists() for path in expected)
-    return False
+    if kind == "urls":
+        return _prepare_urls(target, source, force=force)
+    if kind in {"hf_detection", "neu_det"}:
+        return _prepare_hf_detection(target, source, force=force)
+    if kind == "hf_rows":
+        return _prepare_hf_rows(target, source, force=force)
+    raise ValueError(
+        f"Unknown data.kind={kind!r}. Use local | urls | hf_detection | hf_rows."
+    )
 
 
-def _clear_stale_sample_images(target: Path, keep: set[str]) -> None:
-    """Remove images in samples_dir that are not part of the active source."""
-    for path in list_sample_images(target):
-        if path.name not in keep:
-            path.unlink(missing_ok=True)
-
-
-def _prepare_railsem19_samples(
-    target: Path,
-    source_cfg: dict[str, Any],
-    *,
-    force: bool,
-) -> list[Path]:
-    frames = source_cfg.get("frames", [])
-    if not frames:
-        raise ValueError("railsem19 source has no frames configured.")
-
-    dataset_root = Path(source_cfg["dataset_root"])
-    images_dir = dataset_root / source_cfg.get("images_subdir", "jpgs/rs19_val")
-    if not images_dir.is_dir():
-        raise FileNotFoundError(
-            f"RailSem19 images not found at {images_dir}. "
-            "Place the rs19_val release under data/rs19_val/."
-        )
-
-    expected_names = {frame["save_as"] for frame in frames}
-    _clear_stale_sample_images(target, expected_names)
-
-    copied: list[Path] = []
-    missing: list[str] = []
-
-    for frame in frames:
-        frame_id = frame["frame_id"]
-        save_as = frame["save_as"]
-        dest = target / save_as
-        src = images_dir / f"{frame_id}.jpg"
-        if not src.exists():
-            # Some releases use .JPG — keep a cheap fallback.
-            src_alt = images_dir / f"{frame_id}.JPG"
-            src = src_alt if src_alt.exists() else src
-
-        if not src.exists():
-            missing.append(frame_id)
-            continue
-
+def _prepare_urls(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:
+    images = dict(source.get("images") or {})
+    if not images:
+        raise ValueError("urls source needs data.images: {filename: url}")
+    session = requests.Session()
+    session.headers["User-Agent"] = USER_AGENT
+    saved: list[Path] = []
+    for name, url in images.items():
+        dest = target / name
         if dest.exists() and not force:
-            copied.append(dest)
+            saved.append(dest)
             continue
-
-        shutil.copy2(src, dest)
-        copied.append(dest)
-        print(f"Copied {save_as} ← {src.name}")
-
-    if missing:
-        raise FileNotFoundError(
-            "Missing RailSem19 frames: "
-            + ", ".join(missing)
-            + f"\nLooked under {images_dir}"
-        )
-
-    _write_attribution(target, source_cfg)
-    return sorted(
-        p for p in target.iterdir() if p.suffix.lower() in IMAGE_EXTENSIONS
-    )
-
-
-def _prepare_nordland_hf_samples(
-    target: Path,
-    source_cfg: dict[str, Any],
-    *,
-    force: bool,
-) -> list[Path]:
-    frames = source_cfg.get("frames", [])
-    if not frames:
-        raise ValueError("nordland_hf source has no frames configured.")
-
-    dataset_id = source_cfg.get("dataset_id", "Somayeh-h/Nordland")
-    quality_cfg = source_cfg.get("quality", {})
-    min_std = float(quality_cfg.get("min_luminance_std", 12.0))
-    min_mean = float(quality_cfg.get("min_luminance_mean", 18.0))
-    min_range = float(quality_cfg.get("min_luminance_range", 25.0))
-    max_offset_skip = int(quality_cfg.get("max_offset_skip", 100))
-    quality_kwargs = {
-        "min_luminance_std": min_std,
-        "min_luminance_mean": min_mean,
-        "min_luminance_range": min_range,
-    }
-
-    downloaded: list[Path] = []
-
-    for frame in frames:
-        save_as = frame["save_as"]
-        dest = target / save_as
-        if dest.exists() and not force:
-            cached = load_image(dest)
-            if is_usable_sample_image(cached, **quality_kwargs):
-                downloaded.append(dest)
-                continue
-            print(f"Replacing low-contrast cached image {save_as}")
-
-        start_offset = int(frame["offset"])
-        saved = False
-        for step in range(max_offset_skip + 1):
-            offset = start_offset + step
-            key, image_bytes = _fetch_nordland_hf_image(dataset_id, offset)
-            candidate = Image.open(BytesIO(image_bytes)).convert("RGB")
-            if not is_usable_sample_image(candidate, **quality_kwargs):
-                print(
-                    f"Skipping low-contrast frame {key} (offset {offset}), trying next…"
-                )
-                continue
-
-            dest.write_bytes(image_bytes)
-            downloaded.append(dest)
-            print(f"Saved {save_as} ({key}, offset {offset})")
-            saved = True
-            break
-
-        if not saved:
-            raise RuntimeError(
-                f"Could not find a usable Nordland frame for {save_as} "
-                f"starting at offset {start_offset} (searched {max_offset_skip + 1} rows)."
-            )
-
-    _write_attribution(
-        target,
-        {
-            **source_cfg,
-            "attribution": source_cfg.get("attribution", "")
-            + f"\nDataset: https://huggingface.co/datasets/{dataset_id}",
-        },
-    )
-    return sorted(
-        p for p in target.iterdir() if p.suffix.lower() in IMAGE_EXTENSIONS
-    )
-
-
-def _fetch_nordland_hf_image(dataset_id: str, offset: int) -> tuple[str, bytes]:
-    params = {
-        "dataset": dataset_id,
-        "config": "default",
-        "split": "train",
-        "offset": offset,
-        "length": 1,
-    }
-    response = _fetch_with_retries(
-        NORDLAND_HF_ROWS_API,
-        headers={"User-Agent": USER_AGENT},
-        params=params,
-    )
-    rows = response.json().get("rows", [])
-    if not rows:
-        raise FileNotFoundError(
-            f"No Nordland row at offset {offset} in {dataset_id}. "
-            "Check offsets in configs/data/source/nordland_hf.yaml."
-        )
-
-    row = rows[0]["row"]
-    key = row.get("__key__", f"offset-{offset}")
-    png = row.get("png") or {}
-    image_url = png.get("src")
-    if not image_url:
-        raise FileNotFoundError(f"Nordland row {key} has no image URL.")
-
-    image_response = _fetch_with_retries(
-        image_url,
-        headers={"User-Agent": USER_AGENT},
-    )
-    return key, image_response.content
-
-
-def _prepare_wikimedia_samples(
-    target: Path,
-    source_cfg: dict[str, Any],
-    *,
-    force: bool,
-) -> list[Path]:
-    headers = {"User-Agent": USER_AGENT}
-    downloaded: list[Path] = []
-
-    for filename, url in source_cfg.get("urls", {}).items():
-        dest = target / filename
-        if dest.exists() and not force:
-            downloaded.append(dest)
-            continue
-        print(f"Downloading {filename} …")
-        response = _fetch_with_retries(url, headers=headers)
-        dest.write_bytes(response.content)
-        downloaded.append(dest)
-
-    return sorted(
-        p for p in target.iterdir() if p.suffix.lower() in IMAGE_EXTENSIONS
-    )
-
-
-def _prepare_l4r_samples(
-    target: Path,
-    source_cfg: dict[str, Any],
-    *,
-    force: bool,
-) -> list[Path]:
-    frames = source_cfg.get("frames", [])
-    if not frames:
-        raise ValueError("l4r_nlb source has no frames configured.")
-
-    archive_dir = Path(source_cfg["archive_dir"])
-    extract_dir = Path(source_cfg["extract_dir"])
-    archive_dir.mkdir(parents=True, exist_ok=True)
-    extract_dir.mkdir(parents=True, exist_ok=True)
-
-    seasons_needed = sorted({frame["season"] for frame in frames})
-    if source_cfg.get("auto_download", True):
-        for season in seasons_needed:
-            _ensure_l4r_archive(season, source_cfg, archive_dir)
-
-    copied: list[Path] = []
-    missing: list[str] = []
-
-    for frame in frames:
-        season = frame["season"]
-        frame_id = frame["frame_id"]
-        save_as = frame["save_as"]
-        dest = target / save_as
-
-        if dest.exists() and not force:
-            copied.append(dest)
-            continue
-
-        src = _locate_l4r_frame(extract_dir, season, frame_id)
-        if src is None:
-            src = _extract_l4r_frame_from_archive(
-                archive_dir, extract_dir, season, frame_id
-            )
-
-        if src is None or not src.exists():
-            missing.append(f"{season}/{frame_id}")
-            continue
-
-        shutil.copy2(src, dest)
-        copied.append(dest)
-
-    if missing:
-        raise FileNotFoundError(
-            "Could not extract L4R_NLB frames: "
-            + ", ".join(missing)
-            + f"\nCheck archives in {archive_dir} and frame IDs in configs/data/source/l4r_nlb.yaml."
-        )
-
-    _write_attribution(target, source_cfg)
-    return sorted(
-        p for p in target.iterdir() if p.suffix.lower() in IMAGE_EXTENSIONS
-    )
-
-
-def _ensure_l4r_archive(
-    season: str,
-    source_cfg: dict[str, Any],
-    archive_dir: Path,
-) -> Path:
-    zip_name = f"L4R_NLB_{season}.zip"
-    zip_path = archive_dir / zip_name
-    if zip_path.exists() and zipfile.is_zipfile(zip_path):
-        return zip_path
-
-    record_id = source_cfg["zenodo_record"]
-    download_url, size_bytes = _zenodo_file_info(record_id, zip_name)
-    size_gb = size_bytes / 1e9 if size_bytes else 0.0
-
-    print(
-        f"Downloading {zip_name} from Zenodo (~{size_gb:.1f} GB). "
-        "This is a one-time download; only curated frames are extracted."
-    )
-    _download_file(download_url, zip_path, expected_size=size_bytes)
-    return zip_path
-
-
-def _zenodo_file_info(record_id: int | str, filename: str) -> tuple[str, int]:
-    api_url = ZENODO_RECORD_API.format(record_id=record_id)
-    response = _fetch_with_retries(api_url, headers={"User-Agent": USER_AGENT})
-    payload = response.json()
-    for entry in payload.get("files", []):
-        if entry.get("key") == filename:
-            return entry["links"]["self"], int(entry.get("size", 0))
-    known = ", ".join(entry.get("key", "?") for entry in payload.get("files", []))
-    raise FileNotFoundError(
-        f"{filename} not found in Zenodo record {record_id}. Available: {known}"
-    )
-
-
-def _download_file(url: str, dest: Path, *, expected_size: int = 0) -> None:
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    temp = dest.with_suffix(dest.suffix + ".part")
-    headers = {"User-Agent": USER_AGENT}
-
-    with requests.get(url, stream=True, headers=headers, timeout=120) as response:
+        response = session.get(str(url), timeout=60)
         response.raise_for_status()
-        total = int(response.headers.get("content-length", expected_size))
-        downloaded = 0
-        last_report = time.monotonic()
+        Image.open(BytesIO(response.content)).convert("RGB").save(dest)
+        saved.append(dest)
+    return saved
 
-        with temp.open("wb") as handle:
-            for chunk in response.iter_content(chunk_size=1024 * 1024):
-                if not chunk:
+
+def _prepare_hf_detection(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:
+    """Pull a detection dataset via `datasets` and cache RGB + labels.json."""
+    try:
+        from datasets import load_dataset
+    except ImportError as exc:  # pragma: no cover
+        raise ImportError(
+            "Install `datasets` to use hf_detection sources: uv add datasets"
+        ) from exc
+
+    hf_id = str(source.get("hf_id", ""))
+    if not hf_id:
+        raise ValueError("hf_detection source requires data.hf_id")
+    split = str(source.get("hf_split", "train"))
+    max_images = int(source.get("max_images", 8))
+    prefer = [str(c).lower() for c in (source.get("prefer_classes") or [])]
+
+    ds = load_dataset(hf_id, split=split, streaming=True)
+    labels_out: dict[str, list[dict[str, Any]]] = {}
+    saved: list[Path] = []
+    class_counts: dict[str, int] = {}
+
+    for idx, row in enumerate(ds):
+        if len(saved) >= max_images:
+            break
+        image, boxes = _extract_hf_detection_row(row)
+        if image is None:
+            continue
+        primary = boxes[0].label.lower() if boxes else ""
+        if prefer:
+            # Round-robin prefer_classes when possible.
+            want = prefer[len(saved) % len(prefer)]
+            labels_lower = {b.label.lower() for b in boxes}
+            if want not in labels_lower and primary and primary not in prefer:
+                # Soft skip early rows that don't help class coverage.
+                if idx < max_images * 20 and len(saved) < max_images:
                     continue
-                handle.write(chunk)
-                downloaded += len(chunk)
-                now = time.monotonic()
-                if total and now - last_report >= 5:
-                    pct = 100 * downloaded / total
-                    print(f"  … {downloaded / 1e9:.2f} / {total / 1e9:.2f} GB ({pct:.0f}%)")
-                    last_report = now
+        stem = f"neu_{len(saved):04d}"
+        if primary:
+            stem = f"{primary.replace(' ', '_')}_{len(saved):04d}"
+            class_counts[primary] = class_counts.get(primary, 0) + 1
+        dest = target / f"{stem}.png"
+        if dest.exists() and not force:
+            saved.append(dest)
+        else:
+            image.convert("RGB").save(dest)
+            saved.append(dest)
+        labels_out[stem] = [
+            {"label": b.label, "bbox_xyxy": list(b.bbox_xyxy)} for b in boxes
+        ]
 
-    temp.replace(dest)
-
-
-def _locate_l4r_frame(extract_dir: Path, season: str, frame_id: str) -> Path | None:
-    candidates = [
-        extract_dir / f"L4R_NLB_{season}" / "images" / f"{frame_id}.png",
-        extract_dir / season / "images" / f"{frame_id}.png",
-    ]
-    for path in candidates:
-        if path.exists():
-            return path
-    return None
-
-
-def _extract_l4r_frame_from_archive(
-    archive_dir: Path,
-    extract_dir: Path,
-    season: str,
-    frame_id: str,
-) -> Path | None:
-    zip_path = archive_dir / f"L4R_NLB_{season}.zip"
-    if not zip_path.exists():
-        return None
-
-    member_suffix = f"images/{frame_id}.png"
-    with zipfile.ZipFile(zip_path) as archive:
-        member = next(
-            (name for name in archive.namelist() if name.endswith(member_suffix)),
-            None,
+    if not saved:
+        raise RuntimeError(
+            f"No images extracted from {hf_id}. Check schema or use kind: local."
         )
-        if member is None:
-            return None
-
-        out_dir = extract_dir / f"L4R_NLB_{season}" / "images"
-        out_dir.mkdir(parents=True, exist_ok=True)
-        out_path = out_dir / f"{frame_id}.png"
-        if not out_path.exists():
-            with archive.open(member) as src, out_path.open("wb") as dst:
-                shutil.copyfileobj(src, dst)
-        return out_path
-
-
-def _write_attribution(target: Path, source_cfg: dict[str, Any]) -> None:
-    attribution_path = target / "ATTRIBUTION.txt"
-    lines = [
-        source_cfg.get("label", "L4R_NLB"),
-        f"License: {source_cfg.get('license', 'CC BY 3.0')}",
-        source_cfg.get("attribution", ""),
-        f"Zenodo: {source_cfg.get('zenodo_url', '')}",
-        f"GitHub annotations: {source_cfg.get('github_url', '')}",
-    ]
-    attribution_path.write_text("\n".join(line for line in lines if line), encoding="utf-8")
+    (target / "labels.json").write_text(json.dumps(labels_out, indent=2), encoding="utf-8")
+    meta = {
+        "hf_id": hf_id,
+        "split": split,
+        "classes": source.get("classes", []),
+        "class_counts": class_counts,
+    }
+    (target / "source_meta.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
+    return saved
 
 
-def download_sample_images(
-    samples_dir: Path | None = None,
-    *,
-    force: bool = False,
-    cfg: DictConfig | dict[str, Any] | None = None,
-) -> list[Path]:
-    """Backward-compatible alias for prepare_sample_images()."""
-    return prepare_sample_images(samples_dir, cfg=cfg, force=force)
-
-
-def _fetch_with_retries(
-    url: str,
-    *,
-    headers: dict[str, str],
-    params: dict[str, str | int] | None = None,
-    attempts: int = 3,
-) -> requests.Response:
-    last_error: requests.RequestException | None = None
-    for attempt in range(attempts):
+def _extract_hf_detection_row(row: dict[str, Any]) -> tuple[Image.Image | None, list[DetectionBox]]:
+    """Best-effort parse of common HF detection schemas (incl. AI4Manufacturing/191)."""
+    image = row.get("image") or row.get("img")
+    if image is None and "images" in row and row["images"]:
+        image = row["images"][0]
+    if image is not None and not isinstance(image, Image.Image):
         try:
-            response = requests.get(
-                url,
-                headers=headers,
-                params=params,
-                timeout=120,
-            )
-            response.raise_for_status()
-            return response
-        except requests.RequestException as exc:
-            last_error = exc
-            time.sleep(1.5 * (attempt + 1))
-    assert last_error is not None
-    raise last_error
+            image = Image.open(BytesIO(image["bytes"])).convert("RGB")
+        except Exception:  # noqa: BLE001
+            image = None
+    if isinstance(image, Image.Image):
+        image = image.convert("RGB")
+
+    boxes: list[DetectionBox] = []
+    meta = row.get("metadata") or {}
+    objects = meta.get("objects") or row.get("objects") or {}
+    # COCO-ish: objects = {bbox: [...], category: [...]}
+    if isinstance(objects, dict) and "bbox" in objects:
+        cats = objects.get("category") or objects.get("categories") or objects.get("label") or []
+        for bbox, cat in zip(objects["bbox"], cats, strict=False):
+            label = str(cat)
+            if isinstance(cat, int) and "categories" in meta:
+                label = str(meta["categories"][cat])
+            boxes.append(_box_from_any(bbox, label, image))
+    elif isinstance(objects, list):
+        for obj in objects:
+            label = str(obj.get("label") or obj.get("category") or "defect")
+            bbox = obj.get("bbox") or obj.get("bbox_xyxy") or obj.get("box")
+            if bbox is not None:
+                boxes.append(_box_from_any(bbox, label, image))
+
+    # AI4Manufacturing annot lines: "class,[x,y,w,h]"
+    annot = row.get("annot") or row.get("answer")
+    if isinstance(annot, str) and image is not None:
+        for line in annot.strip().splitlines():
+            line = line.strip()
+            if not line or "," not in line:
+                continue
+            label, rest = line.split(",", 1)
+            nums = [float(x) for x in rest.strip("[] ").replace(",", " ").split() if x]
+            if len(nums) >= 4:
+                boxes.append(_box_from_any(nums[:4], label.strip(), image))
+
+    return image, boxes
 
 
-def list_sample_images(samples_dir: Path | None = None) -> list[Path]:
-    directory = (samples_dir or default_samples_dir()).resolve()
-    if not directory.exists():
-        return []
-    return sorted(
-        p
-        for p in directory.iterdir()
-        if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS
-    )
+def _box_from_any(
+    bbox: Any,
+    label: str,
+    image: Image.Image | None,
+) -> DetectionBox:
+    vals = [float(x) for x in list(bbox)[:4]]
+    # Heuristic: COCO xywh if w,h look like sizes; else assume xyxy.
+    if image is not None and vals[2] < image.size[0] and vals[3] < image.size[1]:
+        # If x2,y2 would exceed image when treated as xywh→xyxy expansion needed.
+        if vals[0] + vals[2] <= image.size[0] * 1.05 and vals[1] + vals[3] <= image.size[1] * 1.05:
+            # Treat as xywh when fourth value is small relative to height.
+            if vals[2] < image.size[0] * 0.95 and vals[3] < image.size[1] * 0.95:
+                x1, y1, w, h = vals
+                return DetectionBox(label=label, bbox_xyxy=(x1, y1, x1 + w, y1 + h))
+    x1, y1, x2, y2 = vals
+    return DetectionBox(label=label, bbox_xyxy=(x1, y1, x2, y2))
 
 
-def load_image(path: Path | str) -> Image.Image:
-    with Image.open(path) as img:
-        return img.convert("RGB")
-
-
-def load_sample_images(
-    samples_dir: Path | None = None,
-    *,
-    max_images: int | None = None,
-    download_if_missing: bool = True,
-    cfg: DictConfig | dict[str, Any] | None = None,
-) -> list[ImageSample]:
-    if cfg is None:
-        from edgecase_synthesis.config import load_config
-
-        cfg = load_config()
-
-    config = _as_dict(cfg)
-    directory = Path(samples_dir) if samples_dir else Path(config["paths"]["samples_dir"])
-    paths = list_sample_images(directory)
-
-    if not paths and download_if_missing:
-        paths = prepare_sample_images(directory, cfg=cfg)
-
-    if not paths:
-        raise FileNotFoundError(
-            f"No images found in {directory}. "
-            "Add images manually or call prepare_sample_images()."
-        )
-
-    # Prefer curated frame order when the active source lists save_as names.
-    frame_names = [
-        frame["save_as"]
-        for frame in config.get("data", {}).get("frames", [])
-        if isinstance(frame, dict) and "save_as" in frame
-    ]
-    if frame_names:
-        by_name = {path.name: path for path in paths}
-        ordered = [by_name[name] for name in frame_names if name in by_name]
-        if ordered:
-            paths = ordered
-
-    if max_images is None:
-        max_images = config.get("data", {}).get("max_images", 5)
-
-    if max_images is not None:
-        paths = paths[:max_images]
-
-    return [
-        ImageSample(path=path, image=load_image(path), name=path.stem)
-        for path in paths
-    ]
+def _prepare_hf_rows(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:
+    """Fetch individual rows from HF datasets-server (image-only sources)."""
+    frames = list(source.get("frames") or [])
+    if not frames:
+        raise ValueError("hf_rows source needs data.frames: [{offset, save_as}, ...]")
+    hf_id = str(source["hf_id"])
+    split = str(source.get("split", "train"))
+    config_name = source.get("config")
+    api = str(source.get("rows_api", "https://datasets-server.huggingface.co/rows"))
+    session = requests.Session()
+    session.headers["User-Agent"] = USER_AGENT
+    saved: list[Path] = []
+    for frame in frames:
+        dest = target / str(frame["save_as"])
+        if dest.exists() and not force:
+            saved.append(dest)
+            continue
+        params = {"dataset": hf_id, "split": split, "offset": int(frame["offset"]), "length": 1}
+        if config_name:
+            params["config"] = config_name
+        url = f"{api}?{urlencode(params)}"
+        last_err: Exception | None = None
+        for attempt in range(3):
+            try:
+                response = session.get(url, timeout=60)
+                response.raise_for_status()
+                row = response.json()["rows"][0]["row"]
+                image_info = row.get("image") or {}
+                # Prefer bytes via nested fetch if URL present.
+                img_url = image_info.get("src") or image_info.get("url")
+                if img_url:
+                    img_resp = session.get(img_url, timeout=60)
+                    img_resp.raise_for_status()
+                    Image.open(BytesIO(img_resp.content)).convert("RGB").save(dest)
+                else:
+                    raise KeyError("No image URL in HF row")
+                saved.append(dest)
+                last_err = None
+                break
+            except Exception as exc:  # noqa: BLE001
+                last_err = exc
+                time.sleep(1.5 * (attempt + 1))
+        if last_err is not None:
+            raise RuntimeError(f"Failed to fetch HF row {frame}: {last_err}") from last_err
+    return saved

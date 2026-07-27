@@ -1,0 +1,28 @@
+# NEU-DET — open steel-surface defect detection set (bbox labels).
+# 6 classes × 300 images; suitable for Notebook 3 real vs real+synthetic AP.
+# Cite: Song & Yan, Northeastern University Surface Defect Database.
+name: neu_det
+label: "NEU-DET steel surface defects"
+license: "Research use — cite Song & Yan (NEU Surface Defect Database)"
+attribution: >-
+  NEU-DET (Northeastern University). Classes: crazing, inclusion, patches,
+  pitted_surface, rolled-in_scale, scratches.
+kind: hf_detection
+# Community HF mirror with image + objects; override if you prefer a local VOC tree.
+hf_id: AI4Manufacturing/191
+hf_split: train
+max_images: 8
+# Prefer a mix of classes so NB1/NB3 demos cover the label set.
+prefer_classes:
+  - scratches
+  - crazing
+  - patches
+  - inclusion
+dataset_root: ${paths.neu_det_dir}
+classes:
+  - crazing
+  - inclusion
+  - patches
+  - pitted_surface
+  - rolled-in_scale
+  - scratches

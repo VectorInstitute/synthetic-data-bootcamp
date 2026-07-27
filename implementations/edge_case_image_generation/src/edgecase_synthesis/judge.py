@@ -163,7 +163,7 @@ class VLMJudge:
         pil = _to_pil(image)
         rare = anomaly_name or anomaly_id or "the rare edge-case condition"
         ann = annotations_summary or "No auto-annotations provided."
-        src = source_hint or "a real railway cab-view photograph"
+        src = source_hint or "a real photograph"
 
         if self.backend == "clip":
             self._ensure_clip()
@@ -204,7 +204,7 @@ class VLMJudge:
     ) -> JudgeResult:
         assert self._model is not None and self._processor is not None
         user_text = (
-            f"You are a strict data-quality judge for synthetic railway training images.\n"
+            f"You are a strict data-quality judge for synthetic training images.\n"
             f"The image was edited from {source_hint}.\n"
             f"Target rare condition: {rare}\n"
             f"Generation prompt:\n{prompt}\n\n"

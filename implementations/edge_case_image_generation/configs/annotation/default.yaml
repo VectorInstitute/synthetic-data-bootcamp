@@ -1,24 +1,13 @@
 # @package annotation
-# Defaults; hardware profiles override detector / SAM / conf.
 detector_model: google/owlvit-base-patch32
 sam_model: mobile_sam.pt
 conf: 0.015
 max_detections: 20
 classes:
-  - railway track
-  - train
-  - sky
-  - tree
-  - traffic cone
-  - fallen tree
-  - deer
-  - dog
-edge_case_classes:
-  - traffic cone
-  - fallen tree
-  - branch on railway track
-  - deer
-  - dog
-  - animal on railway track
-  - snow on railway track
-  - snow covered ground
+  - scratch
+  - crazing
+  - patch
+  - inclusion
+  - pitted surface
+  - rolled-in scale
+  - steel surface

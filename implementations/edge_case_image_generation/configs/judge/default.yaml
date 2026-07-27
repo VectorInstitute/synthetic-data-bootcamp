@@ -1,15 +1,11 @@
 # @package judge
-# Shared defaults; hardware/cpu.yaml and hardware/gpu_l4.yaml override model size.
-threshold: 8.5
-backend: qwen_vl          # qwen_vl | clip (CLIP is a light CPU fallback)
+threshold: 8.0
+backend: qwen_vl
 model_id: Qwen/Qwen2.5-VL-3B-Instruct
 torch_dtype: float32
-max_new_tokens: 320
-# Visual token budget (Qwen2.5-VL uses 28×28 patches).
-min_pixels: 200704        # 256 * 28 * 28
-max_pixels: 401408        # 512 * 28 * 28
-# Decision bands relative to threshold:
-#   overall >= threshold and edge_case_present → accept
-#   overall < threshold - reject_margin → reject
-#   otherwise → retry
+max_new_tokens: 256
+min_pixels: 200704
+max_pixels: 401408
 reject_margin: 2.0
+# Passed into the judge prompt; override per domain in hardware or notebook text.
+source_hint: "a real industrial surface photograph"

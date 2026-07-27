@@ -1,0 +1,22 @@
+id: extra_scratch
+dataset: neu_det
+display_name: Extra scratch defect
+method: auto
+prompt: >-
+  photorealistic close-up of a hot-rolled steel strip surface with a clear
+  linear scratch defect, sharp metallic scratch mark, industrial inspection photo,
+  same lighting and camera angle
+negative_prompt: >-
+  blurry, cartoon, painted, watermark, text, logo, colorful, plastic
+edit_mask:
+  mode: ellipse
+  cx: 0.50
+  cy: 0.50
+  rx: 0.28
+  ry: 0.12
+  blur_sigma: 1.2
+  composite_blur: 0.8
+strength: 0.75
+annotation_classes:
+  - scratch
+  - steel surface

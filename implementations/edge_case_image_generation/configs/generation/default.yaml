@@ -1,26 +1,21 @@
 # @package generation
-# Shared generation settings. Hardware profiles override models / sizes / methods.
-# Anomaly YAMLs: configs/generation/anomalies/<dataset>/<anomaly>.yaml
+# Shared defaults. hardware/*.yaml overrides only the deltas that change per machine.
 family: sd15
-default_anomaly_method: paste
+default_anomaly_method: controlnet
 base_model_id: runwayml/stable-diffusion-v1-5
 inpaint_model_id: null
+vae_id: null
 controlnet:
   depth: lllyasviel/sd-controlnet-depth
-  seg: lllyasviel/sd-controlnet-seg
-  use_seg: false
 controlnet_scale:
-  depth: 0.50
-  seg: 0.35
-num_inference_steps: 16
+  depth: 0.55
+num_inference_steps: 20
 guidance_scale: 7.5
-strength: 0.78
+strength: 0.72
 seed: 42
 max_side: 512
-retries: 3
-anomaly_dataset: railsem19
+anomaly_dataset: neu_det
 workshop_anomalies:
-  - traffic_cone
-  - fallen_branch
-  - deer_on_track
-  - dog_on_track
+  - extra_scratch
+  - crazing_burst
+  - patch_blemish

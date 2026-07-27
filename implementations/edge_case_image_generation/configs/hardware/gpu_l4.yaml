@@ -1,12 +1,8 @@
 # @package _global_
-# Google Cloud g2-standard-8 — 8 vCPU, 32 GB RAM, 1× NVIDIA L4 (24 GB).
+# g2-standard-8 / 1× NVIDIA L4 — deltas only.
 hardware:
   name: gpu_l4
   device: cuda
-  notes: >-
-    Depth Anything V2 Large, SegFormer-B2, SDXL inpaint for object inserts,
-    SDXL + depth ControlNet for appearance/weather edits, OWL-ViT-L + SAM-B,
-    Qwen2.5-VL-7B judge (unload SDXL first to free VRAM).
 
 conditioning:
   depth:
@@ -16,23 +12,17 @@ conditioning:
 
 generation:
   family: sdxl
-  # Object anomalies (cone/branch/animal): true inpaint — avoids depth-CN fighting inserts.
   default_anomaly_method: inpaint
   base_model_id: stabilityai/stable-diffusion-xl-base-1.0
   inpaint_model_id: diffusers/stable-diffusion-xl-1.0-inpainting-0.1
+  vae_id: madebyollin/sdxl-vae-fp16-fix
   controlnet:
     depth: diffusers/controlnet-depth-sdxl-1.0
-    # SDXL seg ControlNets are less standard; depth is enough for weather lock.
-    seg: null
-    use_seg: false
   controlnet_scale:
     depth: 0.55
-    seg: 0.40
   num_inference_steps: 28
   guidance_scale: 7.0
-  strength: 0.96
-  # Drawn silhouette primes are for CPU paste only — they make SDXL look like stickers.
-  prime_on_inpaint: false
+  strength: 0.95
   max_side: 1024
 
 annotation:
@@ -42,11 +32,7 @@ annotation:
   max_detections: 25
 
 judge:
-  backend: qwen_vl
-  # Full 7B judge — the quality gate we want on the L4.
   model_id: Qwen/Qwen2.5-VL-7B-Instruct
   torch_dtype: bfloat16
   threshold: 8.5
-  max_new_tokens: 320
-  min_pixels: 200704       # 256 * 28 * 28
-  max_pixels: 1003520      # 1280 * 28 * 28
+  max_pixels: 1003520

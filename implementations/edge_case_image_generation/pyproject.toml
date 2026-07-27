@@ -7,6 +7,7 @@ dependencies = [
     "torch>=2.1",
     "torchvision>=0.16",
     "transformers>=4.49",
+    "datasets>=2.20",
     "accelerate>=0.34",
     "pillow>=10",
     "matplotlib>=3.8",

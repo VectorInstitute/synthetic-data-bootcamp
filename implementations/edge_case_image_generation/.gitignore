@@ -6,7 +6,7 @@ __pycache__/
 .DS_Store
 .vscode/
 
-# Large / generated artifacts (keep folder placeholders via .gitkeep)
+# Large / generated artifacts
 outputs/*
 !outputs/.gitkeep
 *.pt
@@ -14,10 +14,7 @@ outputs/*
 *.onnx
 *.safetensors
 
-# Dataset contents (keep empty directory structure)
-data/samples/**
-!data/samples/.gitkeep
-data/rs19_val/**
-!data/rs19_val/.gitkeep
-data/l4r_nlb/**
-!data/l4r_nlb/.gitkeep
+# Dataset payloads (keep .gitkeep placeholders only)
+data/**
+!data/**/
+!data/**/.gitkeep

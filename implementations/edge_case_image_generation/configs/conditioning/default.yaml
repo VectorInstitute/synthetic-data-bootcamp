@@ -1,6 +1,8 @@
 # @package conditioning
-# Defaults; hardware/cpu.yaml and hardware/gpu_l4.yaml override model ids.
 depth:
   model_id: depth-anything/Depth-Anything-V2-Base-hf
 segmentation:
   model_name: nvidia/segformer-b0-finetuned-ade-512-512
+  # Optional: ADE20K ids treated as "editable ground" when intersect_seg is set.
+  # Steel/defect images often leave this empty (ellipse masks from anomaly YAML).
+  ground_class_ids: []

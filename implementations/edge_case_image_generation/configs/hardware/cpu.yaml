@@ -1,12 +1,8 @@
 # @package _global_
-# Laptop / CPU (or Apple MPS) profile — small models, paste inserts.
+# Laptop / CPU — deltas only (rest comes from */default.yaml).
 hardware:
   name: cpu
-  device: null  # auto: cuda > mps > cpu
-  notes: >-
-    Depth Anything V2 Base, SegFormer-B0, SD 1.5 ControlNet (optional),
-    OWL-ViT-B + MobileSAM, Qwen2.5-VL-3B judge (CLIP fallback if needed).
-    Object anomalies default to paste.
+  device: null
 
 conditioning:
   depth:
@@ -16,33 +12,24 @@ conditioning:
 
 generation:
   family: sd15
-  default_anomaly_method: paste
+  default_anomaly_method: controlnet
   base_model_id: runwayml/stable-diffusion-v1-5
   inpaint_model_id: null
   controlnet:
     depth: lllyasviel/sd-controlnet-depth
-    seg: lllyasviel/sd-controlnet-seg
-    use_seg: false
   controlnet_scale:
     depth: 0.50
-    seg: 0.35
-  num_inference_steps: 16
-  guidance_scale: 7.5
-  strength: 0.78
+  num_inference_steps: 20
+  strength: 0.72
   max_side: 512
 
 annotation:
   detector_model: google/owlvit-base-patch32
   sam_model: mobile_sam.pt
   conf: 0.015
-  max_detections: 20
 
 judge:
-  backend: qwen_vl
   model_id: Qwen/Qwen2.5-VL-3B-Instruct
   torch_dtype: float32
   threshold: 8.0
-  max_new_tokens: 256
-  min_pixels: 200704      # 256 * 28 * 28
-  max_pixels: 401408      # 512 * 28 * 28
-  # If 3B is too heavy on a laptop, override: judge.backend=clip
+  max_pixels: 401408

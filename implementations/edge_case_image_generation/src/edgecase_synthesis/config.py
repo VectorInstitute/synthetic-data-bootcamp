@@ -92,10 +92,9 @@ def merge_generation_anomaly(generation: DictConfig | dict, anomaly: DictConfig 
         "num_inference_steps",
         "seed",
         "max_side",
-        "snow_prime",
-        "winter_grade",
-        "prime_on_inpaint",
         "family",
+        "vae_id",
+        "default_anomaly_method",
     ):
         if key in anom and anom[key] is not None:
             base[key] = anom[key]

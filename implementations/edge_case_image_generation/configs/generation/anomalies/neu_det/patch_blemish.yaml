@@ -1,0 +1,22 @@
+id: patch_blemish
+dataset: neu_det
+display_name: Surface patch defect
+method: auto
+prompt: >-
+  photorealistic hot-rolled steel with irregular patch-like surface defect,
+  discoloration and rough patch on metal strip, inspection photo, same lighting
+negative_prompt: >-
+  blurry, cartoon, sticker, watermark, text, logo
+edit_mask:
+  mode: ellipse
+  cx: 0.55
+  cy: 0.45
+  rx: 0.22
+  ry: 0.22
+  blur_sigma: 1.3
+  composite_blur: 0.8
+strength: 0.76
+annotation_classes:
+  - patch
+  - patches
+  - steel surface
