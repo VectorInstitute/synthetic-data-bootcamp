@@ -131,6 +131,16 @@ class Segmenter:
             return
         self.processor = AutoImageProcessor.from_pretrained(self.model_name)
         if self._is_mask2former:
+            try:
+                import scipy  # noqa: F401
+            except ImportError as exc:
+                raise ImportError(
+                    "Mask2Former needs scipy in this venv. Install into the notebook "
+                    "kernel, then restart it:\n"
+                    "  uv sync\n"
+                    "  # or: uv pip install scipy\n"
+                    "  # or in a cell: %pip install scipy"
+                ) from exc
             from transformers import Mask2FormerForUniversalSegmentation
 
             self.model = Mask2FormerForUniversalSegmentation.from_pretrained(self.model_name)

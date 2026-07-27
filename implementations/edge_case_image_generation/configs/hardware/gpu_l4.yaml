@@ -8,7 +8,8 @@ conditioning:
   depth:
     model_id: depth-anything/Depth-Anything-V2-Large-hf
   segmentation:
-    model_name: facebook/mask2former-swin-small-ade-semantic
+    # SegFormer (no scipy). Mask2Former also works on L4 but needs `scipy` installed.
+    model_name: nvidia/segformer-b3-finetuned-ade-512-512
 
 generation:
   family: sdxl
