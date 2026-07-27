@@ -272,18 +272,27 @@ def build_anomaly_edit_mask(
     if mode == "seg_intersection" or bool(cfg.get("intersect_seg", False)):
         support = _seg_support(segmentation, width, height, cfg)
         clipped = mask & support
-        if float(clipped.mean()) >= 0.001:
+        # Keep the geometric prior if seg support wipes almost everything.
+        if float(clipped.mean()) >= max(0.001, 0.15 * float(mask.mean() + 1e-8)):
             mask = clipped
 
+    seed_mask = mask.copy()
+
     # Optional: prefer nearer pixels when depth is available (generic, not domain-specific).
-    if depth is not None and bool(cfg.get("prefer_near", False)):
+    if depth is not None and bool(cfg.get("prefer_near", False)) and mask.any():
         d = depth.depth_map
         if d.shape != (height, width):
             d = cv2.resize(d, (width, height), interpolation=cv2.INTER_LINEAR)
-        near = d >= float(np.quantile(d[mask], 0.4)) if mask.any() else d >= 0.5
+        # Keep the nearer ~70% of the seed mask (quantile 0.30), not a thin near band.
+        q = float(cfg.get("prefer_near_quantile", 0.30))
+        near = d >= float(np.quantile(d[mask], q))
         clipped = mask & near
-        if float(clipped.mean()) >= 0.001:
+        # If prefer_near collapses to a crescent/sliver, keep the seed ellipse.
+        min_keep = float(cfg.get("min_mask_keep", 0.35))
+        if float(clipped.mean()) >= min_keep * float(seed_mask.mean() + 1e-8):
             mask = clipped
+        else:
+            mask = seed_mask
 
     mask = _dilate(mask, int(cfg.get("dilate", 1)))
     weight = cv2.GaussianBlur(mask.astype(np.float32), (0, 0), max(blur_sigma, 0.5))

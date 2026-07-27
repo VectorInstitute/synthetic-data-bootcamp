@@ -494,26 +494,47 @@ class MethodComparer:
     ) -> GenerationResult:
         instruction = _to_edit_instruction(prompt, anomaly_id)
         width, height = original.size
-        # InstructPix2Pix works best near 512² on SD1.5.
-        if max(width, height) > 768:
-            scale = 768 / max(width, height)
-            new_w = max(8, int(round(width * scale / 8) * 8))
-            new_h = max(8, int(round(height * scale / 8) * 8))
-            run_image = original.resize((new_w, new_h), Image.Resampling.LANCZOS)
+        is_sdxl_instruct = "sdxl" in self.instruct_model_id.lower()
+        if is_sdxl_instruct:
+            # Official SDXL InstructPix2Pix checkpoint expects ~768².
+            side = 768
+            run_image = original.resize((side, side), Image.Resampling.LANCZOS)
+            img_g = 1.5 if image_guidance is None else float(image_guidance)
+            txt_g = 3.0 if text_guidance is None else float(text_guidance)
+            generated = self.instruct_pipe(
+                prompt=instruction,
+                image=run_image,
+                height=side,
+                width=side,
+                num_inference_steps=max(steps, 28),
+                guidance_scale=txt_g,
+                image_guidance_scale=img_g,
+                generator=self._gen(seed),
+            ).images[0]
         else:
-            run_image = original
-        img_g = (
-            self.instruct_image_guidance if image_guidance is None else float(image_guidance)
-        )
-        txt_g = self.instruct_guidance if text_guidance is None else float(text_guidance)
-        generated = self.instruct_pipe(
-            prompt=instruction,
-            image=run_image,
-            num_inference_steps=steps,
-            guidance_scale=txt_g,
-            image_guidance_scale=img_g,
-            generator=self._gen(seed),
-        ).images[0]
+            # SD1.5 InstructPix2Pix — more faithful for photo edits than the SDXL twin.
+            target = 512
+            if max(width, height) > target:
+                scale = target / max(width, height)
+                new_w = max(8, int(round(width * scale / 8) * 8))
+                new_h = max(8, int(round(height * scale / 8) * 8))
+                run_image = original.resize((new_w, new_h), Image.Resampling.LANCZOS)
+            else:
+                run_image = original
+            img_g = (
+                self.instruct_image_guidance
+                if image_guidance is None
+                else float(image_guidance)
+            )
+            txt_g = self.instruct_guidance if text_guidance is None else float(text_guidance)
+            generated = self.instruct_pipe(
+                prompt=instruction,
+                image=run_image,
+                num_inference_steps=steps,
+                guidance_scale=txt_g,
+                image_guidance_scale=img_g,
+                generator=self._gen(seed),
+            ).images[0]
         generated = _ensure_same_size(generated, original)
         return GenerationResult(
             image=generated,

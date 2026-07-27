@@ -11,16 +11,19 @@ negative_prompt: >-
   flat oval patch, lane paint, orange car, global orange tint, recolor
 edit_mask:
   mode: seg_intersection
-  cx: 0.46
-  cy: 0.74
-  rx: 0.09
-  ry: 0.14
+  cx: 0.48
+  cy: 0.78
+  # Tall enough for a full cone (not a road sliver).
+  rx: 0.10
+  ry: 0.18
   prefer_near: true
-  blur_sigma: 1.5
-  composite_blur: 0.8
-  dilate: 2
-strength: 0.93
-controlnet_strength: 0.38
+  prefer_near_quantile: 0.25
+  min_mask_keep: 0.45
+  blur_sigma: 1.2
+  composite_blur: 0.7
+  dilate: 4
+strength: 0.96
+controlnet_strength: 0.34
 annotation_classes:
   - traffic cone
   - road

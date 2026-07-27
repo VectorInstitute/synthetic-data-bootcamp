@@ -16,22 +16,22 @@ generation:
   default_anomaly_method: inpaint
   base_model_id: stabilityai/stable-diffusion-xl-base-1.0
   inpaint_model_id: diffusers/stable-diffusion-xl-1.0-inpainting-0.1
-  # Instruction editor (image + prompt only). SDXL variant on L4.
-  instruct_model_id: diffusers/sdxl-instructpix2pix-768
-  instruct_image_guidance: 1.8
-  instruct_guidance_scale: 7.0
+  # SD1.5 InstructPix2Pix is more reliable than the SDXL twin for photo edits.
+  instruct_model_id: timbrooks/instruct-pix2pix
+  instruct_image_guidance: 1.6
+  instruct_guidance_scale: 7.5
   vae_id: madebyollin/sdxl-vae-fp16-fix
   controlnet:
     depth: diffusers/controlnet-depth-sdxl-1.0
     # No official ADE-seg ControlNet for SDXL; Canny on the seg map carries region structure.
     seg: diffusers/controlnet-canny-sdxl-1.0
   controlnet_scale:
-    depth: 0.75
-    seg: 0.45
-  controlnet_strength: 0.40
-  num_inference_steps: 28
-  guidance_scale: 6.5
-  strength: 0.95
+    depth: 0.85
+    seg: 0.35
+  controlnet_strength: 0.32
+  num_inference_steps: 30
+  guidance_scale: 5.5
+  strength: 0.96
   max_side: 768
 
 annotation:

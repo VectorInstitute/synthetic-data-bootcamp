@@ -12,15 +12,17 @@ negative_prompt: >-
 edit_mask:
   mode: seg_intersection
   cx: 0.50
-  cy: 0.72
-  rx: 0.18
+  cy: 0.75
+  rx: 0.16
   ry: 0.12
   prefer_near: true
-  blur_sigma: 2.0
-  composite_blur: 1.0
-  dilate: 3
-strength: 0.92
-controlnet_strength: 0.40
+  prefer_near_quantile: 0.25
+  min_mask_keep: 0.45
+  blur_sigma: 1.8
+  composite_blur: 0.9
+  dilate: 4
+strength: 0.96
+controlnet_strength: 0.34
 annotation_classes:
   - pothole
   - road
