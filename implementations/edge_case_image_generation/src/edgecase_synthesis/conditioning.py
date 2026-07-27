@@ -112,6 +112,9 @@ class DepthEstimator:
 class Segmenter:
     """Semantic segmentation (model id + optional ground class ids from config)."""
 
+    # Used when Mask2Former is configured but scipy is missing / invisible to transformers.
+    _FALLBACK_SEGFORMER = "nvidia/segformer-b3-finetuned-ade-512-512"
+
     def __init__(
         self,
         model_name: str,
@@ -126,21 +129,39 @@ class Segmenter:
         self.model = None
         self._is_mask2former = "mask2former" in model_name.lower()
 
+    @staticmethod
+    def _scipy_ready() -> bool:
+        """True only if scipy is importable *and* transformers agrees (it caches at import)."""
+        try:
+            import scipy  # noqa: F401
+        except ImportError:
+            return False
+        try:
+            import transformers.utils.import_utils as iu
+
+            # transformers sets `_scipy_available` once at import — refresh if needed.
+            if not iu.is_scipy_available():
+                available, version = iu._is_package_available("scipy")
+                iu._scipy_available = available
+                if hasattr(iu, "_scipy_version"):
+                    iu._scipy_version = version
+            return bool(iu.is_scipy_available())
+        except Exception:
+            return True
+
     def _ensure(self) -> None:
         if self.model is not None:
             return
+        if self._is_mask2former and not self._scipy_ready():
+            print(
+                f"Mask2Former needs scipy (not visible in this kernel) — "
+                f"falling back to {self._FALLBACK_SEGFORMER}",
+                flush=True,
+            )
+            self.model_name = self._FALLBACK_SEGFORMER
+            self._is_mask2former = False
         self.processor = AutoImageProcessor.from_pretrained(self.model_name)
         if self._is_mask2former:
-            try:
-                import scipy  # noqa: F401
-            except ImportError as exc:
-                raise ImportError(
-                    "Mask2Former needs scipy in this venv. Install into the notebook "
-                    "kernel, then restart it:\n"
-                    "  uv sync\n"
-                    "  # or: uv pip install scipy\n"
-                    "  # or in a cell: %pip install scipy"
-                ) from exc
             from transformers import Mask2FormerForUniversalSegmentation
 
             self.model = Mask2FormerForUniversalSegmentation.from_pretrained(self.model_name)
