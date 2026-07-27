@@ -1,0 +1,30 @@
+id: road_debris
+dataset: mapillary_vistas
+display_name: Cardboard box / debris on road
+method: auto
+# High-contrast local insert — much more visible than a pothole for demos.
+prompt: >-
+  a large brown cardboard box sitting on the asphalt in the driving lane,
+  weathered shipping box with open flaps, cast shadow matching the sunlight,
+  photorealistic, dusty cardboard texture, same road surface around it
+negative_prompt: >-
+  blurry, cartoon, sticker, floating box, watermark, text overlay, logo,
+  toy, CGI, plastic sheen, wrong perspective
+edit_mask:
+  mode: ellipse
+  cx: 0.50
+  cy: 0.76
+  rx: 0.12
+  ry: 0.11
+  prefer_near: false
+  blur_sigma: 3.0
+  composite_blur: 2.5
+  dilate: 2
+strength: 0.93
+guidance_scale: 8.5
+controlnet_strength: 0.35
+annotation_classes:
+  - cardboard box
+  - box
+  - debris
+  - road

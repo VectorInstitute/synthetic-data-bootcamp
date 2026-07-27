@@ -53,7 +53,7 @@ METHOD_SPECS: dict[str, MethodSpec] = {
         uses_depth=True,
         uses_seg=True,
         summary=(
-            "Recommended for local inserts (cone, pothole): SD1.5 inpaint inside a "
+            "Recommended for local inserts (cone, debris): SD1.5 inpaint inside a "
             "clean ellipse mask with crop-to-mask. Rest of the photo stays untouched."
         ),
     ),
@@ -316,7 +316,7 @@ class MethodComparer:
                 depth_scale = self.controlnet_scale_depth
                 seg_scale = self.controlnet_scale_seg
             # Local-object anomalies: keep denoise especially low (honest: CN won't insert a cone).
-            local_ids = {"pothole", "traffic_cone", "ground_animal"}
+            local_ids = {"pothole", "traffic_cone", "ground_animal", "road_debris"}
             strength_cap = 0.40 if anomaly_id in local_ids else 0.50
             return self._run_dual(
                 original,
@@ -651,6 +651,10 @@ def _dual_fidelity_prompts(
 def _to_edit_instruction(prompt: str, anomaly_id: str) -> str:
     """Turn a descriptive generation prompt into an InstructPix2Pix instruction."""
     mapping = {
+        "road_debris": (
+            "Add a large brown cardboard box sitting on the road asphalt only, "
+            "do not recolor the car or buildings"
+        ),
         "pothole": (
             "Add a realistic pothole in the foreground road asphalt only, "
             "keep every car building and the sky unchanged"

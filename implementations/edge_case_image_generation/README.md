@@ -16,9 +16,11 @@ Open **street-level** scenes ([Mapillary Vistas](https://www.mapillary.com/datas
 
 Workshop rare classes (synthetic targets):
 
-- **pothole**
+- **road_debris** (cardboard box on the lane — high-contrast local insert)
 - **traffic_cone**
 - **fog** (global; shows why local inpaint alone is not enough)
+
+`pothole` YAML remains available, but asphalt holes are too low-contrast for a reliable live demo.
 
 We do **not** download the full ~29 GB HF zip. A small validation toy set (~28 images + boxes) lives under `data/samples/`, built with:
 

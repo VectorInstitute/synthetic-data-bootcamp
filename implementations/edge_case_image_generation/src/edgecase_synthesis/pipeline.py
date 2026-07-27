@@ -20,9 +20,10 @@ from edgecase_synthesis.generation import GenerationResult
 
 # Sensible defaults after Notebook 1.5 — override in the notebook.
 DEFAULT_METHOD_BY_ANOMALY: dict[str, str] = {
-    "pothole": "inpaint",
+    "road_debris": "inpaint",
     "traffic_cone": "inpaint",
     "fog": "instruct",
+    "pothole": "inpaint",
     "ground_animal": "inpaint",
 }
 

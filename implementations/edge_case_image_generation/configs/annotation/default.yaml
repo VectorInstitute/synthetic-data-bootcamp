@@ -4,11 +4,14 @@ sam_model: mobile_sam.pt
 conf: 0.015
 max_detections: 20
 classes:
-  - pothole
   - traffic cone
+  - cardboard box
+  - box
+  - debris
   - animal
   - dog
   - deer
+  - pothole
   - road
   - car
   - person

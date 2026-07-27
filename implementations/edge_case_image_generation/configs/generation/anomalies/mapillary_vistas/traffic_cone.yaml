@@ -2,13 +2,13 @@ id: traffic_cone
 dataset: mapillary_vistas
 display_name: Traffic cone on road
 method: auto
-# Short object-first prompt — SD1.5 inpaint follows this better than long scene essays.
 prompt: >-
-  a bright orange traffic cone with a white reflective stripe,
-  standing upright on the asphalt, photorealistic, sharp, natural shadow
+  a weathered orange traffic cone with a faded white reflective stripe,
+  standing on asphalt, matte dirty plastic, soft contact shadow on the road,
+  photorealistic dashcam photo, matching sunlight and perspective
 negative_prompt: >-
-  blurry, deformed, melted plastic, cartoon, sticker, floating, watermark, text,
-  logo, orange car, recolor, lane paint smear
+  cartoon, toy, sticker, plastic sheen, glowing, CGI, floating, blurry,
+  watermark, text, logo, orange car, recolor, perfect studio product shot
 edit_mask:
   mode: ellipse
   cx: 0.48
@@ -19,8 +19,8 @@ edit_mask:
   blur_sigma: 3.0
   composite_blur: 2.5
   dilate: 2
-strength: 0.92
-guidance_scale: 8.5
+strength: 0.90
+guidance_scale: 7.5
 controlnet_strength: 0.35
 annotation_classes:
   - traffic cone
