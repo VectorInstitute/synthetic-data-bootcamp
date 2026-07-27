@@ -18,7 +18,7 @@ Workshop rare classes (synthetic targets):
 
 - **pothole**
 - **traffic_cone**
-- **ground_animal**
+- **fog** (global; shows why local inpaint alone is not enough)
 
 We do **not** download the full ~29 GB HF zip. A small validation toy set (~28 images + boxes) lives under `data/samples/`, built with:
 
@@ -35,9 +35,11 @@ Other sources: `rdd2022`, `local`, `urls`, `nordland_hf`.
 ## Hardware
 
 ```python
-load_config(overrides=["hardware=cpu"])       # SD 1.5 inpaint + SegFormer-B2
-load_config(overrides=["hardware=gpu_l4"])    # SDXL inpaint + Mask2Former + Qwen2.5-VL-7B
+load_config(overrides=["hardware=cpu"])       # SD 1.5 edit stack + SegFormer-B2 + Qwen-VL-3B
+load_config(overrides=["hardware=gpu_l4"])    # same SD 1.5 edit recipe (faster) + larger depth/judge
 ```
+
+**Trusted edit recipe (both profiles):** SD 1.5 inpaint (`runwayml/stable-diffusion-inpainting`) with a clean ellipse mask, `padding_mask_crop`, and short object prompts. ControlNet / instruct are comparison baselines — useful for mild global atmosphere, weak for tiny local inserts.
 
 ## Setup
 
@@ -48,9 +50,7 @@ huggingface-cli login   # once
 uv run python scripts/extract_mapillary_toy.py   # if data/samples/ is empty
 ```
 
-## Notebook
+## Notebooks
 
-- `notebooks/01.5_method_comparison.ipynb` — compare inpaint / ControlNet / instruct; pick a method per anomaly
-- `notebooks/01_sample_data_generation.ipynb` — thin pipeline: load → edit (chosen methods) → annotate → judge → retry
-
-- `notebooks/01.5_method_comparison.ipynb` — **compare inpaint vs dual ControlNet vs InstructPix2Pix** on 3 images (set `HARDWARE = "cpu"` or `"gpu_l4"`)
+- `notebooks/01.5_method_comparison.ipynb` — compare methods; pick `METHOD_BY_ANOMALY`
+- `notebooks/01_sample_data_generation.ipynb` — thin pipeline: load → edit → annotate → judge → retry

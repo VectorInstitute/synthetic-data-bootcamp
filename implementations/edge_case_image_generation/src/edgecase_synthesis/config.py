@@ -98,6 +98,7 @@ def merge_generation_anomaly(generation: DictConfig | dict, anomaly: DictConfig 
         "default_anomaly_method",
         "instruct_image_guidance",
         "instruct_guidance_scale",
+        "padding_mask_crop",
     ):
         if key in anom and anom[key] is not None:
             base[key] = anom[key]

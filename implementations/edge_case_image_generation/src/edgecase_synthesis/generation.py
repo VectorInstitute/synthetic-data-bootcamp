@@ -175,12 +175,18 @@ class AnomalyEditor:
                 prompt=prompt,
                 negative_prompt=negative,
                 steps=int(merged.get("num_inference_steps", 28)),
-                guidance=float(merged.get("guidance_scale", 7.0)),
-                strength=float(merged.get("strength", 0.92)),
+                guidance=float(merged.get("guidance_scale", 7.5)),
+                strength=float(merged.get("strength", 0.90)),
                 seed=seed,
                 edit_mask=edit_mask,
+                edit_weight=edit_weight,
                 edit_mask_cfg=edit_mask_cfg,
                 anomaly_id=anomaly_id,
+                padding_mask_crop=(
+                    int(merged["padding_mask_crop"])
+                    if merged.get("padding_mask_crop") not in (None, "", False)
+                    else None
+                ),
             )
 
         scale_cfg = merged.get("controlnet_scale", 0.55)
@@ -268,8 +274,10 @@ class AnomalyEditor:
         strength: float,
         seed: int,
         edit_mask: np.ndarray,
+        edit_weight: np.ndarray,
         edit_mask_cfg: dict[str, Any],
         anomaly_id: str | None,
+        padding_mask_crop: int | None = None,
     ) -> GenerationResult:
         width, height = original.size
         mask_pil = _mask_to_pil(edit_mask)
@@ -277,21 +285,28 @@ class AnomalyEditor:
             mask_pil = mask_pil.resize((width, height), Image.Resampling.NEAREST)
         gen_device = "cuda" if self.device.type == "cuda" else "cpu"
         generator = torch.Generator(device=gen_device).manual_seed(int(seed))
-        generated = self.inpaint_pipe(
-            prompt=prompt,
-            negative_prompt=negative_prompt or None,
-            image=original,
-            mask_image=mask_pil,
-            height=height,
-            width=width,
-            num_inference_steps=steps,
-            guidance_scale=guidance,
-            strength=min(float(strength), 0.99),
-            generator=generator,
-        ).images[0]
+        kwargs: dict[str, Any] = {
+            "prompt": prompt,
+            "negative_prompt": negative_prompt or None,
+            "image": original,
+            "mask_image": mask_pil,
+            "height": height,
+            "width": width,
+            "num_inference_steps": steps,
+            "guidance_scale": guidance,
+            "strength": min(float(strength), 0.99),
+            "generator": generator,
+        }
+        if padding_mask_crop is not None and padding_mask_crop > 0:
+            kwargs["padding_mask_crop"] = int(padding_mask_crop)
+        try:
+            generated = self.inpaint_pipe(**kwargs).images[0]
+        except TypeError:
+            kwargs.pop("padding_mask_crop", None)
+            generated = self.inpaint_pipe(**kwargs).images[0]
         generated = _ensure_same_size(generated, original)
-        blur = float(edit_mask_cfg.get("composite_blur", 0.6))
-        output = _composite(original, generated, edit_mask.astype(np.float32), blur_sigma=blur)
+        blur = float(edit_mask_cfg.get("composite_blur", 2.0))
+        output = _composite(original, generated, edit_weight, blur_sigma=blur)
         return GenerationResult(
             image=output,
             prompt=prompt,

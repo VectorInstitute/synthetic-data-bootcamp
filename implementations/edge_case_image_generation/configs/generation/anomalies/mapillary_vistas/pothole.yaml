@@ -3,26 +3,24 @@ dataset: mapillary_vistas
 display_name: Pothole on road
 method: auto
 prompt: >-
-  photorealistic asphalt road with a clear deep pothole in the lane,
-  broken pavement hole with rough edges and dark cavity, street-level dashcam view,
-  same lighting and camera angle
+  a deep pothole in the asphalt road surface, broken pavement with rough edges
+  and a dark cavity, photorealistic, natural lighting
 negative_prompt: >-
-  blurry, cartoon, painted overlay, sticker, watermark, text, logo, indoor,
-  yellow lane paint smear, flat oval patch, different buildings, new city
+  blurry, cartoon, painted oval, sticker, watermark, text, logo,
+  yellow lane paint smear, puddle only, flat patch
 edit_mask:
-  mode: seg_intersection
+  mode: ellipse
   cx: 0.50
-  cy: 0.75
-  rx: 0.16
-  ry: 0.12
-  prefer_near: true
-  prefer_near_quantile: 0.25
-  min_mask_keep: 0.45
-  blur_sigma: 1.8
-  composite_blur: 0.9
-  dilate: 4
-strength: 0.96
-controlnet_strength: 0.34
+  cy: 0.76
+  rx: 0.14
+  ry: 0.10
+  prefer_near: false
+  blur_sigma: 3.0
+  composite_blur: 2.5
+  dilate: 2
+strength: 0.90
+guidance_scale: 8.0
+controlnet_strength: 0.35
 annotation_classes:
   - pothole
   - road

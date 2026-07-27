@@ -13,13 +13,15 @@ controlnet:
   seg: lllyasviel/sd-controlnet-seg
 # Dual ControlNet: lock geometry hard; keep img2img denoise low (separate from inpaint strength).
 controlnet_scale:
-  depth: 0.80
-  seg: 0.55
-controlnet_strength: 0.42
-num_inference_steps: 24
-guidance_scale: 7.0
+  depth: 0.75
+  seg: 0.45
+controlnet_strength: 0.38
+num_inference_steps: 28
+guidance_scale: 7.5
 # Inpaint denoise only — do NOT reuse this for ControlNet img2img.
-strength: 0.88
+strength: 0.90
+# Diffusers inpaint: crop to mask + padding, generate, paste back (helps small objects).
+padding_mask_crop: 64
 seed: 42
 max_side: 512
 anomaly_dataset: mapillary_vistas

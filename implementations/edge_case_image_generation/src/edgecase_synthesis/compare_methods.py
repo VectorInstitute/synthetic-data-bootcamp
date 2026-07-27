@@ -52,7 +52,10 @@ METHOD_SPECS: dict[str, MethodSpec] = {
         uses_mask=True,
         uses_depth=True,
         uses_seg=True,
-        summary="Edit only inside a mask (ellipse ∩ road ∩ near). Best for local inserts.",
+        summary=(
+            "Recommended for local inserts (cone, pothole): SD1.5 inpaint inside a "
+            "clean ellipse mask with crop-to-mask. Rest of the photo stays untouched."
+        ),
     ),
     "controlnet_dual": MethodSpec(
         key="controlnet_dual",
@@ -60,7 +63,10 @@ METHOD_SPECS: dict[str, MethodSpec] = {
         uses_mask=False,
         uses_depth=True,
         uses_seg=True,
-        summary="Full-frame img2img guided by depth and segmentation maps. No hole mask.",
+        summary=(
+            "Full-frame img2img locked by depth+seg. Best for mild global weather "
+            "(fog) at low strength — not for placing a small object."
+        ),
     ),
     "instruct": MethodSpec(
         key="instruct",
@@ -68,7 +74,10 @@ METHOD_SPECS: dict[str, MethodSpec] = {
         uses_mask=False,
         uses_depth=False,
         uses_seg=False,
-        summary="InstructPix2Pix-style editor: only RGB + text instruction. No structure maps.",
+        summary=(
+            "RGB + text only (InstructPix2Pix). Can do light global atmosphere; "
+            "weak at precise local inserts and may drift colors."
+        ),
     ),
 }
 
@@ -279,6 +288,8 @@ class MethodComparer:
             height=height,
             depth=depth,
         )
+        padding_crop = merged.get("padding_mask_crop", None)
+        padding_crop = int(padding_crop) if padding_crop not in (None, "", False) else None
 
         if method == "inpaint":
             return self._run_inpaint(
@@ -290,8 +301,10 @@ class MethodComparer:
                 strength=min(inpaint_strength, 0.99),
                 seed=seed,
                 edit_mask=edit_mask,
+                edit_weight=edit_weight,
                 edit_mask_cfg=edit_mask_cfg,
                 anomaly_id=anomaly_id,
+                padding_mask_crop=padding_crop,
             )
         if method == "controlnet_dual":
             dual_prompt, dual_neg = _dual_fidelity_prompts(prompt, negative, anomaly_id)
@@ -302,6 +315,9 @@ class MethodComparer:
             else:
                 depth_scale = self.controlnet_scale_depth
                 seg_scale = self.controlnet_scale_seg
+            # Local-object anomalies: keep denoise especially low (honest: CN won't insert a cone).
+            local_ids = {"pothole", "traffic_cone", "ground_animal"}
+            strength_cap = 0.40 if anomaly_id in local_ids else 0.50
             return self._run_dual(
                 original,
                 depth,
@@ -310,7 +326,7 @@ class MethodComparer:
                 negative_prompt=dual_neg,
                 steps=steps,
                 guidance=min(guidance, 6.5),
-                strength=float(np.clip(cn_strength, 0.25, 0.60)),
+                strength=float(np.clip(cn_strength, 0.25, strength_cap)),
                 seed=seed,
                 anomaly_id=anomaly_id,
                 controlnet_scale_depth=depth_scale,
@@ -391,28 +407,39 @@ class MethodComparer:
         strength: float,
         seed: int,
         edit_mask: np.ndarray,
+        edit_weight: np.ndarray,
         edit_mask_cfg: dict[str, Any],
         anomaly_id: str,
+        padding_mask_crop: int | None = None,
     ) -> GenerationResult:
         width, height = original.size
         mask_pil = _mask_to_pil(edit_mask)
         if mask_pil.size != (width, height):
             mask_pil = mask_pil.resize((width, height), Image.Resampling.NEAREST)
-        generated = self.inpaint_pipe(
-            prompt=prompt,
-            negative_prompt=negative_prompt or None,
-            image=original,
-            mask_image=mask_pil,
-            height=height,
-            width=width,
-            num_inference_steps=steps,
-            guidance_scale=guidance,
-            strength=strength,
-            generator=self._gen(seed),
-        ).images[0]
+        kwargs: dict[str, Any] = {
+            "prompt": prompt,
+            "negative_prompt": negative_prompt or None,
+            "image": original,
+            "mask_image": mask_pil,
+            "height": height,
+            "width": width,
+            "num_inference_steps": steps,
+            "guidance_scale": guidance,
+            "strength": strength,
+            "generator": self._gen(seed),
+        }
+        # Crop-to-mask generation (when supported) — much better for small objects.
+        if padding_mask_crop is not None and padding_mask_crop > 0:
+            kwargs["padding_mask_crop"] = int(padding_mask_crop)
+        try:
+            generated = self.inpaint_pipe(**kwargs).images[0]
+        except TypeError:
+            kwargs.pop("padding_mask_crop", None)
+            generated = self.inpaint_pipe(**kwargs).images[0]
         generated = _ensure_same_size(generated, original)
-        blur = float(edit_mask_cfg.get("composite_blur", 0.8))
-        output = _composite(original, generated, edit_mask.astype(np.float32), blur_sigma=blur)
+        blur = float(edit_mask_cfg.get("composite_blur", 2.0))
+        # Soft weight (not hard binary) reduces visible mask edges honestly.
+        output = _composite(original, generated, edit_weight, blur_sigma=blur)
         return GenerationResult(
             image=output,
             prompt=prompt,
@@ -604,7 +631,7 @@ def _dual_fidelity_prompts(
     """Keep dual ControlNet as a subtle edit of the same photo, not a new scene."""
     fidelity = (
         "same street photograph, identical buildings vehicles lighting and camera angle, "
-        "preserve original colors and materials, subtle localized change only, photorealistic"
+        "preserve original colors and materials, subtle change only, photorealistic"
     )
     dual_prompt = f"{prompt.strip()}, {fidelity}"
     anti_restyle = (
@@ -613,11 +640,10 @@ def _dual_fidelity_prompts(
         "orange color cast, global recolor, fantasy architecture"
     )
     dual_neg = f"{negative.strip()}, {anti_restyle}" if negative.strip() else anti_restyle
-    # Fog is global — allow stronger atmosphere but still forbid layout rewrite.
     if anomaly_id == "fog":
         dual_prompt = (
-            f"{prompt.strip()}, same cars and road layout, same camera, "
-            "only weather/atmosphere changes, photorealistic"
+            "the exact same street photo with only light fog and haze added, "
+            "same cars same road same buildings, soft distant mist, photorealistic"
         )
     return dual_prompt, dual_neg
 
@@ -626,26 +652,25 @@ def _to_edit_instruction(prompt: str, anomaly_id: str) -> str:
     """Turn a descriptive generation prompt into an InstructPix2Pix instruction."""
     mapping = {
         "pothole": (
-            "Add a realistic deep pothole in the foreground road asphalt, "
-            "without changing the buildings, cars, sky, or camera view"
+            "Add a realistic pothole in the foreground road asphalt only, "
+            "keep every car building and the sky unchanged"
         ),
         "traffic_cone": (
-            "Add one bright orange traffic cone with a white stripe standing on the road, "
-            "without recoloring the car or buildings or changing the rest of the scene"
+            "Add one small orange traffic cone with a white stripe on the road, "
+            "do not recolor the car or buildings"
         ),
         "ground_animal": (
             "Add a realistic animal standing on the road ahead, "
-            "without changing the background or camera view"
+            "keep the background and camera view unchanged"
         ),
         "fog": (
-            "Add dense realistic fog and haze over the street, reducing distant visibility, "
-            "without replacing the cars or road layout"
+            "Add light realistic fog and haze in the distance only, "
+            "keep the cars and road clearly visible and unchanged in color"
         ),
     }
     if anomaly_id in mapping:
         return mapping[anomaly_id]
-    # Fallback: shorten descriptive prompt into an instruction.
     short = prompt.strip().split(",")[0].strip()
     if short.lower().startswith("photorealistic"):
         short = short[len("photorealistic") :].strip()
-    return f"Edit the photo carefully: {short}, keep the rest of the scene unchanged"
+    return f"Make a subtle edit: {short}. Keep the rest of the photo identical."

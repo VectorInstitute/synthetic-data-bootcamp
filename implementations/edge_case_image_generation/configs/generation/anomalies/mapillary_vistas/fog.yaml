@@ -2,28 +2,28 @@ id: fog
 dataset: mapillary_vistas
 display_name: Fog / haze over the scene
 method: auto
-# Global atmospheric effect — a local inpaint hole cannot do this well (pedagogical fail case).
+# Global atmosphere — local inpaint is the honest fail case in Notebook 1.5.
 prompt: >-
-  the same street photo with dense realistic fog and haze reducing visibility,
-  soft volumetric mist over the road and background, muted distant details,
-  damp overcast atmosphere, photorealistic
+  the same photograph with light realistic fog and haze, soft mist in the distance,
+  slightly reduced visibility, overcast damp air, photorealistic
 negative_prompt: >-
-  cartoon, painted overlay, sticker, watermark, text, logo, sunny clear day,
-  local blob of white paint, flat oval patch, different cars, new road layout
+  cartoon, sticker, watermark, text, logo, white paint blob, different cars,
+  new buildings, night, heavy smoke, whiteout
 edit_mask:
-  # Intentionally local: inpaint will only "fog" a patch — that is the lesson.
+  # Intentionally local: inpaint only "fogs" a patch — that is the lesson.
   mode: ellipse
   cx: 0.50
-  cy: 0.45
-  rx: 0.35
-  ry: 0.28
+  cy: 0.40
+  rx: 0.32
+  ry: 0.26
   prefer_near: false
-  blur_sigma: 2.5
-  composite_blur: 1.5
+  blur_sigma: 4.0
+  composite_blur: 3.0
   dilate: 2
-strength: 0.85
-# Fog is global — slightly more denoise than object inserts, still far below rewrite.
-controlnet_strength: 0.50
+strength: 0.75
+# Mild denoise so ControlNet / instruct keep the same cars and layout.
+controlnet_strength: 0.38
+guidance_scale: 6.0
 annotation_classes:
   - fog
   - mist
