@@ -4,17 +4,21 @@ default_anomaly_method: inpaint
 base_model_id: runwayml/stable-diffusion-v1-5
 inpaint_model_id: runwayml/stable-diffusion-inpainting
 instruct_model_id: timbrooks/instruct-pix2pix
-instruct_image_guidance: 1.4
-instruct_guidance_scale: 7.0
+# High image guidance keeps InstructPix2Pix from restyling the whole frame.
+instruct_image_guidance: 1.9
+instruct_guidance_scale: 6.5
 vae_id: null
 controlnet:
   depth: lllyasviel/sd-controlnet-depth
   seg: lllyasviel/sd-controlnet-seg
+# Dual ControlNet: lock geometry hard; keep img2img denoise low (separate from inpaint strength).
 controlnet_scale:
-  depth: 0.55
-  seg: 0.45
+  depth: 0.80
+  seg: 0.55
+controlnet_strength: 0.42
 num_inference_steps: 24
-guidance_scale: 7.5
+guidance_scale: 7.0
+# Inpaint denoise only — do NOT reuse this for ControlNet img2img.
 strength: 0.88
 seed: 42
 max_side: 512

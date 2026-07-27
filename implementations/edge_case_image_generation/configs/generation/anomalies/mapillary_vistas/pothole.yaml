@@ -8,18 +8,19 @@ prompt: >-
   same lighting and camera angle
 negative_prompt: >-
   blurry, cartoon, painted overlay, sticker, watermark, text, logo, indoor,
-  yellow lane paint smear, flat oval patch
+  yellow lane paint smear, flat oval patch, different buildings, new city
 edit_mask:
   mode: seg_intersection
   cx: 0.50
   cy: 0.72
-  rx: 0.14
-  ry: 0.09
+  rx: 0.18
+  ry: 0.12
   prefer_near: true
   blur_sigma: 2.0
-  composite_blur: 1.2
-  dilate: 2
-strength: 0.90
+  composite_blur: 1.0
+  dilate: 3
+strength: 0.92
+controlnet_strength: 0.40
 annotation_classes:
   - pothole
   - road

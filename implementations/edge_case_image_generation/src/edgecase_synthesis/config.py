@@ -88,6 +88,7 @@ def merge_generation_anomaly(generation: DictConfig | dict, anomaly: DictConfig 
         "prompt",
         "negative_prompt",
         "strength",
+        "controlnet_strength",
         "guidance_scale",
         "num_inference_steps",
         "seed",
@@ -95,6 +96,8 @@ def merge_generation_anomaly(generation: DictConfig | dict, anomaly: DictConfig 
         "family",
         "vae_id",
         "default_anomaly_method",
+        "instruct_image_guidance",
+        "instruct_guidance_scale",
     ):
         if key in anom and anom[key] is not None:
             base[key] = anom[key]

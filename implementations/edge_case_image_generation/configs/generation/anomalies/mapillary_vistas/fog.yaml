@@ -9,7 +9,7 @@ prompt: >-
   damp overcast atmosphere, photorealistic
 negative_prompt: >-
   cartoon, painted overlay, sticker, watermark, text, logo, sunny clear day,
-  local blob of white paint, flat oval patch
+  local blob of white paint, flat oval patch, different cars, new road layout
 edit_mask:
   # Intentionally local: inpaint will only "fog" a patch — that is the lesson.
   mode: ellipse
@@ -22,6 +22,8 @@ edit_mask:
   composite_blur: 1.5
   dilate: 2
 strength: 0.85
+# Fog is global — slightly more denoise than object inserts, still far below rewrite.
+controlnet_strength: 0.50
 annotation_classes:
   - fog
   - mist

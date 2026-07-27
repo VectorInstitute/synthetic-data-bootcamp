@@ -187,16 +187,19 @@ class AnomalyEditor:
         if isinstance(scale_cfg, (int, float)):
             cn_scale = float(scale_cfg)
         else:
-            cn_scale = float(scale_cfg.get("depth", 0.55))
+            cn_scale = float(scale_cfg.get("depth", 0.75))
 
+        cn_strength = float(
+            merged.get("controlnet_strength", merged.get("strength", 0.45))
+        )
         return self._controlnet(
             original,
             depth,
             prompt=prompt,
             negative_prompt=negative,
             steps=int(merged.get("num_inference_steps", 16)),
-            guidance=float(merged.get("guidance_scale", 7.5)),
-            strength=float(merged.get("strength", 0.7)),
+            guidance=float(merged.get("guidance_scale", 7.0)),
+            strength=float(np.clip(cn_strength, 0.25, 0.60)),
             seed=seed,
             controlnet_scale=cn_scale,
             edit_mask=edit_mask,

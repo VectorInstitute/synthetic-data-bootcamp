@@ -262,7 +262,14 @@ class MethodComparer:
         width, height = original.size
         steps = int(merged.get("num_inference_steps", 24))
         guidance = float(merged.get("guidance_scale", 7.5))
-        strength = float(merged.get("strength", 0.85))
+        # Inpaint uses high denoise; ControlNet img2img must stay low or it rewrites the scene.
+        inpaint_strength = float(merged.get("strength", 0.88))
+        cn_strength = float(
+            merged.get(
+                "controlnet_strength",
+                min(0.45, inpaint_strength),
+            )
+        )
 
         edit_mask_cfg = dict(anom.get("edit_mask", {"mode": "ellipse"}))
         edit_mask, edit_weight = build_anomaly_edit_mask(
@@ -280,24 +287,34 @@ class MethodComparer:
                 negative_prompt=negative,
                 steps=steps,
                 guidance=guidance,
-                strength=min(strength, 0.99),
+                strength=min(inpaint_strength, 0.99),
                 seed=seed,
                 edit_mask=edit_mask,
                 edit_mask_cfg=edit_mask_cfg,
                 anomaly_id=anomaly_id,
             )
         if method == "controlnet_dual":
+            dual_prompt, dual_neg = _dual_fidelity_prompts(prompt, negative, anomaly_id)
+            scales = merged.get("controlnet_scale") or {}
+            if hasattr(scales, "get"):
+                depth_scale = float(scales.get("depth", self.controlnet_scale_depth))
+                seg_scale = float(scales.get("seg", self.controlnet_scale_seg))
+            else:
+                depth_scale = self.controlnet_scale_depth
+                seg_scale = self.controlnet_scale_seg
             return self._run_dual(
                 original,
                 depth,
                 segmentation,
-                prompt=prompt,
-                negative_prompt=negative,
+                prompt=dual_prompt,
+                negative_prompt=dual_neg,
                 steps=steps,
-                guidance=guidance,
-                strength=min(max(strength, 0.55), 0.85),
+                guidance=min(guidance, 6.5),
+                strength=float(np.clip(cn_strength, 0.25, 0.60)),
                 seed=seed,
                 anomaly_id=anomaly_id,
+                controlnet_scale_depth=depth_scale,
+                controlnet_scale_seg=seg_scale,
             )
         return self._run_instruct(
             original,
@@ -306,6 +323,10 @@ class MethodComparer:
             seed=seed,
             anomaly_id=anomaly_id,
             edit_mask=None,
+            image_guidance=float(
+                merged.get("instruct_image_guidance", self.instruct_image_guidance)
+            ),
+            text_guidance=float(merged.get("instruct_guidance_scale", self.instruct_guidance)),
         )
 
     def compare_one(
@@ -416,11 +437,23 @@ class MethodComparer:
         strength: float,
         seed: int,
         anomaly_id: str,
+        controlnet_scale_depth: float | None = None,
+        controlnet_scale_seg: float | None = None,
     ) -> GenerationResult:
         width, height = original.size
         depth_image = _depth_to_control_image(depth, width, height)
         seg_image = _seg_to_control_image(
             segmentation, width, height, as_canny=self.seg_as_canny
+        )
+        depth_scale = (
+            self.controlnet_scale_depth
+            if controlnet_scale_depth is None
+            else float(controlnet_scale_depth)
+        )
+        seg_scale = (
+            self.controlnet_scale_seg
+            if controlnet_scale_seg is None
+            else float(controlnet_scale_seg)
         )
         generated = self.dual_pipe(
             prompt=prompt,
@@ -432,10 +465,7 @@ class MethodComparer:
             num_inference_steps=steps,
             guidance_scale=guidance,
             strength=strength,
-            controlnet_conditioning_scale=[
-                self.controlnet_scale_depth,
-                self.controlnet_scale_seg,
-            ],
+            controlnet_conditioning_scale=[depth_scale, seg_scale],
             generator=self._gen(seed),
         ).images[0]
         generated = _ensure_same_size(generated, original)
@@ -459,6 +489,8 @@ class MethodComparer:
         seed: int,
         anomaly_id: str,
         edit_mask: np.ndarray | None,
+        image_guidance: float | None = None,
+        text_guidance: float | None = None,
     ) -> GenerationResult:
         instruction = _to_edit_instruction(prompt, anomaly_id)
         width, height = original.size
@@ -470,12 +502,16 @@ class MethodComparer:
             run_image = original.resize((new_w, new_h), Image.Resampling.LANCZOS)
         else:
             run_image = original
+        img_g = (
+            self.instruct_image_guidance if image_guidance is None else float(image_guidance)
+        )
+        txt_g = self.instruct_guidance if text_guidance is None else float(text_guidance)
         generated = self.instruct_pipe(
             prompt=instruction,
             image=run_image,
             num_inference_steps=steps,
-            guidance_scale=self.instruct_guidance,
-            image_guidance_scale=self.instruct_image_guidance,
+            guidance_scale=txt_g,
+            image_guidance_scale=img_g,
             generator=self._gen(seed),
         ).images[0]
         generated = _ensure_same_size(generated, original)
@@ -541,13 +577,49 @@ def _seg_to_control_image(
     return Image.fromarray(colored, mode="RGB")
 
 
+def _dual_fidelity_prompts(
+    prompt: str, negative: str, anomaly_id: str
+) -> tuple[str, str]:
+    """Keep dual ControlNet as a subtle edit of the same photo, not a new scene."""
+    fidelity = (
+        "same street photograph, identical buildings vehicles lighting and camera angle, "
+        "preserve original colors and materials, subtle localized change only, photorealistic"
+    )
+    dual_prompt = f"{prompt.strip()}, {fidelity}"
+    anti_restyle = (
+        "different city, new buildings, replaced cars, night scene, stormy sky, "
+        "CGI render, oversaturated, painting, watercolor, drastic restyle, "
+        "orange color cast, global recolor, fantasy architecture"
+    )
+    dual_neg = f"{negative.strip()}, {anti_restyle}" if negative.strip() else anti_restyle
+    # Fog is global — allow stronger atmosphere but still forbid layout rewrite.
+    if anomaly_id == "fog":
+        dual_prompt = (
+            f"{prompt.strip()}, same cars and road layout, same camera, "
+            "only weather/atmosphere changes, photorealistic"
+        )
+    return dual_prompt, dual_neg
+
+
 def _to_edit_instruction(prompt: str, anomaly_id: str) -> str:
     """Turn a descriptive generation prompt into an InstructPix2Pix instruction."""
     mapping = {
-        "pothole": "Add a realistic deep pothole in the road asphalt in the foreground",
-        "traffic_cone": "Add a bright orange traffic cone standing on the road in the foreground",
-        "ground_animal": "Add a realistic animal standing on the road ahead of the camera",
-        "fog": "Add dense realistic fog and haze over the entire street scene, reducing visibility in the distance",
+        "pothole": (
+            "Add a realistic deep pothole in the foreground road asphalt, "
+            "without changing the buildings, cars, sky, or camera view"
+        ),
+        "traffic_cone": (
+            "Add one bright orange traffic cone with a white stripe standing on the road, "
+            "without recoloring the car or buildings or changing the rest of the scene"
+        ),
+        "ground_animal": (
+            "Add a realistic animal standing on the road ahead, "
+            "without changing the background or camera view"
+        ),
+        "fog": (
+            "Add dense realistic fog and haze over the street, reducing distant visibility, "
+            "without replacing the cars or road layout"
+        ),
     }
     if anomaly_id in mapping:
         return mapping[anomaly_id]
@@ -555,4 +627,4 @@ def _to_edit_instruction(prompt: str, anomaly_id: str) -> str:
     short = prompt.strip().split(",")[0].strip()
     if short.lower().startswith("photorealistic"):
         short = short[len("photorealistic") :].strip()
-    return f"Edit the photo: {short}"
+    return f"Edit the photo carefully: {short}, keep the rest of the scene unchanged"

@@ -20,8 +20,11 @@ generation:
     depth: lllyasviel/sd-controlnet-depth
     seg: lllyasviel/sd-controlnet-seg
   controlnet_scale:
-    depth: 0.55
-    seg: 0.45
+    depth: 0.80
+    seg: 0.55
+  controlnet_strength: 0.42
+  instruct_image_guidance: 1.9
+  instruct_guidance_scale: 6.5
   num_inference_steps: 20
   strength: 0.88
   max_side: 512
