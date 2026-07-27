@@ -1,0 +1,21 @@
+# Mapillary Vistas v2.0 — street scenes with long-tail classes (CC BY-NC-SA).
+# Toy subset only (~28 validation frames): pothole / traffic_cone / ground_animal + generic scenes.
+#
+# Full HF archive is ~29GB (candylion/mapillary-vistas-v2). We never download it whole —
+# run scripts/extract_mapillary_toy.py (HF login required) to refresh data/samples/.
+name: mapillary_vistas
+label: "Mapillary Vistas v2 (toy street subset)"
+license: "CC BY-NC-SA 4.0"
+attribution: >-
+  Mapillary Vistas Dataset v2.0 (Neuhold et al.). HF mirror:
+  https://huggingface.co/datasets/candylion/mapillary-vistas-v2
+kind: local
+max_images: 8
+prefer_classes:
+  - pothole
+  - traffic_cone
+  - ground_animal
+classes:
+  - pothole
+  - traffic_cone
+  - ground_animal

@@ -224,7 +224,7 @@ class AnomalyEditor:
         anomaly_id: str | None,
     ) -> GenerationResult:
         width, height = original.size
-        depth_image = _resize_rgb(depth.colormap, width, height)
+        depth_image = _depth_to_control_image(depth, width, height)
         gen_device = "cuda" if self.device.type == "cuda" else "cpu"
         generator = torch.Generator(device=gen_device).manual_seed(int(seed))
         generated = self.controlnet_pipe(
@@ -329,7 +329,7 @@ def resolve_anomaly_method(anom: Any, merged: Any) -> str:
 def _resolve_method(anom: Any, merged: Any) -> str:
     raw = anom.get("method") if hasattr(anom, "get") else None
     if raw is None or str(raw).lower() in {"", "auto", "default"}:
-        return str(merged.get("default_anomaly_method", "controlnet")).lower()
+        return str(merged.get("default_anomaly_method", "inpaint")).lower()
     return str(raw).lower()
 
 
@@ -341,6 +341,21 @@ def _mask_to_pil(mask: np.ndarray) -> Image.Image:
             k += 1
         u8 = cv2.dilate(u8, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k)), iterations=1)
     return Image.fromarray(u8, mode="L")
+
+
+def _depth_to_control_image(depth: DepthResult, width: int, height: int) -> Image.Image:
+    """Grayscale depth for ControlNet (near=bright). Avoid feeding the viz colormap."""
+    d = np.asarray(depth.depth_map, dtype=np.float32)
+    if d.shape != (height, width):
+        d = cv2.resize(d, (width, height), interpolation=cv2.INTER_CUBIC)
+    lo, hi = float(d.min()), float(d.max())
+    if hi > lo:
+        d = (d - lo) / (hi - lo)
+    else:
+        d = np.zeros_like(d)
+    u8 = (np.clip(d, 0.0, 1.0) * 255.0).astype(np.uint8)
+    rgb = np.stack([u8, u8, u8], axis=-1)
+    return Image.fromarray(rgb, mode="RGB")
 
 
 def _composite(

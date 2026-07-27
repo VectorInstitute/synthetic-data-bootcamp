@@ -124,12 +124,18 @@ class Segmenter:
         self.device = resolve_device(device)
         self.processor = None
         self.model = None
+        self._is_mask2former = "mask2former" in model_name.lower()
 
     def _ensure(self) -> None:
         if self.model is not None:
             return
         self.processor = AutoImageProcessor.from_pretrained(self.model_name)
-        self.model = AutoModelForSemanticSegmentation.from_pretrained(self.model_name)
+        if self._is_mask2former:
+            from transformers import Mask2FormerForUniversalSegmentation
+
+            self.model = Mask2FormerForUniversalSegmentation.from_pretrained(self.model_name)
+        else:
+            self.model = AutoModelForSemanticSegmentation.from_pretrained(self.model_name)
         self.model.to(self.device).eval()
 
     @torch.inference_mode()
@@ -156,11 +162,18 @@ class Segmenter:
             assert self.processor is not None and self.model is not None
             inputs = self.processor(images=pil, return_tensors="pt")
             inputs = {k: v.to(self.device) for k, v in inputs.items()}
-            logits = self.model(**inputs).logits
-            up = torch.nn.functional.interpolate(
-                logits, size=(h, w), mode="bilinear", align_corners=False
-            )
-            labels = up.argmax(dim=1)[0].cpu().numpy().astype(np.int32)
+            outputs = self.model(**inputs)
+            if self._is_mask2former:
+                labels_t = self.processor.post_process_semantic_segmentation(
+                    outputs, target_sizes=[(h, w)]
+                )[0]
+                labels = labels_t.cpu().numpy().astype(np.int32)
+            else:
+                logits = outputs.logits
+                up = torch.nn.functional.interpolate(
+                    logits, size=(h, w), mode="bilinear", align_corners=False
+                )
+                labels = up.argmax(dim=1)[0].cpu().numpy().astype(np.int32)
 
         colored = _colorize_labels(labels)
         edit = None

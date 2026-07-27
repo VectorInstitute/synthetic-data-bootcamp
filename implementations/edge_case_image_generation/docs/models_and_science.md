@@ -1,18 +1,21 @@
 # Models and config for Notebook 1
 
 ```text
-real road image (RDD2022)
+real street image (Mapillary Vistas toy subset)
   → depth / seg (config model ids)
-  → anomaly edit (controlnet on CPU, inpaint on L4)
+  → anomaly edit (inpaint on CPU + L4; depth ControlNet optional)
   → open-vocab annotate
   → VLM judge (RGB + text only)
 ```
 
-**Default domain:** open road damage (RDD2022). Potholes and foreign objects (e.g. traffic cones) are the intuitive long-tail cases.
+**Default domain:** Mapillary street scenes. Workshop long-tail inserts: **pothole**, **traffic cone**, **ground animal**.
 
 | Concern | Where |
 |---------|--------|
-| Dataset | `configs/data/source/rdd2022.yaml` |
+| Dataset | `configs/data/source/mapillary_vistas.yaml` |
 | CPU vs L4 models | `configs/hardware/*.yaml` |
-| Anomaly prompts / masks | `configs/generation/anomalies/rdd2022/` |
+| Anomaly prompts / masks | `configs/generation/anomalies/mapillary_vistas/` |
 | Judge | `configs/judge/` + hardware overrides |
+
+**CPU defaults:** SegFormer-B2 (seg), SD 1.5 **inpaint** (edits).  
+**L4 defaults:** Mask2Former-Swin-S ADE (seg), SDXL inpaint (edits).

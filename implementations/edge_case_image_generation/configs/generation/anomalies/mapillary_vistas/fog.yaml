@@ -1,0 +1,28 @@
+id: fog
+dataset: mapillary_vistas
+display_name: Fog / haze over the scene
+method: auto
+# Global atmospheric effect — a local inpaint hole cannot do this well (pedagogical fail case).
+prompt: >-
+  the same street photo with dense realistic fog and haze reducing visibility,
+  soft volumetric mist over the road and background, muted distant details,
+  damp overcast atmosphere, photorealistic
+negative_prompt: >-
+  cartoon, painted overlay, sticker, watermark, text, logo, sunny clear day,
+  local blob of white paint, flat oval patch
+edit_mask:
+  # Intentionally local: inpaint will only "fog" a patch — that is the lesson.
+  mode: ellipse
+  cx: 0.50
+  cy: 0.45
+  rx: 0.35
+  ry: 0.28
+  prefer_near: false
+  blur_sigma: 2.5
+  composite_blur: 1.5
+  dilate: 2
+strength: 0.85
+annotation_classes:
+  - fog
+  - mist
+  - road

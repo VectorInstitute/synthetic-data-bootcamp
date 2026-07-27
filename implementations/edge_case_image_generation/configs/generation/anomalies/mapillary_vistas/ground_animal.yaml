@@ -1,0 +1,27 @@
+id: ground_animal
+dataset: mapillary_vistas
+display_name: Ground animal on road
+method: auto
+prompt: >-
+  photorealistic animal standing on the asphalt road ahead of the camera,
+  a deer or dog in the driving lane, street-level dashcam view,
+  same lighting, weather, and camera angle as the original photo
+negative_prompt: >-
+  blurry, cartoon, stuffed toy, floating animal, watermark, text, logo, indoor,
+  flat oval patch, lane paint smear
+edit_mask:
+  mode: seg_intersection
+  cx: 0.48
+  cy: 0.70
+  rx: 0.11
+  ry: 0.13
+  prefer_near: true
+  blur_sigma: 1.8
+  composite_blur: 1.0
+  dilate: 2
+strength: 0.92
+annotation_classes:
+  - animal
+  - dog
+  - deer
+  - road

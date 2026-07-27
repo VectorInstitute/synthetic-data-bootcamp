@@ -166,6 +166,107 @@ def show_generation_result(
     return fig, axes
 
 
+def show_method_comparison(
+    sample: ImageSample,
+    bundle: Any,
+    *,
+    figsize=(16, 10),
+):
+    """Notebook 1.5 panel: original | mask/depth/seg | three method outputs."""
+    from edgecase_synthesis.compare_methods import METHOD_SPECS, COMPARE_METHODS
+
+    fig = plt.figure(figsize=figsize)
+    gs = fig.add_gridspec(2, 4, height_ratios=[1.0, 1.15], hspace=0.25, wspace=0.15)
+
+    ax0 = fig.add_subplot(gs[0, 0])
+    show_image(sample.image, title="Original", ax=ax0)
+
+    ax1 = fig.add_subplot(gs[0, 1])
+    if bundle.edit_mask is not None:
+        show_image(
+            (bundle.edit_mask.astype(np.uint8) * 255),
+            title="Inpaint mask",
+            ax=ax1,
+        )
+    else:
+        ax1.axis("off")
+
+    ax2 = fig.add_subplot(gs[0, 2])
+    show_image(bundle.depth.colormap, title="Depth", ax=ax2)
+
+    ax3 = fig.add_subplot(gs[0, 3])
+    show_image(bundle.segmentation.colored_map, title="Segmentation", ax=ax3)
+
+    for i, method in enumerate(COMPARE_METHODS):
+        ax = fig.add_subplot(gs[1, i if i < 3 else 3])
+        result = bundle.results.get(method)
+        spec = METHOD_SPECS[method]
+        if result is None:
+            ax.set_title(spec.title)
+            ax.axis("off")
+            continue
+        show_image(result.image, title=spec.title, ax=ax)
+
+    # spare axes slot if 3 methods in 4-col row
+    if len(COMPARE_METHODS) < 4:
+        ax = fig.add_subplot(gs[1, 3])
+        ax.axis("off")
+        ax.text(
+            0.05,
+            0.5,
+            "\n".join(
+                f"• {METHOD_SPECS[m].title}: {METHOD_SPECS[m].summary}" for m in COMPARE_METHODS
+            ),
+            va="center",
+            fontsize=9,
+            wrap=True,
+            transform=ax.transAxes,
+        )
+
+    fig.suptitle(
+        f"Method comparison — {sample.name} / {bundle.anomaly_id}\n{bundle.prompt[:120]}",
+        fontsize=12,
+        y=0.98,
+    )
+    return fig
+
+
+def save_compare_artifacts(
+    sample: ImageSample,
+    bundle: Any,
+    output_dir: Path | str,
+) -> dict[str, Path]:
+    """Persist Notebook 1.5 compare outputs under outputs/compare/."""
+    root = Path(output_dir) / "compare" / f"{sample.name}_{bundle.anomaly_id}"
+    root.mkdir(parents=True, exist_ok=True)
+    paths: dict[str, Path] = {"dir": root}
+    sample.image.save(root / "original.jpg")
+    Image.fromarray(bundle.depth.colormap).save(root / "depth.png")
+    Image.fromarray(bundle.segmentation.colored_map).save(root / "seg.png")
+    if bundle.edit_mask is not None:
+        Image.fromarray((bundle.edit_mask.astype(np.uint8) * 255)).save(root / "mask.png")
+    meta = {
+        "sample": sample.name,
+        "anomaly_id": bundle.anomaly_id,
+        "prompt": bundle.prompt,
+        "methods": {},
+    }
+    for method, result in bundle.results.items():
+        out = root / f"{method}.png"
+        result.image.save(out)
+        paths[method] = out
+        meta["methods"][method] = {
+            "prompt_used": result.prompt,
+            "seed": result.seed,
+        }
+    meta_path = root / "meta.json"
+    import json
+
+    meta_path.write_text(json.dumps(meta, indent=2))
+    paths["meta"] = meta_path
+    return paths
+
+
 def show_annotation_result(
     image: Image.Image | np.ndarray,
     annotation: AnnotationResult,

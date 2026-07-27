@@ -8,22 +8,29 @@ conditioning:
   depth:
     model_id: depth-anything/Depth-Anything-V2-Large-hf
   segmentation:
-    model_name: nvidia/segformer-b2-finetuned-ade-512-512
+    model_name: facebook/mask2former-swin-small-ade-semantic
 
 generation:
   family: sdxl
   default_anomaly_method: inpaint
   base_model_id: stabilityai/stable-diffusion-xl-base-1.0
   inpaint_model_id: diffusers/stable-diffusion-xl-1.0-inpainting-0.1
+  # Instruction editor (image + prompt only). SDXL variant on L4.
+  instruct_model_id: diffusers/sdxl-instructpix2pix-768
+  instruct_image_guidance: 1.5
+  instruct_guidance_scale: 8.0
   vae_id: madebyollin/sdxl-vae-fp16-fix
   controlnet:
     depth: diffusers/controlnet-depth-sdxl-1.0
+    # No official ADE-seg ControlNet for SDXL; Canny on the seg map carries region structure.
+    seg: diffusers/controlnet-canny-sdxl-1.0
   controlnet_scale:
     depth: 0.55
+    seg: 0.40
   num_inference_steps: 28
   guidance_scale: 7.0
   strength: 0.95
-  max_side: 1024
+  max_side: 768
 
 annotation:
   detector_model: google/owlvit-large-patch14

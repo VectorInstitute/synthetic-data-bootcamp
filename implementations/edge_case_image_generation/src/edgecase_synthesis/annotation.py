@@ -106,9 +106,9 @@ class OpenVocabAnnotator:
     ) -> AnnotationResult:
         """Detect open-vocab boxes, refine with SAM, optionally seed a known mask.
 
-        ``seed_mask`` / ``seed_label`` are for paste / early-inpaint anomalies:
-        OWL-ViT may miss drawn or freshly inpainted objects, so we inject the
-        edit mask as a high-confidence detection for the anomaly class.
+        ``seed_mask`` / ``seed_label`` are for synthetic inserts when the
+        open-vocab detector misses the edited region: we inject the edit mask
+        as a high-confidence detection for the anomaly class.
         """
         pil_image = _to_pil(image)
         rgb = np.array(pil_image)

@@ -1,20 +1,25 @@
 # @package generation
 family: sd15
-default_anomaly_method: controlnet
+default_anomaly_method: inpaint
 base_model_id: runwayml/stable-diffusion-v1-5
-inpaint_model_id: null
+inpaint_model_id: runwayml/stable-diffusion-inpainting
+instruct_model_id: timbrooks/instruct-pix2pix
+instruct_image_guidance: 1.4
+instruct_guidance_scale: 7.0
 vae_id: null
 controlnet:
   depth: lllyasviel/sd-controlnet-depth
+  seg: lllyasviel/sd-controlnet-seg
 controlnet_scale:
   depth: 0.55
-num_inference_steps: 20
+  seg: 0.45
+num_inference_steps: 24
 guidance_scale: 7.5
-strength: 0.72
+strength: 0.88
 seed: 42
 max_side: 512
-anomaly_dataset: rdd2022
+anomaly_dataset: mapillary_vistas
 workshop_anomalies:
   - pothole
-  - alligator_crack
   - traffic_cone
+  - fog

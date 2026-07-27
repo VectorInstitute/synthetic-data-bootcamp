@@ -56,7 +56,7 @@ Respond with ONLY a single JSON object (no markdown fences) using this schema:
 Scoring guide:
 - prompt_faithfulness: does the image show what the prompt asked for?
 - physical_plausibility: would this object/condition look real in this scene
-  (perspective, lighting, contact with the ground/rails)?
+  (perspective, lighting, contact with the ground/road)?
 - annotation_correctness: if labels/masks are described, do they match the image?
   If none are provided, score 5.
 - edge_case_present: true only if the rare condition is clearly visible.
@@ -268,8 +268,8 @@ class VLMJudge:
     ) -> JudgeResult:
         assert self._clip is not None
         processor, model = self._clip
-        positive = f"a photo of {rare} on a railway track"
-        negative = "a normal empty railway track with no obstruction"
+        positive = f"a photo of {rare} on a street or road"
+        negative = "a normal empty road with no obstruction"
         prompt_text = prompt.strip() or positive
 
         inputs = processor(

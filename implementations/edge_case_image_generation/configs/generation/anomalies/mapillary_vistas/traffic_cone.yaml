@@ -1,0 +1,25 @@
+id: traffic_cone
+dataset: mapillary_vistas
+display_name: Traffic cone on road
+method: auto
+prompt: >-
+  photorealistic bright orange traffic cone with white reflective stripe
+  standing upright on asphalt road, one safety cone in the driving lane,
+  street-level camera, same lighting and weather
+negative_prompt: >-
+  blurry blob, orange smear, cartoon, sticker, floating cone, watermark, text, logo,
+  flat oval patch, lane paint
+edit_mask:
+  mode: seg_intersection
+  cx: 0.46
+  cy: 0.74
+  rx: 0.06
+  ry: 0.11
+  prefer_near: true
+  blur_sigma: 1.5
+  composite_blur: 0.9
+  dilate: 1
+strength: 0.92
+annotation_classes:
+  - traffic cone
+  - road

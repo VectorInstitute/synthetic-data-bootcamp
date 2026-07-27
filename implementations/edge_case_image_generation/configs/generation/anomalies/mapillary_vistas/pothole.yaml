@@ -1,0 +1,25 @@
+id: pothole
+dataset: mapillary_vistas
+display_name: Pothole on road
+method: auto
+prompt: >-
+  photorealistic asphalt road with a clear deep pothole in the lane,
+  broken pavement hole with rough edges and dark cavity, street-level dashcam view,
+  same lighting and camera angle
+negative_prompt: >-
+  blurry, cartoon, painted overlay, sticker, watermark, text, logo, indoor,
+  yellow lane paint smear, flat oval patch
+edit_mask:
+  mode: seg_intersection
+  cx: 0.50
+  cy: 0.72
+  rx: 0.14
+  ry: 0.09
+  prefer_near: true
+  blur_sigma: 2.0
+  composite_blur: 1.2
+  dilate: 2
+strength: 0.90
+annotation_classes:
+  - pothole
+  - road

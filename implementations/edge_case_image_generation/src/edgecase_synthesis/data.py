@@ -83,6 +83,27 @@ def list_sample_images(samples_dir: Path | str) -> list[Path]:
     )
 
 
+def _prefer_sample_paths(
+    paths: list[Path],
+    prefer_classes: list[str] | None,
+    max_images: int,
+) -> list[Path]:
+    """Prefer filenames tagged with rare classes (e.g. pothole_*.jpg)."""
+    if not prefer_classes:
+        return paths[:max_images] if max_images else paths
+    ranked: list[Path] = []
+    remaining = list(paths)
+    for cls in prefer_classes:
+        key = cls.lower().replace(" ", "_")
+        hit = [p for p in remaining if p.stem.lower().startswith(f"{key}_") or key in p.stem.lower()]
+        for p in hit:
+            if p not in ranked:
+                ranked.append(p)
+        remaining = [p for p in remaining if p not in ranked]
+    ranked.extend(remaining)
+    return ranked[:max_images] if max_images else ranked
+
+
 def load_sample_images(
     samples_dir: Path | str | None = None,
     *,
@@ -95,12 +116,12 @@ def load_sample_images(
     config = _as_dict(cfg) if cfg is not None else {}
     root = Path(samples_dir or config["paths"]["samples_dir"])
     max_images = int(config.get("data", {}).get("max_images", 0) or 0)
+    prefer = list(config.get("data", {}).get("prefer_classes") or [])
+    paths = _prefer_sample_paths(list_sample_images(root), prefer, max_images)
     samples: list[ImageSample] = []
-    for path in list_sample_images(root):
+    for path in paths:
         image = Image.open(path).convert("RGB")
         samples.append(ImageSample(path=path, image=image, name=path.stem))
-        if max_images and len(samples) >= max_images:
-            break
     return samples
 
 
@@ -157,7 +178,7 @@ def prepare_sample_images(
             return existing
         raise FileNotFoundError(
             f"No images in {target}. Drop files there or switch "
-            "data/source@data=rdd2022|urls|nordland_hf."
+            "data/source@data=mapillary_vistas|rdd2022|urls|nordland_hf."
         )
     if kind == "urls":
         return _prepare_urls(target, source, force=force)

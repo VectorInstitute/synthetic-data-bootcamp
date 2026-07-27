@@ -2,7 +2,7 @@
 depth:
   model_id: depth-anything/Depth-Anything-V2-Base-hf
 segmentation:
-  model_name: nvidia/segformer-b0-finetuned-ade-512-512
-  # Optional: ADE20K ids treated as "editable ground" when intersect_seg is set.
-  # Steel/defect images often leave this empty (ellipse masks from anomaly YAML).
-  ground_class_ids: []
+  # B0 was too blob-like on street scenes; B2 is still CPU-ok and much sharper.
+  model_name: nvidia/segformer-b2-finetuned-ade-512-512
+  # ADE20K ids: 6=road (used when edit_mask.intersect_seg / seg_intersection).
+  ground_class_ids: [6]

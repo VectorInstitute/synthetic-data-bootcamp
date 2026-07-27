@@ -5,8 +5,10 @@ conf: 0.015
 max_detections: 20
 classes:
   - pothole
-  - road crack
-  - alligator crack
   - traffic cone
+  - animal
+  - dog
+  - deer
   - road
   - car
+  - person
