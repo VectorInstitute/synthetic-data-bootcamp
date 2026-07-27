@@ -149,6 +149,75 @@ def load_detection_labels(
     return out
 
 
+def _source_name(source: dict[str, Any]) -> str:
+    return str(source.get("name") or source.get("kind") or "local").lower()
+
+
+def _read_source_meta(target: Path) -> dict[str, Any]:
+    path = target / "source_meta.json"
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+
+
+def _cache_matches_source(target: Path, source: dict[str, Any]) -> bool:
+    """True if data/samples/ looks like the active Hydra data source (not a stale domain)."""
+    paths = list_sample_images(target)
+    if not paths:
+        return False
+
+    expected = _source_name(source)
+    meta = _read_source_meta(target)
+    blob = " ".join(
+        str(meta.get(k, "")).lower()
+        for k in ("dataset", "name", "hf_id", "archive_url", "note")
+    )
+    stems = [p.stem.lower() for p in paths]
+
+    if expected in {"mapillary_vistas", "mapillary"}:
+        if "mapillary" in blob:
+            return True
+        # extract_mapillary_toy naming: pothole_*, traffic_cone_*, scene_*, …
+        return any(
+            s.startswith(prefix)
+            for s in stems
+            for prefix in ("scene_", "pothole_", "traffic_cone_", "ground_animal_")
+        )
+    if expected in {"nordland_hf", "nordland"}:
+        if "nordland" in blob:
+            return True
+        return any(s.startswith("nordland_") for s in stems)
+    if expected == "rdd2022":
+        if "rdd" in blob or "road damage" in blob:
+            return True
+        return any("pothole" in s or "crack" in s or "damage" in s for s in stems)
+    if expected in {"local", "urls"}:
+        return True
+    if blob and expected and expected not in blob and expected.replace("_", " ") not in blob:
+        # Meta present but points at another dataset.
+        return False
+    return True
+
+
+def _stale_cache_error(target: Path, source: dict[str, Any]) -> FileNotFoundError:
+    expected = _source_name(source)
+    found = sorted(p.name for p in list_sample_images(target)[:8])
+    meta = _read_source_meta(target)
+    hint = (
+        f"Clear stale images under {target} (e.g. old nordland_*.png), then "
+        "re-run `uv run python scripts/extract_mapillary_toy.py` for Mapillary, "
+        "or `prepare_sample_images(..., force=True)` for downloadable sources."
+    )
+    return FileNotFoundError(
+        f"data/samples/ does not match data source {expected!r} "
+        f"(meta={meta.get('dataset') or meta.get('hf_id') or 'missing'}; "
+        f"examples={found}). {hint}"
+    )
+
+
 def prepare_sample_images(
     samples_dir: Path | None = None,
     *,
@@ -166,16 +235,24 @@ def prepare_sample_images(
     target.mkdir(parents=True, exist_ok=True)
     source = config["data"]
     kind = str(source.get("kind", source.get("name", "local"))).lower()
+    existing = list_sample_images(target)
 
-    if not force and list_sample_images(target):
+    if existing and not force and not _cache_matches_source(target, source):
+        raise _stale_cache_error(target, source)
+
+    if not force and existing and _cache_matches_source(target, source):
         needs_labels = kind in {"hf_detection", "voc_zip"} and not (target / "labels.json").exists()
         if not needs_labels:
-            return list_sample_images(target)
+            return existing
 
     if kind == "local":
-        existing = list_sample_images(target)
-        if existing:
+        if existing and _cache_matches_source(target, source):
             return existing
+        if existing:
+            raise _stale_cache_error(target, source)
+        name = _source_name(source)
+        if name in {"mapillary_vistas", "mapillary"}:
+            return _ensure_mapillary_samples(target)
         raise FileNotFoundError(
             f"No images in {target}. Drop files there or switch "
             "data/source@data=mapillary_vistas|rdd2022|urls|nordland_hf."
@@ -191,6 +268,42 @@ def prepare_sample_images(
     raise ValueError(
         f"Unknown data.kind={kind!r}. Use local | urls | hf_detection | voc_zip | hf_rows."
     )
+
+
+def _ensure_mapillary_samples(target: Path) -> list[Path]:
+    """Run the toy extract script when data/samples/ is empty (HF login required)."""
+    import subprocess
+    import sys
+
+    # src/edgecase_synthesis/data.py → implementation root
+    root = Path(__file__).resolve().parents[2]
+    script = root / "scripts" / "extract_mapillary_toy.py"
+    if not script.exists():
+        raise FileNotFoundError(
+            f"No images in {target} and missing {script}. "
+            "Run `uv run python scripts/extract_mapillary_toy.py` after `huggingface-cli login`."
+        )
+    print(
+        f"No Mapillary images in {target} — running {script.name} "
+        "(needs HF login; does not download the full 29GB zip)…",
+        flush=True,
+    )
+    try:
+        subprocess.run([sys.executable, str(script)], check=True, cwd=str(root))
+    except subprocess.CalledProcessError as exc:
+        raise FileNotFoundError(
+            f"Mapillary extract failed (exit {exc.returncode}). "
+            "Run `huggingface-cli login`, accept access on "
+            "https://huggingface.co/datasets/candylion/mapillary-vistas-v2, "
+            "then retry or run `uv run python scripts/extract_mapillary_toy.py`."
+        ) from exc
+    paths = list_sample_images(target)
+    if not paths:
+        raise FileNotFoundError(
+            f"Extract finished but {target} is still empty. "
+            "Check script output / HF permissions."
+        )
+    return paths
 
 
 def _prepare_urls(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:
@@ -527,4 +640,17 @@ def _prepare_hf_rows(target: Path, source: dict[str, Any], *, force: bool) -> li
                 time.sleep(1.5 * (attempt + 1))
         if last_err is not None:
             raise RuntimeError(f"Failed to fetch HF row {frame}: {last_err}") from last_err
+    (target / "source_meta.json").write_text(
+        json.dumps(
+            {
+                "dataset": _source_name(source),
+                "hf_id": hf_id,
+                "split": split,
+                "config": config_name,
+                "note": source.get("attribution", ""),
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
     return saved

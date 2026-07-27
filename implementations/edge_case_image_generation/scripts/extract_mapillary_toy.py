@@ -2,10 +2,12 @@
 """Extract a small Mapillary Vistas toy subset via authenticated zip Range GETs.
 
 Does NOT download the full ~29GB archive. Pulls:
+  - ZIP central-directory index via EOCD/ZIP64 Range GETs (cached under data/mapillary_vistas/)
   - validation panoptic JSON (~3MB compressed) to find rare-class frames
   - ~30 RGB images + matching polygon bboxes for bootcamp seeds
 
 Targets: pothole, traffic_cone, ground_animal (+ generic street scenes).
+Requires: `huggingface-cli login` and access to candylion/mapillary-vistas-v2.
 """
 from __future__ import annotations
 
@@ -13,6 +15,7 @@ import json
 import struct
 import zlib
 from collections import Counter
+from collections.abc import Callable
 from io import BytesIO
 from pathlib import Path
 
@@ -40,6 +43,134 @@ MAX_PER = 6
 MAX_GENERIC = 10
 THUMB = 1280
 
+HttpRange = Callable[[int, int | None], bytes]
+
+
+def _find_all(hay: bytes, needle: bytes) -> list[int]:
+    out: list[int] = []
+    i = 0
+    while True:
+        j = hay.find(needle, i)
+        if j < 0:
+            break
+        out.append(j)
+        i = j + 1
+    return out
+
+
+def _zip_size(url: str, token: str) -> int:
+    auth = {"Authorization": f"Bearer {token}", "User-Agent": "edgecase-synthesis"}
+    req = urllib.request.Request(url, method="HEAD", headers=auth)
+    with urllib.request.urlopen(req, timeout=60) as r:
+        size = int(r.headers.get("Content-Length") or 0)
+    if size:
+        return size
+    # Some CDNs omit Content-Length on HEAD; probe with a 1-byte range.
+    req = urllib.request.Request(url, headers={**auth, "Range": "bytes=0-0"})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        cr = r.headers.get("Content-Range") or ""
+    if "/" in cr:
+        return int(cr.rsplit("/", 1)[-1])
+    raise RuntimeError("Could not determine remote zip size (Content-Length / Content-Range).")
+
+
+def build_zip_index(http_range: HttpRange, *, url: str, token: str, dest: Path = INDEX) -> Path:
+    """Parse ZIP64 EOCD + central directory via Range GETs; cache a slim jsonl index."""
+    ROOT.mkdir(parents=True, exist_ok=True)
+    size = _zip_size(url, token)
+    print(f"remote zip size={size / 1e9:.2f} GB — fetching EOCD tail…", flush=True)
+
+    tail_len = min(1024 * 1024, size)
+    tail = http_range(size - tail_len, size - 1)
+
+    locs = _find_all(tail, b"PK\x06\x07")
+    eocds = _find_all(tail, b"PK\x05\x06")
+    if locs:
+        loc = tail[locs[-1] :]
+        z64_eocd_off = struct.unpack_from("<Q", loc, 8)[0]
+        z64 = http_range(z64_eocd_off, z64_eocd_off + 128)
+        if z64[:4] != b"PK\x06\x06":
+            raise RuntimeError("ZIP64 EOCD signature mismatch")
+        cd_size = struct.unpack_from("<Q", z64, 40)[0]
+        cd_offset = struct.unpack_from("<Q", z64, 48)[0]
+    elif eocds:
+        eocd = tail[eocds[-1] :]
+        cd_size = struct.unpack_from("<I", eocd, 12)[0]
+        cd_offset = struct.unpack_from("<I", eocd, 16)[0]
+    else:
+        raise RuntimeError("Could not find EOCD / ZIP64 locator in zip tail")
+
+    print(
+        f"central directory offset={cd_offset} size={cd_size / 1e6:.1f} MB — downloading…",
+        flush=True,
+    )
+    cd = http_range(cd_offset, cd_offset + cd_size - 1)
+    print(f"cd bytes={len(cd):,} — parsing…", flush=True)
+
+    entries: list[dict] = []
+    pos = 0
+    while pos + 46 <= len(cd):
+        if cd[pos : pos + 4] != b"PK\x01\x02":
+            nxt = cd.find(b"PK\x01\x02", pos + 1)
+            if nxt < 0:
+                break
+            pos = nxt
+            continue
+        method = struct.unpack_from("<H", cd, pos + 10)[0]
+        comp_size = struct.unpack_from("<I", cd, pos + 20)[0]
+        uncomp_size = struct.unpack_from("<I", cd, pos + 24)[0]
+        name_len = struct.unpack_from("<H", cd, pos + 28)[0]
+        extra_len = struct.unpack_from("<H", cd, pos + 30)[0]
+        comment_len = struct.unpack_from("<H", cd, pos + 32)[0]
+        local_off = struct.unpack_from("<I", cd, pos + 42)[0]
+        name = cd[pos + 46 : pos + 46 + name_len]
+        extra = cd[pos + 46 + name_len : pos + 46 + name_len + extra_len]
+        if comp_size == 0xFFFFFFFF or uncomp_size == 0xFFFFFFFF or local_off == 0xFFFFFFFF:
+            epos = 0
+            while epos + 4 <= len(extra):
+                eid, esz = struct.unpack_from("<HH", extra, epos)
+                edata = extra[epos + 4 : epos + 4 + esz]
+                if eid == 1:
+                    off = 0
+                    if uncomp_size == 0xFFFFFFFF:
+                        uncomp_size = struct.unpack_from("<Q", edata, off)[0]
+                        off += 8
+                    if comp_size == 0xFFFFFFFF:
+                        comp_size = struct.unpack_from("<Q", edata, off)[0]
+                        off += 8
+                    if local_off == 0xFFFFFFFF:
+                        local_off = struct.unpack_from("<Q", edata, off)[0]
+                epos += 4 + esz
+        try:
+            name_s = name.decode("utf-8")
+        except UnicodeDecodeError:
+            name_s = name.decode("latin1")
+        entries.append(
+            {
+                "name": name_s,
+                "method": method,
+                "comp": comp_size,
+                "uncomp": uncomp_size,
+                "local_off": local_off,
+            }
+        )
+        pos += 46 + name_len + extra_len + comment_len
+
+    # Slim index: only paths the toy extractor needs (+ config for debugging).
+    useful = [
+        e
+        for e in entries
+        if e["name"].startswith("validation/images/")
+        or e["name"].startswith("validation/v2.0/polygons/")
+        or e["name"] == "validation/v2.0/panoptic/panoptic_2020.json"
+        or e["name"].startswith("config")
+    ]
+    print(f"entries={len(entries):,} useful={len(useful):,} → {dest}", flush=True)
+    with dest.open("w", encoding="utf-8") as fh:
+        for e in useful:
+            fh.write(json.dumps(e) + "\n")
+    return dest
+
 
 def main() -> None:
     token = get_token()
@@ -48,11 +179,15 @@ def main() -> None:
     url = hf_hub_url(REPO, FNAME, repo_type="dataset")
     print("auth ok", flush=True)
 
-    def http_range(start: int, end: int) -> bytes:
+    def http_range(start: int, end: int | None = None) -> bytes:
+        if end is None:
+            range_val = f"bytes={start}-"
+        else:
+            range_val = f"bytes={start}-{end}"
         req = urllib.request.Request(
             url,
             headers={
-                "Range": f"bytes={start}-{end}",
+                "Range": range_val,
                 "Authorization": f"Bearer {token}",
                 "User-Agent": "edgecase-synthesis",
             },
@@ -78,7 +213,8 @@ def main() -> None:
         raise RuntimeError(f"unsupported zip method {method}")
 
     if not INDEX.exists():
-        raise SystemExit(f"Missing zip index {INDEX} — rebuild with range EOCD parse first.")
+        print(f"missing {INDEX.name} — building via EOCD Range parse (one-time, ~tens of MB)…", flush=True)
+        build_zip_index(http_range, url=url, token=token, dest=INDEX)
 
     print("loading index…", flush=True)
     by_name: dict[str, dict] = {}
