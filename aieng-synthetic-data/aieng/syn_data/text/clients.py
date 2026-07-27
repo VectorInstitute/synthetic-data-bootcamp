@@ -93,7 +93,8 @@ class LLMSettings:
         api_key = os.getenv(api_key_var, "")
         if not api_key:
             msg = (
-                f"Missing API key. Set {api_key_var} in your environment or .env file."
+                f"Missing API key. Set {api_key_var} in your environment or in "
+                "implementations/qa_text_generation/.env (see .env.example)."
             )
             raise ValueError(msg)
         return cls(

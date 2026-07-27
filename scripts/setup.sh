@@ -3,8 +3,9 @@ set -euo pipefail
 
 cd aieng-synthetic-data
 
-# Start Ollama and pull the Qwen 3B weights for baseline / eval notebooks.
-bash scripts/start-ollama.sh
+# Ollama is installed in the Docker image but started manually when needed:
+#   bash scripts/start-ollama.sh
+# (from the repository root). Not all reference implementations need it.
 
 if [ -d ".venv" ]; then
     echo "Virtual environment already exists."

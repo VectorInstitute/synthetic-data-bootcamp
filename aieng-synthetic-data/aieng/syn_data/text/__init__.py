@@ -71,7 +71,11 @@ from aieng.syn_data.text.judge import (
     judge_synthetic_sample,
     parse_judge_score,
 )
-from aieng.syn_data.text.paths import find_repo_root, use_repo_root
+from aieng.syn_data.text.paths import (
+    find_repo_root,
+    load_implementation_dotenv,
+    use_repo_root,
+)
 from aieng.syn_data.text.pipeline import (
     build_paragraph_splits,
     compare_generation_strategies,
@@ -169,6 +173,7 @@ __all__ = [
     "judge_synthetic_sample",
     "list_domain_documents",
     "load_document_text",
+    "load_implementation_dotenv",
     "load_paragraphs_from_text_files",
     "load_typed_jsonl",
     "make_paragraph_id",
