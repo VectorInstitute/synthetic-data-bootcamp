@@ -50,5 +50,7 @@ uv run python scripts/extract_mapillary_toy.py   # if data/samples/ is empty
 
 ## Notebook
 
-- `notebooks/01_sample_data_generation.ipynb` — single-image walkthrough through the VLM judge
+- `notebooks/01.5_method_comparison.ipynb` — compare inpaint / ControlNet / instruct; pick a method per anomaly
+- `notebooks/01_sample_data_generation.ipynb` — thin pipeline: load → edit (chosen methods) → annotate → judge → retry
+
 - `notebooks/01.5_method_comparison.ipynb` — **compare inpaint vs dual ControlNet vs InstructPix2Pix** on 3 images (set `HARDWARE = "cpu"` or `"gpu_l4"`)
