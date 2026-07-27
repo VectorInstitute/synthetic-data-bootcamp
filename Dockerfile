@@ -2,7 +2,8 @@ FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 
 EXPOSE 8888 11434
 
-# Install system dependencies and Ollama (small-model inference server)
+# Install system dependencies and Ollama (binary only; start manually via
+# scripts/start-ollama.sh when a reference implementation needs a local SLM)
 RUN apt-get update \
     && apt-get install -y \
     sudo \
