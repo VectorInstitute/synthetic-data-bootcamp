@@ -1,5 +1,4 @@
 # @package generation
-# Shared defaults. hardware/*.yaml overrides only the deltas that change per machine.
 family: sd15
 default_anomaly_method: controlnet
 base_model_id: runwayml/stable-diffusion-v1-5
@@ -14,8 +13,8 @@ guidance_scale: 7.5
 strength: 0.72
 seed: 42
 max_side: 512
-anomaly_dataset: neu_det
+anomaly_dataset: rdd2022
 workshop_anomalies:
-  - extra_scratch
-  - crazing_burst
-  - patch_blemish
+  - pothole
+  - alligator_crack
+  - traffic_cone

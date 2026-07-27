@@ -7,5 +7,4 @@ max_new_tokens: 256
 min_pixels: 200704
 max_pixels: 401408
 reject_margin: 2.0
-# Passed into the judge prompt; override per domain in hardware or notebook text.
-source_hint: "a real industrial surface photograph"
+source_hint: "a real street-level road photograph"

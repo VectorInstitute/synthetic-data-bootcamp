@@ -147,10 +147,8 @@ def prepare_sample_images(
     kind = str(source.get("kind", source.get("name", "local"))).lower()
 
     if not force and list_sample_images(target):
-        # Refresh labels.json if missing but source can provide it.
-        if kind in {"hf_detection", "neu_det"} and not (target / "labels.json").exists():
-            pass  # fall through to rebuild
-        else:
+        needs_labels = kind in {"hf_detection", "voc_zip"} and not (target / "labels.json").exists()
+        if not needs_labels:
             return list_sample_images(target)
 
     if kind == "local":
@@ -159,16 +157,18 @@ def prepare_sample_images(
             return existing
         raise FileNotFoundError(
             f"No images in {target}. Drop files there or switch "
-            "data/source@data=neu_det|urls|nordland_hf."
+            "data/source@data=rdd2022|urls|nordland_hf."
         )
     if kind == "urls":
         return _prepare_urls(target, source, force=force)
-    if kind in {"hf_detection", "neu_det"}:
+    if kind == "hf_detection":
         return _prepare_hf_detection(target, source, force=force)
+    if kind == "voc_zip":
+        return _prepare_voc_zip(target, source, force=force)
     if kind == "hf_rows":
         return _prepare_hf_rows(target, source, force=force)
     raise ValueError(
-        f"Unknown data.kind={kind!r}. Use local | urls | hf_detection | hf_rows."
+        f"Unknown data.kind={kind!r}. Use local | urls | hf_detection | voc_zip | hf_rows."
     )
 
 
@@ -189,6 +189,148 @@ def _prepare_urls(target: Path, source: dict[str, Any], *, force: bool) -> list[
         Image.open(BytesIO(response.content)).convert("RGB").save(dest)
         saved.append(dest)
     return saved
+
+
+def _prepare_voc_zip(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:
+    """Download a Pascal-VOC zip (e.g. RDD2022 country subset) and cache samples + labels."""
+    import xml.etree.ElementTree as ET
+    import zipfile
+
+    archive_url = str(source.get("archive_url") or "")
+    if not archive_url:
+        raise ValueError("voc_zip source requires data.archive_url")
+
+    dataset_root = Path(source.get("dataset_root") or (target.parent / "voc_cache"))
+    dataset_root.mkdir(parents=True, exist_ok=True)
+    zip_name = str(source.get("archive_name") or Path(archive_url).name)
+    zip_path = dataset_root / zip_name
+
+    if not zip_path.exists() or force:
+        print(f"Downloading {archive_url} → {zip_path} …")
+        _download_file(archive_url, zip_path)
+
+    extract_dir = dataset_root / str(source.get("extract_dirname") or zip_path.stem)
+    if not extract_dir.exists() or force:
+        print(f"Extracting {zip_path.name} …")
+        if extract_dir.exists() and force:
+            import shutil
+
+            shutil.rmtree(extract_dir)
+        with zipfile.ZipFile(zip_path, "r") as zf:
+            zf.extractall(extract_dir)
+
+    images_glob = str(source.get("images_glob") or "**/train/images/*.[jJ][pP][gG]")
+    ann_glob = str(source.get("annotations_glob") or "**/train/annotations/xmls/*.xml")
+    image_paths = sorted(extract_dir.glob(images_glob))
+    if not image_paths:
+        # Some zips nest an extra folder.
+        image_paths = sorted(extract_dir.glob("**/*.[jJ][pP][gG]"))
+    xml_by_stem = {p.stem: p for p in extract_dir.glob(ann_glob)}
+    if not xml_by_stem:
+        xml_by_stem = {p.stem: p for p in extract_dir.glob("**/*.xml")}
+
+    class_map = {str(k): str(v) for k, v in dict(source.get("class_map") or {}).items()}
+    prefer = [str(c) for c in (source.get("prefer_classes") or [])]
+    max_images = int(source.get("max_images", 8))
+    include_empty = bool(source.get("include_unlabeled", False))
+
+    # Score images: prefer rare classes first (e.g. pothole D40).
+    scored: list[tuple[int, Path, list[DetectionBox]]] = []
+    for img_path in image_paths:
+        boxes = _parse_voc_xml(xml_by_stem.get(img_path.stem), class_map)
+        if not boxes and not include_empty:
+            continue
+        labels = {b.label for b in boxes}
+        rank = 99
+        for i, pref in enumerate(prefer):
+            pref_name = class_map.get(pref, pref)
+            if pref in labels or pref_name in labels:
+                rank = i
+                break
+        if not boxes:
+            rank = 50
+        scored.append((rank, img_path, boxes))
+
+    scored.sort(key=lambda t: (t[0], t[1].name))
+    # Round-robin across prefer ranks so we don't only get one class.
+    buckets: dict[int, list[tuple[Path, list[DetectionBox]]]] = {}
+    for rank, path, boxes in scored:
+        buckets.setdefault(rank, []).append((path, boxes))
+
+    picked: list[tuple[Path, list[DetectionBox]]] = []
+    while len(picked) < max_images and any(buckets.values()):
+        for rank in sorted(buckets.keys()):
+            if buckets[rank] and len(picked) < max_images:
+                picked.append(buckets[rank].pop(0))
+
+    if not picked:
+        raise RuntimeError(f"No annotated images found under {extract_dir}")
+
+    labels_out: dict[str, list[dict[str, Any]]] = {}
+    saved: list[Path] = []
+    class_counts: dict[str, int] = {}
+    for path, boxes in picked:
+        primary = boxes[0].label if boxes else "road"
+        stem = f"{primary.replace(' ', '_')}_{path.stem}"
+        dest = target / f"{stem}.jpg"
+        if not dest.exists() or force:
+            Image.open(path).convert("RGB").save(dest, quality=95)
+        saved.append(dest)
+        labels_out[stem] = [{"label": b.label, "bbox_xyxy": list(b.bbox_xyxy)} for b in boxes]
+        for b in boxes:
+            class_counts[b.label] = class_counts.get(b.label, 0) + 1
+
+    (target / "labels.json").write_text(json.dumps(labels_out, indent=2), encoding="utf-8")
+    (target / "source_meta.json").write_text(
+        json.dumps(
+            {
+                "archive_url": archive_url,
+                "classes": source.get("classes", []),
+                "class_counts": class_counts,
+                "note": source.get("attribution", ""),
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+    return saved
+
+
+def _parse_voc_xml(xml_path: Path | None, class_map: dict[str, str]) -> list[DetectionBox]:
+    import xml.etree.ElementTree as ET
+
+    if xml_path is None or not xml_path.exists():
+        return []
+    root = ET.parse(xml_path).getroot()
+    boxes: list[DetectionBox] = []
+    for obj in root.findall("object"):
+        name = (obj.findtext("name") or "").strip()
+        if not name:
+            continue
+        label = class_map.get(name, name)
+        bnd = obj.find("bndbox")
+        if bnd is None:
+            continue
+        x1 = float(bnd.findtext("xmin", "0"))
+        y1 = float(bnd.findtext("ymin", "0"))
+        x2 = float(bnd.findtext("xmax", "0"))
+        y2 = float(bnd.findtext("ymax", "0"))
+        boxes.append(DetectionBox(label=label, bbox_xyxy=(x1, y1, x2, y2)))
+    return boxes
+
+
+def _download_file(url: str, dest: Path) -> None:
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    partial = dest.with_suffix(dest.suffix + ".part")
+    session = requests.Session()
+    session.headers["User-Agent"] = USER_AGENT
+    with session.get(url, stream=True, timeout=120) as response:
+        response.raise_for_status()
+        with partial.open("wb") as fh:
+            for chunk in response.iter_content(chunk_size=1024 * 1024):
+                if chunk:
+                    fh.write(chunk)
+    partial.replace(dest)
 
 
 def _prepare_hf_detection(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:

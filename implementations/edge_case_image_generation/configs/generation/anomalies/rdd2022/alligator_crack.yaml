@@ -1,0 +1,24 @@
+id: alligator_crack
+dataset: rdd2022
+display_name: Alligator cracking
+method: auto
+prompt: >-
+  photorealistic asphalt road with severe alligator cracking,
+  dense network of intersecting pavement cracks, dashcam view,
+  same lighting and camera angle
+negative_prompt: >-
+  blurry, cartoon, watermark, text, logo, indoor
+edit_mask:
+  mode: ellipse
+  cx: 0.48
+  cy: 0.68
+  rx: 0.28
+  ry: 0.16
+  prefer_near: true
+  blur_sigma: 1.4
+  composite_blur: 0.9
+strength: 0.76
+annotation_classes:
+  - alligator crack
+  - road crack
+  - road

@@ -79,10 +79,10 @@ class OpenVocabAnnotator:
         self.detector_model = detector_model
         self.sam_model = sam_model
         self.classes = classes or [
-            "scratch",
-            "crazing",
-            "patch",
-            "steel surface",
+            "pothole",
+            "road crack",
+            "traffic cone",
+            "road",
         ]
         self.conf = float(conf)
         self.max_detections = int(max_detections)

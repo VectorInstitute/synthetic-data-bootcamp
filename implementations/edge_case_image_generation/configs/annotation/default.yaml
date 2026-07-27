@@ -4,10 +4,9 @@ sam_model: mobile_sam.pt
 conf: 0.015
 max_detections: 20
 classes:
-  - scratch
-  - crazing
-  - patch
-  - inclusion
-  - pitted surface
-  - rolled-in scale
-  - steel surface
+  - pothole
+  - road crack
+  - alligator crack
+  - traffic cone
+  - road
+  - car

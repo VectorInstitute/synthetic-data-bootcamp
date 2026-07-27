@@ -1,0 +1,23 @@
+id: pothole
+dataset: rdd2022
+display_name: Pothole on road
+method: auto
+prompt: >-
+  photorealistic asphalt road with a clear deep pothole in the lane,
+  broken pavement hole with rough edges, street-level dashcam view,
+  same lighting and camera angle
+negative_prompt: >-
+  blurry, cartoon, painted, watermark, text, logo, indoor, steel texture
+edit_mask:
+  mode: ellipse
+  cx: 0.50
+  cy: 0.70
+  rx: 0.18
+  ry: 0.10
+  prefer_near: true
+  blur_sigma: 1.2
+  composite_blur: 0.8
+strength: 0.78
+annotation_classes:
+  - pothole
+  - road

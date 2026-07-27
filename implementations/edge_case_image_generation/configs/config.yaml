@@ -1,7 +1,7 @@
-# Root config — swap stacks with hardware=cpu|gpu_l4 and data/source@data=...
+# Root config — swap with hardware=cpu|gpu_l4 and data/source@data=...
 defaults:
   - paths: default
-  - data/source@data: neu_det
+  - data/source@data: rdd2022
   - conditioning: default
   - generation: default
   - annotation: default

@@ -8,27 +8,32 @@ Part of the [Vector Institute synthetic-data-bootcamp](https://github.com/Vector
 
 `real image → depth → segmentation → anomaly edit → open-vocab annotation → VLM judge`
 
-Model IDs, datasets, and hardware choices live in **Hydra YAML** under `configs/`. The Python package stays generic.
+Model IDs, datasets, and hardware choices live in **Hydra YAML** under `configs/`.
 
-## Default dataset: NEU-DET
+## Default dataset: RDD2022 (road damage)
 
-Open steel-surface defect detection set (bbox labels, 6 classes). Good for Notebook 3: train a detector on **real vs real+accepted-synthetic** and report per-class AP.
+Open **street-level road photos** (CC BY-SA 4.0) with bbox labels for cracks and **potholes**.
 
-Cite: Song & Yan, NEU Surface Defect Database. Config: `configs/data/source/neu_det.yaml` (HF id overridable).
+Why this one:
 
-Other sources: `local`, `urls`, `nordland_hf` (images only, no boxes).
+- Everyone can read a road scene and spot a pothole / cone (unlike industrial steel textures)
+- Damage is sparse — many frames are mostly clean asphalt; **potholes (D40) are the rare / severe class**
+- Labeled for Notebook 3: train a detector on real vs real+accepted-synthetic, report **pothole AP**
+
+We download the compact **China_MotorBike** subset (~183 MB). Config: `configs/data/source/rdd2022.yaml`.
+
+Cite: Arya et al., RDD2022 / CRDDC'2022 ([sekilab/RoadDamageDetector](https://github.com/sekilab/RoadDamageDetector)).
+
+Other sources: `local`, `urls`, `nordland_hf` (images only).
+
+Workshop anomalies (YAML): `pothole`, `alligator_crack`, `traffic_cone`.
 
 ## Hardware
 
 ```python
-load_config(overrides=["hardware=cpu"])       # SD 1.5 + depth ControlNet, Qwen2.5-VL-3B
-load_config(overrides=["hardware=gpu_l4"])    # SDXL inpaint, Qwen2.5-VL-7B
+load_config(overrides=["hardware=cpu"])       # SD 1.5 + depth ControlNet
+load_config(overrides=["hardware=gpu_l4"])    # SDXL inpaint + Qwen2.5-VL-7B
 ```
-
-| Profile | Edit method | Judge |
-|---------|-------------|-------|
-| `cpu` | depth ControlNet | Qwen2.5-VL-3B (CLIP fallback) |
-| `gpu_l4` | SDXL inpaint | Qwen2.5-VL-7B |
 
 ## Setup
 
@@ -36,6 +41,8 @@ load_config(overrides=["hardware=gpu_l4"])    # SDXL inpaint, Qwen2.5-VL-7B
 cd implementations/edge_case_image_generation
 uv sync
 ```
+
+First notebook run downloads the RDD zip into `data/rdd2022/` and caches workshop frames under `data/samples/`.
 
 ## Notebook
 
