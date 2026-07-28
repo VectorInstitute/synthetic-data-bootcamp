@@ -95,9 +95,6 @@ resource "coder_agent" "main" {
   arch = "amd64"
   os   = "linux"
 
-  # stop after 2 hours of inactivity
-  inactivity_timeout = 120
-
   display_apps {
     vscode = false
   }
@@ -250,16 +247,6 @@ ZSHRC
 
   EOT
 
-  # Max seconds Coder waits for the shutdown script before killing the agent
-  shutdown_script_timeout = 30
-  # Runs when the workspace stops; cleans up long-lived IDE/runtime processes
-  shutdown_script         = <<-EOT
-    #!/usr/bin/env bash
-    echo "Shutting down agent gracefully..."
-    pkill -f vscode-server || true  # stop VS Code remote server (|| true = ignore if not running)
-    pkill -f cursor-server || true  # stop Cursor remote server
-    pkill -f node || true           # stop leftover Node processes from those servers
-  EOT
 
   env = {
     GIT_AUTHOR_NAME      = coalesce(data.coder_workspace_owner.me.full_name, data.coder_workspace_owner.me.name)
