@@ -78,8 +78,17 @@ class AnomalyEditor:
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
-    def _dtype(self) -> torch.dtype:
-        return torch.float16 if self.device.type == "cuda" else torch.float32
+    @property
+    def inpaint_is_klein(self) -> bool:
+        mid = str(self.inpaint_model_id or "").lower()
+        return "klein" in mid or "flux.2" in mid or "flux2" in mid
+
+    def _dtype(self, *, for_klein: bool = False) -> torch.dtype:
+        if self.device.type != "cuda":
+            return torch.float32
+        if for_klein and torch.cuda.is_bf16_supported():
+            return torch.bfloat16
+        return torch.float16
 
     def _place(self, pipe: Any) -> Any:
         pipe.set_progress_bar_config(disable=False)
@@ -98,6 +107,11 @@ class AnomalyEditor:
 
     def _build_controlnet(self):
         from diffusers import ControlNetModel
+
+        if self.inpaint_is_klein:
+            self._inpaint_pipe = None
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
 
         dtype = self._dtype()
         depth_cn = ControlNetModel.from_pretrained(self.depth_controlnet_id, torch_dtype=dtype)
@@ -128,6 +142,18 @@ class AnomalyEditor:
     def _build_inpaint(self):
         if not self.inpaint_model_id:
             raise ValueError("generation.inpaint_model_id required for method=inpaint")
+        if self.inpaint_is_klein:
+            self._controlnet_pipe = None
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+            from diffusers import Flux2KleinInpaintPipeline
+
+            pipe = Flux2KleinInpaintPipeline.from_pretrained(
+                self.inpaint_model_id,
+                torch_dtype=self._dtype(for_klein=True),
+            )
+            return self._place(pipe)
+
         from diffusers import AutoPipelineForInpainting
 
         dtype = self._dtype()
@@ -170,13 +196,21 @@ class AnomalyEditor:
         )
 
         if method == "inpaint":
+            if self.inpaint_is_klein:
+                steps = int(merged.get("inpaint_num_inference_steps", 4))
+                guidance = float(merged.get("inpaint_guidance_scale", 1.0))
+                strength = min(float(merged.get("strength", 1.0)), 1.0)
+            else:
+                steps = int(merged.get("num_inference_steps", 28))
+                guidance = float(merged.get("guidance_scale", 7.5))
+                strength = float(merged.get("strength", 0.90))
             return self._inpaint(
                 original,
                 prompt=prompt,
                 negative_prompt=negative,
-                steps=int(merged.get("num_inference_steps", 28)),
-                guidance=float(merged.get("guidance_scale", 7.5)),
-                strength=float(merged.get("strength", 0.90)),
+                steps=steps,
+                guidance=guidance,
+                strength=strength,
                 seed=seed,
                 edit_mask=edit_mask,
                 edit_weight=edit_weight,
@@ -279,31 +313,55 @@ class AnomalyEditor:
         anomaly_id: str | None,
         padding_mask_crop: int | None = None,
     ) -> GenerationResult:
-        width, height = original.size
-        mask_pil = _mask_to_pil(edit_mask)
-        if mask_pil.size != (width, height):
-            mask_pil = mask_pil.resize((width, height), Image.Resampling.NEAREST)
         gen_device = "cuda" if self.device.type == "cuda" else "cpu"
         generator = torch.Generator(device=gen_device).manual_seed(int(seed))
-        kwargs: dict[str, Any] = {
-            "prompt": prompt,
-            "negative_prompt": negative_prompt or None,
-            "image": original,
-            "mask_image": mask_pil,
-            "height": height,
-            "width": width,
-            "num_inference_steps": steps,
-            "guidance_scale": guidance,
-            "strength": min(float(strength), 0.99),
-            "generator": generator,
-        }
-        if padding_mask_crop is not None and padding_mask_crop > 0:
-            kwargs["padding_mask_crop"] = int(padding_mask_crop)
-        try:
-            generated = self.inpaint_pipe(**kwargs).images[0]
-        except TypeError:
-            kwargs.pop("padding_mask_crop", None)
-            generated = self.inpaint_pipe(**kwargs).images[0]
+
+        if self.inpaint_is_klein:
+            run_image, mask_pil = _fit_klein_inpaint(original, edit_mask, max_side=768)
+            rw, rh = run_image.size
+            kwargs: dict[str, Any] = {
+                "prompt": prompt,
+                "image": run_image,
+                "mask_image": mask_pil,
+                "height": rh,
+                "width": rw,
+                "num_inference_steps": steps,
+                "guidance_scale": guidance,
+                "strength": min(float(strength), 1.0),
+                "generator": generator,
+            }
+            if padding_mask_crop is not None and padding_mask_crop > 0:
+                kwargs["padding_mask_crop"] = int(padding_mask_crop)
+            try:
+                generated = self.inpaint_pipe(**kwargs).images[0]
+            except TypeError:
+                kwargs.pop("padding_mask_crop", None)
+                generated = self.inpaint_pipe(**kwargs).images[0]
+        else:
+            width, height = original.size
+            mask_pil = _mask_to_pil(edit_mask)
+            if mask_pil.size != (width, height):
+                mask_pil = mask_pil.resize((width, height), Image.Resampling.NEAREST)
+            kwargs = {
+                "prompt": prompt,
+                "negative_prompt": negative_prompt or None,
+                "image": original,
+                "mask_image": mask_pil,
+                "height": height,
+                "width": width,
+                "num_inference_steps": steps,
+                "guidance_scale": guidance,
+                "strength": min(float(strength), 0.99),
+                "generator": generator,
+            }
+            if padding_mask_crop is not None and padding_mask_crop > 0:
+                kwargs["padding_mask_crop"] = int(padding_mask_crop)
+            try:
+                generated = self.inpaint_pipe(**kwargs).images[0]
+            except TypeError:
+                kwargs.pop("padding_mask_crop", None)
+                generated = self.inpaint_pipe(**kwargs).images[0]
+
         generated = _ensure_same_size(generated, original)
         recomposite = bool(edit_mask_cfg.get("recomposite", False))
         if recomposite:
@@ -363,6 +421,29 @@ def _mask_to_pil(mask: np.ndarray) -> Image.Image:
             k += 1
         u8 = cv2.dilate(u8, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k)), iterations=1)
     return Image.fromarray(u8, mode="L")
+
+
+def _fit_klein_inpaint(
+    image: Image.Image, edit_mask: np.ndarray, *, max_side: int = 768
+) -> tuple[Image.Image, Image.Image]:
+    """Resize RGB + mask to Klein-friendly multiples of 16."""
+    width, height = image.size
+    long = max(width, height)
+    target = min(long, max_side)
+    scale = target / long if long else 1.0
+    new_w = max(16, int(round(width * scale / 16) * 16))
+    new_h = max(16, int(round(height * scale / 16) * 16))
+    run_image = (
+        image
+        if (new_w, new_h) == (width, height)
+        else image.resize((new_w, new_h), Image.Resampling.LANCZOS)
+    )
+    mask_arr = np.asarray(edit_mask)
+    if mask_arr.shape[0] != new_h or mask_arr.shape[1] != new_w:
+        mask_arr = cv2.resize(
+            mask_arr.astype(np.uint8), (new_w, new_h), interpolation=cv2.INTER_NEAREST
+        )
+    return run_image, _mask_to_pil(mask_arr)
 
 
 def _depth_to_control_image(depth: DepthResult, width: int, height: int) -> Image.Image:

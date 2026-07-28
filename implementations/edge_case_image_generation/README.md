@@ -37,11 +37,13 @@ Other sources: `rdd2022`, `local`, `urls`, `nordland_hf`.
 ## Hardware
 
 ```python
-load_config(overrides=["hardware=cpu"])       # SD 1.5 edit stack + SegFormer-B2 + Qwen-VL-3B
-load_config(overrides=["hardware=gpu_l4"])    # same SD 1.5 edit recipe (faster) + larger depth/judge
+load_config(overrides=["hardware=cpu"])       # SD 1.5 inpaint/CN + InstructPix2Pix + SegFormer-B2
+load_config(overrides=["hardware=gpu_l4"])    # FLUX.2-klein-4B inpaint+instruct; SD 1.5 ControlNet; larger depth/judge
 ```
 
-**Trusted edit recipe (both profiles):** SD 1.5 inpaint (`runwayml/stable-diffusion-inpainting`) with a clean ellipse mask, `padding_mask_crop`, and short object prompts. ControlNet / instruct are comparison baselines — useful for mild global atmosphere, weak for tiny local inserts.
+**L4 trusted local inserts:** [FLUX.2-klein-4B](https://huggingface.co/black-forest-labs/FLUX.2-klein-4B) masked inpaint (`Flux2KleinInpaintPipeline`).  
+**L4 instruct:** same Klein weights via `Flux2KleinPipeline`.  
+**ControlNet:** still SD 1.5 depth+seg (no Klein ControlNet twin). CPU stays on the SD 1.5 / InstructPix2Pix stack.
 
 ## Setup
 

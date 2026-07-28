@@ -53,8 +53,8 @@ METHOD_SPECS: dict[str, MethodSpec] = {
         uses_depth=True,
         uses_seg=True,
         summary=(
-            "Recommended for local inserts (cone, debris): SD1.5 inpaint inside a "
-            "clean ellipse mask with crop-to-mask. Rest of the photo stays untouched."
+            "Local inserts (cone, debris): masked inpaint. L4 uses FLUX.2-klein-4B; "
+            "CPU uses SD1.5. Rest of the photo stays outside the mask."
         ),
     ),
     "controlnet_dual": MethodSpec(
@@ -75,8 +75,8 @@ METHOD_SPECS: dict[str, MethodSpec] = {
         uses_depth=False,
         uses_seg=False,
         summary=(
-            "RGB + text only (InstructPix2Pix). Can do light global atmosphere; "
-            "weak at precise local inserts and may drift colors."
+            "RGB + text only (FLUX.2-klein-4B on L4; InstructPix2Pix on CPU). "
+            "Best for global / semantic edits; weaker than masked inpaint for tiny inserts."
         ),
     ),
 }
@@ -112,6 +112,9 @@ class MethodComparer:
         controlnet_scale_seg: float = 0.45,
         instruct_image_guidance: float = 1.4,
         instruct_guidance: float = 7.0,
+        instruct_num_inference_steps: int | None = None,
+        inpaint_num_inference_steps: int | None = None,
+        inpaint_guidance_scale: float | None = None,
         device: str | None = None,
         seg_as_canny: bool = False,
     ) -> None:
@@ -126,11 +129,31 @@ class MethodComparer:
         self.controlnet_scale_seg = float(controlnet_scale_seg)
         self.instruct_image_guidance = float(instruct_image_guidance)
         self.instruct_guidance = float(instruct_guidance)
+        self.instruct_num_inference_steps = instruct_num_inference_steps
+        self.inpaint_num_inference_steps = inpaint_num_inference_steps
+        self.inpaint_guidance_scale = inpaint_guidance_scale
         self.device = resolve_device(device)
         self.seg_as_canny = bool(seg_as_canny)
         self._inpaint_pipe = None
         self._dual_pipe = None
         self._instruct_pipe = None
+
+    @staticmethod
+    def _is_klein_model(model_id: str) -> bool:
+        mid = str(model_id).lower()
+        return "klein" in mid or "flux.2" in mid or "flux2" in mid
+
+    @property
+    def instruct_is_klein(self) -> bool:
+        return self._is_klein_model(self.instruct_model_id)
+
+    @property
+    def inpaint_is_klein(self) -> bool:
+        return self._is_klein_model(self.inpaint_model_id)
+
+    @property
+    def uses_klein(self) -> bool:
+        return self.instruct_is_klein or self.inpaint_is_klein
 
     def unload(self) -> None:
         self._inpaint_pipe = None
@@ -139,8 +162,23 @@ class MethodComparer:
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
-    def _dtype(self) -> torch.dtype:
-        return torch.float16 if self.device.type == "cuda" else torch.float32
+    def _dtype(self, *, for_klein: bool = False) -> torch.dtype:
+        if self.device.type != "cuda":
+            return torch.float32
+        if for_klein and torch.cuda.is_bf16_supported():
+            return torch.bfloat16
+        return torch.float16
+
+    def _free_other_edit_pipes(self, *, keep: str) -> None:
+        """Drop sibling edit pipes so Klein + SD ControlNet do not share the L4."""
+        if keep != "inpaint":
+            self._inpaint_pipe = None
+        if keep != "dual":
+            self._dual_pipe = None
+        if keep != "instruct":
+            self._instruct_pipe = None
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
     def _place(self, pipe: Any) -> Any:
         pipe.set_progress_bar_config(disable=False)
@@ -161,9 +199,32 @@ class MethodComparer:
         gen_device = "cuda" if self.device.type == "cuda" else "cpu"
         return torch.Generator(device=gen_device).manual_seed(int(seed))
 
+    @staticmethod
+    def _fit_klein_image(image: Image.Image, *, max_side: int = 768) -> Image.Image:
+        """Resize to multiples of 16; cap long side for VRAM."""
+        width, height = image.size
+        long = max(width, height)
+        target = min(long, max_side)
+        scale = target / long if long else 1.0
+        new_w = max(16, int(round(width * scale / 16) * 16))
+        new_h = max(16, int(round(height * scale / 16) * 16))
+        if (new_w, new_h) == (width, height):
+            return image
+        return image.resize((new_w, new_h), Image.Resampling.LANCZOS)
+
     # --- builders ---------------------------------------------------------
 
     def _build_inpaint(self):
+        if self.inpaint_is_klein:
+            self._free_other_edit_pipes(keep="inpaint")
+            from diffusers import Flux2KleinInpaintPipeline
+
+            pipe = Flux2KleinInpaintPipeline.from_pretrained(
+                self.inpaint_model_id,
+                torch_dtype=self._dtype(for_klein=True),
+            )
+            return self._place(pipe)
+
         from diffusers import AutoPipelineForInpainting
 
         dtype = self._dtype()
@@ -175,6 +236,8 @@ class MethodComparer:
         return self._place(pipe)
 
     def _build_dual(self):
+        if self.uses_klein:
+            self._free_other_edit_pipes(keep="dual")
         from diffusers import ControlNetModel
 
         dtype = self._dtype()
@@ -204,6 +267,15 @@ class MethodComparer:
         return self._place(pipe)
 
     def _build_instruct(self):
+        if self.instruct_is_klein:
+            self._free_other_edit_pipes(keep="instruct")
+            from diffusers import Flux2KleinPipeline
+
+            pipe = Flux2KleinPipeline.from_pretrained(
+                self.instruct_model_id,
+                torch_dtype=self._dtype(for_klein=True),
+            )
+            return self._place(pipe)
         dtype = self._dtype()
         if self.family == "sdxl" and "sdxl" in self.instruct_model_id.lower():
             from diffusers import StableDiffusionXLInstructPix2PixPipeline
@@ -292,13 +364,34 @@ class MethodComparer:
         padding_crop = int(padding_crop) if padding_crop not in (None, "", False) else None
 
         if method == "inpaint":
+            if self.inpaint_is_klein:
+                steps = int(
+                    merged.get(
+                        "inpaint_num_inference_steps",
+                        self.inpaint_num_inference_steps
+                        if self.inpaint_num_inference_steps is not None
+                        else 4,
+                    )
+                )
+                guidance = float(
+                    merged.get(
+                        "inpaint_guidance_scale",
+                        self.inpaint_guidance_scale
+                        if self.inpaint_guidance_scale is not None
+                        else 1.0,
+                    )
+                )
+                # Distilled Klein fills the hole best at full strength.
+                run_strength = min(float(merged.get("strength", 1.0)), 1.0)
+            else:
+                run_strength = min(inpaint_strength, 0.99)
             return self._run_inpaint(
                 original,
                 prompt=prompt,
                 negative_prompt=negative,
                 steps=steps,
                 guidance=guidance,
-                strength=min(inpaint_strength, 0.99),
+                strength=run_strength,
                 seed=seed,
                 edit_mask=edit_mask,
                 edit_weight=edit_weight,
@@ -335,7 +428,7 @@ class MethodComparer:
         return self._run_instruct(
             original,
             prompt=prompt,
-            steps=max(steps, 20),
+            steps=steps,
             seed=seed,
             anomaly_id=anomaly_id,
             edit_mask=None,
@@ -343,6 +436,7 @@ class MethodComparer:
                 merged.get("instruct_image_guidance", self.instruct_image_guidance)
             ),
             text_guidance=float(merged.get("instruct_guidance_scale", self.instruct_guidance)),
+            instruct_steps=merged.get("instruct_num_inference_steps", self.instruct_num_inference_steps),
         )
 
     def compare_one(
@@ -383,6 +477,9 @@ class MethodComparer:
         )
         for method in methods:
             print(f"  → {method} …", flush=True)
+            # Klein inpaint/instruct + SD ControlNet do not fit on L4 together.
+            if self.device.type == "cuda" and self.uses_klein:
+                self.unload()
             bundle.results[method] = self.run_method(
                 method,
                 image,
@@ -412,33 +509,66 @@ class MethodComparer:
         anomaly_id: str,
         padding_mask_crop: int | None = None,
     ) -> GenerationResult:
-        width, height = original.size
-        mask_pil = _mask_to_pil(edit_mask)
-        if mask_pil.size != (width, height):
-            mask_pil = mask_pil.resize((width, height), Image.Resampling.NEAREST)
-        kwargs: dict[str, Any] = {
-            "prompt": prompt,
-            "negative_prompt": negative_prompt or None,
-            "image": original,
-            "mask_image": mask_pil,
-            "height": height,
-            "width": width,
-            "num_inference_steps": steps,
-            "guidance_scale": guidance,
-            "strength": strength,
-            "generator": self._gen(seed),
-        }
-        # Crop-to-mask generation (when supported) — much better for small objects.
-        if padding_mask_crop is not None and padding_mask_crop > 0:
-            kwargs["padding_mask_crop"] = int(padding_mask_crop)
-        try:
-            generated = self.inpaint_pipe(**kwargs).images[0]
-        except TypeError:
-            kwargs.pop("padding_mask_crop", None)
-            generated = self.inpaint_pipe(**kwargs).images[0]
-        generated = _ensure_same_size(generated, original)
+        if self.inpaint_is_klein:
+            run_image = self._fit_klein_image(original, max_side=768)
+            rw, rh = run_image.size
+            # Rebuild mask at Klein resolution (ellipse was built at `original` size).
+            mask_arr = edit_mask
+            if mask_arr.shape[0] != rh or mask_arr.shape[1] != rw:
+                mask_arr = cv2.resize(
+                    mask_arr.astype(np.uint8), (rw, rh), interpolation=cv2.INTER_NEAREST
+                )
+            mask_pil = _mask_to_pil(mask_arr)
+            kwargs: dict[str, Any] = {
+                "prompt": prompt,
+                "image": run_image,
+                "mask_image": mask_pil,
+                "height": rh,
+                "width": rw,
+                "num_inference_steps": steps,
+                "guidance_scale": guidance,
+                "strength": float(strength),
+                "generator": self._gen(seed),
+            }
+            # Flux2KleinInpaintPipeline has no negative_prompt arg.
+            if padding_mask_crop is not None and padding_mask_crop > 0:
+                kwargs["padding_mask_crop"] = int(padding_mask_crop)
+            try:
+                generated = self.inpaint_pipe(**kwargs).images[0]
+            except TypeError:
+                kwargs.pop("padding_mask_crop", None)
+                generated = self.inpaint_pipe(**kwargs).images[0]
+            generated = _ensure_same_size(generated, original)
+            # Map edit_mask back to original size for annotation/viz.
+            out_mask = edit_mask
+        else:
+            width, height = original.size
+            mask_pil = _mask_to_pil(edit_mask)
+            if mask_pil.size != (width, height):
+                mask_pil = mask_pil.resize((width, height), Image.Resampling.NEAREST)
+            kwargs = {
+                "prompt": prompt,
+                "negative_prompt": negative_prompt or None,
+                "image": original,
+                "mask_image": mask_pil,
+                "height": height,
+                "width": width,
+                "num_inference_steps": steps,
+                "guidance_scale": guidance,
+                "strength": strength,
+                "generator": self._gen(seed),
+            }
+            if padding_mask_crop is not None and padding_mask_crop > 0:
+                kwargs["padding_mask_crop"] = int(padding_mask_crop)
+            try:
+                generated = self.inpaint_pipe(**kwargs).images[0]
+            except TypeError:
+                kwargs.pop("padding_mask_crop", None)
+                generated = self.inpaint_pipe(**kwargs).images[0]
+            generated = _ensure_same_size(generated, original)
+            out_mask = edit_mask
+
         # Dedicated inpaint checkpoints already keep pixels outside the mask.
-        # Soft re-compositing was washing cones/debris into faint smudges.
         recomposite = bool(edit_mask_cfg.get("recomposite", False))
         if recomposite:
             blur = float(edit_mask_cfg.get("composite_blur", 1.0))
@@ -450,7 +580,7 @@ class MethodComparer:
             prompt=prompt,
             negative_prompt=negative_prompt,
             seed=seed,
-            edit_mask=edit_mask,
+            edit_mask=out_mask,
             anomaly_id=anomaly_id,
             method="inpaint",
         )
@@ -523,11 +653,26 @@ class MethodComparer:
         edit_mask: np.ndarray | None,
         image_guidance: float | None = None,
         text_guidance: float | None = None,
+        instruct_steps: int | None = None,
     ) -> GenerationResult:
         instruction = _to_edit_instruction(prompt, anomaly_id)
         width, height = original.size
-        is_sdxl_instruct = "sdxl" in self.instruct_model_id.lower()
-        if is_sdxl_instruct:
+
+        if self.instruct_is_klein:
+            # Distilled Klein: ~4 steps, guidance ignored when >1.
+            n_steps = int(instruct_steps) if instruct_steps not in (None, "") else 4
+            txt_g = 1.0 if text_guidance is None else float(text_guidance)
+            run_image = self._fit_klein_image(original, max_side=768)
+            generated = self.instruct_pipe(
+                prompt=instruction,
+                image=run_image,
+                height=run_image.size[1],
+                width=run_image.size[0],
+                num_inference_steps=n_steps,
+                guidance_scale=txt_g,
+                generator=self._gen(seed),
+            ).images[0]
+        elif "sdxl" in self.instruct_model_id.lower():
             # Official SDXL InstructPix2Pix checkpoint expects ~768².
             side = 768
             run_image = original.resize((side, side), Image.Resampling.LANCZOS)
@@ -544,7 +689,7 @@ class MethodComparer:
                 generator=self._gen(seed),
             ).images[0]
         else:
-            # SD1.5 InstructPix2Pix — more faithful for photo edits than the SDXL twin.
+            # SD1.5 InstructPix2Pix — CPU / fallback path.
             target = 512
             if max(width, height) > target:
                 scale = target / max(width, height)
@@ -559,10 +704,11 @@ class MethodComparer:
                 else float(image_guidance)
             )
             txt_g = self.instruct_guidance if text_guidance is None else float(text_guidance)
+            n_steps = int(instruct_steps) if instruct_steps not in (None, "") else max(steps, 20)
             generated = self.instruct_pipe(
                 prompt=instruction,
                 image=run_image,
-                num_inference_steps=steps,
+                num_inference_steps=n_steps,
                 guidance_scale=txt_g,
                 image_guidance_scale=img_g,
                 generator=self._gen(seed),
@@ -593,6 +739,9 @@ class MethodComparer:
             raise ValueError("generation.controlnet.seg required for MethodComparer")
         # SDXL often pairs depth with a Canny ControlNet on the seg map.
         seg_as_canny = "canny" in seg_cn.lower()
+        instruct_steps = generation.get("instruct_num_inference_steps", None)
+        inpaint_steps = generation.get("inpaint_num_inference_steps", None)
+        inpaint_gs = generation.get("inpaint_guidance_scale", None)
         return cls(
             family=family,
             base_model_id=str(generation["base_model_id"]),
@@ -607,6 +756,15 @@ class MethodComparer:
             controlnet_scale_seg=float(scales.get("seg", 0.45)),
             instruct_image_guidance=float(generation.get("instruct_image_guidance", 1.4)),
             instruct_guidance=float(generation.get("instruct_guidance_scale", 7.0)),
+            instruct_num_inference_steps=(
+                int(instruct_steps) if instruct_steps not in (None, "") else None
+            ),
+            inpaint_num_inference_steps=(
+                int(inpaint_steps) if inpaint_steps not in (None, "") else None
+            ),
+            inpaint_guidance_scale=(
+                float(inpaint_gs) if inpaint_gs not in (None, "") else None
+            ),
             device=device,
             seg_as_canny=seg_as_canny,
         )
@@ -654,7 +812,7 @@ def _dual_fidelity_prompts(
 
 
 def _to_edit_instruction(prompt: str, anomaly_id: str) -> str:
-    """Turn a descriptive generation prompt into an InstructPix2Pix instruction."""
+    """Turn a descriptive generation prompt into an instruction-edit request."""
     mapping = {
         "road_debris": (
             "Add a large brown cardboard box sitting on the road asphalt only, "

@@ -17,7 +17,7 @@ dependencies = [
     "opencv-python-headless>=4.8",
     "ultralytics>=8.3",
     "huggingface-hub>=0.24",
-    "diffusers>=0.30",
+    "diffusers>=0.39",
     "requests>=2.31",
     "ipykernel>=7.3.0",
 ]

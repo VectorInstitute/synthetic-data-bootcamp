@@ -1,9 +1,9 @@
 # @package _global_
 # g2-standard-8 / 1× NVIDIA L4 — deltas only.
 #
-# Workshop edit recipe stays on SD 1.5 (inpaint + dual ControlNet + instruct).
-# SDXL looked sharper in demos but rewrote scenes; SD1.5 is the trustworthy path.
-# L4 still speeds diffusion and hosts larger depth / judge models.
+# Local inserts + instruct: FLUX.2-klein-4B (Apache 2.0, ~8–13GB).
+# ControlNet depth+seg stays on SD 1.5 (no Klein ControlNet twin).
+# Unload between methods — Klein + dual CN do not share the L4.
 hardware:
   name: gpu_l4
   device: cuda
@@ -18,10 +18,14 @@ generation:
   family: sd15
   default_anomaly_method: inpaint
   base_model_id: runwayml/stable-diffusion-v1-5
-  inpaint_model_id: runwayml/stable-diffusion-inpainting
-  instruct_model_id: timbrooks/instruct-pix2pix
+  inpaint_model_id: black-forest-labs/FLUX.2-klein-4B
+  instruct_model_id: black-forest-labs/FLUX.2-klein-4B
+  # Distilled Klein: guidance ignored when >1; 4-step schedule.
+  inpaint_num_inference_steps: 4
+  inpaint_guidance_scale: 1.0
+  instruct_guidance_scale: 1.0
+  instruct_num_inference_steps: 4
   instruct_image_guidance: 2.2
-  instruct_guidance_scale: 6.5
   vae_id: null
   controlnet:
     depth: lllyasviel/sd-controlnet-depth
@@ -30,9 +34,10 @@ generation:
     depth: 0.75
     seg: 0.45
   controlnet_strength: 0.38
+  # Shared steps/guidance apply to SD ControlNet only; Klein uses knobs above.
   num_inference_steps: 40
   guidance_scale: 8.0
-  strength: 0.99
+  strength: 1.0
   max_side: 640
   padding_mask_crop: 128
 
