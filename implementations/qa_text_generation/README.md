@@ -49,7 +49,7 @@ Run in order. Each notebook is a tutorial; reusable logic lives in
 | [01_baseline_evaluation.ipynb](./01_baseline_evaluation.ipynb) | 1 | Build test set, run baseline, LLM-as-judge |
 | [02_synthetic_qa_generation.ipynb](./02_synthetic_qa_generation.ipynb) | 2 | Compare generation strategies (teacher LLM) |
 | [03_quality_filtering.ipynb](./03_quality_filtering.ipynb) | 3 | Heuristic filters + judge scoring |
-| [04_grounded_data_augmentation.ipynb](./04_grounded_data_augmentation.ipynb) | 4 | Grounded SFT corpus (500–1k) |
+| [04_grounded_data_augmentation.ipynb](./04_grounded_data_augmentation.ipynb) | 4 | Instruction back-translation SFT corpus |
 | [05_finetune_and_compare.ipynb](./05_finetune_and_compare.ipynb) | 5 | LoRA SFT + before/after comparison |
 
 ## Package

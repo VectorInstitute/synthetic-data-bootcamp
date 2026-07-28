@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import itertools
 import random
 import uuid
 from pathlib import Path
@@ -56,12 +55,35 @@ def effective_test_holdout(
 def effective_synthetic_target(
     train_paragraphs: list[Paragraph],
     requested: int = DEFAULT_SYNTHETIC_TARGET_SIZE,
+    *,
+    per_paragraph: int = 4,
+    one_per_paragraph: bool = False,
 ) -> int:
-    """Scale synthetic target to available train paragraphs for bootcamp demos."""
+    """Scale a synthetic corpus target to the available train paragraphs.
+
+    Use this for bootcamp demos where the full production target (e.g. 500–1k)
+    would overspend teacher tokens on a small document set.
+
+    Parameters
+    ----------
+    train_paragraphs:
+        Train-split paragraphs available for generation.
+    requested:
+        Desired corpus size (from config or the caller).
+    per_paragraph:
+        Soft cap on samples per paragraph when cycling the pool
+        (ignored when ``one_per_paragraph`` is True).
+    one_per_paragraph:
+        If True, never request more samples than there are paragraphs.
+        Prefer this for instruction back-translation, where repeat visits to
+        the same paragraph with the same prompt mostly yield duplicates that
+        heuristics then discard.
+    """
     if not train_paragraphs:
         return 0
-    per_para_cap = 4
-    demo_cap = max(12, len(train_paragraphs) * per_para_cap)
+    if one_per_paragraph:
+        return min(requested, len(train_paragraphs))
+    demo_cap = max(12, len(train_paragraphs) * per_paragraph)
     return min(requested, demo_cap)
 
 
@@ -135,7 +157,13 @@ def compare_generation_strategies(
     seed_example: QASample | None = None,
     few_shot_examples: list[QASample] | None = None,
 ) -> dict[str, QASample]:
-    """Generate one sample per strategy for side-by-side comparison."""
+    """Generate one sample per strategy for side-by-side comparison.
+
+    TODO(follow-up): move default seed / few-shot examples into a domain-specific
+    module (e.g. ``seed_examples.py``) so participants adapting a new domain know
+    where to edit prompts and exemplars. Tracked as a follow-up issue.
+    """
+    # Domain-specific finance seed used only when the caller does not supply one.
     seed = seed_example or QASample(
         id="seed",
         question="What is the grace period for new purchases?",
@@ -145,6 +173,8 @@ def compare_generation_strategies(
         context=paragraph.text,
         instruction="Answer using the policy text. Respond in one sentence.",
     )
+    # Without caller-provided few-shots this collapses to one-shot; supply a
+    # richer domain list in a follow-up (see TODO above).
     few_shot = few_shot_examples or [seed]
     return {
         "zero_shot": zero_shot_generate(teacher, paragraph),
@@ -190,13 +220,17 @@ def generate_raw_synthetic_corpus(
     samples: list[QASample] = []
 
     # For each paragraph, generate a sample using each strategy.
+    # Isolate failures so one bad LLM call does not discard prior samples.
     for paragraph in selected:
-        generated = compare_generation_strategies(
-            teacher,
-            paragraph,
-            seed_example=seed,
-            few_shot_examples=[seed],
-        )
+        try:
+            generated = compare_generation_strategies(
+                teacher,
+                paragraph,
+                seed_example=seed,
+                few_shot_examples=[seed],
+            )
+        except (KeyError, ValueError, TypeError, RuntimeError):
+            continue
         samples.extend(generated.values())
     return samples
 
@@ -238,51 +272,51 @@ def generate_grounded_training_corpus(
     min_overlap: float = 0.15,
     seed: int = 42,
 ) -> list[QASample]:
-    """
-    Generate grounded Q&A pairs until the target size is reached.
+    """Generate instruction-backtranslation Q&A until the target size is reached.
+
+    Each sample asks the teacher for a question answered by a train paragraph.
+    Defaults to at most one sample per paragraph so the pool is not cycled with
+    an identical prompt (which mostly produces duplicates).
 
     Parameters
     ----------
-    teacher : LLMClient
-        The language model client to use as the teacher for generation.
-    train_paragraphs : list of Paragraph
-        A list of Paragraph objects from which to generate Q&A pairs.
-    target_size : int, optional
-        The desired number of Q&A pairs to generate. If None, uses a default based on
-        the data.
-    min_overlap : float, default=0.15
-        Minimum required overlap score between the generated answer and the source
-        passage.
-    seed : int, default=42
-        Random seed for reproducibility.
-
-    Returns
-    -------
-    samples : list of QASample
-        List of generated QASample objects meeting the overlap and target size criteria.
+    teacher:
+        Teacher LLM client.
+    train_paragraphs:
+        Train-split paragraphs used as answer text.
+    target_size:
+        Desired number of samples. Defaults to one-per-paragraph demo scaling.
+    min_overlap:
+        Minimum lexical overlap between gold answer and passage.
+    seed:
+        RNG seed for paragraph shuffle.
     """
     if not train_paragraphs:
         return []
 
-    goal = target_size or effective_synthetic_target(train_paragraphs)
+    goal = target_size or effective_synthetic_target(
+        train_paragraphs,
+        one_per_paragraph=True,
+    )
+    # Avoid repeat visits that regenerate near-identical questions.
+    goal = min(goal, len(train_paragraphs))
+
     rng = random.Random(seed)
     pool = list(train_paragraphs)
     rng.shuffle(pool)
-    cycle = itertools.cycle(pool)
 
     samples: list[QASample] = []
-    attempts = 0
+    seen_paras: set[str] = set()
 
-    # the loop allows up to max_attempts = goal * 3, so it tolerates ~33% rejection
-    # from the overlap filter before giving up
-    max_attempts = goal * 3
-
-    while len(samples) < goal and attempts < max_attempts:
-        attempts += 1
-        paragraph = next(cycle)
+    for paragraph in pool:
+        if len(samples) >= goal:
+            break
+        if paragraph.para_id in seen_paras:
+            continue
+        seen_paras.add(paragraph.para_id)
         try:
             sample = generate_grounded_qa(teacher, paragraph)
-        except (KeyError, ValueError, TypeError):
+        except (KeyError, ValueError, TypeError, RuntimeError):
             continue
 
         overlap = grounding_overlap_score(sample.gold_answer, sample.context)

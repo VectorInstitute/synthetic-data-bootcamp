@@ -16,7 +16,15 @@ from aieng.syn_data.text.pipeline import (
     effective_synthetic_target,
     effective_test_holdout,
 )
-from aieng.syn_data.text.quality import apply_heuristic_filters
+from aieng.syn_data.text.prompts import (
+    instruction_backtranslation_prompt,
+    synthetic_qa_quality_prompt,
+)
+from aieng.syn_data.text.quality import (
+    apply_heuristic_filters,
+    detect_answer_leakage,
+    summarize_heuristic_rejections,
+)
 from aieng.syn_data.text.rag import grounding_overlap_score, retrieve_paragraphs
 from aieng.syn_data.text.schemas import (
     DocumentRole,
@@ -94,6 +102,49 @@ def test_apply_heuristic_filters_rejects_duplicates() -> None:
     kept, rejected = apply_heuristic_filters([sample, duplicate])
     assert len(kept) == 1
     assert rejected[0]["reason"] == "duplicate_question"
+    assert summarize_heuristic_rejections(rejected)["duplicate_question"] == 1
+
+
+def test_detect_answer_leakage() -> None:
+    leaked = QASample(
+        id="1",
+        question="What is APR? Annual Percentage Rate is the yearly interest.",
+        gold_answer="Annual Percentage Rate is the yearly interest.",
+        doc_id="doc",
+        para_id="doc::p0001",
+    )
+    clean = QASample(
+        id="2",
+        question="What is APR?",
+        gold_answer="Annual Percentage Rate is the yearly interest.",
+        doc_id="doc",
+        para_id="doc::p0002",
+    )
+    assert detect_answer_leakage(leaked) is True
+    assert detect_answer_leakage(clean) is False
+    _, rejected = apply_heuristic_filters([leaked])
+    assert rejected[0]["reason"] == "answer_in_question"
+
+
+def test_instruction_backtranslation_prompt_asks_for_question_only() -> None:
+    prompt = instruction_backtranslation_prompt("Grace period is 21 days.")
+    assert "Instruction back-translation" in prompt
+    assert "single key: question" in prompt
+
+
+def test_synthetic_qa_quality_prompt_uses_passage_not_model_answer() -> None:
+    sample = QASample(
+        id="1",
+        question="What is the grace period?",
+        gold_answer="21 days.",
+        doc_id="doc",
+        para_id="doc::p0001",
+        context="Your grace period for new purchases is 21 days.",
+    )
+    prompt = synthetic_qa_quality_prompt(sample)
+    assert "Model answer" not in prompt
+    assert "Passage:" in prompt
+    assert sample.context in prompt
 
 
 def test_retrieve_paragraphs_returns_best_match() -> None:
@@ -145,6 +196,7 @@ def test_effective_synthetic_target_scales_with_train_size() -> None:
         for index in range(5)
     ]
     assert effective_synthetic_target(train, requested=500) == 20
+    assert effective_synthetic_target(train, requested=500, one_per_paragraph=True) == 5
 
 
 def test_qa_samples_to_messages_format() -> None:
