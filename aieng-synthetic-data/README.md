@@ -16,7 +16,7 @@ question-answer generation and evaluation.
 | `generation` | Zero/one/few-shot and topic-controlled Q&A generation |
 | `quality` | Heuristic filtering (dedupe, leakage, length) |
 | `judge` | LLM-as-judge prompts and scoring |
-| `rag` | Retrieval and grounded Q&A generation |
+| `rag` | Instruction back-translation + optional lexical retrieval |
 | `evaluation` | Baseline inference and score summaries |
 | `pipeline` | Notebook orchestration helpers |
 | `paths` | Repository root detection for notebooks |

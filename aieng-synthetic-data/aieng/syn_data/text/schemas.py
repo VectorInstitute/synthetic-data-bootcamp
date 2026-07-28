@@ -37,7 +37,9 @@ class GenerationStrategy(StrEnum):
     ONE_SHOT = "one_shot"
     FEW_SHOT = "few_shot"
     TOPIC_CONTROLLED = "topic_controlled"
-    GROUNDED_RAG = "grounded_rag"
+    INSTRUCTION_BACKTRANSLATION = "instruction_backtranslation"
+    # Legacy name kept for older notebooks / saved metadata.
+    GROUNDED_RAG = "instruction_backtranslation"
 
 
 @dataclass

@@ -87,7 +87,10 @@ from aieng.syn_data.text.pipeline import (
     save_baseline_results,
     score_predictions,
 )
-from aieng.syn_data.text.quality import apply_heuristic_filters
+from aieng.syn_data.text.quality import (
+    apply_heuristic_filters,
+    summarize_heuristic_rejections,
+)
 from aieng.syn_data.text.rag import (
     generate_grounded_qa,
     grounding_overlap_score,
@@ -144,6 +147,7 @@ __all__ = [
     "TEST_SET_PATH",
     "PeftInferenceClient",
     "apply_heuristic_filters",
+    "summarize_heuristic_rejections",
     "assign_test_train_split",
     "build_paragraph_splits",
     "build_sft_dataset",

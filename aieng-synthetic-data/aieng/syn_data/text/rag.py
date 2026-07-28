@@ -1,4 +1,10 @@
-"""Retrieval-augmented synthetic Q&A generation."""
+"""Passage-grounded synthetic Q&A via instruction back-translation.
+
+Also includes a lightweight lexical retriever for optional RAG-style workflows.
+The notebook-04 training path uses instruction back-translation: given passage
+text *y*, generate a question/instruction *x* for which *y* is a good answer
+(https://openreview.net/forum?id=1oijHJBRsT).
+"""
 
 from __future__ import annotations
 
@@ -10,6 +16,10 @@ from collections import Counter
 from typing import Any
 
 from aieng.syn_data.text.clients import LLMClient
+from aieng.syn_data.text.prompts import (
+    INSTRUCTION_BACKTRANSLATION_SYSTEM,
+    instruction_backtranslation_prompt,
+)
 from aieng.syn_data.text.schemas import GenerationStrategy, Paragraph, QASample
 
 
@@ -66,7 +76,12 @@ def retrieve_paragraphs(
     *,
     top_k: int = 3,
 ) -> list[Paragraph]:
-    """Retrieve the most relevant train paragraphs for a query."""
+    """Retrieve the most relevant train paragraphs for a query.
+
+    Not used by the default notebook-04 back-translation path (each sample is
+    generated from a known paragraph). Kept for optional retrieval-augmented
+    variants.
+    """
     if not paragraphs:
         return []
     term_counters, idf = build_tfidf_index(paragraphs)
@@ -83,44 +98,53 @@ def retrieve_paragraphs(
 
 
 def grounded_qa_prompt(passage: str) -> str:
-    """Prompt template for passage-grounded Q&A generation."""
-    return (
-        "Write one instruction-following question and answer pair.\n"
-        "The answer must be fully supported by the passage.\n"
-        "Return JSON with keys: question, gold_answer, instruction.\n"
-        f"Passage:\n{passage}"
-    )
+    """Backward-compatible alias for :func:`instruction_backtranslation_prompt`."""
+    return instruction_backtranslation_prompt(passage)
 
 
 def generate_grounded_qa(
     client: LLMClient,
     paragraph: Paragraph,
 ) -> QASample:
-    """Generate a grounded Q&A pair from a single retrieved paragraph."""
-    prompt = grounded_qa_prompt(paragraph.text)
+    """Generate a Q&A pair via instruction back-translation.
+
+    The teacher proposes a question for which the paragraph text is a good
+    answer. The gold answer is the passage itself (classic back-translation).
+    """
+    prompt = instruction_backtranslation_prompt(paragraph.text)
     if hasattr(client, "complete_json"):
         payload: dict[str, Any] = client.complete_json(
             prompt,
-            system="You generate faithful policy Q&A from source text.",
+            system=INSTRUCTION_BACKTRANSLATION_SYSTEM,
         )
     else:
         raw = client.complete(
             prompt,
-            system="You generate faithful policy Q&A from source text.",
+            system=INSTRUCTION_BACKTRANSLATION_SYSTEM,
         )
         payload = json.loads(raw)
 
+    question = str(payload["question"]).strip()
+    # Prefer a model-provided short answer when present; otherwise use the
+    # passage as the response (standard instruction back-translation).
+    gold_answer = str(payload.get("gold_answer") or paragraph.text).strip()
+
     return QASample(
         id=str(uuid.uuid4()),
-        question=payload["question"],
-        gold_answer=payload["gold_answer"],
+        question=question,
+        gold_answer=gold_answer,
         doc_id=paragraph.doc_id,
         para_id=paragraph.para_id,
         context=paragraph.text,
         role=paragraph.role,
-        instruction=payload.get("instruction", ""),
+        # No separate "instruction" field: the question *is* the instruction.
+        instruction="",
         split=paragraph.split,
-        metadata={"generation_strategy": GenerationStrategy.GROUNDED_RAG.value},
+        metadata={
+            "generation_strategy": (
+                GenerationStrategy.INSTRUCTION_BACKTRANSLATION.value
+            ),
+        },
     )
 
 

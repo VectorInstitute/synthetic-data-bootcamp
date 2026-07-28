@@ -9,13 +9,18 @@ from typing import Any
 from json_repair import repair_json
 
 from aieng.syn_data.text.clients import LLMClient
+from aieng.syn_data.text.prompts import (
+    RESPONSE_JUDGE_SYSTEM_PROMPT,
+    SYNTHETIC_QA_JUDGE_SYSTEM_PROMPT,
+    absolute_response_judge_prompt,
+    pairwise_response_judge_prompt,
+    synthetic_qa_quality_prompt,
+)
 from aieng.syn_data.text.schemas import JudgeScore, QASample
 
 
-JUDGE_SYSTEM_PROMPT = (
-    "You are an expert evaluator for policy-document question answering. "
-    "Score model outputs fairly and conservatively."
-)
+# Backwards-compatible aliases for notebooks / older imports.
+JUDGE_SYSTEM_PROMPT = RESPONSE_JUDGE_SYSTEM_PROMPT
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -25,29 +30,8 @@ def build_absolute_judge_prompt(
     sample: QASample,
     model_answer: str,
 ) -> str:
-    """Build a prompt that scores one answer on four dimensions."""
-    return (
-        "Evaluate the model answer against the reference.\n"
-        "Return JSON with numeric scores from 1 to 5 for:\n"
-        "- correctness\n"
-        "- coherence\n"
-        "- instruction_following\n"
-        "- factual_plausibility\n"
-        "Also include a short 1-2 sentence max 'reasoning' string, no text outside JSON.\n\n"
-        f"Question:\n{sample.question}\n\n"
-        f"Reference answer:\n{sample.gold_answer}\n\n"
-        f"Model answer:\n{model_answer}\n"
-        "JSON format:"
-        """
-        {
-            "correctness": <number>,
-            "coherence": <number>,
-            "instruction_following": <number>,
-            "factual_plausibility": <number>,
-            "reasoning": "<reasoning>"
-        }
-        """
-    )
+    """Build a prompt that scores one model answer vs a reference gold answer."""
+    return absolute_response_judge_prompt(sample, model_answer)
 
 
 def build_pairwise_judge_prompt(
@@ -56,13 +40,12 @@ def build_pairwise_judge_prompt(
     reference_answer: str,
 ) -> str:
     """Build a prompt comparing two candidate answers."""
-    return (
-        "Compare answer A and answer B for the question below.\n"
-        'Return JSON: {"winner": "A"|"B"|"tie", "reasoning": "..."}\n\n'
-        f"Question:\n{sample.question}\n\n"
-        f"Answer A:\n{candidate_answer}\n\n"
-        f"Answer B:\n{reference_answer}\n"
-    )
+    return pairwise_response_judge_prompt(sample, candidate_answer, reference_answer)
+
+
+def build_synthetic_qa_judge_prompt(sample: QASample) -> str:
+    """Build a prompt that scores synthetic Q&A quality given source context."""
+    return synthetic_qa_quality_prompt(sample)
 
 
 def parse_judge_score(sample_id: str, payload: dict[str, Any]) -> JudgeScore:
@@ -89,32 +72,58 @@ def parse_judge_score(sample_id: str, payload: dict[str, Any]) -> JudgeScore:
     )
 
 
+def _complete_judge_json(
+    client: LLMClient,
+    prompt: str,
+    *,
+    system: str,
+    max_tokens: int = 256,
+) -> dict[str, Any]:
+    if hasattr(client, "complete_json"):
+        return client.complete_json(
+            prompt, system=system, temperature=0.0, max_tokens=max_tokens
+        )
+    raw = client.complete(
+        prompt, system=system, temperature=0.0, max_tokens=max_tokens
+    )
+    payload = json.loads(repair_json(raw))
+    if payload is None:
+        raise ValueError(f"Failed to parse model JSON: {raw}")
+    return payload
+
+
 def judge_response(
     client: LLMClient,
     sample: QASample,
     model_answer: str,
 ) -> JudgeScore:
-    """Score a model answer using absolute LLM-as-judge evaluation."""
+    """Score a model answer using absolute LLM-as-judge evaluation.
+
+    Use this after inference, when you have a model response to compare
+    against ``sample.gold_answer``.
+    """
     logger.info(
-        f"Scoring model answer for sample: {sample.id} with model answer: {model_answer}"
+        "Scoring model answer for sample: %s with model answer: %s",
+        sample.id,
+        model_answer,
     )
     prompt = build_absolute_judge_prompt(sample, model_answer)
-    max_tokens = 256
-    if hasattr(client, "complete_json"):
-        payload = client.complete_json(
-            prompt, system=JUDGE_SYSTEM_PROMPT, temperature=0.0, max_tokens=max_tokens
-        )
-    else:
-        raw = client.complete(
-            prompt, system=JUDGE_SYSTEM_PROMPT, temperature=0.0, max_tokens=max_tokens
-        )
-
-        payload = json.loads(repair_json(raw))
-        if payload is None:
-            raise ValueError(f"Failed to parse model JSON: {raw}")
+    payload = _complete_judge_json(
+        client, prompt, system=RESPONSE_JUDGE_SYSTEM_PROMPT
+    )
     return parse_judge_score(sample.id, payload)
 
 
 def judge_synthetic_sample(client: LLMClient, sample: QASample) -> JudgeScore:
-    """Score a synthetic training sample against its own gold answer."""
-    return judge_response(client, sample, sample.gold_answer)
+    """Score synthetic Q&A quality given the source passage (pre-inference).
+
+    Unlike :func:`judge_response`, this does **not** expect a model answer.
+    It judges whether the question and gold answer form a good training pair
+    relative to ``sample.context``.
+    """
+    logger.info("Scoring synthetic Q&A quality for sample: %s", sample.id)
+    prompt = build_synthetic_qa_judge_prompt(sample)
+    payload = _complete_judge_json(
+        client, prompt, system=SYNTHETIC_QA_JUDGE_SYSTEM_PROMPT
+    )
+    return parse_judge_score(sample.id, payload)
