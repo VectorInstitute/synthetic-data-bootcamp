@@ -33,7 +33,7 @@ generation:
   controlnet_scale:
     depth: 0.75
     seg: 0.45
-  controlnet_strength: 0.38
+  controlnet_strength: 0.50
   # Shared steps/guidance apply to SD ControlNet only; Klein uses knobs above.
   num_inference_steps: 40
   guidance_scale: 8.0

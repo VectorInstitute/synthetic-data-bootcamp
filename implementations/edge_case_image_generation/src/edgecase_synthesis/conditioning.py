@@ -247,6 +247,7 @@ def build_anomaly_edit_mask(
       - ``ellipse`` — cx, cy, rx, ry as fractions of width/height
       - ``rect`` — x0, y0, x1, y1 as fractions
       - ``full`` — whole image
+      - ``road_patch`` — place an ellipse on seg road support (lower band + near depth)
       - ``seg_intersection`` — ellipse/rect intersected with seg.edit_mask or class ids
     """
     cfg = dict(edit_mask_cfg or {})
@@ -262,6 +263,10 @@ def build_anomaly_edit_mask(
         y0 = float(cfg.get("y0", 0.25)) * height
         y1 = float(cfg.get("y1", 0.75)) * height
         mask = (xx >= x0) & (xx <= x1) & (yy >= y0) & (yy <= y1)
+    elif mode == "road_patch":
+        mask = _road_patch_ellipse(
+            segmentation, depth, width=width, height=height, cfg=cfg, xx=xx, yy=yy
+        )
     else:  # ellipse (default) and seg_intersection base
         cx = float(cfg.get("cx", 0.5)) * width
         cy = float(cfg.get("cy", 0.5)) * height
@@ -297,6 +302,59 @@ def build_anomaly_edit_mask(
     mask = _dilate(mask, int(cfg.get("dilate", 1)))
     weight = cv2.GaussianBlur(mask.astype(np.float32), (0, 0), max(blur_sigma, 0.5))
     return mask, np.clip(weight, 0.0, 1.0)
+
+
+def _road_patch_ellipse(
+    segmentation: SegmentationResult | None,
+    depth: DepthResult | None,
+    *,
+    width: int,
+    height: int,
+    cfg: dict,
+    xx: np.ndarray,
+    yy: np.ndarray,
+) -> np.ndarray:
+    """Anchor an ellipse on road pixels in the lower frame (dashcam-friendly)."""
+    support = _seg_support(segmentation, width, height, cfg)
+    y_min = float(cfg.get("y_min", 0.48))
+    y_max = float(cfg.get("y_max", 0.92))
+    x_min = float(cfg.get("x_min", 0.22))
+    x_max = float(cfg.get("x_max", 0.78))
+    band = (
+        (yy >= y_min * height)
+        & (yy <= y_max * height)
+        & (xx >= x_min * width)
+        & (xx <= x_max * width)
+    )
+    region = support & band
+    if not region.any():
+        region = support & (yy >= y_min * height) & (yy <= y_max * height)
+    if not region.any():
+        # No road seg — fall back to fixed prior ellipse.
+        cx = float(cfg.get("cx", 0.5)) * width
+        cy = float(cfg.get("cy", 0.75)) * height
+    else:
+        ys, xs = np.where(region)
+        prior_cx = float(cfg.get("cx", 0.5)) * width
+        prior_cy = float(cfg.get("cy", 0.75)) * height
+        dist = np.sqrt((xs.astype(np.float32) - prior_cx) ** 2 + (ys.astype(np.float32) - prior_cy) ** 2)
+        dist_n = dist / (float(dist.max()) + 1e-6)
+        if depth is not None:
+            d = depth.depth_map
+            if d.shape != (height, width):
+                d = cv2.resize(d, (width, height), interpolation=cv2.INTER_LINEAR)
+            near = d[ys, xs].astype(np.float32)
+            near_n = (near - near.min()) / (float(near.max() - near.min()) + 1e-6)
+            score = 0.65 * near_n + 0.35 * (1.0 - dist_n)
+        else:
+            score = 1.0 - dist_n
+        best = int(np.argmax(score))
+        cx = float(xs[best])
+        cy = float(ys[best])
+
+    rx = float(cfg.get("rx", 0.10)) * width
+    ry = float(cfg.get("ry", 0.12)) * height
+    return ((xx - cx) / max(rx, 1.0)) ** 2 + ((yy - cy) / max(ry, 1.0)) ** 2 <= 1.0
 
 
 def _seg_support(

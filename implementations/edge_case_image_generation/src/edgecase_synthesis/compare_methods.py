@@ -410,7 +410,12 @@ class MethodComparer:
                 seg_scale = self.controlnet_scale_seg
             # Local-object anomalies: keep denoise especially low (honest: CN won't insert a cone).
             local_ids = {"pothole", "traffic_cone", "ground_animal", "road_debris"}
-            strength_cap = 0.40 if anomaly_id in local_ids else 0.50
+            if anomaly_id == "fog":
+                strength_cap = 0.70
+            elif anomaly_id in local_ids:
+                strength_cap = 0.45
+            else:
+                strength_cap = 0.50
             return self._run_dual(
                 original,
                 depth,
@@ -805,8 +810,8 @@ def _dual_fidelity_prompts(
     dual_neg = f"{negative.strip()}, {anti_restyle}" if negative.strip() else anti_restyle
     if anomaly_id == "fog":
         dual_prompt = (
-            "the exact same street photo with only light fog and haze added, "
-            "same cars same road same buildings, soft distant mist, photorealistic"
+            "the exact same dashcam street photo with thick realistic fog and haze added, "
+            "distant cars and buildings softened by mist, same road same vehicles, photorealistic"
         )
     return dual_prompt, dual_neg
 
@@ -815,24 +820,24 @@ def _to_edit_instruction(prompt: str, anomaly_id: str) -> str:
     """Turn a descriptive generation prompt into an instruction-edit request."""
     mapping = {
         "road_debris": (
-            "Add a large brown cardboard box sitting on the road asphalt only, "
-            "do not recolor the car or buildings"
+            "Add one large brown cardboard box sitting on the foreground road asphalt, "
+            "keep every car building and the sky unchanged"
         ),
         "pothole": (
             "Add a realistic pothole in the foreground road asphalt only, "
             "keep every car building and the sky unchanged"
         ),
         "traffic_cone": (
-            "Add one small orange traffic cone with a white stripe on the road, "
-            "do not recolor the car or buildings"
+            "Add one small orange traffic cone with a white stripe standing on the road "
+            "in the foreground, do not recolor cars or buildings"
         ),
         "ground_animal": (
             "Add a realistic animal standing on the road ahead, "
             "keep the background and camera view unchanged"
         ),
         "fog": (
-            "Add light realistic fog and haze in the distance only, "
-            "keep the cars and road clearly visible and unchanged in color"
+            "Add realistic fog and haze across the scene so distant objects are softer, "
+            "keep the cars and road layout unchanged"
         ),
     }
     if anomaly_id in mapping:

@@ -4,11 +4,11 @@ display_name: Fog / haze over the scene
 method: auto
 # Global atmosphere — local inpaint is the honest fail case in Notebook 1.5.
 prompt: >-
-  the same photograph with light realistic fog and haze, soft mist in the distance,
-  slightly reduced visibility, overcast damp air, photorealistic
+  the same photograph with realistic fog and haze throughout the scene,
+  soft mist reducing distant visibility, damp overcast air, photorealistic
 negative_prompt: >-
   cartoon, sticker, watermark, text, logo, white paint blob, different cars,
-  new buildings, night, heavy smoke, whiteout
+  new buildings, night, heavy smoke, whiteout, circular smudge
 edit_mask:
   # Intentionally local: inpaint only "fogs" a patch — that is the lesson.
   mode: ellipse
@@ -21,8 +21,8 @@ edit_mask:
   composite_blur: 3.0
   dilate: 2
 strength: 0.75
-# Mild denoise so ControlNet / instruct keep the same cars and layout.
-controlnet_strength: 0.38
+# High enough denoise that fog actually appears under dual ControlNet.
+controlnet_strength: 0.58
 guidance_scale: 6.0
 annotation_classes:
   - fog
