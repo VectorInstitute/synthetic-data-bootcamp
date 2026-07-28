@@ -437,9 +437,14 @@ class MethodComparer:
             kwargs.pop("padding_mask_crop", None)
             generated = self.inpaint_pipe(**kwargs).images[0]
         generated = _ensure_same_size(generated, original)
-        blur = float(edit_mask_cfg.get("composite_blur", 2.0))
-        # Soft weight (not hard binary) reduces visible mask edges honestly.
-        output = _composite(original, generated, edit_weight, blur_sigma=blur)
+        # Dedicated inpaint checkpoints already keep pixels outside the mask.
+        # Soft re-compositing was washing cones/debris into faint smudges.
+        recomposite = bool(edit_mask_cfg.get("recomposite", False))
+        if recomposite:
+            blur = float(edit_mask_cfg.get("composite_blur", 1.0))
+            output = _composite(original, generated, edit_weight, blur_sigma=blur)
+        else:
+            output = generated
         return GenerationResult(
             image=output,
             prompt=prompt,

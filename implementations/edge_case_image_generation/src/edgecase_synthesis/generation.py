@@ -305,8 +305,12 @@ class AnomalyEditor:
             kwargs.pop("padding_mask_crop", None)
             generated = self.inpaint_pipe(**kwargs).images[0]
         generated = _ensure_same_size(generated, original)
-        blur = float(edit_mask_cfg.get("composite_blur", 2.0))
-        output = _composite(original, generated, edit_weight, blur_sigma=blur)
+        recomposite = bool(edit_mask_cfg.get("recomposite", False))
+        if recomposite:
+            blur = float(edit_mask_cfg.get("composite_blur", 1.0))
+            output = _composite(original, generated, edit_weight, blur_sigma=blur)
+        else:
+            output = generated
         return GenerationResult(
             image=output,
             prompt=prompt,

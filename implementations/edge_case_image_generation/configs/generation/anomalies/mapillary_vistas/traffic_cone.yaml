@@ -3,24 +3,25 @@ dataset: mapillary_vistas
 display_name: Traffic cone on road
 method: auto
 prompt: >-
-  a weathered orange traffic cone with a faded white reflective stripe,
-  standing on asphalt, matte dirty plastic, soft contact shadow on the road,
-  photorealistic dashcam photo, matching sunlight and perspective
+  orange traffic cone with white stripe standing on the asphalt road,
+  realistic plastic cone, natural shadow, photorealistic photo
 negative_prompt: >-
-  cartoon, toy, sticker, plastic sheen, glowing, CGI, floating, blurry,
-  watermark, text, logo, orange car, recolor, perfect studio product shot
+  cartoon, toy, sticker, CGI, floating, blurry, watermark, text, logo,
+  orange car, recolor, melted, deformed
 edit_mask:
   mode: ellipse
-  cx: 0.48
-  cy: 0.78
-  rx: 0.08
-  ry: 0.16
+  cx: 0.50
+  cy: 0.72
+  # Generous hole so the cone has room (tiny masks → smudges).
+  rx: 0.11
+  ry: 0.20
   prefer_near: false
-  blur_sigma: 3.0
-  composite_blur: 2.5
-  dilate: 2
-strength: 0.90
-guidance_scale: 7.5
+  blur_sigma: 1.5
+  dilate: 3
+  recomposite: false
+strength: 0.99
+guidance_scale: 9.0
+num_inference_steps: 40
 controlnet_strength: 0.35
 annotation_classes:
   - traffic cone
