@@ -40,12 +40,6 @@ data "coder_parameter" "instance_type" {
     value = "g2-standard-8"
     icon  = "/emojis/26a1.png"
   }
-  # TODO: Do we need this 96GB option?
-  option {
-    name  = "GPU — g2-standard-24 (24 vCPU, 96 GB RAM, 2× s NVIDIA L4)"
-    value = "g2-standard-24"
-    icon  = "/emojis/26a1.png"
-  }
 }
 
 locals {
@@ -100,6 +94,9 @@ resource "coder_agent" "main" {
   auth = "google-instance-identity"
   arch = "amd64"
   os   = "linux"
+
+  # stop after 2 hours of inactivity
+  inactivity_timeout = 120
 
   display_apps {
     vscode = false
@@ -203,17 +200,13 @@ resource "coder_agent" "main" {
     # Wait a moment to ensure all installations are finalized
     sleep 2
 
-    # Start Ollama
-    echo "Starting Ollama..."
-    bash "/home/${local.username}/${local.repo_name}/scripts/start-ollama.sh" || echo "Ollama startup failed, continuing..."
-
     # Run automatic onboarding
     echo "Running automatic onboarding..."
     if command -v onboard &> /dev/null; then
       onboard \
         --bootcamp-name "$BOOTCAMP_NAME" \
         --output-dir "/home/${local.username}/${local.repo_name}" \
-        --test-script "/home/${local.username}/${local.repo_name}/aieng-llm-interp/tests/test_integration.py" \
+        --test-script "/home/${local.username}/${local.repo_name}/aieng-synthetic-data/tests/test_integration.py" \
         --env-example "/home/${local.username}/${local.repo_name}/.env.example" \
         --test-marker "integration_test" || echo "Onboarding failed, continuing..."
     else
@@ -255,6 +248,17 @@ ZSHRC
 
     echo "Startup script ran successfully!"
 
+  EOT
+
+  # Max seconds Coder waits for the shutdown script before killing the agent
+  shutdown_script_timeout = 30
+  # Runs when the workspace stops; cleans up long-lived IDE/runtime processes
+  shutdown_script         = <<-EOT
+    #!/usr/bin/env bash
+    echo "Shutting down agent gracefully..."
+    pkill -f vscode-server || true  # stop VS Code remote server (|| true = ignore if not running)
+    pkill -f cursor-server || true  # stop Cursor remote server
+    pkill -f node || true           # stop leftover Node processes from those servers
   EOT
 
   env = {
