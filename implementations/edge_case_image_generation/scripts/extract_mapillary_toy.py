@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
 """Extract a small Mapillary Vistas toy subset via authenticated zip Range GETs.
 
-Does NOT download the full ~29GB archive. Pulls:
-  - ZIP central-directory index via EOCD/ZIP64 Range GETs (cached under data/mapillary_vistas/)
-  - validation panoptic JSON (~3MB compressed) to find rare-class frames
-  - ~30 RGB images + matching polygon bboxes for bootcamp seeds
-
-Targets: pothole, traffic_cone, ground_animal (+ generic street scenes).
+Does NOT download the full ~29GB archive. Paths, label map, and counts come from
+configs/datasets/mapillary_vistas/data.yaml (via load_config).
 Requires: `huggingface-cli login` and access to candylion/mapillary-vistas-v2.
 """
 from __future__ import annotations
 
 import json
 import struct
+import sys
 import zlib
 from collections import Counter
 from collections.abc import Callable
@@ -23,25 +20,24 @@ import urllib.request
 from huggingface_hub import get_token, hf_hub_url
 from PIL import Image
 
-REPO = "candylion/mapillary-vistas-v2"
-FNAME = "mapillary-vistas-dataset_public_v2.0.zip"
-ROOT = Path(__file__).resolve().parents[1] / "data" / "mapillary_vistas"
-SAMPLES = Path(__file__).resolve().parents[1] / "data" / "samples"
-INDEX = ROOT / "_zip_index.jsonl"
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
 
-TARGET = {
-    "object--pothole": "pothole",
-    "object--traffic-cone": "traffic_cone",
-    "animal--ground-animal": "ground_animal",
-}
-READABLE = {
-    "object--pothole": "Pothole",
-    "object--traffic-cone": "Traffic Cone",
-    "animal--ground-animal": "Ground Animal",
-}
-MAX_PER = 6
-MAX_GENERIC = 10
-THUMB = 1280
+from edgecase_synthesis.config import load_config  # noqa: E402
+
+_CFG = load_config(overrides=["dataset_name=mapillary_vistas"], start=ROOT)
+_DATA = _CFG.data
+REPO = str(_DATA.get("hf_repo") or "candylion/mapillary-vistas-v2")
+FNAME = str(_DATA.get("hf_zip_name") or "mapillary-vistas-dataset_public_v2.0.zip")
+CACHE = Path(str(_CFG.paths.dataset_cache_dir))
+SAMPLES = Path(str(_CFG.paths.samples_dir))
+INDEX = CACHE / "_zip_index.jsonl"
+
+TARGET = {str(k): str(v) for k, v in dict(_DATA.get("extract_label_map") or {}).items()}
+READABLE = {k: v.replace("_", " ").title() for k, v in TARGET.items()}
+MAX_PER = int(_DATA.get("extract_max_per_class") or 6)
+MAX_GENERIC = int(_DATA.get("extract_max_generic") or 10)
+THUMB = int(_DATA.get("extract_thumb_max_side") or 1280)
 
 HttpRange = Callable[[int, int | None], bytes]
 
@@ -65,7 +61,6 @@ def _zip_size(url: str, token: str) -> int:
         size = int(r.headers.get("Content-Length") or 0)
     if size:
         return size
-    # Some CDNs omit Content-Length on HEAD; probe with a 1-byte range.
     req = urllib.request.Request(url, headers={**auth, "Range": "bytes=0-0"})
     with urllib.request.urlopen(req, timeout=60) as r:
         cr = r.headers.get("Content-Range") or ""
@@ -76,7 +71,7 @@ def _zip_size(url: str, token: str) -> int:
 
 def build_zip_index(http_range: HttpRange, *, url: str, token: str, dest: Path = INDEX) -> Path:
     """Parse ZIP64 EOCD + central directory via Range GETs; cache a slim jsonl index."""
-    ROOT.mkdir(parents=True, exist_ok=True)
+    CACHE.mkdir(parents=True, exist_ok=True)
     size = _zip_size(url, token)
     print(f"remote zip size={size / 1e9:.2f} GB — fetching EOCD tail…", flush=True)
 
@@ -371,7 +366,7 @@ def main() -> None:
             indent=2,
         )
     )
-    (ROOT / "toy_meta.json").write_text(
+    (CACHE / "toy_meta.json").write_text(
         json.dumps({"rows": meta, "targets": TARGET}, indent=2)
     )
     print("DONE", len(meta), "images ->", SAMPLES, flush=True)

@@ -8,42 +8,38 @@ Part of the [Vector Institute synthetic-data-bootcamp](https://github.com/Vector
 
 `real image → depth → segmentation → anomaly edit → open-vocab annotation → VLM judge`
 
-Model IDs, datasets, and hardware choices live in **Hydra YAML** under `configs/`.
+Configuration is **dataset-first** under `configs/datasets/<name>/`, with shared defaults in `configs/default/` and hardware profiles in `configs/hardware/`.
 
 ## Default dataset: Mapillary Vistas v2 (toy subset)
 
-Open **street-level** scenes ([Mapillary Vistas](https://www.mapillary.com/dataset/vistas), CC BY-NC-SA) with a long-tail label set (124 classes in v2).
+Open **street-level** scenes ([Mapillary Vistas](https://www.mapillary.com/dataset/vistas), CC BY-NC-SA).
 
-Workshop rare classes (synthetic targets):
+Workshop anomalies (see `configs/datasets/mapillary_vistas/dataset.yaml`):
 
-- **road_debris** (cardboard box on the lane — high-contrast local insert)
+- **road_debris** (cardboard box on the lane)
 - **traffic_cone**
 - **fog** (global; shows why local inpaint alone is not enough)
 
-`pothole` YAML remains available, but asphalt holes are too low-contrast for a reliable live demo.
-
-We do **not** download the full ~29 GB HF zip. A small validation toy set (~28 images + boxes) lives under `data/samples/`, built with:
+We do **not** download the full ~29 GB HF zip. Toy images land in `data/mapillary_vistas/samples/`:
 
 ```bash
 # requires: huggingface-cli login  (and accept the gated dataset terms once in the browser)
 uv run python scripts/extract_mapillary_toy.py
 ```
 
-Source mirror: [candylion/mapillary-vistas-v2](https://huggingface.co/datasets/candylion/mapillary-vistas-v2).  
-Config: `configs/data/source/mapillary_vistas.yaml`.
+Other dataset packages: `rdd2022`, `nordland_hf`. Copy `configs/datasets/_template/` to add your own.
 
-Other sources: `rdd2022`, `local`, `urls`, `nordland_hf`.
+## Hardware + dataset selection
 
-## Hardware
+In `configs/config.yaml` (or notebook overrides):
 
 ```python
-load_config(overrides=["hardware=cpu"])       # SD 1.5 inpaint/CN + InstructPix2Pix + SegFormer-B2
-load_config(overrides=["hardware=gpu_l4"])    # FLUX.2-klein-4B inpaint+instruct; SD 1.5 ControlNet; larger depth/judge
+load_config(overrides=["dataset_name=mapillary_vistas", "hardware=cpu"])
+load_config(overrides=["dataset_name=mapillary_vistas", "hardware=gpu_l4"])
 ```
 
-**L4 trusted local inserts:** [FLUX.2-klein-4B](https://huggingface.co/black-forest-labs/FLUX.2-klein-4B) masked inpaint (`Flux2KleinInpaintPipeline`).  
-**L4 instruct:** same Klein weights via `Flux2KleinPipeline`.  
-**ControlNet:** still SD 1.5 depth+seg (no Klein ControlNet twin). CPU stays on the SD 1.5 / InstructPix2Pix stack.
+**L4:** FLUX.2-klein-4B for inpaint + instruct; SD 1.5 ControlNet depth+seg.  
+**CPU:** SD 1.5 inpaint / InstructPix2Pix (shared `configs/default/generation.yaml`).
 
 ## Setup
 
@@ -51,7 +47,7 @@ load_config(overrides=["hardware=gpu_l4"])    # FLUX.2-klein-4B inpaint+instruct
 cd implementations/edge_case_image_generation
 uv sync
 huggingface-cli login   # once
-uv run python scripts/extract_mapillary_toy.py   # if data/samples/ is empty
+uv run python scripts/extract_mapillary_toy.py
 ```
 
 ## Notebooks

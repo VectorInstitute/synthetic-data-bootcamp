@@ -172,15 +172,16 @@ class AnomalyEditor:
         generation_cfg: Any,
         anomaly_cfg: Any,
     ) -> GenerationResult:
-        from edgecase_synthesis.config import merge_generation_anomaly
+        from edgecase_synthesis.config import merge_generation_anomaly, resolve_method_prompt
 
         merged = merge_generation_anomaly(generation_cfg, anomaly_cfg)
         anom = merged.get("anomaly", anomaly_cfg)
         method = _resolve_method(anom, merged)
+        merged = merge_generation_anomaly(generation_cfg, anomaly_cfg, method=method)
+        anom = merged.get("anomaly", anomaly_cfg)
         max_side = int(merged.get("max_side", 512))
         seed = int(merged.get("seed", 42))
-        prompt = str(merged.get("prompt", ""))
-        negative = str(merged.get("negative_prompt", ""))
+        prompt, negative = resolve_method_prompt(merged, method)
         anomaly_id = str(anom.get("id", ""))
         edit_mask_cfg = dict(anom.get("edit_mask", {"mode": "ellipse"}))
         family = str(merged.get("family", self.family)).lower()

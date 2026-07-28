@@ -1,0 +1,32 @@
+# Data source + sampling (merged onto cfg.data).
+name: mapillary_vistas
+kind: local
+max_images: 8
+# Filenames written by scripts/extract_mapillary_toy.py
+stem_prefixes:
+  - scene_
+  - road_debris_
+  - traffic_cone_
+  - fog_
+  - pothole_
+  - ground_animal_
+# Rare-class extract targets (Mapillary panoptic labels → stem prefix).
+extract_label_map:
+  object--traffic-cone: traffic_cone
+  object--pothole: pothole
+  animal--ground-animal: ground_animal
+extract_max_per_class: 6
+extract_max_generic: 10
+extract_thumb_max_side: 1280
+prefer_classes:
+  - traffic_cone
+  - pothole
+  - ground_animal
+classes:
+  - traffic_cone
+  - pothole
+  - ground_animal
+  - road_debris
+  - fog
+hf_repo: candylion/mapillary-vistas-v2
+hf_zip_name: mapillary-vistas-dataset_public_v2.0.zip

@@ -1,0 +1,32 @@
+id: alligator_crack
+display_name: Alligator / crocodile cracking
+annotation_classes:
+  - road crack
+  - alligator crack
+  - road
+edit_mask:
+  mode: road_patch
+  cx: 0.50
+  cy: 0.70
+  rx: 0.20
+  ry: 0.12
+  y_min: 0.48
+  y_max: 0.90
+  prefer_near: true
+  blur_sigma: 1.5
+  dilate: 2
+prompt: >-
+  severe alligator cracking on asphalt, interconnected fatigue cracks,
+  photorealistic road surface damage
+negative_prompt: >-
+  blurry, cartoon, painted lines, watermark, text, logo
+strength: 0.92
+methods:
+  inpaint:
+    prompt: null
+  controlnet_dual:
+    prompt: null
+  instruct:
+    prompt: >-
+      Add severe alligator cracking on the foreground asphalt only,
+      keep cars and background unchanged

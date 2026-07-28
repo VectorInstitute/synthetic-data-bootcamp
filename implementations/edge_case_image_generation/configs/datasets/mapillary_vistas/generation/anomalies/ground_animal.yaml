@@ -1,0 +1,32 @@
+id: ground_animal
+display_name: Ground animal on road (optional)
+annotation_classes:
+  - animal
+  - dog
+  - deer
+  - road
+edit_mask:
+  mode: road_patch
+  cx: 0.50
+  cy: 0.72
+  rx: 0.10
+  ry: 0.14
+  y_min: 0.50
+  y_max: 0.90
+  prefer_near: true
+  blur_sigma: 1.5
+  dilate: 2
+prompt: >-
+  a realistic animal standing on the road ahead, natural pose, photorealistic
+negative_prompt: >-
+  cartoon, sticker, CGI, floating, watermark, text, logo
+strength: 0.95
+methods:
+  inpaint:
+    prompt: null
+  controlnet_dual:
+    prompt: null
+  instruct:
+    prompt: >-
+      Add a realistic animal standing on the road ahead,
+      keep the background and camera view unchanged

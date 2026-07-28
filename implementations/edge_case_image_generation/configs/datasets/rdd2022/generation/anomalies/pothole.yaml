@@ -1,0 +1,32 @@
+id: pothole
+display_name: Pothole on road
+annotation_classes:
+  - pothole
+  - road
+edit_mask:
+  mode: road_patch
+  cx: 0.50
+  cy: 0.72
+  rx: 0.16
+  ry: 0.10
+  y_min: 0.50
+  y_max: 0.92
+  prefer_near: true
+  blur_sigma: 1.2
+  dilate: 2
+  recomposite: false
+prompt: >-
+  clear deep pothole in the asphalt lane, broken pavement with rough edges,
+  street-level view, photorealistic
+negative_prompt: >-
+  blurry, cartoon, painted, watermark, text, logo, indoor
+strength: 0.95
+methods:
+  inpaint:
+    prompt: null
+  controlnet_dual:
+    prompt: null
+  instruct:
+    prompt: >-
+      Add a realistic deep pothole in the foreground road asphalt only,
+      keep the rest of the photo unchanged

@@ -1,8 +1,4 @@
-"""Thin single-image synthesis loop for Notebook 1.
-
-Notebook 1.5 owns method *comparison*. Here the learner picks one method per
-anomaly (e.g. ``traffic_cone → inpaint``) and runs load → edit → annotate → judge.
-"""
+"""Thin single-image synthesis loop for Notebook 1."""
 
 from __future__ import annotations
 
@@ -18,16 +14,6 @@ from edgecase_synthesis.config import load_anomaly, merge_generation_anomaly
 from edgecase_synthesis.generation import GenerationResult
 
 
-# Sensible defaults after Notebook 1.5 — override in the notebook.
-DEFAULT_METHOD_BY_ANOMALY: dict[str, str] = {
-    "road_debris": "inpaint",
-    "traffic_cone": "inpaint",
-    "fog": "instruct",
-    "pothole": "inpaint",
-    "ground_animal": "inpaint",
-}
-
-
 @dataclass
 class SynthesisResult:
     """One anomaly edit with the method that produced it."""
@@ -38,23 +24,38 @@ class SynthesisResult:
 
 
 def validate_method(method: str) -> str:
-    key = str(method).lower().strip()
-    if key not in COMPARE_METHODS:
+    method = str(method).lower()
+    if method not in COMPARE_METHODS:
         raise ValueError(f"Unknown method {method!r}. Choose from {COMPARE_METHODS}")
-    return key
+    return method
+
+
+def default_method_map(cfg: Any) -> dict[str, str]:
+    """Read method_by_anomaly from the active dataset package."""
+    dataset = cfg.get("dataset") if hasattr(cfg, "get") else None
+    raw = {}
+    if dataset is not None:
+        raw = OmegaConf.to_container(dataset.get("method_by_anomaly") or {}, resolve=True) or {}
+    return {str(k): str(v) for k, v in dict(raw).items()}
 
 
 def resolve_method_map(
     method_by_anomaly: dict[str, str] | None,
     workshop_anomalies: list[str],
+    *,
+    cfg: Any = None,
 ) -> dict[str, str]:
-    """Fill missing anomalies from DEFAULT_METHOD_BY_ANOMALY."""
+    """Fill missing anomalies from dataset.method_by_anomaly (or inpaint)."""
+    defaults = default_method_map(cfg) if cfg is not None else {}
+    fallback = "inpaint"
+    if cfg is not None:
+        fallback = str(cfg.generation.get("default_anomaly_method") or fallback)
     out: dict[str, str] = {}
+    provided = method_by_anomaly or {}
     for anomaly_id in workshop_anomalies:
-        raw = (method_by_anomaly or {}).get(
-            anomaly_id, DEFAULT_METHOD_BY_ANOMALY.get(anomaly_id, "inpaint")
+        out[anomaly_id] = validate_method(
+            provided.get(anomaly_id, defaults.get(anomaly_id, fallback))
         )
-        out[anomaly_id] = validate_method(raw)
     return out
 
 
@@ -64,23 +65,14 @@ def synthesize_one(
     anomaly_id: str,
     method: str,
     cfg: Any,
-    comparer: MethodComparer,
     depth: DepthResult,
     segmentation: SegmentationResult,
+    comparer: MethodComparer,
     project_root: Any = None,
-    seed_offset: int = 0,
 ) -> SynthesisResult:
-    """Run one anomaly edit with the chosen method (from Notebook 1.5)."""
     method = validate_method(method)
-    dataset = str(cfg.generation.anomaly_dataset)
+    dataset = str(cfg.dataset_name)
     anomaly_cfg = load_anomaly(dataset, anomaly_id, start=project_root)
-
-    if seed_offset:
-        anomaly_cfg = OmegaConf.create(OmegaConf.to_container(anomaly_cfg, resolve=True))
-        OmegaConf.set_struct(anomaly_cfg, False)
-        base_seed = int(cfg.generation.get("seed", 42))
-        anomaly_cfg.seed = base_seed + int(seed_offset)
-
     generated = comparer.run_method(
         method,
         image,
@@ -92,12 +84,8 @@ def synthesize_one(
     return SynthesisResult(anomaly_id=anomaly_id, method=method, generated=generated)
 
 
-def method_blurb(method: str) -> str:
-    return METHOD_SPECS[validate_method(method)].summary
-
-
-def merged_prompt(cfg: Any, anomaly_id: str, *, project_root: Any = None) -> str:
-    dataset = str(cfg.generation.anomaly_dataset)
+def merged_prompt(cfg: Any, anomaly_id: str, *, method: str | None = None, project_root: Any = None) -> str:
+    dataset = str(cfg.dataset_name)
     anomaly_cfg = load_anomaly(dataset, anomaly_id, start=project_root)
-    merged = merge_generation_anomaly(cfg.generation, anomaly_cfg)
+    merged = merge_generation_anomaly(cfg.generation, anomaly_cfg, method=method)
     return str(merged.get("prompt", ""))

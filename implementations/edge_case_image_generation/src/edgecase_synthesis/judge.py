@@ -43,7 +43,7 @@ class JudgeResult:
         return asdict(self)
 
 
-_JUDGE_SCHEMA_HINT = """
+_DEFAULT_SCHEMA_HINT = """
 Respond with ONLY a single JSON object (no markdown fences) using this schema:
 {
   "prompt_faithfulness": <number 0-10>,
@@ -53,14 +53,6 @@ Respond with ONLY a single JSON object (no markdown fences) using this schema:
   "overall": <number 0-10>,
   "rationale": "<one short sentence>"
 }
-Scoring guide:
-- prompt_faithfulness: does the image show what the prompt asked for?
-- physical_plausibility: would this object/condition look real in this scene
-  (perspective, lighting, contact with the ground/road)?
-- annotation_correctness: if labels/masks are described, do they match the image?
-  If none are provided, score 5.
-- edge_case_present: true only if the rare condition is clearly visible.
-- overall: holistic quality for training data (not an average of bad scores).
 """.strip()
 
 
@@ -79,6 +71,7 @@ class VLMJudge:
         max_new_tokens: int = 320,
         min_pixels: int = 256 * 28 * 28,
         max_pixels: int = 512 * 28 * 28,
+        schema_hint: str | None = None,
     ) -> None:
         self.model_id = model_id
         self.backend = str(backend).lower()
@@ -89,6 +82,7 @@ class VLMJudge:
         self.max_new_tokens = int(max_new_tokens)
         self.min_pixels = int(min_pixels)
         self.max_pixels = int(max_pixels)
+        self.schema_hint = (schema_hint or _DEFAULT_SCHEMA_HINT).strip()
         self._model = None
         self._processor = None
         self._clip = None
@@ -209,7 +203,7 @@ class VLMJudge:
             f"Target rare condition: {rare}\n"
             f"Generation prompt:\n{prompt}\n\n"
             f"Auto-annotation summary:\n{annotations_summary}\n\n"
-            f"{_JUDGE_SCHEMA_HINT}"
+            f"{self.schema_hint}"
         )
         messages = [
             {
@@ -339,6 +333,7 @@ class VLMJudge:
             max_new_tokens=int(judge.get("max_new_tokens", 320)),
             min_pixels=int(judge.get("min_pixels", 256 * 28 * 28)),
             max_pixels=int(judge.get("max_pixels", 512 * 28 * 28)),
+            schema_hint=judge.get("schema_hint"),
         )
 
 

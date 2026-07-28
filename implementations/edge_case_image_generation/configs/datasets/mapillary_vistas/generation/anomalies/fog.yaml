@@ -1,0 +1,41 @@
+id: fog
+display_name: Fog / haze over the scene
+annotation_classes:
+  - fog
+  - mist
+  - road
+# Local ellipse is the honest inpaint fail case (global weather ≠ a hole).
+edit_mask:
+  mode: ellipse
+  cx: 0.50
+  cy: 0.40
+  rx: 0.32
+  ry: 0.26
+  prefer_near: false
+  blur_sigma: 4.0
+  composite_blur: 3.0
+  dilate: 2
+prompt: >-
+  the same photograph with realistic fog and haze throughout the scene,
+  soft mist reducing distant visibility, damp overcast air, photorealistic
+negative_prompt: >-
+  cartoon, sticker, watermark, text, logo, white paint blob, different cars,
+  new buildings, night, heavy smoke, whiteout, circular smudge
+strength: 0.75
+guidance_scale: 6.0
+controlnet_strength: 0.58
+methods:
+  inpaint:
+    prompt: null
+    negative_prompt: null
+    strength: null
+  controlnet_dual:
+    prompt: >-
+      the exact same dashcam street photo with thick realistic fog and haze added,
+      distant cars and buildings softened by mist, same road same vehicles, photorealistic
+    negative_prompt: null
+    strength: null
+  instruct:
+    prompt: >-
+      Add realistic fog and haze across the scene so distant objects are softer,
+      keep the cars and road layout unchanged

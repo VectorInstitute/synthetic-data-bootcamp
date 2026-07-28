@@ -325,18 +325,17 @@ class MethodComparer:
         generation_cfg: Any,
         anomaly_cfg: Any,
     ) -> GenerationResult:
-        from edgecase_synthesis.config import merge_generation_anomaly
+        from edgecase_synthesis.config import merge_generation_anomaly, resolve_method_prompt
 
         method = str(method).lower()
         if method not in COMPARE_METHODS:
             raise ValueError(f"Unknown compare method {method!r}. Choose from {COMPARE_METHODS}")
 
-        merged = merge_generation_anomaly(generation_cfg, anomaly_cfg)
+        merged = merge_generation_anomaly(generation_cfg, anomaly_cfg, method=method)
         anom = merged.get("anomaly", anomaly_cfg)
         max_side = int(merged.get("max_side", 512))
         seed = int(merged.get("seed", 42))
-        prompt = str(merged.get("prompt", ""))
-        negative = str(merged.get("negative_prompt", ""))
+        prompt, negative = resolve_method_prompt(merged, method)
         anomaly_id = str(anom.get("id", ""))
         family = str(merged.get("family", self.family)).lower()
         original = _fit_for_diffusion(image.convert("RGB"), max_side=max_side, family=family)
@@ -365,23 +364,10 @@ class MethodComparer:
 
         if method == "inpaint":
             if self.inpaint_is_klein:
-                steps = int(
-                    merged.get(
-                        "inpaint_num_inference_steps",
-                        self.inpaint_num_inference_steps
-                        if self.inpaint_num_inference_steps is not None
-                        else 4,
-                    )
-                )
-                guidance = float(
-                    merged.get(
-                        "inpaint_guidance_scale",
-                        self.inpaint_guidance_scale
-                        if self.inpaint_guidance_scale is not None
-                        else 1.0,
-                    )
-                )
-                # Distilled Klein fills the hole best at full strength.
+                klein_steps = merged.get("inpaint_num_inference_steps", self.inpaint_num_inference_steps)
+                steps = int(klein_steps) if klein_steps not in (None, "") else steps
+                klein_gs = merged.get("inpaint_guidance_scale", self.inpaint_guidance_scale)
+                guidance = float(klein_gs) if klein_gs not in (None, "") else guidance
                 run_strength = min(float(merged.get("strength", 1.0)), 1.0)
             else:
                 run_strength = min(inpaint_strength, 0.99)
@@ -400,7 +386,6 @@ class MethodComparer:
                 padding_mask_crop=padding_crop,
             )
         if method == "controlnet_dual":
-            dual_prompt, dual_neg = _dual_fidelity_prompts(prompt, negative, anomaly_id)
             scales = merged.get("controlnet_scale") or {}
             if hasattr(scales, "get"):
                 depth_scale = float(scales.get("depth", self.controlnet_scale_depth))
@@ -408,20 +393,24 @@ class MethodComparer:
             else:
                 depth_scale = self.controlnet_scale_depth
                 seg_scale = self.controlnet_scale_seg
-            # Local-object anomalies: keep denoise especially low (honest: CN won't insert a cone).
-            local_ids = {"pothole", "traffic_cone", "ground_animal", "road_debris"}
-            if anomaly_id == "fog":
-                strength_cap = 0.70
+            local_ids = {
+                str(x) for x in (merged.get("local_anomaly_ids") or [])
+            }
+            global_ids = {
+                str(x) for x in (merged.get("global_anomaly_ids") or [])
+            }
+            if anomaly_id in global_ids:
+                strength_cap = float(merged.get("controlnet_strength_cap_global", 0.70))
             elif anomaly_id in local_ids:
-                strength_cap = 0.45
+                strength_cap = float(merged.get("controlnet_strength_cap_local", 0.45))
             else:
-                strength_cap = 0.50
+                strength_cap = float(merged.get("controlnet_strength_cap_default", 0.50))
             return self._run_dual(
                 original,
                 depth,
                 segmentation,
-                prompt=dual_prompt,
-                negative_prompt=dual_neg,
+                prompt=prompt,
+                negative_prompt=negative,
                 steps=steps,
                 guidance=min(guidance, 6.5),
                 strength=float(np.clip(cn_strength, 0.25, strength_cap)),
@@ -430,6 +419,7 @@ class MethodComparer:
                 controlnet_scale_depth=depth_scale,
                 controlnet_scale_seg=seg_scale,
             )
+        instruct_steps = merged.get("instruct_num_inference_steps", self.instruct_num_inference_steps)
         return self._run_instruct(
             original,
             prompt=prompt,
@@ -441,7 +431,7 @@ class MethodComparer:
                 merged.get("instruct_image_guidance", self.instruct_image_guidance)
             ),
             text_guidance=float(merged.get("instruct_guidance_scale", self.instruct_guidance)),
-            instruct_steps=merged.get("instruct_num_inference_steps", self.instruct_num_inference_steps),
+            instruct_steps=instruct_steps,
         )
 
     def compare_one(
@@ -660,11 +650,11 @@ class MethodComparer:
         text_guidance: float | None = None,
         instruct_steps: int | None = None,
     ) -> GenerationResult:
-        instruction = _to_edit_instruction(prompt, anomaly_id)
+        instruction = str(prompt).strip()
         width, height = original.size
 
         if self.instruct_is_klein:
-            # Distilled Klein: ~4 steps, guidance ignored when >1.
+            # Distilled Klein: ~4 steps when configured; guidance ignored when >1.
             n_steps = int(instruct_steps) if instruct_steps not in (None, "") else 4
             txt_g = 1.0 if text_guidance is None else float(text_guidance)
             run_image = self._fit_klein_image(original, max_side=768)
@@ -791,58 +781,3 @@ def _seg_to_control_image(
         rgb = np.stack([edges, edges, edges], axis=-1)
         return Image.fromarray(rgb, mode="RGB")
     return Image.fromarray(colored, mode="RGB")
-
-
-def _dual_fidelity_prompts(
-    prompt: str, negative: str, anomaly_id: str
-) -> tuple[str, str]:
-    """Keep dual ControlNet as a subtle edit of the same photo, not a new scene."""
-    fidelity = (
-        "same street photograph, identical buildings vehicles lighting and camera angle, "
-        "preserve original colors and materials, subtle change only, photorealistic"
-    )
-    dual_prompt = f"{prompt.strip()}, {fidelity}"
-    anti_restyle = (
-        "different city, new buildings, replaced cars, night scene, stormy sky, "
-        "CGI render, oversaturated, painting, watercolor, drastic restyle, "
-        "orange color cast, global recolor, fantasy architecture"
-    )
-    dual_neg = f"{negative.strip()}, {anti_restyle}" if negative.strip() else anti_restyle
-    if anomaly_id == "fog":
-        dual_prompt = (
-            "the exact same dashcam street photo with thick realistic fog and haze added, "
-            "distant cars and buildings softened by mist, same road same vehicles, photorealistic"
-        )
-    return dual_prompt, dual_neg
-
-
-def _to_edit_instruction(prompt: str, anomaly_id: str) -> str:
-    """Turn a descriptive generation prompt into an instruction-edit request."""
-    mapping = {
-        "road_debris": (
-            "Add one large brown cardboard box sitting on the foreground road asphalt, "
-            "keep every car building and the sky unchanged"
-        ),
-        "pothole": (
-            "Add a realistic pothole in the foreground road asphalt only, "
-            "keep every car building and the sky unchanged"
-        ),
-        "traffic_cone": (
-            "Add one small orange traffic cone with a white stripe standing on the road "
-            "in the foreground, do not recolor cars or buildings"
-        ),
-        "ground_animal": (
-            "Add a realistic animal standing on the road ahead, "
-            "keep the background and camera view unchanged"
-        ),
-        "fog": (
-            "Add realistic fog and haze across the scene so distant objects are softer, "
-            "keep the cars and road layout unchanged"
-        ),
-    }
-    if anomaly_id in mapping:
-        return mapping[anomaly_id]
-    short = prompt.strip().split(",")[0].strip()
-    if short.lower().startswith("photorealistic"):
-        short = short[len("photorealistic") :].strip()
-    return f"Make a subtle edit: {short}. Keep the rest of the photo identical."

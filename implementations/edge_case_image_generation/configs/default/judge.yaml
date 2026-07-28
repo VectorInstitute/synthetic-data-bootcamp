@@ -1,0 +1,28 @@
+# @package judge
+# Shared VLM judge. Dataset-specific source_hint lives on dataset.yaml.
+threshold: 8.0
+backend: qwen_vl
+model_id: Qwen/Qwen2.5-VL-3B-Instruct
+torch_dtype: float32
+max_new_tokens: 256
+min_pixels: 200704
+max_pixels: 401408
+reject_margin: 2.0
+schema_hint: |
+  Respond with ONLY a single JSON object (no markdown fences) using this schema:
+  {
+    "prompt_faithfulness": <number 0-10>,
+    "physical_plausibility": <number 0-10>,
+    "annotation_correctness": <number 0-10>,
+    "edge_case_present": <true|false>,
+    "overall": <number 0-10>,
+    "rationale": "<one short sentence>"
+  }
+  Scoring guide:
+  - prompt_faithfulness: does the image show what the prompt asked for?
+  - physical_plausibility: would this object/condition look real in this scene
+    (perspective, lighting, contact with the ground/road)?
+  - annotation_correctness: if labels/masks are described, do they match the image?
+    If none are provided, score 5.
+  - edge_case_present: true only if the rare condition is clearly visible.
+  - overall: holistic quality for training data (not an average of bad scores).

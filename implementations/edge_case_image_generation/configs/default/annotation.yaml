@@ -1,0 +1,7 @@
+# @package annotation
+# Shared detector defaults; class lists live on each dataset's annotation.yaml.
+detector_model: google/owlvit-base-patch32
+sam_model: mobile_sam.pt
+conf: 0.015
+max_detections: 20
+classes: []

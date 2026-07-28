@@ -65,12 +65,16 @@ def _as_dict(cfg: DictConfig | dict[str, Any]) -> dict[str, Any]:
 
 
 def get_data_source_info(cfg: DictConfig | dict[str, Any]) -> DataSourceInfo:
-    data = _as_dict(cfg)["data"]
+    """Prefer dataset package metadata; fall back to data.yaml fields."""
+    blob = _as_dict(cfg)
+    data = blob.get("data") or {}
+    dataset = blob.get("dataset") or {}
+    name = str(dataset.get("id") or data.get("name") or "unknown")
     return DataSourceInfo(
-        name=data["name"],
-        label=data.get("label", data["name"]),
-        license=data.get("license", ""),
-        attribution=data.get("attribution", ""),
+        name=name,
+        label=str(dataset.get("label") or data.get("label") or name),
+        license=str(dataset.get("license") or data.get("license") or ""),
+        attribution=str(dataset.get("attribution") or data.get("attribution") or ""),
     )
 
 
@@ -164,7 +168,7 @@ def _read_source_meta(target: Path) -> dict[str, Any]:
 
 
 def _cache_matches_source(target: Path, source: dict[str, Any]) -> bool:
-    """True if data/samples/ looks like the active Hydra data source (not a stale domain)."""
+    """True if samples_dir looks like the active Hydra data source (not a stale domain)."""
     paths = list_sample_images(target)
     if not paths:
         return False
@@ -176,30 +180,17 @@ def _cache_matches_source(target: Path, source: dict[str, Any]) -> bool:
         for k in ("dataset", "name", "hf_id", "archive_url", "note")
     )
     stems = [p.stem.lower() for p in paths]
+    prefixes = [str(p).lower() for p in (source.get("stem_prefixes") or [])]
 
-    if expected in {"mapillary_vistas", "mapillary"}:
-        if "mapillary" in blob:
-            return True
-        # extract_mapillary_toy naming: pothole_*, traffic_cone_*, scene_*, …
-        return any(
-            s.startswith(prefix)
-            for s in stems
-            for prefix in ("scene_", "pothole_", "traffic_cone_", "ground_animal_")
-        )
-    if expected in {"nordland_hf", "nordland"}:
-        if "nordland" in blob:
-            return True
-        return any(s.startswith("nordland_") for s in stems)
-    if expected == "rdd2022":
-        if "rdd" in blob or "road damage" in blob:
-            return True
-        return any("pothole" in s or "crack" in s or "damage" in s for s in stems)
-    if expected in {"local", "urls"}:
+    if prefixes and any(s.startswith(tuple(prefixes)) for s in stems):
+        return True
+    if expected and expected.replace("_", " ") in blob:
+        return True
+    if expected and expected in blob:
         return True
     if blob and expected and expected not in blob and expected.replace("_", " ") not in blob:
-        # Meta present but points at another dataset.
         return False
-    return True
+    return bool(stems)
 
 
 def _stale_cache_error(target: Path, source: dict[str, Any]) -> FileNotFoundError:
@@ -207,12 +198,12 @@ def _stale_cache_error(target: Path, source: dict[str, Any]) -> FileNotFoundErro
     found = sorted(p.name for p in list_sample_images(target)[:8])
     meta = _read_source_meta(target)
     hint = (
-        f"Clear stale images under {target} (e.g. old nordland_*.png), then "
-        "re-run `uv run python scripts/extract_mapillary_toy.py` for Mapillary, "
-        "or `prepare_sample_images(..., force=True)` for downloadable sources."
+        f"Clear stale images under {target}, then re-run the dataset prepare step "
+        "(e.g. `uv run python scripts/extract_mapillary_toy.py` or "
+        "`prepare_sample_images(..., force=True)`)."
     )
     return FileNotFoundError(
-        f"data/samples/ does not match data source {expected!r} "
+        f"{target} does not match data source {expected!r} "
         f"(meta={meta.get('dataset') or meta.get('hf_id') or 'missing'}; "
         f"examples={found}). {hint}"
     )
@@ -254,8 +245,8 @@ def prepare_sample_images(
         if name in {"mapillary_vistas", "mapillary"}:
             return _ensure_mapillary_samples(target)
         raise FileNotFoundError(
-            f"No images in {target}. Drop files there or switch "
-            "data/source@data=mapillary_vistas|rdd2022|urls|nordland_hf."
+            f"No images in {target}. Drop files there or run the dataset extract/"
+            f"prepare step (dataset={name!r})."
         )
     if kind == "urls":
         return _prepare_urls(target, source, force=force)
@@ -271,7 +262,7 @@ def prepare_sample_images(
 
 
 def _ensure_mapillary_samples(target: Path) -> list[Path]:
-    """Run the toy extract script when data/samples/ is empty (HF login required)."""
+    """Run the toy extract script when samples_dir is empty (HF login required)."""
     import subprocess
     import sys
 

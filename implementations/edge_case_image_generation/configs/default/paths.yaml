@@ -1,0 +1,8 @@
+# @package paths
+project_root: ${oc.env:PROJECT_ROOT,.}
+# Per-dataset data root: data/<dataset_name>/
+data_dir: ${paths.project_root}/data/${dataset_name}
+samples_dir: ${paths.data_dir}/samples
+outputs_dir: ${paths.project_root}/outputs/${dataset_name}
+# Extra assets (zip indexes, caches) live beside samples.
+dataset_cache_dir: ${paths.data_dir}

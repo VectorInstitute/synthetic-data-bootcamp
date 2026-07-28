@@ -1,16 +1,15 @@
-# Root config — swap with hardware=cpu|gpu_l4 and data/source@data=...
+# Root config — pick dataset + hardware here (notebooks may override).
 defaults:
-  - paths: default
-  - data/source@data: mapillary_vistas
-  - conditioning: default
-  - generation: default
-  - annotation: default
-  - judge: default
+  - default/paths
+  - default/conditioning
+  - default/generation
+  - default/annotation
+  - default/judge
   - hardware: cpu
   - _self_
 
-data:
-  max_images: 8
+# Which package under configs/datasets/<name>/ to load.
+dataset_name: mapillary_vistas
 
 output:
   format: coco

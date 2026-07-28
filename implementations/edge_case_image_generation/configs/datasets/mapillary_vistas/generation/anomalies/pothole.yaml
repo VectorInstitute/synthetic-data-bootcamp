@@ -1,0 +1,32 @@
+id: pothole
+display_name: Pothole on asphalt (optional)
+annotation_classes:
+  - pothole
+  - road
+edit_mask:
+  mode: road_patch
+  cx: 0.50
+  cy: 0.78
+  rx: 0.14
+  ry: 0.10
+  y_min: 0.55
+  y_max: 0.92
+  prefer_near: true
+  blur_sigma: 1.2
+  dilate: 2
+  recomposite: false
+prompt: >-
+  a deep pothole in the asphalt road surface, broken pavement with rough edges,
+  contact with the road plane, photorealistic
+negative_prompt: >-
+  blurry, cartoon, painted hole, sticker, watermark, text, logo
+strength: 0.95
+methods:
+  inpaint:
+    prompt: null
+  controlnet_dual:
+    prompt: null
+  instruct:
+    prompt: >-
+      Add a realistic pothole in the foreground road asphalt only,
+      keep every car building and the sky unchanged

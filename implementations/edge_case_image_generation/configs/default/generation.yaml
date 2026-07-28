@@ -1,0 +1,48 @@
+# @package generation
+# Shared edit stack (CPU-friendly). hardware/gpu_l4 overrides models / steps.
+family: sd15
+default_anomaly_method: inpaint
+base_model_id: runwayml/stable-diffusion-v1-5
+inpaint_model_id: runwayml/stable-diffusion-inpainting
+instruct_model_id: timbrooks/instruct-pix2pix
+vae_id: null
+controlnet:
+  depth: lllyasviel/sd-controlnet-depth
+  seg: lllyasviel/sd-controlnet-seg
+controlnet_scale:
+  depth: 0.75
+  seg: 0.45
+controlnet_strength: 0.38
+instruct_image_guidance: 1.9
+instruct_guidance_scale: 6.5
+instruct_num_inference_steps: null
+inpaint_num_inference_steps: null
+inpaint_guidance_scale: null
+num_inference_steps: 28
+guidance_scale: 7.5
+strength: 0.90
+padding_mask_crop: 64
+seed: 42
+max_side: 512
+# Appended to ControlNet prompts unless a method block sets its own prompt.
+controlnet_fidelity_suffix: >-
+  same street photograph, identical buildings vehicles lighting and camera angle,
+  preserve original colors and materials, subtle change only, photorealistic
+controlnet_anti_restyle: >-
+  different city, new buildings, replaced cars, night scene, stormy sky,
+  CGI render, oversaturated, painting, watercolor, drastic restyle,
+  orange color cast, global recolor, fantasy architecture
+# Strength caps by anomaly kind (used when method=controlnet_dual).
+controlnet_strength_cap_local: 0.45
+controlnet_strength_cap_global: 0.70
+controlnet_strength_cap_default: 0.50
+local_anomaly_ids:
+  - road_debris
+  - traffic_cone
+  - pothole
+  - ground_animal
+  - alligator_crack
+global_anomaly_ids:
+  - fog
+  - snow
+  - dusk

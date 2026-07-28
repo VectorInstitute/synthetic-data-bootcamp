@@ -1,6 +1,0 @@
-# @package paths
-project_root: ${oc.env:PROJECT_ROOT,.}
-samples_dir: ${paths.project_root}/data/samples
-outputs_dir: ${paths.project_root}/outputs
-rdd2022_dir: ${paths.project_root}/data/rdd2022
-mapillary_vistas_dir: ${paths.project_root}/data/mapillary_vistas

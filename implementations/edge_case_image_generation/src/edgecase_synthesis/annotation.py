@@ -78,12 +78,12 @@ class OpenVocabAnnotator:
     ) -> None:
         self.detector_model = detector_model
         self.sam_model = sam_model
-        self.classes = classes or [
-            "pothole",
-            "road crack",
-            "traffic cone",
-            "road",
-        ]
+        self.classes = list(classes or [])
+        if not self.classes:
+            raise ValueError(
+                "annotation.classes is empty — set classes in "
+                "configs/datasets/<dataset>/annotation.yaml"
+            )
         self.conf = float(conf)
         self.max_detections = int(max_detections)
         self.device = resolve_device(device)

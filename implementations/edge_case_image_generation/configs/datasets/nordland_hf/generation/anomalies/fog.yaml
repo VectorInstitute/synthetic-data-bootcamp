@@ -1,0 +1,24 @@
+id: fog
+display_name: Fog / haze
+annotation_classes:
+  - fog
+  - mist
+edit_mask:
+  mode: full
+prompt: >-
+  the same photograph with soft fog reducing distant visibility, photorealistic
+negative_prompt: >-
+  whiteout, cartoon, watermark, text, different tracks
+strength: 0.45
+controlnet_strength: 0.55
+methods:
+  inpaint:
+    prompt: null
+  controlnet_dual:
+    prompt: >-
+      the exact same Nordland photo with soft fog in the distance,
+      same tracks and trees
+  instruct:
+    prompt: >-
+      Add realistic fog and haze so distant objects are softer,
+      keep the railway layout unchanged
