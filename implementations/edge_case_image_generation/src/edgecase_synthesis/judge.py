@@ -182,6 +182,7 @@ class VLMJudge:
                 )
 
         result.anomaly_id = anomaly_id
+        result = self._reconcile(result)
         result.decision = self._decide(result)
         result.backend = self._active_backend
         result.model_id = self.model_id
@@ -203,6 +204,11 @@ class VLMJudge:
             f"Target rare condition: {rare}\n"
             f"Generation prompt:\n{prompt}\n\n"
             f"Auto-annotation summary:\n{annotations_summary}\n\n"
+            f"Consistency rules:\n"
+            f"- If the target rare condition is visible, edge_case_present MUST be true.\n"
+            f"- If prompt_faithfulness ≥ 7, the rare condition is present → "
+            f"edge_case_present must be true.\n"
+            f"- overall ≥ 8 means you would keep this sample for training.\n\n"
             f"{self.schema_hint}"
         )
         messages = [
@@ -306,6 +312,26 @@ class VLMJudge:
                 {"pos": pos, "neg": neg, "prompt_sim": prompt_sim, "delta": delta}
             ),
         )
+
+    def _reconcile(self, result: JudgeResult) -> JudgeResult:
+        """Fix common VLM inconsistencies before the accept/retry/reject gate.
+
+        Qwen sometimes sets edge_case_present=false while scoring faithfulness
+        high and writing that the object is visible — that would hard-reject.
+        """
+        looks_present = (
+            result.prompt_faithfulness >= 7.0
+            or result.overall >= self.threshold
+        )
+        if not result.edge_case_present and looks_present:
+            result.edge_case_present = True
+            note = " [reconciled: edge_case_present set true from high scores]"
+            if note.strip() not in result.rationale:
+                result.rationale = (result.rationale or "").rstrip() + note
+        if result.edge_case_present and result.overall < 3.0:
+            # Rare: flagged present but abysmal overall — leave as-is for reject/retry.
+            pass
+        return result
 
     def _decide(self, result: JudgeResult) -> str:
         """Gate on overall vs threshold (accept / retry / reject).

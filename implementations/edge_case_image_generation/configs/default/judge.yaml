@@ -25,6 +25,9 @@ schema_hint: |
     (perspective, lighting, contact with the ground/road)?
   - annotation_correctness: if auto-boxes are listed, do they match visible objects?
     If none are provided, score 5.
-  - edge_case_present: true only if the rare condition is clearly visible.
+  - edge_case_present: true if the target rare condition is visible at all.
+    Must be true whenever prompt_faithfulness ≥ 7. Never set false while
+    claiming the object/condition is in the image.
   - overall: training-ready score. Use ≥8 only when you would keep this sample.
-    Do not average away a missing edge-case.
+    Do not average away a missing edge-case. If the rare condition is missing,
+    overall must be < 6 and edge_case_present false.
