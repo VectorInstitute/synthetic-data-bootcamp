@@ -27,9 +27,9 @@ BASELINE_SCORES_PATH = RESULTS_DIR / "baseline_scores.json"
 FINETUNED_PREDICTIONS_PATH = RESULTS_DIR / "finetuned_predictions.jsonl"
 COMPARISON_REPORT_PATH = RESULTS_DIR / "comparison_report.json"
 
-DEFAULT_TEST_PARAS_PER_DOC = 10
-DEFAULT_SYNTHETIC_TARGET_SIZE = 100
-DEFAULT_JUDGE_THRESHOLD = 3.5
+DEFAULT_TEST_PARAS_PER_DOC = 10          # Number of test paragraphs to sample/generate per document
+DEFAULT_SYNTHETIC_TARGET_SIZE = 100      # Target number of synthetic examples to generate for the dataset
+DEFAULT_JUDGE_THRESHOLD = 3.5            # Score threshold for the judge model; e.g., for filtering or evaluation pass/fail
 
 FAILURE_MODE_GUIDANCE: dict[FailureMode, str] = {
     FailureMode.FORMAT_NON_COMPLIANCE: (

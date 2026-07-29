@@ -18,10 +18,6 @@ from aieng.syn_data.text.prompts import (
 )
 from aieng.syn_data.text.schemas import JudgeScore, QASample
 
-
-# Backwards-compatible aliases for notebooks / older imports.
-JUDGE_SYSTEM_PROMPT = RESPONSE_JUDGE_SYSTEM_PROMPT
-
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
