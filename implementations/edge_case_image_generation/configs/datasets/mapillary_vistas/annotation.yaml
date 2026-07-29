@@ -1,15 +1,30 @@
-# OWL-ViT / SAM class vocabulary for this dataset.
+# OWL-ViT / SAM vocabulary for Mapillary workshop + optional anomalies.
+# Keep synonyms short and concrete — OWL-ViT matches text queries, not IDs.
 classes:
-  - traffic cone
+  # road_debris
   - cardboard box
+  - shipping box
+  - cardboard
   - box
   - debris
+  - package
+  # traffic_cone
+  - traffic cone
+  - orange cone
+  - cone
+  # fog
+  - fog
+  - mist
+  - haze
+  # optional extras in this package
+  - pothole
   - animal
   - dog
   - deer
-  - pothole
-  - fog
-  - mist
+  - cat
+  # scene context (helps SAM / judge summaries)
   - road
+  - asphalt
   - car
   - person
+  - sidewalk

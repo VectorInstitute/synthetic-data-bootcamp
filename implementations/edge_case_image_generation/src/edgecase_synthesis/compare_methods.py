@@ -324,6 +324,7 @@ class MethodComparer:
         segmentation: SegmentationResult,
         generation_cfg: Any,
         anomaly_cfg: Any,
+        seed_offset: int = 0,
     ) -> GenerationResult:
         from edgecase_synthesis.config import merge_generation_anomaly, resolve_method_prompt
 
@@ -334,7 +335,7 @@ class MethodComparer:
         merged = merge_generation_anomaly(generation_cfg, anomaly_cfg, method=method)
         anom = merged.get("anomaly", anomaly_cfg)
         max_side = int(merged.get("max_side", 512))
-        seed = int(merged.get("seed", 42))
+        seed = int(merged.get("seed", 42)) + int(seed_offset)
         prompt, negative = resolve_method_prompt(merged, method)
         anomaly_id = str(anom.get("id", ""))
         family = str(merged.get("family", self.family)).lower()

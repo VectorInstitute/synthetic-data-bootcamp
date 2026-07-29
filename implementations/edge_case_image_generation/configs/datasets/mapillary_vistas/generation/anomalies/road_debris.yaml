@@ -2,8 +2,11 @@ id: road_debris
 display_name: Cardboard box / debris on road
 annotation_classes:
   - cardboard box
+  - shipping box
+  - cardboard
   - box
   - debris
+  - package
   - road
 edit_mask:
   mode: road_patch

@@ -1,9 +1,9 @@
 # @package _global_
 # Laptop / CPU — only keys that truly differ from shared defaults.
 # Omit a key (don't set null) to inherit from conditioning/generation/judge/annotation.
+# No hardware.device → resolve_device(None) auto-picks CPU (or CUDA if present).
 hardware:
   name: cpu
-  device: null
 
 generation:
   num_inference_steps: 36

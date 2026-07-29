@@ -3,6 +3,7 @@ display_name: Fog / haze over the scene
 annotation_classes:
   - fog
   - mist
+  - haze
   - road
 # Local ellipse is the honest inpaint fail case (global weather ≠ a hole).
 edit_mask:

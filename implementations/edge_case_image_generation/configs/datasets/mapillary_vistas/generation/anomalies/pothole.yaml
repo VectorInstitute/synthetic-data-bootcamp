@@ -2,7 +2,9 @@ id: pothole
 display_name: Pothole on asphalt (optional)
 annotation_classes:
   - pothole
+  - hole
   - road
+  - asphalt
 edit_mask:
   mode: road_patch
   cx: 0.50

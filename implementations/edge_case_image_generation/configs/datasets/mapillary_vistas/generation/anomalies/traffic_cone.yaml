@@ -2,6 +2,8 @@ id: traffic_cone
 display_name: Traffic cone on road
 annotation_classes:
   - traffic cone
+  - orange cone
+  - cone
   - road
 edit_mask:
   mode: road_patch

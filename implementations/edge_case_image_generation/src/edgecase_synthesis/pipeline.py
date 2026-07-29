@@ -69,6 +69,7 @@ def synthesize_one(
     segmentation: SegmentationResult,
     comparer: MethodComparer,
     project_root: Any = None,
+    seed_offset: int = 0,
 ) -> SynthesisResult:
     method = validate_method(method)
     dataset = str(cfg.dataset_name)
@@ -80,6 +81,7 @@ def synthesize_one(
         segmentation=segmentation,
         generation_cfg=cfg.generation,
         anomaly_cfg=anomaly_cfg,
+        seed_offset=seed_offset,
     )
     return SynthesisResult(anomaly_id=anomaly_id, method=method, generated=generated)
 
