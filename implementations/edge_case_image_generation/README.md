@@ -54,3 +54,5 @@ uv run python scripts/extract_mapillary_toy.py
 
 - `notebooks/01.5_method_comparison.ipynb` — compare methods; pick `METHOD_BY_ANOMALY`
 - `notebooks/01_sample_data_generation.ipynb` — thin pipeline: load → edit → annotate → judge → retry
+- `notebooks/02_batch_dataset_generation.ipynb` — *(placeholder)* scale NB1 to many seeds + export accepted set
+- `notebooks/03_training_and_evaluation.ipynb` — *(placeholder)* real vs real+synth detector mAP
