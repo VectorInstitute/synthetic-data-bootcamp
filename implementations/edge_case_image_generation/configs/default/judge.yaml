@@ -19,10 +19,12 @@ schema_hint: |
     "rationale": "<one short sentence>"
   }
   Scoring guide:
-  - prompt_faithfulness: does the image show what the prompt asked for?
+  - prompt_faithfulness: does the image show what the prompt asked for
+    (including object count — two cones when asked for one is not a 9)?
   - physical_plausibility: would this object/condition look real in this scene
     (perspective, lighting, contact with the ground/road)?
-  - annotation_correctness: if labels/masks are described, do they match the image?
+  - annotation_correctness: if auto-boxes are listed, do they match visible objects?
     If none are provided, score 5.
   - edge_case_present: true only if the rare condition is clearly visible.
-  - overall: holistic quality for training data (not an average of bad scores).
+  - overall: training-ready score. Use ≥8 only when you would keep this sample.
+    Do not average away a missing edge-case.

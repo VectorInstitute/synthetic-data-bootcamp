@@ -1,8 +1,12 @@
 id: fog
 display_name: Fog / haze
 annotation_classes:
-  - fog
-  - mist
+  - foggy corridor
+  - thick fog
+  - haze in the air
+  - misty atmosphere
+  - low visibility fog
+annotation_conf: 0.08
 edit_mask:
   mode: full
 prompt: >-

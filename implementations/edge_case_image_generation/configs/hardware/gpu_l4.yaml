@@ -32,5 +32,6 @@ annotation:
 judge:
   model_id: Qwen/Qwen2.5-VL-7B-Instruct
   torch_dtype: bfloat16
-  threshold: 8.5
+  # Same accept bar as CPU default — overall 8.0 with edge_case_present → accept.
+  threshold: 8.0
   max_pixels: 1003520

@@ -1,10 +1,14 @@
 id: fog
 display_name: Fog / haze over the scene
+# Open-vocab detectors need scene phrases, not a lone noun "fog".
+# Optional lower conf — weather is diffuse; do NOT invent a full-frame box.
 annotation_classes:
-  - fog
-  - mist
-  - haze
-  - road
+  - foggy street
+  - thick fog
+  - haze in the air
+  - misty atmosphere
+  - low visibility fog
+annotation_conf: 0.08
 # Local ellipse is the honest inpaint fail case (global weather ≠ a hole).
 edit_mask:
   mode: ellipse

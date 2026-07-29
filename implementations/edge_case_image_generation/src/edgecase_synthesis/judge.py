@@ -308,6 +308,13 @@ class VLMJudge:
         )
 
     def _decide(self, result: JudgeResult) -> str:
+        """Gate on overall vs threshold (accept / retry / reject).
+
+        With threshold=8.0 and reject_margin=2.0:
+        - overall ≥ 8 and edge present → accept
+        - overall < 6 or no edge → reject
+        - otherwise → retry
+        """
         if (not result.edge_case_present) or result.overall < (
             self.threshold - self.reject_margin
         ):
