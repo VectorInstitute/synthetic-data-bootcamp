@@ -45,7 +45,12 @@ def resolve_method_map(
     *,
     cfg: Any = None,
 ) -> dict[str, str]:
-    """Fill missing anomalies from dataset.method_by_anomaly (or inpaint)."""
+    """Map each anomaly id → edit method.
+
+    ``workshop_anomalies`` is the run list (typically the keys of the notebook's
+    ``METHOD_BY_ANOMALY``, or ``dataset.workshop_anomalies`` as a fallback).
+    Missing methods fall back to ``dataset.method_by_anomaly``, then inpaint.
+    """
     defaults = default_method_map(cfg) if cfg is not None else {}
     fallback = "inpaint"
     if cfg is not None:

@@ -64,7 +64,14 @@ class OpenVocabAnnotator:
         self.device = resolve_device(device)
         weights = _resolve_yolo_weights(detector_model)
         self.model = YOLO(weights)
+        # Keep detector + CLIP on CPU until predict(); set_classes tokenizes on CPU
+        # and will crash if CLIP weights were already placed on CUDA.
+        try:
+            self.model.to("cpu")
+        except Exception:  # noqa: BLE001
+            pass
         self._yolo_device = "cuda:0" if self.device.type == "cuda" else "cpu"
+        self._active_classes: list[str] | None = None
 
     @torch.inference_mode()
     def annotate(
@@ -90,7 +97,7 @@ class OpenVocabAnnotator:
             raise ValueError("No annotation classes provided")
         threshold = self.conf if conf is None else float(conf)
 
-        self.model.set_classes(active_classes)
+        self._set_classes(active_classes)
         results = self.model.predict(
             source=rgb,
             conf=threshold,
@@ -133,9 +140,32 @@ class OpenVocabAnnotator:
             num_instances=len(detections),
         )
 
+    def _set_classes(self, active_classes: list[str]) -> None:
+        """Encode class prompts on CPU to avoid CLIP token/weight device mismatch.
+
+        Ultralytics YOLO-World keeps tokenized text on CPU while CLIP embeddings
+        may already live on CUDA after a prior ``predict`` — that raises
+        ``Expected all tensors to be on the same device``.
+        """
+        if self._active_classes == active_classes:
+            return
+        # CLIP encode must see matching devices; safest is CPU for set_classes.
+        try:
+            self.model.to("cpu")
+        except Exception:  # noqa: BLE001 — some ultralytics builds lack .to
+            pass
+        if hasattr(self.model, "clip_model") and self.model.clip_model is not None:
+            try:
+                self.model.clip_model.to("cpu")
+            except Exception:  # noqa: BLE001
+                pass
+        self.model.set_classes(active_classes)
+        self._active_classes = list(active_classes)
+
     def unload(self) -> None:
         """Drop model weights to free VRAM before loading the judge."""
         self.model = None  # type: ignore[assignment]
+        self._active_classes = None
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
