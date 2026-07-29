@@ -1,4 +1,4 @@
-"""Open-vocabulary detection + SAM masks — local stand-in for Grounded-SAM 2."""
+"""Open-vocabulary detection via YOLO-World (boxes for detector training / judge)."""
 
 from __future__ import annotations
 
@@ -10,8 +10,7 @@ import cv2
 import numpy as np
 import torch
 from PIL import Image
-from transformers import OwlViTForObjectDetection, OwlViTProcessor
-from ultralytics import SAM
+from ultralytics import YOLO
 
 from edgecase_synthesis.conditioning import resolve_device
 
@@ -23,61 +22,37 @@ class Detection:
     label: str
     confidence: float
     bbox_xyxy: tuple[int, int, int, int]
-    mask: np.ndarray  # bool, shape (H, W)
+    mask: np.ndarray  # bool (H, W); box-filled placeholder for viz compat
 
 
 @dataclass
 class AnnotationResult:
-    """Detections and masks for one image."""
+    """Detections for one image (boxes; masks are box fills only)."""
 
     detections: list[Detection]
     overlay: np.ndarray  # uint8 RGB
     num_instances: int
 
 
-# OWL-ViT was trained with CLIP-style captions. Bare nouns ("sky") score ~0.02;
-# "a photo of …" lifts scores enough to clear a usable threshold.
-_VOWELS = set("aeiou")
-
-
-def _owlvit_query(label: str) -> str:
-    text = label.strip()
-    lower = text.lower()
-    if lower.startswith("a photo of"):
-        return text
-    article = "an" if lower[:1] in _VOWELS else "a"
-    return f"a photo of {article} {text}"
-
-
-def _display_label(query_or_label: str) -> str:
-    text = query_or_label.strip()
-    lower = text.lower()
-    for prefix in ("a photo of an ", "a photo of a ", "a photo of the ", "a photo of "):
-        if lower.startswith(prefix):
-            return text[len(prefix) :]
-    return text
-
-
 class OpenVocabAnnotator:
-    """OWL-ViT detections refined with MobileSAM box prompts.
+    """YOLO-World open-vocab boxes (stand-in for Grounded-SAM-2 labeling).
 
-    Grounded-SAM 2 would replace this stack in production for tighter
-    text-to-mask alignment; OWL-ViT + MobileSAM runs locally without extra
-    CLIP installs and is much lighter than the full G-SAM 2 pipeline.
+    Produces class labels + xyxy boxes for training a detector and for the
+    VLM judge summary. No SAM masks — our eval target is YOLOv8-style detection.
     """
 
     def __init__(
         self,
         *,
-        detector_model: str = "google/owlvit-base-patch32",
-        sam_model: str = "mobile_sam.pt",
+        detector_model: str = "yolov8s-worldv2.pt",
         classes: list[str] | None = None,
         device: str | None = None,
-        conf: float = 0.015,
+        conf: float = 0.15,
         max_detections: int = 20,
+        sam_model: str | None = None,  # unused; kept for config back-compat
     ) -> None:
+        del sam_model  # explicitly unused
         self.detector_model = detector_model
-        self.sam_model = sam_model
         self.classes = list(classes or [])
         if not self.classes:
             raise ValueError(
@@ -87,10 +62,9 @@ class OpenVocabAnnotator:
         self.conf = float(conf)
         self.max_detections = int(max_detections)
         self.device = resolve_device(device)
-        self.processor = OwlViTProcessor.from_pretrained(detector_model)
-        self.detector = OwlViTForObjectDetection.from_pretrained(detector_model)
-        self.detector.to(self.device).eval()
-        self.sam = SAM(_resolve_sam_path(sam_model))
+        weights = _resolve_yolo_weights(detector_model)
+        self.model = YOLO(weights)
+        self._yolo_device = "cuda:0" if self.device.type == "cuda" else "cpu"
 
     @torch.inference_mode()
     def annotate(
@@ -99,85 +73,58 @@ class OpenVocabAnnotator:
         *,
         classes: list[str] | None = None,
         conf: float | None = None,
-        overlay_alpha: float = 0.45,
+        overlay_alpha: float = 0.35,
         seed_mask: np.ndarray | None = None,
         seed_label: str | None = None,
         seed_confidence: float = 0.99,
     ) -> AnnotationResult:
-        """Detect open-vocab boxes, refine with SAM, optionally seed a known mask.
+        """Run YOLO-World with the given class vocabulary.
 
-        ``seed_mask`` / ``seed_label`` are for synthetic inserts when the
-        open-vocab detector misses the edited region: we inject the edit mask
-        as a high-confidence detection for the anomaly class.
+        ``seed_mask`` / ``seed_label`` are ignored (kept for call-site compat).
         """
+        del seed_mask, seed_label, seed_confidence
         pil_image = _to_pil(image)
         rgb = np.array(pil_image)
-        active_classes = list(classes or self.classes)
+        active_classes = [str(c).strip() for c in (classes or self.classes) if str(c).strip()]
+        if not active_classes:
+            raise ValueError("No annotation classes provided")
         threshold = self.conf if conf is None else float(conf)
 
-        queries = [_owlvit_query(c) for c in active_classes]
-        inputs = self.processor(
-            text=[queries],
-            images=pil_image,
-            return_tensors="pt",
+        self.model.set_classes(active_classes)
+        results = self.model.predict(
+            source=rgb,
+            conf=threshold,
+            verbose=False,
+            device=self._yolo_device,
+            max_det=self.max_detections,
         )
-        inputs = {key: value.to(self.device) for key, value in inputs.items()}
-        outputs = self.detector(**inputs)
-
-        target_size = torch.tensor([pil_image.size[::-1]], device=self.device)
-        processed = self.processor.post_process_grounded_object_detection(
-            outputs=outputs,
-            target_sizes=target_size,
-            threshold=threshold,
-            text_labels=[queries],
-        )[0]
-
         detections: list[Detection] = []
-
-        if len(processed["scores"]) > 0:
-            boxes_xyxy = processed["boxes"].cpu().numpy()
-            confidences = processed["scores"].cpu().numpy()
-            text_labels = processed.get("text_labels")
-            if text_labels is None:
-                label_ids = processed["labels"].cpu().numpy().astype(int)
-                text_labels = [queries[i] for i in label_ids]
-
-            # Keep the strongest boxes (OWL-ViT is noisy at low thresholds).
-            order = np.argsort(-confidences)[: self.max_detections]
-            boxes_xyxy = boxes_xyxy[order]
-            confidences = confidences[order]
-            text_labels = [text_labels[i] for i in order]
-
-            # Soft NMS by IoU to reduce duplicate "tree" tiles.
-            keep = _nms_indices(boxes_xyxy, confidences, iou_threshold=0.5)
-            boxes_xyxy = boxes_xyxy[keep]
-            confidences = confidences[keep]
-            text_labels = [text_labels[i] for i in keep]
-
-            masks = _sam_masks_for_boxes(self.sam, rgb, boxes_xyxy)
-            for idx, (box, score, query) in enumerate(
-                zip(boxes_xyxy, confidences, text_labels, strict=True)
-            ):
-                x1, y1, x2, y2 = (int(v) for v in box)
-                mask = masks[idx] if idx < len(masks) else np.zeros(rgb.shape[:2], bool)
-                detections.append(
-                    Detection(
-                        label=_display_label(str(query)),
-                        confidence=float(score),
-                        bbox_xyxy=(x1, y1, x2, y2),
-                        mask=mask,
+        if results:
+            boxes = results[0].boxes
+            if boxes is not None and len(boxes) > 0:
+                xyxy = boxes.xyxy.cpu().numpy()
+                scores = boxes.conf.cpu().numpy()
+                cls_ids = boxes.cls.cpu().numpy().astype(int)
+                names = results[0].names or {}
+                order = np.argsort(-scores)[: self.max_detections]
+                for idx in order:
+                    cid = int(cls_ids[idx])
+                    if cid in names:
+                        label = str(names[cid])
+                    elif 0 <= cid < len(active_classes):
+                        label = active_classes[cid]
+                    else:
+                        label = str(cid)
+                    x1, y1, x2, y2 = (int(v) for v in xyxy[idx])
+                    mask = _box_mask(rgb.shape[:2], (x1, y1, x2, y2))
+                    detections.append(
+                        Detection(
+                            label=label,
+                            confidence=float(scores[idx]),
+                            bbox_xyxy=(x1, y1, x2, y2),
+                            mask=mask,
+                        )
                     )
-                )
-
-        if seed_mask is not None and seed_label:
-            seed = _detection_from_mask(
-                seed_mask,
-                label=seed_label,
-                confidence=seed_confidence,
-                image_hw=rgb.shape[:2],
-            )
-            if seed is not None:
-                detections = [seed, *detections]
 
         overlay = _draw_overlay(rgb, detections, alpha=overlay_alpha)
         return AnnotationResult(
@@ -185,6 +132,12 @@ class OpenVocabAnnotator:
             overlay=overlay,
             num_instances=len(detections),
         )
+
+    def unload(self) -> None:
+        """Drop model weights to free VRAM before loading the judge."""
+        self.model = None  # type: ignore[assignment]
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
     @classmethod
     def from_config(cls, cfg: dict[str, Any] | Any, device: str | None = None):
@@ -194,90 +147,42 @@ class OpenVocabAnnotator:
             if hardware is not None:
                 device = hardware.get("device")
         return cls(
-            detector_model=annotation.get(
-                "detector_model", "google/owlvit-base-patch32"
+            detector_model=str(
+                annotation.get("detector_model", "yolov8s-worldv2.pt")
             ),
-            sam_model=annotation.get("sam_model", "mobile_sam.pt"),
             classes=list(annotation.get("classes", [])),
-            conf=float(annotation.get("conf", 0.015)),
+            conf=float(annotation.get("conf", 0.15)),
             max_detections=int(annotation.get("max_detections", 20)),
             device=device,
+            sam_model=annotation.get("sam_model"),
         )
 
 
-def _resolve_sam_path(sam_model: str) -> str:
-    path = Path(sam_model)
+def _resolve_yolo_weights(detector_model: str) -> str:
+    path = Path(detector_model)
     if path.exists():
-        return str(path)
-    # Try project root / CWD parents (notebooks often run from notebooks/).
+        return str(path.resolve())
+    name = path.name if path.suffix else detector_model
     for parent in [Path.cwd(), *Path.cwd().parents]:
-        candidate = parent / sam_model
+        candidate = parent / name
         if candidate.exists():
-            return str(candidate)
-        candidate = parent / "mobile_sam.pt"
-        if candidate.exists():
-            return str(candidate)
-    return sam_model  # let ultralytics download / error clearly
+            return str(candidate.resolve())
+        if name != "yolov8s-worldv2.pt":
+            fallback = parent / "yolov8s-worldv2.pt"
+            if fallback.exists():
+                return str(fallback.resolve())
+    return detector_model  # let ultralytics download / error clearly
 
 
-def _sam_masks_for_boxes(sam: SAM, rgb: np.ndarray, boxes_xyxy: np.ndarray) -> np.ndarray:
-    if len(boxes_xyxy) == 0:
-        return np.zeros((0, *rgb.shape[:2]), dtype=bool)
-    sam_results = sam.predict(source=rgb, bboxes=boxes_xyxy, verbose=False)
-    sam_out = sam_results[0]
-    if sam_out.masks is None:
-        return np.zeros((len(boxes_xyxy), *rgb.shape[:2]), dtype=bool)
-    return sam_out.masks.data.cpu().numpy().astype(bool)
-
-
-def _detection_from_mask(
-    mask: np.ndarray,
-    *,
-    label: str,
-    confidence: float,
-    image_hw: tuple[int, int],
-) -> Detection | None:
-    h, w = image_hw
-    m = mask.astype(bool)
-    if m.shape != (h, w):
-        m = cv2.resize(m.astype(np.uint8), (w, h), interpolation=cv2.INTER_NEAREST).astype(bool)
-    if not m.any():
-        return None
-    ys, xs = np.where(m)
-    return Detection(
-        label=label,
-        confidence=float(confidence),
-        bbox_xyxy=(int(xs.min()), int(ys.min()), int(xs.max()), int(ys.max())),
-        mask=m,
-    )
-
-
-def _nms_indices(
-    boxes: np.ndarray,
-    scores: np.ndarray,
-    *,
-    iou_threshold: float,
-) -> list[int]:
-    if len(boxes) == 0:
-        return []
-    x1, y1, x2, y2 = boxes.T
-    areas = np.maximum(x2 - x1, 0) * np.maximum(y2 - y1, 0)
-    order = scores.argsort()[::-1]
-    keep: list[int] = []
-    while order.size > 0:
-        i = int(order[0])
-        keep.append(i)
-        if order.size == 1:
-            break
-        rest = order[1:]
-        xx1 = np.maximum(x1[i], x1[rest])
-        yy1 = np.maximum(y1[i], y1[rest])
-        xx2 = np.minimum(x2[i], x2[rest])
-        yy2 = np.minimum(y2[i], y2[rest])
-        inter = np.maximum(xx2 - xx1, 0) * np.maximum(yy2 - yy1, 0)
-        iou = inter / np.maximum(areas[i] + areas[rest] - inter, 1e-6)
-        order = rest[iou <= iou_threshold]
-    return keep
+def _box_mask(hw: tuple[int, int], box: tuple[int, int, int, int]) -> np.ndarray:
+    h, w = hw
+    x1, y1, x2, y2 = box
+    m = np.zeros((h, w), dtype=bool)
+    x1, y1 = max(0, x1), max(0, y1)
+    x2, y2 = min(w, x2), min(h, y2)
+    if x2 > x1 and y2 > y1:
+        m[y1:y2, x1:x2] = True
+    return m
 
 
 def _to_pil(image: Image.Image | np.ndarray) -> Image.Image:

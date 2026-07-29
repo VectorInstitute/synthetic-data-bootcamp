@@ -18,6 +18,7 @@ real street image (Mapillary Vistas toy subset)
 | Shared defaults | `configs/default/{paths,conditioning,generation,annotation,judge}.yaml` |
 | Anomaly prompts / masks | `configs/datasets/<name>/generation/anomalies/` |
 | Judge | `configs/default/judge.yaml` + hardware overrides; `source_hint` on `dataset.yaml` |
+| Auto-label | YOLO-World boxes (`yolov8s-worldv2.pt`); no SAM — training target is detection |
 
 **CPU defaults:** SegFormer (seg), SD 1.5 inpaint + InstructPix2Pix.  
 **L4 defaults:** stronger seg, FLUX.2-klein-4B for inpaint + instruct; SD 1.5 ControlNet depth+seg.

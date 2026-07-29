@@ -1,5 +1,5 @@
-# OWL-ViT / SAM vocabulary for Mapillary workshop + optional anomalies.
-# Keep synonyms short and concrete — OWL-ViT matches text queries, not IDs.
+# YOLO-World text queries for Mapillary workshop + optional anomalies.
+# Keep synonyms short and concrete — open-vocab matches phrases, not IDs.
 classes:
   # road_debris
   - cardboard box

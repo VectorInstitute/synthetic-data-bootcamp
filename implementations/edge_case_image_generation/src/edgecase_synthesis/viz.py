@@ -274,7 +274,7 @@ def show_annotation_result(
     title: str = "Annotations",
     figsize=(12, 5),
 ):
-    """Original vs open-vocabulary detections + SAM masks."""
+    """Original vs open-vocabulary detections (YOLO-World boxes)."""
     fig, axes = plt.subplots(1, 2, figsize=figsize)
     show_image(image, title="Image", ax=axes[0])
     show_image(

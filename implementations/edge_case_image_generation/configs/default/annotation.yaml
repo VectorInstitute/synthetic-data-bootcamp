@@ -1,7 +1,6 @@
 # @package annotation
-# Shared detector defaults; class lists live on each dataset's annotation.yaml.
-detector_model: google/owlvit-base-patch32
-sam_model: mobile_sam.pt
-conf: 0.015
+# YOLO-World open-vocab boxes (no SAM). Class lists live on each dataset package.
+detector_model: yolov8s-worldv2.pt
+conf: 0.15
 max_detections: 20
 classes: []

@@ -25,9 +25,8 @@ generation:
   padding_mask_crop: 128
 
 annotation:
-  detector_model: google/owlvit-large-patch14
-  sam_model: sam_b.pt
-  conf: 0.02
+  detector_model: yolov8s-worldv2.pt
+  conf: 0.20
   max_detections: 25
 
 judge:

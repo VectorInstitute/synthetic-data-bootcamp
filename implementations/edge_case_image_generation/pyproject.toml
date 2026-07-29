@@ -20,6 +20,7 @@ dependencies = [
     "diffusers>=0.39",
     "requests>=2.31",
     "ipykernel>=7.3.0",
+    "clip",
 ]
 
 [project.optional-dependencies]
@@ -31,6 +32,9 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/edgecase_synthesis"]
+
+[tool.uv.sources]
+clip = { git = "https://github.com/ultralytics/CLIP.git" }
 
 [dependency-groups]
 dev = [
