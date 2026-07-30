@@ -7,18 +7,25 @@ Requires: `huggingface-cli login` and access to candylion/mapillary-vistas-v2.
 """
 from __future__ import annotations
 
+import argparse
 import json
+import random
 import struct
 import sys
+import time
 import zlib
 from collections import Counter
 from collections.abc import Callable
 from io import BytesIO
 from pathlib import Path
+from urllib.error import HTTPError, URLError
 
 import urllib.request
 from huggingface_hub import get_token, hf_hub_url
 from PIL import Image
+
+# Transient HF / CDN failures — retry with backoff instead of aborting mid-extract.
+_RETRYABLE_HTTP = {408, 429, 500, 502, 503, 504}
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
@@ -167,7 +174,21 @@ def build_zip_index(http_range: HttpRange, *, url: str, token: str, dest: Path =
     return dest
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--clean",
+        action="store_true",
+        help="Delete existing sample images before extracting (default: resume / skip existing).",
+    )
+    parser.add_argument(
+        "--max-retries",
+        type=int,
+        default=8,
+        help="Retries per Range GET on HTTP 429/5xx (default: 8).",
+    )
+    args = parser.parse_args(argv)
+
     token = get_token()
     if not token:
         raise SystemExit("No Hugging Face token — run `huggingface-cli login` first.")
@@ -187,8 +208,34 @@ def main() -> None:
                 "User-Agent": "edgecase-synthesis",
             },
         )
-        with urllib.request.urlopen(req, timeout=180) as r:
-            return r.read()
+        last_err: Exception | None = None
+        for attempt in range(1, max(1, int(args.max_retries)) + 1):
+            try:
+                with urllib.request.urlopen(req, timeout=180) as r:
+                    return r.read()
+            except HTTPError as exc:
+                last_err = exc
+                if exc.code not in _RETRYABLE_HTTP or attempt >= args.max_retries:
+                    raise
+                delay = min(90.0, (2 ** (attempt - 1)) + random.uniform(0, 1.5))
+                print(
+                    f"  HTTP {exc.code} on Range GET — retry {attempt}/{args.max_retries} "
+                    f"in {delay:.1f}s…",
+                    flush=True,
+                )
+                time.sleep(delay)
+            except (URLError, TimeoutError, ConnectionError) as exc:
+                last_err = exc
+                if attempt >= args.max_retries:
+                    raise
+                delay = min(90.0, (2 ** (attempt - 1)) + random.uniform(0, 1.5))
+                print(
+                    f"  network error ({exc}) — retry {attempt}/{args.max_retries} "
+                    f"in {delay:.1f}s…",
+                    flush=True,
+                )
+                time.sleep(delay)
+        raise RuntimeError(f"Range GET failed after retries: {last_err}")
 
     def extract_entry(e: dict) -> bytes:
         local_off = int(e["local_off"])
@@ -284,10 +331,22 @@ def main() -> None:
             break
 
     SAMPLES.mkdir(parents=True, exist_ok=True)
-    for old in list(SAMPLES.glob("*.jpg")) + list(SAMPLES.glob("*.png")):
-        old.unlink()
+    if args.clean:
+        removed = 0
+        for old in list(SAMPLES.glob("*.jpg")) + list(SAMPLES.glob("*.png")):
+            old.unlink()
+            removed += 1
+        print(f"--clean: removed {removed} existing sample images", flush=True)
+    else:
+        existing_n = len(list(SAMPLES.glob("*.jpg")) + list(SAMPLES.glob("*.png")))
+        if existing_n:
+            print(
+                f"resume mode: {existing_n} existing images will be skipped "
+                "(pass --clean to wipe and re-extract)",
+                flush=True,
+            )
 
-    def bbox_from_poly(stem: str, internal_names: set[str]) -> list[dict]:
+    def bbox_from_poly(stem: str, internal_names: set[str], *, scale: float = 1.0) -> list[dict]:
         poly_path = f"validation/v2.0/polygons/{stem}.json"
         if poly_path not in by_name:
             return []
@@ -310,35 +369,56 @@ def main() -> None:
             boxes.append(
                 {
                     "label": TARGET[internal],
-                    "bbox_xyxy": [min(xs), min(ys), max(xs), max(ys)],
+                    "bbox_xyxy": [
+                        min(xs) * scale,
+                        min(ys) * scale,
+                        max(xs) * scale,
+                        max(ys) * scale,
+                    ],
                 }
             )
         return boxes
 
+    labels_path = SAMPLES / "labels.json"
     labels_out: dict[str, list] = {}
+    if labels_path.exists() and not args.clean:
+        try:
+            labels_out = json.loads(labels_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            labels_out = {}
     meta: list[dict] = []
+
+    def flush_labels() -> None:
+        labels_path.write_text(json.dumps(labels_out, indent=2), encoding="utf-8")
 
     def save(stem: str, tag: str, want_internal: set[str] | None) -> None:
         img_key = f"validation/images/{stem}.jpg"
         if img_key not in by_name:
             print("missing", img_key, flush=True)
             return
-        print(f"extract {tag}_{stem}.jpg …", flush=True)
+        out_name = f"{tag}_{stem}.jpg"
+        out_path = SAMPLES / out_name
+
+        # Resume: reuse image + labels on disk when both exist.
+        if out_path.exists() and not args.clean and out_name in labels_out:
+            boxes = labels_out[out_name]
+            meta.append({"file": out_name, "stem": stem, "tag": tag, "n_boxes": len(boxes)})
+            print(f"  skip existing {out_name} boxes={len(boxes)}", flush=True)
+            return
+
+        print(f"extract {out_name} …", flush=True)
         raw = extract_entry(by_name[img_key])
         im = Image.open(BytesIO(raw)).convert("RGB")
         w0, _h0 = im.size
         im.thumbnail((THUMB, THUMB))
         scale = im.size[0] / w0
-        out_name = f"{tag}_{stem}.jpg"
-        im.save(SAMPLES / out_name, quality=90)
+        im.save(out_path, quality=90)
         boxes: list[dict] = []
         if want_internal:
-            boxes = bbox_from_poly(stem, want_internal)
-            for b in boxes:
-                x1, y1, x2, y2 = b["bbox_xyxy"]
-                b["bbox_xyxy"] = [x1 * scale, y1 * scale, x2 * scale, y2 * scale]
+            boxes = bbox_from_poly(stem, want_internal, scale=scale)
         labels_out[out_name] = boxes
         meta.append({"file": out_name, "stem": stem, "tag": tag, "n_boxes": len(boxes)})
+        flush_labels()
         print(f"  saved {out_name} {im.size} boxes={len(boxes)}", flush=True)
 
     for internal, slug in TARGET.items():
@@ -347,7 +427,7 @@ def main() -> None:
     for stem in generic:
         save(stem, "scene", set(TARGET))
 
-    (SAMPLES / "labels.json").write_text(json.dumps(labels_out, indent=2))
+    flush_labels()
     (SAMPLES / "ATTRIBUTION.txt").write_text(
         "Mapillary Vistas Dataset v2.0 — CC BY-NC-SA.\n"
         "https://www.mapillary.com/dataset/vistas\n"
