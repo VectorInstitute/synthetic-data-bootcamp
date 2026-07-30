@@ -1,5 +1,6 @@
 FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 
+# Expose ports for JupyterLab and Ollama
 EXPOSE 8888 11434
 
 # Install system dependencies and Ollama (binary only; start manually via
