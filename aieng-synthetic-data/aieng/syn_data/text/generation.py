@@ -8,7 +8,7 @@ import uuid
 from typing import Any, cast
 
 from aieng.syn_data.text.clients import LLMClient, extract_json_text
-from aieng.syn_data.text.config import FAILURE_MODE_GUIDANCE
+from aieng.syn_data.text.config import DEFAULT_DOMAIN, FAILURE_MODE_GUIDANCE
 from aieng.syn_data.text.schemas import (
     FailureMode,
     GenerationStrategy,
@@ -23,6 +23,7 @@ logger = logging.getLogger(__name__)
 def _base_generation_prompt(
     paragraph: Paragraph,
     *,
+    domain: str = DEFAULT_DOMAIN,
     failure_mode: FailureMode | None = None,
     extra_instruction: str = "",
 ) -> str:
@@ -33,7 +34,8 @@ def _base_generation_prompt(
             f"Guidance: {FAILURE_MODE_GUIDANCE[failure_mode]}\n"
         )
     return (
-        "Generate one challenging question-answer pair grounded in the passage.\n"
+        f"Generate one challenging question-answer pair about this {domain} passage.\n"
+        "The answer must be grounded in the passage only.\n"
         "Return JSON with keys: question, gold_answer\n"
         f"{failure_hint}"
         f"{extra_instruction}\n"
@@ -45,12 +47,15 @@ def zero_shot_generate(
     client: LLMClient,
     paragraph: Paragraph,
     *,
+    domain: str = DEFAULT_DOMAIN,
     failure_mode: FailureMode | None = None,
 ) -> QASample:
     """Generate a single Q&A pair without exemplars."""
-    prompt = _base_generation_prompt(paragraph, failure_mode=failure_mode)
-    payload = _parse_generation_response(client, prompt)
-    logger.info(f"Payload: {payload}")
+    prompt = _base_generation_prompt(
+        paragraph, domain=domain, failure_mode=failure_mode
+    )
+    payload = _parse_generation_response(client, prompt, domain=domain)
+    logger.info("Payload: %s", payload)
     return _to_qa_sample(
         paragraph,
         payload,
@@ -64,6 +69,7 @@ def one_shot_generate(
     paragraph: Paragraph,
     example: QASample,
     *,
+    domain: str = DEFAULT_DOMAIN,
     failure_mode: FailureMode | None = None,
 ) -> QASample:
     """Generate a Q&A pair using one in-context example."""
@@ -71,10 +77,11 @@ def one_shot_generate(
     extra = f"Example:\n{example_block}\n"
     prompt = _base_generation_prompt(
         paragraph,
+        domain=domain,
         failure_mode=failure_mode,
         extra_instruction=extra,
     )
-    payload = _parse_generation_response(client, prompt)
+    payload = _parse_generation_response(client, prompt, domain=domain)
     return _to_qa_sample(
         paragraph,
         payload,
@@ -88,6 +95,7 @@ def few_shot_generate(
     paragraph: Paragraph,
     examples: list[QASample],
     *,
+    domain: str = DEFAULT_DOMAIN,
     failure_mode: FailureMode | None = None,
 ) -> QASample:
     """Generate a Q&A pair using multiple in-context examples."""
@@ -99,10 +107,11 @@ def few_shot_generate(
     extra = f"Examples:\n{example_block}\n"
     prompt = _base_generation_prompt(
         paragraph,
+        domain=domain,
         failure_mode=failure_mode,
         extra_instruction=extra,
     )
-    payload = _parse_generation_response(client, prompt)
+    payload = _parse_generation_response(client, prompt, domain=domain)
     return _to_qa_sample(
         paragraph,
         payload,
@@ -116,87 +125,110 @@ def topic_controlled_generate(
     paragraph: Paragraph,
     *,
     topics: list[str] | None = None,
+    domain: str = DEFAULT_DOMAIN,
     failure_mode: FailureMode | None = None,
-) -> QASample:
-    """
-    Generate a Q&A pair focused on a specific policy topic for a given paragraph.
+    max_topics: int | None = None,
+) -> list[QASample]:
+    """Generate one Q&A pair per topic extracted from (or supplied for) a paragraph.
 
-    This function operates in two steps: it first extracts a list of policy topics
-    from the input paragraph using the language model client, then selects one topic
-    and prompts the model to generate a question and answer focused on that topic. If
-    topic extraction is skipped (by passing topics), the provided list is used
-    directly. This approach encourages targeted and diverse questions per paragraph.
+    Topics are **paragraph-scoped** on purpose: shorter context keeps questions
+    precise and reduces the risk of hallucinated themes that can appear when
+    topics are mined from a whole document.
 
     Parameters
     ----------
-    client : LLMClient
-        The language model client used for generation.
-    paragraph : Paragraph
-        The paragraph from which to extract topics and generate Q&A.
-    topics : list of str, optional
-        List of topics to use instead of generating them automatically. If None, topics
-        will be extracted from the paragraph.
-    failure_mode : FailureMode or None, optional
-        The small-model failure mode to condition the generation on.
+    client:
+        Teacher LLM client.
+    paragraph:
+        Source paragraph for topic extraction and grounding.
+    topics:
+        Optional precomputed topics. If omitted, topics are extracted from the
+        paragraph only.
+    domain:
+        Domain label injected into prompts (from ``DEFAULT_DOMAIN`` / config).
+    failure_mode:
+        Optional small-model failure mode to condition each generation.
+    max_topics:
+        Optional cap on how many topics (and thus Q&As) to generate.
 
     Returns
     -------
-    QASample
-        The generated question-answer sample, including topic metadata.
-
-    Notes
-    -----
-    Used primarily in test set generation (`generate_test_qa_batch`) for targeted Q&A
-    diversity.
+    list[QASample]
+        One sample per topic, each tagged with ``metadata["topic"]``.
     """
-    topic_list = topics or _generate_topics(client, paragraph)
-    topic = topic_list[0] if topic_list else "general policy interpretation"
-    extra = f"Focus topic: {topic}\n"
-    prompt = _base_generation_prompt(
-        paragraph,
-        failure_mode=failure_mode,
-        extra_instruction=extra,
+    topic_list = list(topics) if topics is not None else extract_topics(
+        client, paragraph, domain=domain
     )
-    payload = _parse_generation_response(client, prompt)
-    sample = _to_qa_sample(
-        paragraph,
-        payload,
-        strategy=GenerationStrategy.TOPIC_CONTROLLED,
-        failure_mode=failure_mode,
-    )
-    sample.metadata["topic"] = topic
-    sample.metadata["candidate_topics"] = topic_list
-    return sample
+    if not topic_list:
+        topic_list = [f"general {domain} interpretation"]
+    if max_topics is not None:
+        topic_list = topic_list[: max(0, max_topics)]
+
+    samples: list[QASample] = []
+    for topic in topic_list:
+        extra = (
+            f"Focus topic: {topic}\n"
+            f"The question must be specifically about this topic and answerable "
+            f"from the passage alone.\n"
+        )
+        prompt = _base_generation_prompt(
+            paragraph,
+            domain=domain,
+            failure_mode=failure_mode,
+            extra_instruction=extra,
+        )
+        payload = _parse_generation_response(client, prompt, domain=domain)
+        sample = _to_qa_sample(
+            paragraph,
+            payload,
+            strategy=GenerationStrategy.TOPIC_CONTROLLED,
+            failure_mode=failure_mode,
+        )
+        sample.metadata["topic"] = topic
+        sample.metadata["candidate_topics"] = list(topic_list)
+        samples.append(sample)
+    return samples
 
 
-def _generate_topics(
-    client: LLMClient, paragraph: Paragraph, *, n_topics: int = 5
+def extract_topics(
+    client: LLMClient,
+    paragraph: Paragraph,
+    *,
+    domain: str = DEFAULT_DOMAIN,
+    n_topics: int = 5,
 ) -> list[str]:
+    """Extract concise topics present in a single paragraph (not the full document)."""
     prompt = (
-        f"List {n_topics} concise policy topics present in the passage.\n"
+        f"List {n_topics} concise {domain} topics present in the passage.\n"
+        "Only include topics that are explicitly supported by the passage.\n"
         'Return JSON: {"topics": ["..."]}\n'
         f"Passage:\n{paragraph.text}"
     )
+    system = f"You extract {domain} topics from a short passage."
     if hasattr(client, "complete_json"):
-        payload = client.complete_json(prompt, system="You extract policy topics.")
+        payload = client.complete_json(prompt, system=system)
         return list(payload.get("topics", []))
-    raw = client.complete(prompt, system="You extract policy topics.")
-    return list(json.loads(raw).get("topics", []))
+    raw = client.complete(prompt, system=system)
+    return list(json.loads(extract_json_text(raw)).get("topics", []))
 
 
-def _parse_generation_response(client: LLMClient, prompt: str) -> dict[str, Any]:
+def _parse_generation_response(
+    client: LLMClient,
+    prompt: str,
+    *,
+    domain: str = DEFAULT_DOMAIN,
+) -> dict[str, Any]:
+    system = f"You generate grounded {domain} Q&A from source text."
     if hasattr(client, "complete_json"):
         return cast(
             dict[str, Any],
             client.complete_json(
                 prompt,
-                system="You generate grounded policy Q&A.",
+                system=system,
                 max_tokens=2048,
             ),
         )
-    raw = client.complete(
-        prompt, system="You generate grounded policy Q&A.", max_tokens=2048
-    )
+    raw = client.complete(prompt, system=system, max_tokens=2048)
     return cast(dict[str, Any], json.loads(extract_json_text(raw)))
 
 

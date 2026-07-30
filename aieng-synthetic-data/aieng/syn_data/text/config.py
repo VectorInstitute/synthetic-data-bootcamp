@@ -7,6 +7,10 @@ from pathlib import Path
 from aieng.syn_data.text.schemas import DocumentRole, DocumentSpec, FailureMode
 
 
+# Injected into generation
+# Change this (or pass domain=...) when adapting to another document type.
+# If you want domain to matter, pass a short domain brief
+# (key terms, question styles), not just the word finance.
 DEFAULT_DOMAIN = "finance"
 
 # Repo-anchored paths under implementations/qa_text_generation/ so callers work

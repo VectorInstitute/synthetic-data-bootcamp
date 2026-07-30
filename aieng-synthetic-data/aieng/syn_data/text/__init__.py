@@ -49,6 +49,7 @@ from aieng.syn_data.text.evaluation import (
     summarize_judge_scores,
 )
 from aieng.syn_data.text.generation import (
+    extract_topics,
     few_shot_generate,
     one_shot_generate,
     topic_controlled_generate,
@@ -164,6 +165,7 @@ __all__ = [
     "download_url",
     "effective_synthetic_target",
     "ensure_parent",
+    "extract_topics",
     "filter_with_judge",
     "find_repo_root",
     "few_shot_generate",
