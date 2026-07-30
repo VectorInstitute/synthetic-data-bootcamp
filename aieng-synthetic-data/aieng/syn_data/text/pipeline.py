@@ -45,6 +45,7 @@ from aieng.syn_data.text.schemas import (
     QASample,
 )
 
+
 logger = logging.getLogger(__name__)
 
 
@@ -234,7 +235,13 @@ def generate_raw_synthetic_corpus(
                 seed_example=seed,
                 few_shot_examples=[seed],
             )
-        except (KeyError, ValueError, TypeError, RuntimeError, requests.HTTPError) as exc:
+        except (
+            KeyError,
+            ValueError,
+            TypeError,
+            RuntimeError,
+            requests.HTTPError,
+        ) as exc:
             logger.warning(
                 "Skipping paragraph %s after generation failure: %s: %s",
                 paragraph.para_id,
@@ -304,7 +311,8 @@ def generate_grounded_training_corpus(
     """
     if not train_paragraphs:
         return []
-    # preserving an explicit target_size=0 without invoking effective_synthetic_target or generating LLM requests 
+    # Preserve explicit target_size=0 without calling effective_synthetic_target
+    # or generating LLM requests.
     goal = (
         target_size
         if target_size is not None
@@ -312,7 +320,7 @@ def generate_grounded_training_corpus(
             train_paragraphs,
             one_per_paragraph=True,
         )
-     )
+    )
     # Avoid repeat visits that regenerate near-identical questions.
     goal = min(goal, len(train_paragraphs))
 
@@ -331,7 +339,13 @@ def generate_grounded_training_corpus(
         seen_paras.add(paragraph.para_id)
         try:
             sample = generate_grounded_qa(teacher, paragraph)
-        except (KeyError, ValueError, TypeError, RuntimeError, requests.HTTPError) as exc:
+        except (
+            KeyError,
+            ValueError,
+            TypeError,
+            RuntimeError,
+            requests.HTTPError,
+        ) as exc:
             logger.warning(
                 "Skipping paragraph %s after generation failure: %s: %s",
                 paragraph.para_id,
