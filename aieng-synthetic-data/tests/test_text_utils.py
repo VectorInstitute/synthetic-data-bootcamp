@@ -10,6 +10,10 @@ from aieng.syn_data.text.documents import (
     chunk_text_into_paragraphs,
     sample_test_paragraphs,
 )
+from aieng.syn_data.text.generation import (
+    _base_generation_prompt,
+    topic_controlled_generate,
+)
 from aieng.syn_data.text.io import read_jsonl, write_jsonl
 from aieng.syn_data.text.pipeline import (
     build_paragraph_splits,
@@ -25,7 +29,11 @@ from aieng.syn_data.text.quality import (
     detect_answer_leakage,
     summarize_heuristic_rejections,
 )
-from aieng.syn_data.text.rag import grounding_overlap_score, retrieve_paragraphs
+from aieng.syn_data.text.rag import (
+    generate_grounded_qa,
+    grounding_overlap_score,
+    retrieve_paragraphs,
+)
 from aieng.syn_data.text.schemas import (
     DocumentRole,
     FailureMode,
@@ -130,6 +138,45 @@ def test_instruction_backtranslation_prompt_asks_for_question_only() -> None:
     prompt = instruction_backtranslation_prompt("Grace period is 21 days.")
     assert "Instruction back-translation" in prompt
     assert "single key: question" in prompt
+
+
+def test_generation_prompts_use_domain_not_hardcoded_policy() -> None:
+    paragraph = _paragraph("doc", 0, "Grace period is 21 days after billing closes.")
+    prompt = _base_generation_prompt(paragraph, domain="healthcare")
+    assert "healthcare" in prompt
+    assert "policy passage" not in prompt
+
+
+def test_topic_controlled_generate_one_sample_per_topic() -> None:
+    class _FakeClient:
+        def complete_json(self, prompt: str, **kwargs: object) -> dict:
+            if "Focus topic:" in prompt:
+                topic = prompt.split("Focus topic:", 1)[1].split("\n", 1)[0].strip()
+                return {
+                    "question": f"What about {topic}?",
+                    "gold_answer": "See passage.",
+                }
+            return {"topics": ["billing", "fees"]}
+
+    paragraph = _paragraph("doc", 0, "Billing fees and grace periods apply.")
+    samples = topic_controlled_generate(_FakeClient(), paragraph)  # type: ignore[arg-type]
+    assert len(samples) == 2
+    assert samples[0].metadata["topic"] == "billing"
+    assert samples[1].metadata["topic"] == "fees"
+
+
+def test_generate_grounded_qa_forces_passage_as_gold_answer() -> None:
+    class _FakeClient:
+        def complete_json(self, prompt: str, **kwargs: object) -> dict:
+            return {
+                "question": "What is the grace period?",
+                "gold_answer": "Model should not invent this.",
+            }
+
+    paragraph = _paragraph("doc", 0, "Your grace period is 21 days.")
+    sample = generate_grounded_qa(_FakeClient(), paragraph)  # type: ignore[arg-type]
+    assert sample.gold_answer == paragraph.text
+    assert sample.question == "What is the grace period?"
 
 
 def test_synthetic_qa_quality_prompt_uses_passage_not_model_answer() -> None:

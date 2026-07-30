@@ -125,9 +125,9 @@ def generate_grounded_qa(
         payload = json.loads(raw)
 
     question = str(payload["question"]).strip()
-    # Prefer a model-provided short answer when present; otherwise use the
-    # passage as the response (standard instruction back-translation).
-    gold_answer = str(payload.get("gold_answer") or paragraph.text).strip()
+    # Classic instruction back-translation: the passage *is* the answer.
+    # Ignore any model-provided gold_answer so labels stay faithful to the source.
+    gold_answer = paragraph.text.strip()
 
     return QASample(
         id=str(uuid.uuid4()),

@@ -28,6 +28,7 @@ from aieng.syn_data.text.evaluation import (
     summarize_judge_scores,
 )
 from aieng.syn_data.text.generation import (
+    extract_topics,
     few_shot_generate,
     one_shot_generate,
     topic_controlled_generate,
@@ -135,20 +136,38 @@ def generate_test_qa_batch(
 ) -> list[QASample]:
     """Generate held-out, hard-to-answer test Q&A from test paragraphs.
 
-    Uses the teacher model.
+    Uses topic-controlled generation: one Q&A per paragraph topic (capped by
+    ``questions_per_para``), with failure modes rotated across topics.
     """
     samples: list[QASample] = []
     for paragraph in test_paragraphs:
         modes = failure_modes_for_paragraph(paragraph)
         if not modes:
             modes = [FailureMode.DOMAIN_VOCABULARY_DRIFT]
-        for offset in range(questions_per_para):
-            failure_mode = modes[offset % len(modes)]
+        # Paragraph-scoped topics (not document-wide) for precise, grounded Q&As.
+        topics = extract_topics(teacher, paragraph)[:questions_per_para]
+        if not topics:
+            failure_mode = modes[0]
             sample = topic_controlled_generate(
                 teacher,
                 paragraph,
                 failure_mode=failure_mode,
-            )
+                max_topics=1,
+            )[0]
+            sample.id = f"test-{paragraph.para_id}-0"
+            sample.split = ParagraphSplit.TEST
+            sample.failure_mode = failure_mode
+            samples.append(sample)
+            continue
+
+        for offset, topic in enumerate(topics):
+            failure_mode = modes[offset % len(modes)]
+            sample = topic_controlled_generate(
+                teacher,
+                paragraph,
+                topics=[topic],
+                failure_mode=failure_mode,
+            )[0]
             sample.id = f"test-{paragraph.para_id}-{offset}"
             sample.split = ParagraphSplit.TEST
             sample.failure_mode = failure_mode
@@ -177,16 +196,19 @@ def compare_generation_strategies(
         doc_id=paragraph.doc_id,
         para_id=paragraph.para_id,
         context=paragraph.text,
-        instruction="Answer using the policy text. Respond in one sentence.",
+        instruction="Answer using the source passage. Respond in one sentence.",
     )
     # Without caller-provided few-shots this collapses to one-shot; supply a
     # richer domain list in a follow-up (see TODO above).
     few_shot = few_shot_examples or [seed]
+    # Side-by-side view keeps one topic-controlled sample; full per-topic
+    # expansion is used in generate_test_qa_batch / topic_controlled_generate.
+    topic_samples = topic_controlled_generate(teacher, paragraph, max_topics=1)
     return {
         "zero_shot": zero_shot_generate(teacher, paragraph),
         "one_shot": one_shot_generate(teacher, paragraph, seed),
         "few_shot": few_shot_generate(teacher, paragraph, few_shot),
-        "topic_controlled": topic_controlled_generate(teacher, paragraph),
+        "topic_controlled": topic_samples[0],
     }
 
 
