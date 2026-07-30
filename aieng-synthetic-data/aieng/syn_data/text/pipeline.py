@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import logging
 import random
 import uuid
 from pathlib import Path
 from typing import Any
+
+import requests
 
 from aieng.syn_data.text.clients import LLMClient
 from aieng.syn_data.text.config import (
@@ -41,6 +44,8 @@ from aieng.syn_data.text.schemas import (
     ParagraphSplit,
     QASample,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def effective_test_holdout(
@@ -229,7 +234,13 @@ def generate_raw_synthetic_corpus(
                 seed_example=seed,
                 few_shot_examples=[seed],
             )
-        except (KeyError, ValueError, TypeError, RuntimeError):
+        except (KeyError, ValueError, TypeError, RuntimeError, requests.HTTPError) as exc:
+            logger.warning(
+                "Skipping paragraph %s after generation failure: %s: %s",
+                paragraph.para_id,
+                type(exc).__name__,
+                exc,
+            )
             continue
         samples.extend(generated.values())
     return samples
@@ -293,11 +304,15 @@ def generate_grounded_training_corpus(
     """
     if not train_paragraphs:
         return []
-
-    goal = target_size or effective_synthetic_target(
-        train_paragraphs,
-        one_per_paragraph=True,
-    )
+    # preserving an explicit target_size=0 without invoking effective_synthetic_target or generating LLM requests 
+    goal = (
+        target_size
+        if target_size is not None
+        else effective_synthetic_target(
+            train_paragraphs,
+            one_per_paragraph=True,
+        )
+     )
     # Avoid repeat visits that regenerate near-identical questions.
     goal = min(goal, len(train_paragraphs))
 
@@ -316,7 +331,13 @@ def generate_grounded_training_corpus(
         seen_paras.add(paragraph.para_id)
         try:
             sample = generate_grounded_qa(teacher, paragraph)
-        except (KeyError, ValueError, TypeError, RuntimeError):
+        except (KeyError, ValueError, TypeError, RuntimeError, requests.HTTPError) as exc:
+            logger.warning(
+                "Skipping paragraph %s after generation failure: %s: %s",
+                paragraph.para_id,
+                type(exc).__name__,
+                exc,
+            )
             continue
 
         overlap = grounding_overlap_score(sample.gold_answer, sample.context)

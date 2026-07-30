@@ -83,8 +83,10 @@ def _complete_judge_json(
         prompt, system=system, temperature=0.0, max_tokens=max_tokens
     )
     payload = json.loads(repair_json(raw))
-    if payload is None:
-        raise ValueError(f"Failed to parse model JSON: {raw}")
+    if not isinstance(payload, dict):
+        raise ValueError(
+            f"Model response did not contain a JSON object: {raw[:300]!r}"
+        )
     return payload
 
 
@@ -99,9 +101,9 @@ def judge_response(
     against ``sample.gold_answer``.
     """
     logger.info(
-        "Scoring model answer for sample: %s with model answer: %s",
+        "Scoring model answer for sample: %s (answer length: %d)",
         sample.id,
-        model_answer,
+        len(model_answer),
     )
     prompt = build_absolute_judge_prompt(sample, model_answer)
     payload = _complete_judge_json(
