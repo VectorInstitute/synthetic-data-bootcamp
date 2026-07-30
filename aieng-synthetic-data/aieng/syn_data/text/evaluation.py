@@ -52,20 +52,25 @@ def run_inference(
     predictions: list[dict[str, Any]] = []
     for sample in samples:
         prompt = build_eval_prompt(sample)
-        model_answer = client.complete(prompt, system=system, temperature=0.0)
-        predictions.append(
-            {
-                "id": sample.id,
-                "question": sample.question,
-                "gold_answer": sample.gold_answer,
-                "model_answer": model_answer,
-                "failure_mode": (
-                    sample.failure_mode.value if sample.failure_mode else None
-                ),
-                "doc_id": sample.doc_id,
-                "para_id": sample.para_id,
-            },
-        )
+        record: dict[str, Any] = {
+            "id": sample.id,
+            "question": sample.question,
+            "gold_answer": sample.gold_answer,
+            "model_answer": "",
+            "failure_mode": (
+                sample.failure_mode.value if sample.failure_mode else None
+            ),
+            "doc_id": sample.doc_id,
+            "para_id": sample.para_id,
+        }
+        # Isolate failures so one bad LLM call does not discard prior predictions.
+        try:
+            record["model_answer"] = client.complete(
+                prompt, system=system, temperature=0.0
+            )
+        except (KeyError, ValueError, TypeError, RuntimeError) as exc:
+            record["error"] = f"{type(exc).__name__}: {exc}"
+        predictions.append(record)
     return predictions
 
 
