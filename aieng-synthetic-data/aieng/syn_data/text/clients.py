@@ -258,26 +258,30 @@ def create_teacher_client(
     """
     Create the strong teacher model client for synthetic data generation.
 
-    This function initializes and returns an OpenAI-compatible LLM client intended to act as the
-    "teacher" during synthetic data generation. The specific model to use can be configured through
-    an environment variable or a default is provided.
+    This function initializes and returns an OpenAI-compatible LLM client
+    intended to act as the "teacher" during synthetic data generation. The
+    specific model to use can be configured through an environment variable
+    or a default is provided.
 
     Parameters
     ----------
     model_var : str, optional
-        Name of the environment variable holding the desired model name. Defaults to "TEACHER_MODEL".
+        Name of the environment variable holding the desired model name.
+        Defaults to "TEACHER_MODEL".
     default_model : str, optional
-        Model to use if the environment variable is not set. Defaults to "gpt-4o-mini".
+        Model to use if the environment variable is not set.
+        Defaults to "gpt-4o-mini".
 
     Returns
     -------
     OpenAICompatibleClient
-        An LLM client configured for use as the teacher in synthetic data workflows.
+        An LLM client configured for use as the teacher in synthetic data
+        workflows.
 
     Notes
     -----
-    The returned client encapsulates credentials and endpoint information inferred from
-    environment variables as per the LLMSettings class.
+    The returned client encapsulates credentials and endpoint information
+    inferred from environment variables as per the LLMSettings class.
     """
     settings = LLMSettings.from_env(model_var=model_var, default_model=default_model)
     return OpenAICompatibleClient(settings)
@@ -291,16 +295,16 @@ def create_judge_client(
     """
     Create the LLM client for use as a judge model in evaluation tasks.
 
-    This function initializes and returns an OpenAI-compatible LLM client that will be
-    used in the "judge" role for synthetic data evaluation workflows. The selected model
-    can be configured through an environment variable or a default model is used if none
-    is specified.
+    This function initializes and returns an OpenAI-compatible LLM client that
+    will be used in the "judge" role for synthetic data evaluation workflows.
+    The selected model can be configured through an environment variable or a
+    default model is used if none is specified.
 
     Parameters
     ----------
     model_var : str, optional
-        Name of the environment variable that contains the judge model name to use.
-        Defaults to "JUDGE_MODEL".
+        Name of the environment variable that contains the judge model name
+        to use. Defaults to "JUDGE_MODEL".
     default_model : str, optional
         Model to use as fallback if the environment variable is not set.
         Defaults to "gpt-4o-mini".
@@ -308,14 +312,15 @@ def create_judge_client(
     Returns
     -------
     OpenAICompatibleClient
-        An LLM client configured with credentials, endpoint, and model specification, ready
-        for use in LLM-based judge evaluation flows.
+        An LLM client configured with credentials, endpoint, and model
+        specification, ready for use in LLM-based judge evaluation flows.
 
     Notes
     -----
-    The returned client infers model and environment configuration from the specified
-    environment variable, using the `LLMSettings` class for settings discovery. This facilitates
-    flexible and reproducible judge model setup in varying compute or deployment contexts.
+    The returned client infers model and environment configuration from the
+    specified environment variable, using the `LLMSettings` class for settings
+    discovery. This facilitates flexible and reproducible judge model setup in
+    varying compute or deployment contexts.
     """
     settings = LLMSettings.from_env(model_var=model_var, default_model=default_model)
     return OpenAICompatibleClient(settings)

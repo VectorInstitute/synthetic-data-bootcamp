@@ -58,6 +58,7 @@ members = [
 aieng-synthetic-data = { workspace = true }
 
 [tool.mypy]
+mypy_path = ["aieng-synthetic-data"]
 ignore_missing_imports = true
 install_types = true
 pretty = true

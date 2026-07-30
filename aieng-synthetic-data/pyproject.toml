@@ -37,6 +37,7 @@ include = ["aieng/"]
 include = ["aieng/"]
 
 [tool.mypy]
+mypy_path = ["."]
 ignore_missing_imports = true
 install_types = true
 pretty = true

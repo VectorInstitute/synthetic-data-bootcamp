@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
-from typing import Any
+from typing import Any, cast
 
 from json_repair import repair_json
 
@@ -17,6 +17,7 @@ from aieng.syn_data.text.prompts import (
     synthetic_qa_quality_prompt,
 )
 from aieng.syn_data.text.schemas import JudgeScore, QASample
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -76,17 +77,16 @@ def _complete_judge_json(
     max_tokens: int = 256,
 ) -> dict[str, Any]:
     if hasattr(client, "complete_json"):
-        return client.complete_json(
-            prompt, system=system, temperature=0.0, max_tokens=max_tokens
+        return cast(
+            dict[str, Any],
+            client.complete_json(
+                prompt, system=system, temperature=0.0, max_tokens=max_tokens
+            ),
         )
-    raw = client.complete(
-        prompt, system=system, temperature=0.0, max_tokens=max_tokens
-    )
+    raw = client.complete(prompt, system=system, temperature=0.0, max_tokens=max_tokens)
     payload = json.loads(repair_json(raw))
     if not isinstance(payload, dict):
-        raise ValueError(
-            f"Model response did not contain a JSON object: {raw[:300]!r}"
-        )
+        raise ValueError(f"Model response did not contain a JSON object: {raw[:300]!r}")
     return payload
 
 
@@ -106,9 +106,7 @@ def judge_response(
         len(model_answer),
     )
     prompt = build_absolute_judge_prompt(sample, model_answer)
-    payload = _complete_judge_json(
-        client, prompt, system=RESPONSE_JUDGE_SYSTEM_PROMPT
-    )
+    payload = _complete_judge_json(client, prompt, system=RESPONSE_JUDGE_SYSTEM_PROMPT)
     return parse_judge_score(sample.id, payload)
 
 
