@@ -24,6 +24,7 @@ wheels/
 **.ipynb_checkpoints
 
 .env
+.terraform
 
 # QA text generation — generated artifacts (sample source excerpts in documents/*.txt are kept)
 implementations/qa_text_generation/data/paragraphs.jsonl
