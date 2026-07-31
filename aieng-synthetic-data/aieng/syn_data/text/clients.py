@@ -15,8 +15,7 @@ from json_repair import repair_json
 
 
 logger = logging.getLogger(__name__)
-# TODO: Change to INFO level for production
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 _FENCED_JSON = re.compile(r"```(?:json)?\s*([\s\S]*?)\s*```", re.IGNORECASE)
 
