@@ -42,6 +42,14 @@ def download_document(spec: DocumentSpec, data_dir: Path | None = None) -> Path:
         msg = f"No source URL configured for document '{spec.doc_id}'."
         raise ValueError(msg)
 
+    source_suffix = Path(spec.source_url.split("?")[0]).suffix.lower()
+    if source_suffix and destination.suffix.lower() != source_suffix:
+        msg = (
+            f"'{spec.doc_id}' source_url looks like '{source_suffix}' but "
+            f"local_path is '{destination.suffix}'. Provide a pre-extracted "
+            f"'{destination.suffix}' file or point local_path at '{source_suffix}'."
+        )
+        raise ValueError(msg)
     return download_url(spec.source_url, destination)
 
 
