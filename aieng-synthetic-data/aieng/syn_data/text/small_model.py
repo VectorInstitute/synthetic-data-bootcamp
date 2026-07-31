@@ -33,8 +33,10 @@ def create_small_model_client(
         model=(
             os.getenv("SMALL_MODEL_NAME") or os.getenv("OPENAI_MODEL") or default_model
         ),
-        base_url=os.getenv("SMALL_MODEL_BASE_URL")
-        or os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1").rstrip("/"),
+        base_url=(
+           os.getenv("SMALL_MODEL_BASE_URL")
+           or os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
+       ).rstrip("/"), 
     )
     logger.info("Creating small model client for model: %s", settings.model)
     return OpenAICompatibleClient(settings)

@@ -65,9 +65,8 @@ def train_lora_sft(
         AutoModelForCausalLM,
         AutoTokenizer,
         BitsAndBytesConfig,
-        TrainingArguments,
     )
-    from trl import SFTTrainer
+    from trl import SFTConfig, SFTTrainer
 
     if not torch.cuda.is_available():
         import platform
@@ -127,16 +126,18 @@ def train_lora_sft(
     trainer = SFTTrainer(
         model=model,
         train_dataset=dataset,
-        args=TrainingArguments(
+        args=SFTConfig(
             output_dir=str(output_dir),
             num_train_epochs=num_train_epochs,
             per_device_train_batch_size=per_device_train_batch_size,
             gradient_accumulation_steps=gradient_accumulation_steps,
             learning_rate=learning_rate,
+            max_length=max_seq_length,
             logging_steps=10,
             save_strategy="epoch",
             report_to="none",
         ),
+        processing_class=tokenizer,
         formatting_func=formatting_func,
     )
     trainer.train()
