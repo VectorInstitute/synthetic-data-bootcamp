@@ -156,8 +156,10 @@ def topic_controlled_generate(
     list[QASample]
         One sample per topic, each tagged with ``metadata["topic"]``.
     """
-    topic_list = list(topics) if topics is not None else extract_topics(
-        client, paragraph, domain=domain
+    topic_list = (
+        list(topics)
+        if topics is not None
+        else extract_topics(client, paragraph, domain=domain)
     )
     if not topic_list:
         topic_list = [f"general {domain} interpretation"]
