@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import Any
 
 from aieng.syn_data.text.clients import extract_json_text
 from aieng.syn_data.text.documents import (
@@ -149,7 +150,7 @@ def test_generation_prompts_use_domain_not_hardcoded_policy() -> None:
 
 def test_topic_controlled_generate_one_sample_per_topic() -> None:
     class _FakeClient:
-        def complete_json(self, prompt: str, **kwargs: object) -> dict:
+        def complete_json(self, prompt: str, **kwargs: object) -> dict[str, Any]:
             if "Focus topic:" in prompt:
                 topic = prompt.split("Focus topic:", 1)[1].split("\n", 1)[0].strip()
                 return {
@@ -167,7 +168,7 @@ def test_topic_controlled_generate_one_sample_per_topic() -> None:
 
 def test_generate_grounded_qa_forces_passage_as_gold_answer() -> None:
     class _FakeClient:
-        def complete_json(self, prompt: str, **kwargs: object) -> dict:
+        def complete_json(self, prompt: str, **kwargs: object) -> dict[str, Any]:
             return {
                 "question": "What is the grace period?",
                 "gold_answer": "Model should not invent this.",
