@@ -1,0 +1,16 @@
+{
+  "id": "fixture_cancel",
+  "description": "Cancel pending order",
+  "task_type": "cancel",
+  "user_scenario": {
+    "initial_message": "I need to cancel an order before it ships."
+  },
+  "evaluation_criteria": {
+    "actions": [
+      {"name": "get_order", "arguments": {"order_id": "ord_1001"}},
+      {"name": "cancel_order", "arguments": {"order_id": "ord_1001"}}
+    ],
+    "communicate_info": ["cancelled"],
+    "reward_basis": ["DB", "COMMUNICATE"]
+  }
+}

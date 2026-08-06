@@ -46,7 +46,12 @@ repos:
     rev: 1.9.1
     hooks:
     - id: nbqa-ruff
-      args: [--fix, --exit-non-zero-on-fix, --ignore=D100]
+      # E402 is a false positive here: nbQA concatenates all cells into one
+      # module, so per-section imports in teaching notebooks look misplaced.
+      args:
+      - --fix
+      - --exit-non-zero-on-fix
+      - '--config=lint.extend-ignore=["D100","E402"]'
 
 ci:
     autofix_commit_msg: |
