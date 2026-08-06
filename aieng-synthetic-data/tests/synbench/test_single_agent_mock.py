@@ -27,7 +27,7 @@ def test_single_agent_first_user_message_is_initial(mock_retail_path):
     user_msgs = [m["content"] for m in session.messages if m.get("role") == "user"]
     assert user_msgs[0] == task.user_scenario.initial_message
     assert "user_sim" in session.role_trace
-    assert "single" in session.role_trace
+    assert "executor" in session.role_trace
 
 
 def test_single_agent_stops_when_user_sim_done(mock_retail_path):

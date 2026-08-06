@@ -25,7 +25,9 @@ def test_dedup_same_actions(mock_retail_path):
     verified, rejected, seen = filter_verified(domain, drafts)
     assert len(verified) == 1
     assert len(rejected) == 1
-    assert rejected[0][1] == ["Duplicate actions"]
+    assert rejected[0][1] == [
+        "Duplicate actions: exact sequence of tool calls and arguments"
+    ]
     assert len(seen) == 1
 
 
