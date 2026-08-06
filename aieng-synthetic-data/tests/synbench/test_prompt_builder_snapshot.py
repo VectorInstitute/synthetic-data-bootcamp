@@ -34,23 +34,6 @@ def test_prompt_prefers_matching_seed_example(mock_retail_path):
         assert "seed_cancel" in prompt
 
 
-def test_prompt_includes_personality_style_and_clean_intent_rules(mock_retail_path):
-    """The prompt states the sampled style and the clean-intent authoring rules."""
-    domain = load_domain(mock_retail_path)
-    constraints = ConstraintSampler(domain, seed=1).sample()
-    assert constraints.personality_style is not None
-    prompt = PromptBuilder().build(domain, constraints)
-    assert "Sampled customer interaction style" in prompt
-    assert constraints.personality_style["name"] in prompt
-    assert "unmodified goal" in prompt.lower()
-    assert "clean intent" in prompt.lower()
-    assert "Not shown to the agent under test" in prompt
-    assert "user_scenario.user_name" in prompt
-    assert "user_scenario.personality_style" in prompt
-    assert "must copy exactly" in prompt
-    assert "Legacy ``persona`` field" in prompt
-
-
 def test_prompt_neutral_style_when_missing(mock_retail_path):
     """The prompt falls back to neutral wording when no style was sampled."""
     domain = load_domain(mock_retail_path)

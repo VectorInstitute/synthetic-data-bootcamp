@@ -5,7 +5,9 @@ from pathlib import Path
 import pytest
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(
+    "implementations/agent_benchmark_generation"
+)  # Points to the domains directory
 MOCK_RETAIL = ROOT / "domains" / "mock_retail"
 
 
