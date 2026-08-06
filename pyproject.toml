@@ -1,5 +1,5 @@
 [project]
-name = "aieng-synthetic-data"
+name = "synthetic-data-bootcamp"
 version = "0.1.1"
 description = ""
 authors = [ {name = "Vector AI Engineering", email = "ai_engineering@vectorinstitute.ai"}]
@@ -38,6 +38,15 @@ dev = [
     "ruff>=0.15.22",
 ]
 
+synbench = [
+    "pydantic>=2.0",
+    "typer>=0.12",
+    "openai>=1.40",
+    "pyyaml>=6.0",
+    "httpx>=0.27",
+    "dotenv",
+]
+
 [tool.uv.workspace]
 members = [
   "aieng-synthetic-data",
@@ -46,7 +55,11 @@ members = [
 [tool.uv.sources]
 aieng-synthetic-data = { workspace = true }
 
+
 [tool.mypy]
+# Resolve aieng.* from the source tree; without this the installed distribution
+# has no py.typed marker and every cross-module import degrades to Any.
+mypy_path = "aieng-synthetic-data"
 ignore_missing_imports = true
 install_types = true
 pretty = true
@@ -67,6 +80,12 @@ warn_return_any = true
 implicit_reexport = false
 strict_equality = true
 extra_checks = true
+
+[[tool.mypy.overrides]]
+# IPython.display ships unannotated callables; the rich-display helpers here
+# are thin wrappers around them and cannot satisfy disallow_untyped_calls.
+module = "aieng.syn_data.synbench.display"
+disallow_untyped_calls = false
 
 [tool.ruff]
 include = ["*.py", "pyproject.toml", "*.ipynb"]

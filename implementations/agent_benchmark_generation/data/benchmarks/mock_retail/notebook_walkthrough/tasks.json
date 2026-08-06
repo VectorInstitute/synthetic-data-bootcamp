@@ -1,0 +1,92 @@
+{
+  "tasks": [
+    {
+      "id": "gen_dc547ce1_0",
+      "description": "Look up order details for the user",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Alice Chen",
+        "personality_style": "rule_breaker",
+        "instructions": "Inquire about the status of order ord_1001. Do not volunteer the order ID immediately; force the agent to ask for it.",
+        "initial_message": "Listen, I need to know what's going on with my delivery. It's been way too long and I bet you guys lost it. Can you check my account?"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_1001"
+            }
+          }
+        ],
+        "communicate_info": [],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "gen_47075073_1",
+      "description": "Cancel the pending order ord_1001 for the customer",
+      "task_type": "cancel",
+      "user_scenario": {
+        "user_name": "Alice Chen",
+        "personality_style": "anxious",
+        "instructions": "The customer wants to cancel their pending order ord_1001. The agent must look up the order and perform the cancellation.",
+        "initial_message": "Oh no, I'm so nervous about this package! I just realized I shouldn't have placed that order earlier today. Is it too late to stop it? I'm just so worried something will go wrong, can you please help me get it canceled?"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_1001"
+            }
+          },
+          {
+            "name": "cancel_order",
+            "arguments": {
+              "order_id": "ord_1001"
+            }
+          }
+        ],
+        "communicate_info": [
+          "canceled"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "gen_66bde9b2_2",
+      "description": "Inquire about the current status of order ord_2001.",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Bob Martinez",
+        "personality_style": "domain_expert",
+        "instructions": "Inquire about the status of order ord_2001. Ensure the agent uses the proper lookup tool.",
+        "initial_message": "I would like to verify the current status of my order, please. I understand your policy requires a lookup to proceed."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_2001"
+            }
+          }
+        ],
+        "communicate_info": [
+          "pending"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    }
+  ]
+}

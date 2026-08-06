@@ -1,0 +1,19 @@
+{
+  "id": "mock_gen_cancel",
+  "description": "Cancel pending order ord_2001",
+  "task_type": "cancel",
+  "user_scenario": {
+    "user_name": "Bob Martinez",
+    "personality_style": "rushed",
+    "instructions": "Cancel pending order ord_2001.",
+    "initial_message": "Need to cancel an order before it ships — can you help?"
+  },
+  "evaluation_criteria": {
+    "actions": [
+      {"name": "get_order", "arguments": {"order_id": "ord_2001"}},
+      {"name": "cancel_order", "arguments": {"order_id": "ord_2001"}}
+    ],
+    "communicate_info": ["cancelled"],
+    "reward_basis": ["DB", "COMMUNICATE"]
+  }
+}

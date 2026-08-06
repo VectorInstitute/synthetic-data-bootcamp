@@ -1,0 +1,12 @@
+{
+  "turns": [
+    {
+      "tool_calls": [
+        {"name": "get_order", "arguments": {"order_id": "ord_1002"}}
+      ]
+    },
+    {
+      "content": "I'm sorry, order ord_1002 cannot be canceled because it has already shipped."
+    }
+  ]
+}

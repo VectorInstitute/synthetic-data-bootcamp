@@ -1,0 +1,90 @@
+{
+  "tasks": [
+    {
+      "id": "gen_da23e293_0",
+      "description": "Look up order status for a user",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Alice Chen",
+        "personality_style": "rule_breaker",
+        "instructions": "Inquire about the status of order ord_1001 for Alice Chen. If asked, provide the full name Alice Chen.",
+        "initial_message": "I demand to know the status of my order right now! I don't care about your procedures, just tell me what is going on."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_1001"
+            }
+          }
+        ],
+        "communicate_info": [],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "gen_9773dcaa_1",
+      "description": "Cancel a pending retail order",
+      "task_type": "cancel",
+      "user_scenario": {
+        "user_name": "Alice Chen",
+        "personality_style": "anxious",
+        "instructions": "The user wants to cancel their pending order ord_1001. The user's name is Alice Chen. The agent must verify identity and confirm the order details before proceeding with the cancellation.",
+        "initial_message": "Oh no, I've been feeling so worried about my recent purchase! Everything feels like it's going wrong \u2014 is there any way I could please, please cancel my order before it ships? I'm just so nervous that it's already too late!"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "find_user_id",
+            "arguments": {
+              "name": "Alice Chen"
+            }
+          },
+          {
+            "name": "cancel_order",
+            "arguments": {
+              "order_id": "ord_1001"
+            }
+          }
+        ],
+        "communicate_info": [
+          "canceled"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "gen_5d658fc8_2",
+      "description": "Look up an order to check its current status",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Bob Martinez",
+        "personality_style": "domain_expert",
+        "instructions": "Simulator brief: inquire about the current status of order ord_2001. Do not provide the order_id initially. If asked, provide the full name Bob Martinez.",
+        "initial_message": "I would like to verify the status of my order to ensure it is proceeding according to standard procurement protocols. Please initiate the retrieval process."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_2001"
+            }
+          }
+        ],
+        "communicate_info": [],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    }
+  ]
+}
