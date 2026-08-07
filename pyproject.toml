@@ -8,6 +8,7 @@ requires-python = ">=3.12"
 dependencies = [
     "aieng-synthetic-data",
     "bleach==6.4.0",
+    "dotenv>=0.9.9",
     "filelock==3.32.0",
     "jupyter-server==2.20.0",
     "jupyterlab==4.5.9",
@@ -44,7 +45,6 @@ synbench = [
     "openai>=1.40",
     "pyyaml>=6.0",
     "httpx>=0.27",
-    "dotenv",
 ]
 
 [tool.uv.workspace]

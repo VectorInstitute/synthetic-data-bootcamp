@@ -2324,6 +2324,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "aieng-synthetic-data" },
     { name = "bleach" },
+    { name = "dotenv" },
     { name = "filelock" },
     { name = "jupyter-server" },
     { name = "jupyterlab" },
@@ -2354,7 +2355,6 @@ dev = [
     { name = "ruff" },
 ]
 synbench = [
-    { name = "dotenv" },
     { name = "httpx" },
     { name = "openai" },
     { name = "pydantic" },
@@ -2366,6 +2366,7 @@ synbench = [
 requires-dist = [
     { name = "aieng-synthetic-data", editable = "aieng-synthetic-data" },
     { name = "bleach", specifier = "==6.4.0" },
+    { name = "dotenv", specifier = ">=0.9.9" },
     { name = "filelock", specifier = "==3.32.0" },
     { name = "jupyter-server", specifier = "==2.20.0" },
     { name = "jupyterlab", specifier = "==4.5.9" },
@@ -2396,7 +2397,6 @@ dev = [
     { name = "ruff", specifier = ">=0.15.22" },
 ]
 synbench = [
-    { name = "dotenv" },
     { name = "httpx", specifier = ">=0.27" },
     { name = "openai", specifier = ">=1.40" },
     { name = "pydantic", specifier = ">=2.0" },
