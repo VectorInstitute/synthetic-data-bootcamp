@@ -29,7 +29,7 @@ SynBench builds **τ-bench–style** benchmarks for customer-service agents that
 
 
 
-# Notebooks
+## Notebooks
 
 Run these in order. Each notebook builds on the previous one.
 
