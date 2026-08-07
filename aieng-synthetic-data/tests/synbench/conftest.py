@@ -5,10 +5,11 @@ from pathlib import Path
 import pytest
 
 
-ROOT = Path(
-    "implementations/agent_benchmark_generation"
-)  # Points to the domains directory
-MOCK_RETAIL = ROOT / "domains" / "mock_retail"
+# Repository root (synthetic-data-bootcamp/)
+ROOT = Path(__file__).resolve().parents[3]
+MOCK_RETAIL = (
+    ROOT / "implementations" / "agent_benchmark_generation" / "domains" / "mock_retail"
+)
 
 
 @pytest.fixture(autouse=True)
@@ -27,5 +28,5 @@ def mock_retail_path():
 
 @pytest.fixture
 def project_root():
-    """Path to the ``aieng-synthetic-data`` package root."""
+    """Path to the repository root."""
     return ROOT
