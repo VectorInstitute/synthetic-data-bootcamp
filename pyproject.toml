@@ -16,6 +16,7 @@ dependencies = [
     "msgpack==1.2.1",
     "nbconvert>=7.17.0",
     "pip>=26.1.2",
+    "pydantic>=2.13.4",
     "pygments>=2.20.0",
     "requests>=2.34.2",
     "setuptools==83.0.0",
@@ -40,7 +41,6 @@ dev = [
 ]
 
 synbench = [
-    "pydantic>=2.0",
     "typer>=0.12",
     "openai>=1.40",
     "pyyaml>=6.0",
