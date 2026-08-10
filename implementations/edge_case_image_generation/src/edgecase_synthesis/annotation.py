@@ -84,12 +84,14 @@ class OpenVocabAnnotator:
         seed_mask: np.ndarray | None = None,
         seed_label: str | None = None,
         seed_confidence: float = 0.99,
+        require_seed_if_empty: bool = True,
+        target_labels: set[str] | None = None,
     ) -> AnnotationResult:
         """Run YOLO-World with the given class vocabulary.
 
-        ``seed_mask`` / ``seed_label`` are ignored (kept for call-site compat).
+        If open-vocab returns no **target** boxes and ``seed_mask`` / ``seed_label``
+        are provided, add one box from the edit region (pseudo-label for training).
         """
-        del seed_mask, seed_label, seed_confidence
         pil_image = _to_pil(image)
         rgb = np.array(pil_image)
         active_classes = [str(c).strip() for c in (classes or self.classes) if str(c).strip()]
@@ -132,6 +134,31 @@ class OpenVocabAnnotator:
                             mask=mask,
                         )
                     )
+
+        tmp = AnnotationResult(
+            detections=detections,
+            overlay=rgb,
+            num_instances=len(detections),
+        )
+        has_target = (
+            has_target_detections(tmp, target_labels)
+            if target_labels
+            else bool(detections)
+        )
+        if (
+            require_seed_if_empty
+            and seed_mask is not None
+            and seed_label
+            and not has_target
+        ):
+            seeded = detection_from_mask(
+                seed_mask,
+                label=str(seed_label),
+                confidence=float(seed_confidence),
+                image_hw=rgb.shape[:2],
+            )
+            if seeded is not None:
+                detections.append(seeded)
 
         overlay = _draw_overlay(rgb, detections, alpha=overlay_alpha)
         return AnnotationResult(
@@ -202,6 +229,86 @@ def _resolve_yolo_weights(detector_model: str) -> str:
             if fallback.exists():
                 return str(fallback.resolve())
     return detector_model  # let ultralytics download / error clearly
+
+
+# Scene-context YOLO queries — not valid "target object" evidence for accept gates.
+_CONTEXT_LABELS = {
+    "road",
+    "asphalt",
+    "car",
+    "person",
+    "sidewalk",
+    "building",
+    "sky",
+    "tree",
+}
+
+
+def canonicalize_label(label: str) -> str:
+    return str(label).lower().strip().replace("-", " ").replace("_", " ")
+
+
+def target_label_names(
+    anomaly_id: str,
+    annotation_classes: list[str] | None = None,
+) -> set[str]:
+    """Labels that count as the rare object (excludes road/car context queries)."""
+    names = {
+        canonicalize_label(anomaly_id),
+        canonicalize_label(anomaly_id.replace("_", " ")),
+    }
+    for raw in annotation_classes or []:
+        canon = canonicalize_label(raw)
+        if canon and canon not in _CONTEXT_LABELS:
+            names.add(canon)
+    return names
+
+
+def has_target_detections(
+    annotation: AnnotationResult | None,
+    target_labels: set[str],
+) -> bool:
+    if annotation is None or not target_labels:
+        return False
+    for det in annotation.detections:
+        if canonicalize_label(det.label) in target_labels:
+            return True
+    return False
+
+
+def detection_from_mask(
+    mask: np.ndarray,
+    *,
+    label: str,
+    confidence: float = 0.99,
+    image_hw: tuple[int, int] | None = None,
+) -> Detection | None:
+    """Axis-aligned box from a boolean / {0,1} edit mask."""
+    arr = np.asarray(mask)
+    if arr.ndim == 3:
+        arr = arr.any(axis=-1)
+    if image_hw is not None and arr.shape[:2] != image_hw:
+        # Nearest resize to the annotated image (generation may have resized).
+        import cv2
+
+        h, w = image_hw
+        arr = cv2.resize(arr.astype(np.uint8), (w, h), interpolation=cv2.INTER_NEAREST)
+    binary = arr.astype(bool)
+    if not binary.any():
+        return None
+    ys, xs = np.where(binary)
+    x1, x2 = int(xs.min()), int(xs.max()) + 1
+    y1, y2 = int(ys.min()), int(ys.max()) + 1
+    if x2 - x1 < 2 or y2 - y1 < 2:
+        return None
+    box = (x1, y1, x2, y2)
+    hw = image_hw or binary.shape[:2]
+    return Detection(
+        label=str(label),
+        confidence=float(confidence),
+        bbox_xyxy=box,
+        mask=_box_mask(hw, box),
+    )
 
 
 def _box_mask(hw: tuple[int, int], box: tuple[int, int, int, int]) -> np.ndarray:

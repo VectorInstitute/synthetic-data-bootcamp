@@ -141,6 +141,7 @@ def build_yolo_dataset(
     include_synthetic: bool = True,
     copy_images: bool = False,
     dataset_name: str = "edgecase",
+    drop_empty_synthetic: bool = True,
 ) -> tuple[Path, DatasetBuildStats, DatasetBuildStats]:
     """Materialize Ultralytics YOLO folders + ``data.yaml``.
 
@@ -152,6 +153,8 @@ def build_yolo_dataset(
           data.yaml
 
     Test (real-only) is written to the ``val`` split used for Ultralytics eval.
+    When ``drop_empty_synthetic`` is True, synth rows with zero target-class boxes
+    are skipped (they cannot teach the detector).
     """
     root = Path(out_dir)
     if root.exists():
@@ -164,6 +167,12 @@ def build_yolo_dataset(
     train_stats = DatasetBuildStats()
     val_stats = DatasetBuildStats()
 
+    def _row_has_target_box(row: dict[str, Any]) -> bool:
+        for box in row.get("boxes") or []:
+            if box_to_class_id(str(box.get("label", "")), lookup) is not None:
+                return True
+        return False
+
     def _ingest(rows: list[dict[str, Any]], split: str, stats: DatasetBuildStats) -> None:
         for row in rows:
             kind = str(row.get("split", "real")).lower()
@@ -171,6 +180,14 @@ def build_yolo_dataset(
                 continue
             if split == "val" and kind == "synthetic":
                 # Never evaluate on synthetic / auto-labels.
+                continue
+            if (
+                split == "train"
+                and kind == "synthetic"
+                and drop_empty_synthetic
+                and not _row_has_target_box(row)
+            ):
+                stats.n_skipped_boxes += 1  # reuse counter: empty synth dropped
                 continue
             src = Path(str(row["path"]))
             if not src.exists():
@@ -223,6 +240,7 @@ def build_yolo_dataset(
         {
             "dataset_name": dataset_name,
             "include_synthetic": include_synthetic,
+            "drop_empty_synthetic": drop_empty_synthetic,
             "class_names": class_names,
             "aliases": aliases or {},
             "train": train_stats.__dict__,

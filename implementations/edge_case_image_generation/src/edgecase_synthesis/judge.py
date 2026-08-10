@@ -152,12 +152,19 @@ class VLMJudge:
         anomaly_name: str | None = None,
         annotations_summary: str | None = None,
         source_hint: str | None = None,
+        require_target_boxes: bool = False,
+        has_target_boxes: bool | None = None,
     ) -> JudgeResult:
         """Score one synthetic RGB image (depth/seg maps are intentionally unused)."""
         pil = _to_pil(image)
         rare = anomaly_name or anomaly_id or "the rare edge-case condition"
         ann = annotations_summary or "No auto-annotations provided."
         src = source_hint or "a real photograph"
+        if has_target_boxes is False:
+            ann = (
+                f"{ann}\n"
+                "CRITICAL: detector found ZERO target-class boxes for this sample."
+            )
 
         if self.backend == "clip":
             self._ensure_clip()
@@ -184,6 +191,13 @@ class VLMJudge:
         result.anomaly_id = anomaly_id
         result = self._reconcile(result)
         result.decision = self._decide(result)
+        # Soft pressure from the VLM side; batch_runner also hard-gates accepts.
+        if require_target_boxes and has_target_boxes is False and result.decision == "accept":
+            result.decision = "retry"
+            result.annotation_correctness = min(result.annotation_correctness, 2.0)
+            note = " [judge: blocked accept — missing target boxes]"
+            if note.strip() not in (result.rationale or ""):
+                result.rationale = (result.rationale or "").rstrip() + note
         result.backend = self._active_backend
         result.model_id = self.model_id
         return result
@@ -208,7 +222,11 @@ class VLMJudge:
             f"- If the target rare condition is visible, edge_case_present MUST be true.\n"
             f"- If prompt_faithfulness ≥ 7, the rare condition is present → "
             f"edge_case_present must be true.\n"
-            f"- overall ≥ 8 means you would keep this sample for training.\n\n"
+            f"- For object-insert anomalies, annotation_correctness must be low (< 4) "
+            f"when the detector reports ZERO target boxes — unboxed samples are not "
+            f"usable for detection training.\n"
+            f"- overall ≥ 8 means you would keep this sample for detector training "
+            f"(image looks right AND it has usable target boxes).\n\n"
             f"{self.schema_hint}"
         )
         messages = [

@@ -62,13 +62,23 @@ def _annotate_item(
     project_root: Path,
     base_classes: list[str],
 ) -> AnnotationResult:
+    from edgecase_synthesis.annotation import target_label_names
+
     anomaly_cfg = load_anomaly(str(cfg.dataset_name), item.anomaly_id, start=project_root)
     anomaly_classes = list(anomaly_cfg.get("annotation_classes", []) or [])
     classes = list(dict.fromkeys([*(anomaly_classes or base_classes)]))
     conf = anomaly_cfg.get("annotation_conf")
     conf = float(conf) if conf is not None else None
     assert item.generated is not None
-    return annotator.annotate(item.generated.image, classes=classes, conf=conf)
+    targets = target_label_names(item.anomaly_id, anomaly_classes)
+    return annotator.annotate(
+        item.generated.image,
+        classes=classes,
+        conf=conf,
+        seed_mask=getattr(item.generated, "edit_mask", None),
+        seed_label=item.anomaly_id,
+        target_labels=targets,
+    )
 
 
 def run_batch_synthesis(
@@ -80,6 +90,7 @@ def run_batch_synthesis(
     synth_dir: Path,
     max_retries: int = 2,
     target_accepts: dict[str, int] | None = None,
+    require_target_boxes: bool = True,
     progress: Callable[[str], None] | None = print,
 ) -> BatchResult:
     """Generate, annotate, and judge many seeds with models loaded once per phase.
@@ -89,8 +100,11 @@ def run_batch_synthesis(
       2. Unload edit stack → load judge → decide accept / retry / reject
       3. On retries: reload edit stack, re-edit failed items, re-judge
 
-    All class lists / counts come from the caller (notebook knobs).
+    When ``require_target_boxes`` is True (default), an item cannot be accepted
+    without at least one target-class box (YOLO-World or edit-mask fallback).
     """
+    from edgecase_synthesis.annotation import has_target_detections, target_label_names
+
     log = progress or (lambda _msg: None)
     dataset = str(cfg.dataset_name)
     source_hint = str(cfg.dataset.get("source_hint", "a real photograph"))
@@ -196,6 +210,10 @@ def run_batch_synthesis(
                 if accepted_counts[item.anomaly_id] >= want:
                     continue
             anomaly_cfg = load_anomaly(dataset, item.anomaly_id, start=project_root)
+            anomaly_classes = list(anomaly_cfg.get("annotation_classes", []) or [])
+            targets = target_label_names(item.anomaly_id, anomaly_classes)
+            boxed = has_target_detections(item.annotation, targets)
+
             judgment = judge.judge(
                 item.generated.image,
                 prompt=item.generated.prompt,
@@ -203,14 +221,30 @@ def run_batch_synthesis(
                 anomaly_name=str(anomaly_cfg.get("display_name", item.anomaly_id)),
                 annotations_summary=summarize_annotations(item.annotation),
                 source_hint=source_hint,
+                require_target_boxes=require_target_boxes,
+                has_target_boxes=boxed,
             )
+            decision = judgment.decision
+            if require_target_boxes and not boxed:
+                # Hard rule: no target box → never accept into the training export.
+                if item.attempt < max_retries:
+                    decision = "retry"
+                else:
+                    decision = "reject"
+                note = (
+                    f" [box-gate: no target box → {decision} "
+                    f"(open-vocab + edit-mask fallback both empty)]"
+                )
+                judgment.decision = decision
+                judgment.rationale = (judgment.rationale or "").rstrip() + note
+
             log(
                 f"  judge {item.anomaly_id}  seed={item.source_stem}  "
-                f"attempt={item.attempt} → {judgment.decision} "
-                f"({judgment.overall:.1f})"
+                f"attempt={item.attempt} → {decision} "
+                f"({judgment.overall:.1f})  boxes={'yes' if boxed else 'NO'}"
             )
             stats = result.stats[item.anomaly_id]
-            if judgment.decision == "accept":
+            if decision == "accept":
                 stats.accepts += 1
                 accepted_counts[item.anomaly_id] += 1
                 image_name = (
@@ -228,7 +262,7 @@ def run_batch_synthesis(
                         image_name=image_name,
                     )
                 )
-            elif judgment.decision == "retry" and item.attempt < max_retries:
+            elif decision == "retry" and item.attempt < max_retries:
                 stats.retries += 1
                 item.attempt += 1
                 item.generated = None
@@ -241,8 +275,9 @@ def run_batch_synthesis(
                         "anomaly_id": item.anomaly_id,
                         "source_stem": item.source_stem,
                         "attempt": item.attempt,
-                        "decision": judgment.decision,
+                        "decision": decision,
                         "overall": float(judgment.overall),
+                        "has_target_boxes": boxed,
                     }
                 )
         return retries
