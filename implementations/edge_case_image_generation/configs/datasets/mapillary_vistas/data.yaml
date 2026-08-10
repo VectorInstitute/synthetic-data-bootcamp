@@ -11,21 +11,21 @@ stem_prefixes:
   - fog_
   - ground_animal_
 # Rare-class extract targets (Mapillary panoptic labels → stem prefix).
-# Notebook 2 focuses on traffic_cone + pothole; bump counts in the notebook extract step.
+# Notebook 2/3 focus: traffic_cone + ground_animal (open-vocab boxes more reliably).
 extract_label_map:
   object--traffic-cone: traffic_cone
-  object--pothole: pothole
+  animal--ground-animal: ground_animal
 extract_max_per_class: 55
 extract_max_generic: 540
 extract_thumb_max_side: 1280
 prefer_classes:
   - traffic_cone
-  - pothole
+  - ground_animal
 classes:
   - traffic_cone
+  - ground_animal
   - pothole
   - road_debris
   - fog
-  - ground_animal
 hf_repo: candylion/mapillary-vistas-v2
 hf_zip_name: mapillary-vistas-dataset_public_v2.0.zip
