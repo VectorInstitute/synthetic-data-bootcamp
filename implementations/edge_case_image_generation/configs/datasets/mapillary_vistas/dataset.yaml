@@ -17,4 +17,5 @@ method_by_anomaly:
   traffic_cone: instruct
   fog: instruct
   pothole: instruct
-  ground_animal: instruct
+  # Inpaint respects the road_patch mask — better scale/placement than instruct for animals.
+  ground_animal: inpaint

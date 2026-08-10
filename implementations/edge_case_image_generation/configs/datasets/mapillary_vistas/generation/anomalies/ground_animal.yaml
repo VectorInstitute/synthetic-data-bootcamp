@@ -7,26 +7,30 @@ annotation_classes:
   - cat
   - road
 edit_mask:
+  # Mid-lane, slightly farther than cones so the animal reads small/correct scale.
   mode: road_patch
   cx: 0.50
-  cy: 0.72
-  rx: 0.10
-  ry: 0.14
-  y_min: 0.50
-  y_max: 0.90
-  prefer_near: true
-  blur_sigma: 1.5
+  cy: 0.62
+  rx: 0.06
+  ry: 0.08
+  y_min: 0.52
+  y_max: 0.78
+  x_min: 0.32
+  x_max: 0.68
+  prefer_near: false
+  blur_sigma: 1.2
   dilate: 2
   recomposite: false
 prompt: >-
-  one real brown-and-white dog standing on the asphalt in the foreground,
-  visible fur texture and natural coat color, lit by the same daylight as the street,
-  soft contact shadow on the road, photorealistic street photograph
+  one small real dog standing on the asphalt road surface ahead in the driving lane,
+  roughly the size of a real dog relative to the lane markings, brown-and-white fur,
+  feet on the pavement with a soft contact shadow, same daylight as the street,
+  photorealistic dashcam photo
 negative_prompt: >-
-  black silhouette, solid black animal, cutout, stencil, flat 2D sticker, mask,
-  shadow puppet, cartoon, CGI, toy, floating, watermark, text, logo, blurry,
-  melted, deformed, giant animal
-strength: 0.95
+  black silhouette, solid black animal, cutout, stencil, sticker, giant dog, huge animal,
+  dog on car hood, dog on windshield, dog on vehicle, on dashboard, floating,
+  cartoon, CGI, toy, watermark, text, logo, blurry, melted, deformed
+strength: 0.92
 methods:
   inpaint:
     prompt: null
@@ -35,9 +39,9 @@ methods:
     prompt: null
     negative_prompt: null
   instruct:
-    # Avoid the word "silhouette" — Klein was painting flat black cutouts.
     prompt: >-
-      Add one real dog with brown and white fur standing on the foreground road,
-      natural coat colors and fur detail matching the daylight, soft contact shadow,
-      photorealistic, do not make a black silhouette or sticker, keep cars buildings
-      and the sky unchanged
+      Add one small real dog with brown and white fur standing on the asphalt road
+      ahead in the open lane only, correctly scaled like a real dog (much smaller than
+      nearby cars), paws on the pavement with a soft contact shadow, photorealistic.
+      Do not place the dog on any car hood windshield dashboard or vehicle. Do not make
+      a giant animal or black silhouette. Keep every car building and the sky unchanged.
