@@ -17,17 +17,27 @@ edit_mask:
   prefer_near: true
   blur_sigma: 1.5
   dilate: 2
+  recomposite: false
 prompt: >-
-  a realistic animal standing on the road ahead, natural pose, photorealistic
+  one real brown-and-white dog standing on the asphalt in the foreground,
+  visible fur texture and natural coat color, lit by the same daylight as the street,
+  soft contact shadow on the road, photorealistic street photograph
 negative_prompt: >-
-  cartoon, sticker, CGI, floating, watermark, text, logo
+  black silhouette, solid black animal, cutout, stencil, flat 2D sticker, mask,
+  shadow puppet, cartoon, CGI, toy, floating, watermark, text, logo, blurry,
+  melted, deformed, giant animal
 strength: 0.95
 methods:
   inpaint:
     prompt: null
+    negative_prompt: null
   controlnet_dual:
     prompt: null
+    negative_prompt: null
   instruct:
+    # Avoid the word "silhouette" — Klein was painting flat black cutouts.
     prompt: >-
-      Add one realistic animal (dog or deer) standing on the foreground road asphalt,
-      clear silhouette, natural pose, keep every building person and the sky unchanged
+      Add one real dog with brown and white fur standing on the foreground road,
+      natural coat colors and fur detail matching the daylight, soft contact shadow,
+      photorealistic, do not make a black silhouette or sticker, keep cars buildings
+      and the sky unchanged
