@@ -219,14 +219,19 @@ class VLMJudge:
             f"Generation prompt:\n{prompt}\n\n"
             f"Auto-annotation summary:\n{annotations_summary}\n\n"
             f"Consistency rules:\n"
-            f"- If the target rare condition is visible, edge_case_present MUST be true.\n"
-            f"- If prompt_faithfulness ≥ 7, the rare condition is present → "
+            f"- If the target rare condition is clearly and completely visible, "
+            f"edge_case_present MUST be true.\n"
+            f"- If prompt_faithfulness ≥ 7 AND the object looks complete and natural, "
             f"edge_case_present must be true.\n"
+            f"- Score physical_plausibility LOW (< 4) for: visible inpaint masks, gray/black "
+            f"rectangular patches, cut-off body parts at the image border, floating limbs, "
+            f"giant scale, objects stuck on car hoods, or obvious paste artifacts.\n"
+            f"- If physical_plausibility < 5, overall MUST be < 7 (do not accept).\n"
             f"- For object-insert anomalies, annotation_correctness must be low (< 4) "
             f"when the detector reports ZERO target boxes — unboxed samples are not "
             f"usable for detection training.\n"
             f"- overall ≥ 8 means you would keep this sample for detector training "
-            f"(image looks right AND it has usable target boxes).\n\n"
+            f"(complete natural object, correct placement, usable boxes).\n\n"
             f"{self.schema_hint}"
         )
         messages = [
@@ -336,15 +341,24 @@ class VLMJudge:
 
         Qwen sometimes sets edge_case_present=false while scoring faithfulness
         high and writing that the object is visible — that would hard-reject.
+        Do NOT force-present when physical plausibility is poor (mask artifacts,
+        cropped inserts, etc.).
         """
         looks_present = (
             result.prompt_faithfulness >= 7.0
             or result.overall >= self.threshold
         )
-        if not result.edge_case_present and looks_present:
+        physically_ok = result.physical_plausibility >= 5.0
+        if not result.edge_case_present and looks_present and physically_ok:
             result.edge_case_present = True
             note = " [reconciled: edge_case_present set true from high scores]"
             if note.strip() not in result.rationale:
+                result.rationale = (result.rationale or "").rstrip() + note
+        # Cap overall when the VLM itself says the edit looks broken.
+        if result.physical_plausibility < 5.0 and result.overall >= self.threshold:
+            result.overall = min(result.overall, self.threshold - 0.5)
+            note = " [reconciled: overall capped — low physical_plausibility]"
+            if note.strip() not in (result.rationale or ""):
                 result.rationale = (result.rationale or "").rstrip() + note
         if result.edge_case_present and result.overall < 3.0:
             # Rare: flagged present but abysmal overall — leave as-is for reject/retry.
@@ -355,7 +369,7 @@ class VLMJudge:
         """Gate on overall vs threshold (accept / retry / reject).
 
         With threshold=8.0 and reject_margin=2.0:
-        - overall ≥ 8 and edge present → accept
+        - overall ≥ 8, edge present, and physical_plausibility ≥ 5 → accept
         - overall < 6 or no edge → reject
         - otherwise → retry
         """
@@ -363,6 +377,12 @@ class VLMJudge:
             self.threshold - self.reject_margin
         ):
             return "reject"
+        # Broken inpaints (mask rectangles, cropped animals) must not slip through
+        # just because a fragment of the rare object is visible.
+        if result.physical_plausibility < 5.0:
+            if result.overall < (self.threshold - self.reject_margin):
+                return "reject"
+            return "retry"
         if result.overall >= self.threshold and result.edge_case_present:
             return "accept"
         return "retry"
