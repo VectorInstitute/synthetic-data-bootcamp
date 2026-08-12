@@ -20,7 +20,7 @@ SynBench builds **τ-bench–style** benchmarks for customer-service agents that
 ### Features
 
 - τ-inspired domain bundles (policy, tools, DB, FSM, user simulator, seed tasks)
-- OpenAI-compatible API for task generation with `MOCK_LLM=1` for offline CI
+- OpenAI-compatible API for task generation
 - Multi-turn tool-calling agent loop and multi-role pipeline (planner / executor / user_sim / critic)
 - Multi-turn dialogue with different types of personas/customers.
 - Provider-agnostic LLM layer via OpenAI-compatible chat completions API
@@ -53,7 +53,7 @@ Walks through the **benchmark creation** path on `domains/mock_retail`:
 Evaluates a **single tool-calling agent** on the verified tasks:
 
 1. Reload the domain and re-verify tasks from the previous notebook
-2. Initialize the shared LLM client (`MOCK_LLM` or live)
+2. Initialize the shared LLM client
 3. Optionally step through one utterance of `ToolCallingLoop` (prompt → tool calls → env dispatch)
 4. Run `SingleToolAgent` multi-turn dialogue (user simulator + tool loop) and score with `score_trajectory` (DB hash + communicate phrases)
 5. Batch-score generated tasks with `MetricsCollector` (pass@1 and mean rewards)
@@ -119,8 +119,3 @@ Each **Task** contains:
 
 - **`SingleToolAgent`** — one LLM runs a multi-turn tool-calling loop
 - **`AgentPipeline`** — per dialogue turn: `user_sim` → `planner` → `executor` → `critic`
-
-### Mock vs live LLM
-
-- **`MOCK_LLM=1`** (default in this notebook) — scripted responses, no API key, works offline
-- **`MOCK_LLM=0` + `GEMINI_API_KEY`** — real Google Gemini or any other model API as long as it is OpenAI API compatible.

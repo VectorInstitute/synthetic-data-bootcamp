@@ -19,11 +19,13 @@ class Planner:
             {
                 "role": "system",
                 "content": planner_system_prompt(session.domain, session.task),
-            },
-            {"role": "user", "content": user_message},
+            }
         ]
+        # First append the hostory
         for m in session.messages:
             if m.get("role") == "assistant" and m.get("content"):
                 messages.append({"role": "assistant", "content": m["content"]})
+        # Then append the user message
+        messages.append({"role": "user", "content": user_message})
         response = self.client.complete(messages)
         return (response.content or "").strip()

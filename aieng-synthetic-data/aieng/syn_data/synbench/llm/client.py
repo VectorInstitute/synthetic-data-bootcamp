@@ -1,11 +1,11 @@
-"""Client protocol and factory shared by the real and mock LLM backends."""
+"""Client protocol and factory for the OpenAI-compatible LLM backend."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import Any, Protocol
 
-from aieng.syn_data.synbench.llm.config import get_model, is_mock_llm
+from aieng.syn_data.synbench.llm.config import get_model
 from aieng.syn_data.synbench.schemas.actions import Action
 
 
@@ -37,16 +37,9 @@ class LLMClient(Protocol):
 
 
 def get_client(model: str | None = None) -> LLMClient:
-    """Build the mock or remote client according to the environment."""
-    # Imported lazily: mock_client imports this module, and chat_client pulls in
-    # the optional openai dependency.
-    if is_mock_llm():
-        from aieng.syn_data.synbench.llm.mock_client import (  # noqa: PLC0415
-            MockLLMClient,
-        )
-
-        return MockLLMClient()
-
+    """Build the remote OpenAI-compatible chat client."""
+    # Imported lazily so chat_client's optional openai dependency is not
+    # required just to import this module (e.g. for LLMClient / LLMResponse).
     from aieng.syn_data.synbench.llm.chat_client import ChatClient  # noqa: PLC0415
 
     return ChatClient(model=model or get_model())

@@ -6,11 +6,7 @@ import json
 from pathlib import Path
 from uuid import uuid4
 
-from aieng.syn_data.synbench.generation.llm import (
-    call_llm_json,
-    is_mock_llm,
-    load_mock_response,
-)
+from aieng.syn_data.synbench.generation.llm import call_llm_json
 from aieng.syn_data.synbench.generation.prompt import PromptBuilder
 from aieng.syn_data.synbench.generation.sampler import (
     ConstraintSampler,
@@ -33,12 +29,6 @@ class TrajectoryGenerator:
         self, task_id: str | None = None, constraints: SampleConstraints | None = None
     ) -> Task:
         """Generate a single draft task, sampling constraints when none are given."""
-        if is_mock_llm():
-            draft = load_mock_response()
-            if task_id:
-                draft = draft.model_copy(update={"id": task_id})
-            return draft
-
         if constraints is None:
             constraints = self.sampler.sample()
         prompt = self.prompt_builder.build(self.domain, constraints)

@@ -1,16 +1,34 @@
 {
   "id": "fixture_cancel",
-  "description": "Cancel pending order",
+  "description": "Cancel a pending order",
   "task_type": "cancel",
   "user_scenario": {
-    "initial_message": "I need to cancel an order before it ships."
+    "user_name": "Alice Chen",
+    "personality_style": "anxious",
+    "instructions": "Request cancellation of pending order ord_1001.",
+    "initial_message": "I'm worried my order will ship before I can stop it — can you help?"
   },
   "evaluation_criteria": {
     "actions": [
-      {"name": "get_order", "arguments": {"order_id": "ord_1001"}},
-      {"name": "cancel_order", "arguments": {"order_id": "ord_1001"}}
+      {
+        "name": "get_order",
+        "arguments": {
+          "order_id": "ord_1001"
+        }
+      },
+      {
+        "name": "cancel_order",
+        "arguments": {
+          "order_id": "ord_1001"
+        }
+      }
     ],
-    "communicate_info": ["cancelled"],
-    "reward_basis": ["DB", "COMMUNICATE"]
+    "communicate_info": [
+      "cancelled"
+    ],
+    "reward_basis": [
+      "DB",
+      "COMMUNICATE"
+    ]
   }
 }
