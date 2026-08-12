@@ -7,7 +7,6 @@ import json
 from aieng.syn_data.synbench.agents.prompts import agent_system_prompt
 from aieng.syn_data.synbench.agents.session import AgentSession
 from aieng.syn_data.synbench.llm.client import LLMClient, get_client
-from aieng.syn_data.synbench.llm.mock_client import MockLLMClient
 from aieng.syn_data.synbench.llm.tools import tool_specs_to_openai
 from aieng.syn_data.synbench.schemas.domain import DomainBundle
 from aieng.syn_data.synbench.schemas.tasks import Task
@@ -31,11 +30,6 @@ class ToolCallingLoop:
         self.client = client or get_client()
         self.max_turns = max_turns
 
-    def _register_mock_oracle(self, task: Task) -> None:
-        """Register scripted tool turns once per task (safe across dialogue turns)."""
-        if isinstance(self.client, MockLLMClient):
-            self.client.ensure_task(task.id, MockLLMClient.turns_from_task(task))
-
     def run(
         self,
         task: Task,
@@ -53,7 +47,6 @@ class ToolCallingLoop:
         - non-empty str: append that content if not already present.
         """
         session = session or AgentSession(domain=self.domain, task=task)
-        self._register_mock_oracle(task)
         env = session.ensure_env()
         tools = tool_specs_to_openai(self.domain.tools)
 

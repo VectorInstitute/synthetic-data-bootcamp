@@ -12,14 +12,6 @@ MOCK_RETAIL = (
 )
 
 
-@pytest.fixture(autouse=True)
-def mock_llm_env(monkeypatch, request):
-    """Force the mock LLM client for every non-integration test."""
-    if request.node.get_closest_marker("integration"):
-        return
-    monkeypatch.setenv("MOCK_LLM", "1")
-
-
 @pytest.fixture
 def mock_retail_path():
     """Path to the bundled ``mock_retail`` domain."""

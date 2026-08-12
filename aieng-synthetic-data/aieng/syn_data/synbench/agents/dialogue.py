@@ -17,7 +17,6 @@ from aieng.syn_data.synbench.agents.loop import ToolCallingLoop
 from aieng.syn_data.synbench.agents.planner import Planner
 from aieng.syn_data.synbench.agents.session import AgentSession
 from aieng.syn_data.synbench.agents.user_sim import UserSimulator
-from aieng.syn_data.synbench.llm.mock_client import MockLLMClient
 from aieng.syn_data.synbench.schemas.tasks import Task
 
 
@@ -41,7 +40,6 @@ def run_user_dialogue(
         Defaults to all four when ``None``.
     """
     active = roles or ["user_sim", "planner", "executor", "critic"]
-    _prime_mock_oracle(executor, task)
     last_agent_reply = ""
     # Turn 0 starts from the task's authored (styled) first message.
     user_message = task.user_scenario.initial_message
@@ -86,13 +84,6 @@ def run_user_dialogue(
             break
 
     return session
-
-
-def _prime_mock_oracle(executor: ToolCallingLoop, task: Task) -> None:
-    """Reset mock turn counters once per dialogue (not on every executor call)."""
-    client = executor.client
-    if isinstance(client, MockLLMClient):
-        client.register_task(task.id, MockLLMClient.turns_from_task(task))
 
 
 def _run_executor_turn(

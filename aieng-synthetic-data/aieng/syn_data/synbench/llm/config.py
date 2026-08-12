@@ -13,11 +13,6 @@ DEFAULT_MODEL = "gemini-2.0-flash"
 load_dotenv()
 
 
-def is_mock_llm() -> bool:
-    """Whether ``MOCK_LLM`` requests the scripted offline client."""
-    return os.environ.get("MOCK_LLM", "0") in ("1", "true", "True")
-
-
 def get_model() -> str:
     """Model name from ``SYNBENCH_MODEL``, falling back to ``DEFAULT_MODEL``."""
     return os.environ.get("SYNBENCH_MODEL", DEFAULT_MODEL)
