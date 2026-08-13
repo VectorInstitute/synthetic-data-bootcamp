@@ -44,11 +44,11 @@ jobs:
           python-version-file: ".python-version"
 
       - name: Install dependencies and check code
-      # Install dependencies for all the necessary groups 
+      # Install dependencies for all the necessary groups
         run: |
           uv venv .venv
           source .venv/bin/activate
-          uv sync --all-extras --dev --group synbench 
+          uv sync --all-extras --dev
           pre-commit run --all-files
 
       - name: pip-audit (gh-action-pip-audit)
