@@ -83,17 +83,28 @@ def load_domain(path: str | Path) -> DomainBundle:
     tools_mod = _load_tools_module(root / "tools.py")
     tool_specs: list[ToolSpec] = tools_mod.get_tool_specs()
 
-    with open(root / "db.json") as f:
-        db = json.load(f)
+    try:
+        with open(root / "db.json") as f:
+            db = json.load(f)
+    except Exception as e:
+        raise DomainLoadError(f"Database loading failed: {e}") from e
 
-    with open(root / "state_machine.yaml") as f:
-        state_machine = yaml.safe_load(f)
+    try:
+        with open(root / "state_machine.yaml") as f:
+            state_machine = yaml.safe_load(f)
+    except Exception as e:
+        raise DomainLoadError(f"State machine loading failed: {e}") from e
 
-    with open(root / "user_simulator.yaml") as f:
-        user_simulator = yaml.safe_load(f)
-
-    with open(root / "tasks.seed.json") as f:
-        seed_raw = json.load(f)
+    try:
+        with open(root / "user_simulator.yaml") as f:
+            user_simulator = yaml.safe_load(f)
+    except Exception as e:
+        raise DomainLoadError(f"User simulator loading failed: {e}") from e
+    try:
+        with open(root / "tasks.seed.json") as f:
+            seed_raw = json.load(f)
+    except Exception as e:
+        raise DomainLoadError(f"Tasks seed loading failed: {e}") from e
     seed_tasks = [Task.model_validate(t) for t in seed_raw.get("tasks", seed_raw)]
 
     policy = (root / "policy.md").read_text()

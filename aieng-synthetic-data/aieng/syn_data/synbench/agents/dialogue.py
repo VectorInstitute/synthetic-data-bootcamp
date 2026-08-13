@@ -99,15 +99,19 @@ def _run_executor_turn(
     snap_messages = len(session.messages)
     snap_actions = len(session.agent_actions)
     snap_agent_msgs = len(session.agent_messages)
+    snap_session_env = session.env.copy() if session.env is not None else None
+
     critic_notes = ""
     max_attempts = 2 if critic is not None else 1
 
     for attempt in range(max_attempts):
         if attempt > 0:
+            # Rollback to the previous state
             session.messages = session.messages[:snap_messages]
             session.agent_actions = session.agent_actions[:snap_actions]
             session.agent_messages = session.agent_messages[:snap_agent_msgs]
-
+            session.env = snap_session_env
+            
         extra = plan
         if critic_notes:
             extra = f"{plan}\n\nCritic revision:\n{critic_notes}"

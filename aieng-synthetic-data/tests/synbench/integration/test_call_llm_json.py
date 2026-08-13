@@ -9,7 +9,7 @@ from aieng.syn_data.synbench.generation.sampler import ConstraintSampler
 from aieng.syn_data.synbench.schemas.tasks import Task
 
 
-@pytest.mark.integration
+@pytest.mark.integration_test
 def test_call_llm_json_returns_valid_task_draft(mock_retail_path):
     """A real model returns JSON that validates as a Task."""
     domain = load_domain(mock_retail_path)

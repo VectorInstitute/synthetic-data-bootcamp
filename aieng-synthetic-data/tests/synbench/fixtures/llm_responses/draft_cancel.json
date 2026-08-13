@@ -10,10 +10,25 @@
   },
   "evaluation_criteria": {
     "actions": [
-      {"name": "get_order", "arguments": {"order_id": "ord_2001"}},
-      {"name": "cancel_order", "arguments": {"order_id": "ord_2001"}}
+      {
+        "name": "get_order",
+        "arguments": {
+          "order_id": "ord_2001"
+        }
+      },
+      {
+        "name": "cancel_order",
+        "arguments": {
+          "order_id": "ord_2001"
+        }
+      }
     ],
-    "communicate_info": ["cancelled"],
-    "reward_basis": ["DB", "COMMUNICATE"]
+    "communicate_info": [
+      "canceled"
+    ],
+    "reward_basis": [
+      "DB",
+      "COMMUNICATE"
+    ]
   }
 }

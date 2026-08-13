@@ -9,16 +9,17 @@ from aieng.syn_data.synbench.generation.generator import GenerationRun
 from aieng.syn_data.synbench.schemas.tasks import Task
 
 
-@pytest.mark.integration
+@pytest.mark.integration_test
 def test_generation_run_and_verify_writes_tasks(mock_retail_path, tmp_path):
     """Generated tasks verify and are written to ``tasks.json``."""
     domain = load_domain(mock_retail_path)
     run = GenerationRun(domain, seed=42)
-    verified_tasks, _ = run.run_and_verify(n=3)
+    verified_tasks, rejected_tasks = run.run_and_verify(n=3)
     tasks_path = run.write_tasks(verified_tasks, tmp_path)
 
     assert isinstance(verified_tasks, list)
-    assert len(verified_tasks) <= 3
+    assert verified_tasks, f"no task verified; rejections={rejected_tasks}"  
+    assert len(rejected_tasks) + len(verified_tasks) == 3, f"total tasks={len(rejected_tasks) + len(verified_tasks)} != 3"
     assert all(isinstance(t, Task) for t in verified_tasks)
     for task in verified_tasks:
         assert task.id

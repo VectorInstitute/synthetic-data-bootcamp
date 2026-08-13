@@ -20,7 +20,11 @@ def parse_tool_call(name: str, arguments: str | dict[str, Any]) -> Action:
 def tool_calls_from_message(message: Any) -> list[Action]:
     """Extract Action list from an OpenAI-compatible assistant message."""
     actions: list[Action] = []
-    tool_calls = getattr(message, "tool_calls", None) or []
+    tool_calls = (
+        message.get("tool_calls")  
+        if isinstance(message, dict)  
+        else getattr(message, "tool_calls", None)  
+    ) or [] 
     for tc in tool_calls:
         fn = getattr(tc, "function", None)
         if fn is None and isinstance(tc, dict):
@@ -40,8 +44,18 @@ def tool_calls_from_message(message: Any) -> list[Action]:
 
 def assistant_message_to_dict(message: Any) -> dict[str, Any]:
     """Serialize assistant message for chat history."""
-    content = getattr(message, "content", None) or ""
-    tool_calls = getattr(message, "tool_calls", None)
+    content = (
+        message.get("content")
+        if isinstance(message, dict)
+        else getattr(message, "content", None) 
+    ) or ""
+
+    tool_calls = (
+        message.get("tool_calls")
+        if isinstance(message, dict)
+        else getattr(message, "tool_calls", None)
+    ) or []
+
     out: dict[str, Any] = {"role": "assistant", "content": content or None}
     if tool_calls:
         serialized: list[dict[str, Any]] = []

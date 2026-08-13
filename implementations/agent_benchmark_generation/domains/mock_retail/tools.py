@@ -112,8 +112,8 @@ class ToolKit:
             raise ValueError(f"Order not found: {order_id}")
         if order["status"] != "pending":
             raise ValueError(f"Cannot cancel order with status: {order['status']}")
-        order["status"] = "cancelled"
-        return {"order_id": order_id, "status": "cancelled"}
+        order["status"] = "canceled"
+        return {"order_id": order_id, "status": "canceled"}
 
     def update_shipping(self, order_id: str, shipping_address: str) -> dict[str, Any]:
         """Set a new shipping address on ``order_id``."""

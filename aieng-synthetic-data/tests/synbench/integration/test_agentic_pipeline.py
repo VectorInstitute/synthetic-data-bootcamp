@@ -20,7 +20,7 @@ def _load_fixture_task() -> Task:
         return Task.model_validate(json.load(f))
 
 
-@pytest.mark.integration
+@pytest.mark.integration_test
 def test_single_agent_pipeline_action_trace(mock_retail_path):
     """Single-agent dialogue records the fixture cancel action trace."""
     domain = load_domain(mock_retail_path)
@@ -32,7 +32,7 @@ def test_single_agent_pipeline_action_trace(mock_retail_path):
     assert len(actions) > 0, "No actions found in the session"
 
 
-@pytest.mark.integration
+@pytest.mark.integration_test
 def test_multi_agent_pipeline_action_trace(mock_retail_path):
     """Multi-agent dialogue records the fixture cancel action trace."""
     domain = load_domain(mock_retail_path)

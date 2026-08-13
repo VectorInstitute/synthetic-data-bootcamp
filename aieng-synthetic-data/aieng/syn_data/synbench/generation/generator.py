@@ -49,6 +49,7 @@ class GenerationRun:
 
     def run(self, n: int) -> list[Task]:
         """Generate ``n`` unverified draft tasks."""
+        # TODO: Handle errors gracefully so that the generation process does not stop
         drafts: list[Task] = []
         for i in range(n):
             tid = f"gen_{uuid4().hex[:8]}_{i}"

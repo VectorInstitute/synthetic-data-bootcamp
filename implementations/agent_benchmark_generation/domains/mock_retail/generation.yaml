@@ -56,7 +56,7 @@ persona_field: name
 # generic default in PromptBuilder.
 communicate_hints:
   inquiry: "Usually []. Add substrings only if the user must hear specific facts back."
-  cancel: 'Include short confirmation substrings, e.g. ["cancelled"].'
+  cancel: 'Include short confirmation substrings, e.g. ["canceled"].'
   refuse_cancel: 'Include refusal substrings from policy, e.g. ["cannot be canceled"].'
   update_address: >
     Include a substring of the new address that must appear in the agent reply

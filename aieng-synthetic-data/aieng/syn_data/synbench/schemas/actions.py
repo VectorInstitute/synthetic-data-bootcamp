@@ -29,13 +29,11 @@ def normalize_action(action: Action) -> Action:
 
     def _normalize_value(val: Any) -> Any:
         if isinstance(val, dict):
+            # Sort the dictionary keys to ensure consistent ordering
+            # of arguments
             return {k: _normalize_value(val[k]) for k in sorted(val)}
         if isinstance(val, list):
             return [_normalize_value(x) for x in val]
-        if isinstance(val, float) and val == int(val):
-            return int(val)
-        if isinstance(val, str) and val.isdigit():
-            return int(val)
         return val
 
     args = _normalize_value(action.arguments)

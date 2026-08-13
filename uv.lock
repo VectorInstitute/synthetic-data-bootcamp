@@ -2464,7 +2464,6 @@ dependencies = [
     { name = "msgpack" },
     { name = "nbconvert" },
     { name = "pip" },
-    { name = "pydantic" },
     { name = "pygments" },
     { name = "requests" },
     { name = "setuptools" },
@@ -2490,6 +2489,8 @@ dev = [
 synbench = [
     { name = "httpx" },
     { name = "openai" },
+    { name = "pydantic" },
+    { name = "python-dotenv" },
     { name = "pyyaml" },
     { name = "typer" },
 ]
@@ -2506,7 +2507,6 @@ requires-dist = [
     { name = "msgpack", specifier = "==1.2.1" },
     { name = "nbconvert", specifier = ">=7.17.0" },
     { name = "pip", specifier = ">=26.1.2" },
-    { name = "pydantic", specifier = ">=2.13.4" },
     { name = "pygments", specifier = ">=2.20.0" },
     { name = "requests", specifier = ">=2.34.2" },
     { name = "setuptools", specifier = "==83.0.0" },
@@ -2532,6 +2532,8 @@ dev = [
 synbench = [
     { name = "httpx", specifier = ">=0.27" },
     { name = "openai", specifier = ">=1.40" },
+    { name = "pydantic", specifier = ">=2.13.4" },
+    { name = "python-dotenv", specifier = ">=1.2.2" },
     { name = "pyyaml", specifier = ">=6.0" },
     { name = "typer", specifier = ">=0.12" },
 ]
