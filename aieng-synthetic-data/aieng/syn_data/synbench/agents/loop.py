@@ -98,9 +98,9 @@ class ToolCallingLoop:
                 for i, action in enumerate(response.tool_calls):
                     session.agent_actions.append(action)
                     try:
-                        # returns the result of the tool call which can be an error 
-                        # or the result (output) of the tool call which could be anything
-                        # such as dictionary or list
+                        # returns the result of the tool call which can be an error
+                        # or the result (output) of the tool call which could be
+                        # anything such as dictionary or list
                         result = env.dispatch(action)
                         result_str = json.dumps(result, default=str)
                     except Exception as e:

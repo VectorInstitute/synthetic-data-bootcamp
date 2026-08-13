@@ -21,10 +21,10 @@ def tool_calls_from_message(message: Any) -> list[Action]:
     """Extract Action list from an OpenAI-compatible assistant message."""
     actions: list[Action] = []
     tool_calls = (
-        message.get("tool_calls")  
-        if isinstance(message, dict)  
-        else getattr(message, "tool_calls", None)  
-    ) or [] 
+        message.get("tool_calls")
+        if isinstance(message, dict)
+        else getattr(message, "tool_calls", None)
+    ) or []
     for tc in tool_calls:
         fn = getattr(tc, "function", None)
         if fn is None and isinstance(tc, dict):
@@ -47,7 +47,7 @@ def assistant_message_to_dict(message: Any) -> dict[str, Any]:
     content = (
         message.get("content")
         if isinstance(message, dict)
-        else getattr(message, "content", None) 
+        else getattr(message, "content", None)
     ) or ""
 
     tool_calls = (

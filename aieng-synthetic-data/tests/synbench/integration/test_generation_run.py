@@ -18,8 +18,10 @@ def test_generation_run_and_verify_writes_tasks(mock_retail_path, tmp_path):
     tasks_path = run.write_tasks(verified_tasks, tmp_path)
 
     assert isinstance(verified_tasks, list)
-    assert verified_tasks, f"no task verified; rejections={rejected_tasks}"  
-    assert len(rejected_tasks) + len(verified_tasks) == 3, f"total tasks={len(rejected_tasks) + len(verified_tasks)} != 3"
+    assert verified_tasks, f"no task verified; rejections={rejected_tasks}"
+    assert len(rejected_tasks) + len(verified_tasks) == 3, (
+        f"total tasks={len(rejected_tasks) + len(verified_tasks)} != 3"
+    )
     assert all(isinstance(t, Task) for t in verified_tasks)
     for task in verified_tasks:
         assert task.id

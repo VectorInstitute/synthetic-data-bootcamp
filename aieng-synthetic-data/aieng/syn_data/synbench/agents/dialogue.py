@@ -111,7 +111,7 @@ def _run_executor_turn(
             session.agent_actions = session.agent_actions[:snap_actions]
             session.agent_messages = session.agent_messages[:snap_agent_msgs]
             session.env = snap_session_env
-            
+
         extra = plan
         if critic_notes:
             extra = f"{plan}\n\nCritic revision:\n{critic_notes}"
