@@ -65,7 +65,7 @@ jobs:
           source .venv/bin/activate
           uv sync --all-extras --dev
           uv run --directory aieng-synthetic-data pytest -m "not integration_test" --ignore=tests/synbench tests
-
+      # Run synbench tests if there are changes in the synbench package
       - name: Install sub-package deps and run its tests
         if: steps.filter.outputs.subpkg == 'true'
         run: |
