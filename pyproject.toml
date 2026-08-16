@@ -48,6 +48,10 @@ synbench = [
     "python-dotenv>=1.2.2",
 ]
 
+tabular-data = [
+    "midst-toolkit",
+]
+
 [tool.uv.workspace]
 members = [
   "aieng-synthetic-data",
@@ -55,6 +59,7 @@ members = [
 
 [tool.uv.sources]
 aieng-synthetic-data = { workspace = true }
+midst-toolkit = { git = "https://github.com/VectorInstitute/midst-toolkit.git" }
 
 
 [tool.mypy]

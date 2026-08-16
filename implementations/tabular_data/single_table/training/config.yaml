@@ -1,0 +1,14 @@
+# Training example configuration
+# Base data directory (can be overridden from command line)
+diffusion_config:
+  d_layers: [512, 512]
+  dropout: 0.0
+  num_timesteps: 2
+  model_type: mlp
+  iterations: 2
+  batch_size: 4
+  lr: 0.0006
+  gaussian_loss_type: mse
+  weight_decay: 1e-05
+  scheduler: cosine
+  data_split_ratios: [0.99, 0.005, 0.005] #what is this used for?
