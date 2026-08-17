@@ -30,11 +30,12 @@ accept_gates:
 prompt: >-
   one small real dog standing on the asphalt road surface ahead in the driving lane,
   roughly the size of a real dog relative to the lane markings, brown-and-white fur,
-  feet on the pavement with a soft contact shadow, same daylight as the street,
-  photorealistic dashcam photo
+  lit from the same sun as the street (matching highlight side and shadow direction),
+  soft contact shadow on the pavement, photorealistic dashcam photo
 negative_prompt: >-
   black silhouette, solid black animal, cutout, stencil, sticker, giant dog, huge animal,
   dog on car hood, dog on windshield, dog on vehicle, on dashboard, floating,
+  mismatched shadow, shadow in the wrong direction, extra light source, flat studio lighting,
   cartoon, CGI, toy, watermark, text, logo, blurry, melted, deformed
 strength: 0.92
 methods:
@@ -48,7 +49,9 @@ methods:
     prompt: >-
       Add one small real dog with brown and white fur standing further down the open
       asphalt lane ahead (mid-distance, not right against the camera), correctly scaled
-      like a real dog and much smaller than nearby cars, paws on the pavement with a
-      soft contact shadow, photorealistic. Do not place the dog on any car hood
-      windshield dashboard bumper or vehicle. Do not make a giant animal or black
-      silhouette. Keep every car building and the sky unchanged.
+      like a real dog and much smaller than nearby cars, paws on the pavement.
+      Match the existing sunlight: same highlight side and the same shadow direction as
+      the cars and poles, with a soft contact shadow on the asphalt. Photorealistic.
+      Do not place the dog on any car hood windshield dashboard bumper or vehicle.
+      Do not make a giant animal, black silhouette, or a pasted cutout with the wrong
+      lighting. Keep every car building and the sky unchanged.
