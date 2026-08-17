@@ -30,3 +30,10 @@ wheels/
 implementations/qa_text_generation/data/**
 !implementations/qa_text_generation/data/**/
 !implementations/qa_text_generation/data/**/.gitkeep
+
+
+# ignore experiment artifacts and datasets
+**.pkl
+**.csv
+**/dataset_meta.json
+**/*_domain.json
