@@ -103,7 +103,11 @@ def run_batch_synthesis(
     When ``require_target_boxes`` is True (default), an item cannot be accepted
     without at least one target-class box (YOLO-World or edit-mask fallback).
     """
-    from edgecase_synthesis.annotation import has_target_detections, target_label_names
+    from edgecase_synthesis.annotation import (
+        check_box_placement,
+        has_target_detections,
+        target_label_names,
+    )
 
     log = progress or (lambda _msg: None)
     dataset = str(cfg.dataset_name)
@@ -237,6 +241,24 @@ def run_batch_synthesis(
                 )
                 judgment.decision = decision
                 judgment.rationale = (judgment.rationale or "").rstrip() + note
+
+            gates = dict(anomaly_cfg.get("accept_gates") or {})
+            if decision == "accept" and gates and boxed:
+                w, h = item.generated.image.size
+                ok, reason = check_box_placement(
+                    item.annotation,
+                    targets,
+                    image_size=(w, h),
+                    gates=gates,
+                )
+                if not ok:
+                    if item.attempt < max_retries:
+                        decision = "retry"
+                    else:
+                        decision = "reject"
+                    note = f" [placement-gate: {reason} → {decision}]"
+                    judgment.decision = decision
+                    judgment.rationale = (judgment.rationale or "").rstrip() + note
 
             log(
                 f"  judge {item.anomaly_id}  seed={item.source_stem}  "

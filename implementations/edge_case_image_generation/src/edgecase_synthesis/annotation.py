@@ -276,6 +276,67 @@ def has_target_detections(
     return False
 
 
+def target_detections(
+    annotation: AnnotationResult | None,
+    target_labels: set[str],
+) -> list[Detection]:
+    if annotation is None or not target_labels:
+        return []
+    return [
+        d
+        for d in annotation.detections
+        if canonicalize_label(d.label) in target_labels
+    ]
+
+
+def check_box_placement(
+    annotation: AnnotationResult | None,
+    target_labels: set[str],
+    *,
+    image_size: tuple[int, int],
+    gates: dict[str, Any] | None = None,
+) -> tuple[bool, str]:
+    """Heuristic placement/scale checks for object-insert accepts.
+
+    ``gates`` keys (all optional fractions in ``[0, 1]``):
+      - ``max_box_area_frac`` — reject if any target box covers too much of the image
+      - ``min_center_y`` / ``max_center_y`` — keep object mid-lane (not on hood / sky)
+      - ``max_bottom_edge_frac`` — reject if box is clipped to the bottom border
+    """
+    gates = dict(gates or {})
+    if not gates:
+        return True, ""
+    width, height = image_size
+    if width <= 0 or height <= 0:
+        return True, ""
+    dets = target_detections(annotation, target_labels)
+    if not dets:
+        return False, "no target boxes for placement check"
+
+    max_area = gates.get("max_box_area_frac")
+    min_cy = gates.get("min_center_y")
+    max_cy = gates.get("max_center_y")
+    max_bottom = gates.get("max_bottom_edge_frac")
+
+    for det in dets:
+        x1, y1, x2, y2 = (float(v) for v in det.bbox_xyxy)
+        bw = max(0.0, x2 - x1)
+        bh = max(0.0, y2 - y1)
+        area_frac = (bw * bh) / float(width * height)
+        cy = ((y1 + y2) / 2.0) / float(height)
+        bottom = y2 / float(height)
+
+        if max_area is not None and area_frac > float(max_area):
+            return False, f"box too large (area_frac={area_frac:.3f} > {max_area})"
+        if min_cy is not None and cy < float(min_cy):
+            return False, f"box too high in frame (cy={cy:.3f} < {min_cy})"
+        if max_cy is not None and cy > float(max_cy):
+            return False, f"box too low in frame (cy={cy:.3f} > {max_cy}; hood/crop risk)"
+        if max_bottom is not None and bottom > float(max_bottom):
+            return False, f"box clipped at bottom (bottom={bottom:.3f} > {max_bottom})"
+    return True, ""
+
+
 def detection_from_mask(
     mask: np.ndarray,
     *,

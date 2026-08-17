@@ -7,7 +7,7 @@ annotation_classes:
   - cat
   - road
 edit_mask:
-  # Mid-lane, slightly farther than cones so the animal reads small/correct scale.
+  # Mid-lane prior (used for mask-fallback labels; instruct does not crop to it).
   mode: road_patch
   cx: 0.50
   cy: 0.62
@@ -21,6 +21,12 @@ edit_mask:
   blur_sigma: 1.2
   dilate: 2
   recomposite: false
+# Reject giant / hood / bottom-cropped inserts after annotate (notebook still teaches retries).
+accept_gates:
+  max_box_area_frac: 0.10
+  min_center_y: 0.40
+  max_center_y: 0.82
+  max_bottom_edge_frac: 0.97
 prompt: >-
   one small real dog standing on the asphalt road surface ahead in the driving lane,
   roughly the size of a real dog relative to the lane markings, brown-and-white fur,
@@ -40,8 +46,9 @@ methods:
     negative_prompt: null
   instruct:
     prompt: >-
-      Add one small real dog with brown and white fur standing on the asphalt road
-      ahead in the open lane only, correctly scaled like a real dog (much smaller than
-      nearby cars), paws on the pavement with a soft contact shadow, photorealistic.
-      Do not place the dog on any car hood windshield dashboard or vehicle. Do not make
-      a giant animal or black silhouette. Keep every car building and the sky unchanged.
+      Add one small real dog with brown and white fur standing further down the open
+      asphalt lane ahead (mid-distance, not right against the camera), correctly scaled
+      like a real dog and much smaller than nearby cars, paws on the pavement with a
+      soft contact shadow, photorealistic. Do not place the dog on any car hood
+      windshield dashboard bumper or vehicle. Do not make a giant animal or black
+      silhouette. Keep every car building and the sky unchanged.
