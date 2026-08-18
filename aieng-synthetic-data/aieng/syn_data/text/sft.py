@@ -97,7 +97,8 @@ def train_lora_sft(
 
     output_dir.mkdir(parents=True, exist_ok=True)
     dataset = build_sft_dataset(samples)
-    tokenizer = AutoTokenizer.from_pretrained(base_model, trust_remote_code=True)
+    trust_remote_code: bool = False,
+    tokenizer = AutoTokenizer.from_pretrained(base_model, trust_remote_code=trust_remote_code)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
@@ -111,7 +112,7 @@ def train_lora_sft(
         base_model,
         quantization_config=quant_config,
         device_map="auto",
-        trust_remote_code=True,
+        trust_remote_code=trust_remote_code,
     )
     model = get_peft_model(model, LoraConfig(**default_lora_config()))
 

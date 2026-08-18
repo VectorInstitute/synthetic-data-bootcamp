@@ -5,6 +5,8 @@ from __future__ import annotations
 from collections import defaultdict
 from typing import Any, Protocol
 
+import requests
+
 from aieng.syn_data.text.schemas import JudgeScore, QASample
 
 
@@ -68,7 +70,13 @@ def run_inference(
             record["model_answer"] = client.complete(
                 prompt, system=system, temperature=0.0
             )
-        except (KeyError, ValueError, TypeError, RuntimeError) as exc:
+        except (
+            KeyError,
+            ValueError,
+            TypeError,
+            RuntimeError,
+            requests.RequestException,
+        ) as exc:
             record["error"] = f"{type(exc).__name__}: {exc}"
         predictions.append(record)
     return predictions

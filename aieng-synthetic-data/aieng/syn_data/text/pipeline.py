@@ -54,8 +54,10 @@ def effective_test_holdout(
     n_paragraphs: int, requested: int = DEFAULT_TEST_PARAS_PER_DOC
 ) -> int:
     """Choose a safe test holdout count that leaves at least one train paragraph."""
-    if n_paragraphs <= 2:
-        return 1
+    if n_paragraphs <= 1:
+        return 0
+    if n_paragraphs == 2:
+        return 1    
     return min(requested, n_paragraphs - 1)
 
 
@@ -396,7 +398,20 @@ def score_predictions(
     samples_by_id = {sample.id: sample for sample in test_samples}
     scores: list[JudgeScore] = []
     for prediction in predictions:
-        sample = samples_by_id[prediction["id"]]
+        # Skip predictions with inference errors
+        if prediction.get("error"):
+            logger.warning(
+                "Skipping prediction %s with inference error: %s",
+                prediction.get("id"),
+                prediction["error"],
+            )
+            continue
+        sample = samples_by_id.get(prediction["id"])
+        if sample is None:
+            logger.warning("No test sample for prediction id %s", prediction["id"])
+            continue
+
+        
         scores.append(
             judge_response(judge, sample, prediction["model_answer"]),
         )
