@@ -48,6 +48,10 @@ from aieng.syn_data.text.schemas import (
     ParagraphSplit,
     QASample,
 )
+from aieng.syn_data.text.seed_examples import (
+    default_few_shot_examples,
+    default_seed_example,
+)
 
 
 logger = logging.getLogger(__name__)
@@ -188,24 +192,9 @@ def compare_generation_strategies(
     few_shot_examples: list[QASample] | None = None,
     topic_controlled_topic: str | None = None,
 ) -> dict[str, QASample]:
-    """Generate one sample per strategy for side-by-side comparison.
-
-    TODO(follow-up): move default seed / few-shot examples into a domain-specific
-    module (e.g. ``seed_examples.py``) so participants adapting a new domain know
-    where to edit prompts and exemplars. Tracked as a follow-up issue.
-    """
-    # Domain-specific finance seed used only when the caller does not supply one.
-    seed = seed_example or QASample(
-        id="seed",
-        question="What is the grace period for new purchases?",
-        gold_answer="The grace period ends 21 days after the close of the billing cycle.",
-        doc_id=paragraph.doc_id,
-        para_id=paragraph.para_id,
-        context=paragraph.text,
-        instruction="Answer using the source passage. Respond in one sentence.",
-    )
-    # Without caller-provided few-shots this collapses to one-shot.
-    few_shot = few_shot_examples or [seed]
+    """Generate one sample per strategy for side-by-side comparison."""
+    seed = seed_example or default_seed_example(paragraph)
+    few_shot = few_shot_examples or default_few_shot_examples(paragraph)
     # Side-by-side view keeps one topic-controlled sample; full per-topic
     # expansion is used in generate_test_qa_batch / topic_controlled_generate.
     topic_samples = topic_controlled_generate(
