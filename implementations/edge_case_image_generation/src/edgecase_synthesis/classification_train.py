@@ -18,6 +18,7 @@ __all__ = [
     "evaluate_classifier",
     "metrics_table",
     "plot_metrics_comparison",
+    "plot_confusion_matrix",
     "predict_gallery",
     "load_manifest",
 ]
@@ -39,6 +40,36 @@ def _row_label(row: dict[str, Any], class_names: list[str]) -> str | None:
     return None
 
 
+def _balance_train_split(
+    root: Path,
+    class_names: list[str],
+    *,
+    copy_images: bool,
+) -> dict[str, int]:
+    """Oversample minority classes in ``train/`` until each matches the majority count."""
+    train_dir = root / "train"
+    files_by_cls: dict[str, list[Path]] = {}
+    counts: dict[str, int] = {}
+    for cls in class_names:
+        folder = train_dir / cls
+        files = sorted(p for p in folder.iterdir() if p.is_file())
+        files_by_cls[cls] = files
+        counts[cls] = len(files)
+    if not counts or max(counts.values()) == 0:
+        return counts
+    target = max(counts.values())
+    for cls in class_names:
+        files = files_by_cls[cls]
+        if not files:
+            continue
+        for i in range(target - len(files)):
+            src = files[i % len(files)]
+            dst = train_dir / cls / f"{src.stem}_os{i}{src.suffix}"
+            _link_or_copy(src, dst, copy=copy_images)
+        counts[cls] = target
+    return counts
+
+
 def build_cls_dataset(
     *,
     train_manifest: list[dict[str, Any]],
@@ -47,6 +78,7 @@ def build_cls_dataset(
     class_names: list[str],
     include_synthetic: bool = True,
     copy_images: bool = False,
+    balance_train: bool = False,
     dataset_name: str = "edgecase_cls",
 ) -> tuple[Path, ClsDatasetBuildStats, ClsDatasetBuildStats]:
     """Materialize Ultralytics classification folders.
@@ -60,6 +92,10 @@ def build_cls_dataset(
 
     Image label = manifest ``tag`` (``scene``, ``traffic_cone``, ``ground_animal``, …).
     Test (real-only) is written to ``val``.
+
+    When ``balance_train`` is True, minority classes in ``train/`` are oversampled
+    (symlink/copy duplicates) to match the majority class count so SGD sees each
+    class equally often — critical when ``scene`` ≫ rares.
     """
     root = Path(out_dir)
     if root.exists():
@@ -103,14 +139,22 @@ def build_cls_dataset(
     _ingest(train_manifest, "train", train_stats)
     _ingest(test_manifest, "val", val_stats)
 
+    balanced_counts: dict[str, int] | None = None
+    if balance_train:
+        balanced_counts = _balance_train_split(root, class_names, copy_images=copy_images)
+        train_stats.n_images = sum(balanced_counts.values())
+        train_stats.images_per_class = dict(balanced_counts)
+
     write_json(
         root / "build_stats.json",
         {
             "dataset_name": dataset_name,
             "include_synthetic": include_synthetic,
+            "balance_train": balance_train,
             "class_names": class_names,
             "train": train_stats.__dict__,
             "val": val_stats.__dict__,
+            "train_balanced_per_class": balanced_counts,
         },
     )
     write_json(root / "labels.json", label_records)
@@ -187,13 +231,25 @@ def _per_class_prf(
     return out
 
 
+def _confusion_matrix(
+    y_true: list[str],
+    y_pred: list[str],
+    class_names: list[str],
+) -> dict[str, dict[str, int]]:
+    matrix = {true_cls: {pred_cls: 0 for pred_cls in class_names} for true_cls in class_names}
+    for true_cls, pred_cls in zip(y_true, y_pred, strict=False):
+        if true_cls in matrix and pred_cls in matrix[true_cls]:
+            matrix[true_cls][pred_cls] += 1
+    return matrix
+
+
 def train_classifier(
     dataset_root: Path | str,
     *,
     name: str,
     project_dir: Path | str,
     class_names: list[str],
-    model_name: str = "yolov8n-cls.pt",
+    model_name: str = "yolov8s-cls.pt",
     epochs: int = 40,
     imgsz: int = 224,
     batch: int = 16,
@@ -304,6 +360,7 @@ def evaluate_classifier(
         "confusion": {
             "true": dict(Counter(y_true)),
             "pred": dict(Counter(y_pred)),
+            "matrix": _confusion_matrix(y_true, y_pred, class_names),
         },
     }
 
@@ -361,6 +418,44 @@ def plot_metrics_comparison(
     ax.set_ylabel("score")
     ax.set_title(title)
     ax.legend()
+    fig.tight_layout()
+    return fig, ax
+
+
+def plot_confusion_matrix(
+    metrics: dict[str, Any],
+    *,
+    class_names: list[str],
+    title: str = "Confusion matrix (rows=true, cols=pred)",
+    ax=None,
+):
+    """Heatmap from ``metrics['confusion']['matrix']``."""
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    matrix = (metrics.get("confusion") or {}).get("matrix") or {}
+    data = np.array(
+        [[int(matrix.get(t, {}).get(p, 0)) for p in class_names] for t in class_names],
+        dtype=float,
+    )
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(5.5, 4.5))
+    else:
+        fig = ax.figure
+    im = ax.imshow(data, cmap="Blues")
+    ax.set_xticks(range(len(class_names)))
+    ax.set_yticks(range(len(class_names)))
+    ax.set_xticklabels(class_names, rotation=20)
+    ax.set_yticklabels(class_names)
+    ax.set_xlabel("predicted")
+    ax.set_ylabel("true")
+    ax.set_title(title)
+    for i in range(len(class_names)):
+        for j in range(len(class_names)):
+            val = int(data[i, j])
+            color = "white" if val > data.max() / 2 else "black"
+            ax.text(j, i, str(val), ha="center", va="center", color=color)
+    fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
     fig.tight_layout()
     return fig, ax
 
