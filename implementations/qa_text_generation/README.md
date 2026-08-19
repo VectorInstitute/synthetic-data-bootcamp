@@ -126,7 +126,6 @@ To confirm CUDA on a GPU workspace:
 python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"
 ```
 
-> **TODO:** Confirm with Amrit whether participants use the Vector proxy for API keys.
 
 ### 2. Local development (skip on Coder)
 
