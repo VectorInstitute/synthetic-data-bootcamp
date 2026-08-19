@@ -57,6 +57,7 @@ def train_lora_sft(
     gradient_accumulation_steps: int = 4,
     learning_rate: float = 2e-4,
     max_seq_length: int = 1024,
+    trust_remote_code: bool = False,
 ) -> Path:
     """Fine-tune a small model with 4-bit LoRA using TRL SFTTrainer."""
     import torch
@@ -97,8 +98,9 @@ def train_lora_sft(
 
     output_dir.mkdir(parents=True, exist_ok=True)
     dataset = build_sft_dataset(samples)
-    trust_remote_code: bool = False,
-    tokenizer = AutoTokenizer.from_pretrained(base_model, trust_remote_code=trust_remote_code)
+    tokenizer = AutoTokenizer.from_pretrained(
+        base_model, trust_remote_code=trust_remote_code
+    )
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 

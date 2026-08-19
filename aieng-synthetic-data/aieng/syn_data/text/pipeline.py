@@ -57,7 +57,7 @@ def effective_test_holdout(
     if n_paragraphs <= 1:
         return 0
     if n_paragraphs == 2:
-        return 1    
+        return 1
     return min(requested, n_paragraphs - 1)
 
 
@@ -411,7 +411,6 @@ def score_predictions(
             logger.warning("No test sample for prediction id %s", prediction["id"])
             continue
 
-        
         scores.append(
             judge_response(judge, sample, prediction["model_answer"]),
         )
