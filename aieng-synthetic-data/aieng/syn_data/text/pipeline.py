@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import random
 import uuid
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -299,8 +300,16 @@ def filter_with_judge(
     samples: list[QASample],
     *,
     threshold: float = DEFAULT_JUDGE_THRESHOLD,
+    on_progress: Callable[[], None] | None = None,
 ) -> tuple[list[QASample], list[JudgeScore], list[dict[str, str]]]:
-    """Apply heuristics then keep samples that pass the judge threshold."""
+    """Apply heuristics then keep samples that pass the judge threshold.
+
+    Parameters
+    ----------
+    on_progress:
+        Called once per finished sample. A Rich ``Progress.advance`` hook
+        stays valid if judging is later parallelized.
+    """
     kept, rejected = apply_heuristic_filters(samples)
     accepted: list[QASample] = []
     scores: list[JudgeScore] = []
@@ -309,6 +318,8 @@ def filter_with_judge(
     for sample in kept:
         score = judge_synthetic_sample(judge, sample)
         scores.append(score)
+        if on_progress is not None:
+            on_progress()
         if score.average >= threshold:
             accepted.append(sample)
         else:
