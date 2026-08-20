@@ -49,7 +49,9 @@ synbench = [
 ]
 
 tabular-data = [
+    "gdown>=6.1.0",
     "midst-toolkit",
+    "pandas>=2.3.3",
 ]
 
 [tool.uv.workspace]
@@ -60,7 +62,6 @@ members = [
 [tool.uv.sources]
 aieng-synthetic-data = { workspace = true }
 midst-toolkit = { git = "https://github.com/VectorInstitute/midst-toolkit.git" }
-
 
 [tool.mypy]
 # Resolve aieng.* from the source tree; without this the installed distribution
