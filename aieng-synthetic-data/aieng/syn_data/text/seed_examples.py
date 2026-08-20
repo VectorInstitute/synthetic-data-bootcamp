@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from aieng.syn_data.text.schemas import Paragraph, QASample
 
+
 INSTRUCTION = "Answer using the source passage. Respond in one sentence."
 
 # (question, gold_answer) — keep these short; they only teach format and style.

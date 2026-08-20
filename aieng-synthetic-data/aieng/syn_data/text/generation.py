@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import uuid
-from typing import Any
+from typing import Any, cast
 
 from aieng.syn_data.text.clients import LLMClient, extract_json_text
 from aieng.syn_data.text.config import DEFAULT_DOMAIN, FAILURE_MODE_GUIDANCE
@@ -192,9 +192,14 @@ def _ask_json(
     if system is None:
         system = f"You generate grounded {domain} Q&A from source text."
     if hasattr(client, "complete_json"):
-        return client.complete_json(prompt, system=system, max_tokens=2048)
-    text = client.complete(prompt, system=system, max_tokens=2048)
-    return json.loads(extract_json_text(text))
+        payload = client.complete_json(prompt, system=system, max_tokens=2048)
+    else:
+        text = client.complete(prompt, system=system, max_tokens=2048)
+        payload = json.loads(extract_json_text(text))
+    if not isinstance(payload, dict):
+        msg = f"Expected a JSON object, got {type(payload).__name__}"
+        raise TypeError(msg)
+    return cast(dict[str, Any], payload)
 
 
 def _to_qa_sample(
