@@ -34,8 +34,8 @@ VLM_MODEL_ALIASES: dict[str, str] = {
     "gemini-3.1-pro": "gemini-3-pro-image-preview",
     "gemini 3 pro": "gemini-3-pro-image-preview",
     "gemini-3-pro": "gemini-3-pro-image-preview",
-    "gemini 3.5 flash": "gemini-3.1-flash-image",
-    "gemini-3.5-flash": "gemini-3.1-flash-image",
+    "gemini 3.5 flash": "gemini-3.5-flash",
+    "gemini-3.5-flash": "gemini-3.5-flash",
     # Pass-through common official IDs
     "gemini-3.1-flash-image": "gemini-3.1-flash-image",
     "gemini-3.1-flash-lite-image": "gemini-3.1-flash-lite-image",
@@ -50,17 +50,18 @@ VLM_MODEL_ALIASES: dict[str, str] = {
 }
 
 VlmMode = Literal["edit", "generate"]
-VlmProvider = Literal["gemini", "openai"]
+VlmProvider = Literal["gemini", "openai", "vector_proxy"]
 
 
 @dataclass
 class VlmGenerateConfig:
     """Knobs for cloud image generation."""
 
-    model: str = "gemini-3.1-flash-image"
+    model: str = "gemini-3.5-flash"
     mode: VlmMode = "edit"  # edit = seed+instruction; generate = text-only
     provider: VlmProvider | None = None  # auto from model id if None
     api_key: str | None = None
+    api_base_url: str | None = None  # Vector proxy (OpenAI-compatible)
     aspect_ratio: str | None = None  # Gemini only, e.g. "16:9"
     size: str = "1024x1024"  # OpenAI Images API
     max_side: int = 1024
@@ -77,7 +78,9 @@ def resolve_vlm_model(name: str) -> str:
     return str(name).strip()
 
 
-def infer_provider(model: str) -> VlmProvider:
+def infer_provider(model: str, *, api_base_url: str | None = None) -> VlmProvider:
+    if api_base_url:
+        return "vector_proxy"
     mid = model.lower()
     if mid.startswith("gpt") or "openai" in mid:
         return "openai"
@@ -131,13 +134,15 @@ def generate_with_vlm(
     """Generate or edit an image via Gemini image / OpenAI GPT Image APIs."""
     cfg = config or VlmGenerateConfig()
     model = resolve_vlm_model(cfg.model)
-    provider = cfg.provider or infer_provider(model)
+    provider = cfg.provider or infer_provider(model, api_base_url=cfg.api_base_url)
     mode = cfg.mode
     if mode == "edit" and seed_image is None:
         raise ValueError("mode='edit' requires a seed_image")
     if mode == "generate":
         seed_image = None
 
+    if provider == "vector_proxy":
+        return _generate_vector_proxy(prompt, seed_image=seed_image, model=model, cfg=cfg)
     if provider == "gemini":
         return _generate_gemini(prompt, seed_image=seed_image, model=model, cfg=cfg)
     return _generate_openai(prompt, seed_image=seed_image, model=model, cfg=cfg)
@@ -168,16 +173,9 @@ def _generate_gemini(
                 mime_type="image/png",
             )
         )
-        text = (
-            "Edit this street photograph. Keep camera angle, layout, vehicles, "
-            "buildings, and lighting as similar as possible. "
-            f"Instruction: {prompt.strip()}"
-        )
+        text = _edit_prompt_text(prompt)
     else:
-        text = (
-            "Generate a photorealistic street-level dashcam / Mapillary-style photo. "
-            f"{prompt.strip()}"
-        )
+        text = _generate_prompt_text(prompt)
     parts.append(types.Part.from_text(text=text))
 
     gen_cfg_kwargs: dict[str, Any] = {
@@ -218,6 +216,195 @@ def _extract_gemini_image(response: Any) -> Image.Image | None:
     return None
 
 
+def _edit_prompt_text(prompt: str) -> str:
+    return (
+        "Edit this street photograph. Keep camera angle, layout, vehicles, "
+        "buildings, and lighting as similar as possible. "
+        f"Instruction: {prompt.strip()}"
+    )
+
+
+def _generate_prompt_text(prompt: str) -> str:
+    return (
+        "Generate a photorealistic street-level dashcam / Mapillary-style photo. "
+        f"{prompt.strip()}"
+    )
+
+
+def _extract_openai_chat_image(response: Any) -> Image.Image | None:
+    """Parse a PIL image from an OpenAI-style chat completion (proxy / Gemini compat)."""
+    import re
+
+    choices = getattr(response, "choices", None) or []
+    if not choices:
+        return None
+    message = choices[0].message
+    images = getattr(message, "images", None) or []
+    for item in images:
+        if isinstance(item, dict):
+            url = (item.get("image_url") or {}).get("url") or item.get("url")
+            b64 = item.get("b64_json") or item.get("data")
+        else:
+            url = getattr(getattr(item, "image_url", None), "url", None)
+            b64 = getattr(item, "b64_json", None) or getattr(item, "data", None)
+        img = _image_from_url_or_b64(url=url, b64=b64)
+        if img is not None:
+            return img
+
+    content = getattr(message, "content", None)
+    if isinstance(content, list):
+        for part in content:
+            if not isinstance(part, dict):
+                continue
+            ptype = part.get("type")
+            if ptype == "image_url":
+                url = (part.get("image_url") or {}).get("url")
+                img = _image_from_url_or_b64(url=url)
+                if img is not None:
+                    return img
+            if ptype == "image":
+                src = part.get("source") or {}
+                img = _image_from_url_or_b64(
+                    url=src.get("url"),
+                    b64=src.get("data") or part.get("data"),
+                )
+                if img is not None:
+                    return img
+    if isinstance(content, str):
+        match = re.search(
+            r"data:image/[^;]+;base64,([A-Za-z0-9+/=\s]+)",
+            content,
+        )
+        if match:
+            return _bytes_to_pil(base64.b64decode(match.group(1).replace("\n", "")))
+    return None
+
+
+def _image_from_url_or_b64(
+    *,
+    url: str | None = None,
+    b64: str | None = None,
+) -> Image.Image | None:
+    if b64:
+        raw = b64.split(",", 1)[-1] if b64.startswith("data:") else b64
+        return _bytes_to_pil(base64.b64decode(raw))
+    if not url:
+        return None
+    if url.startswith("data:"):
+        import re
+
+        match = re.search(r"base64,([A-Za-z0-9+/=\s]+)", url)
+        if match:
+            return _bytes_to_pil(base64.b64decode(match.group(1).replace("\n", "")))
+        return None
+    import urllib.request
+
+    with urllib.request.urlopen(url) as resp:  # noqa: S310 — API-returned HTTPS URL
+        return _bytes_to_pil(resp.read())
+
+
+def _extract_openai_images_api(result: Any) -> Image.Image:
+    data = getattr(result, "data", None) or []
+    if not data:
+        raise RuntimeError("Images API returned no data.")
+    item = data[0]
+    b64 = getattr(item, "b64_json", None)
+    if b64:
+        return _bytes_to_pil(base64.b64decode(b64))
+    url = getattr(item, "url", None)
+    if url:
+        img = _image_from_url_or_b64(url=url)
+        if img is not None:
+            return img
+    raise RuntimeError("Images API returned no image payload.")
+
+
+def _generate_vector_proxy(
+    prompt: str,
+    *,
+    seed_image: Image.Image | None,
+    model: str,
+    cfg: VlmGenerateConfig,
+) -> Image.Image:
+    from edgecase_synthesis.vlm_api import VECTOR_PROXY_BASE_URL, make_openai_client, pil_to_b64
+
+    base_url = (
+        cfg.api_base_url
+        or os.environ.get("VECTOR_PROXY_BASE_URL")
+        or os.environ.get("OPENAI_BASE_URL")
+        or VECTOR_PROXY_BASE_URL
+    )
+    client = make_openai_client(api_key=cfg.api_key, base_url=base_url)
+
+    if seed_image is not None:
+        edit_text = _edit_prompt_text(prompt)
+        b64 = pil_to_b64(seed_image, max_side=cfg.max_side)
+        messages = [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": edit_text},
+                    {
+                        "type": "image_url",
+                        "image_url": {"url": f"data:image/png;base64,{b64}"},
+                    },
+                ],
+            }
+        ]
+        try:
+            response = client.chat.completions.create(
+                model=model,
+                messages=messages,
+                extra_body={"response_modalities": ["TEXT", "IMAGE"]},
+            )
+            image = _extract_openai_chat_image(response)
+            if image is not None:
+                return image
+        except Exception:
+            pass
+
+        buf = io.BytesIO(_pil_to_png_bytes(seed_image, max_side=cfg.max_side))
+        buf.name = "seed.png"
+        try:
+            result = client.images.edit(
+                model=model,
+                image=buf,
+                prompt=edit_text,
+                size=cfg.size,  # type: ignore[arg-type]
+                response_format="b64_json",
+            )
+            return _extract_openai_images_api(result)
+        except Exception:
+            pass
+
+        raise RuntimeError(
+            f"Vector proxy model {model!r} returned no edited image. "
+            "Try an image-capable model ID from inference.vectorinstitute.ai."
+        )
+
+    gen_text = _generate_prompt_text(prompt)
+    try:
+        response = client.chat.completions.create(
+            model=model,
+            messages=[{"role": "user", "content": gen_text}],
+            extra_body={"response_modalities": ["TEXT", "IMAGE"]},
+        )
+        image = _extract_openai_chat_image(response)
+        if image is not None:
+            return image
+    except Exception:
+        pass
+
+    result = client.images.generate(
+        model=model,
+        prompt=gen_text,
+        size=cfg.size,  # type: ignore[arg-type]
+        response_format="b64_json",
+        n=1,
+    )
+    return _extract_openai_images_api(result)
+
+
 def _generate_openai(
     prompt: str,
     *,
@@ -234,36 +421,19 @@ def _generate_openai(
 
     client = OpenAI(api_key=_openai_api_key(cfg.api_key))
     if seed_image is not None:
-        # Image edit: seed + instruction.
         buf = io.BytesIO(_pil_to_png_bytes(seed_image, max_side=cfg.max_side))
         buf.name = "seed.png"
         result = client.images.edit(
             model=model,
             image=buf,
-            prompt=(
-                "Edit this street photograph. Keep camera angle, layout, vehicles, "
-                f"buildings, and lighting similar. Instruction: {prompt.strip()}"
-            ),
+            prompt=_edit_prompt_text(prompt),
             size=cfg.size,  # type: ignore[arg-type]
         )
     else:
         result = client.images.generate(
             model=model,
-            prompt=(
-                "Photorealistic street-level dashcam / Mapillary-style photo. "
-                f"{prompt.strip()}"
-            ),
+            prompt=_generate_prompt_text(prompt),
             size=cfg.size,  # type: ignore[arg-type]
         )
 
-    item = result.data[0]
-    b64 = getattr(item, "b64_json", None)
-    if b64:
-        return _bytes_to_pil(base64.b64decode(b64))
-    url = getattr(item, "url", None)
-    if url:
-        import urllib.request
-
-        with urllib.request.urlopen(url) as resp:  # noqa: S310 — API-returned HTTPS URL
-            return _bytes_to_pil(resp.read())
-    raise RuntimeError(f"OpenAI model {model!r} returned no image data.")
+    return _extract_openai_images_api(result)

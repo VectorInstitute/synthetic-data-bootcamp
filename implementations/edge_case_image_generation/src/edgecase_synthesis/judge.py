@@ -5,7 +5,7 @@ sanity. Returns accept / retry / reject using ``judge.threshold``.
 
 Backends
 --------
-- ``api`` — Gemini / OpenAI vision chat (default; needs ``uv sync --group edge-case-vlm`` + API key).
+- ``api`` — Gemini / OpenAI vision chat via Vector proxy or direct API (default; needs ``uv sync --group edge-case-vlm`` + API key).
 - ``qwen_vl`` — Qwen2.5-VL (3B on CPU profile, 7B on gpu_l4). Offline path.
 - ``clip`` — CLIP similarity delta fallback when a local VLM is too heavy.
 """
@@ -75,6 +75,7 @@ class VLMJudge:
         schema_hint: str | None = None,
         api_provider: str | None = None,
         api_key: str | None = None,
+        api_base_url: str | None = None,
         api_max_side: int = 1024,
     ) -> None:
         self.model_id = model_id
@@ -89,6 +90,7 @@ class VLMJudge:
         self.schema_hint = (schema_hint or _DEFAULT_SCHEMA_HINT).strip()
         self.api_provider = api_provider
         self.api_key = api_key
+        self.api_base_url = api_base_url
         self.api_max_side = int(api_max_side)
         self._model = None
         self._processor = None
@@ -333,13 +335,14 @@ class VLMJudge:
             f"{self.schema_hint}"
         )
         model = resolve_judge_model(self.model_id)
-        provider = self.api_provider or infer_api_provider(model)
+        provider = self.api_provider or infer_api_provider(model, api_base_url=self.api_base_url)
         text = vision_chat(
             user_text,
             image,
             model=model,
             provider=provider,  # type: ignore[arg-type]
             api_key=self.api_key,
+            api_base_url=self.api_base_url,
             max_side=self.api_max_side,
         )
         self._active_backend = "api"
@@ -460,7 +463,7 @@ class VLMJudge:
             if hardware is not None:
                 device = hardware.get("device")
         return cls(
-            model_id=str(judge.get("model_id", "gemini-3.1-flash-preview")),
+            model_id=str(judge.get("model_id", "gemini-3.5-flash")),
             backend=str(judge.get("backend", "api")),
             device=device,
             torch_dtype=str(judge.get("torch_dtype", "float32")),
@@ -472,6 +475,7 @@ class VLMJudge:
             schema_hint=judge.get("schema_hint"),
             api_provider=judge.get("api_provider"),
             api_key=judge.get("api_key"),
+            api_base_url=judge.get("api_base_url"),
             api_max_side=int(judge.get("api_max_side", 1024)),
         )
 

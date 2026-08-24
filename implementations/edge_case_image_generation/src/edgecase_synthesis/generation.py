@@ -27,6 +27,7 @@ class GenerationResult:
     edit_mask: np.ndarray | None = None
     anomaly_id: str | None = None
     method: str | None = None
+    error: str | None = None
 
 
 class AnomalyEditor:
@@ -259,10 +260,15 @@ class AnomalyEditor:
 
             mode = str(merged.get("vlm_mode", "edit")).lower()
             cfg = VlmGenerateConfig(
-                model=str(merged.get("vlm_api_model") or "gemini-3.1-flash-image"),
+                model=str(merged.get("vlm_api_model") or "gemini-3.5-flash"),
                 mode="generate" if mode == "generate" else "edit",
                 provider=merged.get("vlm_provider"),
                 api_key=merged.get("vlm_api_key"),
+                api_base_url=(
+                    str(merged.get("vlm_api_base_url"))
+                    if merged.get("vlm_api_base_url") not in (None, "")
+                    else None
+                ),
                 aspect_ratio=(
                     str(merged.get("vlm_aspect_ratio"))
                     if merged.get("vlm_aspect_ratio") not in (None, "")

@@ -2,13 +2,14 @@
 # VLM-as-judge for synthetic quality gating.
 #
 # Backends (swap freely — same JSON schema + accept/retry/reject gate):
-#   api     — Gemini / OpenAI vision chat (default; needs API key + uv sync --group edge-case-vlm)
+#   api     — vision chat via Vector Institute proxy (default) or direct Gemini/OpenAI
 #   qwen_vl — local Qwen2.5-VL (gpu_l4 / cpu friendly offline path)
 #   clip    — lightweight CLIP heuristic fallback
 backend: api
-model_id: gemini-3.1-flash-preview
-api_provider: null   # null → auto from model_id (gemini vs openai)
-api_key: null        # null → GEMINI_API_KEY / OPENAI_API_KEY env vars
+model_id: gemini-3.5-flash
+api_base_url: https://proxy.vectorinstitute.ai/v1
+api_provider: null   # null → auto (vector_proxy when api_base_url is set)
+api_key: null        # null → OPENAI_API_KEY (vp_… Vector key) or VECTOR_PROXY_API_KEY
 api_max_side: 1024
 
 # Local Qwen settings (used when backend=qwen_vl)

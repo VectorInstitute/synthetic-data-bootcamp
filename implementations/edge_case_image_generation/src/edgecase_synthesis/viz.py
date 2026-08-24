@@ -213,6 +213,8 @@ def show_method_comparison(
             ax.set_title(title)
             ax.axis("off")
             continue
+        if getattr(result, "error", None):
+            title = f"{title}\n(skipped)"
         show_image(result.image, title=title, ax=ax)
 
     for j in range(len(methods), ncols):

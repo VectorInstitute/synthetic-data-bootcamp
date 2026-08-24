@@ -48,6 +48,46 @@ COMPARE_METHODS = LOCAL_DIFFUSION_METHODS + VLM_GENERATE_METHODS
 ALL_COMPARE_METHODS = COMPARE_METHODS + (VLM_GENERATE_ALIAS,)
 
 
+def _failed_generation_result(
+    original: Image.Image,
+    *,
+    prompt: str,
+    seed: int,
+    anomaly_id: str,
+    method: str,
+    error: Exception,
+) -> GenerationResult:
+    """Placeholder when a compare method OOMs, runs out of disk, or lacks API keys."""
+    from PIL import ImageDraw, ImageFont
+
+    img = original.convert("RGB").copy()
+    draw = ImageDraw.Draw(img)
+    w, h = img.size
+    lines = [
+        f"{method} skipped",
+        type(error).__name__,
+        str(error)[:120],
+    ]
+    try:
+        font = ImageFont.load_default()
+    except Exception:  # pragma: no cover
+        font = None
+    y = max(8, h // 4)
+    for line in lines:
+        draw.text((8, y), line, fill=(220, 40, 40), font=font)
+        y += 14
+    return GenerationResult(
+        image=img,
+        prompt=prompt,
+        negative_prompt="",
+        seed=int(seed),
+        edit_mask=None,
+        anomaly_id=anomaly_id,
+        method=method,
+        error=str(error),
+    )
+
+
 def resolve_effective_method(method: str, generation_cfg: Any) -> str:
     """Map ``vlm_generate`` alias → local or API backend from config."""
     method = str(method).lower()
@@ -181,11 +221,12 @@ class MethodComparer:
         inpaint_guidance_scale: float | None = None,
         device: str | None = None,
         seg_as_canny: bool = False,
-        vlm_api_model: str = "gemini-3.1-flash-image",
+        vlm_api_model: str = "gemini-3.5-flash",
         vlm_generate_backend: str = "local",
         vlm_mode: str = "edit",
         vlm_provider: str | None = None,
         vlm_api_key: str | None = None,
+        vlm_api_base_url: str | None = None,
         vlm_max_side: int = 1024,
         vlm_size: str = "1024x1024",
         vlm_local_model_id: str = "Qwen/Qwen-Image-Edit",
@@ -214,6 +255,7 @@ class MethodComparer:
         self.vlm_mode = str(vlm_mode).lower()
         self.vlm_provider = vlm_provider
         self.vlm_api_key = vlm_api_key
+        self.vlm_api_base_url = vlm_api_base_url
         self.vlm_max_side = int(vlm_max_side)
         self.vlm_size = str(vlm_size)
         self.vlm_local_model_id = str(vlm_local_model_id)
@@ -585,14 +627,25 @@ class MethodComparer:
             # Heavy models (Klein, Qwen-Image-Edit, SD ControlNet) do not share one L4.
             if self.device.type == "cuda":
                 self.unload()
-            bundle.results[method] = self.run_method(
-                method,
-                image,
-                depth=depth,
-                segmentation=segmentation,
-                generation_cfg=generation_cfg,
-                anomaly_cfg=anomaly_cfg,
-            )
+            try:
+                bundle.results[method] = self.run_method(
+                    method,
+                    image,
+                    depth=depth,
+                    segmentation=segmentation,
+                    generation_cfg=generation_cfg,
+                    anomaly_cfg=anomaly_cfg,
+                )
+            except Exception as exc:  # noqa: BLE001 — keep NB1.5 grid alive on OOM / disk
+                print(f"  ✗ {method} failed: {type(exc).__name__}: {exc}", flush=True)
+                bundle.results[method] = _failed_generation_result(
+                    fitted,
+                    prompt=prompt,
+                    seed=int(merged.get("seed", 42)),
+                    anomaly_id=anomaly_id,
+                    method=method,
+                    error=exc,
+                )
         return bundle
 
     # --- method implementations -------------------------------------------
@@ -886,6 +939,7 @@ class MethodComparer:
         mode = str(generation_cfg.get("vlm_mode", self.vlm_mode)).lower()
         provider = generation_cfg.get("vlm_provider", self.vlm_provider)
         api_key = generation_cfg.get("vlm_api_key", self.vlm_api_key)
+        api_base_url = generation_cfg.get("vlm_api_base_url", self.vlm_api_base_url)
         max_side = int(generation_cfg.get("vlm_max_side", self.vlm_max_side))
         size = str(generation_cfg.get("vlm_size", self.vlm_size))
         aspect = generation_cfg.get("vlm_aspect_ratio")
@@ -895,6 +949,7 @@ class MethodComparer:
             mode="generate" if mode == "generate" else "edit",
             provider=provider,  # type: ignore[arg-type]
             api_key=api_key,
+            api_base_url=str(api_base_url) if api_base_url not in (None, "") else None,
             aspect_ratio=str(aspect) if aspect not in (None, "") else None,
             size=size,
             max_side=max_side,
@@ -956,11 +1011,12 @@ class MethodComparer:
             ),
             device=device,
             seg_as_canny=seg_as_canny,
-            vlm_api_model=str(generation.get("vlm_api_model") or "gemini-3.1-flash-image"),
+            vlm_api_model=str(generation.get("vlm_api_model") or "gemini-3.5-flash"),
             vlm_generate_backend=str(generation.get("vlm_generate_backend") or "local"),
             vlm_mode=str(generation.get("vlm_mode") or "edit"),
             vlm_provider=generation.get("vlm_provider"),
             vlm_api_key=generation.get("vlm_api_key"),
+            vlm_api_base_url=generation.get("vlm_api_base_url"),
             vlm_max_side=int(generation.get("vlm_max_side") or 1024),
             vlm_size=str(generation.get("vlm_size") or "1024x1024"),
             vlm_local_model_id=str(generation.get("vlm_local_model_id") or "Qwen/Qwen-Image-Edit"),
