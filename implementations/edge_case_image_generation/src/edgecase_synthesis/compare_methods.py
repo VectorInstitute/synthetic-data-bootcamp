@@ -1,10 +1,13 @@
 """Side-by-side comparison of edge-case edit / generate methods (Notebook 1.5).
 
-1. ``inpaint`` — localized hole + SD inpaint (mask required)
-2. ``controlnet_dual`` — depth + segmentation ControlNets, full-frame, **no mask**
-3. ``instruct`` — local instruction editor (Klein / InstructPix2Pix; image + text)
-4. ``vlm_generate_local`` — local Klein instruct edit on seed photo (default VLM path)
-5. ``vlm_generate_api`` — cloud Gemini / GPT Image API (optional comparison)
+NB1.5 compares five edit paths; **production (NB1 / NB2) defaults to ``instruct`` (Klein)
++ API VLM judge** — see ``configs/default/generation.yaml`` and ``judge.yaml``.
+
+1. ``controlnet_dual`` — depth + segmentation ControlNets, full-frame
+2. ``inpaint`` — localized hole + SD/Klein inpaint (mask required)
+3. ``instruct`` — Klein / IP2P instruction editor (**small local**; default generator)
+4. ``vlm_generate_local`` — Qwen-Image-Edit (**large local** instruct-class editor)
+5. ``vlm_generate_api`` — cloud Gemini / GPT Image API edit
 """
 
 from __future__ import annotations
@@ -32,14 +35,17 @@ from edgecase_synthesis.generation import (
     _composite,
 )
 
-# Local diffusion stack (offline once weights are cached).
-LOCAL_DIFFUSION_METHODS = ("inpaint", "controlnet_dual", "instruct")
-# VLM image edit paths (local Klein vs cloud image API).
+# Diffusion stack (offline once weights are cached).
+LOCAL_DIFFUSION_METHODS = ("controlnet_dual", "inpaint", "instruct")
+# Large local + cloud instruction-class editors (NB1.5 only; not the NB1/NB2 default).
 VLM_GENERATE_METHODS = ("vlm_generate_local", "vlm_generate_api")
 # Shorthand resolved via generation.vlm_generate_backend (local | api).
 VLM_GENERATE_ALIAS = "vlm_generate"
-COMPARE_METHODS = LOCAL_DIFFUSION_METHODS  # default NB1.5 grid (3 local diffusion methods)
-ALL_COMPARE_METHODS = LOCAL_DIFFUSION_METHODS + VLM_GENERATE_METHODS + (VLM_GENERATE_ALIAS,)
+# NB1 / NB2 production methods (Klein ``instruct`` is the default generator).
+PIPELINE_METHODS = LOCAL_DIFFUSION_METHODS
+# Default NB1.5 grid — all five methods.
+COMPARE_METHODS = LOCAL_DIFFUSION_METHODS + VLM_GENERATE_METHODS
+ALL_COMPARE_METHODS = COMPARE_METHODS + (VLM_GENERATE_ALIAS,)
 
 
 def resolve_effective_method(method: str, generation_cfg: Any) -> str:
@@ -84,7 +90,7 @@ METHOD_SPECS: dict[str, MethodSpec] = {
     ),
     "controlnet_dual": MethodSpec(
         key="controlnet_dual",
-        title="ControlNet depth + seg (no mask)",
+        title="ControlNet (depth + seg)",
         uses_mask=False,
         uses_depth=True,
         uses_seg=True,
@@ -95,35 +101,35 @@ METHOD_SPECS: dict[str, MethodSpec] = {
     ),
     "instruct": MethodSpec(
         key="instruct",
-        title="Instruction edit (Klein / IP2P)",
+        title="Klein instruct (small local)",
         uses_mask=False,
         uses_depth=False,
         uses_seg=False,
         summary=(
-            "Local *edit* diffusion (FLUX.2-klein-4B on L4; InstructPix2Pix on CPU). "
-            "RGB + text only — not a general VLM; weak spatial control for tiny inserts."
+            "Small local instruction editor (FLUX.2-klein-4B on L4; InstructPix2Pix on CPU). "
+            "**Default generator for NB1 / NB2.** RGB + text; weak spatial control for tiny inserts."
         ),
     ),
     "vlm_generate_local": MethodSpec(
         key="vlm_generate_local",
-        title="VLM edit (local Klein)",
+        title="Qwen-Image-Edit (large local)",
         uses_mask=False,
         uses_depth=False,
         uses_seg=False,
         summary=(
-            "Default VLM-style path: FLUX.2-klein instruct on the seed photo (local GPU). "
-            "Same backbone as ``instruct`` but kept as the configurable VLM generation slot."
+            "Large local instruction-class editor (~20B Qwen-Image-Edit). Same role as Klein "
+            "but heavier — NB1.5 comparison only. gpu_l4x2 recommended."
         ),
     ),
     "vlm_generate_api": MethodSpec(
         key="vlm_generate_api",
-        title="VLM edit (API image model)",
+        title="VLM edit (API)",
         uses_mask=False,
         uses_depth=False,
         uses_seg=False,
         summary=(
-            "Cloud multimodal *image* model (Gemini *-image / GPT Image). "
-            "Stronger semantics; looser fidelity to the original photo. Needs API key."
+            "Cloud image model (Gemini *-image / GPT Image). Stronger semantics; "
+            "NB1.5 comparison column — production pipeline uses API for **judge**, not edit."
         ),
     ),
     VLM_GENERATE_ALIAS: MethodSpec(
@@ -133,8 +139,8 @@ METHOD_SPECS: dict[str, MethodSpec] = {
         uses_depth=False,
         uses_seg=False,
         summary=(
-            "Resolves to local or API via ``generation.vlm_generate_backend`` "
-            "(used in NB2 batch when method=vlm_generate)."
+            "Resolves to Qwen-Image-Edit or API via ``generation.vlm_generate_backend``. "
+            "Advanced alias — production batch uses ``instruct`` (Klein) instead."
         ),
     ),
 }
@@ -182,6 +188,10 @@ class MethodComparer:
         vlm_api_key: str | None = None,
         vlm_max_side: int = 1024,
         vlm_size: str = "1024x1024",
+        vlm_local_model_id: str = "Qwen/Qwen-Image-Edit",
+        vlm_local_num_inference_steps: int = 20,
+        vlm_local_true_cfg_scale: float = 4.0,
+        vlm_local_max_side: int = 768,
     ) -> None:
         self.family = str(family).lower()
         self.base_model_id = base_model_id
@@ -206,6 +216,10 @@ class MethodComparer:
         self.vlm_api_key = vlm_api_key
         self.vlm_max_side = int(vlm_max_side)
         self.vlm_size = str(vlm_size)
+        self.vlm_local_model_id = str(vlm_local_model_id)
+        self.vlm_local_num_inference_steps = int(vlm_local_num_inference_steps)
+        self.vlm_local_true_cfg_scale = float(vlm_local_true_cfg_scale)
+        self.vlm_local_max_side = int(vlm_local_max_side)
         self._inpaint_pipe = None
         self._dual_pipe = None
         self._instruct_pipe = None
@@ -228,9 +242,12 @@ class MethodComparer:
         return self.instruct_is_klein or self.inpaint_is_klein
 
     def unload(self) -> None:
+        from edgecase_synthesis.vlm_edit_local import unload_qwen_edit_pipeline
+
         self._inpaint_pipe = None
         self._dual_pipe = None
         self._instruct_pipe = None
+        unload_qwen_edit_pipeline()
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
@@ -446,20 +463,13 @@ class MethodComparer:
                 generation_cfg=merged,
             )
         if effective == "vlm_generate_local":
-            instruct_steps = merged.get("instruct_num_inference_steps", self.instruct_num_inference_steps)
-            return self._run_instruct(
+            return self._run_vlm_edit_local(
                 original,
                 prompt=prompt,
-                steps=steps,
                 seed=seed,
                 anomaly_id=anomaly_id,
-                edit_mask=None,
-                image_guidance=float(
-                    merged.get("instruct_image_guidance", self.instruct_image_guidance)
-                ),
-                text_guidance=float(merged.get("instruct_guidance_scale", self.instruct_guidance)),
-                instruct_steps=instruct_steps,
-                result_method="vlm_generate_local",
+                generation_cfg=merged,
+                family=family,
             )
 
         if effective == "inpaint":
@@ -572,8 +582,8 @@ class MethodComparer:
         )
         for method in methods:
             print(f"  → {method} …", flush=True)
-            # Klein inpaint/instruct + SD ControlNet do not fit on L4 together.
-            if self.device.type == "cuda" and self.uses_klein:
+            # Heavy models (Klein, Qwen-Image-Edit, SD ControlNet) do not share one L4.
+            if self.device.type == "cuda":
                 self.unload()
             bundle.results[method] = self.run_method(
                 method,
@@ -820,6 +830,47 @@ class MethodComparer:
             method=result_method,
         )
 
+    def _run_vlm_edit_local(
+        self,
+        original: Image.Image,
+        *,
+        prompt: str,
+        seed: int,
+        anomaly_id: str,
+        generation_cfg: Any,
+        family: str,
+    ) -> GenerationResult:
+        from edgecase_synthesis.vlm_edit_local import VlmLocalEditConfig, edit_with_qwen_local
+
+        self._free_other_edit_pipes(keep="")
+        cfg = VlmLocalEditConfig(
+            model_id=str(generation_cfg.get("vlm_local_model_id") or self.vlm_local_model_id),
+            num_inference_steps=int(
+                generation_cfg.get("vlm_local_num_inference_steps", self.vlm_local_num_inference_steps)
+            ),
+            true_cfg_scale=float(
+                generation_cfg.get("vlm_local_true_cfg_scale", self.vlm_local_true_cfg_scale)
+            ),
+            max_side=int(generation_cfg.get("vlm_local_max_side", self.vlm_local_max_side)),
+        )
+        edited = edit_with_qwen_local(
+            original,
+            prompt,
+            config=cfg,
+            device=str(self.device),
+            seed=seed,
+            family=family,
+        )
+        return GenerationResult(
+            image=edited,
+            prompt=prompt,
+            negative_prompt="",
+            seed=seed,
+            edit_mask=None,
+            anomaly_id=anomaly_id,
+            method="vlm_generate_local",
+        )
+
     def _run_vlm_generate_api(
         self,
         original: Image.Image,
@@ -912,6 +963,10 @@ class MethodComparer:
             vlm_api_key=generation.get("vlm_api_key"),
             vlm_max_side=int(generation.get("vlm_max_side") or 1024),
             vlm_size=str(generation.get("vlm_size") or "1024x1024"),
+            vlm_local_model_id=str(generation.get("vlm_local_model_id") or "Qwen/Qwen-Image-Edit"),
+            vlm_local_num_inference_steps=int(generation.get("vlm_local_num_inference_steps") or 20),
+            vlm_local_true_cfg_scale=float(generation.get("vlm_local_true_cfg_scale") or 4.0),
+            vlm_local_max_side=int(generation.get("vlm_local_max_side") or 768),
         )
 
 

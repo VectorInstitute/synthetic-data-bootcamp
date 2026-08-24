@@ -47,14 +47,28 @@ class DataSourceInfo:
     attribution: str
 
 
+def _is_impl_root(candidate: Path) -> bool:
+    return (
+        (candidate / "configs" / "config.yaml").is_file()
+        and (candidate / "src" / "edgecase_synthesis").is_dir()
+    )
+
+
 def project_root(start: Path | None = None) -> Path:
+    """Return ``implementations/edge_case_image_generation`` (Hydra + src root)."""
     current = (start or Path.cwd()).resolve()
-    for candidate in [current, *current.parents]:
-        if (candidate / "pyproject.toml").exists():
+    search = [current, *current.parents]
+    for base in search:
+        nested = base / "implementations" / "edge_case_image_generation"
+        if _is_impl_root(nested):
+            return nested
+    for candidate in search:
+        if _is_impl_root(candidate):
             return candidate
     raise FileNotFoundError(
-        "Could not locate project root (no pyproject.toml). "
-        "Run from the implementation folder or set PROJECT_ROOT."
+        "Could not locate edge_case_image_generation root "
+        "(expected configs/config.yaml + src/edgecase_synthesis). "
+        "Run from the implementation folder or pass start=PROJECT_ROOT."
     )
 
 

@@ -15,13 +15,14 @@ for cmd in python python3 python3.12 python3.14; do
 done
 
 echo ""
-echo "=== Project venv ==="
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-VENV_PY="$ROOT/.venv/bin/python3.12"
+echo "=== Project venv (repo root) ==="
+IMPL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+REPO_ROOT="$(cd "$IMPL_ROOT/../.." && pwd)"
+VENV_PY="$REPO_ROOT/.venv/bin/python3.12"
 if [[ -x "$VENV_PY" ]]; then
   echo "OK  $VENV_PY ($("$VENV_PY" --version 2>&1))"
 else
-  echo "MISSING  $VENV_PY — run ./scripts/setup_notebook_env.sh"
+  echo "MISSING  $VENV_PY — run implementations/edge_case_image_generation/scripts/setup_notebook_env.sh"
 fi
 
 echo ""

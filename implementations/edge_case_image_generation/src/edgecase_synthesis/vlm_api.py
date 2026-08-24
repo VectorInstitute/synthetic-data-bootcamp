@@ -115,7 +115,8 @@ def _vision_chat_gemini(
         from google.genai import types
     except ImportError as exc:  # pragma: no cover
         raise ImportError(
-            "google-genai is required for Gemini API judge. Install: uv sync --extra vlm"
+            "google-genai is required for Gemini API judge. "
+            "Install: uv sync --group edge-case-vlm"
         ) from exc
 
     client = genai.Client(api_key=gemini_api_key(api_key))
@@ -149,7 +150,7 @@ def _vision_chat_openai(
         from openai import OpenAI
     except ImportError as exc:  # pragma: no cover
         raise ImportError(
-            "openai is required for OpenAI API judge. Install: uv sync --extra vlm"
+            "openai is required for OpenAI API judge. Install: uv sync --group edge-case-vlm"
         ) from exc
 
     client = OpenAI(api_key=openai_api_key(api_key))

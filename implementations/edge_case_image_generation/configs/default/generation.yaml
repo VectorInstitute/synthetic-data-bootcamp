@@ -1,7 +1,7 @@
 # @package generation
 # Shared edit stack (CPU-friendly). hardware/gpu_l4 overrides models / steps.
 family: sd15
-default_anomaly_method: inpaint
+default_anomaly_method: instruct
 base_model_id: runwayml/stable-diffusion-v1-5
 inpaint_model_id: runwayml/stable-diffusion-inpainting
 instruct_model_id: timbrooks/instruct-pix2pix
@@ -46,9 +46,13 @@ global_anomaly_ids:
   - fog
   - snow
   - dusk
-# VLM image edit/generate backends (see vlm_generate.py + compare_methods).
-# Used when method=vlm_generate; NB1.5 also exposes vlm_generate_local / _api explicitly.
-vlm_generate_backend: local   # local | api — local = Klein instruct on seed photo
+# VLM image edit (NB1.5 comparison columns 4–5 only).
+# Production generation (NB1/NB2) uses ``instruct`` (Klein) — not these keys.
+vlm_generate_backend: local   # local | api — only when method=vlm_generate
+vlm_local_model_id: Qwen/Qwen-Image-Edit
+vlm_local_num_inference_steps: 20
+vlm_local_true_cfg_scale: 4.0
+vlm_local_max_side: 768
 vlm_mode: edit                # edit = seed + instruction; generate = text-only (API only)
 vlm_api_model: gemini-3.1-flash-image
 vlm_provider: null

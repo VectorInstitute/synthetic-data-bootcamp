@@ -230,8 +230,31 @@ class AnomalyEditor:
 
             effective = resolve_effective_method(method, merged)
             if effective == "vlm_generate_local":
-                raise NotImplementedError(
-                    "vlm_generate_local is supported via MethodComparer / batch pipeline only."
+                from edgecase_synthesis.vlm_edit_local import VlmLocalEditConfig, edit_with_qwen_local
+
+                family = str(merged.get("family", self.family)).lower()
+                cfg = VlmLocalEditConfig(
+                    model_id=str(merged.get("vlm_local_model_id") or "Qwen/Qwen-Image-Edit"),
+                    num_inference_steps=int(merged.get("vlm_local_num_inference_steps") or 20),
+                    true_cfg_scale=float(merged.get("vlm_local_true_cfg_scale") or 4.0),
+                    max_side=int(merged.get("vlm_local_max_side") or 768),
+                )
+                generated = edit_with_qwen_local(
+                    original,
+                    prompt,
+                    config=cfg,
+                    device=str(self.device),
+                    seed=seed,
+                    family=family,
+                )
+                return GenerationResult(
+                    image=generated,
+                    prompt=prompt,
+                    negative_prompt=negative,
+                    seed=seed,
+                    edit_mask=None,
+                    anomaly_id=anomaly_id,
+                    method="vlm_generate_local",
                 )
 
             mode = str(merged.get("vlm_mode", "edit")).lower()

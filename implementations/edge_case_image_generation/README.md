@@ -38,17 +38,26 @@ load_config(overrides=["dataset_name=mapillary_vistas", "hardware=cpu"])
 load_config(overrides=["dataset_name=mapillary_vistas", "hardware=gpu_l4"])
 ```
 
-**L4:** FLUX.2-klein-4B for inpaint + instruct; SD 1.5 ControlNet depth+seg.  
-**CPU:** SD 1.5 inpaint / InstructPix2Pix (shared `configs/default/generation.yaml`).
+**L4:** FLUX.2-klein-4B for inpaint + instruct (default generator); SD 1.5 ControlNet depth+seg.  
+**Judge:** API vision chat by default (`configs/default/judge.yaml`); optional local Qwen for offline.
 
 ## Setup
 
+Dependencies live in the **monorepo root** `pyproject.toml` under the `edge-case-image-generation` group (optional `edge-case-vlm` for API judge / image generation).
+
 ```bash
-cd implementations/edge_case_image_generation
-uv sync
+# From the repository root (EdgeCaseSynthesis/)
+uv sync --dev --group edge-case-image-generation
+# API judge / VLM image column (Gemini, OpenAI):
+uv sync --dev --group edge-case-image-generation --group edge-case-vlm
+
 huggingface-cli login   # once
-uv run python scripts/extract_mapillary_toy.py
+uv run python implementations/edge_case_image_generation/scripts/extract_mapillary_toy.py
 ```
+
+Or run `implementations/edge_case_image_generation/scripts/setup_notebook_env.sh` to create `.venv` at the repo root and register the Jupyter kernel.
+
+Notebooks add `src/` to `sys.path` automatically — no separate package install needed.
 
 ## Notebooks
 

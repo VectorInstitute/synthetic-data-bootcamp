@@ -2,7 +2,7 @@
 # VLM-as-judge for synthetic quality gating.
 #
 # Backends (swap freely — same JSON schema + accept/retry/reject gate):
-#   api     — Gemini / OpenAI vision chat (default; needs API key + uv sync --extra vlm)
+#   api     — Gemini / OpenAI vision chat (default; needs API key + uv sync --group edge-case-vlm)
 #   qwen_vl — local Qwen2.5-VL (gpu_l4 / cpu friendly offline path)
 #   clip    — lightweight CLIP heuristic fallback
 backend: api

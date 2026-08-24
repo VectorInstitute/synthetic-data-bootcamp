@@ -37,6 +37,29 @@ dev = [
     "pytest-mock>=3.14.0",
     "ruff>=0.15.22",
 ]
+# Edge-case image generation reference (implementations/edge_case_image_generation).
+# Sync from repo root: uv sync --dev --group edge-case-image-generation
+edge-case-vlm = [
+    "google-genai>=1.0",
+    "openai>=1.40",
+]
+edge-case-image-generation = [
+    "accelerate>=0.34",
+    "clip",
+    "datasets>=2.20",
+    "diffusers>=0.39",
+    "hydra-core>=1.3",
+    "huggingface-hub>=0.24",
+    "matplotlib>=3.8",
+    "numpy>=1.26",
+    "opencv-python-headless>=4.8",
+    "pillow>=10",
+    "scipy>=1.11",
+    "torch>=2.1",
+    "torchvision>=0.16",
+    "transformers>=4.49",
+    "ultralytics>=8.3",
+]
 
 [tool.uv.workspace]
 members = [
@@ -45,6 +68,7 @@ members = [
 
 [tool.uv.sources]
 aieng-synthetic-data = { workspace = true }
+clip = { git = "https://github.com/ultralytics/CLIP.git" }
 
 [tool.mypy]
 ignore_missing_imports = true

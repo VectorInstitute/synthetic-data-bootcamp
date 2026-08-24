@@ -5,7 +5,7 @@ sanity. Returns accept / retry / reject using ``judge.threshold``.
 
 Backends
 --------
-- ``api`` — Gemini / OpenAI vision chat (default; needs ``uv sync --extra vlm`` + API key).
+- ``api`` — Gemini / OpenAI vision chat (default; needs ``uv sync --group edge-case-vlm`` + API key).
 - ``qwen_vl`` — Qwen2.5-VL (3B on CPU profile, 7B on gpu_l4). Offline path.
 - ``clip`` — CLIP similarity delta fallback when a local VLM is too heavy.
 """
