@@ -102,7 +102,7 @@ def grounded_qa_prompt(passage: str) -> str:
     return instruction_backtranslation_prompt(passage)
 
 
-def generate_grounded_qa(
+def generate_instruction_back_translation_sample(
     client: LLMClient,
     paragraph: Paragraph,
 ) -> QASample:

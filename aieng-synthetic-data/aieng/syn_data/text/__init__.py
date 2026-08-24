@@ -23,8 +23,8 @@ from aieng.syn_data.text.config import (
     PARAGRAPHS_PATH,
     RESULTS_DIR,
     SYNTHETIC_FILTERED_PATH,
+    SYNTHETIC_IBT_PATH,
     SYNTHETIC_RAW_PATH,
-    SYNTHETIC_TRAIN_PATH,
     TEST_SET_PATH,
 )
 from aieng.syn_data.text.datasets import (
@@ -93,7 +93,7 @@ from aieng.syn_data.text.quality import (
     summarize_heuristic_rejections,
 )
 from aieng.syn_data.text.rag import (
-    generate_grounded_qa,
+    generate_instruction_back_translation_sample,
     grounding_overlap_score,
     retrieve_paragraphs,
 )
@@ -144,7 +144,7 @@ __all__ = [
     "RESULTS_DIR",
     "SYNTHETIC_FILTERED_PATH",
     "SYNTHETIC_RAW_PATH",
-    "SYNTHETIC_TRAIN_PATH",
+    "SYNTHETIC_IBT_PATH",
     "TEST_SET_PATH",
     "PeftInferenceClient",
     "apply_heuristic_filters",
@@ -169,7 +169,7 @@ __all__ = [
     "filter_with_judge",
     "find_repo_root",
     "few_shot_generate",
-    "generate_grounded_qa",
+    "generate_instruction_back_translation_sample",
     "generate_grounded_training_corpus",
     "generate_raw_synthetic_corpus",
     "generate_test_qa_batch",
