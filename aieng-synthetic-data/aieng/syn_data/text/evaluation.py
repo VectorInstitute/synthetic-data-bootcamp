@@ -33,12 +33,14 @@ DEFAULT_EVAL_SYSTEM = (
 
 
 def build_eval_prompt(sample: QASample) -> str:
-    """Build the user prompt for baseline or fine-tuned evaluation."""
+    """Build a closed-book user prompt for training and evaluation.
+
+    The source paragraph stays on ``sample.context`` for generation and
+    judging. It is not shown to the student model.
+    """
     parts = []
     if sample.instruction:
         parts.append(sample.instruction)
-    if sample.context:
-        parts.append(f"Context:\n{sample.context}")
     parts.append(f"Question:\n{sample.question}")
     parts.append("Answer:")
     return "\n\n".join(parts)

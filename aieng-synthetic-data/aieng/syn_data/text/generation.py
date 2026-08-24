@@ -9,6 +9,7 @@ from typing import Any, cast
 
 from aieng.syn_data.text.clients import LLMClient, extract_json_text
 from aieng.syn_data.text.config import DEFAULT_DOMAIN, FAILURE_MODE_GUIDANCE
+from aieng.syn_data.text.prompts import STANDALONE_QUESTION_RULES
 from aieng.syn_data.text.schemas import (
     FailureMode,
     GenerationStrategy,
@@ -36,6 +37,7 @@ def _base_generation_prompt(
     return (
         f"Generate one challenging question-answer pair about this {domain} passage.\n"
         "The answer must be grounded in the passage only.\n"
+        f"{STANDALONE_QUESTION_RULES}\n"
         "Return JSON with keys: question, gold_answer\n"
         f"{failure_hint}"
         f"{extra_instruction}\n"
@@ -170,8 +172,8 @@ def topic_controlled_generate(
     for topic in topic_list:
         extra = (
             f"Focus topic: {topic}\n"
-            f"The question must be specifically about this topic and answerable "
-            f"from the passage alone.\n"
+            "The question must be specifically about this topic and answerable "
+            "from the passage, without referring to the passage in the question.\n"
         )
         prompt = _base_generation_prompt(
             paragraph,
@@ -220,7 +222,10 @@ def _parse_generation_response(
     *,
     domain: str = DEFAULT_DOMAIN,
 ) -> dict[str, Any]:
-    system = f"You generate grounded {domain} Q&A from source text."
+    system = (
+        f"You generate grounded {domain} Q&A from source text. "
+        "Questions must stand alone; the answering model will not see the passage."
+    )
     if hasattr(client, "complete_json"):
         return cast(
             dict[str, Any],

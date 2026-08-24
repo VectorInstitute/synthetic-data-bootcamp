@@ -57,6 +57,25 @@ def detect_answer_leakage(sample: QASample) -> bool:
     return question == answer
 
 
+_PASSAGE_DEPENDENT_QUESTION = re.compile(
+    r"(?i)("
+    r"\bthe passage\b|"
+    r"\bthis passage\b|"
+    r"\bthe excerpt\b|"
+    r"\bprovided text\b|"
+    r"\bthe text above\b|"
+    r"\bthe (given|provided) (text|passage|context|information)\b|"
+    r"according to the (passage|context|excerpt)|"
+    r"based on the (passage|context|excerpt|information given)"
+    r")"
+)
+
+
+def detect_passage_dependent_question(sample: QASample) -> bool:
+    """Return True if the question assumes a hidden passage is in the prompt."""
+    return bool(_PASSAGE_DEPENDENT_QUESTION.search(sample.question))
+
+
 def within_length_bounds(
     sample: QASample,
     *,
@@ -85,6 +104,8 @@ def heuristic_rejection_reasons(sample: QASample, seen: set[str]) -> list[str]:
         reasons.append("prompt_leakage")
     if detect_answer_leakage(sample):
         reasons.append("answer_in_question")
+    if detect_passage_dependent_question(sample):
+        reasons.append("passage_dependent_question")
     if is_duplicate_question(sample, seen):
         reasons.append("duplicate_question")
     return reasons

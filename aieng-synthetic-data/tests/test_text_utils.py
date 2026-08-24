@@ -11,6 +11,7 @@ from aieng.syn_data.text.documents import (
     chunk_text_into_paragraphs,
     sample_test_paragraphs,
 )
+from aieng.syn_data.text.evaluation import build_eval_prompt
 from aieng.syn_data.text.generation import (
     _base_generation_prompt,
     topic_controlled_generate,
@@ -28,6 +29,7 @@ from aieng.syn_data.text.prompts import (
 from aieng.syn_data.text.quality import (
     apply_heuristic_filters,
     detect_answer_leakage,
+    detect_passage_dependent_question,
     summarize_heuristic_rejections,
 )
 from aieng.syn_data.text.rag import (
@@ -139,6 +141,7 @@ def test_instruction_backtranslation_prompt_asks_for_question_only() -> None:
     prompt = instruction_backtranslation_prompt("Grace period is 21 days.")
     assert "Instruction back-translation" in prompt
     assert "single key: question" in prompt
+    assert "must not assume the reader can see the passage" in prompt
 
 
 def test_generation_prompts_use_domain_not_hardcoded_policy() -> None:
@@ -146,6 +149,8 @@ def test_generation_prompts_use_domain_not_hardcoded_policy() -> None:
     prompt = _base_generation_prompt(paragraph, domain="healthcare")
     assert "healthcare" in prompt
     assert "policy passage" not in prompt
+    assert "natural user question" in prompt
+    assert '"passage"' in prompt
 
 
 def test_topic_controlled_generate_one_sample_per_topic() -> None:
@@ -254,6 +259,34 @@ def test_qa_samples_to_messages_format() -> None:
         gold_answer="Annual Percentage Rate.",
         doc_id="doc",
         para_id="doc::p0001",
+        context="SECRET PASSAGE that must not appear in the train prompt.",
+        instruction="Respond in one sentence.",
     )
     rows = qa_samples_to_messages([sample])
+    user = rows[0]["messages"][1]["content"]
     assert rows[0]["messages"][-1]["role"] == "assistant"
+    assert "What is APR?" in user
+    assert "SECRET PASSAGE" not in user
+    assert "Context:" not in user
+    assert build_eval_prompt(sample) == user
+
+
+def test_detect_passage_dependent_question() -> None:
+    leaked = QASample(
+        id="1",
+        question="According to the passage, what is a strong passphrase?",
+        gold_answer="Random words with mixed characters.",
+        doc_id="doc",
+        para_id="doc::p0001",
+    )
+    clean = QASample(
+        id="2",
+        question="What passphrase practices does the SEC investor bulletin recommend?",
+        gold_answer="Use random words with mixed characters.",
+        doc_id="doc",
+        para_id="doc::p0001",
+    )
+    assert detect_passage_dependent_question(leaked) is True
+    assert detect_passage_dependent_question(clean) is False
+    _, rejected = apply_heuristic_filters([leaked])
+    assert rejected[0]["reason"] == "passage_dependent_question"

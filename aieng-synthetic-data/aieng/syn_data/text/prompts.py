@@ -8,6 +8,20 @@ from __future__ import annotations
 from aieng.syn_data.text.schemas import QASample
 
 
+# The teacher may read the passage; the student at train/eval will not.
+STANDALONE_QUESTION_RULES = (
+    "The question must be usable without showing the passage to the answering "
+    "model. Write it as a natural user question to an assistant that already "
+    "knows this document. Do not mention or allude to a hidden source: no "
+    '"passage", "context", "excerpt", "provided text", "the text above", '
+    '"according to the document above", or "based on the information given". '
+    "If you need to name a source, use the document's real title or issuer, "
+    "(for example, SEC investor bulletin). The gold answer must stay faithful "
+    "to the passage. You may cite rules or names provided in the passage, but must not say "
+    '"the passage" or "the context".'
+)
+
+
 # ---------------------------------------------------------------------------
 # Instruction back-translation (notebook 04)
 # Technique: given text y, generate instruction x for which y is a good answer.
@@ -15,8 +29,9 @@ from aieng.syn_data.text.schemas import QASample
 # ---------------------------------------------------------------------------
 
 INSTRUCTION_BACKTRANSLATION_SYSTEM = (
-    "You generate natural questions for which the provided passage is a good answer. "
-    "Do not invent facts beyond the passage."
+    "You generate natural standalone questions for which the provided passage "
+    "is a good answer. Do not invent facts beyond the passage. Do not refer to "
+    "the passage in the question wording."
 )
 
 
@@ -26,7 +41,9 @@ def instruction_backtranslation_prompt(passage: str) -> str:
         "Instruction back-translation task.\n"
         "The passage below is a good answer/response.\n"
         "Write one natural question for which this passage would be a good answer.\n"
-        "The question must be fully answerable from the passage alone.\n"
+        "The question must be fully answerable from the passage, but must not "
+        "assume the reader can see the passage.\n"
+        f"{STANDALONE_QUESTION_RULES}\n"
         "Return JSON with a single key: question.\n"
         "Do not include the answer in the question.\n\n"
         f"Passage:\n{passage}"

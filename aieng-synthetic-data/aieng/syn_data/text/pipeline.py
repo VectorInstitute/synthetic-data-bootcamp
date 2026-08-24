@@ -57,7 +57,7 @@ def effective_test_holdout(
     if n_paragraphs <= 1:
         return 0
     if n_paragraphs == 2:
-        return 1    
+        return 1
     return min(requested, n_paragraphs - 1)
 
 
@@ -198,7 +198,7 @@ def compare_generation_strategies(
         doc_id=paragraph.doc_id,
         para_id=paragraph.para_id,
         context=paragraph.text,
-        instruction="Answer using the source passage. Respond in one sentence.",
+        instruction="Respond in one sentence.",
     )
     # Without caller-provided few-shots this collapses to one-shot; supply a
     # richer domain list in a follow-up (see TODO above).
@@ -411,7 +411,6 @@ def score_predictions(
             logger.warning("No test sample for prediction id %s", prediction["id"])
             continue
 
-        
         scores.append(
             judge_response(judge, sample, prediction["model_answer"]),
         )
