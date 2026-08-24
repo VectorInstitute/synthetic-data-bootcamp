@@ -46,3 +46,13 @@ global_anomaly_ids:
   - fog
   - snow
   - dusk
+# VLM image edit/generate backends (see vlm_generate.py + compare_methods).
+# Used when method=vlm_generate; NB1.5 also exposes vlm_generate_local / _api explicitly.
+vlm_generate_backend: local   # local | api — local = Klein instruct on seed photo
+vlm_mode: edit                # edit = seed + instruction; generate = text-only (API only)
+vlm_api_model: gemini-3.1-flash-image
+vlm_provider: null
+vlm_api_key: null
+vlm_max_side: 1024
+vlm_size: "1024x1024"
+vlm_aspect_ratio: null

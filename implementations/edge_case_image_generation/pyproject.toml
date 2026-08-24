@@ -25,6 +25,7 @@ dependencies = [
 
 [project.optional-dependencies]
 notebooks = ["ipykernel>=6.29", "jupyter>=1.0"]
+vlm = ["google-genai>=1.0", "openai>=1.40"]
 
 [build-system]
 requires = ["hatchling"]

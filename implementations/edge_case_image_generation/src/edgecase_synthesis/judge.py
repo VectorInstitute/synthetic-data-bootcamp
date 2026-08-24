@@ -5,7 +5,8 @@ sanity. Returns accept / retry / reject using ``judge.threshold``.
 
 Backends
 --------
-- ``qwen_vl`` — Qwen2.5-VL (3B on CPU profile, 7B on gpu_l4). Preferred.
+- ``api`` — Gemini / OpenAI vision chat (default; needs ``uv sync --extra vlm`` + API key).
+- ``qwen_vl`` — Qwen2.5-VL (3B on CPU profile, 7B on gpu_l4). Offline path.
 - ``clip`` — CLIP similarity delta fallback when a local VLM is too heavy.
 """
 
@@ -72,6 +73,9 @@ class VLMJudge:
         min_pixels: int = 256 * 28 * 28,
         max_pixels: int = 512 * 28 * 28,
         schema_hint: str | None = None,
+        api_provider: str | None = None,
+        api_key: str | None = None,
+        api_max_side: int = 1024,
     ) -> None:
         self.model_id = model_id
         self.backend = str(backend).lower()
@@ -83,6 +87,9 @@ class VLMJudge:
         self.min_pixels = int(min_pixels)
         self.max_pixels = int(max_pixels)
         self.schema_hint = (schema_hint or _DEFAULT_SCHEMA_HINT).strip()
+        self.api_provider = api_provider
+        self.api_key = api_key
+        self.api_max_side = int(api_max_side)
         self._model = None
         self._processor = None
         self._clip = None
@@ -169,6 +176,14 @@ class VLMJudge:
         if self.backend == "clip":
             self._ensure_clip()
             result = self._judge_clip(pil, prompt=prompt, rare=rare)
+        elif self.backend == "api":
+            result = self._judge_api(
+                pil,
+                prompt=prompt,
+                rare=rare,
+                annotations_summary=ann,
+                source_hint=src,
+            )
         else:
             try:
                 self._ensure_qwen()
@@ -280,6 +295,55 @@ class VLMJudge:
                 clean_up_tokenization_spaces=False,
             )[0]
 
+        parsed = _parse_judge_json(text)
+        return _result_from_parsed(parsed, raw_response=text)
+
+    def _judge_api(
+        self,
+        image: Image.Image,
+        *,
+        prompt: str,
+        rare: str,
+        annotations_summary: str,
+        source_hint: str,
+    ) -> JudgeResult:
+        from edgecase_synthesis.vlm_api import infer_api_provider, resolve_judge_model, vision_chat
+
+        user_text = (
+            f"You are a strict data-quality judge for synthetic training images.\n"
+            f"The image was edited from {source_hint}.\n"
+            f"Target rare condition: {rare}\n"
+            f"Generation prompt:\n{prompt}\n\n"
+            f"Auto-annotation summary:\n{annotations_summary}\n\n"
+            f"Consistency rules:\n"
+            f"- If the target rare condition is clearly and completely visible, "
+            f"edge_case_present MUST be true.\n"
+            f"- If prompt_faithfulness ≥ 7 AND the object looks complete and natural, "
+            f"edge_case_present must be true.\n"
+            f"- Score physical_plausibility LOW (< 4) for: visible inpaint masks, gray/black "
+            f"rectangular patches, cut-off body parts at the image border, floating limbs, "
+            f"giant scale, objects stuck on car hoods, obvious paste artifacts, or shadows "
+            f"that point a different direction than the rest of the scene.\n"
+            f"- If physical_plausibility < 5, overall MUST be < 7 (do not accept).\n"
+            f"- For object-insert anomalies, annotation_correctness must be low (< 4) "
+            f"when the detector reports ZERO target boxes — unboxed samples are not "
+            f"usable for detection training.\n"
+            f"- overall ≥ 8 means you would keep this sample for detector training "
+            f"(complete natural object, correct placement, usable boxes).\n\n"
+            f"{self.schema_hint}"
+        )
+        model = resolve_judge_model(self.model_id)
+        provider = self.api_provider or infer_api_provider(model)
+        text = vision_chat(
+            user_text,
+            image,
+            model=model,
+            provider=provider,  # type: ignore[arg-type]
+            api_key=self.api_key,
+            max_side=self.api_max_side,
+        )
+        self._active_backend = "api"
+        self.model_id = model
         parsed = _parse_judge_json(text)
         return _result_from_parsed(parsed, raw_response=text)
 
@@ -396,8 +460,8 @@ class VLMJudge:
             if hardware is not None:
                 device = hardware.get("device")
         return cls(
-            model_id=str(judge.get("model_id", "Qwen/Qwen2.5-VL-3B-Instruct")),
-            backend=str(judge.get("backend", "qwen_vl")),
+            model_id=str(judge.get("model_id", "gemini-3.1-flash-preview")),
+            backend=str(judge.get("backend", "api")),
             device=device,
             torch_dtype=str(judge.get("torch_dtype", "float32")),
             threshold=float(judge.get("threshold", 8.5)),
@@ -406,6 +470,9 @@ class VLMJudge:
             min_pixels=int(judge.get("min_pixels", 256 * 28 * 28)),
             max_pixels=int(judge.get("max_pixels", 512 * 28 * 28)),
             schema_hint=judge.get("schema_hint"),
+            api_provider=judge.get("api_provider"),
+            api_key=judge.get("api_key"),
+            api_max_side=int(judge.get("api_max_side", 1024)),
         )
 
 

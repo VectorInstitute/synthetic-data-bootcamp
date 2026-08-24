@@ -1,13 +1,23 @@
 # @package judge
-# Shared VLM judge. Dataset-specific source_hint lives on dataset.yaml.
-threshold: 8.0
-backend: qwen_vl
-model_id: Qwen/Qwen2.5-VL-3B-Instruct
+# VLM-as-judge for synthetic quality gating.
+#
+# Backends (swap freely — same JSON schema + accept/retry/reject gate):
+#   api     — Gemini / OpenAI vision chat (default; needs API key + uv sync --extra vlm)
+#   qwen_vl — local Qwen2.5-VL (gpu_l4 / cpu friendly offline path)
+#   clip    — lightweight CLIP heuristic fallback
+backend: api
+model_id: gemini-3.1-flash-preview
+api_provider: null   # null → auto from model_id (gemini vs openai)
+api_key: null        # null → GEMINI_API_KEY / OPENAI_API_KEY env vars
+api_max_side: 1024
+
+# Local Qwen settings (used when backend=qwen_vl)
 torch_dtype: float32
 max_new_tokens: 256
 min_pixels: 200704
 max_pixels: 401408
 reject_margin: 2.0
+threshold: 8.0
 schema_hint: |
   Respond with ONLY a single JSON object (no markdown fences) using this schema:
   {

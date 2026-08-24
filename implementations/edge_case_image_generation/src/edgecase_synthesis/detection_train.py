@@ -139,6 +139,7 @@ def build_yolo_dataset(
     class_names: list[str],
     aliases: dict[str, list[str]] | None = None,
     include_synthetic: bool = True,
+    max_synthetic_per_class: int | None = None,
     copy_images: bool = False,
     dataset_name: str = "edgecase",
     drop_empty_synthetic: bool = True,
@@ -155,6 +156,9 @@ def build_yolo_dataset(
     Test (real-only) is written to the ``val`` split used for Ultralytics eval.
     When ``drop_empty_synthetic`` is True, synth rows with zero target-class boxes
     are skipped (they cannot teach the detector).
+
+    When ``max_synthetic_per_class`` is set, at most that many synthetic train rows
+    per ``anomaly_id`` / ``tag`` are kept (useful for real+50 vs real+100 ablations).
     """
     root = Path(out_dir)
     if root.exists():
@@ -166,6 +170,10 @@ def build_yolo_dataset(
     lookup = build_alias_lookup(class_names, aliases)
     train_stats = DatasetBuildStats()
     val_stats = DatasetBuildStats()
+    synth_per_class: dict[str, int] = {}
+
+    def _synth_class_key(row: dict[str, Any]) -> str:
+        return str(row.get("anomaly_id") or row.get("tag") or "unknown")
 
     def _row_has_target_box(row: dict[str, Any]) -> bool:
         for box in row.get("boxes") or []:
@@ -178,6 +186,15 @@ def build_yolo_dataset(
             kind = str(row.get("split", "real")).lower()
             if split == "train" and kind == "synthetic" and not include_synthetic:
                 continue
+            if (
+                split == "train"
+                and kind == "synthetic"
+                and max_synthetic_per_class is not None
+            ):
+                synth_key = _synth_class_key(row)
+                if synth_per_class.get(synth_key, 0) >= int(max_synthetic_per_class):
+                    continue
+                synth_per_class[synth_key] = synth_per_class.get(synth_key, 0) + 1
             if split == "val" and kind == "synthetic":
                 # Never evaluate on synthetic / auto-labels.
                 continue
@@ -240,6 +257,7 @@ def build_yolo_dataset(
         {
             "dataset_name": dataset_name,
             "include_synthetic": include_synthetic,
+            "max_synthetic_per_class": max_synthetic_per_class,
             "drop_empty_synthetic": drop_empty_synthetic,
             "class_names": class_names,
             "aliases": aliases or {},

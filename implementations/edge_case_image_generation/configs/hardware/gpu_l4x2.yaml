@@ -1,8 +1,9 @@
 # @package _global_
-# g2-standard-8 / 1× NVIDIA L4 — real deltas only.
+# g2-standard-24 / 2× NVIDIA L4 — same models as gpu_l4; more VRAM headroom + device_map spread.
 hardware:
-  name: gpu_l4
+  name: gpu_l4x2
   device: cuda
+  num_gpus: 2
 
 conditioning:
   depth:
@@ -29,4 +30,4 @@ annotation:
   conf: 0.20
   max_detections: 25
 
-# Judge: see configs/default/judge.yaml (API default). Override backend/model here if needed.
+# Judge backend/model comes from configs/default/judge.yaml (API default).

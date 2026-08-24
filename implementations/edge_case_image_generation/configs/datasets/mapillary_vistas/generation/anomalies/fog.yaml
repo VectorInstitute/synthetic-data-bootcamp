@@ -44,3 +44,7 @@ methods:
     prompt: >-
       Add realistic fog and haze across the scene so distant objects are softer,
       keep the cars and road layout unchanged
+  vlm_generate:
+    prompt: >-
+      Add realistic fog and haze throughout this street photo so distant objects
+      are softer, keep the road, cars, and buildings in place

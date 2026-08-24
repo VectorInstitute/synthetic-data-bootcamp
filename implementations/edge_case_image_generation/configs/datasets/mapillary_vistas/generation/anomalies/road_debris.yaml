@@ -48,3 +48,8 @@ methods:
       Add one large brown cardboard box sitting on the foreground road asphalt,
       keep every car building and the sky unchanged
     negative_prompt: null
+  vlm_generate:
+    prompt: >-
+      Add one large brown cardboard shipping box sitting flat on the foreground
+      asphalt, dusty cardboard with open flaps, keep cars buildings and sky unchanged
+    negative_prompt: null

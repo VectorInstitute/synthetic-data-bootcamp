@@ -8,7 +8,11 @@ from typing import Any
 from omegaconf import OmegaConf
 from PIL import Image
 
-from edgecase_synthesis.compare_methods import COMPARE_METHODS, METHOD_SPECS, MethodComparer
+from edgecase_synthesis.compare_methods import (
+    ALL_COMPARE_METHODS,
+    METHOD_SPECS,
+    MethodComparer,
+)
 from edgecase_synthesis.conditioning import DepthResult, SegmentationResult
 from edgecase_synthesis.config import load_anomaly, merge_generation_anomaly
 from edgecase_synthesis.generation import GenerationResult
@@ -25,8 +29,8 @@ class SynthesisResult:
 
 def validate_method(method: str) -> str:
     method = str(method).lower()
-    if method not in COMPARE_METHODS:
-        raise ValueError(f"Unknown method {method!r}. Choose from {COMPARE_METHODS}")
+    if method not in ALL_COMPARE_METHODS:
+        raise ValueError(f"Unknown method {method!r}. Choose from {ALL_COMPARE_METHODS}")
     return method
 
 

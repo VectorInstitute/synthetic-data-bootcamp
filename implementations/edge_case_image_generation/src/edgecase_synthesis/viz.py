@@ -170,13 +170,18 @@ def show_method_comparison(
     sample: ImageSample,
     bundle: Any,
     *,
+    methods: tuple[str, ...] | None = None,
     figsize=(16, 10),
 ):
-    """Notebook 1.5 panel: original | mask/depth/seg | three method outputs."""
+    """Notebook 1.5 panel: original | mask/depth/seg | method outputs."""
     from edgecase_synthesis.compare_methods import METHOD_SPECS, COMPARE_METHODS
 
+    methods = tuple(methods) if methods is not None else tuple(COMPARE_METHODS)
+    n_out = max(len(methods), 1)
+    ncols = max(4, n_out)
+
     fig = plt.figure(figsize=figsize)
-    gs = fig.add_gridspec(2, 4, height_ratios=[1.0, 1.15], hspace=0.25, wspace=0.15)
+    gs = fig.add_gridspec(2, ncols, height_ratios=[1.0, 1.15], hspace=0.25, wspace=0.15)
 
     ax0 = fig.add_subplot(gs[0, 0])
     show_image(sample.image, title="Original", ax=ax0)
@@ -196,32 +201,37 @@ def show_method_comparison(
 
     ax3 = fig.add_subplot(gs[0, 3])
     show_image(bundle.segmentation.colored_map, title="Segmentation", ax=ax3)
+    for j in range(4, ncols):
+        fig.add_subplot(gs[0, j]).axis("off")
 
-    for i, method in enumerate(COMPARE_METHODS):
-        ax = fig.add_subplot(gs[1, i if i < 3 else 3])
+    for i, method in enumerate(methods):
+        ax = fig.add_subplot(gs[1, i])
         result = bundle.results.get(method)
-        spec = METHOD_SPECS[method]
+        spec = METHOD_SPECS.get(method)
+        title = spec.title if spec else method
         if result is None:
-            ax.set_title(spec.title)
+            ax.set_title(title)
             ax.axis("off")
             continue
-        show_image(result.image, title=spec.title, ax=ax)
+        show_image(result.image, title=title, ax=ax)
 
-    # spare axes slot if 3 methods in 4-col row
-    if len(COMPARE_METHODS) < 4:
-        ax = fig.add_subplot(gs[1, 3])
+    for j in range(len(methods), ncols):
+        ax = fig.add_subplot(gs[1, j])
         ax.axis("off")
-        ax.text(
-            0.05,
-            0.5,
-            "\n".join(
-                f"• {METHOD_SPECS[m].title}: {METHOD_SPECS[m].summary}" for m in COMPARE_METHODS
-            ),
-            va="center",
-            fontsize=9,
-            wrap=True,
-            transform=ax.transAxes,
-        )
+        if j == len(methods):
+            ax.text(
+                0.05,
+                0.5,
+                "\n".join(
+                    f"• {METHOD_SPECS[m].title}: {METHOD_SPECS[m].summary}"
+                    for m in methods
+                    if m in METHOD_SPECS
+                ),
+                va="center",
+                fontsize=9,
+                wrap=True,
+                transform=ax.transAxes,
+            )
 
     fig.suptitle(
         f"Method comparison — {sample.name} / {bundle.anomaly_id}\n{bundle.prompt[:120]}",

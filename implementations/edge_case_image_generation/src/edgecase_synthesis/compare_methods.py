@@ -1,8 +1,10 @@
-"""Side-by-side comparison of three edge-case edit methods (Notebook 1.5).
+"""Side-by-side comparison of edge-case edit / generate methods (Notebook 1.5).
 
 1. ``inpaint`` — localized hole + SD inpaint (mask required)
 2. ``controlnet_dual`` — depth + segmentation ControlNets, full-frame, **no mask**
-3. ``instruct`` — instruction image editor (image + text only; no mask / depth / seg)
+3. ``instruct`` — local instruction editor (Klein / InstructPix2Pix; image + text)
+4. ``vlm_generate_local`` — local Klein instruct edit on seed photo (default VLM path)
+5. ``vlm_generate_api`` — cloud Gemini / GPT Image API (optional comparison)
 """
 
 from __future__ import annotations
@@ -30,7 +32,30 @@ from edgecase_synthesis.generation import (
     _composite,
 )
 
-COMPARE_METHODS = ("inpaint", "controlnet_dual", "instruct")
+# Local diffusion stack (offline once weights are cached).
+LOCAL_DIFFUSION_METHODS = ("inpaint", "controlnet_dual", "instruct")
+# VLM image edit paths (local Klein vs cloud image API).
+VLM_GENERATE_METHODS = ("vlm_generate_local", "vlm_generate_api")
+# Shorthand resolved via generation.vlm_generate_backend (local | api).
+VLM_GENERATE_ALIAS = "vlm_generate"
+COMPARE_METHODS = LOCAL_DIFFUSION_METHODS  # default NB1.5 grid (3 local diffusion methods)
+ALL_COMPARE_METHODS = LOCAL_DIFFUSION_METHODS + VLM_GENERATE_METHODS + (VLM_GENERATE_ALIAS,)
+
+
+def resolve_effective_method(method: str, generation_cfg: Any) -> str:
+    """Map ``vlm_generate`` alias → local or API backend from config."""
+    method = str(method).lower()
+    if method != VLM_GENERATE_ALIAS:
+        return method
+    backend = str(generation_cfg.get("vlm_generate_backend", "local")).lower()
+    return "vlm_generate_local" if backend == "local" else "vlm_generate_api"
+
+
+def prompt_method_key(method: str) -> str:
+    """YAML ``methods`` block key (vlm_generate_* share ``vlm_generate`` fallbacks)."""
+    if method in {"vlm_generate_local", "vlm_generate_api", VLM_GENERATE_ALIAS}:
+        return "vlm_generate"
+    return method
 
 
 @dataclass
@@ -70,13 +95,46 @@ METHOD_SPECS: dict[str, MethodSpec] = {
     ),
     "instruct": MethodSpec(
         key="instruct",
-        title="Instruction edit (image + prompt)",
+        title="Instruction edit (Klein / IP2P)",
         uses_mask=False,
         uses_depth=False,
         uses_seg=False,
         summary=(
-            "RGB + text only (FLUX.2-klein-4B on L4; InstructPix2Pix on CPU). "
-            "Best for global / semantic edits; weaker than masked inpaint for tiny inserts."
+            "Local *edit* diffusion (FLUX.2-klein-4B on L4; InstructPix2Pix on CPU). "
+            "RGB + text only — not a general VLM; weak spatial control for tiny inserts."
+        ),
+    ),
+    "vlm_generate_local": MethodSpec(
+        key="vlm_generate_local",
+        title="VLM edit (local Klein)",
+        uses_mask=False,
+        uses_depth=False,
+        uses_seg=False,
+        summary=(
+            "Default VLM-style path: FLUX.2-klein instruct on the seed photo (local GPU). "
+            "Same backbone as ``instruct`` but kept as the configurable VLM generation slot."
+        ),
+    ),
+    "vlm_generate_api": MethodSpec(
+        key="vlm_generate_api",
+        title="VLM edit (API image model)",
+        uses_mask=False,
+        uses_depth=False,
+        uses_seg=False,
+        summary=(
+            "Cloud multimodal *image* model (Gemini *-image / GPT Image). "
+            "Stronger semantics; looser fidelity to the original photo. Needs API key."
+        ),
+    ),
+    VLM_GENERATE_ALIAS: MethodSpec(
+        key=VLM_GENERATE_ALIAS,
+        title="VLM edit (config backend)",
+        uses_mask=False,
+        uses_depth=False,
+        uses_seg=False,
+        summary=(
+            "Resolves to local or API via ``generation.vlm_generate_backend`` "
+            "(used in NB2 batch when method=vlm_generate)."
         ),
     ),
 }
@@ -117,6 +175,13 @@ class MethodComparer:
         inpaint_guidance_scale: float | None = None,
         device: str | None = None,
         seg_as_canny: bool = False,
+        vlm_api_model: str = "gemini-3.1-flash-image",
+        vlm_generate_backend: str = "local",
+        vlm_mode: str = "edit",
+        vlm_provider: str | None = None,
+        vlm_api_key: str | None = None,
+        vlm_max_side: int = 1024,
+        vlm_size: str = "1024x1024",
     ) -> None:
         self.family = str(family).lower()
         self.base_model_id = base_model_id
@@ -134,6 +199,13 @@ class MethodComparer:
         self.inpaint_guidance_scale = inpaint_guidance_scale
         self.device = resolve_device(device)
         self.seg_as_canny = bool(seg_as_canny)
+        self.vlm_api_model = str(vlm_api_model)
+        self.vlm_generate_backend = str(vlm_generate_backend).lower()
+        self.vlm_mode = str(vlm_mode).lower()
+        self.vlm_provider = vlm_provider
+        self.vlm_api_key = vlm_api_key
+        self.vlm_max_side = int(vlm_max_side)
+        self.vlm_size = str(vlm_size)
         self._inpaint_pipe = None
         self._dual_pipe = None
         self._instruct_pipe = None
@@ -329,14 +401,16 @@ class MethodComparer:
         from edgecase_synthesis.config import merge_generation_anomaly, resolve_method_prompt
 
         method = str(method).lower()
-        if method not in COMPARE_METHODS:
-            raise ValueError(f"Unknown compare method {method!r}. Choose from {COMPARE_METHODS}")
+        if method not in ALL_COMPARE_METHODS:
+            raise ValueError(f"Unknown compare method {method!r}. Choose from {ALL_COMPARE_METHODS}")
 
-        merged = merge_generation_anomaly(generation_cfg, anomaly_cfg, method=method)
+        effective = resolve_effective_method(method, generation_cfg)
+        prompt_key = prompt_method_key(effective)
+        merged = merge_generation_anomaly(generation_cfg, anomaly_cfg, method=prompt_key)
         anom = merged.get("anomaly", anomaly_cfg)
         max_side = int(merged.get("max_side", 512))
         seed = int(merged.get("seed", 42)) + int(seed_offset)
-        prompt, negative = resolve_method_prompt(merged, method)
+        prompt, negative = resolve_method_prompt(merged, prompt_key)
         anomaly_id = str(anom.get("id", ""))
         family = str(merged.get("family", self.family)).lower()
         original = _fit_for_diffusion(image.convert("RGB"), max_side=max_side, family=family)
@@ -363,7 +437,32 @@ class MethodComparer:
         padding_crop = merged.get("padding_mask_crop", None)
         padding_crop = int(padding_crop) if padding_crop not in (None, "", False) else None
 
-        if method == "inpaint":
+        if effective == "vlm_generate_api":
+            return self._run_vlm_generate_api(
+                original,
+                prompt=prompt,
+                seed=seed,
+                anomaly_id=anomaly_id,
+                generation_cfg=merged,
+            )
+        if effective == "vlm_generate_local":
+            instruct_steps = merged.get("instruct_num_inference_steps", self.instruct_num_inference_steps)
+            return self._run_instruct(
+                original,
+                prompt=prompt,
+                steps=steps,
+                seed=seed,
+                anomaly_id=anomaly_id,
+                edit_mask=None,
+                image_guidance=float(
+                    merged.get("instruct_image_guidance", self.instruct_image_guidance)
+                ),
+                text_guidance=float(merged.get("instruct_guidance_scale", self.instruct_guidance)),
+                instruct_steps=instruct_steps,
+                result_method="vlm_generate_local",
+            )
+
+        if effective == "inpaint":
             if self.inpaint_is_klein:
                 klein_steps = merged.get("inpaint_num_inference_steps", self.inpaint_num_inference_steps)
                 steps = int(klein_steps) if klein_steps not in (None, "") else steps
@@ -386,7 +485,7 @@ class MethodComparer:
                 anomaly_id=anomaly_id,
                 padding_mask_crop=padding_crop,
             )
-        if method == "controlnet_dual":
+        if effective == "controlnet_dual":
             scales = merged.get("controlnet_scale") or {}
             if hasattr(scales, "get"):
                 depth_scale = float(scales.get("depth", self.controlnet_scale_depth))
@@ -650,6 +749,7 @@ class MethodComparer:
         image_guidance: float | None = None,
         text_guidance: float | None = None,
         instruct_steps: int | None = None,
+        result_method: str = "instruct",
     ) -> GenerationResult:
         instruction = str(prompt).strip()
         width, height = original.size
@@ -717,7 +817,49 @@ class MethodComparer:
             seed=seed,
             edit_mask=edit_mask,
             anomaly_id=anomaly_id,
-            method="instruct",
+            method=result_method,
+        )
+
+    def _run_vlm_generate_api(
+        self,
+        original: Image.Image,
+        *,
+        prompt: str,
+        seed: int,
+        anomaly_id: str,
+        generation_cfg: Any,
+    ) -> GenerationResult:
+        from edgecase_synthesis.vlm_generate import VlmGenerateConfig, generate_with_vlm
+
+        model = str(generation_cfg.get("vlm_api_model", self.vlm_api_model))
+        mode = str(generation_cfg.get("vlm_mode", self.vlm_mode)).lower()
+        provider = generation_cfg.get("vlm_provider", self.vlm_provider)
+        api_key = generation_cfg.get("vlm_api_key", self.vlm_api_key)
+        max_side = int(generation_cfg.get("vlm_max_side", self.vlm_max_side))
+        size = str(generation_cfg.get("vlm_size", self.vlm_size))
+        aspect = generation_cfg.get("vlm_aspect_ratio")
+
+        cfg = VlmGenerateConfig(
+            model=model,
+            mode="generate" if mode == "generate" else "edit",
+            provider=provider,  # type: ignore[arg-type]
+            api_key=api_key,
+            aspect_ratio=str(aspect) if aspect not in (None, "") else None,
+            size=size,
+            max_side=max_side,
+        )
+        seed_image = None if cfg.mode == "generate" else original
+        generated = generate_with_vlm(prompt, seed_image=seed_image, config=cfg)
+        if seed_image is not None:
+            generated = _ensure_same_size(generated, original)
+        return GenerationResult(
+            image=generated,
+            prompt=prompt,
+            negative_prompt="",
+            seed=seed,
+            edit_mask=None,
+            anomaly_id=anomaly_id,
+            method="vlm_generate_api",
         )
 
     @classmethod
@@ -763,6 +905,13 @@ class MethodComparer:
             ),
             device=device,
             seg_as_canny=seg_as_canny,
+            vlm_api_model=str(generation.get("vlm_api_model") or "gemini-3.1-flash-image"),
+            vlm_generate_backend=str(generation.get("vlm_generate_backend") or "local"),
+            vlm_mode=str(generation.get("vlm_mode") or "edit"),
+            vlm_provider=generation.get("vlm_provider"),
+            vlm_api_key=generation.get("vlm_api_key"),
+            vlm_max_side=int(generation.get("vlm_max_side") or 1024),
+            vlm_size=str(generation.get("vlm_size") or "1024x1024"),
         )
 
 

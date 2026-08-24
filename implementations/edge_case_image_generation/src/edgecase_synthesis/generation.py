@@ -224,6 +224,44 @@ class AnomalyEditor:
                 ),
             )
 
+        if method in {"vlm_generate", "vlm_generate_local", "vlm_generate_api"}:
+            from edgecase_synthesis.compare_methods import resolve_effective_method
+            from edgecase_synthesis.vlm_generate import VlmGenerateConfig, generate_with_vlm
+
+            effective = resolve_effective_method(method, merged)
+            if effective == "vlm_generate_local":
+                raise NotImplementedError(
+                    "vlm_generate_local is supported via MethodComparer / batch pipeline only."
+                )
+
+            mode = str(merged.get("vlm_mode", "edit")).lower()
+            cfg = VlmGenerateConfig(
+                model=str(merged.get("vlm_api_model") or "gemini-3.1-flash-image"),
+                mode="generate" if mode == "generate" else "edit",
+                provider=merged.get("vlm_provider"),
+                api_key=merged.get("vlm_api_key"),
+                aspect_ratio=(
+                    str(merged.get("vlm_aspect_ratio"))
+                    if merged.get("vlm_aspect_ratio") not in (None, "")
+                    else None
+                ),
+                size=str(merged.get("vlm_size") or "1024x1024"),
+                max_side=int(merged.get("vlm_max_side") or max_side or 1024),
+            )
+            seed_image = None if cfg.mode == "generate" else original
+            generated = generate_with_vlm(prompt, seed_image=seed_image, config=cfg)
+            if seed_image is not None:
+                generated = _ensure_same_size(generated, original)
+            return GenerationResult(
+                image=generated,
+                prompt=prompt,
+                negative_prompt=negative,
+                seed=seed,
+                edit_mask=None,
+                anomaly_id=anomaly_id,
+                method="vlm_generate_api",
+            )
+
         scale_cfg = merged.get("controlnet_scale", 0.55)
         if isinstance(scale_cfg, (int, float)):
             cn_scale = float(scale_cfg)
