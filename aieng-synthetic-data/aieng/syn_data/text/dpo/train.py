@@ -64,8 +64,6 @@ def train_lora_dpo(
     per_device_train_batch_size: int = 1,
     gradient_accumulation_steps: int = 4,
     learning_rate: float = 5e-5,
-    max_length: int = 1024,
-    max_prompt_length: int = 512,
     beta: float = 0.1,
 ) -> Path:
     """Fine-tune a small model with 4-bit LoRA using TRL DPOTrainer."""
@@ -107,8 +105,6 @@ def train_lora_dpo(
             per_device_train_batch_size=per_device_train_batch_size,
             gradient_accumulation_steps=gradient_accumulation_steps,
             learning_rate=learning_rate,
-            max_length=max_length,
-            max_prompt_length=max_prompt_length,
             beta=beta,
             logging_steps=10,
             save_strategy="epoch",
