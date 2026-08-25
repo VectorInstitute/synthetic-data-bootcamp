@@ -31,7 +31,9 @@ data/
 ├── synthetic/
 │   ├── synthetic_raw.jsonl       # notebook 02
 │   ├── synthetic_filtered.jsonl  # notebook 03
-│   └── synthetic_train.jsonl     # notebook 04
+│   ├── synthetic_train.jsonl     # notebook 04
+│   ├── dpo_candidates.jsonl      # notebook 06 (optional)
+│   └── dpo_preference_pairs.jsonl  # notebook 06 (optional)
 └── results/
     ├── baseline_predictions.jsonl  # notebook 01
     ├── baseline_scores.json        # notebook 01
@@ -51,6 +53,7 @@ Run in order. Each notebook is a tutorial; reusable logic lives in
 | [03_quality_filtering.ipynb](./03_quality_filtering.ipynb) | 3 | Heuristic filters + judge scoring |
 | [04_grounded_data_augmentation.ipynb](./04_grounded_data_augmentation.ipynb) | 4 | Instruction back-translation SFT corpus |
 | [05_finetune_and_compare.ipynb](./05_finetune_and_compare.ipynb) | 5 | LoRA SFT + before/after comparison |
+| [06_dpo_preference_pairs.ipynb](./06_dpo_preference_pairs.ipynb) | 6 (optional) | SEC refusal-calibration DPO pairs (+ optional LoRA DPO) |
 
 ## Package
 
@@ -107,8 +110,12 @@ To try a different SLM, update **both** of these in `.env` (keep them equal), th
 Optional local cleanup: `ollama stop qwen2.5:3b-instruct` (Coder VMs usually tear this down on stop anyway).
 
 4. Open `01_baseline_evaluation.ipynb` and work through notebooks 01 → 05.
+   Notebook 06 is optional: it builds DPO preference pairs from the SEC
+   (scope-boundary) train paragraphs only.
 
 Notebook 05 runs LoRA fine-tuning only when `RUN_SFT=1` (CUDA). Without that flag it still runs the comparison workflow using the small-model client.
+
+Notebook 06 writes preference JSONL without a GPU. LoRA DPO runs only when `RUN_DPO=1` (same CUDA requirement as notebook 05).
 
 To confirm CUDA on a GPU workspace:
 

@@ -151,3 +151,7 @@ markers = [
 [[tool.mypy.overrides]]
 module = "aieng.syn_data.text.sft"
 ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "aieng.syn_data.text.dpo.train"
+ignore_errors = true

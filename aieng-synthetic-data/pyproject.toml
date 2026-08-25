@@ -103,6 +103,7 @@ ignore = [
 "__init__.py" = ["E402", "F401", "F403", "F811"]
 "tests/**/*.py" = ["D103"]
 "aieng/syn_data/text/sft.py" = ["PLC0415"]
+"aieng/syn_data/text/dpo/train.py" = ["PLC0415"]
 
 [tool.ruff.lint.pep8-naming]
 ignore-names = ["X*", "setUp"]
