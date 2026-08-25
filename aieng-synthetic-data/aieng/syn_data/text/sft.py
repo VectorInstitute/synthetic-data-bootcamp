@@ -79,8 +79,8 @@ def train_lora_sft(
         ]
         if platform.system() == "Darwin":
             hints.append(
-                "You are on macOS: run notebook 05 with RUN_SFT=0 locally, "
-                "or use a Linux NVIDIA GPU (Colab, GCP GPU VM, etc.).",
+                "You are on macOS: notebook 05 LoRA needs a Linux NVIDIA GPU "
+                "(Colab, GCP GPU VM, etc.).",
             )
         elif (
             not Path("/usr/bin/nvidia-smi").exists()
@@ -149,12 +149,20 @@ def train_lora_sft(
     return output_dir
 
 
-class PeftInferenceClient:
-    """Run inference with a saved LoRA adapter."""
+class Hf4BitInferenceClient:
+    """Run inference with a 4-bit Hugging Face model, optionally plus a LoRA adapter.
 
-    def __init__(self, adapter_dir: Path, base_model: str) -> None:
+    Use this (not Ollama) as the same-stack control for notebook 05: the
+    un-adapted base model is loaded with the same bitsandbytes nf4 path as
+    the PEFT adapters.
+    """
+
+    def __init__(
+        self,
+        base_model: str,
+        adapter_dir: Path | None = None,
+    ) -> None:
         import torch
-        from peft import PeftModel
         from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
         quant_config = BitsAndBytesConfig(
@@ -166,13 +174,19 @@ class PeftInferenceClient:
         self.tokenizer = AutoTokenizer.from_pretrained(
             base_model, trust_remote_code=True
         )
-        base = AutoModelForCausalLM.from_pretrained(
+        if self.tokenizer.pad_token is None:
+            self.tokenizer.pad_token = self.tokenizer.eos_token
+        model = AutoModelForCausalLM.from_pretrained(
             base_model,
             quantization_config=quant_config,
             device_map="auto",
             trust_remote_code=True,
         )
-        self.model = PeftModel.from_pretrained(base, str(adapter_dir))
+        if adapter_dir is not None:
+            from peft import PeftModel
+
+            model = PeftModel.from_pretrained(model, str(adapter_dir))
+        self.model = model
         self.model.eval()
 
     def complete(
@@ -184,9 +198,10 @@ class PeftInferenceClient:
         max_tokens: int = 512,
         response_format: dict[str, Any] | None = None,
     ) -> str:
-        """Generate a completion from the fine-tuned adapter."""
+        """Generate a completion from the 4-bit model (and adapter, if loaded)."""
         import torch
 
+        del response_format
         system_text = system or DEFAULT_EVAL_SYSTEM
         messages = [
             {"role": "system", "content": system_text},
@@ -201,13 +216,42 @@ class PeftInferenceClient:
         else:
             text = f"{system_text}\n\n{prompt}\nAnswer:"
 
-        inputs = self.tokenizer(text, return_tensors="pt").to(self.model.device)
+        device = next(self.model.parameters()).device
+        inputs = self.tokenizer(text, return_tensors="pt").to(device)
+        pad_token_id = self.tokenizer.pad_token_id or self.tokenizer.eos_token_id
         with torch.no_grad():
             outputs = self.model.generate(
                 **inputs,
                 max_new_tokens=max_tokens,
                 do_sample=temperature > 0.0,
                 temperature=max(temperature, 1e-5),
+                pad_token_id=pad_token_id,
             )
         generated = outputs[0][inputs["input_ids"].shape[-1] :]
         return str(self.tokenizer.decode(generated, skip_special_tokens=True)).strip()
+
+    def release(self) -> None:
+        """Drop GPU weights so a later train/eval step can load another model."""
+        import gc
+
+        if getattr(self, "model", None) is not None:
+            del self.model
+            self.model = None
+        if getattr(self, "tokenizer", None) is not None:
+            del self.tokenizer
+            self.tokenizer = None
+        gc.collect()
+        try:
+            import torch
+
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        except ImportError:
+            pass
+
+
+class PeftInferenceClient(Hf4BitInferenceClient):
+    """Run inference with a saved LoRA adapter on the 4-bit base model."""
+
+    def __init__(self, adapter_dir: Path, base_model: str) -> None:
+        super().__init__(base_model, adapter_dir=adapter_dir)

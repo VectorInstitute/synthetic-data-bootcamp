@@ -20,6 +20,8 @@ from aieng.syn_data.text.config import (
     FAILURE_MODE_GUIDANCE,
     FINANCE_DOCUMENTS,
     FINETUNED_PREDICTIONS_PATH,
+    HF_BASE_PREDICTIONS_PATH,
+    HF_BASE_SCORES_PATH,
     PARAGRAPHS_PATH,
     RESULTS_DIR,
     SYNTHETIC_FILTERED_PATH,
@@ -42,6 +44,7 @@ from aieng.syn_data.text.documents import (
     sample_test_paragraphs,
 )
 from aieng.syn_data.text.evaluation import (
+    DEFAULT_EVAL_MAX_TOKENS,
     build_eval_prompt,
     compare_summaries,
     run_inference,
@@ -108,6 +111,7 @@ from aieng.syn_data.text.schemas import (
     QASample,
 )
 from aieng.syn_data.text.sft import (
+    Hf4BitInferenceClient,
     PeftInferenceClient,
     build_sft_dataset,
     qa_samples_to_messages,
@@ -131,6 +135,10 @@ __all__ = [
     "FAILURE_MODE_GUIDANCE",
     "FINANCE_DOCUMENTS",
     "FINETUNED_PREDICTIONS_PATH",
+    "HF_BASE_PREDICTIONS_PATH",
+    "HF_BASE_SCORES_PATH",
+    "Hf4BitInferenceClient",
+    "DEFAULT_EVAL_MAX_TOKENS",
     "FailureMode",
     "GenerationStrategy",
     "JudgeScore",

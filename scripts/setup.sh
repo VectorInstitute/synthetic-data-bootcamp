@@ -15,12 +15,8 @@ else
 fi
 
 source .venv/bin/activate
-if [ "${RUN_SFT:-0}" = "1" ]; then
-    echo "RUN_SFT=1: syncing SFT dependencies (CUDA / bitsandbytes)..."
-    uv sync --dev --group text-sft
-else
-    uv sync --dev
-fi
+echo "Syncing dependencies including the text-sft group (notebook 05 LoRA)..."
+uv sync --dev --group text-sft
 
 echo "Virtual environment activated and dependencies synced."
 

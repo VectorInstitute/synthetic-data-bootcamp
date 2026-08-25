@@ -47,7 +47,7 @@ jobs:
         run: |
           uv venv .venv
           source .venv/bin/activate
-          # Include text-sft so pip-audit covers packages installed when RUN_SFT=1
+          # Include text-sft so pip-audit covers notebook 05 LoRA dependencies
           # (see scripts/setup.sh: uv sync --dev --group text-sft).
           uv sync --all-extras --dev --group text-sft
           pre-commit run --all-files

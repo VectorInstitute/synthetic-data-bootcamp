@@ -31,6 +31,10 @@ DEFAULT_EVAL_SYSTEM = (
     "If a question is out of scope, refuse briefly and explain why."
 )
 
+# Shared generation budget so Ollama, HF 4-bit base, and LoRA adapters
+# are not compared at different truncation lengths.
+DEFAULT_EVAL_MAX_TOKENS = 512
+
 
 def build_eval_prompt(sample: QASample) -> str:
     """Build the user prompt for baseline or fine-tuned evaluation."""
@@ -49,6 +53,7 @@ def run_inference(
     samples: list[QASample],
     *,
     system: str = DEFAULT_EVAL_SYSTEM,
+    max_tokens: int = DEFAULT_EVAL_MAX_TOKENS,
 ) -> list[dict[str, Any]]:
     """Run the small model on a list of evaluation samples."""
     predictions: list[dict[str, Any]] = []
@@ -68,7 +73,7 @@ def run_inference(
         # Isolate failures so one bad LLM call does not discard prior predictions.
         try:
             record["model_answer"] = client.complete(
-                prompt, system=system, temperature=0.0
+                prompt, system=system, temperature=0.0, max_tokens=max_tokens
             )
         except (
             KeyError,

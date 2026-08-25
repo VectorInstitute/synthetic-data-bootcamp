@@ -28,6 +28,8 @@ SYNTHETIC_IBT_PATH = DATA_DIR / "synthetic" / "synthetic_back_translation.jsonl"
 RESULTS_DIR = DATA_DIR / "results"
 BASELINE_PREDICTIONS_PATH = RESULTS_DIR / "baseline_predictions.jsonl"
 BASELINE_SCORES_PATH = RESULTS_DIR / "baseline_scores.json"
+HF_BASE_PREDICTIONS_PATH = RESULTS_DIR / "hf_base_predictions.jsonl"
+HF_BASE_SCORES_PATH = RESULTS_DIR / "hf_base_scores.json"
 FINETUNED_PREDICTIONS_PATH = RESULTS_DIR / "finetuned_predictions.jsonl"
 COMPARISON_REPORT_PATH = RESULTS_DIR / "comparison_report.json"
 
