@@ -63,7 +63,7 @@ DEFAULT_META_INFO = {
     "num_col_idx": [0, 3, 4, 7],
     "cat_col_idx": [1, 2, 5, 6],
     "target_col_idx": [1],
-    "task_type": "regression",
+    "task_type": "multiclass",
 }
 
 DEFAULT_DATASET_META = {
