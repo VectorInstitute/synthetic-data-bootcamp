@@ -97,7 +97,7 @@ def train_lora_sft(
 
     output_dir.mkdir(parents=True, exist_ok=True)
     dataset = build_sft_dataset(samples)
-    trust_remote_code: bool = False,
+    trust_remote_code: bool = False
     tokenizer = AutoTokenizer.from_pretrained(base_model, trust_remote_code=trust_remote_code)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
