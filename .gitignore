@@ -38,3 +38,8 @@ implementations/qa_text_generation/data/**
 **/dataset_meta.json
 **/*_domain.json
 **/meta_info.json
+
+# Tabular data gitignore
+implementations/tabular_data/**.csv
+implementations/tabular_data/single_table/data/**.json
+implementations/tabular_data/single_table/results/**.json
