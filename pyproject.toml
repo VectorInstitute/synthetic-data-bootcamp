@@ -43,7 +43,7 @@ dev = [
 text-sft = [
     "accelerate",
     "bitsandbytes",
-    "datasets",
+    "datasets>=5.0.1",
     "peft",
     "torch",
     "transformers",

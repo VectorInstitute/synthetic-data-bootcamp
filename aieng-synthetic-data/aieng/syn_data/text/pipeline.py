@@ -37,7 +37,10 @@ from aieng.syn_data.text.generation import (
 from aieng.syn_data.text.io import write_json, write_jsonl
 from aieng.syn_data.text.judge import judge_response, judge_synthetic_sample
 from aieng.syn_data.text.quality import apply_heuristic_filters
-from aieng.syn_data.text.rag import generate_grounded_qa, grounding_overlap_score
+from aieng.syn_data.text.rag import (
+    generate_instruction_back_translation_sample,
+    grounding_overlap_score,
+)
 from aieng.syn_data.text.schemas import (
     FailureMode,
     JudgeScore,
@@ -183,6 +186,7 @@ def compare_generation_strategies(
     *,
     seed_example: QASample | None = None,
     few_shot_examples: list[QASample] | None = None,
+    topic_controlled_topic: str | None = None,
 ) -> dict[str, QASample]:
     """Generate one sample per strategy for side-by-side comparison.
 
@@ -200,12 +204,16 @@ def compare_generation_strategies(
         context=paragraph.text,
         instruction="Answer using the source passage. Respond in one sentence.",
     )
-    # Without caller-provided few-shots this collapses to one-shot; supply a
-    # richer domain list in a follow-up (see TODO above).
+    # Without caller-provided few-shots this collapses to one-shot.
     few_shot = few_shot_examples or [seed]
     # Side-by-side view keeps one topic-controlled sample; full per-topic
     # expansion is used in generate_test_qa_batch / topic_controlled_generate.
-    topic_samples = topic_controlled_generate(teacher, paragraph, max_topics=1)
+    topic_samples = topic_controlled_generate(
+        teacher,
+        paragraph,
+        topics=[topic_controlled_topic] if topic_controlled_topic is not None else None,
+        max_topics=1,
+    )
     return {
         "zero_shot": zero_shot_generate(teacher, paragraph),
         "one_shot": one_shot_generate(teacher, paragraph, seed),
@@ -219,11 +227,16 @@ def generate_raw_synthetic_corpus(
     train_paragraphs: list[Paragraph],
     *,
     max_paragraphs: int = 5,
+    questions_per_para: int = 2,
 ) -> list[QASample]:
-    """
-    Generate a small raw corpus using every prompting strategy.
+    """Generate an unfiltered training corpus from train paragraphs.
 
-    For each train paragraph, run all strategies and collect the resulting samples.
+    Zero/one/few-shot each contribute one sample per paragraph (format and
+    style). Topic-controlled generation is expanded separately: topics are
+    extracted from the paragraph and one Q&A is produced per topic, capped by
+    ``questions_per_para``. Failure modes are left unset — those are a test-set
+    concern. The side-by-side demo in ``compare_generation_strategies`` still
+    emits one topic-controlled sample.
 
     Parameters
     ----------
@@ -233,6 +246,8 @@ def generate_raw_synthetic_corpus(
         List of paragraphs to generate synthetic Q&A samples from.
     max_paragraphs : int, optional
         Maximum number of paragraphs to use from `train_paragraphs` (default is 5).
+    questions_per_para : int, optional
+        Maximum topic-controlled Q&As per paragraph (default is 2).
 
     Returns
     -------
@@ -244,36 +259,49 @@ def generate_raw_synthetic_corpus(
     if not selected:
         return []
 
+    generation_errors = (
+        KeyError,
+        ValueError,
+        TypeError,
+        RuntimeError,
+        requests.HTTPError,
+    )
     # The teacher bootstraps its own examples — a common synthetic-data pattern.
     # Here we use zero-shot as a simple baseline.
     seed = zero_shot_generate(teacher, selected[0])
     samples: list[QASample] = []
 
-    # For each paragraph, generate a sample using each strategy.
     # Isolate failures so one bad LLM call does not discard prior samples.
     for paragraph in selected:
         try:
-            generated = compare_generation_strategies(
-                teacher,
-                paragraph,
-                seed_example=seed,
-                few_shot_examples=[seed],
-            )
-        except (
-            KeyError,
-            ValueError,
-            TypeError,
-            RuntimeError,
-            requests.HTTPError,
-        ) as exc:
+            samples.append(zero_shot_generate(teacher, paragraph))
+            samples.append(one_shot_generate(teacher, paragraph, seed))
+            samples.append(few_shot_generate(teacher, paragraph, [seed]))
+        except generation_errors as exc:
             logger.warning(
-                "Skipping paragraph %s after generation failure: %s: %s",
+                "Skipping prompt-strategy samples for paragraph %s: %s: %s",
                 paragraph.para_id,
                 type(exc).__name__,
                 exc,
             )
-            continue
-        samples.extend(generated.values())
+
+        try:
+            topics = extract_topics(teacher, paragraph)[:questions_per_para]
+            samples.extend(
+                topic_controlled_generate(
+                    teacher,
+                    paragraph,
+                    topics=topics,
+                    max_topics=questions_per_para,
+                )
+            )
+        except generation_errors as exc:
+            logger.warning(
+                "Skipping topic-controlled samples for paragraph %s: %s: %s",
+                paragraph.para_id,
+                type(exc).__name__,
+                exc,
+            )
     return samples
 
 
@@ -362,7 +390,7 @@ def generate_grounded_training_corpus(
             continue
         seen_paras.add(paragraph.para_id)
         try:
-            sample = generate_grounded_qa(teacher, paragraph)
+            sample = generate_instruction_back_translation_sample(teacher, paragraph)
         except (
             KeyError,
             ValueError,
@@ -410,6 +438,7 @@ def score_predictions(
         if sample is None:
             logger.warning("No test sample for prediction id %s", prediction["id"])
             continue
+
         scores.append(
             judge_response(judge, sample, prediction["model_answer"]),
         )

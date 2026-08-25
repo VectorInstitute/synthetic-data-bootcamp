@@ -65,7 +65,7 @@ from aieng.syn_data.text import (
     sample_test_paragraphs,
     zero_shot_generate,
     apply_heuristic_filters,
-    generate_grounded_qa,
+    generate_grounded_qagenerate_instruction_back_translation_sample,
     run_inference,
 )
 ```

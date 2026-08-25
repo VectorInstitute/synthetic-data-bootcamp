@@ -31,7 +31,7 @@ from aieng.syn_data.text.quality import (
     summarize_heuristic_rejections,
 )
 from aieng.syn_data.text.rag import (
-    generate_grounded_qa,
+    generate_instruction_back_translation_sample,
     grounding_overlap_score,
     retrieve_paragraphs,
 )
@@ -166,7 +166,9 @@ def test_topic_controlled_generate_one_sample_per_topic() -> None:
     assert samples[1].metadata["topic"] == "fees"
 
 
-def test_generate_grounded_qa_forces_passage_as_gold_answer() -> None:
+def test_generate_instruction_back_translation_sample_forces_passage_as_gold_answer() -> (
+    None
+):
     class _FakeClient:
         def complete_json(self, prompt: str, **kwargs: object) -> dict[str, Any]:
             return {
@@ -175,7 +177,7 @@ def test_generate_grounded_qa_forces_passage_as_gold_answer() -> None:
             }
 
     paragraph = _paragraph("doc", 0, "Your grace period is 21 days.")
-    sample = generate_grounded_qa(_FakeClient(), paragraph)  # type: ignore[arg-type]
+    sample = generate_instruction_back_translation_sample(_FakeClient(), paragraph)  # type: ignore[arg-type]
     assert sample.gold_answer == paragraph.text
     assert sample.question == "What is the grace period?"
 
