@@ -60,7 +60,7 @@ vlm_mode: edit                # edit = seed + instruction; generate = text-only 
 vlm_api_model: gemini-3.1-flash-image   # placeholder; needs an image-capable ID when enabling
 vlm_api_base_url: https://proxy.vectorinstitute.ai/v1
 vlm_provider: null
-vlm_api_key: null        # null → OPENAI_API_KEY (vp_… Vector key)
+vlm_api_key: null        # null → OPENAI_API_KEY from .env
 vlm_max_side: 1024
 vlm_size: "1024x1024"
 vlm_aspect_ratio: null

@@ -39,11 +39,10 @@ dev = [
 ]
 # Edge-case image generation reference (implementations/edge_case_image_generation).
 # Sync from repo root: uv sync --dev --group edge-case-image-generation
-edge-case-vlm = [
+edge-case-image-generation = [
     "google-genai>=1.0",
     "openai>=1.40",
-]
-edge-case-image-generation = [
+    "python-dotenv>=1.0",
     "accelerate>=0.34",
     "clip",
     "datasets>=2.20",

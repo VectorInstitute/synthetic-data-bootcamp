@@ -12,6 +12,19 @@ from omegaconf import DictConfig, OmegaConf
 from edgecase_synthesis.data import project_root
 
 
+def load_env(start: Path | None = None) -> Path | None:
+    """Load ``.env`` from the implementation root (never overrides existing env vars)."""
+    try:
+        from dotenv import load_dotenv
+    except ImportError:
+        return None
+    env_path = project_root(start) / ".env"
+    if env_path.is_file():
+        load_dotenv(env_path, override=False)
+        return env_path
+    return None
+
+
 def configs_dir(start: Path | None = None) -> Path:
     return project_root(start) / "configs"
 
@@ -102,6 +115,7 @@ def load_config(
     >>> cfg = load_config(overrides=["dataset_name=nordland_hf", "hardware=gpu_l4"])
     """
     root = project_root(start)
+    load_env(root)
     GlobalHydra.instance().clear()
 
     with initialize_config_dir(

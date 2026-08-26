@@ -77,21 +77,20 @@ edge-case-image-generation = [
     { name = "clip" },
     { name = "datasets" },
     { name = "diffusers" },
+    { name = "google-genai" },
     { name = "huggingface-hub" },
     { name = "hydra-core" },
     { name = "matplotlib" },
     { name = "numpy" },
+    { name = "openai" },
     { name = "opencv-python-headless" },
     { name = "pillow" },
+    { name = "python-dotenv" },
     { name = "scipy" },
     { name = "torch" },
     { name = "torchvision" },
     { name = "transformers" },
     { name = "ultralytics" },
-]
-edge-case-vlm = [
-    { name = "google-genai" },
-    { name = "openai" },
 ]
 
 [package.metadata]
@@ -132,21 +131,20 @@ edge-case-image-generation = [
     { name = "clip", git = "https://github.com/ultralytics/CLIP.git" },
     { name = "datasets", specifier = ">=2.20" },
     { name = "diffusers", specifier = ">=0.39" },
+    { name = "google-genai", specifier = ">=1.0" },
     { name = "huggingface-hub", specifier = ">=0.24" },
     { name = "hydra-core", specifier = ">=1.3" },
     { name = "matplotlib", specifier = ">=3.8" },
     { name = "numpy", specifier = ">=1.26" },
+    { name = "openai", specifier = ">=1.40" },
     { name = "opencv-python-headless", specifier = ">=4.8" },
     { name = "pillow", specifier = ">=10" },
+    { name = "python-dotenv", specifier = ">=1.0" },
     { name = "scipy", specifier = ">=1.11" },
     { name = "torch", specifier = ">=2.1" },
     { name = "torchvision", specifier = ">=0.16" },
     { name = "transformers", specifier = ">=4.49" },
     { name = "ultralytics", specifier = ">=8.3" },
-]
-edge-case-vlm = [
-    { name = "google-genai", specifier = ">=1.0" },
-    { name = "openai", specifier = ">=1.40" },
 ]
 
 [[package]]
@@ -3611,6 +3609,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/4c/81/58c70036dffeccb7fe7d79d6260c69f7a28272bbd3909c29a01ea9422744/python_discovery-1.4.4.tar.gz", hash = "sha256:5cad33982d412c1f3ffb8f9ca4ea292c9680bca3942451d30b69c37fce53a4a3", size = 72212, upload-time = "2026-07-08T23:06:50.691Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/9d/ae/84bc0d2440c95772272bb6f4b3d09ccf08b2898fce89b3d4f969a9fc74e9/python_discovery-1.4.4-py3-none-any.whl", hash = "sha256:abebe9120b43453b68c908acfb1e72a19d1a959ed2cb620ad38fc57d08056dbe", size = 34181, upload-time = "2026-07-08T23:06:49.402Z" },
+]
+
+[[package]]
+name = "python-dotenv"
+version = "1.2.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/6a/53/ed9d74092561d4b01a2ef1349d52cdbc135e526c245f366b089cfca6de49/python_dotenv-1.2.3.tar.gz", hash = "sha256:a20a594dabeaa385725aa239d5244871c143ecb356add8a20fcf23773a6c3a35", size = 58945, upload-time = "2026-08-16T16:54:54.067Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0d/17/c5c6b53ddc18f297992099b3d9ec16c855c0ccc83263a21fe4d1c625ec6c/python_dotenv-1.2.3-py3-none-any.whl", hash = "sha256:904552145e8bfed22162c09dab1c2b9b54fefa7b23ba780f4f26ca0316b0f0d9", size = 22780, upload-time = "2026-08-16T16:54:52.473Z" },
 ]
 
 [[package]]

@@ -182,7 +182,7 @@ def _generate_gemini(
     except ImportError as exc:  # pragma: no cover
         raise ImportError(
             "google-genai is required for Gemini image generation. "
-            "Install: uv sync --group edge-case-vlm"
+            "Install: uv sync --group edge-case-image-generation"
         ) from exc
 
     client = genai.Client(api_key=gemini_api_key(cfg.api_key))

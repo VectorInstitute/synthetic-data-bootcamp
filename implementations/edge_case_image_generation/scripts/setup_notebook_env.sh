@@ -20,7 +20,7 @@ echo "==> Creating venv at repo root with Homebrew Python..."
 uv venv --python "$BREW_PYTHON" --clear
 
 echo "==> Installing dependencies (uv sync --group edge-case-image-generation)..."
-uv sync --dev --group edge-case-image-generation --group edge-case-vlm
+uv sync --dev --group edge-case-image-generation
 
 VENV_PYTHON="$REPO_ROOT/.venv/bin/python"
 

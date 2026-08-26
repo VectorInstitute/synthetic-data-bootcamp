@@ -9,7 +9,7 @@ backend: api
 model_id: gemini-3-flash-preview
 api_base_url: https://proxy.vectorinstitute.ai/v1
 api_provider: null   # null → auto (vector_proxy when api_base_url is set)
-api_key: null        # null → OPENAI_API_KEY (vp_… Vector key) or VECTOR_PROXY_API_KEY
+api_key: null        # null → OPENAI_API_KEY from .env (see .env.example)
 api_max_side: 1024
 
 # Local Qwen settings (used when backend=qwen_vl)

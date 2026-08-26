@@ -20,7 +20,7 @@ Workshop anomalies (see `configs/datasets/mapillary_vistas/dataset.yaml`):
 - **traffic_cone**
 - **fog** (global; shows why local inpaint alone is not enough)
 
-We do **not** download the full ~29 GB HF zip. Toy images land in `data/mapillary_vistas/samples/`:
+We do **not** download the full ~29 GB HF zip. Toy images land in `data/mapillary_vistas/samples/`:
 
 ```bash
 # requires: huggingface-cli login  (and accept the gated dataset terms once in the browser)
@@ -43,19 +43,24 @@ load_config(overrides=["dataset_name=mapillary_vistas", "hardware=gpu_l4"])
 
 ## Setup
 
-Dependencies live in the **monorepo root** `pyproject.toml` under the `edge-case-image-generation` group (optional `edge-case-vlm` for API judge / image generation).
+Dependencies live in the **monorepo root** `pyproject.toml` under the `edge-case-image-generation` group.
 
 ```bash
 # From the repository root (EdgeCaseSynthesis/)
 uv sync --dev --group edge-case-image-generation
-# API judge / VLM image column (Gemini, OpenAI):
-uv sync --dev --group edge-case-image-generation --group edge-case-vlm
+
+# API key for the Vector proxy judge (copy template, then edit):
+cp implementations/edge_case_image_generation/.env.example \
+   implementations/edge_case_image_generation/.env
+# paste your vp_… key into OPENAI_API_KEY in .env
 
 huggingface-cli login   # once
 uv run python implementations/edge_case_image_generation/scripts/extract_mapillary_toy.py
 ```
 
 Or run `implementations/edge_case_image_generation/scripts/setup_notebook_env.sh` to create `.venv` at the repo root and register the Jupyter kernel.
+
+Notebooks load `.env` automatically on startup — no `export` in the terminal needed.
 
 Notebooks add `src/` to `sys.path` automatically — no separate package install needed.
 

@@ -68,7 +68,8 @@ def proxy_api_key(explicit: str | None = None) -> str:
     )
     if not key:
         raise EnvironmentError(
-            "Missing API key for Vector proxy. Set OPENAI_API_KEY (or VECTOR_PROXY_API_KEY)."
+            "Missing API key for Vector proxy. Set OPENAI_API_KEY in "
+            "implementations/edge_case_image_generation/.env (see .env.example)."
         )
     return key
 
@@ -96,7 +97,8 @@ def make_openai_client(
         from openai import OpenAI
     except ImportError as exc:  # pragma: no cover
         raise ImportError(
-            "openai is required for API judge / Vector proxy. Install: uv sync --group edge-case-vlm"
+            "openai is required for API judge / Vector proxy. "
+            "Install: uv sync --group edge-case-image-generation"
         ) from exc
     if base_url:
         return OpenAI(api_key=proxy_api_key(api_key), base_url=base_url)
@@ -168,7 +170,7 @@ def _vision_chat_gemini(
     except ImportError as exc:  # pragma: no cover
         raise ImportError(
             "google-genai is required for Gemini API judge. "
-            "Install: uv sync --group edge-case-vlm"
+            "Install: uv sync --group edge-case-image-generation"
         ) from exc
 
     client = genai.Client(api_key=gemini_api_key(api_key))
