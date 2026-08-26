@@ -28,11 +28,29 @@ def qa_samples_to_messages(
     return rows
 
 
+def qa_samples_to_prompt_completion(
+    samples: list[QASample],
+) -> list[dict[str, list[dict[str, str]]]]:
+    """Split chat rows into TRL prompt-completion pairs.
+
+    TRL treats this layout as a conversational prompt-completion dataset, so it
+    renders both halves with the model's own chat template and defaults
+    ``completion_only_loss`` to True. That keeps training tokens identical to
+    what :class:`Hf4BitInferenceClient` sends at inference, and keeps the loss
+    off the system prompt and the grounding passage.
+    """
+    rows: list[dict[str, list[dict[str, str]]]] = []
+    for row in qa_samples_to_messages(samples):
+        messages = row["messages"]
+        rows.append({"prompt": messages[:-1], "completion": messages[-1:]})
+    return rows
+
+
 def build_sft_dataset(samples: list[QASample]) -> Any:
-    """Build a Hugging Face dataset for TRL supervised fine-tuning."""
+    """Build a Hugging Face prompt-completion dataset for TRL fine-tuning."""
     from datasets import Dataset
 
-    return Dataset.from_list(qa_samples_to_messages(samples))
+    return Dataset.from_list(qa_samples_to_prompt_completion(samples))
 
 
 def default_lora_config() -> dict[str, Any]:
@@ -118,14 +136,9 @@ def train_lora_sft(
     )
     model = get_peft_model(model, LoraConfig(**default_lora_config()))
 
-    def formatting_func(example: dict[str, list[dict[str, str]]]) -> str:
-        parts: list[str] = []
-        for message in example["messages"]:
-            role = message["role"]
-            content = message["content"]
-            parts.append(f"<|{role}|>\n{content}")
-        return "\n".join(parts)
-
+    # No formatting_func: the dataset is conversational prompt-completion, so TRL
+    # renders it with the tokenizer's own chat template (matching inference) and
+    # masks the prompt tokens out of the loss.
     trainer = SFTTrainer(
         model=model,
         train_dataset=dataset,
@@ -136,12 +149,12 @@ def train_lora_sft(
             gradient_accumulation_steps=gradient_accumulation_steps,
             learning_rate=learning_rate,
             max_length=max_seq_length,
+            completion_only_loss=True,
             logging_steps=10,
             save_strategy="epoch",
             report_to="none",
         ),
         processing_class=tokenizer,
-        formatting_func=formatting_func,
     )
     trainer.train()
     model.save_pretrained(output_dir)
