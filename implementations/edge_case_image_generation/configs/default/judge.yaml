@@ -18,7 +18,7 @@ max_new_tokens: 256
 min_pixels: 200704
 max_pixels: 401408
 reject_margin: 2.0
-threshold: 8.0
+threshold: 7.0
 schema_hint: |
   Respond with ONLY a single JSON object (no markdown fences) using this schema:
   {
@@ -29,16 +29,14 @@ schema_hint: |
     "overall": <number 0-10>,
     "rationale": "<one short sentence>"
   }
-  Scoring guide:
-  - prompt_faithfulness: does the image show what the prompt asked for
-    (including object count — two cones when asked for one is not a 9)?
-  - physical_plausibility: would this object/condition look real in this scene
-    (perspective, lighting, contact with the ground/road)?
-  - annotation_correctness: if auto-boxes are listed, do they match visible objects?
-    If none are provided, score 5.
+  Scoring guide (workshop / bootcamp — prefer accepting usable synth over perfection):
+  - prompt_faithfulness: does the image show what the prompt asked for?
+  - physical_plausibility: would this look real in the scene (lighting, scale, contact)?
+    Score LOW (< 4) only for obvious mask rectangles, floating objects, or paste artifacts.
+  - annotation_correctness: how well listed boxes match visible objects.
+    Open-vocab detection is noisy — if the rare object is clearly visible but boxes are
+    missing, score annotation_correctness low yet still judge visibility from the pixels.
   - edge_case_present: true if the target rare condition is visible at all.
-    Must be true whenever prompt_faithfulness ≥ 7. Never set false while
-    claiming the object/condition is in the image.
-  - overall: training-ready score. Use ≥8 only when you would keep this sample.
-    Do not average away a missing edge-case. If the rare condition is missing,
-    overall must be < 6 and edge_case_present false.
+    Must be true when prompt_faithfulness ≥ 6 and the insert looks complete.
+  - overall: training-ready score. Use ≥7 when you would keep this for a rare-class
+    detector workshop (good enough, not portfolio-perfect). Reserve <6 for clear failures.

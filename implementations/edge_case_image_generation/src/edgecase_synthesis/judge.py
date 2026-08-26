@@ -67,7 +67,7 @@ class VLMJudge:
         backend: str = "qwen_vl",
         device: str | None = None,
         torch_dtype: str = "float32",
-        threshold: float = 8.5,
+        threshold: float = 7.0,
         reject_margin: float = 2.0,
         max_new_tokens: int = 320,
         min_pixels: int = 256 * 28 * 28,
@@ -219,6 +219,35 @@ class VLMJudge:
         result.model_id = self.model_id
         return result
 
+    def _judge_user_text(
+        self,
+        *,
+        prompt: str,
+        rare: str,
+        annotations_summary: str,
+        source_hint: str,
+    ) -> str:
+        accept_at = self.threshold
+        return (
+            f"You are a practical data-quality judge for synthetic training images.\n"
+            f"The image was edited from {source_hint}.\n"
+            f"Target rare condition: {rare}\n"
+            f"Generation prompt:\n{prompt}\n\n"
+            f"Auto-annotation summary:\n{annotations_summary}\n\n"
+            f"Consistency rules:\n"
+            f"- If the target rare condition is visible, edge_case_present MUST be true.\n"
+            f"- If prompt_faithfulness ≥ 6 and the insert looks complete, edge_case_present "
+            f"must be true.\n"
+            f"- Score physical_plausibility LOW (< 4) only for obvious failures: inpaint "
+            f"masks, gray/black patches, floating objects, giant scale, or clear paste "
+            f"artifacts.\n"
+            f"- Open-vocab boxes are noisy. Judge visibility from the image; do not set "
+            f"overall below 6 solely because the detector missed a visible object.\n"
+            f"- overall ≥ {accept_at:.0f} means you would keep this sample for a rare-class "
+            f"detector workshop (good enough, not perfect).\n\n"
+            f"{self.schema_hint}"
+        )
+
     def _judge_qwen(
         self,
         image: Image.Image,
@@ -229,28 +258,11 @@ class VLMJudge:
         source_hint: str,
     ) -> JudgeResult:
         assert self._model is not None and self._processor is not None
-        user_text = (
-            f"You are a strict data-quality judge for synthetic training images.\n"
-            f"The image was edited from {source_hint}.\n"
-            f"Target rare condition: {rare}\n"
-            f"Generation prompt:\n{prompt}\n\n"
-            f"Auto-annotation summary:\n{annotations_summary}\n\n"
-            f"Consistency rules:\n"
-            f"- If the target rare condition is clearly and completely visible, "
-            f"edge_case_present MUST be true.\n"
-            f"- If prompt_faithfulness ≥ 7 AND the object looks complete and natural, "
-            f"edge_case_present must be true.\n"
-            f"- Score physical_plausibility LOW (< 4) for: visible inpaint masks, gray/black "
-            f"rectangular patches, cut-off body parts at the image border, floating limbs, "
-            f"giant scale, objects stuck on car hoods, obvious paste artifacts, or shadows "
-            f"that point a different direction than the rest of the scene.\n"
-            f"- If physical_plausibility < 5, overall MUST be < 7 (do not accept).\n"
-            f"- For object-insert anomalies, annotation_correctness must be low (< 4) "
-            f"when the detector reports ZERO target boxes — unboxed samples are not "
-            f"usable for detection training.\n"
-            f"- overall ≥ 8 means you would keep this sample for detector training "
-            f"(complete natural object, correct placement, usable boxes).\n\n"
-            f"{self.schema_hint}"
+        user_text = self._judge_user_text(
+            prompt=prompt,
+            rare=rare,
+            annotations_summary=annotations_summary,
+            source_hint=source_hint,
         )
         messages = [
             {
@@ -311,28 +323,11 @@ class VLMJudge:
     ) -> JudgeResult:
         from edgecase_synthesis.vlm_api import infer_api_provider, resolve_judge_model, vision_chat
 
-        user_text = (
-            f"You are a strict data-quality judge for synthetic training images.\n"
-            f"The image was edited from {source_hint}.\n"
-            f"Target rare condition: {rare}\n"
-            f"Generation prompt:\n{prompt}\n\n"
-            f"Auto-annotation summary:\n{annotations_summary}\n\n"
-            f"Consistency rules:\n"
-            f"- If the target rare condition is clearly and completely visible, "
-            f"edge_case_present MUST be true.\n"
-            f"- If prompt_faithfulness ≥ 7 AND the object looks complete and natural, "
-            f"edge_case_present must be true.\n"
-            f"- Score physical_plausibility LOW (< 4) for: visible inpaint masks, gray/black "
-            f"rectangular patches, cut-off body parts at the image border, floating limbs, "
-            f"giant scale, objects stuck on car hoods, obvious paste artifacts, or shadows "
-            f"that point a different direction than the rest of the scene.\n"
-            f"- If physical_plausibility < 5, overall MUST be < 7 (do not accept).\n"
-            f"- For object-insert anomalies, annotation_correctness must be low (< 4) "
-            f"when the detector reports ZERO target boxes — unboxed samples are not "
-            f"usable for detection training.\n"
-            f"- overall ≥ 8 means you would keep this sample for detector training "
-            f"(complete natural object, correct placement, usable boxes).\n\n"
-            f"{self.schema_hint}"
+        user_text = self._judge_user_text(
+            prompt=prompt,
+            rare=rare,
+            annotations_summary=annotations_summary,
+            source_hint=source_hint,
         )
         model = resolve_judge_model(self.model_id)
         provider = self.api_provider or infer_api_provider(model, api_base_url=self.api_base_url)
@@ -413,17 +408,17 @@ class VLMJudge:
         cropped inserts, etc.).
         """
         looks_present = (
-            result.prompt_faithfulness >= 7.0
-            or result.overall >= self.threshold
+            result.prompt_faithfulness >= 6.0
+            or result.overall >= (self.threshold - 0.5)
         )
-        physically_ok = result.physical_plausibility >= 5.0
+        physically_ok = result.physical_plausibility >= 4.5
         if not result.edge_case_present and looks_present and physically_ok:
             result.edge_case_present = True
             note = " [reconciled: edge_case_present set true from high scores]"
             if note.strip() not in result.rationale:
                 result.rationale = (result.rationale or "").rstrip() + note
         # Cap overall when the VLM itself says the edit looks broken.
-        if result.physical_plausibility < 5.0 and result.overall >= self.threshold:
+        if result.physical_plausibility < 4.5 and result.overall >= self.threshold:
             result.overall = min(result.overall, self.threshold - 0.5)
             note = " [reconciled: overall capped — low physical_plausibility]"
             if note.strip() not in (result.rationale or ""):
@@ -436,18 +431,16 @@ class VLMJudge:
     def _decide(self, result: JudgeResult) -> str:
         """Gate on overall vs threshold (accept / retry / reject).
 
-        With threshold=8.0 and reject_margin=2.0:
-        - overall ≥ 8, edge present, and physical_plausibility ≥ 5 → accept
-        - overall < 6 or no edge → reject
+        With threshold=7.0 and reject_margin=2.0:
+        - overall ≥ 7, edge present, physical_plausibility ≥ 4.5 → accept
+        - overall < 5 or no edge → reject
         - otherwise → retry
         """
         if (not result.edge_case_present) or result.overall < (
             self.threshold - self.reject_margin
         ):
             return "reject"
-        # Broken inpaints (mask rectangles, cropped animals) must not slip through
-        # just because a fragment of the rare object is visible.
-        if result.physical_plausibility < 5.0:
+        if result.physical_plausibility < 4.5:
             if result.overall < (self.threshold - self.reject_margin):
                 return "reject"
             return "retry"
@@ -467,7 +460,7 @@ class VLMJudge:
             backend=str(judge.get("backend", "api")),
             device=device,
             torch_dtype=str(judge.get("torch_dtype", "float32")),
-            threshold=float(judge.get("threshold", 8.5)),
+            threshold=float(judge.get("threshold", 7.0)),
             reject_margin=float(judge.get("reject_margin", 2.0)),
             max_new_tokens=int(judge.get("max_new_tokens", 320)),
             min_pixels=int(judge.get("min_pixels", 256 * 28 * 28)),
