@@ -77,6 +77,7 @@ def build_cls_dataset(
     out_dir: Path | str,
     class_names: list[str],
     include_synthetic: bool = True,
+    max_synthetic_per_class: int | None = None,
     copy_images: bool = False,
     balance_train: bool = False,
     dataset_name: str = "edgecase_cls",
@@ -93,9 +94,11 @@ def build_cls_dataset(
     Image label = manifest ``tag`` (``scene``, ``traffic_cone``, ``ground_animal``, …).
     Test (real-only) is written to ``val``.
 
+    When ``max_synthetic_per_class`` is set, at most that many synthetic train rows
+    per ``anomaly_id`` / ``tag`` are kept (same ablation knobs as detection NB3).
+
     When ``balance_train`` is True, minority classes in ``train/`` are oversampled
-    (symlink/copy duplicates) to match the majority class count so SGD sees each
-    class equally often — critical when ``scene`` ≫ rares.
+    to match the majority class count.
     """
     root = Path(out_dir)
     if root.exists():
@@ -107,6 +110,7 @@ def build_cls_dataset(
     train_stats = ClsDatasetBuildStats()
     val_stats = ClsDatasetBuildStats()
     label_records: dict[str, list[dict[str, str]]] = {"train": [], "val": []}
+    synth_per_class: dict[str, int] = {}
 
     def _ingest(rows: list[dict[str, Any]], split: str, stats: ClsDatasetBuildStats) -> None:
         for row in rows:
@@ -115,6 +119,15 @@ def build_cls_dataset(
                 continue
             if split == "val" and kind == "synthetic":
                 continue
+            if (
+                split == "train"
+                and kind == "synthetic"
+                and max_synthetic_per_class is not None
+            ):
+                synth_key = str(row.get("anomaly_id") or row.get("tag") or "unknown")
+                if synth_per_class.get(synth_key, 0) >= int(max_synthetic_per_class):
+                    continue
+                synth_per_class[synth_key] = synth_per_class.get(synth_key, 0) + 1
             label = _row_label(row, class_names)
             if label is None:
                 stats.n_skipped += 1
@@ -150,6 +163,7 @@ def build_cls_dataset(
         {
             "dataset_name": dataset_name,
             "include_synthetic": include_synthetic,
+            "max_synthetic_per_class": max_synthetic_per_class,
             "balance_train": balance_train,
             "class_names": class_names,
             "train": train_stats.__dict__,

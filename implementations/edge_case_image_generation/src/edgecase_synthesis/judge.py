@@ -463,7 +463,7 @@ class VLMJudge:
             if hardware is not None:
                 device = hardware.get("device")
         return cls(
-            model_id=str(judge.get("model_id", "gemini-3.5-flash")),
+            model_id=str(judge.get("model_id", "gemini-3-flash-preview")),
             backend=str(judge.get("backend", "api")),
             device=device,
             torch_dtype=str(judge.get("torch_dtype", "float32")),

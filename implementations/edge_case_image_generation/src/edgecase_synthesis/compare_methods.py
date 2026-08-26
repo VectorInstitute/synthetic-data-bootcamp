@@ -7,7 +7,8 @@ NB1.5 compares five edit paths; **production (NB1 / NB2) defaults to ``instruct`
 2. ``inpaint`` — localized hole + SD/Klein inpaint (mask required)
 3. ``instruct`` — Klein / IP2P instruction editor (**small local**; default generator)
 4. ``vlm_generate_local`` — Qwen-Image-Edit (**large local** instruct-class editor)
-5. ``vlm_generate_api`` — cloud Gemini / GPT Image API edit
+5. ``vlm_generate_api`` — cloud image API edit (**disabled by default**; Vector
+   proxy keys today are chat/vision only — fine for the judge, not for pixels)
 """
 
 from __future__ import annotations
@@ -168,8 +169,9 @@ METHOD_SPECS: dict[str, MethodSpec] = {
         uses_depth=False,
         uses_seg=False,
         summary=(
-            "Cloud image model (Gemini *-image / GPT Image). Stronger semantics; "
-            "NB1.5 comparison column — production pipeline uses API for **judge**, not edit."
+            "Cloud *image* model edit (needs an image-capable model ID). Disabled by "
+            "default: Vector proxy models are chat/vision (judge-only). Opt in via "
+            "``generation.vlm_api_enabled=true`` + INCLUDE_VLM_API when an image model exists."
         ),
     ),
     VLM_GENERATE_ALIAS: MethodSpec(
@@ -221,7 +223,7 @@ class MethodComparer:
         inpaint_guidance_scale: float | None = None,
         device: str | None = None,
         seg_as_canny: bool = False,
-        vlm_api_model: str = "gemini-3.5-flash",
+        vlm_api_model: str = "gemini-3.1-flash-image",
         vlm_generate_backend: str = "local",
         vlm_mode: str = "edit",
         vlm_provider: str | None = None,
@@ -933,7 +935,13 @@ class MethodComparer:
         anomaly_id: str,
         generation_cfg: Any,
     ) -> GenerationResult:
-        from edgecase_synthesis.vlm_generate import VlmGenerateConfig, generate_with_vlm
+        from edgecase_synthesis.vlm_generate import (
+            VlmGenerateConfig,
+            generate_with_vlm,
+            require_vlm_api_enabled,
+        )
+
+        require_vlm_api_enabled(generation_cfg.get("vlm_api_enabled", False))
 
         model = str(generation_cfg.get("vlm_api_model", self.vlm_api_model))
         mode = str(generation_cfg.get("vlm_mode", self.vlm_mode)).lower()
@@ -1011,7 +1019,7 @@ class MethodComparer:
             ),
             device=device,
             seg_as_canny=seg_as_canny,
-            vlm_api_model=str(generation.get("vlm_api_model") or "gemini-3.5-flash"),
+            vlm_api_model=str(generation.get("vlm_api_model") or "gemini-3.1-flash-image"),
             vlm_generate_backend=str(generation.get("vlm_generate_backend") or "local"),
             vlm_mode=str(generation.get("vlm_mode") or "edit"),
             vlm_provider=generation.get("vlm_provider"),

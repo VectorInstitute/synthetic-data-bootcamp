@@ -48,13 +48,16 @@ global_anomaly_ids:
   - dusk
 # VLM image edit (NB1.5 comparison columns 4–5 only).
 # Production generation (NB1/NB2) uses ``instruct`` (Klein) — not these keys.
+# Judge uses the Vector proxy (chat/vision). Image *generation* via API is off until
+# an image-capable model is available on the proxy (current models are chat-only).
 vlm_generate_backend: local   # local | api — only when method=vlm_generate
+vlm_api_enabled: false        # opt-in for NB1.5 vlm_generate_api; keep false for Vector chat keys
 vlm_local_model_id: Qwen/Qwen-Image-Edit   # ~20B / tens of GB disk; opt-in on NB1.5
 vlm_local_num_inference_steps: 20
 vlm_local_true_cfg_scale: 4.0
 vlm_local_max_side: 768
 vlm_mode: edit                # edit = seed + instruction; generate = text-only (API only)
-vlm_api_model: gemini-3.5-flash
+vlm_api_model: gemini-3.1-flash-image   # placeholder; needs an image-capable ID when enabling
 vlm_api_base_url: https://proxy.vectorinstitute.ai/v1
 vlm_provider: null
 vlm_api_key: null        # null → OPENAI_API_KEY (vp_… Vector key)

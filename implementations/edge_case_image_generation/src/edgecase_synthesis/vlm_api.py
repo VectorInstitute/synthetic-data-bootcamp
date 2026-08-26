@@ -1,4 +1,4 @@
-"""Shared helpers for cloud vision / image API calls (Gemini + OpenAI)."""
+"""Shared helpers for cloud vision / image API calls (Gemini + OpenAI / Vector proxy)."""
 
 from __future__ import annotations
 
@@ -13,18 +13,12 @@ ApiProvider = Literal["gemini", "openai", "vector_proxy"]
 
 VECTOR_PROXY_BASE_URL = "https://proxy.vectorinstitute.ai/v1"
 
-# Vision / judge models (text + image in → text out). NOT image-generation IDs.
+# Friendly names → API model IDs (vision chat → text). Not image-generation IDs.
 JUDGE_MODEL_ALIASES: dict[str, str] = {
     "gemini 3 flash": "gemini-3-flash-preview",
     "gemini-3-flash": "gemini-3-flash-preview",
     "gemini 3.1 flash": "gemini-3.1-flash-preview",
     "gemini-3.1-flash": "gemini-3.1-flash-preview",
-    "gemini 3.1 flash lite": "gemini-3.1-flash-lite-preview",
-    "gemini-3.1-flash-lite": "gemini-3.1-flash-lite-preview",
-    "gemini 3.1 pro": "gemini-3.1-pro-preview",
-    "gemini-3.1-pro": "gemini-3.1-pro-preview",
-    "gemini 3 pro": "gemini-3-pro-preview",
-    "gemini-3-pro": "gemini-3-pro-preview",
     "gemini 3.5 flash": "gemini-3.5-flash",
     "gemini-3.5-flash": "gemini-3.5-flash",
     "gpt-4o": "gpt-4o",
@@ -33,13 +27,9 @@ JUDGE_MODEL_ALIASES: dict[str, str] = {
 
 
 def resolve_judge_model(name: str) -> str:
-    key = str(name or "").strip().lower().replace("_", "-")
-    spaced = " ".join(str(name or "").strip().lower().replace("_", " ").replace("-", " ").split())
-    if spaced in JUDGE_MODEL_ALIASES:
-        return JUDGE_MODEL_ALIASES[spaced]
-    if key in JUDGE_MODEL_ALIASES:
-        return JUDGE_MODEL_ALIASES[key]
-    return str(name).strip()
+    raw = str(name or "").strip()
+    spaced = " ".join(raw.lower().replace("_", " ").replace("-", " ").split())
+    return JUDGE_MODEL_ALIASES.get(spaced, raw)
 
 
 def infer_api_provider(model: str, *, api_base_url: str | None = None) -> ApiProvider:
@@ -51,28 +41,49 @@ def infer_api_provider(model: str, *, api_base_url: str | None = None) -> ApiPro
     return "gemini"
 
 
-def default_api_base_url() -> str | None:
-    """Vector Institute proxy (OpenAI-compatible). Override via env or config."""
+def resolve_proxy_base_url(explicit: str | None = None) -> str:
     return (
-        os.environ.get("VECTOR_PROXY_BASE_URL")
+        explicit
+        or os.environ.get("VECTOR_PROXY_BASE_URL")
         or os.environ.get("OPENAI_BASE_URL")
         or VECTOR_PROXY_BASE_URL
     )
 
 
+def _first_env(*names: str) -> str | None:
+    for name in names:
+        val = os.environ.get(name)
+        if val:
+            return val
+    return None
+
+
 def proxy_api_key(explicit: str | None = None) -> str:
-    """API key for the Vector OpenAI-compatible proxy (``vp_…`` keys)."""
-    key = (
-        explicit
-        or os.environ.get("OPENAI_API_KEY")
-        or os.environ.get("VECTOR_PROXY_API_KEY")
-        or os.environ.get("GEMINI_API_KEY")
-        or os.environ.get("GOOGLE_API_KEY")
+    """Vector OpenAI-compatible proxy key (``vp_…``)."""
+    key = explicit or _first_env(
+        "OPENAI_API_KEY",
+        "VECTOR_PROXY_API_KEY",
+        "GEMINI_API_KEY",
+        "GOOGLE_API_KEY",
     )
     if not key:
         raise EnvironmentError(
             "Missing API key for Vector proxy. Set OPENAI_API_KEY (or VECTOR_PROXY_API_KEY)."
         )
+    return key
+
+
+def gemini_api_key(explicit: str | None = None) -> str:
+    key = explicit or _first_env("GEMINI_API_KEY", "GOOGLE_API_KEY", "GOOGLE_GENAI_API_KEY")
+    if not key:
+        raise EnvironmentError("Missing Gemini API key. Set GEMINI_API_KEY (or GOOGLE_API_KEY).")
+    return key
+
+
+def openai_api_key(explicit: str | None = None) -> str:
+    key = explicit or os.environ.get("OPENAI_API_KEY")
+    if not key:
+        raise EnvironmentError("Missing OpenAI API key. Set OPENAI_API_KEY.")
     return key
 
 
@@ -90,27 +101,6 @@ def make_openai_client(
     if base_url:
         return OpenAI(api_key=proxy_api_key(api_key), base_url=base_url)
     return OpenAI(api_key=openai_api_key(api_key))
-
-
-def gemini_api_key(explicit: str | None = None) -> str:
-    key = (
-        explicit
-        or os.environ.get("GEMINI_API_KEY")
-        or os.environ.get("GOOGLE_API_KEY")
-        or os.environ.get("GOOGLE_GENAI_API_KEY")
-    )
-    if not key:
-        raise EnvironmentError(
-            "Missing Gemini API key. Set GEMINI_API_KEY (or GOOGLE_API_KEY)."
-        )
-    return key
-
-
-def openai_api_key(explicit: str | None = None) -> str:
-    key = explicit or os.environ.get("OPENAI_API_KEY")
-    if not key:
-        raise EnvironmentError("Missing OpenAI API key. Set OPENAI_API_KEY.")
-    return key
 
 
 def pil_to_png_bytes(image: Image.Image, *, max_side: int | None = 1024) -> bytes:
@@ -142,21 +132,14 @@ def vision_chat(
 ) -> str:
     """Multimodal chat: one RGB image + text → assistant text."""
     model = resolve_judge_model(model)
-    base_url = api_base_url
-    provider = provider or infer_api_provider(model, api_base_url=base_url)
+    provider = provider or infer_api_provider(model, api_base_url=api_base_url)
     if provider == "vector_proxy":
-        resolved_base = (
-            base_url
-            or os.environ.get("VECTOR_PROXY_BASE_URL")
-            or os.environ.get("OPENAI_BASE_URL")
-            or VECTOR_PROXY_BASE_URL
-        )
         return _vision_chat_openai(
             user_text,
             image,
             model=model,
             api_key=api_key,
-            api_base_url=resolved_base,
+            api_base_url=resolve_proxy_base_url(api_base_url),
             max_side=max_side,
         )
     if provider == "openai":
@@ -165,7 +148,7 @@ def vision_chat(
             image,
             model=model,
             api_key=api_key,
-            api_base_url=base_url,
+            api_base_url=api_base_url,
             max_side=max_side,
         )
     return _vision_chat_gemini(user_text, image, model=model, api_key=api_key, max_side=max_side)
@@ -197,7 +180,6 @@ def _vision_chat_gemini(
     text = getattr(response, "text", None)
     if text:
         return str(text)
-    # Fallback parse candidates.
     for cand in getattr(response, "candidates", None) or []:
         content = getattr(cand, "content", None)
         for part in getattr(content, "parts", None) or []:
@@ -233,6 +215,4 @@ def _vision_chat_openai(
             }
         ],
     )
-    choice = response.choices[0].message
-    content = getattr(choice, "content", None) or ""
-    return str(content)
+    return str(getattr(response.choices[0].message, "content", None) or "")

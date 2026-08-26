@@ -227,7 +227,11 @@ class AnomalyEditor:
 
         if method in {"vlm_generate", "vlm_generate_local", "vlm_generate_api"}:
             from edgecase_synthesis.compare_methods import resolve_effective_method
-            from edgecase_synthesis.vlm_generate import VlmGenerateConfig, generate_with_vlm
+            from edgecase_synthesis.vlm_generate import (
+                VlmGenerateConfig,
+                generate_with_vlm,
+                require_vlm_api_enabled,
+            )
 
             effective = resolve_effective_method(method, merged)
             if effective == "vlm_generate_local":
@@ -258,9 +262,10 @@ class AnomalyEditor:
                     method="vlm_generate_local",
                 )
 
+            require_vlm_api_enabled(merged.get("vlm_api_enabled", False))
             mode = str(merged.get("vlm_mode", "edit")).lower()
             cfg = VlmGenerateConfig(
-                model=str(merged.get("vlm_api_model") or "gemini-3.5-flash"),
+                model=str(merged.get("vlm_api_model") or "gemini-3.1-flash-image"),
                 mode="generate" if mode == "generate" else "edit",
                 provider=merged.get("vlm_provider"),
                 api_key=merged.get("vlm_api_key"),
