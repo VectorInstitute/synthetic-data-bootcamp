@@ -69,7 +69,7 @@ def train_lora_sft(
     samples: list[QASample],
     output_dir: Path,
     *,
-    base_model: str = "Qwen/Qwen2.5-3B-Instruct",
+    base_model: str = "Qwen/Qwen2.5-0.5B-Instruct",
     num_train_epochs: float = 1.0,
     per_device_train_batch_size: int = 1,
     gradient_accumulation_steps: int = 4,
