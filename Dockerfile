@@ -20,9 +20,9 @@ RUN apt-get update \
     && curl -fsSL https://ollama.com/install.sh | sh
 
 ENV OLLAMA_HOST=127.0.0.1:11434
-ENV OLLAMA_MODEL=qwen2.5:3b-instruct
+ENV OLLAMA_MODEL=qwen2.5:0.5b-instruct
 ENV SMALL_MODEL_BASE_URL=http://127.0.0.1:11434/v1
-ENV SMALL_MODEL_NAME=qwen2.5:3b-instruct
+ENV SMALL_MODEL_NAME=qwen2.5:0.5b-instruct
 ENV SMALL_MODEL_API_KEY=ollama
 
 # !!IMPORTANT!!

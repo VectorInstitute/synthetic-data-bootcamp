@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 def create_small_model_client(
     *,
-    default_model: str = "qwen2.5:3b-instruct",
+    default_model: str = "qwen2.5:0.5b-instruct",
 ) -> OpenAICompatibleClient:
     """Create a client for the small model under evaluation.
 

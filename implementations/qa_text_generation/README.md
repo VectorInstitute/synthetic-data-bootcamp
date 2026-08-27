@@ -105,12 +105,12 @@ To try a different SLM, update **both** of these in `.env` (keep them equal), th
 
 | Variable | Role |
 |----------|------|
-| `OLLAMA_MODEL` | Model tag pulled/served by Ollama (e.g. `qwen2.5:3b-instruct`) |
+| `OLLAMA_MODEL` | Model tag pulled/served by Ollama (e.g. `qwen2.5:0.5b-instruct`) |
 | `SMALL_MODEL_NAME` | Name passed to the OpenAI-compatible client |
 | `OLLAMA_HOST` | Host:port for the Ollama server (default `127.0.0.1:11434`) |
 | `SMALL_MODEL_BASE_URL` | Same host with `/v1` (Ollama’s OpenAI-compatible API) |
 
-Optional local cleanup: `ollama stop qwen2.5:3b-instruct` (Coder VMs usually tear this down on stop anyway).
+Optional local cleanup: `ollama stop qwen2.5:0.5b-instruct` (Coder VMs usually tear this down on stop anyway).
 
 4. Open `01_baseline_evaluation.ipynb` and work through notebooks 01 → 05.
    Notebook 06 is optional: it builds DPO preference pairs from the SEC
@@ -153,7 +153,7 @@ docker run --rm -p 8888:8888 \
   synthetic-data-bootcamp
 ```
 
-Open Jupyter at `http://localhost:8888`, copy `.env` under this RI if needed, then start Ollama as above. On first start, pulling `qwen2.5:3b-instruct` may take a few minutes (~2 GB).
+Open Jupyter at `http://localhost:8888`, copy `.env` under this RI if needed, then start Ollama as above. On first start, pulling `qwen2.5:0.5b-instruct` may take a few minutes (~2 GB).
 
 **GCP VM (CPU, e.g. `e2-standard-4`):**
 
