@@ -3,8 +3,15 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
-from aieng.syn_data.text.dpo.generate import filter_sec_train_paragraphs
+from aieng.syn_data.text.dpo.evaluation import (
+    build_preference_judge_prompt,
+    judge_model_preference,
+    split_calibration_prompts,
+    summarize_preferences,
+)
+from aieng.syn_data.text.dpo.generate import filter_sec_paragraphs
 from aieng.syn_data.text.dpo.pairs import (
     candidates_to_dpo_pairs,
     summarize_rejected_kinds,
@@ -21,6 +28,7 @@ from aieng.syn_data.text.dpo.schemas import (
     PreferenceCandidate,
     PreferencePair,
 )
+from aieng.syn_data.text.dpo.train import pairs_to_trl_rows
 from aieng.syn_data.text.io import load_typed_jsonl, save_typed_jsonl
 from aieng.syn_data.text.schemas import DocumentRole, Paragraph, ParagraphSplit
 
@@ -74,7 +82,7 @@ def _prompt_with_candidates(
     )
 
 
-def test_filter_sec_train_paragraphs() -> None:
+def test_filter_sec_paragraphs() -> None:
     paragraphs = [
         _paragraph(
             "sec_investor_bulletin",
@@ -92,9 +100,11 @@ def test_filter_sec_train_paragraphs() -> None:
             ParagraphSplit.TRAIN,
         ),
     ]
-    kept = filter_sec_train_paragraphs(paragraphs)
-    assert len(kept) == 1
-    assert kept[0].para_id == "sec_investor_bulletin::p0000"
+    kept = filter_sec_paragraphs(paragraphs)
+    assert {paragraph.para_id for paragraph in kept} == {
+        "sec_investor_bulletin::p0000",
+        "sec_investor_bulletin::p0001",
+    }
 
 
 def test_candidates_to_dpo_pairs_expands_three_rejected() -> None:
@@ -166,6 +176,16 @@ def test_preference_pair_jsonl_roundtrip(tmp_path: Path) -> None:
     }
 
 
+def test_pairs_to_trl_rows_uses_conversational_format() -> None:
+    pair = candidates_to_dpo_pairs([_prompt_with_candidates()])[0]
+    row = pairs_to_trl_rows([pair])[0]
+
+    assert row["prompt"][0]["role"] == "system"
+    assert row["prompt"][1] == {"role": "user", "content": pair.prompt}
+    assert row["chosen"] == [{"role": "assistant", "content": pair.chosen}]
+    assert row["rejected"] == [{"role": "assistant", "content": pair.rejected}]
+
+
 def test_calibration_prompt_jsonl_roundtrip(tmp_path: Path) -> None:
     prompt = _prompt_with_candidates()
     path = tmp_path / "candidates.jsonl"
@@ -186,3 +206,52 @@ def test_boundary_prompts_mention_question_kind() -> None:
     assert "correctly_scoped" in cand
     assert "authority_misattribution" in cand
     assert "source passage" in DEFAULT_BOUNDARY_INSTRUCTION.lower()
+
+
+def test_split_calibration_prompts_holds_out_each_kind() -> None:
+    prompts: list[CalibrationPrompt] = []
+    for kind in BoundaryQuestionKind:
+        for index in range(2):
+            prompt = _prompt_with_candidates()
+            prompt.id = f"{kind.value}-{index}"
+            prompt.question_kind = kind
+            prompts.append(prompt)
+
+    train, evaluation = split_calibration_prompts(prompts)
+
+    assert len(train) == 3
+    assert len(evaluation) == 3
+    assert {prompt.question_kind for prompt in evaluation} == set(BoundaryQuestionKind)
+    assert {prompt.id for prompt in train}.isdisjoint(
+        {prompt.id for prompt in evaluation}
+    )
+
+
+class _OrderedJudge:
+    """Prefer DPO by recognizing which response occupies each position."""
+
+    def complete_json(self, prompt: str, **_: Any) -> dict[str, str]:
+        answer_a = prompt.split("Response A:\n", 1)[1].split("\n\nResponse B:", 1)[0]
+        return {
+            "winner": "A" if "DPO answer" in answer_a else "B",
+            "reasoning": "The DPO answer is better scoped.",
+        }
+
+
+def test_preference_judge_is_position_balanced_and_has_no_gold() -> None:
+    prompt = _prompt_with_candidates()
+    judge_prompt = build_preference_judge_prompt(prompt, "base", "dpo")
+    assert prompt.context in judge_prompt
+    assert prompt.chosen_answer() not in judge_prompt
+    assert "no gold answer" in judge_prompt.lower()
+
+    result = judge_model_preference(
+        _OrderedJudge(), prompt, "Baseline answer", "DPO answer"
+    )
+    assert result.winner == "dpo"
+    assert result.forward_winner == "dpo"
+    assert result.reverse_winner == "dpo"
+
+    summary = summarize_preferences([result])
+    assert summary["overall"]["dpo_wins"] == 1
+    assert summary["overall"]["dpo_preference_rate"] == 1.0

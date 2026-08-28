@@ -42,7 +42,6 @@ def candidates_to_dpo_pairs(
             continue
         sample = prompt.to_qa_sample()
         user_prompt = build_eval_prompt(sample)
-        full_prompt = f"{system}\n\n{user_prompt}"
         for kind in REJECTED_CANDIDATE_KINDS:
             candidate = prompt.candidate_by_kind(kind)
             if candidate is None:
@@ -58,7 +57,7 @@ def candidates_to_dpo_pairs(
             pairs.append(
                 PreferencePair(
                     id=f"{prompt.id}-{kind.value}",
-                    prompt=full_prompt,
+                    prompt=user_prompt,
                     chosen=chosen,
                     rejected=rejected,
                     rejected_kind=kind,
@@ -69,6 +68,7 @@ def candidates_to_dpo_pairs(
                         "question_kind": prompt.question_kind.value,
                         "rejected_rationale": candidate.rationale,
                         "candidate_kind": kind.value,
+                        "system": system,
                     },
                 )
             )

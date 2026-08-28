@@ -156,7 +156,7 @@ class PreferencePair:
     metadata: dict[str, Any] = field(default_factory=dict)
 
     def to_trl_row(self) -> dict[str, str]:
-        """Return the three fields expected by TRL ``DPOTrainer``."""
+        """Return the portable flat prompt/chosen/rejected representation."""
         return {
             "prompt": self.prompt,
             "chosen": self.chosen,

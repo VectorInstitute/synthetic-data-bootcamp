@@ -6,12 +6,33 @@ from pathlib import Path
 from typing import Any
 
 from aieng.syn_data.text.dpo.schemas import PreferencePair
+from aieng.syn_data.text.evaluation import DEFAULT_EVAL_SYSTEM
 from aieng.syn_data.text.sft import default_lora_config
 
 
-def pairs_to_trl_rows(pairs: list[PreferencePair]) -> list[dict[str, str]]:
-    """Convert preference pairs into TRL DPOTrainer rows."""
-    return [pair.to_trl_row() for pair in pairs]
+def pairs_to_trl_rows(pairs: list[PreferencePair]) -> list[dict[str, Any]]:
+    """Convert pairs to TRL's conversational preference format.
+
+    TRL applies the model tokenizer's chat template to these messages. This keeps
+    DPO training tokens aligned with :class:`Hf4BitInferenceClient` inference.
+    """
+    rows: list[dict[str, Any]] = []
+    for pair in pairs:
+        prompt = [
+            {
+                "role": "system",
+                "content": str(pair.metadata.get("system", DEFAULT_EVAL_SYSTEM)),
+            },
+            {"role": "user", "content": pair.prompt},
+        ]
+        rows.append(
+            {
+                "prompt": prompt,
+                "chosen": [{"role": "assistant", "content": pair.chosen}],
+                "rejected": [{"role": "assistant", "content": pair.rejected}],
+            }
+        )
+    return rows
 
 
 def build_dpo_dataset(pairs: list[PreferencePair]) -> Any:
@@ -65,6 +86,7 @@ def train_lora_dpo(
     gradient_accumulation_steps: int = 4,
     learning_rate: float = 5e-5,
     beta: float = 0.1,
+    max_seq_length: int = 1024,
 ) -> Path:
     """Fine-tune a small model with 4-bit LoRA using TRL DPOTrainer."""
     import torch
@@ -106,6 +128,7 @@ def train_lora_dpo(
             gradient_accumulation_steps=gradient_accumulation_steps,
             learning_rate=learning_rate,
             beta=beta,
+            max_length=max_seq_length,
             logging_steps=10,
             save_strategy="epoch",
             report_to="none",

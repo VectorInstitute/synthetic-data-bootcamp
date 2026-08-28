@@ -24,7 +24,7 @@ from aieng.syn_data.text.dpo.schemas import (
     CandidateKind,
     PreferenceCandidate,
 )
-from aieng.syn_data.text.schemas import DocumentRole, Paragraph, ParagraphSplit
+from aieng.syn_data.text.schemas import DocumentRole, Paragraph
 
 
 logger = logging.getLogger(__name__)
@@ -43,17 +43,21 @@ _CANDIDATE_KEYS: tuple[tuple[str, CandidateKind], ...] = (
 )
 
 
-def filter_sec_train_paragraphs(
+def filter_sec_paragraphs(
     paragraphs: list[Paragraph],
     *,
     doc_id: str = SEC_DOC_ID,
 ) -> list[Paragraph]:
-    """Keep train-split SEC / scope-boundary paragraphs only."""
+    """Keep SEC / scope-boundary paragraphs from every notebook-01 split.
+
+    Evaluation holds out generated questions, not notebook 01's test paragraphs,
+    so both train and test chunks are valid source text. CFPB / other roles are
+    still excluded because this notebook is SEC-only.
+    """
     return [
         paragraph
         for paragraph in paragraphs
         if paragraph.doc_id == doc_id
-        and paragraph.split == ParagraphSplit.TRAIN
         and paragraph.role == DocumentRole.SCOPE_BOUNDARY
     ]
 
@@ -85,7 +89,7 @@ def generate_boundary_prompts(
     *,
     n_questions: int = DEFAULT_DPO_QUESTIONS,
 ) -> list[CalibrationPrompt]:
-    """Generate grounded boundary questions from SEC train paragraphs.
+    """Generate grounded boundary questions from SEC scope-boundary paragraphs.
 
     Cycles in-scope, out-of-scope, and gray-boundary types. Does not yet
     attach candidate answers; call :func:`generate_calibration_candidates`.
