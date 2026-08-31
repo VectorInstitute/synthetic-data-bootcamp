@@ -50,10 +50,16 @@ def split_calibration_prompts(
     more examples.
     """
     eval_ids: set[str] = set()
+
     for kind in BoundaryQuestionKind:
         matching = [prompt for prompt in prompts if prompt.question_kind == kind]
         if len(matching) >= 2:
             eval_ids.add(matching[-1].id)
+        if len(matching) >= 3:
+            # Add another one to val set
+            eval_ids.add(matching[-2].id)
+
+
 
     train = [prompt for prompt in prompts if prompt.id not in eval_ids]
     evaluation = [prompt for prompt in prompts if prompt.id in eval_ids]
