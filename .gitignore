@@ -35,9 +35,6 @@ implementations/qa_text_generation/data/**
 # ignore experiment artifacts and datasets
 **.pkl
 **.csv
-**/dataset_meta.json
-**/*_domain.json
-**/meta_info.json
 
 # Tabular data gitignore
 implementations/tabular_data/**.csv

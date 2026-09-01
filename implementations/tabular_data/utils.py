@@ -17,11 +17,24 @@ def download_folder(folder_url: str, output_dir: Path) -> Path:
     )
     return output_dir
 
-def download_and_save_data(dataset_name: str, output_dir: Path) -> Path:
+def download_and_save_single_table_data(dataset_name: str, output_dir: Path) -> Path:
     """Download the raw dataset and save it to the output directory."""
     if dataset_name == "Berka":
         folder_url = f"https://drive.google.com/drive/folders/1LA23XSQTin7p6oWtxg7GL7_Qm_sSJ4sn"
-        logger.info(f"Downloading the transaction table of theBerka dataset from {folder_url} -> {output_dir}")
+        logger.info(f"Downloading the transaction table of the Berka dataset from {folder_url} -> {output_dir}")
+        download_folder(folder_url, output_dir)
+    else:
+        raise ValueError(f"Dataset {dataset_name} not found in the supported datasets.\
+            Please implement your own dataset download function.")
+    return output_dir
+
+
+
+def download_and_save_multi_table_data(dataset_name: str, output_dir: Path) -> Path:
+    """Download the raw dataset and save it to the output directory."""
+    if dataset_name == "Berka":
+        folder_url = f"https://drive.google.com/drive/folders/14kodt5XsnHYgVlvaJ4R6Qm5WSgvRbVmp?usp=sharing"
+        logger.info(f"Downloading all the tables of the Berka dataset from {folder_url} -> {output_dir}")
         download_folder(folder_url, output_dir)
     else:
         raise ValueError(f"Dataset {dataset_name} not found in the supported datasets.\

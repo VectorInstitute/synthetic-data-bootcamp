@@ -1,0 +1,26 @@
+{
+    "trans_date": {
+        "type": "continuous"
+    },
+    "trans_type": {
+        "type": "discrete"
+    },
+    "operation": {
+        "type": "discrete"
+    },
+    "amount": {
+        "type": "continuous"
+    },
+    "balance": {
+        "type": "continuous"
+    },
+    "k_symbol": {
+        "type": "discrete"
+    },
+    "bank": {
+        "type": "discrete"
+    },
+    "account": {
+        "type": "continuous"
+    }
+}
