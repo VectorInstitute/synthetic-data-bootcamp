@@ -79,7 +79,7 @@ def _complete_json(
                 max_tokens=max_tokens,
             ),
         )
-    raw = client.complete(prompt, system=system, temperature=0.4, max_tokens=max_tokens)
+    raw = client.complete(prompt, system=system, temperature=0.6, max_tokens=max_tokens)
     return cast(dict[str, Any], json.loads(extract_json_text(raw)))
 
 
@@ -87,65 +87,66 @@ def generate_boundary_prompts(
     teacher: LLMClient,
     paragraphs: list[Paragraph],
     *,
-    n_questions: int = DEFAULT_DPO_QUESTIONS,
+    n_questions_per_par: int = DEFAULT_DPO_QUESTIONS,
 ) -> list[CalibrationPrompt]:
     """Generate grounded boundary questions from SEC scope-boundary paragraphs.
 
-    Cycles in-scope, out-of-scope, and gray-boundary types. Does not yet
-    attach candidate answers; call :func:`generate_calibration_candidates`.
+    generate a promp for each question kind: in-scope, out-of-scope, and gray-boundary.
+    Does not yet attach candidate answers; call :func:`generate_calibration_candidates`.
     """
     if not paragraphs:
         return []
 
     prompts: list[CalibrationPrompt] = []
-    for index in range(n_questions):
-        paragraph = paragraphs[index % len(paragraphs)]
-        question_kind = _QUESTION_KIND_CYCLE[index % len(_QUESTION_KIND_CYCLE)]
-        try:
-            payload = _complete_json(
-                teacher,
-                boundary_question_prompt(paragraph.text, question_kind),
-                system=BOUNDARY_QUESTION_SYSTEM,
-                max_tokens=512,
-            )
-        except (
-            KeyError,
-            ValueError,
-            TypeError,
-            RuntimeError,
-            requests.HTTPError,
-        ) as exc:
-            logger.warning(
-                "Skipping boundary question for %s: %s: %s",
-                paragraph.para_id,
-                type(exc).__name__,
-                exc,
-            )
-            continue
+    for _ in range(n_questions_per_par):
+        for index in range(len(paragraphs)):
+            paragraph = paragraphs[index]
+            for question_kind in _QUESTION_KIND_CYCLE:
+                try:
+                    payload = _complete_json(
+                        teacher,
+                        boundary_question_prompt(paragraph.text, question_kind),
+                        system=BOUNDARY_QUESTION_SYSTEM,
+                        max_tokens=512,
+                    )
+                except (
+                    KeyError,
+                    ValueError,
+                    TypeError,
+                    RuntimeError,
+                    requests.HTTPError,
+                ) as exc:
+                    logger.warning(
+                        "Skipping boundary question for %s: %s: %s",
+                        paragraph.para_id,
+                        type(exc).__name__,
+                        exc,
+                    )
+                    continue
 
-        question = str(payload.get("question", "")).strip()
-        if not question:
-            logger.warning("Empty question for paragraph %s", paragraph.para_id)
-            continue
+                question = str(payload.get("question", "")).strip()
+                if not question:
+                    logger.warning("Empty question for paragraph %s", paragraph.para_id)
+                    continue
 
-        kind_raw = str(payload.get("question_kind", question_kind.value)).strip()
-        try:
-            parsed_kind = BoundaryQuestionKind(kind_raw)
-        except ValueError:
-            parsed_kind = question_kind
+                kind_raw = str(payload.get("question_kind", question_kind.value)).strip()
+                try:
+                    parsed_kind = BoundaryQuestionKind(kind_raw)
+                except ValueError:
+                    parsed_kind = question_kind
 
-        prompts.append(
-            CalibrationPrompt(
-                id=f"dpo-{uuid.uuid4().hex[:8]}",
-                question=question,
-                doc_id=paragraph.doc_id,
-                para_id=paragraph.para_id,
-                context=paragraph.text,
-                question_kind=parsed_kind,
-                instruction=DEFAULT_BOUNDARY_INSTRUCTION,
-                metadata={"requested_question_kind": question_kind.value},
-            )
-        )
+                prompts.append(
+                    CalibrationPrompt(
+                        id=f"dpo-{uuid.uuid4().hex[:8]}",
+                        question=question,
+                        doc_id=paragraph.doc_id,
+                        para_id=paragraph.para_id,
+                        context=paragraph.text,
+                        question_kind=parsed_kind,
+                        instruction=DEFAULT_BOUNDARY_INSTRUCTION,
+                        metadata={"requested_question_kind": question_kind.value},
+                    )
+                )
     return prompts
 
 

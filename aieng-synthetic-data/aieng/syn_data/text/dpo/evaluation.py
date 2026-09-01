@@ -42,6 +42,7 @@ class PreferenceJudgment:
 
 def split_calibration_prompts(
     prompts: list[CalibrationPrompt],
+    number_val_per_kind: int = 1,
 ) -> tuple[list[CalibrationPrompt], list[CalibrationPrompt]]:
     """Hold out one prompt of each boundary kind for evaluation.
 
@@ -53,13 +54,9 @@ def split_calibration_prompts(
 
     for kind in BoundaryQuestionKind:
         matching = [prompt for prompt in prompts if prompt.question_kind == kind]
-        if len(matching) >= 2:
-            eval_ids.add(matching[-1].id)
-        if len(matching) >= 3:
-            # Add another one to val set
-            eval_ids.add(matching[-2].id)
-
-
+        # There should be at least one question kind in train set
+        assert len(matching) > number_val_per_kind, f"Error: Not enough samples for the requested val set size {len(matching)}."
+        eval_ids.update([matching[i].id for i in range(number_val_per_kind)])
 
     train = [prompt for prompt in prompts if prompt.id not in eval_ids]
     evaluation = [prompt for prompt in prompts if prompt.id in eval_ids]
