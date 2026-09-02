@@ -55,7 +55,9 @@ def split_calibration_prompts(
     for kind in BoundaryQuestionKind:
         matching = [prompt for prompt in prompts if prompt.question_kind == kind]
         # There should be at least one question kind in train set
-        assert len(matching) > number_val_per_kind, f"Error: Not enough samples for the requested val set size {len(matching)}."
+        assert len(matching) > number_val_per_kind, (
+            f"Error: Not enough samples for the requested val set size {len(matching)}."
+        )
         eval_ids.update([matching[i].id for i in range(number_val_per_kind)])
 
     train = [prompt for prompt in prompts if prompt.id not in eval_ids]
@@ -141,7 +143,9 @@ def _judge_once(
         )
         payload = json.loads(repair_json(raw))
         if not isinstance(payload, dict):
-            raise ValueError(f"Preference judge returned non-object JSON: {raw[:300]!r}")
+            raise ValueError(
+                f"Preference judge returned non-object JSON: {raw[:300]!r}"
+            )
 
     winner = str(payload.get("winner", "")).strip().upper()
     if winner not in {"A", "B", "TIE"}:
@@ -156,9 +160,7 @@ def judge_model_preference(
     dpo_answer: str,
 ) -> PreferenceJudgment:
     """Compare both answer orders and count disagreement as a tie."""
-    forward, forward_reasoning = _judge_once(
-        judge, prompt, baseline_answer, dpo_answer
-    )
+    forward, forward_reasoning = _judge_once(judge, prompt, baseline_answer, dpo_answer)
     reverse, reverse_reasoning = _judge_once(judge, prompt, dpo_answer, baseline_answer)
 
     forward_model = {"A": "baseline", "B": "dpo", "TIE": "tie"}[forward]
@@ -208,9 +210,7 @@ def summarize_preferences(
             "baseline_wins": baseline_wins,
             "dpo_wins": dpo_wins,
             "ties": ties,
-            "dpo_preference_rate": (
-                (dpo_wins + 0.5 * ties) / total if total else 0.0
-            ),
+            "dpo_preference_rate": ((dpo_wins + 0.5 * ties) / total if total else 0.0),
         }
 
     return {

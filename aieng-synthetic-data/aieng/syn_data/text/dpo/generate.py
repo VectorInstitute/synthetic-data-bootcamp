@@ -57,8 +57,7 @@ def filter_sec_paragraphs(
     return [
         paragraph
         for paragraph in paragraphs
-        if paragraph.doc_id == doc_id
-        and paragraph.role == DocumentRole.SCOPE_BOUNDARY
+        if paragraph.doc_id == doc_id and paragraph.role == DocumentRole.SCOPE_BOUNDARY
     ]
 
 
@@ -129,7 +128,9 @@ def generate_boundary_prompts(
                     logger.warning("Empty question for paragraph %s", paragraph.para_id)
                     continue
 
-                kind_raw = str(payload.get("question_kind", question_kind.value)).strip()
+                kind_raw = str(
+                    payload.get("question_kind", question_kind.value)
+                ).strip()
                 try:
                     parsed_kind = BoundaryQuestionKind(kind_raw)
                 except ValueError:
@@ -191,7 +192,9 @@ def generate_calibration_set(
     n_questions: int = DEFAULT_DPO_QUESTIONS,
 ) -> list[CalibrationPrompt]:
     """Generate boundary questions and four candidates for each."""
-    prompts = generate_boundary_prompts(teacher, paragraphs, n_questions_per_par=n_questions)
+    prompts = generate_boundary_prompts(
+        teacher, paragraphs, n_questions_per_par=n_questions
+    )
     completed: list[CalibrationPrompt] = []
     for prompt in prompts:
         try:
