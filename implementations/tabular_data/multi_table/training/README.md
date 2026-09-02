@@ -18,6 +18,21 @@ The rest of this file first walks through **what training does** (including clus
 
 ClavaDDPM does not train one model on a joined mega-table. It trains a **small family of models**, one for each edge in the relational graph. Clustering is the glue: it compresses “what kind of parent is this?” into a discrete label so child generators can stay consistent with their parents.
 
+## ClavaDDPM Overview
+
+<div align="center">
+  <img src="../images/clavaddpm_figure.png" alt="MIA" width="830" height="370">
+</div>
+
+
+This README outlines the training process for the ClavaDDPM model. The diagram above, taken from the original paper, illustrates the main steps:
+
+**(a) Latent learning and table augmentation (steps 1-2)**: This step crossponds to clustering section, where we aim to augmente each table with associated clustering labels that used to capture inter-table relationships.
+
+**(b) Training (steps 3-5)**: This step corresponds to the model training section, where we train separate conditional diffusion models and the cluster classifier models on each augmented table.
+
+**(c) Synthesis (steps 6-8)**: This step corresponds to the model sampling section, where we sample the table size and generate data based on the parent-child constraints (i.e., relation order).
+
 ## Why clustering comes first
 
 If you sampled `account` and `trans` independently, synthetic transactions would not line up with synthetic accounts (wrong counts, wrong styles of activity, broken foreign keys).
@@ -31,7 +46,7 @@ ClavaDDPM’s answer is:
 
 Training only does steps 1–3. Guidance itself is a sampling-time operation.
 
-## Pipeline at a glance
+## Training pipeline at a glance
 
 <div align="center">
   <img src="../images/flow_gen_1.png" alt="MIA" width="550" height="300">
@@ -149,7 +164,10 @@ These histograms are `all_group_lengths_prob_dicts` in `cluster_ckpt.pkl`. They 
 
 IDs are dropped. The remaining columns plus the cluster column (when a parent exists) form a mixed table: some continuous, some discrete.
 
-### 3.1 Mixed Gaussian–multinomial diffusion
+IMPORTANT: Note that the cluster labels are only added to parent rows to form the data for the diffusion process. Child rows are generated such that their
+generation is steered towards a specific cluster. That is the same idea as classifier-guided image diffusion.
+
+### 3.1 Mixed Gaussian–multinomial diffusion (TabDDPM)
 
 A row is split as $\mathbf{x} = (\mathbf{x}^{\text{num}}, \mathbf{x}^{\text{cat}})$.
 
@@ -199,14 +217,11 @@ $$
 \mathcal{L} \;=\; \mathcal{L}_{\text{multi}} + \mathcal{L}_{\text{gauss}}.
 $$
 
-```mermaid
-flowchart LR
-    x0["Clean row x_0"] --> q["Forward: add noise<br/>t ~ Uniform{1..T}"]
-    q --> xt["Noisy row x_t"]
-    xt --> net["Denoiser MLP / ResNet<br/>d_layers, dropout"]
-    net --> loss["L_multi + L_gauss"]
-    loss --> opt["AdamW · lr · weight_decay<br/>linear LR anneal over iterations"]
-```
+<div align="center">
+  <img src="../images/clava_training_diffusion.png" alt="Clava-diffusion" width="900" height="90">
+</div>
+
+
 
 Each **iteration** is one mini-batch, not one epoch. Learning rate is annealed linearly to zero over `iterations`. An EMA copy of the denoiser is also tracked.
 
@@ -237,17 +252,10 @@ Training:
 3. Project them to width `dim_t`, add a timestep embedding of the same width, pass through MLP `d_layers`, and output $K$ logits ($K$ is `max(cluster_id)+1`).
 4. Minimize cross-entropy against the true cluster $y$.
 
-```mermaid
-flowchart LR
-    row["Child numerical features"] --> noise["Corrupt with q(x_t | x_0)"]
-    t["timestep t"] --> emb["Timestep embedding dim_t"]
-    noise --> proj["Linear → dim_t"]
-    proj --> mlp["Classifier MLP d_layers"]
-    emb --> mlp
-    mlp --> py["p(y | x_t, t)"]
-    y["True cluster y"] --> ce["Cross-entropy"]
-    py --> ce
-```
+<div align="center">
+  <img src="../images/clavaddpm_classifier.png" alt="Berka-clustering" width="900" height="150">
+</div>
+
 
 At **synthesis**, this classifier is not used to pick a class after the fact. Its gradient $\nabla_{\mathbf{x}_t} \log p_\phi(y \mid \mathbf{x}_t, t)$ is added into the reverse diffusion step (scaled by `classifier_scale`) so child rows are steered toward the parent’s cluster. That is the same idea as classifier-guided image diffusion.
 

@@ -1,3 +1,4 @@
+# Synthesizing config
 sampling_config:
     sample_scale: 0.25 # Ratio of the number of synthesized rows compared to the number of original rows
     batch_size: 10
