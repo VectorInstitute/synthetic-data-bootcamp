@@ -1,25 +1,28 @@
 [project]
-name = "aieng-synthetic-data"
+name = "synthetic-data-bootcamp"
 version = "0.1.1"
-description = ""
+description = "Synthetic data bootcamp workspace for policy-document QA alignment"
 authors = [ {name = "Vector AI Engineering", email = "ai_engineering@vectorinstitute.ai"}]
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "aieng-synthetic-data",
+    "aiohttp>=3.14.3",
     "bleach==6.4.0",
     "filelock==3.32.0",
     "jupyter-server==2.20.0",
-    "jupyterlab==4.5.9",
-    "mistune==3.3.0",
+    "jupyterlab==4.5.10",
+    "mistune==3.3.3",
     "msgpack==1.2.1",
     "nbconvert>=7.17.0",
     "pip>=26.1.2",
     "pygments>=2.20.0",
+    "python-dotenv>=1.0.0",
     "requests>=2.34.2",
+    "rich>=14.2.0",
     "setuptools==83.0.0",
     "soupsieve==2.8.4",
-    "tornado==6.5.7",
+    "tornado==6.5.8",
     "urllib3>=2.7.0",
     "virtualenv==21.7.0",
 ]
@@ -37,6 +40,15 @@ dev = [
     "pytest-mock>=3.14.0",
     "ruff>=0.15.22",
 ]
+text-sft = [
+    "accelerate",
+    "bitsandbytes",
+    "datasets>=5.0.1",
+    "peft",
+    "torch",
+    "transformers",
+    "trl",
+]
 
 [tool.uv.workspace]
 members = [
@@ -47,6 +59,7 @@ members = [
 aieng-synthetic-data = { workspace = true }
 
 [tool.mypy]
+mypy_path = ["aieng-synthetic-data"]
 ignore_missing_imports = true
 install_types = true
 pretty = true
@@ -111,6 +124,12 @@ ignore = [
 # Ignore import violations in all `__init__.py` files.
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["E402", "F401", "F403", "F811"]
+"*.ipynb" = ["D100", "E402", "B018"]
+
+[tool.nbqa.addopts]
+# Notebooks idiomatically spread imports across cells, use trailing expressions
+# for cell display, and don't have a module docstring.
+ruff = ["--extend-ignore=D100,E402,B018"]
 
 [tool.ruff.lint.pep8-naming]
 ignore-names = ["X*", "setUp"]
@@ -128,3 +147,11 @@ max-doc-length = 88
 markers = [
     "integration_test: marks tests as integration tests",
 ]
+
+[[tool.mypy.overrides]]
+module = "aieng.syn_data.text.sft"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "aieng.syn_data.text.dpo.train"
+ignore_errors = true
