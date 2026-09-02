@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any
 
@@ -229,6 +230,17 @@ def test_split_calibration_prompts_holds_out_each_kind() -> None:
 
 class _OrderedJudge:
     """Prefer DPO by recognizing which response occupies each position."""
+
+    def complete(
+        self,
+        prompt: str,
+        *,
+        system: str | None = None,
+        temperature: float = 0.2,
+        max_tokens: int = 1024,
+        response_format: dict[str, Any] | None = None,
+    ) -> str:
+        return json.dumps(self.complete_json(prompt))
 
     def complete_json(self, prompt: str, **_: Any) -> dict[str, str]:
         answer_a = prompt.split("Response A:\n", 1)[1].split("\n\nResponse B:", 1)[0]

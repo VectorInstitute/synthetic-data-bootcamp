@@ -191,7 +191,7 @@ def generate_calibration_set(
     n_questions: int = DEFAULT_DPO_QUESTIONS,
 ) -> list[CalibrationPrompt]:
     """Generate boundary questions and four candidates for each."""
-    prompts = generate_boundary_prompts(teacher, paragraphs, n_questions=n_questions)
+    prompts = generate_boundary_prompts(teacher, paragraphs, n_questions_per_par=n_questions)
     completed: list[CalibrationPrompt] = []
     for prompt in prompts:
         try:
