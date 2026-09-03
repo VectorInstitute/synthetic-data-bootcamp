@@ -1,3 +1,90 @@
+# Data Generation
+
+Synthesis walks `relation_order` **root-first** (for Berka: `district`, then its children, then grandchildren). Each edge uses its own trained checkpoint. Child table size is not chosen independently: it follows from synthetic parents and the learned children-per-parent distribution.
+
+## Artifacts you load
+
+| File | What it contains |
+|------|------------------|
+| `results/cluster_ckpt.pkl` | Clustered tables plus `all_group_lengths_prob_dicts`: $p(\ell \mid y)$ = how many children $\ell$ a parent of cluster $y$ typically has |
+| `results/models/{parent}_{child}_ckpt.pkl` | Denoiser $\epsilon_\theta$, encoders / metadata, and (child edges only) a cluster classifier $p_\phi(y \mid \mathbf{x}_t, t)$ |
+
+The notebook loads these, then calls `clava_synthesizing`.
+
+---
+
+## Generation steps
+
+On Berka the schema looks like this. `district` is the root. `disp` has **two** parents (`client` and `account`); that is why synthesis needs a matching step.
+
+
+<div align="center">
+  <img src="../images/berka_tables.png" alt="Berka" width="600" height="350">
+</div>
+
+### 1. Sample the root table (`None → district`)
+
+**Artifact:** `{None}_{district}_ckpt.pkl` — denoiser only (no classifier).
+
+Draw $n = \lfloor \texttt{sample\_scale} \times n_{\text{real}} \rfloor$ rows with **unconditional** reverse diffusion, in batches of `batch_size`. Start from noise $\mathbf{x}_T \sim \mathcal{N}(0,I)$ and denoise:
+
+$$
+\mathbf{x}_{t-1} \;=\; \mu_\theta(\mathbf{x}_t, t) + \sigma_t \mathbf{z},
+\qquad \mathbf{z}\sim\mathcal{N}(0,I).
+$$
+
+Cluster ids for the next edges (e.g. `district_client_cluster`) are generated as ordinary columns of this table. They are the $y$ values used below.
+
+### 2. Sample each child, given its synthetic parent
+
+Walk every remaining edge `(parent, child)` in `relation_order`. **Artifacts:** that edge’s model pickle (denoiser + classifier) and $p(\ell \mid y)$ from `cluster_ckpt.pkl`.
+
+For each synthetic parent row with cluster $y$:
+
+1. Draw the group size $\ell \sim p(\ell \mid y)$.
+2. Sample $\ell$ child rows with **classifier-guided** diffusion toward that $y$.
+
+Guidance adds the classifier gradient to the denoiser (same idea as guided image diffusion). With scale $s =$ `classifier_scale`:
+
+$$
+\tilde{\epsilon}(\mathbf{x}_t, t)
+\;=\;
+\epsilon_\theta(\mathbf{x}_t, t)
+\;-\;
+s\,\sigma_t\,\nabla_{\mathbf{x}_t}\log p_\phi(y \mid \mathbf{x}_t, t).
+$$
+
+$s=0$ ignores the parent cluster; $s=1$ is the usual setting; large $s$ can collapse samples. The root is unaffected.
+
+The actual child count is $\sum \ell$ over synthetic parents, not `sample_scale` applied to the child table. Shrinking the root therefore shrinks descendants while keeping similar cardinalities.
+
+A table that is itself a parent (e.g. `account`) also samples cluster columns for *its* children; those become $y$ on the next edges.
+
+### 3. Match multi-parent children (`disp`)
+
+<div align="center">
+  <img src="../images/disp_parents.png" alt="Berka" width="600" height="350">
+</div>
+
+
+**Artifact:** the two synthetic copies of the same child (not a new trained model). FAISS nearest-neighbor search plus `matching_config`.
+
+`disp` is generated twice: once from `client`, once from `account`. Matching aligns those copies so one row gets both foreign keys. Single-parent tables skip this.
+
+
+<div align="center">
+  <img src="../images/matching_tables.png" alt="Berka" width="500" height="250">
+</div>
+
+
+If `no_matching` is true, parent ids are shuffled instead (broken relations; baseline only).
+
+---
+
+Outputs go to `workspace_dir / exp_name / {table} / {sample_prefix}_final/` (`GeneralConfig` in the notebook).
+
+---
+
 # ClavaDDPM synthesizer hyperparameters
 
 Set these values in [`config.yaml`](config.yaml). The notebook pases them into `clava_synthesizing`.
@@ -81,13 +168,3 @@ If `false`, nearest-neighbor search can reuse rows; a later pass tries to uniqui
 ### `no_matching`
 
 If `true`, skip nearest-neighbor matching and **randomly shuffle** which parent ids are attached. Use this only as a baseline (broken relational structure). Keep `false` for a normal run.
-
----
-
-## How a generation run uses these settings
-
-1. **Root table** — sample `int(sample_scale × n_real_root)` rows, in batches of `batch_size`.
-2. **Each child** — for every synthetic parent, draw a group size from the clustering checkpoint, then sample that many child rows with classifier guidance (`classifier_scale`), again in batches of `batch_size`.
-3. **Multi-parent children** — match the copies with `matching_config` so both parent foreign keys sit on the same rows.
-
-Outputs are written under `workspace_dir / exp_name / {table} / {sample_prefix}_final/` (see `GeneralConfig` in the notebook).

@@ -11,15 +11,14 @@ diffusion_config:
   gaussian_loss_type: mse
   weight_decay: 1e-05
   scheduler: cosine
-  data_split_ratios: [0.99, 0.005, 0.005] #what is this used for?
 
+sample_scale: 0.2 # Used to define the number of sampled samples based on the train data size.
+
+# No need to change these for single table settings. These are used for multi-table settings.
 sampling_config:
     batch_size: 1
     classifier_scale: 1.0
 
-sample_scale: 0.2 # Used to define the number of sampled samples based on the train data size.
-
-# No need to change these for single table settings
 matching_config:
     num_matching_clusters: 1
     matching_batch_size: 1000

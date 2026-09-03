@@ -11,4 +11,3 @@ diffusion_config:
   gaussian_loss_type: mse
   weight_decay: 1e-05
   scheduler: cosine
-  data_split_ratios: [0.99, 0.005, 0.005] #what is this used for?

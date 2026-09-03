@@ -210,12 +210,11 @@ def label_encode(
     return out, fitted
 
 
-def get_domain(df: pd.DataFrame, discrete_cols: list[str]) -> dict[str, dict[str, Any]]:
-    """Build ``trans_domain.json`` like MIDST ``get_domain`` (IDs already dropped)."""
-    domain: dict[str, dict[str, Any]] = {}
+def get_domain(df: pd.DataFrame, discrete_cols: list[str]) -> dict[str, dict[str, str]]:
+    """Build a type-only ``trans_domain.json`` (IDs already dropped)."""
+    domain: dict[str, dict[str, str]] = {}
     for col in df.columns:
-        kind = "discrete" if col in discrete_cols else "continuous"
-        domain[col] = {"size": int(df[col].nunique()), "type": kind}
+        domain[col] = {"type": "discrete" if col in discrete_cols else "continuous"}
     return domain
 
 
@@ -266,7 +265,7 @@ def preprocess_berka_trans(
     - output_dir: Path to the output directory.
     - sep: Field separator. Default: auto-detect ('; for .asc, comma otherwise).
     - sample_size: If set, randomly sample this many rows.
-    - sample_before_encode: Sample before fitting LabelEncoders. Faster on 1M rows, but category codes / domain sizes may differ from a full-data export.
+    - sample_before_encode: Sample before fitting LabelEncoders. Faster on 1M rows, but category codes may differ from a full-data export.
     - holdout_ratio: Fraction of rows for the holdout set (default: 0.2). Train gets the rest.
     - seed: Random seed for sampling and the train/holdout split.
     - date_epoch: Optional fixed YYMMDD epoch for day offsets (e.g. 930101). Default: earliest date present in the (possibly sampled) data — same as MIDSTModels calculate_days_since_earliest_date.
@@ -293,8 +292,6 @@ def preprocess_berka_trans(
     for col, le in encoders.items():
         print(f"  {col}: {list(le.classes_)}")
 
-    # Domain from the encoded population used for fitting (full data unless
-    # sample_before_encode). Matches MIDST when you encode the full ~1M rows.
     domain = get_domain(encoded, DISCRETE_COLUMNS)
 
     if not sample_before_encode:

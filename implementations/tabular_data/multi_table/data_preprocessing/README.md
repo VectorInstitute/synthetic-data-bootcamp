@@ -55,4 +55,4 @@ CSV column order is IDs first, then features in the same order as the domain fil
 
 ## Difference from single-table Berka
 
-Single-table preprocessing drops `trans_id` / `account_id`, writes train/holdout splits, and includes `size` in `trans_domain.json`. This pipeline keeps all relational IDs, writes one CSV per table, and domain files contain types only.
+Single-table preprocessing drops `trans_id` / `account_id` and writes train/holdout splits. This pipeline keeps all relational IDs and writes one CSV per table. Both pipelines write type-only domain files (`discrete` / `continuous`; no `size`).
