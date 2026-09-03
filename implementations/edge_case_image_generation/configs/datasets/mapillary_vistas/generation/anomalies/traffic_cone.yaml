@@ -9,32 +9,43 @@ annotation_classes:
 edit_mask:
   mode: road_patch
   cx: 0.48
-  cy: 0.80
+  cy: 0.72
   rx: 0.07
-  ry: 0.11
-  y_min: 0.58
-  y_max: 0.94
+  ry: 0.10
+  y_min: 0.50
+  y_max: 0.85
   x_min: 0.30
   x_max: 0.70
-  prefer_near: true
+  prefer_near: false
   blur_sigma: 1.2
   dilate: 2
   recomposite: false
-# Pre-gen novelty: cartesian product is shuffled once, then cycled per attempt.
-# 2×3×2×2×2 = 48 combos — short batches still cover all axes.
+# Reject hood / bottom-of-frame paste jobs after annotate.
+accept_gates:
+  max_box_area_frac: 0.12
+  min_center_y: 0.35
+  max_center_y: 0.82
+  max_bottom_edge_frac: 0.95
+# Pre-gen novelty: 2×3×2×2×2 = 48 combos (shuffled then cycled).
+# Avoid "near foreground" — on dashcam seeds Klein maps that to the car hood.
 variations:
   size: [small, medium]
   color: [orange, yellow-orange, faded orange]
   stripe: [with a white reflective stripe, with no stripes]
-  placement: [in the near foreground on the asphalt, mid-distance in the driving lane]
-  scale_hint: [correctly scaled vs nearby cars, slightly shorter than a curb]
-# Fallback static prompt when no template is used.
+  placement:
+    - further down the open asphalt lane ahead
+    - mid-distance in the driving lane past the hood
+  scale_hint:
+    - correctly scaled versus nearby cars
+    - about knee-high relative to the curb
 prompt: >-
   one small orange traffic cone with a white stripe standing upright on the asphalt,
   base resting on the road, natural contact shadow, photorealistic street photo
 negative_prompt: >-
   cartoon, toy, sticker, CGI, floating in air, giant cone, blurry, watermark,
-  text, logo, orange car, recolor, melted, deformed, mid-air
+  text, logo, orange car, recolor, melted, deformed, mid-air,
+  cone on car hood, cone on windshield, cone on dashboard, cone on bumper,
+  sitting on the vehicle, pasted on hood
 strength: 1.0
 guidance_scale: 9.0
 controlnet_strength: 0.42
@@ -47,11 +58,13 @@ methods:
     negative_prompt: null
   instruct:
     prompt_template: >-
-      Add one {size} {color} traffic cone {stripe} standing on the road
-      {placement}, {scale_hint}, base resting on the pavement, natural contact
-      shadow, photorealistic street photo. Do not recolor cars or buildings.
+      Add one {size} {color} traffic cone {stripe} standing upright on the asphalt
+      road surface {placement}, {scale_hint}, base resting on the pavement with a
+      natural contact shadow. Place it clearly ON THE ROAD beyond the camera-car
+      hood — never on the hood, windshield, dashboard, or bumper. Do not recolor
+      cars or buildings.
   vlm_generate:
     prompt_template: >-
       Add one {size} {color} traffic cone {stripe} standing upright on the asphalt
-      {placement}, {scale_hint}, natural contact shadow, keep the rest of the
-      street photo unchanged
+      {placement}, {scale_hint}, natural contact shadow. Put it on the road beyond
+      the hood, not on the car. Keep the rest of the street photo unchanged.
