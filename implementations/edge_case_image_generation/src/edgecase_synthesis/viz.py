@@ -362,11 +362,27 @@ def show_judge_result(
         f"physical_plausibility: {getattr(judgment, 'physical_plausibility', '?')}",
         f"annotation_correctness: {getattr(judgment, 'annotation_correctness', '?')}",
         f"edge_case_present: {getattr(judgment, 'edge_case_present', '?')}",
-        f"backend: {getattr(judgment, 'backend', '?')}",
-        f"model: {getattr(judgment, 'model_id', '?')}",
-        "",
-        str(getattr(judgment, "rationale", "") or ""),
     ]
+    gfid = getattr(judgment, "global_fidelity", None)
+    ofid = getattr(judgment, "object_fidelity", None)
+    if gfid is not None or ofid is not None:
+        lines.append(f"global_fidelity: {gfid if gfid is not None else '?'}")
+        lines.append(f"object_fidelity: {ofid if ofid is not None else '?'}")
+    refs = getattr(judgment, "reference_paths", None) or []
+    if refs:
+        lines.append(f"references: {len(refs)}")
+        for path in refs[:4]:
+            lines.append(f"  - {Path(path).name}")
+    elif getattr(judgment, "backend", "") == "api":
+        lines.append("references: 0  (no same-class samples found)")
+    lines.extend(
+        [
+            f"backend: {getattr(judgment, 'backend', '?')}",
+            f"model: {getattr(judgment, 'model_id', '?')}",
+            "",
+            str(getattr(judgment, "rationale", "") or ""),
+        ]
+    )
     axes[1].text(
         0.0,
         1.0,

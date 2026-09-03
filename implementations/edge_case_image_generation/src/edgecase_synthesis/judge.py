@@ -239,10 +239,11 @@ class VLMJudge:
                 )
 
         result.anomaly_id = anomaly_id
-        if refs and result.reference_paths is None:
-            result.reference_paths = [
-                str(getattr(r, "path", r)) for r in refs if getattr(r, "path", None) or isinstance(r, (str, Path))
-            ]
+        result.reference_paths = [
+            str(getattr(r, "path", r))
+            for r in refs
+            if getattr(r, "path", None) is not None or isinstance(r, (str, Path))
+        ]
         result = self._reconcile(result)
         result.decision = self._decide(result)
         # Soft pressure from the VLM side; batch_runner also hard-gates accepts.
