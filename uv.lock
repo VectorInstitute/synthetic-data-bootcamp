@@ -3770,7 +3770,7 @@ wheels = [
 
 [[package]]
 name = "trl"
-version = "1.10.0"
+version = "1.12.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "accelerate" },
@@ -3779,9 +3779,9 @@ dependencies = [
     { name = "packaging" },
     { name = "transformers" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/2b/68/cb2a0d2786283297e3146b83e71f99f1ef6d51046219aa1ef7bf2d3c0bce/trl-1.10.0.tar.gz", hash = "sha256:69d0c8f992cafd10cf733c49d06b0c44376251d461f6b99dc871b8722decb8b2", size = 767926, upload-time = "2026-08-13T01:26:36.761Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c1/e8/2e131fd15224433c48b0c6afd80a2926a815e070dd2d9b528cc07c337056/trl-1.12.0.tar.gz", hash = "sha256:494ec6cfd07097bb8116cc7bec299b067dd765d1c19ed3eca2d874a29979f229", size = 818314, upload-time = "2026-08-26T19:46:16.456Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5f/55/7a53684d69f65e91479e24ed36fb46f9c949cffbf166de53dd42e91ee5f0/trl-1.10.0-py3-none-any.whl", hash = "sha256:f4bdad4a10dffa558399177938267b0aee51a5052768027cbe807a97d1916576", size = 925755, upload-time = "2026-08-13T01:26:35.39Z" },
+    { url = "https://files.pythonhosted.org/packages/e8/21/b29125ab2c1b324de93f863b9ab58237ccf87990dbd7ef7ef066bb1284aa/trl-1.12.0-py3-none-any.whl", hash = "sha256:9c8f117b21a941edbc85744f5a341c9453d38e81f24ae81d3c6e9b9ca3b96409", size = 992576, upload-time = "2026-08-26T19:46:14.821Z" },
 ]
 
 [[package]]
