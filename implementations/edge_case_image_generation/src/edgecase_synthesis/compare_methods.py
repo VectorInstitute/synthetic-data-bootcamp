@@ -473,9 +473,12 @@ class MethodComparer:
         anom = merged.get("anomaly", anomaly_cfg)
         max_side = int(merged.get("max_side", 512))
         base_seed = int(merged.get("seed", 42))
-        seed = base_seed + int(seed_offset)
+        # Pre-gen novelty via prompt variations should also affect the stochastic
+        # sampling. Otherwise Klein Instruct can keep inserting at the same
+        # latent "best" location even when only wording changes.
+        var_idx = int(variation_index) if variation_index is not None else 0
+        seed = base_seed + int(seed_offset) + var_idx
         prompt, negative = resolve_method_prompt(merged, prompt_key)
-        var_idx = int(seed_offset if variation_index is None else variation_index)
         varied = resolve_prompt_variation(
             anom,
             method=prompt_key,
