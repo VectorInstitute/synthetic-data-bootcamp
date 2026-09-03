@@ -238,6 +238,7 @@ def run_batch_synthesis(
                 source_hint=source_hint,
                 require_target_boxes=require_target_boxes,
                 has_target_boxes=boxed,
+                exclude_stems={item.source_stem},
             )
             decision = judgment.decision
             if require_target_boxes and not boxed:
@@ -274,7 +275,14 @@ def run_batch_synthesis(
             log(
                 f"  judge {item.anomaly_id}  seed={item.source_stem}  "
                 f"attempt={item.attempt} → {decision} "
-                f"({judgment.overall:.1f})  boxes={'yes' if boxed else 'NO'}"
+                f"({judgment.overall:.1f})"
+                + (
+                    f"  fid={judgment.global_fidelity:.1f}/{judgment.object_fidelity:.1f}"
+                    if judgment.global_fidelity is not None
+                    and judgment.object_fidelity is not None
+                    else ""
+                )
+                + f"  boxes={'yes' if boxed else 'NO'}"
             )
             stats = result.stats[item.anomaly_id]
             if decision == "accept":

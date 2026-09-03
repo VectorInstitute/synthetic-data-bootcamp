@@ -21,11 +21,13 @@ edit_mask:
   blur_sigma: 1.2
   dilate: 2
   recomposite: false
-# Pre-gen novelty: 3×2×3×2 = 36 combos (shuffled then cycled).
+# Pre-gen novelty: 3×2×3×2×2 = 72 combos (shuffled then cycled).
+# ``side`` fights the model's default lower-right paste bias.
 variations:
   size: [small, medium, large]
   material: [plastic, metal]
   color: [green, blue, black]
+  side: [on the left side of the frame, on the right side of the frame]
   placement: [on the roadside shoulder, near the curb on the asphalt edge]
 prompt: >-
   one realistic trash can near the road edge, upright and grounded, photorealistic
@@ -44,10 +46,12 @@ methods:
     negative_prompt: null
   instruct:
     prompt_template: >-
-      Add one {size} {color} {material} trash bin standing upright {placement},
-      correctly scaled versus nearby cars and lane features, with natural contact
-      shadow and matching scene lighting. Keep the rest of the street photo unchanged.
+      Add one {size} {color} {material} trash bin standing upright {side},
+      {placement}, correctly scaled versus nearby cars and lane features, with
+      natural contact shadow and matching scene lighting. Keep the rest of the
+      street photo unchanged.
   vlm_generate:
     prompt_template: >-
-      Add one {size} {color} {material} trash bin upright {placement}, natural
-      contact shadow, matching scene lighting, keep the road, cars, and buildings unchanged
+      Add one {size} {color} {material} trash bin upright {side}, {placement},
+      natural contact shadow, matching scene lighting, keep the road, cars, and
+      buildings unchanged

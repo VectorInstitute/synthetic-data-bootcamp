@@ -26,12 +26,14 @@ accept_gates:
   min_center_y: 0.35
   max_center_y: 0.82
   max_bottom_edge_frac: 0.95
-# Pre-gen novelty: 2×3×2×2×2 = 48 combos (shuffled then cycled).
+# Pre-gen novelty: 2×3×2×2×2×2 = 96 combos (shuffled then cycled).
 # Avoid "near foreground" — on dashcam seeds Klein maps that to the car hood.
+# ``side`` fights the model's default lower-right paste bias.
 variations:
   size: [small, medium]
   color: [orange, yellow-orange, faded orange]
   stripe: [with a white reflective stripe, with no stripes]
+  side: [on the left side of the lane, on the right side of the lane]
   placement:
     - further down the open asphalt lane ahead
     - mid-distance in the driving lane past the hood
@@ -59,12 +61,12 @@ methods:
   instruct:
     prompt_template: >-
       Add one {size} {color} traffic cone {stripe} standing upright on the asphalt
-      road surface {placement}, {scale_hint}, base resting on the pavement with a
-      natural contact shadow. Place it clearly ON THE ROAD beyond the camera-car
-      hood — never on the hood, windshield, dashboard, or bumper. Do not recolor
-      cars or buildings.
+      road surface {side}, {placement}, {scale_hint}, base resting on the pavement
+      with a natural contact shadow. Place it clearly ON THE ROAD beyond the
+      camera-car hood — never on the hood, windshield, dashboard, or bumper. Do
+      not recolor cars or buildings.
   vlm_generate:
     prompt_template: >-
       Add one {size} {color} traffic cone {stripe} standing upright on the asphalt
-      {placement}, {scale_hint}, natural contact shadow. Put it on the road beyond
-      the hood, not on the car. Keep the rest of the street photo unchanged.
+      {side}, {placement}, {scale_hint}, natural contact shadow. Put it on the road
+      beyond the hood, not on the car. Keep the rest of the street photo unchanged.

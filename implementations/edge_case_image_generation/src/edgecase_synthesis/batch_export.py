@@ -66,7 +66,7 @@ def gt_boxes_to_dicts(boxes: list[DetectionBox]) -> list[dict[str, Any]]:
 
 
 def judge_to_dict(result: JudgeResult) -> dict[str, Any]:
-    return {
+    payload = {
         "decision": result.decision,
         "overall": float(result.overall),
         "prompt_faithfulness": float(result.prompt_faithfulness),
@@ -75,6 +75,13 @@ def judge_to_dict(result: JudgeResult) -> dict[str, Any]:
         "edge_case_present": bool(result.edge_case_present),
         "rationale": result.rationale,
     }
+    if result.global_fidelity is not None:
+        payload["global_fidelity"] = float(result.global_fidelity)
+    if result.object_fidelity is not None:
+        payload["object_fidelity"] = float(result.object_fidelity)
+    if result.reference_paths:
+        payload["reference_paths"] = list(result.reference_paths)
+    return payload
 
 
 def save_accepted_image(

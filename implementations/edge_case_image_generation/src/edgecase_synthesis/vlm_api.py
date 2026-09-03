@@ -124,7 +124,7 @@ def pil_to_b64(image: Image.Image, *, max_side: int | None = 1024) -> str:
 
 def vision_chat(
     user_text: str,
-    image: Image.Image,
+    image: Image.Image | list[Image.Image],
     *,
     model: str,
     provider: ApiProvider | None = None,
@@ -132,13 +132,16 @@ def vision_chat(
     api_base_url: str | None = None,
     max_side: int = 1024,
 ) -> str:
-    """Multimodal chat: one RGB image + text → assistant text."""
+    """Multimodal chat: one or more RGB images + text → assistant text."""
+    images = [image] if isinstance(image, Image.Image) else list(image)
+    if not images:
+        raise ValueError("vision_chat requires at least one image")
     model = resolve_judge_model(model)
     provider = provider or infer_api_provider(model, api_base_url=api_base_url)
     if provider == "vector_proxy":
         return _vision_chat_openai(
             user_text,
-            image,
+            images,
             model=model,
             api_key=api_key,
             api_base_url=resolve_proxy_base_url(api_base_url),
@@ -147,18 +150,18 @@ def vision_chat(
     if provider == "openai":
         return _vision_chat_openai(
             user_text,
-            image,
+            images,
             model=model,
             api_key=api_key,
             api_base_url=api_base_url,
             max_side=max_side,
         )
-    return _vision_chat_gemini(user_text, image, model=model, api_key=api_key, max_side=max_side)
+    return _vision_chat_gemini(user_text, images, model=model, api_key=api_key, max_side=max_side)
 
 
 def _vision_chat_gemini(
     user_text: str,
-    image: Image.Image,
+    images: list[Image.Image],
     *,
     model: str,
     api_key: str | None,
@@ -175,9 +178,10 @@ def _vision_chat_gemini(
 
     client = genai.Client(api_key=gemini_api_key(api_key))
     parts: list[Any] = [
-        types.Part.from_bytes(data=pil_to_png_bytes(image, max_side=max_side), mime_type="image/png"),
-        types.Part.from_text(text=user_text),
+        types.Part.from_bytes(data=pil_to_png_bytes(img, max_side=max_side), mime_type="image/png")
+        for img in images
     ]
+    parts.append(types.Part.from_text(text=user_text))
     response = client.models.generate_content(model=model, contents=parts)
     text = getattr(response, "text", None)
     if text:
@@ -193,7 +197,7 @@ def _vision_chat_gemini(
 
 def _vision_chat_openai(
     user_text: str,
-    image: Image.Image,
+    images: list[Image.Image],
     *,
     model: str,
     api_key: str | None,
@@ -201,20 +205,17 @@ def _vision_chat_openai(
     max_side: int,
 ) -> str:
     client = make_openai_client(api_key=api_key, base_url=api_base_url)
-    b64 = pil_to_b64(image, max_side=max_side)
+    content: list[dict[str, Any]] = [{"type": "text", "text": user_text}]
+    for img in images:
+        b64 = pil_to_b64(img, max_side=max_side)
+        content.append(
+            {
+                "type": "image_url",
+                "image_url": {"url": f"data:image/png;base64,{b64}"},
+            }
+        )
     response = client.chat.completions.create(
         model=model,
-        messages=[
-            {
-                "role": "user",
-                "content": [
-                    {"type": "text", "text": user_text},
-                    {
-                        "type": "image_url",
-                        "image_url": {"url": f"data:image/png;base64,{b64}"},
-                    },
-                ],
-            }
-        ],
+        messages=[{"role": "user", "content": content}],
     )
     return str(getattr(response.choices[0].message, "content", None) or "")

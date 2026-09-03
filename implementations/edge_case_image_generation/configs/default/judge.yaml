@@ -19,12 +19,23 @@ min_pixels: 200704
 max_pixels: 401408
 reject_margin: 2.0
 threshold: 7.0
+
+# Post-gen fidelity (slice B): real same-class refs attached to the API judge.
+# Hard retry if either score is below fidelity_threshold (separate from overall).
+use_reference_images: true
+n_reference_full: 2      # real class photos (global fidelity)
+n_reference_crops: 1     # GT crops of the rare object when labels exist
+fidelity_threshold: 5.5  # hard retry if global_fidelity or object_fidelity < this
+max_judge_images: 4      # candidate + refs (proxy / VLM image caps)
+
 schema_hint: |
   Respond with ONLY a single JSON object (no markdown fences) using this schema:
   {
     "prompt_faithfulness": <number 0-10>,
     "physical_plausibility": <number 0-10>,
     "annotation_correctness": <number 0-10>,
+    "global_fidelity": <number 0-10>,
+    "object_fidelity": <number 0-10>,
     "edge_case_present": <true|false>,
     "overall": <number 0-10>,
     "rationale": "<one short sentence>"
@@ -36,6 +47,10 @@ schema_hint: |
   - annotation_correctness: how well listed boxes match visible objects.
     Open-vocab detection is noisy — if the rare object is clearly visible but boxes are
     missing, score annotation_correctness low yet still judge visibility from the pixels.
+  - global_fidelity: does the candidate look like a real street photo from the same
+    dataset as the reference photos (lighting, camera style, overall scene realism)?
+  - object_fidelity: does the inserted rare object look like the real class instances
+    in the reference photos / crops (shape, materials, scale, appearance)?
   - edge_case_present: true if the target rare condition is visible at all.
     Must be true when prompt_faithfulness ≥ 6 and the insert looks complete.
   - overall: training-ready score. Use ≥7 when you would keep this for a rare-class

@@ -39,6 +39,9 @@ class JudgeResult:
     backend: str = ""
     model_id: str = ""
     anomaly_id: str | None = None
+    global_fidelity: float | None = None
+    object_fidelity: float | None = None
+    reference_paths: list[str] | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -50,6 +53,8 @@ Respond with ONLY a single JSON object (no markdown fences) using this schema:
   "prompt_faithfulness": <number 0-10>,
   "physical_plausibility": <number 0-10>,
   "annotation_correctness": <number 0-10>,
+  "global_fidelity": <number 0-10>,
+  "object_fidelity": <number 0-10>,
   "edge_case_present": <true|false>,
   "overall": <number 0-10>,
   "rationale": "<one short sentence>"
@@ -77,6 +82,13 @@ class VLMJudge:
         api_key: str | None = None,
         api_base_url: str | None = None,
         api_max_side: int = 1024,
+        use_reference_images: bool = True,
+        n_reference_full: int = 2,
+        n_reference_crops: int = 1,
+        fidelity_threshold: float = 5.5,
+        max_judge_images: int = 4,
+        samples_dir: Path | str | None = None,
+        stem_prefixes: list[str] | None = None,
     ) -> None:
         self.model_id = model_id
         self.backend = str(backend).lower()
@@ -92,10 +104,18 @@ class VLMJudge:
         self.api_key = api_key
         self.api_base_url = api_base_url
         self.api_max_side = int(api_max_side)
+        self.use_reference_images = bool(use_reference_images)
+        self.n_reference_full = int(n_reference_full)
+        self.n_reference_crops = int(n_reference_crops)
+        self.fidelity_threshold = float(fidelity_threshold)
+        self.max_judge_images = int(max_judge_images)
+        self.samples_dir = Path(samples_dir) if samples_dir else None
+        self.stem_prefixes = list(stem_prefixes) if stem_prefixes else None
         self._model = None
         self._processor = None
         self._clip = None
         self._active_backend = self.backend
+        self._labels_cache: dict[str, Any] | None = None
 
     def unload(self) -> None:
         """Drop weights so generation / annotation can reclaim VRAM."""
@@ -163,6 +183,8 @@ class VLMJudge:
         source_hint: str | None = None,
         require_target_boxes: bool = False,
         has_target_boxes: bool | None = None,
+        reference_images: list[Any] | None = None,
+        exclude_stems: set[str] | None = None,
     ) -> JudgeResult:
         """Score one synthetic RGB image (depth/seg maps are intentionally unused)."""
         pil = _to_pil(image)
@@ -175,6 +197,16 @@ class VLMJudge:
                 "CRITICAL: detector found ZERO target-class boxes for this sample."
             )
 
+        refs = list(reference_images or [])
+        if (
+            not refs
+            and self.use_reference_images
+            and self.backend == "api"
+            and anomaly_id
+            and self.samples_dir is not None
+        ):
+            refs = self._auto_references(str(anomaly_id), exclude_stems=exclude_stems)
+
         if self.backend == "clip":
             self._ensure_clip()
             result = self._judge_clip(pil, prompt=prompt, rare=rare)
@@ -185,6 +217,7 @@ class VLMJudge:
                 rare=rare,
                 annotations_summary=ann,
                 source_hint=src,
+                references=refs,
             )
         else:
             try:
@@ -206,6 +239,10 @@ class VLMJudge:
                 )
 
         result.anomaly_id = anomaly_id
+        if refs and result.reference_paths is None:
+            result.reference_paths = [
+                str(getattr(r, "path", r)) for r in refs if getattr(r, "path", None) or isinstance(r, (str, Path))
+            ]
         result = self._reconcile(result)
         result.decision = self._decide(result)
         # Soft pressure from the VLM side; batch_runner also hard-gates accepts.
@@ -219,6 +256,38 @@ class VLMJudge:
         result.model_id = self.model_id
         return result
 
+    def _auto_references(
+        self,
+        anomaly_id: str,
+        *,
+        exclude_stems: set[str] | None = None,
+    ) -> list[Any]:
+        from edgecase_synthesis.references import pick_class_references
+
+        assert self.samples_dir is not None
+        # Leave one slot for the candidate under max_judge_images.
+        budget = max(0, self.max_judge_images - 1)
+        n_full = min(self.n_reference_full, budget)
+        n_crops = min(self.n_reference_crops, max(0, budget - n_full))
+        if self._labels_cache is None:
+            try:
+                from edgecase_synthesis.eda import load_labels_for_dir
+
+                self._labels_cache = load_labels_for_dir(self.samples_dir)
+            except Exception:
+                self._labels_cache = {}
+        return pick_class_references(
+            self.samples_dir,
+            anomaly_id,
+            n_full=n_full,
+            n_crops=n_crops,
+            seed=42,
+            exclude_stems=exclude_stems,
+            labels=self._labels_cache or {},
+            prefixes=self.stem_prefixes,
+            max_side=self.api_max_side,
+        )
+
     def _judge_user_text(
         self,
         *,
@@ -226,14 +295,46 @@ class VLMJudge:
         rare: str,
         annotations_summary: str,
         source_hint: str,
+        references: list[Any] | None = None,
     ) -> str:
         accept_at = self.threshold
+        refs = list(references or [])
+        ref_lines: list[str] = []
+        for i, ref in enumerate(refs, start=1):
+            role = str(getattr(ref, "role", "full"))
+            path = getattr(ref, "path", None)
+            name = Path(path).name if path is not None else f"ref_{i}"
+            if role == "crop":
+                ref_lines.append(
+                    f"  Image {i + 1}: REAL {rare} object crop from dataset ({name})"
+                )
+            else:
+                ref_lines.append(
+                    f"  Image {i + 1}: REAL same-class photo containing {rare} ({name})"
+                )
+        ref_block = ""
+        if ref_lines:
+            ref_block = (
+                "Images attached (in order):\n"
+                f"  Image 1: CANDIDATE synthetic edit to judge\n"
+                + "\n".join(ref_lines)
+                + "\n\n"
+                "Fidelity rules:\n"
+                "- global_fidelity: score how well Image 1 matches the look of the real "
+                "reference photos (camera style, lighting, street realism).\n"
+                "- object_fidelity: score how well the inserted rare object in Image 1 "
+                f"matches real {rare} instances in the references/crops "
+                "(shape, materials, proportions).\n"
+                f"- If either fidelity score is < {self.fidelity_threshold:.1f}, the sample "
+                "is not training-ready yet (we will retry).\n\n"
+            )
         return (
             f"You are a practical data-quality judge for synthetic training images.\n"
             f"The image was edited from {source_hint}.\n"
             f"Target rare condition: {rare}\n"
             f"Generation prompt:\n{prompt}\n\n"
             f"Auto-annotation summary:\n{annotations_summary}\n\n"
+            f"{ref_block}"
             f"Consistency rules:\n"
             f"- If the target rare condition is visible, edge_case_present MUST be true.\n"
             f"- If prompt_faithfulness ≥ 6 and the insert looks complete, edge_case_present "
@@ -320,20 +421,29 @@ class VLMJudge:
         rare: str,
         annotations_summary: str,
         source_hint: str,
+        references: list[Any] | None = None,
     ) -> JudgeResult:
         from edgecase_synthesis.vlm_api import infer_api_provider, resolve_judge_model, vision_chat
 
+        refs = list(references or [])
         user_text = self._judge_user_text(
             prompt=prompt,
             rare=rare,
             annotations_summary=annotations_summary,
             source_hint=source_hint,
+            references=refs,
         )
+        images: list[Image.Image] = [image]
+        for ref in refs:
+            ref_img = getattr(ref, "image", ref)
+            images.append(_to_pil(ref_img))
+            if len(images) >= self.max_judge_images:
+                break
         model = resolve_judge_model(self.model_id)
         provider = self.api_provider or infer_api_provider(model, api_base_url=self.api_base_url)
         text = vision_chat(
             user_text,
-            image,
+            images,
             model=model,
             provider=provider,  # type: ignore[arg-type]
             api_key=self.api_key,
@@ -343,7 +453,9 @@ class VLMJudge:
         self._active_backend = "api"
         self.model_id = model
         parsed = _parse_judge_json(text)
-        return _result_from_parsed(parsed, raw_response=text)
+        result = _result_from_parsed(parsed, raw_response=text)
+        result.reference_paths = [str(getattr(r, "path", "")) for r in refs if getattr(r, "path", None)]
+        return result
 
     def _judge_clip(
         self,
@@ -433,6 +545,7 @@ class VLMJudge:
 
         With threshold=7.0 and reject_margin=2.0:
         - overall ≥ 7, edge present, physical_plausibility ≥ 4.5 → accept
+          (also requires fidelity scores ≥ fidelity_threshold when present)
         - overall < 5 or no edge → reject
         - otherwise → retry
         """
@@ -444,6 +557,22 @@ class VLMJudge:
             if result.overall < (self.threshold - self.reject_margin):
                 return "reject"
             return "retry"
+        # Hard fidelity gate (separate from overall) when the VLM returned scores.
+        if self.use_reference_images and self.backend == "api":
+            for score, name in (
+                (result.global_fidelity, "global_fidelity"),
+                (result.object_fidelity, "object_fidelity"),
+            ):
+                if score is None:
+                    continue
+                if float(score) < self.fidelity_threshold:
+                    note = (
+                        f" [fidelity-gate: {name}={float(score):.1f} "
+                        f"< {self.fidelity_threshold:.1f} → retry]"
+                    )
+                    if note.strip() not in (result.rationale or ""):
+                        result.rationale = (result.rationale or "").rstrip() + note
+                    return "retry"
         if result.overall >= self.threshold and result.edge_case_present:
             return "accept"
         return "retry"
@@ -455,6 +584,14 @@ class VLMJudge:
             hardware = cfg.get("hardware") if hasattr(cfg, "get") else None
             if hardware is not None:
                 device = hardware.get("device")
+        samples_dir = None
+        stem_prefixes = None
+        paths = cfg.get("paths") if hasattr(cfg, "get") else None
+        data = cfg.get("data") if hasattr(cfg, "get") else None
+        if paths is not None and paths.get("samples_dir"):
+            samples_dir = paths.get("samples_dir")
+        if data is not None and data.get("stem_prefixes"):
+            stem_prefixes = list(data.get("stem_prefixes") or [])
         return cls(
             model_id=str(judge.get("model_id", "gemini-3-flash-preview")),
             backend=str(judge.get("backend", "api")),
@@ -470,6 +607,13 @@ class VLMJudge:
             api_key=judge.get("api_key"),
             api_base_url=judge.get("api_base_url"),
             api_max_side=int(judge.get("api_max_side", 1024)),
+            use_reference_images=bool(judge.get("use_reference_images", True)),
+            n_reference_full=int(judge.get("n_reference_full", 2)),
+            n_reference_crops=int(judge.get("n_reference_crops", 1)),
+            fidelity_threshold=float(judge.get("fidelity_threshold", 5.5)),
+            max_judge_images=int(judge.get("max_judge_images", 4)),
+            samples_dir=samples_dir,
+            stem_prefixes=stem_prefixes,
         )
 
 
@@ -535,6 +679,8 @@ def _parse_judge_json(text: str) -> dict[str, Any]:
         "prompt_faithfulness": 3.0,
         "physical_plausibility": 3.0,
         "annotation_correctness": 3.0,
+        "global_fidelity": 3.0,
+        "object_fidelity": 3.0,
         "edge_case_present": False,
         "overall": 3.0,
         "rationale": f"Failed to parse VLM JSON; raw starts: {text[:160]!r}",
@@ -547,6 +693,14 @@ def _result_from_parsed(parsed: dict[str, Any], *, raw_response: str) -> JudgeRe
             return float(parsed.get(key, default))
         except (TypeError, ValueError):
             return default
+
+    def _optional_num(key: str) -> float | None:
+        if key not in parsed or parsed.get(key) is None:
+            return None
+        try:
+            return float(parsed.get(key))
+        except (TypeError, ValueError):
+            return None
 
     edge = parsed.get("edge_case_present", False)
     if isinstance(edge, str):
@@ -568,4 +722,6 @@ def _result_from_parsed(parsed: dict[str, Any], *, raw_response: str) -> JudgeRe
         decision="retry",
         rationale=str(parsed.get("rationale", "") or ""),
         raw_response=raw_response,
+        global_fidelity=_optional_num("global_fidelity"),
+        object_fidelity=_optional_num("object_fidelity"),
     )
