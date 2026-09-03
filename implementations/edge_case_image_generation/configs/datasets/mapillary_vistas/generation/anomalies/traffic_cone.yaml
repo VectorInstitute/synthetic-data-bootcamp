@@ -1,5 +1,6 @@
 id: traffic_cone
 display_name: Traffic cone on road
+description: traffic cone on asphalt
 annotation_classes:
   - traffic cone
   - orange cone
@@ -19,6 +20,15 @@ edit_mask:
   blur_sigma: 1.2
   dilate: 2
   recomposite: false
+# Pre-gen novelty: cartesian product is shuffled once, then cycled per attempt.
+# 2×3×2×2×2 = 48 combos — short batches still cover all axes.
+variations:
+  size: [small, medium]
+  color: [orange, yellow-orange, faded orange]
+  stripe: [with a white reflective stripe, with no stripes]
+  placement: [in the near foreground on the asphalt, mid-distance in the driving lane]
+  scale_hint: [correctly scaled vs nearby cars, slightly shorter than a curb]
+# Fallback static prompt when no template is used.
 prompt: >-
   one small orange traffic cone with a white stripe standing upright on the asphalt,
   base resting on the road, natural contact shadow, photorealistic street photo
@@ -36,11 +46,12 @@ methods:
     prompt: null
     negative_prompt: null
   instruct:
-    prompt: >-
-      Add one small orange traffic cone with a white stripe standing on the road
-      in the foreground, do not recolor cars or buildings
+    prompt_template: >-
+      Add one {size} {color} traffic cone {stripe} standing on the road
+      {placement}, {scale_hint}, base resting on the pavement, natural contact
+      shadow, photorealistic street photo. Do not recolor cars or buildings.
   vlm_generate:
-    prompt: >-
-      Add one small orange traffic cone with a white stripe standing upright on
-      the asphalt in the foreground, natural contact shadow, keep the rest of
-      the street photo unchanged
+    prompt_template: >-
+      Add one {size} {color} traffic cone {stripe} standing upright on the asphalt
+      {placement}, {scale_hint}, natural contact shadow, keep the rest of the
+      street photo unchanged

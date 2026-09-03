@@ -458,8 +458,10 @@ class MethodComparer:
         generation_cfg: Any,
         anomaly_cfg: Any,
         seed_offset: int = 0,
+        variation_index: int | None = None,
     ) -> GenerationResult:
         from edgecase_synthesis.config import merge_generation_anomaly, resolve_method_prompt
+        from edgecase_synthesis.variations import resolve_prompt_variation
 
         method = str(method).lower()
         if method not in ALL_COMPARE_METHODS:
@@ -470,8 +472,20 @@ class MethodComparer:
         merged = merge_generation_anomaly(generation_cfg, anomaly_cfg, method=prompt_key)
         anom = merged.get("anomaly", anomaly_cfg)
         max_side = int(merged.get("max_side", 512))
-        seed = int(merged.get("seed", 42)) + int(seed_offset)
+        base_seed = int(merged.get("seed", 42))
+        seed = base_seed + int(seed_offset)
         prompt, negative = resolve_method_prompt(merged, prompt_key)
+        var_idx = int(seed_offset if variation_index is None else variation_index)
+        varied = resolve_prompt_variation(
+            anom,
+            method=prompt_key,
+            base_prompt=prompt,
+            base_negative=negative,
+            variation_index=var_idx,
+            seed=base_seed,
+        )
+        prompt, negative = varied.prompt, varied.negative_prompt
+        variation = dict(varied.values) if varied.template_used else None
         anomaly_id = str(anom.get("id", ""))
         family = str(merged.get("family", self.family)).lower()
         original = _fit_for_diffusion(image.convert("RGB"), max_side=max_side, family=family)
@@ -498,22 +512,31 @@ class MethodComparer:
         padding_crop = merged.get("padding_mask_crop", None)
         padding_crop = int(padding_crop) if padding_crop not in (None, "", False) else None
 
+        def _finish(result: GenerationResult) -> GenerationResult:
+            result.variation = variation
+            result.variation_index = var_idx if variation is not None else None
+            return result
+
         if effective == "vlm_generate_api":
-            return self._run_vlm_generate_api(
-                original,
-                prompt=prompt,
-                seed=seed,
-                anomaly_id=anomaly_id,
-                generation_cfg=merged,
+            return _finish(
+                self._run_vlm_generate_api(
+                    original,
+                    prompt=prompt,
+                    seed=seed,
+                    anomaly_id=anomaly_id,
+                    generation_cfg=merged,
+                )
             )
         if effective == "vlm_generate_local":
-            return self._run_vlm_edit_local(
-                original,
-                prompt=prompt,
-                seed=seed,
-                anomaly_id=anomaly_id,
-                generation_cfg=merged,
-                family=family,
+            return _finish(
+                self._run_vlm_edit_local(
+                    original,
+                    prompt=prompt,
+                    seed=seed,
+                    anomaly_id=anomaly_id,
+                    generation_cfg=merged,
+                    family=family,
+                )
             )
 
         if effective == "inpaint":
@@ -525,19 +548,21 @@ class MethodComparer:
                 run_strength = min(float(merged.get("strength", 1.0)), 1.0)
             else:
                 run_strength = min(inpaint_strength, 0.99)
-            return self._run_inpaint(
-                original,
-                prompt=prompt,
-                negative_prompt=negative,
-                steps=steps,
-                guidance=guidance,
-                strength=run_strength,
-                seed=seed,
-                edit_mask=edit_mask,
-                edit_weight=edit_weight,
-                edit_mask_cfg=edit_mask_cfg,
-                anomaly_id=anomaly_id,
-                padding_mask_crop=padding_crop,
+            return _finish(
+                self._run_inpaint(
+                    original,
+                    prompt=prompt,
+                    negative_prompt=negative,
+                    steps=steps,
+                    guidance=guidance,
+                    strength=run_strength,
+                    seed=seed,
+                    edit_mask=edit_mask,
+                    edit_weight=edit_weight,
+                    edit_mask_cfg=edit_mask_cfg,
+                    anomaly_id=anomaly_id,
+                    padding_mask_crop=padding_crop,
+                )
             )
         if effective == "controlnet_dual":
             scales = merged.get("controlnet_scale") or {}
@@ -559,33 +584,37 @@ class MethodComparer:
                 strength_cap = float(merged.get("controlnet_strength_cap_local", 0.45))
             else:
                 strength_cap = float(merged.get("controlnet_strength_cap_default", 0.50))
-            return self._run_dual(
-                original,
-                depth,
-                segmentation,
-                prompt=prompt,
-                negative_prompt=negative,
-                steps=steps,
-                guidance=min(guidance, 6.5),
-                strength=float(np.clip(cn_strength, 0.25, strength_cap)),
-                seed=seed,
-                anomaly_id=anomaly_id,
-                controlnet_scale_depth=depth_scale,
-                controlnet_scale_seg=seg_scale,
+            return _finish(
+                self._run_dual(
+                    original,
+                    depth,
+                    segmentation,
+                    prompt=prompt,
+                    negative_prompt=negative,
+                    steps=steps,
+                    guidance=min(guidance, 6.5),
+                    strength=float(np.clip(cn_strength, 0.25, strength_cap)),
+                    seed=seed,
+                    anomaly_id=anomaly_id,
+                    controlnet_scale_depth=depth_scale,
+                    controlnet_scale_seg=seg_scale,
+                )
             )
         instruct_steps = merged.get("instruct_num_inference_steps", self.instruct_num_inference_steps)
-        return self._run_instruct(
-            original,
-            prompt=prompt,
-            steps=steps,
-            seed=seed,
-            anomaly_id=anomaly_id,
-            edit_mask=None,
-            image_guidance=float(
-                merged.get("instruct_image_guidance", self.instruct_image_guidance)
-            ),
-            text_guidance=float(merged.get("instruct_guidance_scale", self.instruct_guidance)),
-            instruct_steps=instruct_steps,
+        return _finish(
+            self._run_instruct(
+                original,
+                prompt=prompt,
+                steps=steps,
+                seed=seed,
+                anomaly_id=anomaly_id,
+                edit_mask=None,
+                image_guidance=float(
+                    merged.get("instruct_image_guidance", self.instruct_image_guidance)
+                ),
+                text_guidance=float(merged.get("instruct_guidance_scale", self.instruct_guidance)),
+                instruct_steps=instruct_steps,
+            )
         )
 
     def compare_one(

@@ -1,5 +1,6 @@
 id: example_anomaly
 display_name: Example local insert
+description: example object on road
 annotation_classes:
   - example object
   - road
@@ -16,6 +17,10 @@ edit_mask:
   blur_sigma: 1.2
   dilate: 2
   recomposite: false
+# Optional pre-gen novelty axes (cartesian product → shuffle → cycle).
+variations:
+  size: [small, medium]
+  placement: [in the near foreground, mid-distance]
 prompt: >-
   a clear example object sitting on the road surface, photorealistic
 negative_prompt: >-
@@ -27,6 +32,6 @@ methods:
   controlnet_dual:
     prompt: null
   instruct:
-    prompt: >-
-      Add one example object on the foreground road only,
+    prompt_template: >-
+      Add one {size} example object on the road {placement} only,
       keep the rest of the photo unchanged

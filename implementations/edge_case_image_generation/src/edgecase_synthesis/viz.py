@@ -312,18 +312,17 @@ def save_generation_artifact(
     image_path = root / f"{sample.name}_{suffix}.png"
     meta_path = root / f"{sample.name}_{suffix}.txt"
     generated.image.save(image_path)
-    meta_path.write_text(
-        "\n".join(
-            [
-                f"anomaly_id: {generated.anomaly_id or ''}",
-                f"method: {generated.method or ''}",
-                f"prompt: {generated.prompt}",
-                f"negative_prompt: {generated.negative_prompt}",
-                f"seed: {generated.seed}",
-            ]
-        ),
-        encoding="utf-8",
-    )
+    meta_lines = [
+        f"anomaly_id: {generated.anomaly_id or ''}",
+        f"method: {generated.method or ''}",
+        f"prompt: {generated.prompt}",
+        f"negative_prompt: {generated.negative_prompt}",
+        f"seed: {generated.seed}",
+    ]
+    if generated.variation:
+        meta_lines.append(f"variation_index: {generated.variation_index}")
+        meta_lines.append(f"variation: {generated.variation}")
+    meta_path.write_text("\n".join(meta_lines), encoding="utf-8")
     paths: dict[str, Path] = {"image": image_path, "metadata": meta_path}
     if generated.edit_mask is not None:
         mask_path = root / f"{sample.name}_{suffix}_edit_mask.png"

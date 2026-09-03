@@ -43,6 +43,8 @@ class AcceptedSample:
     prompt: str = ""
     seed: int = 0
     judge: dict[str, Any] = field(default_factory=dict)
+    variation: dict[str, str] = field(default_factory=dict)
+    variation_index: int | None = None
 
 
 def detections_to_boxes(annotation: AnnotationResult) -> list[dict[str, Any]]:
@@ -142,6 +144,8 @@ def export_nb2_dataset(
                 "prompt": sample.prompt,
                 "seed": sample.seed,
                 "judge": sample.judge,
+                "variation": sample.variation,
+                "variation_index": sample.variation_index,
             }
         )
 
@@ -199,4 +203,6 @@ def record_generation(
         prompt=generated.prompt,
         seed=int(generated.seed),
         judge=judge_to_dict(judgment),
+        variation=dict(generated.variation or {}),
+        variation_index=generated.variation_index,
     )

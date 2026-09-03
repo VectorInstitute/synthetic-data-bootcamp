@@ -203,6 +203,9 @@ def merge_generation_anomaly(
     shared_keys = (
         "prompt",
         "negative_prompt",
+        "prompt_template",
+        "negative_prompt_template",
+        "description",
         "strength",
         "controlnet_strength",
         "guidance_scale",

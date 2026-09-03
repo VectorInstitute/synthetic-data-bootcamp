@@ -79,6 +79,7 @@ def synthesize_one(
     comparer: MethodComparer,
     project_root: Any = None,
     seed_offset: int = 0,
+    variation_index: int | None = None,
 ) -> SynthesisResult:
     method = validate_method(method)
     dataset = str(cfg.dataset_name)
@@ -91,6 +92,7 @@ def synthesize_one(
         generation_cfg=cfg.generation,
         anomaly_cfg=anomaly_cfg,
         seed_offset=seed_offset,
+        variation_index=variation_index,
     )
     return SynthesisResult(anomaly_id=anomaly_id, method=method, generated=generated)
 

@@ -1,0 +1,53 @@
+id: trash_bin
+display_name: Trash bin on roadside
+description: trash can / garbage bin on or near asphalt
+annotation_classes:
+  - trash can
+  - garbage bin
+  - waste bin
+  - dumpster
+  - road
+edit_mask:
+  mode: road_patch
+  cx: 0.52
+  cy: 0.76
+  rx: 0.10
+  ry: 0.12
+  y_min: 0.52
+  y_max: 0.92
+  x_min: 0.26
+  x_max: 0.76
+  prefer_near: true
+  blur_sigma: 1.2
+  dilate: 2
+  recomposite: false
+# Pre-gen novelty: 3×2×3×2 = 36 combos (shuffled then cycled).
+variations:
+  size: [small, medium, large]
+  material: [plastic, metal]
+  color: [green, blue, black]
+  placement: [on the roadside shoulder, near the curb on the asphalt edge]
+prompt: >-
+  one realistic trash can near the road edge, upright and grounded, photorealistic
+negative_prompt: >-
+  floating in air, toy-sized bin, giant bin, cartoon, sticker, CGI, blurry,
+  watermark, text, logo, deformed, melted
+strength: 0.95
+guidance_scale: 8.5
+controlnet_strength: 0.42
+methods:
+  inpaint:
+    prompt: null
+    negative_prompt: null
+  controlnet_dual:
+    prompt: null
+    negative_prompt: null
+  instruct:
+    prompt_template: >-
+      Add one {size} {color} {material} trash bin standing upright {placement},
+      correctly scaled versus nearby cars and lane features, with natural contact
+      shadow and matching scene lighting. Keep the rest of the street photo unchanged.
+  vlm_generate:
+    prompt_template: >-
+      Add one {size} {color} {material} trash bin upright {placement}, natural
+      contact shadow, matching scene lighting, keep the road, cars, and buildings unchanged

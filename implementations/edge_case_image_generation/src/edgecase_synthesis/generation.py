@@ -28,6 +28,9 @@ class GenerationResult:
     anomaly_id: str | None = None
     method: str | None = None
     error: str | None = None
+    # Pre-gen novelty: sampled variation axes (empty when static prompt).
+    variation: dict[str, str] | None = None
+    variation_index: int | None = None
 
 
 class AnomalyEditor:
@@ -183,9 +186,26 @@ class AnomalyEditor:
         max_side = int(merged.get("max_side", 512))
         seed = int(merged.get("seed", 42))
         prompt, negative = resolve_method_prompt(merged, method)
+        from edgecase_synthesis.variations import resolve_prompt_variation
+
+        varied = resolve_prompt_variation(
+            anom,
+            method=method,
+            base_prompt=prompt,
+            base_negative=negative,
+            variation_index=0,
+            seed=seed,
+        )
+        prompt, negative = varied.prompt, varied.negative_prompt
+        variation = dict(varied.values) if varied.template_used else None
         anomaly_id = str(anom.get("id", ""))
         edit_mask_cfg = dict(anom.get("edit_mask", {"mode": "ellipse"}))
         family = str(merged.get("family", self.family)).lower()
+
+        def _finish(result: GenerationResult) -> GenerationResult:
+            result.variation = variation
+            result.variation_index = 0 if variation is not None else None
+            return result
 
         original = _fit_for_diffusion(image.convert("RGB"), max_side=max_side, family=family)
         width, height = original.size
@@ -206,23 +226,25 @@ class AnomalyEditor:
                 steps = int(merged.get("num_inference_steps", 28))
                 guidance = float(merged.get("guidance_scale", 7.5))
                 strength = float(merged.get("strength", 0.90))
-            return self._inpaint(
-                original,
-                prompt=prompt,
-                negative_prompt=negative,
-                steps=steps,
-                guidance=guidance,
-                strength=strength,
-                seed=seed,
-                edit_mask=edit_mask,
-                edit_weight=edit_weight,
-                edit_mask_cfg=edit_mask_cfg,
-                anomaly_id=anomaly_id,
-                padding_mask_crop=(
-                    int(merged["padding_mask_crop"])
-                    if merged.get("padding_mask_crop") not in (None, "", False)
-                    else None
-                ),
+            return _finish(
+                self._inpaint(
+                    original,
+                    prompt=prompt,
+                    negative_prompt=negative,
+                    steps=steps,
+                    guidance=guidance,
+                    strength=strength,
+                    seed=seed,
+                    edit_mask=edit_mask,
+                    edit_weight=edit_weight,
+                    edit_mask_cfg=edit_mask_cfg,
+                    anomaly_id=anomaly_id,
+                    padding_mask_crop=(
+                        int(merged["padding_mask_crop"])
+                        if merged.get("padding_mask_crop") not in (None, "", False)
+                        else None
+                    ),
+                )
             )
 
         if method in {"vlm_generate", "vlm_generate_local", "vlm_generate_api"}:
@@ -252,14 +274,16 @@ class AnomalyEditor:
                     seed=seed,
                     family=family,
                 )
-                return GenerationResult(
-                    image=generated,
-                    prompt=prompt,
-                    negative_prompt=negative,
-                    seed=seed,
-                    edit_mask=None,
-                    anomaly_id=anomaly_id,
-                    method="vlm_generate_local",
+                return _finish(
+                    GenerationResult(
+                        image=generated,
+                        prompt=prompt,
+                        negative_prompt=negative,
+                        seed=seed,
+                        edit_mask=None,
+                        anomaly_id=anomaly_id,
+                        method="vlm_generate_local",
+                    )
                 )
 
             require_vlm_api_enabled(merged.get("vlm_api_enabled", False))
@@ -286,14 +310,16 @@ class AnomalyEditor:
             generated = generate_with_vlm(prompt, seed_image=seed_image, config=cfg)
             if seed_image is not None:
                 generated = _ensure_same_size(generated, original)
-            return GenerationResult(
-                image=generated,
-                prompt=prompt,
-                negative_prompt=negative,
-                seed=seed,
-                edit_mask=None,
-                anomaly_id=anomaly_id,
-                method="vlm_generate_api",
+            return _finish(
+                GenerationResult(
+                    image=generated,
+                    prompt=prompt,
+                    negative_prompt=negative,
+                    seed=seed,
+                    edit_mask=None,
+                    anomaly_id=anomaly_id,
+                    method="vlm_generate_api",
+                )
             )
 
         scale_cfg = merged.get("controlnet_scale", 0.55)
@@ -305,20 +331,22 @@ class AnomalyEditor:
         cn_strength = float(
             merged.get("controlnet_strength", merged.get("strength", 0.45))
         )
-        return self._controlnet(
-            original,
-            depth,
-            prompt=prompt,
-            negative_prompt=negative,
-            steps=int(merged.get("num_inference_steps", 16)),
-            guidance=float(merged.get("guidance_scale", 7.0)),
-            strength=float(np.clip(cn_strength, 0.25, 0.60)),
-            seed=seed,
-            controlnet_scale=cn_scale,
-            edit_mask=edit_mask,
-            edit_weight=edit_weight,
-            edit_mask_cfg=edit_mask_cfg,
-            anomaly_id=anomaly_id,
+        return _finish(
+            self._controlnet(
+                original,
+                depth,
+                prompt=prompt,
+                negative_prompt=negative,
+                steps=int(merged.get("num_inference_steps", 16)),
+                guidance=float(merged.get("guidance_scale", 7.0)),
+                strength=float(np.clip(cn_strength, 0.25, 0.60)),
+                seed=seed,
+                controlnet_scale=cn_scale,
+                edit_mask=edit_mask,
+                edit_weight=edit_weight,
+                edit_mask_cfg=edit_mask_cfg,
+                anomaly_id=anomaly_id,
+            )
         )
 
     @torch.inference_mode()

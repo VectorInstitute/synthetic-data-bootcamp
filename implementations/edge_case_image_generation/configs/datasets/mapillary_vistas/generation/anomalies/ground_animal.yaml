@@ -1,5 +1,6 @@
 id: ground_animal
 display_name: Ground animal on road (optional)
+description: ground animal on asphalt road
 annotation_classes:
   - animal
   - dog
@@ -27,6 +28,13 @@ accept_gates:
   min_center_y: 0.40
   max_center_y: 0.82
   max_bottom_edge_frac: 0.97
+# Pre-gen novelty: 3×2×3×2×2 = 72 combos, shuffled then cycled.
+variations:
+  animal: [dog, deer, cat]
+  size: [small, medium]
+  fur: [brown-and-white fur, dark brown fur, gray fur]
+  placement: [further down the open asphalt lane ahead, mid-distance in the driving lane]
+  pose: [standing, walking]
 prompt: >-
   one small real dog standing on the asphalt road surface ahead in the driving lane,
   roughly the size of a real dog relative to the lane markings, brown-and-white fur,
@@ -46,18 +54,17 @@ methods:
     prompt: null
     negative_prompt: null
   instruct:
-    prompt: >-
-      Add one small real dog with brown and white fur standing further down the open
-      asphalt lane ahead (mid-distance, not right against the camera), correctly scaled
-      like a real dog and much smaller than nearby cars, paws on the pavement.
-      Match the existing sunlight: same highlight side and the same shadow direction as
-      the cars and poles, with a soft contact shadow on the asphalt. Photorealistic.
-      Do not place the dog on any car hood windshield dashboard bumper or vehicle.
-      Do not make a giant animal, black silhouette, or a pasted cutout with the wrong
-      lighting. Keep every car building and the sky unchanged.
+    prompt_template: >-
+      Add one {size} real {animal} with {fur} {pose} {placement}
+      (not right against the camera), correctly scaled like a real {animal} and much
+      smaller than nearby cars, paws on the pavement. Match the existing sunlight:
+      same highlight side and the same shadow direction as the cars and poles, with
+      a soft contact shadow on the asphalt. Photorealistic. Do not place the {animal}
+      on any car hood windshield dashboard bumper or vehicle. Do not make a giant
+      animal, black silhouette, or a pasted cutout with the wrong lighting. Keep
+      every car building and the sky unchanged.
   vlm_generate:
-    prompt: >-
-      Add one small real dog with brown and white fur standing mid-distance on the
-      open asphalt lane ahead, correctly scaled vs cars, paws on pavement, matching
-      the scene sun and shadow direction. Do not put the dog on any vehicle. Keep
-      cars buildings and sky unchanged.
+    prompt_template: >-
+      Add one {size} real {animal} with {fur} {pose} {placement}, correctly scaled
+      vs cars, paws on pavement, matching the scene sun and shadow direction. Do not
+      put the {animal} on any vehicle. Keep cars buildings and sky unchanged.

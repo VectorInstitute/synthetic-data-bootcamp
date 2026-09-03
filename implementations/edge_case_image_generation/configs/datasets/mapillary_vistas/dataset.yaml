@@ -9,6 +9,7 @@ source_hint: "a real Mapillary street-level road photograph"
 workshop_anomalies:
   - road_debris
   - traffic_cone
+  - trash_bin
   - fog
 # Defaults after Notebook 1.5 — notebooks may override.
 # Prefer instruct on L4/Klein: local inpaint masks are brittle for animals/debris.
@@ -17,5 +18,4 @@ method_by_anomaly:
   traffic_cone: instruct
   fog: instruct
   pothole: instruct
-  # Instruct looks better for animals; Klein inpaint often leaves mask-shaped artifacts.
-  ground_animal: instruct
+  trash_bin: instruct

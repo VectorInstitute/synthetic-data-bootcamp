@@ -1,5 +1,6 @@
 id: traffic_cone
 display_name: Traffic cone on road
+description: traffic cone on asphalt
 annotation_classes:
   - traffic cone
   - road
@@ -14,6 +15,11 @@ edit_mask:
   prefer_near: true
   blur_sigma: 1.2
   dilate: 2
+variations:
+  size: [small, medium]
+  color: [orange, yellow-orange]
+  stripe: [with a white stripe, plain]
+  placement: [in the near foreground, mid-distance in the lane]
 prompt: >-
   bright orange traffic cone with white stripe standing on asphalt,
   natural contact shadow, photorealistic
@@ -26,6 +32,6 @@ methods:
   controlnet_dual:
     prompt: null
   instruct:
-    prompt: >-
-      Add one orange traffic cone with a white stripe on the road foreground,
+    prompt_template: >-
+      Add one {size} {color} traffic cone {stripe} on the road {placement},
       do not recolor the rest of the scene

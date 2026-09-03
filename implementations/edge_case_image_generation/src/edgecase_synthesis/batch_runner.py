@@ -137,6 +137,9 @@ def run_batch_synthesis(
                 )
             )
 
+    # Per-class counter into the shuffled variation cycle (retries advance too).
+    variation_counters: dict[str, int] = {aid: 0 for aid in seeds_by_anomaly}
+
     if not queue:
         log("No seeds queued — nothing to synthesize.")
         return result
@@ -181,6 +184,8 @@ def run_batch_synthesis(
             )
             depth = depth_model.predict(item.source_image)
             seg = segmenter.predict(item.source_image)
+            var_idx = variation_counters[item.anomaly_id]
+            variation_counters[item.anomaly_id] = var_idx + 1
             syn = synthesize_one(
                 item.source_image,
                 anomaly_id=item.anomaly_id,
@@ -191,8 +196,14 @@ def run_batch_synthesis(
                 segmentation=seg,
                 project_root=project_root,
                 seed_offset=item.attempt,
+                variation_index=var_idx,
             )
             item.generated = syn.generated
+            if syn.generated.variation:
+                log(
+                    f"    variation[{var_idx}] "
+                    + ", ".join(f"{k}={v}" for k, v in syn.generated.variation.items())
+                )
             item.annotation = _annotate_item(
                 item,
                 annotator=annotator,

@@ -16,12 +16,13 @@ classes:
   - fog
   - mist
   - haze
+  # trash_bin
+  - trash can
+  - garbage bin
+  - waste bin
+  - dumpster
   # optional extras in this package
   - pothole
-  - animal
-  - dog
-  - deer
-  - cat
   # scene context (helps SAM / judge summaries)
   - road
   - asphalt

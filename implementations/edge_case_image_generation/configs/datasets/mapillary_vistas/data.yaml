@@ -6,24 +6,24 @@ max_images: 0
 stem_prefixes:
   - scene_
   - traffic_cone_
+  - trash_bin_
   - pothole_
   - road_debris_
   - fog_
-  - ground_animal_
 # Rare-class extract targets (Mapillary panoptic labels → stem prefix).
-# Notebook 2/3 focus: traffic_cone + ground_animal (open-vocab boxes more reliably).
+# Notebook 2/3 focus: traffic_cone + trash_bin (both have real GT labels).
 extract_label_map:
   object--traffic-cone: traffic_cone
-  animal--ground-animal: ground_animal
+  object--trash-can: trash_bin
 extract_max_per_class: 55
 extract_max_generic: 540
 extract_thumb_max_side: 1280
 prefer_classes:
   - traffic_cone
-  - ground_animal
+  - trash_bin
 classes:
   - traffic_cone
-  - ground_animal
+  - trash_bin
   - pothole
   - road_debris
   - fog
