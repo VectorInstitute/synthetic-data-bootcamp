@@ -16,7 +16,9 @@ extract_label_map:
   object--traffic-cone: traffic_cone
   object--trash-can: trash_bin
 extract_max_per_class: 55
-extract_max_generic: 540
+# Scenes double as NB2 synth seeds (~200) + holdout; NB3 caps train backgrounds
+# further via MAX_SCENE_TRAIN (default 150) so OD isn't ~500 empty vs ~50 rare.
+extract_max_generic: 320
 extract_thumb_max_side: 1280
 prefer_classes:
   - traffic_cone

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import random
 import shutil
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -83,6 +84,46 @@ class DatasetBuildStats:
     boxes_per_class: dict[str, int] = field(default_factory=dict)
     n_real: int = 0
     n_synthetic: int = 0
+    n_scene: int = 0
+    n_scene_dropped: int = 0
+
+
+def _limit_scene_rows(
+    rows: list[dict[str, Any]],
+    max_scene_images: int | None,
+    *,
+    seed: int = 42,
+) -> tuple[list[dict[str, Any]], int, int]:
+    """Keep at most ``max_scene_images`` real ``tag=scene`` rows (background negatives).
+
+    Synthetic and rare-tagged rows are always kept. Returns
+    ``(filtered_rows, n_scene_kept, n_scene_dropped)``.
+    """
+    if max_scene_images is None:
+        n_scene = sum(
+            1
+            for r in rows
+            if str(r.get("split", "real")).lower() != "synthetic"
+            and str(r.get("tag", "")).lower() == "scene"
+        )
+        return rows, n_scene, 0
+
+    cap = max(0, int(max_scene_images))
+    scenes: list[dict[str, Any]] = []
+    rest: list[dict[str, Any]] = []
+    for row in rows:
+        kind = str(row.get("split", "real")).lower()
+        tag = str(row.get("tag", "")).lower()
+        if kind != "synthetic" and tag == "scene":
+            scenes.append(row)
+        else:
+            rest.append(row)
+    rng = random.Random(int(seed))
+    rng.shuffle(scenes)
+    kept = scenes[:cap]
+    dropped = len(scenes) - len(kept)
+    # Rare/synth first (signal), then capped backgrounds.
+    return rest + kept, len(kept), dropped
 
 
 def _link_or_copy(src: Path, dst: Path, *, copy: bool) -> None:
@@ -140,6 +181,8 @@ def build_yolo_dataset(
     aliases: dict[str, list[str]] | None = None,
     include_synthetic: bool = True,
     max_synthetic_per_class: int | None = None,
+    max_scene_images: int | None = None,
+    scene_sample_seed: int = 42,
     copy_images: bool = False,
     dataset_name: str = "edgecase",
     drop_empty_synthetic: bool = True,
@@ -159,6 +202,9 @@ def build_yolo_dataset(
 
     When ``max_synthetic_per_class`` is set, at most that many synthetic train rows
     per ``anomaly_id`` / ``tag`` are kept (useful for real+50 vs real+100 ablations).
+
+    When ``max_scene_images`` is set, at most that many real ``tag=scene`` train
+    rows are kept as background negatives (avoids ~500 empty vs ~50 rare imbalance).
     """
     root = Path(out_dir)
     if root.exists():
@@ -171,6 +217,12 @@ def build_yolo_dataset(
     train_stats = DatasetBuildStats()
     val_stats = DatasetBuildStats()
     synth_per_class: dict[str, int] = {}
+    train_manifest, _n_scene_kept, n_scene_dropped = _limit_scene_rows(
+        train_manifest,
+        max_scene_images,
+        seed=scene_sample_seed,
+    )
+    train_stats.n_scene_dropped = n_scene_dropped
 
     def _synth_class_key(row: dict[str, Any]) -> str:
         return str(row.get("anomaly_id") or row.get("tag") or "unknown")
@@ -232,6 +284,8 @@ def build_yolo_dataset(
                 stats.n_synthetic += 1
             else:
                 stats.n_real += 1
+                if str(row.get("tag", "")).lower() == "scene":
+                    stats.n_scene += 1
 
     _ingest(train_manifest, "train", train_stats)
     _ingest(test_manifest, "val", val_stats)
@@ -258,6 +312,7 @@ def build_yolo_dataset(
             "dataset_name": dataset_name,
             "include_synthetic": include_synthetic,
             "max_synthetic_per_class": max_synthetic_per_class,
+            "max_scene_images": max_scene_images,
             "drop_empty_synthetic": drop_empty_synthetic,
             "class_names": class_names,
             "aliases": aliases or {},
