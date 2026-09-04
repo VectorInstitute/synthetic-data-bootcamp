@@ -156,20 +156,6 @@ def generate_test_qa_batch(
             modes = [FailureMode.DOMAIN_VOCABULARY_DRIFT]
         # Paragraph-scoped topics (not document-wide) for precise, grounded Q&As.
         topics = extract_topics(teacher, paragraph)[:questions_per_para]
-        if not topics:
-            failure_mode = modes[0]
-            sample = topic_controlled_generate(
-                teacher,
-                paragraph,
-                failure_mode=failure_mode,
-                max_topics=1,
-            )[0]
-            sample.id = f"test-{paragraph.para_id}-0"
-            sample.split = ParagraphSplit.TEST
-            sample.failure_mode = failure_mode
-            samples.append(sample)
-            continue
-
         for offset, topic in enumerate(topics):
             failure_mode = modes[offset % len(modes)]
             sample = topic_controlled_generate(
