@@ -349,9 +349,8 @@ class MethodComparer:
         return configure_klein_pipe(pipe, disable_progress=disable_bar)
 
     def _gen(self, seed: int) -> torch.Generator:
-        if self.device.type == "cuda":
-            # Generators should match the inference GPU (device_map target).
-            return torch.Generator(device=self.device).manual_seed(int(seed))
+        # Always CPU: Flux2Klein with device_map allocates latents on CPU then moves
+        # them — a CUDA generator raises ValueError. Diffusers accepts CPU gens.
         return torch.Generator(device="cpu").manual_seed(int(seed))
 
     @staticmethod
