@@ -93,9 +93,10 @@ def _judge_workers(cfg: Any) -> int:
 
 
 def _edit_workers(cfg: Any) -> int:
-    requested = _hw_int(cfg, "parallel_edit_workers", 0)
-    if requested <= 0:
-        requested = _hw_int(cfg, "num_gpus", 1)
+    # Default **1**: threaded multi-GPU Klein shares one CUDA context and often
+    # stalls (slower than a single L4). Keep parallel judge for API speedups.
+    # Opt in later with process-based workers if needed.
+    requested = _hw_int(cfg, "parallel_edit_workers", 1)
     if not torch.cuda.is_available():
         return 1
     return max(1, min(int(requested), int(torch.cuda.device_count())))

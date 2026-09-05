@@ -346,7 +346,15 @@ class MethodComparer:
         }
         from edgecase_synthesis.diffusers_klein import configure_klein_pipe
 
-        return configure_klein_pipe(pipe, disable_progress=disable_bar)
+        # Multi-GPU workers use device_map (no cpu_offload). Single stack uses
+        # the classic enable_model_cpu_offload path that was ~8s/image on L4.
+        use_offload = self.device.index is None
+        return configure_klein_pipe(
+            pipe,
+            device=self.device,
+            disable_progress=disable_bar,
+            use_cpu_offload=use_offload,
+        )
 
     def _gen(self, seed: int) -> torch.Generator:
         # Always CPU: Flux2Klein with device_map allocates latents on CPU then moves
@@ -382,6 +390,7 @@ class MethodComparer:
                 self.inpaint_model_id,
                 dtype=self._dtype(for_klein=True),
                 device=self.device,
+                prefer_device_map=self.device.index is not None,
             )
             return self._place_klein(pipe)
 
@@ -440,6 +449,7 @@ class MethodComparer:
                 self.instruct_model_id,
                 dtype=self._dtype(for_klein=True),
                 device=self.device,
+                prefer_device_map=self.device.index is not None,
             )
             return self._place_klein(pipe)
         dtype = self._dtype()

@@ -164,7 +164,7 @@ class AnomalyEditor:
                 dtype=self._dtype(for_klein=True),
                 device=self.device,
             )
-            return configure_klein_pipe(pipe)
+            return configure_klein_pipe(pipe, device=self.device, use_cpu_offload=True)
 
         from diffusers import AutoPipelineForInpainting
 

@@ -72,23 +72,39 @@ def from_pretrained_klein(
     *,
     dtype: torch.dtype,
     device: torch.device | str | None,
+    prefer_device_map: bool = False,
 ) -> Any:
-    """Load FLUX.2 Klein onto a concrete GPU.
+    """Load FLUX.2 Klein.
 
-    Recent transformers + Klein leave some tied weights on the *meta* device.
-    ``enable_model_cpu_offload()`` / ``pipe.to(...)`` then crash with
-    ``Cannot copy out of meta tensor``. Loading with ``device_map=cuda:N``
-    materializes weights on the target GPU and is also what dual-L4 workers need.
+    Default = classic ``from_pretrained`` (fast single-L4 path used before dual-GPU
+    experiments). Set ``prefer_device_map=True`` only for multi-GPU workers.
     """
-    device_map = klein_device_map(device)
-    attempts: list[dict[str, Any]] = [
-        {"dtype": dtype, "device_map": device_map},
-        {"torch_dtype": dtype, "device_map": device_map},
-        # Last-resort: materialize on CPU first (slower / more RAM).
-        {"dtype": dtype, "low_cpu_mem_usage": False},
-        {"torch_dtype": dtype, "low_cpu_mem_usage": False},
-    ]
     errors: list[str] = []
+    attempts: list[dict[str, Any]] = []
+    if prefer_device_map:
+        device_map = klein_device_map(device)
+        attempts.extend(
+            [
+                {"dtype": dtype, "device_map": device_map},
+                {"torch_dtype": dtype, "device_map": device_map},
+            ]
+        )
+    attempts.extend(
+        [
+            {"dtype": dtype},
+            {"torch_dtype": dtype},
+            {"dtype": dtype, "low_cpu_mem_usage": False},
+            {"torch_dtype": dtype, "low_cpu_mem_usage": False},
+        ]
+    )
+    if not prefer_device_map:
+        device_map = klein_device_map(device)
+        attempts.extend(
+            [
+                {"dtype": dtype, "device_map": device_map},
+                {"torch_dtype": dtype, "device_map": device_map},
+            ]
+        )
     for kwargs in attempts:
         try:
             return pipeline_cls.from_pretrained(model_id, **kwargs)
@@ -99,16 +115,37 @@ def from_pretrained_klein(
             errors.append(f"{kwargs}: {type(exc).__name__}: {exc}")
             continue
     raise RuntimeError(
-        "Failed to load FLUX.2 Klein pipeline. Tried device_map / low_cpu_mem_usage "
-        f"variants.\n" + "\n".join(errors)
+        "Failed to load FLUX.2 Klein pipeline.\n" + "\n".join(errors)
     )
 
 
-def configure_klein_pipe(pipe: Any, *, disable_progress: bool = False) -> Any:
-    """Progress / slicing only — do not ``.to()`` or cpu-offload (meta-safe)."""
+def configure_klein_pipe(
+    pipe: Any,
+    *,
+    device: torch.device | str | None = None,
+    disable_progress: bool = False,
+    use_cpu_offload: bool = True,
+) -> Any:
+    """Progress / slicing + optional cpu_offload (the fast single-GPU recipe)."""
     pipe.set_progress_bar_config(disable=bool(disable_progress))
     if hasattr(pipe, "enable_attention_slicing"):
         pipe.enable_attention_slicing()
     if hasattr(pipe, "enable_vae_tiling"):
         pipe.enable_vae_tiling()
+    if not use_cpu_offload or not hasattr(pipe, "enable_model_cpu_offload"):
+        return pipe
+    gpu_id = 0
+    if isinstance(device, torch.device) and device.type == "cuda" and device.index is not None:
+        gpu_id = int(device.index)
+    elif isinstance(device, str) and device.startswith("cuda:"):
+        try:
+            gpu_id = int(device.split(":")[1])
+        except (IndexError, ValueError):
+            gpu_id = 0
+    try:
+        pipe.enable_model_cpu_offload(gpu_id=gpu_id)
+    except NotImplementedError:
+        # Tied/meta weights on some transformers builds — pipeline may already
+        # be on device via device_map fallback in from_pretrained_klein.
+        pass
     return pipe
