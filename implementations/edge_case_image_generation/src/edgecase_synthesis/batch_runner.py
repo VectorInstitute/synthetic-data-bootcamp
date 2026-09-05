@@ -285,6 +285,16 @@ def run_batch_synthesis(
     n_judge = _judge_workers(cfg)
     methods_in_queue = {item.method for item in queue}
     need_depth, need_seg = _methods_need_conditioning(methods_in_queue)
+    instruct_id = str(cfg.generation.get("instruct_model_id") or "")
+    inpaint_id = str(cfg.generation.get("inpaint_model_id") or "")
+    needs_klein = (
+        ("instruct" in methods_in_queue and MethodComparer._is_klein_model(instruct_id))
+        or ("inpaint" in methods_in_queue and MethodComparer._is_klein_model(inpaint_id))
+    )
+    if needs_klein:
+        from edgecase_synthesis.diffusers_klein import assert_klein_available
+
+        assert_klein_available()
     log(
         f"Batch parallelism: edit_workers={n_edit}  judge_workers={n_judge}  "
         f"depth={need_depth}  seg={need_seg}"

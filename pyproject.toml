@@ -46,7 +46,7 @@ edge-case-image-generation = [
     "accelerate>=0.34",
     "clip",
     "datasets>=2.20",
-    "diffusers>=0.39",
+    "diffusers>=0.39.0",
     "hydra-core>=1.3",
     "huggingface-hub>=0.24",
     "matplotlib>=3.8",

@@ -362,8 +362,9 @@ class MethodComparer:
     def _build_inpaint(self):
         if self.inpaint_is_klein:
             self._free_other_edit_pipes(keep="inpaint")
-            from diffusers import Flux2KleinInpaintPipeline
+            from edgecase_synthesis.diffusers_klein import import_flux2_klein_inpaint_pipeline
 
+            Flux2KleinInpaintPipeline = import_flux2_klein_inpaint_pipeline()
             pipe = Flux2KleinInpaintPipeline.from_pretrained(
                 self.inpaint_model_id,
                 torch_dtype=self._dtype(for_klein=True),
@@ -414,8 +415,9 @@ class MethodComparer:
     def _build_instruct(self):
         if self.instruct_is_klein:
             self._free_other_edit_pipes(keep="instruct")
-            from diffusers import Flux2KleinPipeline
+            from edgecase_synthesis.diffusers_klein import import_flux2_klein_pipeline
 
+            Flux2KleinPipeline = import_flux2_klein_pipeline()
             pipe = Flux2KleinPipeline.from_pretrained(
                 self.instruct_model_id,
                 torch_dtype=self._dtype(for_klein=True),
