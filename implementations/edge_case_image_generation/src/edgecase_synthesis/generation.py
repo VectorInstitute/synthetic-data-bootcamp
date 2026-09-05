@@ -102,7 +102,8 @@ class AnomalyEditor:
             if hasattr(pipe, "enable_vae_tiling"):
                 pipe.enable_vae_tiling()
             if hasattr(pipe, "enable_model_cpu_offload"):
-                pipe.enable_model_cpu_offload()
+                gpu_id = int(self.device.index) if self.device.index is not None else 0
+                pipe.enable_model_cpu_offload(gpu_id=gpu_id)
             else:
                 pipe.to(self.device)
         else:

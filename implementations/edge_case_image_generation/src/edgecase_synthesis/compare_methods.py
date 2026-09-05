@@ -327,12 +327,12 @@ class MethodComparer:
         if self.device.type == "cuda":
             if hasattr(pipe, "enable_vae_tiling"):
                 pipe.enable_vae_tiling()
-            # Explicit cuda:N (dual-GPU batch workers) must pin — cpu_offload
-            # always lands on cuda:0 and serializes both workers.
-            if self.device.index is not None:
-                pipe.to(self.device)
-            elif hasattr(pipe, "enable_model_cpu_offload"):
-                pipe.enable_model_cpu_offload()
+            # Klein / Flux2 often leave modules on the meta device until offload
+            # hooks run — ``pipe.to(cuda:N)`` then raises NotImplementedError.
+            # ``enable_model_cpu_offload(gpu_id=N)`` pins each dual-GPU worker.
+            if hasattr(pipe, "enable_model_cpu_offload"):
+                gpu_id = int(self.device.index) if self.device.index is not None else 0
+                pipe.enable_model_cpu_offload(gpu_id=gpu_id)
             else:
                 pipe.to(self.device)
         else:
