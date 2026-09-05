@@ -151,14 +151,20 @@ class AnomalyEditor:
             self._controlnet_pipe = None
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
-            from edgecase_synthesis.diffusers_klein import import_flux2_klein_inpaint_pipeline
+            from edgecase_synthesis.diffusers_klein import (
+                configure_klein_pipe,
+                from_pretrained_klein,
+                import_flux2_klein_inpaint_pipeline,
+            )
 
             Flux2KleinInpaintPipeline = import_flux2_klein_inpaint_pipeline()
-            pipe = Flux2KleinInpaintPipeline.from_pretrained(
+            pipe = from_pretrained_klein(
+                Flux2KleinInpaintPipeline,
                 self.inpaint_model_id,
-                torch_dtype=self._dtype(for_klein=True),
+                dtype=self._dtype(for_klein=True),
+                device=self.device,
             )
-            return self._place(pipe)
+            return configure_klein_pipe(pipe)
 
         from diffusers import AutoPipelineForInpainting
 

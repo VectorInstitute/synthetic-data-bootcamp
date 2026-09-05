@@ -327,9 +327,6 @@ class MethodComparer:
         if self.device.type == "cuda":
             if hasattr(pipe, "enable_vae_tiling"):
                 pipe.enable_vae_tiling()
-            # Klein / Flux2 often leave modules on the meta device until offload
-            # hooks run — ``pipe.to(cuda:N)`` then raises NotImplementedError.
-            # ``enable_model_cpu_offload(gpu_id=N)`` pins each dual-GPU worker.
             if hasattr(pipe, "enable_model_cpu_offload"):
                 gpu_id = int(self.device.index) if self.device.index is not None else 0
                 pipe.enable_model_cpu_offload(gpu_id=gpu_id)
@@ -339,8 +336,21 @@ class MethodComparer:
             pipe.to(self.device)
         return pipe
 
+    def _place_klein(self, pipe: Any) -> Any:
+        import os
+
+        disable_bar = os.environ.get("EDGECASE_DISABLE_PIPE_PROGRESS", "").lower() in {
+            "1",
+            "true",
+            "yes",
+        }
+        from edgecase_synthesis.diffusers_klein import configure_klein_pipe
+
+        return configure_klein_pipe(pipe, disable_progress=disable_bar)
+
     def _gen(self, seed: int) -> torch.Generator:
         if self.device.type == "cuda":
+            # Generators should match the inference GPU (device_map target).
             return torch.Generator(device=self.device).manual_seed(int(seed))
         return torch.Generator(device="cpu").manual_seed(int(seed))
 
@@ -362,14 +372,19 @@ class MethodComparer:
     def _build_inpaint(self):
         if self.inpaint_is_klein:
             self._free_other_edit_pipes(keep="inpaint")
-            from edgecase_synthesis.diffusers_klein import import_flux2_klein_inpaint_pipeline
+            from edgecase_synthesis.diffusers_klein import (
+                from_pretrained_klein,
+                import_flux2_klein_inpaint_pipeline,
+            )
 
             Flux2KleinInpaintPipeline = import_flux2_klein_inpaint_pipeline()
-            pipe = Flux2KleinInpaintPipeline.from_pretrained(
+            pipe = from_pretrained_klein(
+                Flux2KleinInpaintPipeline,
                 self.inpaint_model_id,
-                torch_dtype=self._dtype(for_klein=True),
+                dtype=self._dtype(for_klein=True),
+                device=self.device,
             )
-            return self._place(pipe)
+            return self._place_klein(pipe)
 
         from diffusers import AutoPipelineForInpainting
 
@@ -415,14 +430,19 @@ class MethodComparer:
     def _build_instruct(self):
         if self.instruct_is_klein:
             self._free_other_edit_pipes(keep="instruct")
-            from edgecase_synthesis.diffusers_klein import import_flux2_klein_pipeline
+            from edgecase_synthesis.diffusers_klein import (
+                from_pretrained_klein,
+                import_flux2_klein_pipeline,
+            )
 
             Flux2KleinPipeline = import_flux2_klein_pipeline()
-            pipe = Flux2KleinPipeline.from_pretrained(
+            pipe = from_pretrained_klein(
+                Flux2KleinPipeline,
                 self.instruct_model_id,
-                torch_dtype=self._dtype(for_klein=True),
+                dtype=self._dtype(for_klein=True),
+                device=self.device,
             )
-            return self._place(pipe)
+            return self._place_klein(pipe)
         dtype = self._dtype()
         if self.family == "sdxl" and "sdxl" in self.instruct_model_id.lower():
             from diffusers import StableDiffusionXLInstructPix2PixPipeline

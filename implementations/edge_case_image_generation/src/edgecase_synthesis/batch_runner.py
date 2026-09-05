@@ -147,18 +147,32 @@ def _load_edit_stack(
     device: str | None,
     need_depth: bool,
     need_seg: bool,
+    warm_methods: set[str] | None = None,
+    log: Callable[[str], None] | None = None,
 ) -> _EditStack:
     depth_model = DepthEstimator.from_config(cfg, device=device) if need_depth else None
     segmenter = Segmenter.from_config(cfg, device=device) if need_seg else None
     comparer = MethodComparer.from_config(cfg, device=device)
     annotator = OpenVocabAnnotator.from_config(cfg, device=device)
-    return _EditStack(
+    stack = _EditStack(
         device=str(device or "auto"),
         depth_model=depth_model,
         segmenter=segmenter,
         comparer=comparer,
         annotator=annotator,
     )
+    # Build Klein pipes here (sequentially per GPU) so parallel workers don't
+    # race two from_pretrained calls and hit meta-tensor placement bugs.
+    warm = warm_methods or set()
+    if "instruct" in warm and comparer.instruct_is_klein:
+        if log:
+            log(f"  warming Klein instruct on {stack.device}…")
+        _ = comparer.instruct_pipe
+    if "inpaint" in warm and comparer.inpaint_is_klein:
+        if log:
+            log(f"  warming Klein inpaint on {stack.device}…")
+        _ = comparer.inpaint_pipe
+    return stack
 
 
 def _synthesize_items(
@@ -328,6 +342,8 @@ def run_batch_synthesis(
                     device=device,
                     need_depth=need_depth,
                     need_seg=need_seg,
+                    warm_methods=methods_in_queue,
+                    log=log,
                 )
             )
 
