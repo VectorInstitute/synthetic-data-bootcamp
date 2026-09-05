@@ -1,9 +1,13 @@
 # @package _global_
-# g2-standard-24 / 2× NVIDIA L4 — same models as gpu_l4; more VRAM headroom + device_map spread.
+# g2-standard-24 / 2× NVIDIA L4 — same models as gpu_l4; dual-GPU batch parallelism.
 hardware:
   name: gpu_l4x2
   device: cuda
   num_gpus: 2
+  # NB2: one Klein+YOLO stack per GPU (near-2× edit throughput).
+  parallel_edit_workers: 2
+  # Concurrent Vector/Gemini judge HTTP calls (I/O bound).
+  judge_workers: 8
 
 conditioning:
   depth:

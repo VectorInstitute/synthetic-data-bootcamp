@@ -314,13 +314,24 @@ class MethodComparer:
             torch.cuda.empty_cache()
 
     def _place(self, pipe: Any) -> Any:
-        pipe.set_progress_bar_config(disable=False)
+        import os
+
+        disable_bar = os.environ.get("EDGECASE_DISABLE_PIPE_PROGRESS", "").lower() in {
+            "1",
+            "true",
+            "yes",
+        }
+        pipe.set_progress_bar_config(disable=disable_bar)
         if hasattr(pipe, "enable_attention_slicing"):
             pipe.enable_attention_slicing()
         if self.device.type == "cuda":
             if hasattr(pipe, "enable_vae_tiling"):
                 pipe.enable_vae_tiling()
-            if hasattr(pipe, "enable_model_cpu_offload"):
+            # Explicit cuda:N (dual-GPU batch workers) must pin — cpu_offload
+            # always lands on cuda:0 and serializes both workers.
+            if self.device.index is not None:
+                pipe.to(self.device)
+            elif hasattr(pipe, "enable_model_cpu_offload"):
                 pipe.enable_model_cpu_offload()
             else:
                 pipe.to(self.device)
@@ -329,8 +340,9 @@ class MethodComparer:
         return pipe
 
     def _gen(self, seed: int) -> torch.Generator:
-        gen_device = "cuda" if self.device.type == "cuda" else "cpu"
-        return torch.Generator(device=gen_device).manual_seed(int(seed))
+        if self.device.type == "cuda":
+            return torch.Generator(device=self.device).manual_seed(int(seed))
+        return torch.Generator(device="cpu").manual_seed(int(seed))
 
     @staticmethod
     def _fit_klein_image(image: Image.Image, *, max_side: int = 768) -> Image.Image:
@@ -453,8 +465,8 @@ class MethodComparer:
         method: str,
         image: Image.Image,
         *,
-        depth: DepthResult,
-        segmentation: SegmentationResult,
+        depth: DepthResult | None,
+        segmentation: SegmentationResult | None,
         generation_cfg: Any,
         anomaly_cfg: Any,
         seed_offset: int = 0,
@@ -505,13 +517,25 @@ class MethodComparer:
         )
 
         edit_mask_cfg = dict(anom.get("edit_mask", {"mode": "ellipse"}))
-        edit_mask, edit_weight = build_anomaly_edit_mask(
-            segmentation,
-            edit_mask_cfg,
-            width=width,
-            height=height,
-            depth=depth,
+        spec = METHOD_SPECS.get(effective) or METHOD_SPECS.get(method)
+        needs_conditioning = bool(
+            spec is None or spec.uses_mask or spec.uses_depth or spec.uses_seg
         )
+        if needs_conditioning:
+            if depth is None or segmentation is None:
+                raise ValueError(
+                    f"Method {effective!r} requires depth and segmentation "
+                    "(got depth={depth is not None}, seg={segmentation is not None})"
+                )
+            edit_mask, edit_weight = build_anomaly_edit_mask(
+                segmentation,
+                edit_mask_cfg,
+                width=width,
+                height=height,
+                depth=depth,
+            )
+        else:
+            edit_mask, edit_weight = None, None
         padding_crop = merged.get("padding_mask_crop", None)
         padding_crop = int(padding_crop) if padding_crop not in (None, "", False) else None
 

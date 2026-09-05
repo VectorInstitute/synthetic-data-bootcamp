@@ -70,7 +70,8 @@ class OpenVocabAnnotator:
             self.model.to("cpu")
         except Exception:  # noqa: BLE001
             pass
-        self._yolo_device = "cuda:0" if self.device.type == "cuda" else "cpu"
+        # Respect cuda:N when dual-GPU batch workers pin models per device.
+        self._yolo_device = str(self.device) if self.device.type == "cuda" else "cpu"
         self._active_classes: list[str] | None = None
 
     @torch.inference_mode()

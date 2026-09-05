@@ -12,6 +12,9 @@ api_provider: null   # null → auto (vector_proxy when api_base_url is set)
 api_key: null        # null → OPENAI_API_KEY from .env (see .env.example)
 api_max_side: 1024
 
+# Concurrent API judge calls in Notebook 2 (I/O bound; safe with Vector proxy).
+max_parallel: 8
+
 # Local Qwen settings (used when backend=qwen_vl)
 torch_dtype: float32
 max_new_tokens: 256
