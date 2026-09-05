@@ -18,6 +18,7 @@ from collections import Counter
 from collections.abc import Callable
 from io import BytesIO
 from pathlib import Path
+from typing import Any
 from urllib.error import HTTPError, URLError
 
 import urllib.request
@@ -41,7 +42,25 @@ SAMPLES = Path(str(_CFG.paths.samples_dir))
 INDEX = CACHE / "_zip_index.jsonl"
 
 TARGET = {str(k): str(v) for k, v in dict(_DATA.get("extract_label_map") or {}).items()}
-READABLE = {k: v.replace("_", " ").title() for k, v in TARGET.items()}
+# Human-readable Mapillary names → same stem tags (panoptic JSON sometimes uses
+# ``name`` / ``readable`` instead of the ``object--…`` key).
+_READABLE_DEFAULTS = {
+    "object--traffic-cone": "Traffic Cone",
+    "object--trash-can": "Trash Can",
+    "animal--ground-animal": "Ground Animal",
+    "object--pothole": "Pothole",
+}
+READABLE = {
+    k: str(_READABLE_DEFAULTS.get(k) or v.replace("_", " ").title())
+    for k, v in TARGET.items()
+}
+# Any string that should map to a TARGET key (internal Mapillary id).
+LABEL_ALIASES: dict[str, str] = {}
+for internal in TARGET:
+    LABEL_ALIASES[internal] = internal
+    LABEL_ALIASES[internal.lower()] = internal
+    LABEL_ALIASES[READABLE[internal]] = internal
+    LABEL_ALIASES[READABLE[internal].lower()] = internal
 MAX_PER = int(_DATA.get("extract_max_per_class") or 6)
 MAX_GENERIC = int(_DATA.get("extract_max_generic") or 10)
 THUMB = int(_DATA.get("extract_thumb_max_side") or 1280)
@@ -282,7 +301,30 @@ def main(argv: list[str] | None = None) -> None:
         f"n categories={len(categories)} n_ann={len(annotations)} n_images={len(images)}",
         flush=True,
     )
-    id_to_name = {c["id"]: (c.get("name") or c.get("title")) for c in categories}
+    id_to_aliases: dict[Any, set[str]] = {}
+    for c in categories:
+        cid = c.get("id")
+        aliases: set[str] = set()
+        for key in ("name", "title", "supercategory", "readable"):
+            val = c.get(key)
+            if val:
+                aliases.add(str(val))
+        id_to_aliases[cid] = aliases
+
+    def resolve_internal(label: str) -> str | None:
+        """Map a panoptic / polygon label string → TARGET key (or None)."""
+        if label in LABEL_ALIASES:
+            return LABEL_ALIASES[label]
+        return LABEL_ALIASES.get(label.lower())
+
+    def internals_in_aliases(aliases: set[str]) -> set[str]:
+        found_keys: set[str] = set()
+        for alias in aliases:
+            internal = resolve_internal(alias)
+            if internal is not None:
+                found_keys.add(internal)
+        return found_keys
+
     img_by_id = {im["id"]: im for im in images}
 
     per_image: dict[str, set[str]] = {}
@@ -293,21 +335,37 @@ def main(argv: list[str] | None = None) -> None:
             )
             cats: set[str] = set()
             for seg in ann.get("segments_info") or []:
-                cats.add(id_to_name.get(seg.get("category_id"), str(seg.get("category_id"))))
+                cats |= internals_in_aliases(
+                    id_to_aliases.get(seg.get("category_id"), {str(seg.get("category_id"))})
+                )
             if file_name:
                 per_image[Path(file_name).stem] = cats
     else:
         for ann in annotations:
             im = img_by_id[ann["image_id"]]
             stem = Path(im["file_name"]).stem
-            per_image.setdefault(stem, set()).add(id_to_name.get(ann["category_id"], ""))
+            cats = internals_in_aliases(
+                id_to_aliases.get(ann["category_id"], {str(ann["category_id"])})
+            )
+            per_image.setdefault(stem, set()).update(cats)
 
     cnt: Counter[str] = Counter()
     for cats in per_image.values():
         for t in TARGET:
             if t in cats:
                 cnt[t] += 1
-    print("target counts in val:", dict(cnt), flush=True)
+    print(
+        "target counts in val:",
+        {TARGET[k]: int(cnt.get(k, 0)) for k in TARGET},
+        flush=True,
+    )
+    missing = [TARGET[k] for k in TARGET if cnt.get(k, 0) == 0]
+    if missing:
+        print(
+            f"WARNING: no val images for {missing}. "
+            "Check extract_label_map keys against panoptic category name/supercategory.",
+            flush=True,
+        )
 
     found: dict[str, list[str]] = {t: [] for t in TARGET}
     for stem, cats in per_image.items():
@@ -316,7 +374,11 @@ def main(argv: list[str] | None = None) -> None:
                 found[t].append(stem)
         if all(len(v) >= MAX_PER for v in found.values()):
             break
-    print("picked:", {k: v for k, v in found.items()}, flush=True)
+    print(
+        "picked:",
+        {TARGET[k]: len(v) for k, v in found.items()},
+        flush=True,
+    )
 
     picked: set[str] = set()
     for stems in found.values():
@@ -352,14 +414,10 @@ def main(argv: list[str] | None = None) -> None:
             return []
         d = json.loads(extract_entry(by_name[poly_path]))
         boxes: list[dict] = []
-        rev = {v: k for k, v in READABLE.items()}
         for o in d.get("objects") or []:
             lab = o.get("label") or ""
-            if lab in internal_names:
-                internal = lab
-            elif lab in rev and rev[lab] in internal_names:
-                internal = rev[lab]
-            else:
+            internal = resolve_internal(lab)
+            if internal is None or internal not in internal_names:
                 continue
             pts = o.get("polygon") or []
             if not pts:

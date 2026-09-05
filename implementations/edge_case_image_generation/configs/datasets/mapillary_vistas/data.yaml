@@ -12,6 +12,8 @@ stem_prefixes:
   - fog_
 # Rare-class extract targets (Mapillary panoptic labels → stem prefix).
 # Notebook 2/3 focus: traffic_cone + trash_bin (both have real GT labels).
+# Mapillary key is ``object--trash-can`` (readable "Trash Can") → our tag ``trash_bin``.
+# Re-extract after changing this map: scripts/extract_mapillary_toy.py --clean
 extract_label_map:
   object--traffic-cone: traffic_cone
   object--trash-can: trash_bin
