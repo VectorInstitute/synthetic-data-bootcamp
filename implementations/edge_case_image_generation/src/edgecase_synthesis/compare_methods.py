@@ -346,8 +346,9 @@ class MethodComparer:
         }
         from edgecase_synthesis.diffusers_klein import configure_klein_pipe
 
-        # Multi-GPU workers use device_map (no cpu_offload). Single stack uses
-        # the classic enable_model_cpu_offload path that was ~8s/image on L4.
+        # Prefer cpu_offload when device is bare ``cuda`` (index=None) — the
+        # ~8s/image L4 recipe. Explicit ``cuda:N`` skips offload (device_map).
+        # Process workers set CUDA_VISIBLE_DEVICES then use bare cuda.
         use_offload = self.device.index is None
         return configure_klein_pipe(
             pipe,

@@ -2,7 +2,8 @@
 
 Speed path on ``gpu_l4x2``:
   - Skip depth/seg when every queued method is instruct-only (NB2 default).
-  - Run one Klein (+ annotator) stack per GPU in parallel threads.
+  - One Klein process per GPU (``edit_mp``) — not Diffusers list-batch (Klein
+    treats ``image=[...]`` as multi-ref for every prompt, not paired rows).
   - Fan out API judge calls with a thread pool (I/O bound).
 """
 
@@ -93,10 +94,10 @@ def _judge_workers(cfg: Any) -> int:
 
 
 def _edit_workers(cfg: Any) -> int:
-    # Default **1**: threaded multi-GPU Klein shares one CUDA context and often
-    # stalls (slower than a single L4). Keep parallel judge for API speedups.
-    # Opt in later with process-based workers if needed.
-    requested = _hw_int(cfg, "parallel_edit_workers", 1)
+    # Process-based multi-GPU (see edit_mp). Default follows num_gpus when set.
+    requested = _hw_int(cfg, "parallel_edit_workers", 0)
+    if requested <= 0:
+        requested = _hw_int(cfg, "num_gpus", 1)
     if not torch.cuda.is_available():
         return 1
     return max(1, min(int(requested), int(torch.cuda.device_count())))
@@ -330,23 +331,25 @@ def run_batch_synthesis(
         judge = None
         unload_edit_stacks()
         if n_edit > 1:
-            os.environ["EDGECASE_DISABLE_PIPE_PROGRESS"] = "1"
-            devices = [f"cuda:{i}" for i in range(n_edit)]
-        else:
-            os.environ.pop("EDGECASE_DISABLE_PIPE_PROGRESS", None)
-            devices = [None]
-        for device in devices:
-            log(f"Loading edit stack on {device or 'default'}…")
-            stacks.append(
-                _load_edit_stack(
-                    cfg,
-                    device=device,
-                    need_depth=need_depth,
-                    need_seg=need_seg,
-                    warm_methods=methods_in_queue,
-                    log=log,
-                )
+            # One Klein per process/GPU (edit_mp). Do not load pipes in the parent.
+            log(
+                f"Edit phase: {n_edit} process workers (one Klein per GPU). "
+                "Note: Flux2Klein list(image)+list(prompt) is multi-ref, not paired batch."
             )
+            os.environ.pop("EDGECASE_DISABLE_PIPE_PROGRESS", None)
+            return
+        os.environ.pop("EDGECASE_DISABLE_PIPE_PROGRESS", None)
+        log("Loading edit stack on default device…")
+        stacks.append(
+            _load_edit_stack(
+                cfg,
+                device=None,
+                need_depth=need_depth,
+                need_seg=need_seg,
+                warm_methods=methods_in_queue,
+                log=log,
+            )
+        )
 
     def load_judge() -> None:
         nonlocal judge
@@ -370,8 +373,10 @@ def run_batch_synthesis(
         active = assign_variations(items)
         if not active:
             return
-        assert stacks
-        if len(stacks) == 1:
+        if n_edit <= 1:
+            if not stacks:
+                load_edit_stacks()
+            assert stacks
             _synthesize_items(
                 active,
                 stack=stacks[0],
@@ -385,28 +390,65 @@ def run_batch_synthesis(
             )
             return
 
-        shards = [active[i :: len(stacks)] for i in range(len(stacks))]
-        stats_lock = threading.Lock()
-        with ThreadPoolExecutor(max_workers=len(stacks)) as pool:
-            futs = [
-                pool.submit(
-                    _synthesize_items,
-                    shard,
-                    stack=stack,
-                    cfg=cfg,
-                    project_root=project_root,
-                    base_classes=base_classes,
-                    target_accepts=target_accepts,
-                    accepted_counts=accepted_counts,
-                    stats=result.stats,
-                    log=log,
-                    stats_lock=stats_lock,
+        # Process-based dual (or N) GPU — avoids CUDA thread stalls and Klein's
+        # non-paired list(image) batch API.
+        import tempfile
+        from concurrent.futures import ProcessPoolExecutor
+
+        from edgecase_synthesis.edit_mp import (
+            EditJob,
+            apply_mp_results_to_items,
+            mp_synthesize_shard,
+        )
+
+        unload_edit_stacks()
+        hardware_name = str(cfg.hardware.get("name") or cfg.get("hardware") or "gpu_l4")
+        tmp_root = Path(tempfile.mkdtemp(prefix="edgecase_edit_"))
+        for i, item in enumerate(active):
+            item._job_id = i  # type: ignore[attr-defined]
+        shards = [active[i::n_edit] for i in range(n_edit)]
+        payloads = []
+        for gpu_id, shard in enumerate(shards):
+            if not shard:
+                continue
+            jobs = [
+                EditJob(
+                    job_id=int(item._job_id),  # type: ignore[attr-defined]
+                    anomaly_id=item.anomaly_id,
+                    method=item.method,
+                    source_path=str(item.source_path),
+                    source_stem=item.source_stem,
+                    attempt=int(item.attempt),
+                    variation_index=int(item.variation_index or 0),
                 )
-                for stack, shard in zip(stacks, shards, strict=True)
-                if shard
+                for item in shard
             ]
-            for fut in as_completed(futs):
-                fut.result()
+            payloads.append(
+                {
+                    "gpu_id": gpu_id,
+                    "jobs": [j.__dict__ for j in jobs],
+                    "project_root": str(project_root),
+                    "dataset_name": dataset,
+                    "hardware": hardware_name,
+                    "need_depth": need_depth,
+                    "need_seg": need_seg,
+                    "warm_methods": list(methods_in_queue),
+                    "base_classes": base_classes,
+                    "tmp_dir": str(tmp_root / f"gpu{gpu_id}"),
+                }
+            )
+        log(f"Dispatching {len(active)} edits across {len(payloads)} GPU processes…")
+        # spawn: fresh interpreter so CUDA_VISIBLE_DEVICES is honored per worker.
+        ctx = __import__("multiprocessing").get_context("spawn")
+        with ProcessPoolExecutor(max_workers=len(payloads), mp_context=ctx) as pool:
+            shard_results = list(pool.map(mp_synthesize_shard, payloads))
+        flat: list[dict] = []
+        for part in shard_results:
+            flat.extend(part)
+        apply_mp_results_to_items(active, flat)
+        for item in active:
+            result.stats[item.anomaly_id].attempts += 1
+        log(f"Process edit done ({len(flat)} images) → {tmp_root}")
 
     def _judge_api_call(item: PendingItem) -> tuple[PendingItem, JudgeResult, bool]:
         assert judge is not None and item.generated is not None and item.annotation is not None

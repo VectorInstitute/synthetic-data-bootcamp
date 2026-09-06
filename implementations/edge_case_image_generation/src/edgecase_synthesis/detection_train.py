@@ -172,6 +172,72 @@ def write_yolo_label_file(
     return len(lines)
 
 
+def _synth_class_key(row: dict[str, Any]) -> str:
+    return str(row.get("anomaly_id") or row.get("tag") or "unknown")
+
+
+def count_usable_synthetic(
+    train_manifest: list[dict[str, Any]],
+    *,
+    class_names: list[str],
+    aliases: dict[str, list[str]] | None = None,
+    drop_empty_synthetic: bool = True,
+) -> dict[str, int]:
+    """Count train-split synthetic rows per anomaly that would be kept for YOLO.
+
+    Empty / non-target synth is excluded when ``drop_empty_synthetic`` is True so
+    half/full caps match what Notebook 3 actually trains on.
+    """
+    lookup = build_alias_lookup(class_names, aliases)
+    counts: dict[str, int] = {}
+    for row in train_manifest:
+        if str(row.get("split", "real")).lower() != "synthetic":
+            continue
+        if drop_empty_synthetic:
+            has_box = any(
+                box_to_class_id(str(box.get("label", "")), lookup) is not None
+                for box in (row.get("boxes") or [])
+            )
+            if not has_box:
+                continue
+        key = _synth_class_key(row)
+        counts[key] = counts.get(key, 0) + 1
+    return counts
+
+
+def synth_caps_for_fraction(
+    train_manifest: list[dict[str, Any]],
+    *,
+    fraction: float,
+    class_names: list[str],
+    aliases: dict[str, list[str]] | None = None,
+    drop_empty_synthetic: bool = True,
+) -> dict[str, int]:
+    """Per-class caps = floor(usable_count × fraction). Used for 50% / 100% ablations."""
+    if fraction < 0 or fraction > 1:
+        raise ValueError(f"fraction must be in [0, 1], got {fraction}")
+    available = count_usable_synthetic(
+        train_manifest,
+        class_names=class_names,
+        aliases=aliases,
+        drop_empty_synthetic=drop_empty_synthetic,
+    )
+    return {key: int(n * fraction) for key, n in available.items()}
+
+
+def _resolve_synth_cap(
+    key: str,
+    caps: int | dict[str, int] | None,
+) -> int | None:
+    if caps is None:
+        return None
+    if isinstance(caps, dict):
+        if key not in caps:
+            return None  # class absent from fraction map → keep all of that key
+        return int(caps[key])
+    return int(caps)
+
+
 def build_yolo_dataset(
     *,
     train_manifest: list[dict[str, Any]],
@@ -180,7 +246,8 @@ def build_yolo_dataset(
     class_names: list[str],
     aliases: dict[str, list[str]] | None = None,
     include_synthetic: bool = True,
-    max_synthetic_per_class: int | None = None,
+    max_synthetic_per_class: int | dict[str, int] | None = None,
+    synthetic_fraction: float | None = None,
     max_scene_images: int | None = None,
     scene_sample_seed: int = 42,
     copy_images: bool = False,
@@ -200,8 +267,11 @@ def build_yolo_dataset(
     When ``drop_empty_synthetic`` is True, synth rows with zero target-class boxes
     are skipped (they cannot teach the detector).
 
-    When ``max_synthetic_per_class`` is set, at most that many synthetic train rows
-    per ``anomaly_id`` / ``tag`` are kept (useful for real+50 vs real+100 ablations).
+    Cap synth with either:
+
+    - ``synthetic_fraction`` (0–1): per-class floor of usable NB2 accepts
+      (preferred for 50% / 100% of whatever Notebook 2 produced).
+    - ``max_synthetic_per_class``: fixed int, or per-class ``dict``.
 
     When ``max_scene_images`` is set, at most that many real ``tag=scene`` train
     rows are kept as background negatives (avoids ~500 empty vs ~50 rare imbalance).
@@ -216,7 +286,7 @@ def build_yolo_dataset(
     lookup = build_alias_lookup(class_names, aliases)
     train_stats = DatasetBuildStats()
     val_stats = DatasetBuildStats()
-    synth_per_class: dict[str, int] = {}
+    synth_kept: dict[str, int] = {}
     train_manifest, _n_scene_kept, n_scene_dropped = _limit_scene_rows(
         train_manifest,
         max_scene_images,
@@ -224,8 +294,21 @@ def build_yolo_dataset(
     )
     train_stats.n_scene_dropped = n_scene_dropped
 
-    def _synth_class_key(row: dict[str, Any]) -> str:
-        return str(row.get("anomaly_id") or row.get("tag") or "unknown")
+    available_synth = count_usable_synthetic(
+        train_manifest,
+        class_names=class_names,
+        aliases=aliases,
+        drop_empty_synthetic=drop_empty_synthetic,
+    )
+    resolved_caps: int | dict[str, int] | None = max_synthetic_per_class
+    if synthetic_fraction is not None:
+        resolved_caps = synth_caps_for_fraction(
+            train_manifest,
+            fraction=float(synthetic_fraction),
+            class_names=class_names,
+            aliases=aliases,
+            drop_empty_synthetic=drop_empty_synthetic,
+        )
 
     def _row_has_target_box(row: dict[str, Any]) -> bool:
         for box in row.get("boxes") or []:
@@ -238,15 +321,6 @@ def build_yolo_dataset(
             kind = str(row.get("split", "real")).lower()
             if split == "train" and kind == "synthetic" and not include_synthetic:
                 continue
-            if (
-                split == "train"
-                and kind == "synthetic"
-                and max_synthetic_per_class is not None
-            ):
-                synth_key = _synth_class_key(row)
-                if synth_per_class.get(synth_key, 0) >= int(max_synthetic_per_class):
-                    continue
-                synth_per_class[synth_key] = synth_per_class.get(synth_key, 0) + 1
             if split == "val" and kind == "synthetic":
                 # Never evaluate on synthetic / auto-labels.
                 continue
@@ -258,6 +332,11 @@ def build_yolo_dataset(
             ):
                 stats.n_skipped_boxes += 1  # reuse counter: empty synth dropped
                 continue
+            if split == "train" and kind == "synthetic" and resolved_caps is not None:
+                synth_key = _synth_class_key(row)
+                cap = _resolve_synth_cap(synth_key, resolved_caps)
+                if cap is not None and synth_kept.get(synth_key, 0) >= cap:
+                    continue
             src = Path(str(row["path"]))
             if not src.exists():
                 raise FileNotFoundError(f"Manifest image missing: {src}")
@@ -282,6 +361,9 @@ def build_yolo_dataset(
             stats.n_images += 1
             if kind == "synthetic":
                 stats.n_synthetic += 1
+                if split == "train":
+                    key = _synth_class_key(row)
+                    synth_kept[key] = synth_kept.get(key, 0) + 1
             else:
                 stats.n_real += 1
                 if str(row.get("tag", "")).lower() == "scene":
@@ -312,6 +394,10 @@ def build_yolo_dataset(
             "dataset_name": dataset_name,
             "include_synthetic": include_synthetic,
             "max_synthetic_per_class": max_synthetic_per_class,
+            "synthetic_fraction": synthetic_fraction,
+            "available_synthetic_per_class": available_synth,
+            "resolved_synthetic_caps": resolved_caps,
+            "kept_synthetic_per_class": synth_kept,
             "max_scene_images": max_scene_images,
             "drop_empty_synthetic": drop_empty_synthetic,
             "class_names": class_names,
