@@ -1,18 +1,18 @@
 
 # diffusion_config is only required when training a new model from scratch
 diffusion_config:
-  d_layers: [512, 512]
+  d_layers: [512, 1024, 1024, 1024, 1024, 512]
   dropout: 0.0
-  num_timesteps: 2
+  num_timesteps: 500
   model_type: mlp
-  iterations: 2
-  batch_size: 4
+  iterations: 5000
+  batch_size: 256
   lr: 0.0006
   gaussian_loss_type: mse
   weight_decay: 1e-05
   scheduler: cosine
 
-sample_scale: 0.2 # Used to define the number of sampled samples based on the train data size.
+sample_scale: 1.0 # Used to define the number of sampled samples based on the train data size.
 
 # No need to change these for single table settings. These are used for multi-table settings.
 sampling_config:

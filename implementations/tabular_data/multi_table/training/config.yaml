@@ -1,11 +1,11 @@
 # Multi-table training example configuration
 diffusion_config:
-  d_layers: [512, 512]
+  d_layers: [512, 1024, 1024, 1024, 1024, 512]
   dropout: 0.0
-  num_timesteps: 10
+  num_timesteps: 500
   model_type: mlp
-  iterations: 10
-  batch_size: 4096
+  iterations: 5000
+  batch_size: 256
   lr: 0.0006
   gaussian_loss_type: mse
   weight_decay: 1e-05
@@ -17,8 +17,8 @@ clustering_config:
   clustering_method: kmeans_and_gmm
 
 classifier_config:
-    d_layers: [128, 128]
+    d_layers: [128, 256, 512, 1024, 512, 256, 128]
     lr: 0.0001
     dim_t: 128
-    batch_size: 4096
-    iterations: 10
+    batch_size: 256
+    iterations: 5000

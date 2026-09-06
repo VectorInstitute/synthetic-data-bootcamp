@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 """Preprocess the Berka (PKDD'99) transaction table.
 
-Reconstructs the pipeline used by Vector Institute MIDSTModels / ClavaDDPM
-``preprocess_utils.py``:
-
 1. Drop ID columns (``trans_id``, ``account_id``).
 2. Convert ``date`` (YYMMDD) to ``trans_date`` = days since the earliest date
    in the loaded data (or a fixed epoch if ``--date-epoch`` is set).

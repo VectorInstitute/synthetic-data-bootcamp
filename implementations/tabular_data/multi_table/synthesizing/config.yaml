@@ -1,11 +1,11 @@
 # Synthesizing config
 sampling_config:
-    sample_scale: 0.25 # Ratio of the number of synthesized rows compared to the number of original rows
-    batch_size: 10
+    sample_scale: 1.0 # Ratio of the number of synthesized rows compared to the number of original rows
+    batch_size: 200
     classifier_scale: 1.0
 
 matching_config:
     num_matching_clusters: 1
-    matching_batch_size: 10
+    matching_batch_size: 1000
     unique_matching: True
     no_matching: False

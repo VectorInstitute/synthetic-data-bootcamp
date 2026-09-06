@@ -1,19 +1,6 @@
 # Berka multi-table preprocessing
 
-Prepares all eight PKDD'99 Berka tables for ClavaDDPM, matching the layout expected by [`load_tables`](https://github.com/VectorInstitute/midst-toolkit/blob/main/src/midst_toolkit/models/clavaddpm/data_loaders.py) in the [midst-toolkit multi-table training example](https://github.com/VectorInstitute/midst-toolkit/tree/main/examples/training/multi_table).
-
-## How to run
-
-From the repo root, after placing raw `{table}.csv` or `{table}.asc` files in an input directory (for example via `download_and_save_multi_table_data` in [`implementations/tabular_data/utils.py`](../../utils.py)):
-
-```bash
-python implementations/tabular_data/multi_table/data_preprocessing/pre_process_berka_all_tabels.py \
-  --input-dir implementations/tabular_data/multi_table/data/berka/raw_data \
-  --output-dir implementations/tabular_data/multi_table/data/berka \
-  --trans-sample-size 20000
-```
-
-Defaults: `--input-dir` is `multi_table/data/berka/raw_data`, `--output-dir` is `multi_table/data/berka`. Omit `--trans-sample-size` to keep all ~1M transaction rows. That flag (and `trans_sample_size=` in Python) randomly downsamples **only** `trans`; other tables stay in full. Parent `account` rows are not dropped, so foreign keys remain valid. `--seed` (default 42) controls the draw.
+Prepares all eight PKDD'99 Berka tables for ClavaDDPM pipeline.
 
 ## Outputs
 
