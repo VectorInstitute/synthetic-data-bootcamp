@@ -1,0 +1,63 @@
+# =============================================================================
+# Domain generation config (required)
+# =============================================================================
+# Loaded into DomainBundle.generation (see synbench.schemas.generation).
+# Drives:
+#   1) ConstraintSampler  — which DB rows / IDs to sample for each draft task
+#   2) PromptBuilder      — wording + entity snapshot in the generation prompt
+#   3) agent_system_prompt — agent_role at evaluation time
+#
+# To add a new domain: copy this file and retarget collections/fields to your
+# db.json. You should not need to edit Python sampler/prompt code for a new
+# entity shape.
+# =============================================================================
+
+# Role label for the agent under test.
+# Used in: generation prompt ("The agent under test is a …") and runtime agent
+# system prompt ("You are the … for this domain.").
+agent_role: "customer service agent"
+
+# Top-level key in db.json. Sampler picks a random record from this table.
+primary_collection: orders
+
+# Field on each primary record used as the main entity id in SampleConstraints
+# and required in generated tool arguments / user messages.
+id_field: order_id
+
+# Foreign-key style joins from the primary record → other db.json tables.
+# - Dict key (user_id): also stored in SampleConstraints.entities["user_id"]
+# - collection: table to look up in db.json
+# - via: field on the *primary* record that holds the lookup key
+# - fields: which related columns to show in the generation prompt's
+#   entity_context (under entity_context["users"]). Prompt-only.
+related:
+  user_id:
+    collection: users
+    via: user_id
+    fields: [name, email]
+
+# Which columns of the primary record to include in entity_context for the
+# generation LLM. Helps it respect state (e.g. status=pending before cancel).
+# Empty / omit → include all fields on the primary record. Prompt-only.
+context_fields:
+  - order_id
+  - user_id
+  - status
+  - shipping_address
+
+# Optional: pull user_scenario.user_name from a related row.
+# persona_related must be a key under `related` above.
+# persona_field is the column on that related record (here: users.name).
+persona_related: user_id
+persona_field: name
+
+# Optional per-task_type hints for evaluation_criteria.communicate_info.
+# Keys should match task_types in state_machine.yaml. Missing keys use a
+# generic default in PromptBuilder.
+communicate_hints:
+  inquiry: "Usually []. Add substrings only if the user must hear specific facts back."
+  cancel: 'Include short confirmation substrings, e.g. ["canceled"].'
+  refuse_cancel: 'Include refusal substrings from policy, e.g. ["cannot be canceled"].'
+  update_address: >
+    Include a substring of the new address that must appear in the agent reply
+    (match the shipping_address argument).

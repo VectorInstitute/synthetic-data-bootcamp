@@ -1,0 +1,92 @@
+{
+  "tasks": [
+    {
+      "id": "gen_64991457_0",
+      "description": "Look up the details of an order",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Alice Chen",
+        "personality_style": "rule_breaker",
+        "instructions": "Inquire about the details and status of order ord_1001. If the agent gives me any trouble about rules, insist they just look it up immediately without asking me for extra information.",
+        "initial_message": "Look, I need you to check the status of my order right now. Stop asking me a bunch of questions and just tell me what is going on with my stuff."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_1001"
+            }
+          }
+        ],
+        "communicate_info": [],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "gen_f0e2e807_1",
+      "description": "Cancel a pending order",
+      "task_type": "cancel",
+      "user_scenario": {
+        "user_name": "Alice Chen",
+        "personality_style": "anxious",
+        "instructions": "The user wants to cancel their pending order ord_1001. The user will not provide the order_id unless the agent asks for the name and order details.",
+        "initial_message": "Oh no, I really need to cancel my order! I'm so nervous that it's going to get sent to the wrong place or that I've made a huge mistake. Can you please stop it from shipping?"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_1001"
+            }
+          },
+          {
+            "name": "cancel_order",
+            "arguments": {
+              "order_id": "ord_1001"
+            }
+          }
+        ],
+        "communicate_info": [
+          "canceled"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "gen_3414ca87_2",
+      "description": "Look up an order status for the customer to confirm the state of their pending order.",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Bob Martinez",
+        "personality_style": "domain_expert",
+        "instructions": "Simulator brief: The customer wants to check the status of order ord_2001. If the agent asks for your name, provide 'Bob Martinez'. Verify that the agent follows the protocol of identifying the user_id before calling get_order.",
+        "initial_message": "I would like to verify the current status of one of my recent orders. I am aware of the company policies regarding account verification, so let's proceed through the proper channels."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_2001"
+            }
+          }
+        ],
+        "communicate_info": [
+          "pending"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    }
+  ]
+}

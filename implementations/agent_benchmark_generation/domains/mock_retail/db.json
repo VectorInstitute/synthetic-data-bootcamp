@@ -1,0 +1,37 @@
+{
+  "users": {
+    "user_alice": {
+      "user_id": "user_alice",
+      "name": "Alice Chen",
+      "email": "alice@example.com"
+    },
+    "user_bob": {
+      "user_id": "user_bob",
+      "name": "Bob Martinez",
+      "email": "bob@example.com"
+    }
+  },
+  "orders": {
+    "ord_1001": {
+      "order_id": "ord_1001",
+      "user_id": "user_alice",
+      "status": "pending",
+      "items": ["widget-a"],
+      "shipping_address": "123 Main St, Boston, MA"
+    },
+    "ord_1002": {
+      "order_id": "ord_1002",
+      "user_id": "user_alice",
+      "status": "shipped",
+      "items": ["widget-b"],
+      "shipping_address": "456 Oak Ave, Boston, MA"
+    },
+    "ord_2001": {
+      "order_id": "ord_2001",
+      "user_id": "user_bob",
+      "status": "pending",
+      "items": ["gadget-x"],
+      "shipping_address": "789 Pine Rd, Austin, TX"
+    }
+  }
+}

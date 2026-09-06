@@ -1,0 +1,17 @@
+task_types:
+  inquiry:
+    description: Read-only order lookup
+    path: [lookup]
+    allow_write: false
+  cancel:
+    description: Cancel a pending order after lookup
+    path: [lookup, mutate]
+    allow_write: true
+  update_address:
+    description: Update shipping after lookup
+    path: [lookup, mutate]
+    allow_write: true
+  refuse_cancel:
+    description: Lookup only; agent should refuse cancellation
+    path: [lookup]
+    allow_write: false

@@ -9,6 +9,7 @@ dependencies = [
     "aieng-synthetic-data",
     "aiohttp>=3.14.3",
     "bleach==6.4.0",
+    "dotenv>=0.9.9",
     "filelock==3.32.0",
     "jupyter-server==2.20.0",
     "jupyterlab==4.5.10",
@@ -16,6 +17,7 @@ dependencies = [
     "msgpack==1.2.1",
     "nbconvert>=7.17.0",
     "pip>=26.1.2",
+    "pydantic>=2.13.4",
     "pygments>=2.20.0",
     "python-dotenv>=1.0.0",
     "requests>=2.34.2",
@@ -50,6 +52,14 @@ text-sft = [
     "trl",
 ]
 
+synbench = [
+    "typer>=0.12",
+    "openai>=1.40",
+    "pyyaml>=6.0",
+    "httpx>=0.27",
+    "python-dotenv>=1.2.2",
+]
+
 [tool.uv.workspace]
 members = [
   "aieng-synthetic-data",
@@ -57,6 +67,7 @@ members = [
 
 [tool.uv.sources]
 aieng-synthetic-data = { workspace = true }
+
 
 [tool.mypy]
 mypy_path = ["aieng-synthetic-data"]
@@ -80,6 +91,12 @@ warn_return_any = true
 implicit_reexport = false
 strict_equality = true
 extra_checks = true
+
+[[tool.mypy.overrides]]
+# IPython.display ships unannotated callables; the rich-display helpers here
+# are thin wrappers around them and cannot satisfy disallow_untyped_calls.
+module = "aieng.syn_data.synbench.display"
+disallow_untyped_calls = false
 
 [tool.ruff]
 include = ["*.py", "pyproject.toml", "*.ipynb"]
@@ -118,7 +135,6 @@ ignore = [
     "D213", # Multi-line docstring summary should start at the second line
     "PLR2004", # Replace magic number with named constant
     "PLR0913", # Too many arguments
-    "COM812", # Missing trailing comma
 ]
 
 # Ignore import violations in all `__init__.py` files.

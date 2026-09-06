@@ -14,12 +14,20 @@ dev = [
     "pytest-cov>=6.0.0",
     "pytest-mock>=3.14.0",
     "ruff>=0.15.22",
+    "pydantic>=2.13.4",
+]
+
+synbench = [
+    "typer>=0.12",
+    "openai>=1.40",
+    "pyyaml>=6.0",
+    "httpx>=0.27",
 ]
 
 [project]
 name = "aieng-synthetic-data"
 version = "0.1.1"
-description = "Synthetic data utilities for policy-document QA alignment bootcamp"
+description = "AI Engineering example implementation for the synthetic data bootcamp"
 authors = [{name = "Vector AI Engineering", email = "ai_engineering@vectorinstitute.ai"}]
 requires-python = ">=3.12,<4.0"
 readme = "README.md"
