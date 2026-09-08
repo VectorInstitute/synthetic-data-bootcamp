@@ -56,9 +56,9 @@ build {
       # Ollama environment variables
       "sudo tee /etc/profile.d/bootcamp-env.sh >/dev/null <<'EOF'",
       "export OLLAMA_HOST=127.0.0.1:11434",
-      "export OLLAMA_MODEL=qwen2.5:3b-instruct",
+      "export OLLAMA_MODEL=qwen2.5:0.5b-instruct",
       "export SMALL_MODEL_BASE_URL=http://127.0.0.1:11434/v1",
-      "export SMALL_MODEL_NAME=qwen2.5:3b-instruct",
+      "export SMALL_MODEL_NAME=qwen2.5:0.5b-instruct",
       "export SMALL_MODEL_API_KEY=ollama",
       "EOF",
       "sudo chmod 644 /etc/profile.d/bootcamp-env.sh",

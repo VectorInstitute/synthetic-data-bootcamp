@@ -2,7 +2,7 @@
 # Start Ollama and optionally pull the small-model weights.
 set -euo pipefail
 
-OLLAMA_MODEL="${OLLAMA_MODEL:-qwen2.5:3b-instruct}"
+OLLAMA_MODEL="${OLLAMA_MODEL:-qwen2.5:0.5b-instruct}"
 OLLAMA_HOST="${OLLAMA_HOST:-127.0.0.1:11434}"
 SKIP_OLLAMA="${SKIP_OLLAMA:-0}"
 SKIP_OLLAMA_PULL="${SKIP_OLLAMA_PULL:-0}"
