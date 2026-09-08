@@ -30,3 +30,21 @@ wheels/
 implementations/qa_text_generation/data/**
 !implementations/qa_text_generation/data/**/
 !implementations/qa_text_generation/data/**/.gitkeep
+
+# Edge-case image generation: local artifacts / downloaded weights
+# Prefer /* so .gitkeep placeholders can still be tracked.
+implementations/edge_case_image_generation/outputs/*
+!implementations/edge_case_image_generation/outputs/.gitkeep
+implementations/edge_case_image_generation/runs/
+implementations/edge_case_image_generation/weights/*
+!implementations/edge_case_image_generation/weights/.gitkeep
+implementations/edge_case_image_generation/.venv/
+implementations/edge_case_image_generation/.env
+implementations/edge_case_image_generation/.cache/
+*.pt
+*.pth
+*.bin
+*.ckpt
+*.onnx
+*.safetensors
+*.engine
