@@ -31,6 +31,20 @@ n_reference_crops: 1     # GT crops of the rare object when labels exist
 fidelity_threshold: 5.5  # hard retry if global_fidelity or object_fidelity < this
 max_judge_images: 4      # candidate + refs (proxy / VLM image caps)
 
+# Post-gen embedding safe-zone (slice C): CLIP KNN fidelity + novelty.
+# Fidelity: cosine sim to nearest *real* same-class image must be ≥ min_real_sim_*.
+# Novelty: cosine sim to nearest real∪accepted-synth must be ≤ max_neighbor_sim.
+embedding_gate:
+  enabled: true
+  model_id: openai/clip-vit-base-patch32
+  min_real_sim_global: 0.58
+  min_real_sim_local: 0.52
+  max_neighbor_sim: 0.94
+  use_local: true
+  fail_action: retry   # retry | reject
+  max_bank: 256
+  max_side: 224
+
 schema_hint: |
   Respond with ONLY a single JSON object (no markdown fences) using this schema:
   {

@@ -81,6 +81,18 @@ def judge_to_dict(result: JudgeResult) -> dict[str, Any]:
         payload["object_fidelity"] = float(result.object_fidelity)
     if result.reference_paths:
         payload["reference_paths"] = list(result.reference_paths)
+    if result.embed_real_sim_global is not None:
+        payload["embed_real_sim_global"] = float(result.embed_real_sim_global)
+    if result.embed_real_sim_local is not None:
+        payload["embed_real_sim_local"] = float(result.embed_real_sim_local)
+    if result.embed_neighbor_sim is not None:
+        payload["embed_neighbor_sim"] = float(result.embed_neighbor_sim)
+    if result.embed_nearest_real:
+        payload["embed_nearest_real"] = str(result.embed_nearest_real)
+    if result.embed_nearest_neighbor:
+        payload["embed_nearest_neighbor"] = str(result.embed_nearest_neighbor)
+    if result.embed_gate_reason:
+        payload["embed_gate_reason"] = str(result.embed_gate_reason)
     return payload
 
 

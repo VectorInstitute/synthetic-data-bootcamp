@@ -368,6 +368,18 @@ def show_judge_result(
     if gfid is not None or ofid is not None:
         lines.append(f"global_fidelity: {gfid if gfid is not None else '?'}")
         lines.append(f"object_fidelity: {ofid if ofid is not None else '?'}")
+    emb_g = getattr(judgment, "embed_real_sim_global", None)
+    emb_n = getattr(judgment, "embed_neighbor_sim", None)
+    if emb_g is not None or emb_n is not None:
+        emb_l = getattr(judgment, "embed_real_sim_local", None)
+        lines.append(
+            f"embed KNN: real={emb_g if emb_g is not None else '?'}  "
+            f"local={emb_l if emb_l is not None else '?'}  "
+            f"neighbor={emb_n if emb_n is not None else '?'}"
+        )
+        reason = getattr(judgment, "embed_gate_reason", None)
+        if reason:
+            lines.append(f"embed_gate: {reason}")
     refs = getattr(judgment, "reference_paths", None) or []
     if refs:
         lines.append(f"references: {len(refs)}")

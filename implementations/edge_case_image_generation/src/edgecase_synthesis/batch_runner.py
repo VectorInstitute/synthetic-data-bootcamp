@@ -469,6 +469,23 @@ def run_batch_synthesis(
         unload_edit_stacks()
         if judge is None:
             judge = VLMJudge.from_config(cfg)
+            # Resume: re-seed novelty bank from already-accepted synths.
+            if resume and result.accepted:
+                for sample in result.accepted:
+                    path = synth_dir / sample.image_name
+                    if not path.exists():
+                        continue
+                    try:
+                        img = Image.open(path).convert("RGB")
+                    except Exception:
+                        continue
+                    judge.register_accepted_embedding(
+                        sample.anomaly_id, img, path=str(path)
+                    )
+                log(
+                    f"Resume: seeded embedding novelty bank with "
+                    f"{len(result.accepted)} accepted image(s)."
+                )
 
     def assign_variations(items: list[PendingItem]) -> list[PendingItem]:
         active: list[PendingItem] = []
@@ -581,6 +598,8 @@ def run_batch_synthesis(
             require_target_boxes=require_target_boxes,
             has_target_boxes=boxed,
             exclude_stems={item.source_stem},
+            edit_mask=getattr(item.generated, "edit_mask", None),
+            annotation=item.annotation,
         )
         return item, judgment, boxed
 
@@ -694,6 +713,12 @@ def run_batch_synthesis(
                     and judgment.object_fidelity is not None
                     else ""
                 )
+                + (
+                    f"  emb={judgment.embed_real_sim_global:.2f}/{judgment.embed_neighbor_sim:.2f}"
+                    if judgment.embed_real_sim_global is not None
+                    and judgment.embed_neighbor_sim is not None
+                    else ""
+                )
                 + f"  boxes={'yes' if boxed else 'NO'}"
             )
             stats = result.stats[item.anomaly_id]
@@ -704,7 +729,16 @@ def run_batch_synthesis(
                     f"synth_{item.anomaly_id}_{item.source_stem}_a{item.attempt}.jpg"
                 )
                 assert item.generated is not None and item.annotation is not None
-                save_accepted_image(item.generated.image, out_dir=synth_dir, image_name=image_name)
+                saved = save_accepted_image(
+                    item.generated.image, out_dir=synth_dir, image_name=image_name
+                )
+                # Grow novelty bank so later accepts stay diverse within the run.
+                assert judge is not None
+                judge.register_accepted_embedding(
+                    item.anomaly_id,
+                    item.generated.image,
+                    path=str(saved),
+                )
                 sample = record_generation(
                     generated=item.generated,
                     annotation=item.annotation,

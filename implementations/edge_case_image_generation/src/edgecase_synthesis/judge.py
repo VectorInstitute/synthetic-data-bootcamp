@@ -42,6 +42,13 @@ class JudgeResult:
     global_fidelity: float | None = None
     object_fidelity: float | None = None
     reference_paths: list[str] | None = None
+    # Slice C — CLIP KNN safe-zone metrics (None when gate disabled / skipped).
+    embed_real_sim_global: float | None = None
+    embed_real_sim_local: float | None = None
+    embed_neighbor_sim: float | None = None
+    embed_nearest_real: str | None = None
+    embed_nearest_neighbor: str | None = None
+    embed_gate_reason: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -89,6 +96,7 @@ class VLMJudge:
         max_judge_images: int = 4,
         samples_dir: Path | str | None = None,
         stem_prefixes: list[str] | None = None,
+        embedding_gate_cfg: Any | None = None,
     ) -> None:
         self.model_id = model_id
         self.backend = str(backend).lower()
@@ -116,14 +124,65 @@ class VLMJudge:
         self._clip = None
         self._active_backend = self.backend
         self._labels_cache: dict[str, Any] | None = None
+        self._embedding_gate = None
+        self._embedding_gate_cfg = embedding_gate_cfg
 
     def unload(self) -> None:
         """Drop weights so generation / annotation can reclaim VRAM."""
         self._model = None
         self._processor = None
         self._clip = None
+        if self._embedding_gate is not None:
+            self._embedding_gate.unload()
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
+
+    def _get_embedding_gate(self) -> Any | None:
+        if self._embedding_gate is not None:
+            return self._embedding_gate
+        raw = self._embedding_gate_cfg
+        enabled = True
+        if raw is not None and hasattr(raw, "get"):
+            enabled = bool(raw.get("enabled", True))
+        elif isinstance(raw, dict):
+            enabled = bool(raw.get("enabled", True))
+        if not enabled:
+            return None
+        from edgecase_synthesis.embedding_gate import embedding_gate_from_config
+
+        # Build a tiny shim so embedding_gate_from_config can read embedding_gate.
+        class _Shim:
+            def get(self, key, default=None):
+                if key == "embedding_gate":
+                    return raw if raw is not None else {"enabled": True}
+                return default
+
+        self._embedding_gate = embedding_gate_from_config(
+            _Shim(),
+            samples_dir=self.samples_dir,
+            stem_prefixes=self.stem_prefixes,
+            device=str(self.device),
+        )
+        return self._embedding_gate
+
+    def register_accepted_embedding(
+        self,
+        anomaly_id: str,
+        image: Any,
+        *,
+        path: str | Path | None = None,
+        crop: Any | None = None,
+    ) -> None:
+        gate = self._get_embedding_gate()
+        if gate is None:
+            return
+        from PIL import Image as _Image
+
+        pil = image if isinstance(image, _Image.Image) else _to_pil(image)
+        crop_pil = None
+        if crop is not None:
+            crop_pil = crop if isinstance(crop, _Image.Image) else _to_pil(crop)
+        gate.register_accepted(str(anomaly_id), pil, path=path, crop=crop_pil)
 
     def _ensure_qwen(self) -> None:
         if self._model is not None:
@@ -185,6 +244,8 @@ class VLMJudge:
         has_target_boxes: bool | None = None,
         reference_images: list[Any] | None = None,
         exclude_stems: set[str] | None = None,
+        edit_mask: Any | None = None,
+        annotation: Any | None = None,
     ) -> JudgeResult:
         """Score one synthetic RGB image (depth/seg maps are intentionally unused)."""
         pil = _to_pil(image)
@@ -253,8 +314,71 @@ class VLMJudge:
             note = " [judge: blocked accept — missing target boxes]"
             if note.strip() not in (result.rationale or ""):
                 result.rationale = (result.rationale or "").rstrip() + note
+
+        # Slice C: CLIP KNN safe-zone (fidelity + novelty) after VLM / box gates.
+        if anomaly_id:
+            result = self._apply_embedding_gate(
+                result,
+                pil,
+                anomaly_id=str(anomaly_id),
+                edit_mask=edit_mask,
+                annotation=annotation,
+                exclude_stems=exclude_stems,
+            )
+
         result.backend = self._active_backend
         result.model_id = self.model_id
+        return result
+
+    def _apply_embedding_gate(
+        self,
+        result: JudgeResult,
+        image: Image.Image,
+        *,
+        anomaly_id: str,
+        edit_mask: Any | None,
+        annotation: Any | None,
+        exclude_stems: set[str] | None,
+    ) -> JudgeResult:
+        gate = self._get_embedding_gate()
+        if gate is None or not gate.config.enabled:
+            return result
+
+        from edgecase_synthesis.embedding_gate import crop_from_mask_or_boxes
+
+        detections = list(getattr(annotation, "detections", None) or [])
+        crop = crop_from_mask_or_boxes(
+            image,
+            edit_mask=edit_mask,
+            boxes=detections,
+            target_labels=[anomaly_id],
+            max_side=int(gate.config.max_side),
+        )
+        metrics = gate.evaluate(
+            image,
+            anomaly_id,
+            crop=crop,
+            exclude_paths=set(exclude_stems or set()),
+        )
+        result.embed_real_sim_global = metrics.real_sim_global
+        result.embed_real_sim_local = metrics.real_sim_local
+        result.embed_neighbor_sim = metrics.neighbor_sim
+        result.embed_nearest_real = metrics.nearest_real
+        result.embed_nearest_neighbor = metrics.nearest_neighbor
+        result.embed_gate_reason = metrics.reason or None
+
+        if not (metrics.failed_fidelity or metrics.failed_novelty):
+            return result
+        if result.decision == "reject":
+            return result
+
+        action = str(gate.config.fail_action or "retry").lower()
+        if action not in {"retry", "reject"}:
+            action = "retry"
+        result.decision = action
+        note = f" [embed-gate: {metrics.reason} → {action}]"
+        if note.strip() not in (result.rationale or ""):
+            result.rationale = (result.rationale or "").rstrip() + note
         return result
 
     def _auto_references(
@@ -615,6 +739,7 @@ class VLMJudge:
             max_judge_images=int(judge.get("max_judge_images", 4)),
             samples_dir=samples_dir,
             stem_prefixes=stem_prefixes,
+            embedding_gate_cfg=judge.get("embedding_gate"),
         )
 
 
