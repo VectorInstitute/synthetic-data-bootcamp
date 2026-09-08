@@ -1,10 +1,11 @@
 # =============================================================================
 # Domain generation config (required)
 # =============================================================================
-# Loaded into DomainBundle.generation (see synbench.schemas.generation).
-# Drives:
+# This config is loaded into DomainBundle.generation (see synbench.schemas.generation)
+# and is used for sampling tasks as well as in constructing the generation prompt.
+# It drives the following components:
 #   1) ConstraintSampler  — which DB rows / IDs to sample for each draft task
-#   2) PromptBuilder      — wording + entity snapshot in the generation prompt
+#   2) PromptBuilder (generation.prompt.PromptBuilder) — wording + entity snapshot in the generation prompt
 #   3) agent_system_prompt — agent_role at evaluation time
 #
 # To add a new domain: copy this file and retarget collections/fields to your
