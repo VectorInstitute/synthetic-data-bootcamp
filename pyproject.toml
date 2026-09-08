@@ -179,3 +179,7 @@ ignore_errors = true
 [[tool.mypy.overrides]]
 module = "aieng.syn_data.text.dpo.train"
 ignore_errors = true
+
+
+[tool.uv.audit]
+ignore-until-fixed = ["GHSA-4j2p-28q2-5m79"]
