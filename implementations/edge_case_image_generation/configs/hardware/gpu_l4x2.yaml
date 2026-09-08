@@ -1,5 +1,6 @@
 # @package _global_
 # g2-standard-24 / 2× NVIDIA L4 — same models as gpu_l4; extra VRAM + parallel judge.
+# Dual-GPU edit: use scripts/run_nb2_batch.py (notebook caps workers=1).
 hardware:
   name: gpu_l4x2
   device: cuda

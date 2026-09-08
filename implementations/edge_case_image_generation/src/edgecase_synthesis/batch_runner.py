@@ -1,19 +1,22 @@
 """Load-once batch synthesis: edit → annotate → judge → retry (parameterized).
 
-Speed path on ``gpu_l4x2``:
+Speed path on ``gpu_l4x2`` (prefer ``scripts/run_nb2_batch.py``):
   - Skip depth/seg when every queued method is instruct-only (NB2 default).
   - One Klein process per GPU (``edit_mp``) — not Diffusers list-batch (Klein
     treats ``image=[...]`` as multi-ref for every prompt, not paired rows).
   - Fan out API judge calls with a thread pool (I/O bound).
+  - Checkpoint accepts/rejects under ``nb2/checkpoint/`` for ``--resume``.
 """
 
 from __future__ import annotations
 
 import gc
 import os
+import shutil
+import tempfile
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Callable
 
@@ -21,6 +24,16 @@ import torch
 from PIL import Image
 
 from edgecase_synthesis.annotation import AnnotationResult, OpenVocabAnnotator
+from edgecase_synthesis.batch_checkpoint import (
+    accepted_path,
+    append_jsonl,
+    accepted_sample_to_row,
+    load_checkpoint,
+    rebuild_stats,
+    rejected_path,
+    sample_key,
+    save_state,
+)
 from edgecase_synthesis.batch_export import (
     AcceptedSample,
     ClassRunStats,
@@ -84,23 +97,55 @@ def _hw_int(cfg: Any, key: str, default: int) -> int:
     return int(raw)
 
 
+def _in_ipython() -> bool:
+    try:
+        get_ipython()  # type: ignore[name-defined]  # noqa: F821
+        return True
+    except NameError:
+        return False
+
+
 def _judge_workers(cfg: Any) -> int:
     judge_cfg = cfg.get("judge") if hasattr(cfg, "get") else None
+    backend = ""
     if judge_cfg is not None:
+        backend = str(judge_cfg.get("backend") or "").lower()
         raw = judge_cfg.get("max_parallel")
         if raw not in (None, ""):
-            return max(1, int(raw))
-    return max(1, _hw_int(cfg, "judge_workers", 4))
+            n = max(1, int(raw))
+        else:
+            n = max(1, _hw_int(cfg, "judge_workers", 4))
+    else:
+        n = max(1, _hw_int(cfg, "judge_workers", 4))
+    # Local CUDA judges are not thread-safe / waste VRAM when fanned out.
+    if backend in {"qwen_vl", "clip"}:
+        return 1
+    return n
 
 
-def _edit_workers(cfg: Any) -> int:
+def _edit_workers(cfg: Any, *, log: Callable[[str], None] | None = None) -> int:
     # Process-based multi-GPU (see edit_mp). Default follows num_gpus when set.
     requested = _hw_int(cfg, "parallel_edit_workers", 0)
     if requested <= 0:
         requested = _hw_int(cfg, "num_gpus", 1)
     if not torch.cuda.is_available():
         return 1
-    return max(1, min(int(requested), int(torch.cuda.device_count())))
+    n = max(1, min(int(requested), int(torch.cuda.device_count())))
+    # Jupyter + ProcessPool + CUDA often hangs on interrupt; dual-GPU belongs in CLI.
+    allow_nb_mp = os.environ.get("EDGECASE_ALLOW_NOTEBOOK_MP", "").lower() in {
+        "1",
+        "true",
+        "yes",
+    }
+    if n > 1 and _in_ipython() and not allow_nb_mp:
+        if log:
+            log(
+                "Notebook detected: capping edit_workers=1 (ProcessPool+CUDA is flaky "
+                "in Jupyter). Use scripts/run_nb2_batch.py for dual-GPU, or set "
+                "EDGECASE_ALLOW_NOTEBOOK_MP=1 to override."
+            )
+        return 1
+    return n
 
 
 def _methods_need_conditioning(methods: set[str]) -> tuple[bool, bool]:
@@ -204,36 +249,50 @@ def _synthesize_items(
         )
         seg = stack.segmenter.predict(item.source_image) if stack.segmenter is not None else None
         var_idx = int(item.variation_index or 0)
-        syn = synthesize_one(
-            item.source_image,
-            anomaly_id=item.anomaly_id,
-            method=item.method,
-            cfg=cfg,
-            comparer=stack.comparer,
-            depth=depth,
-            segmentation=seg,
-            project_root=project_root,
-            seed_offset=item.attempt,
-            variation_index=var_idx,
-        )
-        item.generated = syn.generated
-        if syn.generated.variation:
-            log(
-                f"    variation[{var_idx}] "
-                + ", ".join(f"{k}={v}" for k, v in syn.generated.variation.items())
+        try:
+            syn = synthesize_one(
+                item.source_image,
+                anomaly_id=item.anomaly_id,
+                method=item.method,
+                cfg=cfg,
+                comparer=stack.comparer,
+                depth=depth,
+                segmentation=seg,
+                project_root=project_root,
+                seed_offset=item.attempt,
+                variation_index=var_idx,
             )
-        item.annotation = _annotate_item(
-            item,
-            annotator=stack.annotator,
-            cfg=cfg,
-            project_root=project_root,
-            base_classes=base_classes,
-        )
-        if stats_lock is None:
-            stats[item.anomaly_id].attempts += 1
-        else:
-            with stats_lock:
+            item.generated = syn.generated
+            if syn.generated.variation:
+                log(
+                    f"    variation[{var_idx}] "
+                    + ", ".join(f"{k}={v}" for k, v in syn.generated.variation.items())
+                )
+            item.annotation = _annotate_item(
+                item,
+                annotator=stack.annotator,
+                cfg=cfg,
+                project_root=project_root,
+                base_classes=base_classes,
+            )
+            if stats_lock is None:
                 stats[item.anomaly_id].attempts += 1
+            else:
+                with stats_lock:
+                    stats[item.anomaly_id].attempts += 1
+        except Exception as exc:  # noqa: BLE001 — keep batch alive
+            item.generated = None
+            item.annotation = None
+            setattr(item, "_edit_error", f"{type(exc).__name__}: {exc}")
+            log(f"    FAILED: {exc}")
+            if stats_lock is None:
+                stats[item.anomaly_id].attempts += 1
+            else:
+                with stats_lock:
+                    stats[item.anomaly_id].attempts += 1
+            gc.collect()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
 
 
 def run_batch_synthesis(
@@ -247,6 +306,8 @@ def run_batch_synthesis(
     target_accepts: dict[str, int] | None = None,
     require_target_boxes: bool = True,
     progress: Callable[[str], None] | None = print,
+    resume: bool = False,
+    nb2_dir: Path | str | None = None,
 ) -> BatchResult:
     """Generate, annotate, and judge many seeds with models loaded once per phase.
 
@@ -257,6 +318,9 @@ def run_batch_synthesis(
 
     When ``require_target_boxes`` is True (default), an item cannot be accepted
     without at least one target-class box (YOLO-World or edit-mask fallback).
+
+    Set ``resume=True`` to skip ``(anomaly, seed)`` pairs already accepted or
+    finally rejected under ``<nb2_dir>/checkpoint/``.
     """
     from edgecase_synthesis.annotation import (
         check_box_placement,
@@ -270,16 +334,48 @@ def run_batch_synthesis(
     base_classes = list(cfg.annotation.classes)
     synth_dir = Path(synth_dir)
     synth_dir.mkdir(parents=True, exist_ok=True)
+    root_dir = Path(nb2_dir) if nb2_dir is not None else synth_dir.parent
+    root_dir.mkdir(parents=True, exist_ok=True)
 
     result = BatchResult(
         stats={aid: ClassRunStats(anomaly_id=aid) for aid in seeds_by_anomaly}
     )
     accepted_counts = {aid: 0 for aid in seeds_by_anomaly}
+    done_keys: set[str] = set()
+    variation_counters: dict[str, int] = {aid: 0 for aid in seeds_by_anomaly}
+
+    if resume:
+        ckpt = load_checkpoint(root_dir)
+        result.accepted = list(ckpt["accepted"])
+        result.rejected = list(ckpt["rejected"])
+        done_keys = set(ckpt["accepted_keys"]) | set(ckpt["rejected_keys"])
+        for sample in result.accepted:
+            accepted_counts[sample.anomaly_id] = accepted_counts.get(sample.anomaly_id, 0) + 1
+        saved_vars = (ckpt.get("state") or {}).get("variation_counters") or {}
+        for aid, val in saved_vars.items():
+            variation_counters[str(aid)] = int(val)
+        result.stats = rebuild_stats(
+            list(seeds_by_anomaly.keys()),
+            accepted=result.accepted,
+            rejected=result.rejected,
+            state=ckpt.get("state"),
+        )
+        log(
+            f"Resume: loaded {len(result.accepted)} accepted, "
+            f"{len(result.rejected)} rejected; skipping {len(done_keys)} seeds."
+        )
 
     queue: list[PendingItem] = []
     for anomaly_id, paths in seeds_by_anomaly.items():
         method = method_map[anomaly_id]
         for path in paths:
+            key = sample_key(anomaly_id, path.stem)
+            if key in done_keys:
+                continue
+            if target_accepts and accepted_counts.get(anomaly_id, 0) >= int(
+                target_accepts.get(anomaly_id, 10**9)
+            ):
+                continue
             image = Image.open(path).convert("RGB")
             queue.append(
                 PendingItem(
@@ -291,13 +387,11 @@ def run_batch_synthesis(
                 )
             )
 
-    variation_counters: dict[str, int] = {aid: 0 for aid in seeds_by_anomaly}
-
     if not queue:
-        log("No seeds queued — nothing to synthesize.")
+        log("No seeds queued — nothing to synthesize (targets met or all done).")
         return result
 
-    n_edit = _edit_workers(cfg)
+    n_edit = _edit_workers(cfg, log=log)
     n_judge = _judge_workers(cfg)
     methods_in_queue = {item.method for item in queue}
     need_depth, need_seg = _methods_need_conditioning(methods_in_queue)
@@ -319,6 +413,26 @@ def run_batch_synthesis(
     stacks: list[_EditStack] = []
     judge: VLMJudge | None = None
 
+    def _persist_state(pending: list[PendingItem]) -> None:
+        save_state(
+            root_dir,
+            {
+                "variation_counters": dict(variation_counters),
+                "stats": {k: asdict(v) for k, v in result.stats.items()},
+                "pending": [
+                    {
+                        "anomaly_id": p.anomaly_id,
+                        "source_stem": p.source_stem,
+                        "source_path": str(p.source_path),
+                        "method": p.method,
+                        "attempt": int(p.attempt),
+                        "variation_index": p.variation_index,
+                    }
+                    for p in pending
+                ],
+            },
+        )
+
     def unload_edit_stacks() -> None:
         nonlocal stacks
         for stack in stacks:
@@ -331,7 +445,6 @@ def run_batch_synthesis(
         judge = None
         unload_edit_stacks()
         if n_edit > 1:
-            # One Klein per process/GPU (edit_mp). Do not load pipes in the parent.
             log(
                 f"Edit phase: {n_edit} process workers (one Klein per GPU). "
                 "Note: Flux2Klein list(image)+list(prompt) is multi-ref, not paired batch."
@@ -390,9 +503,6 @@ def run_batch_synthesis(
             )
             return
 
-        # Process-based dual (or N) GPU — avoids CUDA thread stalls and Klein's
-        # non-paired list(image) batch API.
-        import tempfile
         from concurrent.futures import ProcessPoolExecutor
 
         from edgecase_synthesis.edit_mp import (
@@ -404,51 +514,56 @@ def run_batch_synthesis(
         unload_edit_stacks()
         hardware_name = str(cfg.hardware.get("name") or cfg.get("hardware") or "gpu_l4")
         tmp_root = Path(tempfile.mkdtemp(prefix="edgecase_edit_"))
-        for i, item in enumerate(active):
-            item._job_id = i  # type: ignore[attr-defined]
-        shards = [active[i::n_edit] for i in range(n_edit)]
-        payloads = []
-        for gpu_id, shard in enumerate(shards):
-            if not shard:
-                continue
-            jobs = [
-                EditJob(
-                    job_id=int(item._job_id),  # type: ignore[attr-defined]
-                    anomaly_id=item.anomaly_id,
-                    method=item.method,
-                    source_path=str(item.source_path),
-                    source_stem=item.source_stem,
-                    attempt=int(item.attempt),
-                    variation_index=int(item.variation_index or 0),
+        try:
+            for i, item in enumerate(active):
+                item._job_id = i  # type: ignore[attr-defined]
+            shards = [active[i::n_edit] for i in range(n_edit)]
+            payloads = []
+            for gpu_id, shard in enumerate(shards):
+                if not shard:
+                    continue
+                jobs = [
+                    EditJob(
+                        job_id=int(item._job_id),  # type: ignore[attr-defined]
+                        anomaly_id=item.anomaly_id,
+                        method=item.method,
+                        source_path=str(item.source_path),
+                        source_stem=item.source_stem,
+                        attempt=int(item.attempt),
+                        variation_index=int(item.variation_index or 0),
+                    )
+                    for item in shard
+                ]
+                payloads.append(
+                    {
+                        "gpu_id": gpu_id,
+                        "jobs": [j.__dict__ for j in jobs],
+                        "project_root": str(project_root),
+                        "dataset_name": dataset,
+                        "hardware": hardware_name,
+                        "need_depth": need_depth,
+                        "need_seg": need_seg,
+                        "warm_methods": list(methods_in_queue),
+                        "base_classes": base_classes,
+                        "tmp_dir": str(tmp_root / f"gpu{gpu_id}"),
+                    }
                 )
-                for item in shard
-            ]
-            payloads.append(
-                {
-                    "gpu_id": gpu_id,
-                    "jobs": [j.__dict__ for j in jobs],
-                    "project_root": str(project_root),
-                    "dataset_name": dataset,
-                    "hardware": hardware_name,
-                    "need_depth": need_depth,
-                    "need_seg": need_seg,
-                    "warm_methods": list(methods_in_queue),
-                    "base_classes": base_classes,
-                    "tmp_dir": str(tmp_root / f"gpu{gpu_id}"),
-                }
-            )
-        log(f"Dispatching {len(active)} edits across {len(payloads)} GPU processes…")
-        # spawn: fresh interpreter so CUDA_VISIBLE_DEVICES is honored per worker.
-        ctx = __import__("multiprocessing").get_context("spawn")
-        with ProcessPoolExecutor(max_workers=len(payloads), mp_context=ctx) as pool:
-            shard_results = list(pool.map(mp_synthesize_shard, payloads))
-        flat: list[dict] = []
-        for part in shard_results:
-            flat.extend(part)
-        apply_mp_results_to_items(active, flat)
-        for item in active:
-            result.stats[item.anomaly_id].attempts += 1
-        log(f"Process edit done ({len(flat)} images) → {tmp_root}")
+            log(f"Dispatching {len(active)} edits across {len(payloads)} GPU processes…")
+            ctx = __import__("multiprocessing").get_context("spawn")
+            with ProcessPoolExecutor(max_workers=len(payloads), mp_context=ctx) as pool:
+                shard_results = list(pool.map(mp_synthesize_shard, payloads))
+            flat: list[dict] = []
+            for part in shard_results:
+                flat.extend(part)
+            failed = apply_mp_results_to_items(active, flat)
+            for item in active:
+                if item.generated is not None:
+                    result.stats[item.anomaly_id].attempts += 1
+            if failed:
+                log(f"  {len(failed)} edit(s) failed in workers (will retry/reject).")
+            log(f"Process edit done ({len(flat) - len(failed)} ok / {len(flat)} jobs)")
+        finally:
+            shutil.rmtree(tmp_root, ignore_errors=True)
 
     def _judge_api_call(item: PendingItem) -> tuple[PendingItem, JudgeResult, bool]:
         assert judge is not None and item.generated is not None and item.annotation is not None
@@ -472,6 +587,42 @@ def run_batch_synthesis(
     def judge_queue(items: list[PendingItem]) -> list[PendingItem]:
         """Judge items; return those that should retry."""
         assert judge is not None
+        retries: list[PendingItem] = []
+
+        for item in items:
+            if item.generated is not None and item.annotation is not None:
+                continue
+            stats = result.stats[item.anomaly_id]
+            err = getattr(item, "_edit_error", None) or "edit produced no image"
+            if item.attempt < max_retries:
+                stats.retries += 1
+                item.attempt += 1
+                item.generated = None
+                item.annotation = None
+                retries.append(item)
+                log(
+                    f"  edit-fail {item.anomaly_id}  seed={item.source_stem}  "
+                    f"→ retry ({err})"
+                )
+            else:
+                stats.rejects += 1
+                row = {
+                    "anomaly_id": item.anomaly_id,
+                    "source_stem": item.source_stem,
+                    "attempt": item.attempt,
+                    "decision": "reject",
+                    "overall": 0.0,
+                    "has_target_boxes": False,
+                    "error": err,
+                }
+                result.rejected.append(row)
+                append_jsonl(rejected_path(root_dir), row)
+                done_keys.add(sample_key(item.anomaly_id, item.source_stem))
+                log(
+                    f"  edit-fail {item.anomaly_id}  seed={item.source_stem}  "
+                    f"→ reject ({err})"
+                )
+
         ready = [
             item
             for item in items
@@ -484,7 +635,7 @@ def run_batch_synthesis(
             )
         ]
         if not ready:
-            return []
+            return retries
 
         judged: list[tuple[PendingItem, JudgeResult, bool]] = []
         workers = min(n_judge, len(ready))
@@ -497,7 +648,6 @@ def run_batch_synthesis(
                 for fut in as_completed(futs):
                     judged.append(fut.result())
 
-        retries: list[PendingItem] = []
         for item, judgment, boxed in judged:
             anomaly_cfg = load_anomaly(dataset, item.anomaly_id, start=project_root)
             anomaly_classes = list(anomaly_cfg.get("annotation_classes", []) or [])
@@ -555,17 +705,18 @@ def run_batch_synthesis(
                 )
                 assert item.generated is not None and item.annotation is not None
                 save_accepted_image(item.generated.image, out_dir=synth_dir, image_name=image_name)
-                result.accepted.append(
-                    record_generation(
-                        generated=item.generated,
-                        annotation=item.annotation,
-                        judgment=judgment,
-                        anomaly_id=item.anomaly_id,
-                        method=item.method,
-                        source_stem=item.source_stem,
-                        image_name=image_name,
-                    )
+                sample = record_generation(
+                    generated=item.generated,
+                    annotation=item.annotation,
+                    judgment=judgment,
+                    anomaly_id=item.anomaly_id,
+                    method=item.method,
+                    source_stem=item.source_stem,
+                    image_name=image_name,
                 )
+                result.accepted.append(sample)
+                append_jsonl(accepted_path(root_dir), accepted_sample_to_row(sample))
+                done_keys.add(sample_key(item.anomaly_id, item.source_stem))
             elif decision == "retry" and item.attempt < max_retries:
                 stats.retries += 1
                 item.attempt += 1
@@ -574,29 +725,30 @@ def run_batch_synthesis(
                 retries.append(item)
             else:
                 stats.rejects += 1
-                result.rejected.append(
-                    {
-                        "anomaly_id": item.anomaly_id,
-                        "source_stem": item.source_stem,
-                        "attempt": item.attempt,
-                        "decision": decision,
-                        "overall": float(judgment.overall),
-                        "has_target_boxes": boxed,
-                    }
-                )
+                row = {
+                    "anomaly_id": item.anomaly_id,
+                    "source_stem": item.source_stem,
+                    "attempt": item.attempt,
+                    "decision": decision,
+                    "overall": float(judgment.overall),
+                    "has_target_boxes": boxed,
+                }
+                result.rejected.append(row)
+                append_jsonl(rejected_path(root_dir), row)
+                done_keys.add(sample_key(item.anomaly_id, item.source_stem))
         return retries
 
-    # --- phase 1: first-pass edits ---
     log(f"Loading edit stack once ({len(queue)} jobs)…")
     load_edit_stacks()
     active = list(queue)
     synthesize_queue(active)
+    _persist_state(active)
 
-    # --- phase 2+: judge / retry loop ---
     while active:
         log("Switching to judge…")
         load_judge()
         retries = judge_queue(active)
+        _persist_state(retries)
         if not retries:
             break
         if target_accepts:
@@ -610,11 +762,13 @@ def run_batch_synthesis(
         log(f"Retrying {len(retries)} item(s)…")
         load_edit_stacks()
         synthesize_queue(retries)
+        _persist_state(retries)
         active = retries
 
     unload_edit_stacks()
     _unload(judge)
     os.environ.pop("EDGECASE_DISABLE_PIPE_PROGRESS", None)
+    _persist_state([])
     log(
         f"Done. Accepted {len(result.accepted)} / "
         f"{sum(s.attempts for s in result.stats.values())} attempts."

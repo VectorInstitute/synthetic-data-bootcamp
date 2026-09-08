@@ -25,8 +25,12 @@ from edgecase_synthesis.vlm_api import (
 )
 
 # Only IDs that can emit pixels. Chat models (gemini-3-flash-preview, gpt-4o) are judge-only.
+# "Nano Banana 2" is Google's public name for gemini-3.1-flash-image.
 VLM_MODEL_ALIASES: dict[str, str] = {
     "gemini-3.1-flash-image": "gemini-3.1-flash-image",
+    "nano-banana-2": "gemini-3.1-flash-image",
+    "nano banana 2": "gemini-3.1-flash-image",
+    "nanobanana2": "gemini-3.1-flash-image",
     "gemini-3.1-flash-lite-image": "gemini-3.1-flash-lite-image",
     "gemini-3-pro-image-preview": "gemini-3-pro-image-preview",
     "gpt-image-1": "gpt-image-1",

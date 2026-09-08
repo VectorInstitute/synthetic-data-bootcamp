@@ -7,8 +7,8 @@ NB1.5 compares five edit paths; **production (NB1 / NB2) defaults to ``instruct`
 2. ``inpaint`` — localized hole + SD/Klein inpaint (mask required)
 3. ``instruct`` — Klein / IP2P instruction editor (**small local**; default generator)
 4. ``vlm_generate_local`` — Qwen-Image-Edit (**large local** instruct-class editor)
-5. ``vlm_generate_api`` — cloud image API edit (**disabled by default**; Vector
-   proxy keys today are chat/vision only — fine for the judge, not for pixels)
+5. ``vlm_generate_api`` — Nano Banana 2 / gemini-3.1-flash-image (opt-in;
+   needs ``GEMINI_API_KEY`` + direct Gemini routing, not the Vector chat proxy)
 """
 
 from __future__ import annotations
@@ -164,14 +164,14 @@ METHOD_SPECS: dict[str, MethodSpec] = {
     ),
     "vlm_generate_api": MethodSpec(
         key="vlm_generate_api",
-        title="VLM edit (API)",
+        title="Nano Banana 2 (Gemini image API)",
         uses_mask=False,
         uses_depth=False,
         uses_seg=False,
         summary=(
-            "Cloud *image* model edit (needs an image-capable model ID). Disabled by "
-            "default: Vector proxy models are chat/vision (judge-only). Opt in via "
-            "``generation.vlm_api_enabled=true`` + INCLUDE_VLM_API when an image model exists."
+            "Cloud image edit via gemini-3.1-flash-image (aka Nano Banana 2). "
+            "Needs GEMINI_API_KEY / GOOGLE_API_KEY and direct Gemini routing "
+            "(not the Vector chat proxy). Opt in with INCLUDE_VLM_API=True in NB1.5."
         ),
     ),
     VLM_GENERATE_ALIAS: MethodSpec(
