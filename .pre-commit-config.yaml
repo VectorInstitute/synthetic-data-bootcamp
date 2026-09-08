@@ -37,7 +37,7 @@ repos:
     rev: v1.20.2
     hooks:
     - id: mypy
-      entry: python3 -m mypy --config-file pyproject.toml
+      entry: uv run mypy --config-file pyproject.toml
       language: system
       types: [python]
       exclude: "tests"

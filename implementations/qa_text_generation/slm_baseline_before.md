@@ -1,0 +1,1 @@
+JudgeScore(sample_id='test-cfpb_credit_card_agreement::p0005-0', correctness=5.0, coherence=5.0, instruction_following=5.0, factual_plausibility=5.0, reasoning='The model correctly identified the two conditions and presented them as a numbered list, matching the meaning of the reference answer perfectly.', metadata={})

@@ -29,10 +29,14 @@ name = "aieng-synthetic-data"
 version = "0.1.1"
 description = "AI Engineering example implementation for the synthetic data bootcamp"
 authors = [{name = "Vector AI Engineering", email = "ai_engineering@vectorinstitute.ai"}]
-requires-python = ">=3.11,<4.0"
+requires-python = ">=3.12,<4.0"
 readme = "README.md"
 license = "MIT"
-dependencies = []
+dependencies = [
+    "python-dotenv>=1.0.0",
+    "requests>=2.33.0",
+    "json-repair>=0.61.0",
+]
 
 [tool.hatch.build.targets.sdist]
 include = ["aieng/"]
@@ -41,6 +45,7 @@ include = ["aieng/"]
 include = ["aieng/"]
 
 [tool.mypy]
+mypy_path = ["."]
 ignore_missing_imports = true
 install_types = true
 pretty = true
@@ -73,38 +78,40 @@ docstring-code-format = true
 
 [tool.ruff.lint]
 select = [
-    "A", # flake8-builtins
-    "B", # flake8-bugbear
-    "COM", # flake8-commas
-    "C4", # flake8-comprehensions
-    "RET", # flake8-return
-    "SIM", # flake8-simplify
-    "ICN", # flake8-import-conventions
-    "Q", # flake8-quotes
-    "RSE", # flake8-raise
-    "D", # pydocstyle
-    "E", # pycodestyle
-    "F", # pyflakes
-    "I", # isort
-    "W", # pycodestyle
-    "N", # pep8-naming
-    "ERA", # eradicate
-    "PL", # pylint
+    "A",
+    "B",
+    "COM",
+    "C4",
+    "RET",
+    "SIM",
+    "ICN",
+    "Q",
+    "RSE",
+    "D",
+    "E",
+    "F",
+    "I",
+    "W",
+    "N",
+    "ERA",
+    "PL",
 ]
 fixable = ["A", "B", "COM", "C4", "RET", "SIM", "ICN", "Q", "RSE", "D", "E", "F", "I", "W", "N", "ERA", "PL"]
 ignore = [
-    "B905", # `zip()` without an explicit `strict=` parameter
-    "E501", # line too long
-    "D203", # 1 blank line required before class docstring
-    "D213", # Multi-line docstring summary should start at the second line
-    "PLR2004", # Replace magic number with named constant
-    "PLR0913", # Too many arguments
-    "COM812", # Missing trailing comma
+    "B905",
+    "E501",
+    "D203",
+    "D213",
+    "PLR2004",
+    "PLR0913",
+    "COM812",
 ]
 
-# Ignore import violations in all `__init__.py` files.
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["E402", "F401", "F403", "F811"]
+"tests/**/*.py" = ["D103"]
+"aieng/syn_data/text/sft.py" = ["PLC0415"]
+"aieng/syn_data/text/dpo/train.py" = ["PLC0415"]
 
 [tool.ruff.lint.pep8-naming]
 ignore-names = ["X*", "setUp"]

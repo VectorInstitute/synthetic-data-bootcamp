@@ -3,8 +3,9 @@ set -euo pipefail
 
 cd aieng-synthetic-data
 
-# Start Ollama and pull the Qwen 3B weights for baseline / eval notebooks.
-bash scripts/start-ollama.sh
+# Ollama is installed in the Docker image but started manually when needed:
+#   bash scripts/start-ollama.sh
+# (from the repository root). Not all reference implementations need it.
 
 if [ -d ".venv" ]; then
     echo "Virtual environment already exists."
@@ -14,12 +15,8 @@ else
 fi
 
 source .venv/bin/activate
-if [ "${RUN_SFT:-0}" = "1" ]; then
-    echo "RUN_SFT=1: syncing SFT dependencies (CUDA / bitsandbytes)..."
-    uv sync --dev --group text-sft
-else
-    uv sync --dev
-fi
+echo "Syncing dependencies including the text-sft group (notebook 05 LoRA)..."
+uv sync --dev --group text-sft
 
 echo "Virtual environment activated and dependencies synced."
 

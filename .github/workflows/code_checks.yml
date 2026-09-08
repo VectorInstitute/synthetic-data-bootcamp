@@ -48,16 +48,20 @@ jobs:
         run: |
           uv venv .venv
           source .venv/bin/activate
-          uv sync --all-extras --dev
+          # Include text-sft so pip-audit covers notebook 05 LoRA dependencies
+          # (see scripts/setup.sh: uv sync --dev --group text-sft).
+          uv sync --all-extras --dev --group text-sft
           pre-commit run --all-files
 
       - name: pip-audit (gh-action-pip-audit)
         uses: pypa/gh-action-pip-audit@1220774d901786e6f652ae159f7b6bc8fea6d266
         with:
           virtual-environment: .venv/
-          # GHSA-xm59-rqc7-hhvf: nbconvert Windows-only vulnerability (no fix available as of 2025-12-22)
-          # This is a Windows-specific code execution vulnerability via inkscape.bat path traversal
-          # CI runs on Linux, and no patch exists yet (published 2025-12-18)
-          # TODO: Remove this ignore once nbconvert releases a patched version
+          # GHSA-g75f-g53v-794x: bleach linkify(parse_email=True) ReDoS CPU exhaustion
+          # bleach is a transitive dep via nbconvert (HTML sanitization); nbconvert does
+          # not call linkify(parse_email=True) on untrusted input, so the vulnerable code
+          # path is unreachable in this project. The bleach package is deprecated and no
+          # fixed version will be released.
+          # TODO: Remove this ignore once nbconvert migrates off bleach (e.g., to nh3).
           ignore-vulns: |
-            GHSA-xm59-rqc7-hhvf
+            GHSA-g75f-g53v-794x

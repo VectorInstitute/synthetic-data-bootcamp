@@ -1,8 +1,29 @@
 #!/usr/bin/env bash
 # Start Ollama and optionally pull the small-model weights.
+# Run manually from the repository root when you need the local SLM:
+#   bash scripts/start-ollama.sh
 set -euo pipefail
 
-OLLAMA_MODEL="${OLLAMA_MODEL:-qwen2.5:3b-instruct}"
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ENV_FILE="${REPO_ROOT}/implementations/qa_text_generation/.env"
+
+# Prefer RI .env so OLLAMA_* / SMALL_MODEL_* stay aligned with notebooks.
+if [[ -f "${ENV_FILE}" ]]; then
+  while IFS= read -r line || [[ -n "${line}" ]]; do
+    [[ "${line}" =~ ^[[:space:]]*# ]] && continue
+    [[ -z "${line//[[:space:]]/}" ]] && continue
+    if [[ "${line}" =~ ^(OLLAMA_|SKIP_OLLAMA|SMALL_MODEL_) ]]; then
+      key="${line%%=*}"
+      value="${line#*=}"
+      # Do not override vars already set in the shell / container env.
+      if [[ -z "${!key:-}" ]]; then
+        export "${key}=${value}"
+      fi
+    fi
+  done < "${ENV_FILE}"
+fi
+
+OLLAMA_MODEL="${OLLAMA_MODEL:-${SMALL_MODEL_NAME:-qwen2.5:0.5b-instruct}}"
 OLLAMA_HOST="${OLLAMA_HOST:-127.0.0.1:11434}"
 SKIP_OLLAMA="${SKIP_OLLAMA:-0}"
 SKIP_OLLAMA_PULL="${SKIP_OLLAMA_PULL:-0}"
@@ -13,7 +34,8 @@ if [[ "${SKIP_OLLAMA}" == "1" ]]; then
 fi
 
 if ! command -v ollama >/dev/null 2>&1; then
-  echo "Ollama is not installed. Install it in the Dockerfile or set SKIP_OLLAMA=1."
+  echo "Ollama is not installed. Install it (e.g. curl -fsSL https://ollama.com/install.sh | sh)"
+  echo "or set SKIP_OLLAMA=1."
   exit 1
 fi
 
@@ -50,6 +72,9 @@ else
   ollama pull "${OLLAMA_MODEL}"
 fi
 
-echo "Small-model defaults:"
+echo "Small-model defaults (keep these aligned in .env):"
 echo "  SMALL_MODEL_BASE_URL=http://${OLLAMA_HOST}/v1"
 echo "  SMALL_MODEL_NAME=${OLLAMA_MODEL}"
+echo "  OLLAMA_MODEL=${OLLAMA_MODEL}"
+echo
+echo "To stop this model later (local use): ollama stop ${OLLAMA_MODEL}"
