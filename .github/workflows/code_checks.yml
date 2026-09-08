@@ -63,5 +63,13 @@ jobs:
           # path is unreachable in this project. The bleach package is deprecated and no
           # fixed version will be released.
           # TODO: Remove this ignore once nbconvert migrates off bleach (e.g., to nh3).
+          #
+          # GHSA-4j2p-28q2-5m79 / CVE-2026-69112: accelerate sharded-checkpoint
+          # weight_map path traversal / DoS. No patched PyPI release exists yet
+          # (latest is 1.14.0). Notebooks load trusted Hub/official checkpoints,
+          # not untrusted sharded dirs, so the vulnerable loader is not in the
+          # expected path. TODO: Remove this ignore and upgrade accelerate once
+          # a version > 1.14.0 is published.
           ignore-vulns: |
             GHSA-g75f-g53v-794x
+            GHSA-4j2p-28q2-5m79
