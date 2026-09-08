@@ -98,6 +98,14 @@ extra_checks = true
 module = "aieng.syn_data.synbench.display"
 disallow_untyped_calls = false
 
+[[tool.mypy.overrides]]
+# Pytest test functions and their fixture parameters are conventionally left
+# unannotated; type checking still applies to the code under test.
+module = "tests.*"
+allow_untyped_defs = true
+allow_incomplete_defs = true
+allow_untyped_calls = true
+
 [tool.ruff]
 include = ["*.py", "pyproject.toml", "*.ipynb"]
 line-length = 120

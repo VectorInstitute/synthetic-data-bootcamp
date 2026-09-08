@@ -29,6 +29,10 @@ class _OracleStubClient:
         self._idx += 1
         return response
 
+    def complete_json(self, messages):
+        """Unused: the tool-calling loop only ever calls ``complete``."""
+        raise NotImplementedError
+
 
 def test_tool_loop_collects_actions(mock_retail_path):
     """The loop records each dispatched tool call in order."""

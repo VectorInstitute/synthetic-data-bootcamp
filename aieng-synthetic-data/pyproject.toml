@@ -67,6 +67,14 @@ implicit_reexport = false
 strict_equality = true
 extra_checks = true
 
+[[tool.mypy.overrides]]
+# Pytest test functions and their fixture parameters are conventionally left
+# unannotated; type checking still applies to the code under test.
+module = "tests.*"
+allow_untyped_defs = true
+allow_incomplete_defs = true
+allow_untyped_calls = true
+
 [tool.ruff]
 include = ["*.py", "pyproject.toml", "*.ipynb"]
 line-length = 88
