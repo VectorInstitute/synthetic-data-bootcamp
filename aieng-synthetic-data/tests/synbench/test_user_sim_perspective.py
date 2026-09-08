@@ -1,5 +1,7 @@
 """Tests that the user simulator sees the transcript from the customer's side."""
 
+from typing import Any
+
 from aieng.syn_data.synbench.agents.session import AgentSession
 from aieng.syn_data.synbench.agents.user_sim import AGENT_TURN_NUDGE, UserSimulator
 from aieng.syn_data.synbench.domain.loader import load_domain
@@ -11,12 +13,16 @@ class _CaptureClient:
 
     def __init__(self, reply: str = "It is ord_1001."):
         self.reply = reply
-        self.seen: list[dict] = []
+        self.seen: list[dict[str, Any]] = []
 
     def complete(self, messages, tools=None, *, json_mode=False):
         """Record ``messages`` and return the canned reply."""
         self.seen = messages
         return LLMResponse(content=self.reply)
+
+    def complete_json(self, messages):
+        """Unused: the user simulator only ever calls ``complete``."""
+        raise NotImplementedError
 
 
 def _session(domain):

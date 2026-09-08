@@ -22,5 +22,3 @@ def use_repo_root(start: Path | None = None) -> Path:
     root = find_repo_root(start)
     os.chdir(root)
     return root
-
-
