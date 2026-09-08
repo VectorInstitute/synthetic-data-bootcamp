@@ -70,6 +70,7 @@ DEFAULT_DATASET_META = {
 
 
 def detect_separator(path: Path, explicit: str | None) -> str:
+    """Return the CSV field separator for a Berka export file."""
     if explicit is not None:
         return explicit
     if path.suffix.lower() == ".asc":
@@ -83,6 +84,7 @@ def detect_separator(path: Path, explicit: str | None) -> str:
 
 
 def load_raw_transactions(path: Path, sep: str) -> pd.DataFrame:
+    """Load the raw Berka transaction table from disk."""
     df = pd.read_csv(
         path,
         sep=sep,
@@ -150,11 +152,13 @@ def dates_to_day_offsets(
 
 
 def reconstruct_dates(days_since: pd.Series | list[int], earliest_date_str: str) -> list[str]:
+    """Convert day offsets back to YYMMDD date strings."""
     earliest = datetime.strptime(earliest_date_str, "%y%m%d")
     return [(earliest + timedelta(days=int(d))).strftime("%y%m%d") for d in days_since]
 
 
 def build_feature_frame(raw: pd.DataFrame, epoch_yymmdd: str | None) -> tuple[pd.DataFrame, str]:
+    """Build the model feature table from raw Berka transactions."""
     work = normalize_missing(raw)
     drop_cols = [c for c in ID_COLUMNS if c in work.columns]
     work = work.drop(columns=drop_cols)
@@ -213,6 +217,7 @@ def get_domain(df: pd.DataFrame, discrete_cols: list[str]) -> dict[str, dict[str
 
 
 def sample_dataframe(df: pd.DataFrame, sample_size: int | None, seed: int) -> pd.DataFrame:
+    """Optionally subsample rows from a dataframe."""
     if sample_size is None:
         return df
     if sample_size <= 0:
@@ -228,6 +233,7 @@ def split_train_holdout(
     holdout_ratio: float,
     seed: int,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Split a dataframe into train and holdout sets."""
     if not 0.0 < holdout_ratio < 1.0:
         raise ValueError("--holdout-ratio must be in (0, 1)")
     train_df, holdout_df = train_test_split(
@@ -240,12 +246,14 @@ def split_train_holdout(
 
 
 def save_json(path: Path, payload: Any) -> None:
+    """Write a JSON-serializable payload to a UTF-8 file."""
     path.write_text(json.dumps(payload, indent=4) + "\n", encoding="utf-8")
 
 
 def preprocess_berka_trans(
     input_path: Path | str,
     output_dir: Path | str = Path("data"),
+    *,
     sep: str | None = None,
     sample_size: int | None = None,
     sample_before_encode: bool = True,
@@ -258,15 +266,30 @@ def preprocess_berka_trans(
 
     Parameters
     ----------
-    - input_path: Path to the raw data file.
-    - output_dir: Path to the output directory.
-    - sep: Field separator. Default: auto-detect ('; for .asc, comma otherwise).
-    - sample_size: If set, randomly sample this many rows.
-    - sample_before_encode: Sample before fitting LabelEncoders. Faster on 1M rows, but category codes may differ from a full-data export.
-    - holdout_ratio: Fraction of rows for the holdout set (default: 0.2). Train gets the rest.
-    - seed: Random seed for sampling and the train/holdout split.
-    - date_epoch: Optional fixed YYMMDD epoch for day offsets (e.g. 930101). Default: earliest date present in the (possibly sampled) data — same as MIDSTModels calculate_days_since_earliest_date.
-    - save_artifacts: Whether to save the artifacts (preprocess_meta.json, trans_label_encoders.pkl, trans_domain.json, dataset_meta.json, meta_info.json).
+    input_path
+        Path to the raw data file.
+    output_dir
+        Path to the output directory.
+    sep
+        Field separator. Default: auto-detect (``;`` for ``.asc``, comma
+        otherwise).
+    sample_size
+        If set, randomly sample this many rows.
+    sample_before_encode
+        Sample before fitting LabelEncoders. Faster on 1M rows, but category
+        codes may differ from a full-data export.
+    holdout_ratio
+        Fraction of rows for the holdout set (default: 0.2). Train gets the
+        rest.
+    seed
+        Random seed for sampling and the train/holdout split.
+    date_epoch
+        Optional fixed YYMMDD epoch for day offsets (e.g. 930101). Default:
+        earliest date in the (possibly sampled) data, matching MIDSTModels
+        ``calculate_days_since_earliest_date``.
+    save_artifacts
+        Whether to save preprocess metadata, label encoders, domain files,
+        and related JSON artifacts.
     """
     input_path = Path(input_path)
     output_dir = Path(output_dir)

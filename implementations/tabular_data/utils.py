@@ -1,3 +1,5 @@
+"""Helpers for downloading tabular datasets used in the bootcamp notebooks."""
+
 import logging
 from pathlib import Path
 

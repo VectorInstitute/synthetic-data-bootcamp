@@ -1,3 +1,5 @@
+"""Preprocessing helpers for tabular quality, utility, and privacy metrics."""
+
 from typing import Any, overload
 
 import pandas as pd
@@ -13,24 +15,23 @@ def preprocess_data_for_alpha_precision_eval(
     synthetic_data: pd.DataFrame,
     meta_info: dict[str, Any],
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """
-    Function used to apply specific dataset preprocessing steps related to performing Alpha (and Beta) precision
-    measurements comparing ``real_data`` to ``synthetic_data``. Specifically, categorical columns are one-hot encoded
-    and numerical columns remain unchanged.
+    """Prepare real and synthetic data for Alpha-precision evaluation.
+
+    Categorical columns are one-hot encoded and numerical columns remain
+    unchanged when comparing ``real_data`` to ``synthetic_data``.
 
     This follows the convention of:
 
     https://github.com/VectorInstitute/MIDSTModels/blob/main/midst_models/single_table_TabDDPM/eval/eval_quality.py
 
     Args:
-        real_data: Dataframe containing real data to which the synthetic data will be compared.
-        synthetic_data: Dataframe containing the synthetic data whose quality is to be measured.
-        meta_info: Dictionary containing meta information. This is used to find the columns in the dataframes
-            associated with numerical and categorical data.
+        real_data: Real data to which the synthetic data will be compared.
+        synthetic_data: Synthetic data whose quality is to be measured.
+        meta_info: Metadata used to find numerical and categorical columns.
 
     Returns
     -------
-        A tuple of preprocessed versions of the real and synthetic dataframes, in that order.
+        Preprocessed real and synthetic dataframes, in that order.
     """
     numerical_real_data, categorical_real_data = extract_columns_based_on_meta_info(real_data, meta_info)
     numerical_synthetic_data, categorical_synthetic_data = extract_columns_based_on_meta_info(
@@ -57,35 +58,24 @@ def get_numerical_and_categorical_column_names(
     data: pd.DataFrame,
     meta_info: dict[str, Any],
 ) -> tuple[list[str], list[str]]:
-    """
-    Based on the information in ``meta_info`` the names of the numerical and categorical columns of the
-    provided dataframe are extracted from ``data`` and returned.
+    """Extract numerical and categorical column names from metadata.
 
     Args:
-        data: Collection of data with a set of column names that will be extracted
-        meta_info: Dictionary of metadata, including which column indices correspond to the numerical and categorical
+        data: Collection of data with a set of column names that will be extracted.
+        meta_info: Metadata whose column indices mark numerical and categorical
             columns of the provided dataset.
 
     Returns
     -------
-        A tuple of the names of numerical and categorical columns, respectively.
+        Names of numerical and categorical columns, respectively.
     """
     # Enumerate columns and replace column name with index
     column_names = list(data.columns)
 
-    # Get numerical and categorical column indices from meta info
-    # NOTE: numerical and categorical columns are the only admissible/generate-able types"
+    # Get numerical and categorical column indices from meta info.
+    # These are the only admissible/generate-able column types.
     numerical_column_idx = meta_info["num_col_idx"]
     categorical_column_idx = meta_info["cat_col_idx"]
-
-    # if "target_col_idx" in meta_info:
-    #     # Target columns are also part of the generation, just need to add it to the right "category"
-    #     target_col_idx = meta_info["target_col_idx"]
-    #     task_type = TaskType(meta_info["task_type"])
-    #     if task_type == TaskType.REGRESSION:
-    #         numerical_column_idx = numerical_column_idx + target_col_idx
-    #     else:
-    #         categorical_column_idx = categorical_column_idx + target_col_idx
 
     return [column_names[i] for i in numerical_column_idx], [column_names[i] for i in categorical_column_idx]
 
@@ -116,24 +106,23 @@ def syntheval_preprocess(
     synthetic_data: pd.DataFrame,
     holdout_data: pd.DataFrame | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame] | tuple[pd.DataFrame, pd.DataFrame]:
-    """
-    Performs preprocessing steps on ``real_data``, ``synthetic_data``, and ``holdout_data`` (if provided) using the
-    standard preprocessing pipeline used in the SynthEval library. That is, numerical columns are min-max encoded
-    and categorical columns are ordinally encoded (not one-hot encoded). If all three dataframes are provided,
-    fitting is performed on all three.
+    """Encode tables with the SynthEval preprocessing pipeline.
+
+    Numerical columns are min-max encoded and categorical columns are
+    ordinally encoded (not one-hot encoded). If holdout data is provided,
+    fitting is performed on all three tables.
 
     Args:
         numerical_columns: Numerical column names in the respective dataframes.
-        categorical_columns: Categorical column names in the respective dataframes.
-        real_data: Dataframe containing real data (often used to train the model that generated ``synthetic_data``)
+        categorical_columns: Categorical column names in the dataframes.
+        real_data: Real data often used to train the generative model.
         synthetic_data: Dataframe containing synthetic data.
-        holdout_data: Dataframe containing real data (often explicitly NOT used to train the model that generated
-            ``synthetic_data``). If None, then fitting and preprocessing is based only on ``real_data`` and
-            ``synthetic_data``. Defaults to None.
+        holdout_data: Real data often withheld from training. If None, fitting
+            uses only ``real_data`` and ``synthetic_data``. Defaults to None.
 
     Returns
     -------
-        A tuple containing the preprocessed real, synthetic, and possibly holdout dataframes, in that order.
+        Preprocessed real, synthetic, and possibly holdout dataframes.
     """
     encoder = SynthEvalDataframeEncoding(
         real_data,
@@ -155,24 +144,24 @@ def remove_label_column_from_other_columns(
     numerical_columns: list[str],
     categorical_columns: list[str],
 ) -> tuple[list[str], list[str]]:
-    """
-    Given a column name for a target label (task label), this ensures that the label is removed from either the
-    numerical or categorical columns list. During preprocessing, it is advantageous to also process the label
-    column into, for instance, and ordinal value. However, when performing F1 measurements, we no longer want it
-    to be part of the dataframe during training.
+    """Remove a task label from numerical and categorical column lists.
+
+    During preprocessing it is useful to encode the label column, for example
+    as an ordinal value. For F1 measurements the label should no longer be
+    part of the feature dataframe during training.
 
     Args:
         label_column: Column name associated with task labels of interest.
-        numerical_columns: Set of column names associated with numerical values.
-        categorical_columns: Set of column names associated with categorical values.
+        numerical_columns: Column names associated with numerical values.
+        categorical_columns: Column names associated with categorical values.
 
     Raises
     ------
-        ValueError: Will throw an error if the label column is present in both column names lists, which is bad...
+        ValueError: If the label column appears in both column-name lists.
 
     Returns
     -------
-        Filtered copies of the numerical and categorical column names without the specified label column included.
+        Numerical and categorical names without the specified label column.
     """
     if label_column in numerical_columns and label_column in categorical_columns:
         raise ValueError("Label column appears in both types of columns...")
