@@ -15,14 +15,11 @@ else
 fi
 
 source .venv/bin/activate
-if [ "${RUN_SFT:-0}" = "1" ]; then
-    echo "RUN_SFT=1: syncing SFT dependencies (CUDA / bitsandbytes)..."
-    uv sync --dev --group text-sft
-else
-    uv sync --dev
-fi
+echo "Syncing basic dependencies..."
+uv sync --dev
 
-echo "Virtual environment activated and dependencies synced."
+
+echo "Virtual environment activated and basic dependencies synced."
 
 # Install Jupyter kernel
 uv run ipython kernel install --user --name=aieng-synthetic-data --display-name "AIEng Synthetic Data Bootcamp"
