@@ -1,8 +1,6 @@
 from typing import Any, overload
 
 import pandas as pd
-
-from midst_toolkit.common.enumerations import TaskType
 from midst_toolkit.data_processing.utils import SynthEvalDataframeEncoding
 from midst_toolkit.evaluation.utils import (
     extract_columns_based_on_meta_info,
@@ -11,7 +9,9 @@ from midst_toolkit.evaluation.utils import (
 
 
 def preprocess_data_for_alpha_precision_eval(
-    real_data: pd.DataFrame, synthetic_data: pd.DataFrame, meta_info: dict[str, Any]
+    real_data: pd.DataFrame,
+    synthetic_data: pd.DataFrame,
+    meta_info: dict[str, Any],
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
     Function used to apply specific dataset preprocessing steps related to performing Alpha (and Beta) precision
@@ -28,12 +28,14 @@ def preprocess_data_for_alpha_precision_eval(
         meta_info: Dictionary containing meta information. This is used to find the columns in the dataframes
             associated with numerical and categorical data.
 
-    Returns:
+    Returns
+    -------
         A tuple of preprocessed versions of the real and synthetic dataframes, in that order.
     """
     numerical_real_data, categorical_real_data = extract_columns_based_on_meta_info(real_data, meta_info)
     numerical_synthetic_data, categorical_synthetic_data = extract_columns_based_on_meta_info(
-        synthetic_data, meta_info
+        synthetic_data,
+        meta_info,
     )
 
     numerical_real_numpy, categorical_real_numpy, numerical_synthetic_numpy, categorical_synthetic_numpy = (
@@ -44,12 +46,16 @@ def preprocess_data_for_alpha_precision_eval(
     )
 
     return one_hot_encode_categoricals_and_merge_with_numerical(
-        categorical_real_numpy, categorical_synthetic_numpy, numerical_real_numpy, numerical_synthetic_numpy
+        categorical_real_numpy,
+        categorical_synthetic_numpy,
+        numerical_real_numpy,
+        numerical_synthetic_numpy,
     )
 
 
 def get_numerical_and_categorical_column_names(
-    data: pd.DataFrame, meta_info: dict[str, Any]
+    data: pd.DataFrame,
+    meta_info: dict[str, Any],
 ) -> tuple[list[str], list[str]]:
     """
     Based on the information in ``meta_info`` the names of the numerical and categorical columns of the
@@ -60,7 +66,8 @@ def get_numerical_and_categorical_column_names(
         meta_info: Dictionary of metadata, including which column indices correspond to the numerical and categorical
             columns of the provided dataset.
 
-    Returns:
+    Returns
+    -------
         A tuple of the names of numerical and categorical columns, respectively.
     """
     # Enumerate columns and replace column name with index
@@ -85,7 +92,10 @@ def get_numerical_and_categorical_column_names(
 
 @overload
 def syntheval_preprocess(
-    numerical_columns: list[str], categorical_columns: list[str], real_data: pd.DataFrame, synthetic_data: pd.DataFrame
+    numerical_columns: list[str],
+    categorical_columns: list[str],
+    real_data: pd.DataFrame,
+    synthetic_data: pd.DataFrame,
 ) -> tuple[pd.DataFrame, pd.DataFrame]: ...
 
 
@@ -121,11 +131,16 @@ def syntheval_preprocess(
             ``synthetic_data``). If None, then fitting and preprocessing is based only on ``real_data`` and
             ``synthetic_data``. Defaults to None.
 
-    Returns:
+    Returns
+    -------
         A tuple containing the preprocessed real, synthetic, and possibly holdout dataframes, in that order.
     """
     encoder = SynthEvalDataframeEncoding(
-        real_data, synthetic_data, categorical_columns, numerical_columns, holdout_data=holdout_data
+        real_data,
+        synthetic_data,
+        categorical_columns,
+        numerical_columns,
+        holdout_data=holdout_data,
     )
     real_data = encoder.encode(real_data)
     synthetic_data = encoder.encode(synthetic_data)
@@ -134,8 +149,11 @@ def syntheval_preprocess(
         return real_data, synthetic_data, encoder.encode(holdout_data)
     return real_data, synthetic_data
 
+
 def remove_label_column_from_other_columns(
-    label_column: str, numerical_columns: list[str], categorical_columns: list[str]
+    label_column: str,
+    numerical_columns: list[str],
+    categorical_columns: list[str],
 ) -> tuple[list[str], list[str]]:
     """
     Given a column name for a target label (task label), this ensures that the label is removed from either the
@@ -148,10 +166,12 @@ def remove_label_column_from_other_columns(
         numerical_columns: Set of column names associated with numerical values.
         categorical_columns: Set of column names associated with categorical values.
 
-    Raises:
+    Raises
+    ------
         ValueError: Will throw an error if the label column is present in both column names lists, which is bad...
 
-    Returns:
+    Returns
+    -------
         Filtered copies of the numerical and categorical column names without the specified label column included.
     """
     if label_column in numerical_columns and label_column in categorical_columns:

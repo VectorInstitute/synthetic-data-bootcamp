@@ -163,8 +163,7 @@ def find_table_path(input_dir: Path, table: str) -> Path:
         if candidate.is_file():
             return candidate
     raise FileNotFoundError(
-        f"No raw file for table {table!r} in {input_dir} "
-        f"(expected {table}.csv or {table}.asc).",
+        f"No raw file for table {table!r} in {input_dir} (expected {table}.csv or {table}.asc).",
     )
 
 
@@ -502,11 +501,8 @@ def preprocess_berka_all_tables(
                     "id_columns": TABLE_SPECS[table]["id_columns"],
                     "discrete_columns": TABLE_SPECS[table]["discrete_columns"],
                     "continuous_columns": TABLE_SPECS[table]["continuous_columns"],
-                    "output_columns": TABLE_SPECS[table]["id_columns"]
-                    + _FEATURE_ORDER_BY_TABLE[table],
-                    "label_classes": {
-                        col: list(le.classes_) for col, le in all_encoders[table].items()
-                    },
+                    "output_columns": TABLE_SPECS[table]["id_columns"] + _FEATURE_ORDER_BY_TABLE[table],
+                    "label_classes": {col: list(le.classes_) for col, le in all_encoders[table].items()},
                 }
                 for table in TABLE_NAMES
             },

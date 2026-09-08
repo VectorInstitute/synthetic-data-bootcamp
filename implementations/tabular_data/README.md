@@ -46,4 +46,3 @@ Each `config.yaml` is loaded with Hydra from the notebook in that folder. Traini
 **Single table:** [`single_table/README.md`](single_table/README.md) → `data_processing/data_processing.ipynb` → `training/tabddpm_training.ipynb` → `synthesizing/tabddpm_synthesizing.ipynb` → [`evaluation/`](evaluation/) quality and privacy notebooks.
 
 **Multi table:** [`data_preprocessing/README.md`](multi_table/data_preprocessing/README.md) (raw files via `download_and_save_multi_table_data`, then `pre_process_berka_all_tabels.py` or the notebook) → [`training/README.md`](multi_table/training/README.md) / `ClavaDDPM_training.ipynb` → [`synthesizing/README.md`](multi_table/synthesizing/README.md) / `ClavaDDPM_synthesizing.ipynb` → `multi_table/evaluation/multi_table_quality.ipynb` for 1-hop relational metrics. Use [`evaluation/`](evaluation/) for per-table column metrics on a generated table.
-

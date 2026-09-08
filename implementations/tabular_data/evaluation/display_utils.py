@@ -1,7 +1,10 @@
-from midst_toolkit.common.logger import log
 from logging import INFO
 
+from midst_toolkit.common.logger import log
+
+
 SEPARATOR = "-" * 80
+
 
 def log_metrics(header: str, results: dict[str, float]) -> None:
     """

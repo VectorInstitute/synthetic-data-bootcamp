@@ -14,7 +14,7 @@
    ``meta_info.json``, and encoding artifacts for inverse transforms.
 
 
-Example 
+Example
 ------------------
 from preprocess_berka_trans import preprocess_berka_trans
 
@@ -29,7 +29,6 @@ preprocess_berka_trans(
 
 from __future__ import annotations
 
-import argparse
 import json
 import pickle
 from datetime import datetime, timedelta
@@ -39,6 +38,7 @@ from typing import Any
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
+
 
 # Columns in the MIDST / ClavaDDPM single-table Berka export
 OUTPUT_COLUMNS = [
@@ -67,8 +67,6 @@ DEFAULT_DATASET_META = {
     "relation_order": [[None, "trans"]],
     "tables": {"trans": {"children": [], "parents": []}},
 }
-
-
 
 
 def detect_separator(path: Path, explicit: str | None) -> str:
@@ -172,7 +170,7 @@ def build_feature_frame(raw: pd.DataFrame, epoch_yymmdd: str | None) -> tuple[pd
             "k_symbol": work["k_symbol"].astype(str),
             "bank": work["bank"].astype(str),
             "account": work["account"].astype("int64"),
-        }
+        },
     )
     return features, epoch
 
@@ -199,8 +197,7 @@ def label_encode(
             unseen = ~values.isin(known)
             if unseen.any():
                 raise ValueError(
-                    f"Column {col!r} has labels not seen during fit: "
-                    f"{sorted(values[unseen].unique())[:10]}"
+                    f"Column {col!r} has labels not seen during fit: {sorted(values[unseen].unique())[:10]}",
                 )
             out[col] = le.transform(values)
         out[col] = out[col].astype("int64")
@@ -227,7 +224,9 @@ def sample_dataframe(df: pd.DataFrame, sample_size: int | None, seed: int) -> pd
 
 
 def split_train_holdout(
-    df: pd.DataFrame, holdout_ratio: float, seed: int
+    df: pd.DataFrame,
+    holdout_ratio: float,
+    seed: int,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     if not 0.0 < holdout_ratio < 1.0:
         raise ValueError("--holdout-ratio must be in (0, 1)")
@@ -257,7 +256,8 @@ def preprocess_berka_trans(
 ) -> dict[str, Any]:
     """Run the full Berka trans preprocessing pipeline and write outputs.
 
-    Parameters:
+    Parameters
+    ----------
     - input_path: Path to the raw data file.
     - output_dir: Path to the output directory.
     - sep: Field separator. Default: auto-detect ('; for .asc, comma otherwise).
@@ -299,8 +299,7 @@ def preprocess_berka_trans(
     encoded = encoded[OUTPUT_COLUMNS]
     train_df, holdout_df = split_train_holdout(encoded, holdout_ratio, seed)
     print(
-        f"Split: train={len(train_df):,}  holdout={len(holdout_df):,}  "
-        f"(holdout_ratio={holdout_ratio})"
+        f"Split: train={len(train_df):,}  holdout={len(holdout_df):,}  (holdout_ratio={holdout_ratio})",
     )
 
     # --- writes ---
@@ -316,7 +315,6 @@ def preprocess_berka_trans(
     print(f"Wrote {output_dir / 'trans_domain.json'}")
     print(f"Wrote {output_dir / 'dataset_meta.json'}")
     print(f"Wrote {output_dir / 'meta_info.json'}")
-
 
     if save_artifacts:
         preprocess_meta = {
