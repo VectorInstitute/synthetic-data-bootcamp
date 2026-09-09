@@ -184,12 +184,15 @@ resource "coder_agent" "main" {
 
     echo "Running automatic onboarding..."
     if command -v onboard &> /dev/null; then
-      onboard \
-        --bootcamp-name "$BOOTCAMP_NAME" \
-        --output-dir "/home/${local.username}/${local.repo_name}" \
-        --test-script "/home/${local.username}/${local.repo_name}/aieng-synthetic-data/tests/test_integration.py" \
-        --env-example "/home/${local.username}/${local.repo_name}/.env.example" \
-        --test-marker "integration_test" || echo "Onboarding failed, continuing..."
+        if ! onboard_output="$(onboard \
+            --bootcamp-name "$BOOTCAMP_NAME" \
+            --test-script "/home/${local.username}/${local.repo_name}/aieng-synthetic-data/tests/test_integration.py" \
+            --test-marker "integration_test")"; then
+          echo "Onboarding failed, continuing..."
+        else
+          echo "Onboarding successful"
+          eval "$onboard_output"
+        fi
     else
       echo "Onboarding CLI not found, skipping automated onboarding"
     fi
@@ -209,6 +212,10 @@ if [ -f ~/${local.repo_name}/.venv/bin/activate ]; then
     cd ~/${local.repo_name}
     source .venv/bin/activate
 fi
+# Load bootcamp environment variables from Secret Manager
+if command -v onboard &> /dev/null && [ -n "\$BOOTCAMP_NAME" ]; then
+    eval "\$(onboard --bootcamp-name "\$BOOTCAMP_NAME" --skip-test 2>/dev/null)"
+fi
 BASHRC
     fi
 
@@ -220,7 +227,24 @@ if [ -f ~/${local.repo_name}/.venv/bin/activate ]; then
     cd ~/${local.repo_name}
     source .venv/bin/activate
 fi
+# Load bootcamp environment variables from Secret Manager
+if command -v onboard &> /dev/null && [ -n "\$BOOTCAMP_NAME" ]; then
+    eval "\$(onboard --bootcamp-name "\$BOOTCAMP_NAME" --skip-test 2>/dev/null)"
+fi
 ZSHRC
+    fi
+    # Add to .profile so VS Code server (login shell) and all child processes
+    # — including Jupyter kernels and the Python extension — inherit the
+    # bootcamp environment variables automatically.
+    if ! grep -q "bootcamp-env" "/home/${local.username}/.profile" 2>/dev/null; then
+      cat >> "/home/${local.username}/.profile" <<PROFILE
+
+# bootcamp-env: load API keys from Secret Manager at login
+# The command is stored here, not the secret values.
+if command -v onboard > /dev/null 2>&1 && [ -n "\$BOOTCAMP_NAME" ]; then
+    eval "\$(onboard --bootcamp-name "\$BOOTCAMP_NAME" --skip-test 2>/dev/null)"
+fi
+PROFILE
     fi
 
     echo "Startup script ran successfully!"
