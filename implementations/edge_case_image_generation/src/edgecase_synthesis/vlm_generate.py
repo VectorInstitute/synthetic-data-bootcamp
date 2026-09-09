@@ -1,8 +1,9 @@
-"""Cloud image generation / edit (disabled by default on Vector chat proxy).
+"""Cloud image generation / edit via Vector proxy (default) or direct Gemini/OpenAI.
 
 Local Klein / inpaint / ControlNet do production edits. This module is the optional
 NB1.5 ``vlm_generate_api`` column — keep ``generation.vlm_api_enabled=false`` until
-the API key has an *image-capable* model (chat VLMs only return text).
+you intentionally compare Nano Banana 2. Workshop default routes through the same
+Vector OpenAI-compatible proxy as the API judge (``OPENAI_API_KEY`` + base URL).
 """
 
 from __future__ import annotations
@@ -42,8 +43,8 @@ VlmProvider = Literal["gemini", "openai", "vector_proxy"]
 
 _VLM_API_DISABLED_MSG = (
     "vlm_generate_api is disabled (generation.vlm_api_enabled=false). "
-    "Vector proxy models are chat/vision — use them for the API judge, not image edit. "
-    "Re-enable when an image-capable model ID is available on the key."
+    "Set generation.vlm_api_enabled=true (NB1.5 INCLUDE_VLM_API) to compare "
+    "Nano Banana 2 via the Vector proxy."
 )
 
 
