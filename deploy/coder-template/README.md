@@ -1,6 +1,13 @@
 # Synthetic Data Generation Bootcamp — Coder Template
 
-This Terraform template provisions participant workspaces on GCP: a VM, persistent data disk, and the Coder agent with JupyterLab, code-server, and Streamlit.
+This directory contains **two** Coder templates. Each is a separate Terraform root and must be published with its own `coder templates push`.
+
+| Directory | Machine | Region | Image |
+| --- | --- | --- | --- |
+| `.` (this folder) | CPU (`e2-standard-2`) or GPU L4 (`g2-standard-8`) | `var.zone` (typically `northamerica-northeast2`) | CPU: Docker container; GPU: Packer DLVM |
+| [`a2-highgpu/`](a2-highgpu/) | GPU A100 (`a2-highgpu-1g`) only | `us-central1` (zone chosen at workspace create) | Same Packer GPU image family |
+
+This template provisions participant workspaces on GCP: a VM, persistent data disk, and the Coder agent with JupyterLab, code-server, and Streamlit.
 
 **GCP project:** `pets-3-bootcamp`
 
@@ -120,7 +127,9 @@ cp terraform.tfvars.example terraform.tfvars
 
 ### Publish
 
-`coder templates push` auto-loads `terraform.tfvars` from the current directory. Run from `deploy/coder-template/`:
+`coder templates push` auto-loads `terraform.tfvars` from the current directory.
+
+**CPU + L4** (this folder):
 
 ```sh
 coder login https://platform.vectorinstitute.ai   # Path A
@@ -128,8 +137,15 @@ coder login https://platform.vectorinstitute.ai   # Path A
 
 cd deploy/coder-template
 terraform init
-
 coder templates push <template-name> -y
+```
+
+**A100** (`a2-highgpu-1g` in us-central1): use a **different** template name and a `terraform.tfvars` in the subdirectory (see [`a2-highgpu/terraform.tfvars.example`](a2-highgpu/terraform.tfvars.example)):
+
+```sh
+cd deploy/coder-template/a2-highgpu
+terraform init
+coder templates push <a100-template-name> -y
 ```
 
 - `<template-name>` — name you choose in Coder (check `coder templates list` before updating an existing template).

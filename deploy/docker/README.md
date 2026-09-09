@@ -21,7 +21,7 @@ For the full deployment flow (Coder setup, service accounts, template publish), 
 | Tag | Base image | Used for |
 | --- | --- | --- |
 | `latest` | `ubuntu:24.04` | CPU workspaces (`e2-standard-2`) |
-| `gpu` | `nvidia/cuda:12.6.3-cudnn-runtime-ubuntu24.04` | GPU workspaces (`g2-standard-8`, `g2-standard-24`) |
+| `gpu` | `nvidia/cuda:12.6.3-cudnn-runtime-ubuntu24.04` | GPU workspaces (`g2-standard-8`- L4 GPU), `a2-highgpu-1g`- A100 40GB GPU) |
 
 ## Who needs access to this registry?
 

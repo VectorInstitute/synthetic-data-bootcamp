@@ -1,6 +1,6 @@
 # Synthetic Data Generation Bootcamp Deployment
 
-The Synthetic Data Generation Bootcamp uses [Coder](https://coder.com) to provide cloud development environments for participants. Each workspace is a GCP virtual machine provisioned by Terraform in `[deploy/coder-template/](coder-template/)`.
+The Synthetic Data Generation Bootcamp uses [Coder](https://coder.com) to provide cloud development environments for participants. Workspaces are GCP VMs provisioned by Terraform from `[deploy/coder-template/](coder-template/)` (CPU + L4) or `[deploy/coder-template/a2-highgpu/](coder-template/a2-highgpu/)` (A100 in us-central1).
 
 This repository supports **two deployment paths**. Choose the one that matches how you run Coder:
 
@@ -110,6 +110,8 @@ terraform init
 
 coder templates push <template-name> -y
 ```
+
+For the A100 template (`a2-highgpu-1g` in us-central1), push from `deploy/coder-template/a2-highgpu/` with a **different** template name. See `[deploy/coder-template/a2-highgpu/README.md](coder-template/a2-highgpu/README.md)`.
 
 Coder auto-loads `terraform.tfvars` from the current directory. No `--variables-file` flag is needed.
 
