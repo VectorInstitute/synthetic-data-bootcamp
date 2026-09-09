@@ -6,6 +6,7 @@ authors = [ {name = "Vector AI Engineering", email = "ai_engineering@vectorinsti
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "aieng-platform-onboard>=0.4.0",
     "aieng-synthetic-data",
     "aiohttp>=3.14.3",
     "bleach==6.4.0",
@@ -29,6 +30,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "aieng-platform-onboard>=0.7.3",
     "codecov>=2.1.13",
     "mypy>=2.3.0",
     "nbqa>=1.9.1",
