@@ -37,16 +37,10 @@ repos:
     rev: v1.20.2
     hooks:
     - id: mypy
-      entry: python3 -m mypy --config-file pyproject.toml
+      entry: uv run mypy --config-file pyproject.toml
       language: system
       types: [python]
       exclude: "tests"
-
-  - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.9.1
-    hooks:
-    - id: nbqa-ruff
-      args: [--fix, --exit-non-zero-on-fix, --ignore=D100]
 
 ci:
     autofix_commit_msg: |

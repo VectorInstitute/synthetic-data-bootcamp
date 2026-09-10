@@ -15,11 +15,10 @@ else
 fi
 
 source .venv/bin/activate
-echo "Syncing basic dependencies..."
-uv sync --dev
+echo "Syncing dependencies including the text-sft group (notebook 05 LoRA)..."
+uv sync --dev --group text-sft
 
-
-echo "Virtual environment activated and basic dependencies synced."
+echo "Virtual environment activated and dependencies synced."
 
 # Install Jupyter kernel
 uv run ipython kernel install --user --name=aieng-synthetic-data --display-name "AIEng Synthetic Data Bootcamp"
