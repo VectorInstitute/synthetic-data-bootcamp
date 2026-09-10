@@ -200,15 +200,10 @@ resource "coder_agent" "main" {
     # Run automatic onboarding
     echo "Running automatic onboarding..."
     if command -v onboard &> /dev/null; then
-        if ! onboard_output="$(onboard \
-            --bootcamp-name "$BOOTCAMP_NAME" \
-            --test-script "/home/${local.username}/${local.repo_name}/aieng-synthetic-data/tests/test_integration.py" \
-            --test-marker "integration_test")"; then
-          echo "Onboarding failed, continuing..."
-        else
-          echo "Onboarding successful"
-          eval "$onboard_output"
-        fi
+      eval "$(onboard \
+        --bootcamp-name "$BOOTCAMP_NAME" \
+        --test-script "/home/${local.username}/${local.repo_name}/aieng-synthetic-data/tests/test_integration.py" \
+        --test-marker "integration_test")" || echo "Onboarding failed, continuing..."
     else
       echo "Onboarding CLI not found, skipping automated onboarding"
     fi
@@ -261,8 +256,9 @@ ZSHRC
 
 # bootcamp-env: load API keys from Secret Manager at login
 # The command is stored here, not the secret values.
-if command -v onboard > /dev/null 2>&1 && [ -n "\$BOOTCAMP_NAME" ]; then
-    eval "\$(onboard --bootcamp-name "\$BOOTCAMP_NAME" --skip-test 2>/dev/null)"
+ONBOARD="\$HOME/${local.repo_name}/.venv/bin/onboard"
+if [ -x "\$ONBOARD" ] && [ -n "\$BOOTCAMP_NAME" ]; then
+    eval "\$("\$ONBOARD" --bootcamp-name "\$BOOTCAMP_NAME" --skip-test 2>/dev/null)"
 fi
 PROFILE
     fi

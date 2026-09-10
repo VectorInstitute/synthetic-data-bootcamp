@@ -8,6 +8,7 @@ requires-python = ">=3.12"
 dependencies = [
     "aieng-synthetic-data",
     "filelock==3.29.0",
+    "httpx>=0.28.0",
     "jupyter-server>=2.18.0",
     "jupyterlab>=4.5.7",
     "nbconvert>=7.17.0",
@@ -20,6 +21,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "aieng-platform-onboard>=0.7.3",
     "codecov>=2.1.13",
     "mypy>=1.20.2",
     "nbqa>=1.9.1",
@@ -30,6 +32,15 @@ dev = [
     "pytest-cov>=6.0.0",
     "pytest-mock>=3.14.0",
     "ruff>=0.15.12",
+]
+
+[tool.uv]
+default-groups = ["dev"]
+# aieng-platform-onboard pins filelock and virtualenv to older exact versions;
+# override so the security floors in [project.dependencies] still win.
+override-dependencies = [
+    "filelock==3.29.0",
+    "virtualenv==21.3.1",
 ]
 
 [tool.uv.workspace]
