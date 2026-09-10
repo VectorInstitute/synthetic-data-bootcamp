@@ -40,6 +40,11 @@ data "coder_parameter" "instance_type" {
     value = "g2-standard-8"
     icon  = "/emojis/26a1.png"
   }
+  option {
+    name  = "GPU — g2-standard-24 (24 vCPU, 96 GB RAM, 2× NVIDIA L4)"
+    value = "g2-standard-24"
+    icon  = "/emojis/26a1.png"
+  }
 }
 
 locals {

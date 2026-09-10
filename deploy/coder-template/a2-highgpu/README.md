@@ -4,7 +4,7 @@ GPU-only workspace template: `a2-highgpu-1g` (12 vCPU, 85 GB RAM, 1× NVIDIA A10
 
 Workspaces boot from the same Packer GPU image family as the L4 template (`synthetic-data-generation-bootcamp-gpu`). Participants pick a us-central1 zone at create time.
 
-This directory is a **separate Coder template**. Push it independently from the parent CPU/L4 template.
+This directory is a **separate Coder template**. Push it independently from the parent CPU + L4 template (`g2-standard-8` 1× L4 or `g2-standard-24` 2× L4).
 
 ## Publish
 
@@ -18,6 +18,6 @@ terraform init
 coder templates push synthetic-data-bootcamp-a100 -y
 ```
 
-Use a different `<template-name>` from the parent template (CPU + L4 in `northamerica-northeast2`).
+Use a different `<template-name>` from the parent template (CPU + L4 in `northamerica-northeast2`: `g2-standard-8` / `g2-standard-24`).
 
 Service accounts, GitHub auth, and GPU image build steps are the same as [`../README.md`](../README.md).

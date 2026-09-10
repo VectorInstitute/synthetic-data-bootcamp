@@ -1,6 +1,6 @@
 # Synthetic Data Generation Bootcamp Deployment
 
-The Synthetic Data Generation Bootcamp uses [Coder](https://coder.com) to provide cloud development environments for participants. Workspaces are GCP VMs provisioned by Terraform from `[deploy/coder-template/](coder-template/)` (CPU + L4) or `[deploy/coder-template/a2-highgpu/](coder-template/a2-highgpu/)` (A100 in us-central1).
+The Synthetic Data Generation Bootcamp uses [Coder](https://coder.com) to provide cloud development environments for participants. Workspaces are GCP VMs provisioned by Terraform from `[deploy/coder-template/](coder-template/)` (CPU + L4: `g2-standard-8` / `g2-standard-24`) or `[deploy/coder-template/a2-highgpu/](coder-template/a2-highgpu/)` (A100 in us-central1).
 
 This repository supports **two deployment paths**. Choose the one that matches how you run Coder:
 

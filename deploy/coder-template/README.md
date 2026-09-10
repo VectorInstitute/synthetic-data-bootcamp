@@ -4,7 +4,7 @@ This directory contains **two** Coder templates. Each is a separate Terraform ro
 
 | Directory | Machine | Region | Image |
 | --- | --- | --- | --- |
-| `.` (this folder) | CPU (`e2-standard-2`) or GPU L4 (`g2-standard-8`) | `var.zone` (typically `northamerica-northeast2`) | CPU: Docker container; GPU: Packer DLVM |
+| `.` (this folder) | CPU (`e2-standard-2`) or GPU L4 (`g2-standard-8` 1× L4, `g2-standard-24` 2× L4) | `var.zone` (typically `northamerica-northeast2`) | CPU: Docker container; GPU: Packer DLVM |
 | [`a2-highgpu/`](a2-highgpu/) | GPU A100 (`a2-highgpu-1g`) only | `us-central1` (zone chosen at workspace create) | Same Packer GPU image family |
 
 This template provisions participant workspaces on GCP: a VM, persistent data disk, and the Coder agent with JupyterLab, code-server, and Streamlit.
@@ -129,7 +129,7 @@ cp terraform.tfvars.example terraform.tfvars
 
 `coder templates push` auto-loads `terraform.tfvars` from the current directory.
 
-**CPU + L4** (this folder):
+**CPU + L4** (`g2-standard-8` / `g2-standard-24`, this folder):
 
 ```sh
 coder login https://platform.vectorinstitute.ai   # Path A
