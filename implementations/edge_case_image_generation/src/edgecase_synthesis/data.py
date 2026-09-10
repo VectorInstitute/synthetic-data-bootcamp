@@ -276,37 +276,15 @@ def prepare_sample_images(
 
 
 def _ensure_mapillary_samples(target: Path) -> list[Path]:
-    """Run the toy extract script when samples_dir is empty (HF login required)."""
-    import subprocess
-    import sys
+    """Extract the Mapillary toy subset when ``samples_dir`` is empty."""
+    from edgecase_synthesis.mapillary_extract import ensure_mapillary_samples
 
-    # src/edgecase_synthesis/data.py → implementation root
     root = Path(__file__).resolve().parents[2]
-    script = root / "scripts" / "extract_mapillary_toy.py"
-    if not script.exists():
-        raise FileNotFoundError(
-            f"No images in {target} and missing {script}. "
-            "Run `uv run python scripts/extract_mapillary_toy.py` after `huggingface-cli login`."
-        )
-    print(
-        f"No Mapillary images in {target} — running {script.name} "
-        "(needs HF login; does not download the full 29GB zip)…",
-        flush=True,
-    )
-    try:
-        subprocess.run([sys.executable, str(script)], check=True, cwd=str(root))
-    except subprocess.CalledProcessError as exc:
-        raise FileNotFoundError(
-            f"Mapillary extract failed (exit {exc.returncode}). "
-            "Run `huggingface-cli login`, accept access on "
-            "https://huggingface.co/datasets/candylion/mapillary-vistas-v2, "
-            "then retry or run `uv run python scripts/extract_mapillary_toy.py`."
-        ) from exc
-    paths = list_sample_images(target)
+    paths = ensure_mapillary_samples(root, min_images=1)
     if not paths:
         raise FileNotFoundError(
             f"Extract finished but {target} is still empty. "
-            "Check script output / HF permissions."
+            "Check HF login / access to candylion/mapillary-vistas-v2."
         )
     return paths
 

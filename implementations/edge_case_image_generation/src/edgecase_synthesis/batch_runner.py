@@ -234,8 +234,15 @@ def _synthesize_items(
     stats: dict[str, ClassRunStats],
     log: Callable[[str], None],
     stats_lock: threading.Lock | None = None,
+    show_progress: bool = True,
 ) -> None:
-    for item in items:
+    from tqdm.auto import tqdm
+
+    iterator: Any = items
+    if show_progress:
+        iterator = tqdm(items, desc="Editing", unit="img", leave=True)
+
+    for item in iterator:
         if target_accepts:
             want = int(target_accepts.get(item.anomaly_id, 10**9))
             if accepted_counts[item.anomaly_id] >= want:
@@ -295,6 +302,33 @@ def _synthesize_items(
                 torch.cuda.empty_cache()
 
 
+def _resolve_progress(
+    progress: Any,
+    *,
+    verbose: bool,
+) -> tuple[Callable[[str], None], Callable[[str], None], bool]:
+    """Return ``(log_phase, log_item, use_tqdm)``."""
+    from tqdm.auto import tqdm
+
+    if callable(progress) and progress not in (print,) and progress != "tqdm":
+        # Custom callable: treat as phase logger; item lines follow verbose.
+        log_phase: Callable[[str], None] = progress
+        log_item: Callable[[str], None] = progress if verbose else (lambda _m: None)
+        return log_phase, log_item, False
+
+    mode = progress
+    if mode is print:
+        mode = "print"
+    if mode is None:
+        mode = "tqdm"
+    if mode == "silent":
+        return (lambda _m: None), (lambda _m: None), False
+    if mode == "print":
+        return print, (print if verbose else (lambda _m: None)), False
+    # default: tqdm
+    return tqdm.write, (tqdm.write if verbose else (lambda _m: None)), True
+
+
 def run_batch_synthesis(
     seeds_by_anomaly: dict[str, list[Path]],
     method_map: dict[str, str],
@@ -305,7 +339,8 @@ def run_batch_synthesis(
     max_retries: int = 2,
     target_accepts: dict[str, int] | None = None,
     require_target_boxes: bool = True,
-    progress: Callable[[str], None] | None = print,
+    progress: Any = "tqdm",
+    verbose: bool = False,
     resume: bool = False,
     nb2_dir: Path | str | None = None,
 ) -> BatchResult:
@@ -321,14 +356,19 @@ def run_batch_synthesis(
 
     Set ``resume=True`` to skip ``(anomaly, seed)`` pairs already accepted or
     finally rejected under ``<nb2_dir>/checkpoint/``.
+
+    ``progress``: ``\"tqdm\"`` (default), ``\"print\"``, ``\"silent\"``, or a callable.
+    Per-item lines are off unless ``verbose=True``.
     """
     from edgecase_synthesis.annotation import (
         check_box_placement,
         has_target_detections,
         target_label_names,
     )
+    from tqdm.auto import tqdm
 
-    log = progress or (lambda _msg: None)
+    log_phase, log_item, use_tqdm = _resolve_progress(progress, verbose=verbose)
+    log = log_phase  # phase / summary messages
     dataset = str(cfg.dataset_name)
     source_hint = str(cfg.dataset.get("source_hint", "a real photograph"))
     base_classes = list(cfg.annotation.classes)
@@ -516,7 +556,8 @@ def run_batch_synthesis(
                 target_accepts=target_accepts,
                 accepted_counts=accepted_counts,
                 stats=result.stats,
-                log=log,
+                log=log_item,
+                show_progress=use_tqdm,
             )
             return
 
@@ -619,7 +660,7 @@ def run_batch_synthesis(
                 item.generated = None
                 item.annotation = None
                 retries.append(item)
-                log(
+                log_item(
                     f"  edit-fail {item.anomaly_id}  seed={item.source_stem}  "
                     f"→ retry ({err})"
                 )
@@ -637,7 +678,7 @@ def run_batch_synthesis(
                 result.rejected.append(row)
                 append_jsonl(rejected_path(root_dir), row)
                 done_keys.add(sample_key(item.anomaly_id, item.source_stem))
-                log(
+                log_item(
                     f"  edit-fail {item.anomaly_id}  seed={item.source_stem}  "
                     f"→ reject ({err})"
                 )
@@ -659,14 +700,27 @@ def run_batch_synthesis(
         judged: list[tuple[PendingItem, JudgeResult, bool]] = []
         workers = min(n_judge, len(ready))
         if workers <= 1:
-            judged = [_judge_api_call(item) for item in ready]
+            ready_iter: Any = ready
+            if use_tqdm:
+                ready_iter = tqdm(ready, desc="Judging", unit="img", leave=True)
+            judged = [_judge_api_call(item) for item in ready_iter]
         else:
             log(f"Judging {len(ready)} item(s) with {workers} parallel API calls…")
             with ThreadPoolExecutor(max_workers=workers) as pool:
                 futs = [pool.submit(_judge_api_call, item) for item in ready]
-                for fut in as_completed(futs):
+                done_iter: Any = as_completed(futs)
+                if use_tqdm:
+                    done_iter = tqdm(
+                        done_iter,
+                        total=len(futs),
+                        desc="Judging",
+                        unit="img",
+                        leave=True,
+                    )
+                for fut in done_iter:
                     judged.append(fut.result())
 
+        accept_n = retry_n = reject_n = 0
         for item, judgment, boxed in judged:
             anomaly_cfg = load_anomaly(dataset, item.anomaly_id, start=project_root)
             anomaly_classes = list(anomaly_cfg.get("annotation_classes", []) or [])
@@ -703,7 +757,7 @@ def run_batch_synthesis(
                     judgment.decision = decision
                     judgment.rationale = (judgment.rationale or "").rstrip() + note
 
-            log(
+            log_item(
                 f"  judge {item.anomaly_id}  seed={item.source_stem}  "
                 f"attempt={item.attempt} → {decision} "
                 f"({judgment.overall:.1f})"
@@ -723,6 +777,7 @@ def run_batch_synthesis(
             )
             stats = result.stats[item.anomaly_id]
             if decision == "accept":
+                accept_n += 1
                 stats.accepts += 1
                 accepted_counts[item.anomaly_id] += 1
                 image_name = (
@@ -752,12 +807,14 @@ def run_batch_synthesis(
                 append_jsonl(accepted_path(root_dir), accepted_sample_to_row(sample))
                 done_keys.add(sample_key(item.anomaly_id, item.source_stem))
             elif decision == "retry" and item.attempt < max_retries:
+                retry_n += 1
                 stats.retries += 1
                 item.attempt += 1
                 item.generated = None
                 item.annotation = None
                 retries.append(item)
             else:
+                reject_n += 1
                 stats.rejects += 1
                 row = {
                     "anomaly_id": item.anomaly_id,
@@ -770,6 +827,10 @@ def run_batch_synthesis(
                 result.rejected.append(row)
                 append_jsonl(rejected_path(root_dir), row)
                 done_keys.add(sample_key(item.anomaly_id, item.source_stem))
+        log(
+            f"Judge round: accept={accept_n}  retry={retry_n}  reject={reject_n}  "
+            f"accepted_total={len(result.accepted)}"
+        )
         return retries
 
     log(f"Loading edit stack once ({len(queue)} jobs)…")

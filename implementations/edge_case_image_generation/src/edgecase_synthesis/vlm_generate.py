@@ -22,7 +22,7 @@ from edgecase_synthesis.vlm_api import (
     make_openai_client,
     pil_to_b64,
     pil_to_png_bytes,
-    resolve_proxy_base_url,
+    resolve_api_base_url,
 )
 
 # Only IDs that can emit pixels. Chat models (gemini-3-flash-preview, gpt-4o) are judge-only.
@@ -263,7 +263,8 @@ def _generate_vector_proxy(
 ) -> Image.Image:
     client = make_openai_client(
         api_key=cfg.api_key,
-        base_url=resolve_proxy_base_url(cfg.api_base_url),
+        base_url=resolve_api_base_url(cfg.api_base_url, role="VLM"),
+        role="VLM",
     )
     text = _edit_prompt(prompt) if seed_image is not None else _gen_prompt(prompt)
 

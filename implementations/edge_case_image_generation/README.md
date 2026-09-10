@@ -49,16 +49,19 @@ Dependencies live in the **monorepo root** `pyproject.toml` under the `edge-case
 # From the repository root (EdgeCaseSynthesis/)
 uv sync --dev --group edge-case-image-generation
 
-# API key for the Vector proxy judge (copy template, then edit):
+# API key for the Vector proxy (copy template, then edit):
 cp implementations/edge_case_image_generation/.env.example \
    implementations/edge_case_image_generation/.env
 # paste your vp_… key into OPENAI_API_KEY in .env
-
-huggingface-cli login   # once
-uv run python implementations/edge_case_image_generation/scripts/extract_mapillary_toy.py
+# optional: HF_TOKEN=… for gated Mapillary + some model weights
 ```
 
 Or run `implementations/edge_case_image_generation/scripts/setup_notebook_env.sh` to create `.venv` at the repo root and register the Jupyter kernel.
+
+**Workshop images** (Mapillary toy subset — not the full ~29 GB zip):
+
+- Prefer [Notebook 0](notebooks/00_flight_precheck.ipynb) (progress bar + interactive HF login), or
+- CLI: `uv run python implementations/edge_case_image_generation/scripts/extract_mapillary_toy.py`
 
 Notebooks load `.env` automatically on startup — no `export` in the terminal needed.
 
@@ -66,6 +69,7 @@ Notebooks add `src/` to `sys.path` automatically — no separate package install
 
 ## Notebooks
 
+- `notebooks/00_flight_precheck.ipynb` — env / API / GPU / **data download** / model cache check
 - `notebooks/01.5_method_comparison.ipynb` — compare methods; pick `METHOD_BY_ANOMALY`
 - `notebooks/01_sample_data_generation.ipynb` — thin pipeline: load → edit → annotate → judge → retry
 - `notebooks/02_batch_dataset_generation.ipynb` — EDA, stratified split, batch synth + judge, export for NB3

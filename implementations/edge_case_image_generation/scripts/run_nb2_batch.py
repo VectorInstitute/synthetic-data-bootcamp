@@ -93,6 +93,17 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--split-seed", type=int, default=42)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Print per-image edit/judge lines (default: tqdm + phase summaries only).",
+    )
+    parser.add_argument(
+        "--progress",
+        choices=("tqdm", "print", "silent"),
+        default="tqdm",
+        help="Progress style for the batch loop (default: tqdm).",
+    )
+    parser.add_argument(
         "--no-export",
         action="store_true",
         help="Skip final manifest export (checkpoint images still written)",
@@ -222,6 +233,8 @@ def main(argv: list[str] | None = None) -> int:
         require_target_boxes=args.require_target_boxes,
         resume=args.resume,
         nb2_dir=output_dir,
+        progress=args.progress,
+        verbose=bool(args.verbose),
     )
 
     print("\nAcceptance rate per class:")
