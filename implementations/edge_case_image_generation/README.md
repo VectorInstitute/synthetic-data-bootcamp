@@ -71,6 +71,8 @@ Notebooks add `src/` to `sys.path` automatically — no separate package install
 
 - `notebooks/00_flight_precheck.ipynb` — env / API / GPU / **data download** / model cache check
 - `notebooks/01.5_method_comparison.ipynb` — educational bake-off of edit methods; pick `instruct` for NB1
-- `notebooks/01_sample_data_generation.ipynb` — thin pipeline: load → edit → annotate → judge → retry
-- `notebooks/02_batch_dataset_generation.ipynb` — EDA, stratified split, batch synth + judge, export for NB3
-- `notebooks/03_training_and_evaluation.ipynb` — YOLOv8n fine-tune: real-only vs real+synth on held-out real test
+- `notebooks/01_sample_data_generation.ipynb` — synthesis loop + fidelity / novelty / usability (VLM + gates)
+- `notebooks/02_batch_dataset_generation.ipynb` — stratified split, batch synth + judge, export for NB3
+- `notebooks/03_training_and_evaluation.ipynb` — YOLOv8n real-only vs real+synth on held-out real test
+
+Supporting docs: `docs/citations.md`, `docs/figures.md`, `docs/anomaly_authoring.md`.
