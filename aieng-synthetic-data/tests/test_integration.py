@@ -1,9 +1,7 @@
 """Onboarding gate: verify bootcamp API keys against live services.
 
 Run automatically on Coder workspace startup, or manually with
-``onboard --bootcamp-name agentic-forecasting --test-script tests/test_integration.py``.
-
-Every variable in ``.env.example`` is checked except ``FRED_API_KEY``.
+``onboard --bootcamp-name pets-3-bootcamp --test-script aieng-synthetic-data/tests/test_integration.py``.
 """
 
 import os
@@ -16,6 +14,7 @@ pytestmark = pytest.mark.integration_test
 
 
 load_dotenv()
+
 
 def test_openai_api_key() -> None:
     """Test that OPENAI_API_KEY is valid by making a minimal API call."""
