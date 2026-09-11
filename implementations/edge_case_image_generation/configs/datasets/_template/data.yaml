@@ -1,0 +1,19 @@
+# How images are loaded into paths.samples_dir (= data/<dataset_name>/samples).
+name: _template
+# kind: local | voc_zip | hf_rows | urls
+kind: local
+max_images: 8
+stem_prefixes:
+  - scene_
+  - example_anomaly_
+prefer_classes: []
+classes:
+  - example_anomaly
+# --- voc_zip example fields (unused when kind=local) ---
+# archive_url: https://...
+# archive_name: data.zip
+# extract_dirname: MyDataset
+# dataset_root: ${paths.data_dir}
+# images_glob: "**/images/*.jpg"
+# annotations_glob: "**/annotations/*.xml"
+# class_map: {}

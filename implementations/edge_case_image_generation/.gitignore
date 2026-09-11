@@ -1,0 +1,45 @@
+# Local env / caches
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+.env
+.cache/
+**/huggingface/
+**/.cache/
+
+# Generated pipeline / training artifacts (NB1–NB3)
+# Directory contents ignored; keep placeholders via .gitkeep.
+outputs/*
+!outputs/.gitkeep
+runs/
+weights/*
+!weights/.gitkeep
+
+# Downloaded / trained model weights (YOLO, MobileSAM, CLIP ViT-B-32, Klein, …)
+*.pt
+*.pth
+*.bin
+*.ckpt
+*.onnx
+*.safetensors
+*.engine
+*.pkl
+*.h5
+*.npz
+*.msgpack
+*.ot
+*.tflite
+
+# Ultralytics / torch hub often drop checkpoints in the cwd
+yolov*.pt
+mobile_sam.pt
+best.pt
+last.pt
+
+# Dataset payloads (keep .gitkeep placeholders only)
+data/**
+!data/**/
+!data/**/.gitkeep

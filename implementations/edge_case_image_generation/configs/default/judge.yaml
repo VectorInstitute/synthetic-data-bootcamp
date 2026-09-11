@@ -1,0 +1,74 @@
+# @package judge
+# VLM-as-judge for synthetic quality gating.
+#
+# Backends (swap freely — same JSON schema + accept/retry/reject gate):
+#   api     — vision chat via Vector Institute proxy (default) or direct Gemini/OpenAI
+#   qwen_vl — local Qwen2.5-VL (gpu_l4 / cpu friendly offline path)
+#   clip    — lightweight CLIP heuristic fallback
+backend: api
+model_id: gemini-3-flash-preview
+api_base_url: https://proxy.vectorinstitute.ai/v1
+api_provider: null   # null → auto (vector_proxy when api_base_url is set)
+api_key: null        # null → OPENAI_API_KEY from .env (see .env.example)
+api_max_side: 1024
+
+# Concurrent API judge calls in Notebook 2 (I/O bound; safe with Vector proxy).
+max_parallel: 8
+
+# Local Qwen settings (used when backend=qwen_vl)
+torch_dtype: float32
+max_new_tokens: 256
+min_pixels: 200704
+max_pixels: 401408
+reject_margin: 2.0
+threshold: 7.0
+
+# Post-gen fidelity (slice B): real same-class refs attached to the API judge.
+# Hard retry if either score is below fidelity_threshold (separate from overall).
+use_reference_images: true
+n_reference_full: 2      # real class photos (global fidelity)
+n_reference_crops: 1     # GT crops of the rare object when labels exist
+fidelity_threshold: 5.5  # hard retry if global_fidelity or object_fidelity < this
+max_judge_images: 4      # candidate + refs (proxy / VLM image caps)
+
+# Post-gen embedding safe-zone (slice C): CLIP KNN fidelity + novelty.
+# Fidelity: cosine sim to nearest *real* same-class image must be ≥ min_real_sim_*.
+# Novelty: cosine sim to nearest real∪accepted-synth must be ≤ max_neighbor_sim.
+embedding_gate:
+  enabled: true
+  model_id: openai/clip-vit-base-patch32
+  min_real_sim_global: 0.58
+  min_real_sim_local: 0.52
+  max_neighbor_sim: 0.94
+  use_local: true
+  fail_action: retry   # retry | reject
+  max_bank: 256
+  max_side: 224
+
+schema_hint: |
+  Respond with ONLY a single JSON object (no markdown fences) using this schema:
+  {
+    "prompt_faithfulness": <number 0-10>,
+    "physical_plausibility": <number 0-10>,
+    "annotation_correctness": <number 0-10>,
+    "global_fidelity": <number 0-10>,
+    "object_fidelity": <number 0-10>,
+    "edge_case_present": <true|false>,
+    "overall": <number 0-10>,
+    "rationale": "<one short sentence>"
+  }
+  Scoring guide (workshop / bootcamp — prefer accepting usable synth over perfection):
+  - prompt_faithfulness: does the image show what the prompt asked for?
+  - physical_plausibility: would this look real in the scene (lighting, scale, contact)?
+    Score LOW (< 4) only for obvious mask rectangles, floating objects, or paste artifacts.
+  - annotation_correctness: how well listed boxes match visible objects.
+    Open-vocab detection is noisy — if the rare object is clearly visible but boxes are
+    missing, score annotation_correctness low yet still judge visibility from the pixels.
+  - global_fidelity: does the candidate look like a real street photo from the same
+    dataset as the reference photos (lighting, camera style, overall scene realism)?
+  - object_fidelity: does the inserted rare object look like the real class instances
+    in the reference photos / crops (shape, materials, scale, appearance)?
+  - edge_case_present: true if the target rare condition is visible at all.
+    Must be true when prompt_faithfulness ≥ 6 and the insert looks complete.
+  - overall: training-ready score. Use ≥7 when you would keep this for a rare-class
+    detector workshop (good enough, not portfolio-perfect). Reserve <6 for clear failures.

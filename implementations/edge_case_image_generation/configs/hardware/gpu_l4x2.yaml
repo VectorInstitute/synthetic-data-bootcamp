@@ -1,0 +1,40 @@
+# @package _global_
+# g2-standard-24 / 2× NVIDIA L4 — same models as gpu_l4; extra VRAM + parallel judge.
+# Dual-GPU edit: use scripts/run_nb2_batch.py (notebook caps workers=1).
+hardware:
+  name: gpu_l4x2
+  device: cuda
+  num_gpus: 2
+  # One Klein process per GPU (edit_mp + CUDA_VISIBLE_DEVICES). Do not use
+  # Diffusers list(prompt)+list(image) for paired edits — Klein treats images
+  # as shared multi-ref context, not 1:1 batch rows. Judge stays parallel.
+  parallel_edit_workers: 2
+  # Concurrent Vector/Gemini judge HTTP calls (I/O bound).
+  judge_workers: 8
+
+conditioning:
+  depth:
+    model_id: depth-anything/Depth-Anything-V2-Large-hf
+  segmentation:
+    model_name: nvidia/segformer-b3-finetuned-ade-512-512
+
+generation:
+  inpaint_model_id: black-forest-labs/FLUX.2-klein-4B
+  instruct_model_id: black-forest-labs/FLUX.2-klein-4B
+  inpaint_num_inference_steps: 4
+  inpaint_guidance_scale: 1.0
+  instruct_num_inference_steps: 4
+  instruct_guidance_scale: 1.0
+  controlnet_strength: 0.50
+  num_inference_steps: 40
+  guidance_scale: 8.0
+  strength: 1.0
+  max_side: 640
+  padding_mask_crop: 128
+
+annotation:
+  detector_model: yolov8s-worldv2.pt
+  conf: 0.20
+  max_detections: 25
+
+# Judge backend/model comes from configs/default/judge.yaml (API default).

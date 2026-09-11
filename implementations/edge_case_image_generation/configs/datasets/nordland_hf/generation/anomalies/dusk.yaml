@@ -1,0 +1,23 @@
+id: dusk
+display_name: Dusk / low sun
+annotation_classes:
+  - sky
+edit_mask:
+  mode: full
+prompt: >-
+  the same photograph at dusk with warmer low sunlight and longer shadows,
+  photorealistic
+negative_prompt: >-
+  night pitch black, neon, cartoon, watermark, text, different landscape
+strength: 0.40
+controlnet_strength: 0.48
+methods:
+  inpaint:
+    prompt: null
+  controlnet_dual:
+    prompt: >-
+      the exact same Nordland photo at dusk, warm low sun, same tracks and trees
+  instruct:
+    prompt: >-
+      Change only the lighting to realistic dusk with warmer low sun,
+      keep the scene layout identical

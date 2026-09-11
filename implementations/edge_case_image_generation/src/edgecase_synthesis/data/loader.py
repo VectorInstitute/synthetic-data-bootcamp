@@ -1,0 +1,702 @@
+"""Load real images (and optional detection labels) from Hydra data sources."""
+
+from __future__ import annotations
+
+import json
+import shutil
+import time
+import xml.etree.ElementTree as ET
+import zipfile
+from dataclasses import dataclass
+from io import BytesIO
+from pathlib import Path
+from typing import Any, cast
+from urllib.parse import urlencode
+
+import requests
+from datasets import load_dataset
+from omegaconf import DictConfig, OmegaConf
+from PIL import Image
+
+
+IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".bmp"}
+USER_AGENT = "edgecase-synthesis/0.2 (educational)"
+
+
+@dataclass(frozen=True)
+class ImageSample:
+    """A single real image ready for the pipeline."""
+
+    path: Path
+    image: Image.Image
+    name: str
+
+    @property
+    def size(self) -> tuple[int, int]:
+        """Return the image dimensions."""
+        width, height = self.image.size
+        return (int(width), int(height))
+
+
+@dataclass(frozen=True)
+class DetectionBox:
+    """One ground-truth box (xyxy pixels) with a class name."""
+
+    label: str
+    bbox_xyxy: tuple[float, float, float, float]
+
+
+@dataclass(frozen=True)
+class DataSourceInfo:
+    """Represent DataSourceInfo configuration and behavior."""
+
+    name: str
+    label: str
+    license: str
+    attribution: str
+
+
+def _is_impl_root(candidate: Path) -> bool:
+    return (candidate / "configs" / "config.yaml").is_file() and (candidate / "src" / "edgecase_synthesis").is_dir()
+
+
+def project_root(start: Path | None = None) -> Path:
+    """Return ``implementations/edge_case_image_generation`` (Hydra + src root)."""
+    current = (start or Path.cwd()).resolve()
+    search = [current, *current.parents]
+    for base in search:
+        nested = base / "implementations" / "edge_case_image_generation"
+        if _is_impl_root(nested):
+            return nested
+    for candidate in search:
+        if _is_impl_root(candidate):
+            return candidate
+    raise FileNotFoundError(
+        "Could not locate edge_case_image_generation root "
+        "(expected configs/config.yaml + src/edgecase_synthesis). "
+        "Run from the implementation folder or pass start=PROJECT_ROOT.",
+    )
+
+
+def _as_dict(cfg: DictConfig | dict[str, Any]) -> dict[str, Any]:
+    if isinstance(cfg, dict):
+        return cfg
+    return cast(dict[str, Any], OmegaConf.to_container(cfg, resolve=True))
+
+
+def get_data_source_info(cfg: DictConfig | dict[str, Any]) -> DataSourceInfo:
+    """Prefer dataset package metadata; fall back to data.yaml fields."""
+    blob = _as_dict(cfg)
+    data = blob.get("data") or {}
+    dataset = blob.get("dataset") or {}
+    name = str(dataset.get("id") or data.get("name") or "unknown")
+    return DataSourceInfo(
+        name=name,
+        label=str(dataset.get("label") or data.get("label") or name),
+        license=str(dataset.get("license") or data.get("license") or ""),
+        attribution=str(dataset.get("attribution") or data.get("attribution") or ""),
+    )
+
+
+def list_sample_images(samples_dir: Path | str) -> list[Path]:
+    """List sample images in a directory."""
+    root = Path(samples_dir)
+    if not root.exists():
+        return []
+    return sorted(p for p in root.iterdir() if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS)
+
+
+def _prefer_sample_paths(
+    paths: list[Path],
+    prefer_classes: list[str] | None,
+    max_images: int,
+) -> list[Path]:
+    """Prefer filenames tagged with rare classes (e.g. pothole_*.jpg)."""
+    if not prefer_classes:
+        return paths[:max_images] if max_images else paths
+    ranked: list[Path] = []
+    remaining = list(paths)
+    for cls in prefer_classes:
+        key = cls.lower().replace(" ", "_")
+        hit = [p for p in remaining if p.stem.lower().startswith(f"{key}_") or key in p.stem.lower()]
+        for p in hit:
+            if p not in ranked:
+                ranked.append(p)
+        remaining = [p for p in remaining if p not in ranked]
+    ranked.extend(remaining)
+    return ranked[:max_images] if max_images else ranked
+
+
+def load_sample_images(
+    samples_dir: Path | str | None = None,
+    *,
+    cfg: DictConfig | dict[str, Any] | None = None,
+) -> list[ImageSample]:
+    """Load sample images from a directory."""
+    if cfg is None and samples_dir is None:
+        from edgecase_synthesis.config import load_config  # noqa: PLC0415
+
+        cfg = load_config()
+    config = _as_dict(cfg) if cfg is not None else {}
+    root = Path(samples_dir or config["paths"]["samples_dir"])
+    max_images = int(config.get("data", {}).get("max_images", 0) or 0)
+    prefer = list(config.get("data", {}).get("prefer_classes") or [])
+    paths = _prefer_sample_paths(list_sample_images(root), prefer, max_images)
+    samples: list[ImageSample] = []
+    for path in paths:
+        image = Image.open(path).convert("RGB")
+        samples.append(ImageSample(path=path, image=image, name=path.stem))
+    return samples
+
+
+def load_detection_labels(
+    samples_dir: Path | str | None = None,
+    *,
+    cfg: DictConfig | dict[str, Any] | None = None,
+) -> dict[str, list[DetectionBox]]:
+    """Load optional bbox labels written next to samples (labels.json)."""
+    if cfg is not None and samples_dir is None:
+        samples_dir = _as_dict(cfg)["paths"]["samples_dir"]
+    if samples_dir is None:
+        samples_dir = project_root() / "data" / "samples"
+    path = Path(samples_dir) / "labels.json"
+    if not path.exists():
+        return {}
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    out: dict[str, list[DetectionBox]] = {}
+    for name, boxes in raw.items():
+        out[name] = [
+            DetectionBox(
+                label=str(b["label"]),
+                bbox_xyxy=tuple(float(x) for x in b["bbox_xyxy"]),  # type: ignore[arg-type]
+            )
+            for b in boxes
+        ]
+    return out
+
+
+def _source_name(source: dict[str, Any]) -> str:
+    return str(source.get("name") or source.get("kind") or "local").lower()
+
+
+def _read_source_meta(target: Path) -> dict[str, Any]:
+    path = target / "source_meta.json"
+    if not path.exists():
+        return {}
+    try:
+        return cast(dict[str, Any], json.loads(path.read_text(encoding="utf-8")))
+    except json.JSONDecodeError:
+        return {}
+
+
+def _cache_matches_source(target: Path, source: dict[str, Any]) -> bool:
+    """Return whether the sample cache matches the active data source."""
+    paths = list_sample_images(target)
+    if not paths:
+        return False
+
+    expected = _source_name(source)
+    meta = _read_source_meta(target)
+    blob = " ".join(str(meta.get(k, "")).lower() for k in ("dataset", "name", "hf_id", "archive_url", "note"))
+    stems = [p.stem.lower() for p in paths]
+    prefixes = [str(p).lower() for p in (source.get("stem_prefixes") or [])]
+
+    if prefixes and any(s.startswith(tuple(prefixes)) for s in stems):
+        return True
+    if expected and expected.replace("_", " ") in blob:
+        return True
+    if expected and expected in blob:
+        return True
+    if blob and expected and expected not in blob and expected.replace("_", " ") not in blob:
+        return False
+    return bool(stems)
+
+
+def _stale_cache_error(target: Path, source: dict[str, Any]) -> FileNotFoundError:
+    expected = _source_name(source)
+    found = sorted(p.name for p in list_sample_images(target)[:8])
+    meta = _read_source_meta(target)
+    hint = (
+        f"Clear stale images under {target}, then re-run the dataset prepare step "
+        "(e.g. `uv run python scripts/extract_mapillary_toy.py` or "
+        "`prepare_sample_images(..., force=True)`)."
+    )
+    return FileNotFoundError(
+        f"{target} does not match data source {expected!r} "
+        f"(meta={meta.get('dataset') or meta.get('hf_id') or 'missing'}; "
+        f"examples={found}). {hint}",
+    )
+
+
+def prepare_sample_images(
+    samples_dir: Path | None = None,
+    *,
+    cfg: DictConfig | dict[str, Any] | None = None,
+    force: bool = False,
+) -> list[Path]:
+    """Populate samples_dir from the active Hydra data source."""
+    if cfg is None:
+        from edgecase_synthesis.config import load_config  # noqa: PLC0415
+
+        cfg = load_config()
+
+    config = _as_dict(cfg)
+    target = (samples_dir or Path(config["paths"]["samples_dir"])).resolve()
+    target.mkdir(parents=True, exist_ok=True)
+    source = config["data"]
+    kind = str(source.get("kind", source.get("name", "local"))).lower()
+    existing = list_sample_images(target)
+
+    if existing and not force and not _cache_matches_source(target, source):
+        raise _stale_cache_error(target, source)
+
+    if not force and existing and _cache_matches_source(target, source):
+        needs_labels = kind in {"hf_detection", "voc_zip"} and not (target / "labels.json").exists()
+        if not needs_labels:
+            return existing
+
+    if kind == "local":
+        return _prepare_local(target, source, existing)
+    preparers = {
+        "urls": _prepare_urls,
+        "hf_detection": _prepare_hf_detection,
+        "voc_zip": _prepare_voc_zip,
+        "hf_rows": _prepare_hf_rows,
+    }
+    if kind not in preparers:
+        raise ValueError(f"Unknown data.kind={kind!r}. Use local | urls | hf_detection | voc_zip | hf_rows.")
+    return preparers[kind](target, source, force=force)
+
+
+def _prepare_local(target: Path, source: dict[str, Any], existing: list[Path]) -> list[Path]:
+    """Return a valid local cache or provision the Mapillary sample cache."""
+    if existing and _cache_matches_source(target, source):
+        return existing
+    if existing:
+        raise _stale_cache_error(target, source)
+    name = _source_name(source)
+    if name in {"mapillary_vistas", "mapillary"}:
+        return _ensure_mapillary_samples(target)
+    raise FileNotFoundError(
+        f"No images in {target}. Drop files there or run the dataset extract/prepare step (dataset={name!r}).",
+    )
+
+
+def _ensure_mapillary_samples(target: Path) -> list[Path]:
+    """Extract the Mapillary toy subset when ``samples_dir`` is empty."""
+    from edgecase_synthesis.data.mapillary_extract import ensure_mapillary_samples  # noqa: PLC0415
+
+    root = Path(__file__).resolve().parents[2]
+    paths = ensure_mapillary_samples(root, min_images=1)
+    if not paths:
+        raise FileNotFoundError(
+            f"Extract finished but {target} is still empty. Check HF login / access to candylion/mapillary-vistas-v2.",
+        )
+    return paths
+
+
+def _prepare_urls(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:
+    images = dict(source.get("images") or {})
+    if not images:
+        raise ValueError("urls source needs data.images: {filename: url}")
+    session = requests.Session()
+    session.headers["User-Agent"] = USER_AGENT
+    saved: list[Path] = []
+    for name, url in images.items():
+        dest = target / name
+        if dest.exists() and not force:
+            saved.append(dest)
+            continue
+        response = session.get(str(url), timeout=60)
+        response.raise_for_status()
+        Image.open(BytesIO(response.content)).convert("RGB").save(dest)
+        saved.append(dest)
+    return saved
+
+
+def _prepare_voc_zip(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:
+    """Download a Pascal-VOC archive and cache its samples and labels."""
+    pass
+
+    archive_url = str(source.get("archive_url") or "")
+    if not archive_url:
+        raise ValueError("voc_zip source requires data.archive_url")
+
+    dataset_root = Path(source.get("dataset_root") or (target.parent / "voc_cache"))
+    dataset_root.mkdir(parents=True, exist_ok=True)
+    zip_name = str(source.get("archive_name") or Path(archive_url).name)
+    zip_path = dataset_root / zip_name
+
+    if not zip_path.exists() or force:
+        print(f"Downloading {archive_url} → {zip_path} …")
+        _download_file(archive_url, zip_path)
+
+    extract_dir = _extract_voc_archive(dataset_root, zip_path, source, force=force)
+    images_glob = str(source.get("images_glob") or "**/train/images/*.[jJ][pP][gG]")
+    ann_glob = str(source.get("annotations_glob") or "**/train/annotations/xmls/*.xml")
+    image_paths = sorted(extract_dir.glob(images_glob))
+    if not image_paths:
+        # Some zips nest an extra folder.
+        image_paths = sorted(extract_dir.glob("**/*.[jJ][pP][gG]"))
+    xml_by_stem = {p.stem: p for p in extract_dir.glob(ann_glob)}
+    if not xml_by_stem:
+        xml_by_stem = {p.stem: p for p in extract_dir.glob("**/*.xml")}
+
+    class_map = {str(k): str(v) for k, v in dict(source.get("class_map") or {}).items()}
+    prefer = [str(c) for c in (source.get("prefer_classes") or [])]
+    max_images = int(source.get("max_images", 8))
+    include_empty = bool(source.get("include_unlabeled", False))
+
+    picked = _pick_voc_images(
+        image_paths,
+        xml_by_stem,
+        class_map,
+        prefer,
+        max_images=max_images,
+        include_empty=include_empty,
+    )
+    if not picked:
+        raise RuntimeError(f"No annotated images found under {extract_dir}")
+    return _save_voc_samples(target, source, archive_url, picked, force=force)
+
+
+def _extract_voc_archive(
+    dataset_root: Path,
+    zip_path: Path,
+    source: dict[str, Any],
+    *,
+    force: bool,
+) -> Path:
+    """Extract a downloaded VOC archive when needed."""
+    extract_dir = dataset_root / str(source.get("extract_dirname") or zip_path.stem)
+    if not extract_dir.exists() or force:
+        print(f"Extracting {zip_path.name} …")
+        if extract_dir.exists() and force:
+            shutil.rmtree(extract_dir)
+        with zipfile.ZipFile(zip_path, "r") as zf:
+            zf.extractall(extract_dir)
+    return extract_dir
+
+
+def _pick_voc_images(
+    image_paths: list[Path],
+    xml_by_stem: dict[str, Path],
+    class_map: dict[str, str],
+    prefer: list[str],
+    *,
+    max_images: int,
+    include_empty: bool,
+) -> list[tuple[Path, list[DetectionBox]]]:
+    """Rank VOC images and round-robin preferred classes."""
+    scored: list[tuple[int, Path, list[DetectionBox]]] = []
+    for img_path in image_paths:
+        boxes = _parse_voc_xml(xml_by_stem.get(img_path.stem), class_map)
+        if not boxes and not include_empty:
+            continue
+        labels = {b.label for b in boxes}
+        rank = 99
+        for i, pref in enumerate(prefer):
+            pref_name = class_map.get(pref, pref)
+            if pref in labels or pref_name in labels:
+                rank = i
+                break
+        if not boxes:
+            rank = 50
+        scored.append((rank, img_path, boxes))
+
+    scored.sort(key=lambda t: (t[0], t[1].name))
+    # Round-robin across prefer ranks so we don't only get one class.
+    buckets: dict[int, list[tuple[Path, list[DetectionBox]]]] = {}
+    for rank, path, boxes in scored:
+        buckets.setdefault(rank, []).append((path, boxes))
+
+    picked: list[tuple[Path, list[DetectionBox]]] = []
+    while len(picked) < max_images and any(buckets.values()):
+        for rank in sorted(buckets.keys()):
+            if buckets[rank] and len(picked) < max_images:
+                picked.append(buckets[rank].pop(0))
+
+    return picked
+
+
+def _save_voc_samples(
+    target: Path,
+    source: dict[str, Any],
+    archive_url: str,
+    picked: list[tuple[Path, list[DetectionBox]]],
+    *,
+    force: bool,
+) -> list[Path]:
+    """Write selected VOC images, labels, and source metadata."""
+    labels_out: dict[str, list[dict[str, Any]]] = {}
+    saved: list[Path] = []
+    class_counts: dict[str, int] = {}
+    for path, boxes in picked:
+        primary = boxes[0].label if boxes else "road"
+        stem = f"{primary.replace(' ', '_')}_{path.stem}"
+        dest = target / f"{stem}.jpg"
+        if not dest.exists() or force:
+            Image.open(path).convert("RGB").save(dest, quality=95)
+        saved.append(dest)
+        labels_out[stem] = [{"label": b.label, "bbox_xyxy": list(b.bbox_xyxy)} for b in boxes]
+        for b in boxes:
+            class_counts[b.label] = class_counts.get(b.label, 0) + 1
+
+    (target / "labels.json").write_text(json.dumps(labels_out, indent=2), encoding="utf-8")
+    (target / "source_meta.json").write_text(
+        json.dumps(
+            {
+                "archive_url": archive_url,
+                "classes": source.get("classes", []),
+                "class_counts": class_counts,
+                "note": source.get("attribution", ""),
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+    return saved
+
+
+def _parse_voc_xml(xml_path: Path | None, class_map: dict[str, str]) -> list[DetectionBox]:
+    pass
+
+    if xml_path is None or not xml_path.exists():
+        return []
+    root = ET.parse(xml_path).getroot()
+    boxes: list[DetectionBox] = []
+    for obj in root.findall("object"):
+        name = (obj.findtext("name") or "").strip()
+        if not name:
+            continue
+        label = class_map.get(name, name)
+        bnd = obj.find("bndbox")
+        if bnd is None:
+            continue
+        x1 = float(bnd.findtext("xmin", "0"))
+        y1 = float(bnd.findtext("ymin", "0"))
+        x2 = float(bnd.findtext("xmax", "0"))
+        y2 = float(bnd.findtext("ymax", "0"))
+        boxes.append(DetectionBox(label=label, bbox_xyxy=(x1, y1, x2, y2)))
+    return boxes
+
+
+def _download_file(url: str, dest: Path) -> None:
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    partial = dest.with_suffix(dest.suffix + ".part")
+    session = requests.Session()
+    session.headers["User-Agent"] = USER_AGENT
+    with session.get(url, stream=True, timeout=120) as response:
+        response.raise_for_status()
+        with partial.open("wb") as fh:
+            for chunk in response.iter_content(chunk_size=1024 * 1024):
+                if chunk:
+                    fh.write(chunk)
+    partial.replace(dest)
+
+
+def _prepare_hf_detection(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:
+    """Pull a detection dataset via `datasets` and cache RGB + labels.json."""
+    try:
+        pass
+    except ImportError as exc:  # pragma: no cover
+        raise ImportError("Install `datasets` to use hf_detection sources: uv add datasets") from exc
+
+    hf_id = str(source.get("hf_id", ""))
+    if not hf_id:
+        raise ValueError("hf_detection source requires data.hf_id")
+    split = str(source.get("hf_split", "train"))
+    max_images = int(source.get("max_images", 8))
+    prefer = [str(c).lower() for c in (source.get("prefer_classes") or [])]
+
+    ds = load_dataset(hf_id, split=split, streaming=True)
+    labels_out: dict[str, list[dict[str, Any]]] = {}
+    saved: list[Path] = []
+    class_counts: dict[str, int] = {}
+
+    for idx, row in enumerate(ds):
+        if len(saved) >= max_images:
+            break
+        image, boxes = _extract_hf_detection_row(row)
+        if image is None:
+            continue
+        primary = boxes[0].label.lower() if boxes else ""
+        if prefer:
+            # Round-robin prefer_classes when possible.
+            want = prefer[len(saved) % len(prefer)]
+            labels_lower = {b.label.lower() for b in boxes}
+            if (
+                want not in labels_lower
+                and primary
+                and primary not in prefer
+                and idx < max_images * 20
+                and len(saved) < max_images
+            ):
+                # Soft skip early rows that don't help class coverage.
+                continue
+        stem = f"neu_{len(saved):04d}"
+        if primary:
+            stem = f"{primary.replace(' ', '_')}_{len(saved):04d}"
+            class_counts[primary] = class_counts.get(primary, 0) + 1
+        dest = target / f"{stem}.png"
+        if dest.exists() and not force:
+            saved.append(dest)
+        else:
+            image.convert("RGB").save(dest)
+            saved.append(dest)
+        labels_out[stem] = [{"label": b.label, "bbox_xyxy": list(b.bbox_xyxy)} for b in boxes]
+
+    if not saved:
+        raise RuntimeError(f"No images extracted from {hf_id}. Check schema or use kind: local.")
+    (target / "labels.json").write_text(json.dumps(labels_out, indent=2), encoding="utf-8")
+    meta = {
+        "hf_id": hf_id,
+        "split": split,
+        "classes": source.get("classes", []),
+        "class_counts": class_counts,
+    }
+    (target / "source_meta.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
+    return saved
+
+
+def _extract_hf_detection_row(row: dict[str, Any]) -> tuple[Image.Image | None, list[DetectionBox]]:
+    """Best-effort parse of common HF detection schemas (incl. AI4Manufacturing/191)."""
+    image = _extract_hf_image(row)
+    boxes = _extract_hf_objects(row, image)
+    boxes.extend(_extract_hf_annot(row, image))
+    return image, boxes
+
+
+def _extract_hf_image(row: dict[str, Any]) -> Image.Image | None:
+    """Decode an image from common Hugging Face row schemas."""
+    image = row.get("image") or row.get("img")
+    if image is None and "images" in row and row["images"]:
+        image = row["images"][0]
+    if image is not None and not isinstance(image, Image.Image):
+        try:
+            image = Image.open(BytesIO(image["bytes"])).convert("RGB")
+        except Exception:  # noqa: BLE001
+            image = None
+    if isinstance(image, Image.Image):
+        image = image.convert("RGB")
+    return image
+
+
+def _extract_hf_objects(row: dict[str, Any], image: Image.Image | None) -> list[DetectionBox]:
+    """Parse COCO-like object dictionaries and object lists."""
+    boxes: list[DetectionBox] = []
+    meta = row.get("metadata") or {}
+    objects = meta.get("objects") or row.get("objects") or {}
+    # COCO-ish: objects = {bbox: [...], category: [...]}
+    if isinstance(objects, dict) and "bbox" in objects:
+        cats = objects.get("category") or objects.get("categories") or objects.get("label") or []
+        for bbox, cat in zip(objects["bbox"], cats, strict=False):
+            label = str(cat)
+            if isinstance(cat, int) and "categories" in meta:
+                label = str(meta["categories"][cat])
+            boxes.append(_box_from_any(bbox, label, image))
+    elif isinstance(objects, list):
+        for obj in objects:
+            label = str(obj.get("label") or obj.get("category") or "defect")
+            bbox = obj.get("bbox") or obj.get("bbox_xyxy") or obj.get("box")
+            if bbox is not None:
+                boxes.append(_box_from_any(bbox, label, image))
+
+    return boxes
+
+
+def _extract_hf_annot(row: dict[str, Any], image: Image.Image | None) -> list[DetectionBox]:
+    """Parse AI4Manufacturing ``class,[x,y,w,h]`` annotation lines."""
+    boxes: list[DetectionBox] = []
+    annot = row.get("annot") or row.get("answer")
+    if isinstance(annot, str) and image is not None:
+        for raw_line in annot.strip().splitlines():
+            line = raw_line.strip()
+            if not line or "," not in line:
+                continue
+            label, rest = line.split(",", 1)
+            nums = [float(x) for x in rest.strip("[] ").replace(",", " ").split() if x]
+            if len(nums) >= 4:
+                boxes.append(_box_from_any(nums[:4], label.strip(), image))
+
+    return boxes
+
+
+def _box_from_any(
+    bbox: Any,
+    label: str,
+    image: Image.Image | None,
+) -> DetectionBox:
+    vals = [float(x) for x in list(bbox)[:4]]
+    # Heuristic: COCO xywh if w,h look like sizes; else assume xyxy.
+    if (
+        image is not None
+        and vals[2] < image.size[0] * 0.95
+        and vals[3] < image.size[1] * 0.95
+        and vals[0] + vals[2] <= image.size[0] * 1.05
+        and vals[1] + vals[3] <= image.size[1] * 1.05
+    ):
+        x1, y1, w, h = vals
+        return DetectionBox(label=label, bbox_xyxy=(x1, y1, x1 + w, y1 + h))
+    x1, y1, x2, y2 = vals
+    return DetectionBox(label=label, bbox_xyxy=(x1, y1, x2, y2))
+
+
+def _prepare_hf_rows(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:
+    """Fetch individual rows from HF datasets-server (image-only sources)."""
+    frames = list(source.get("frames") or [])
+    if not frames:
+        raise ValueError("hf_rows source needs data.frames: [{offset, save_as}, ...]")
+    hf_id = str(source["hf_id"])
+    split = str(source.get("split", "train"))
+    config_name = source.get("config")
+    api = str(source.get("rows_api", "https://datasets-server.huggingface.co/rows"))
+    session = requests.Session()
+    session.headers["User-Agent"] = USER_AGENT
+    saved: list[Path] = []
+    for frame in frames:
+        dest = target / str(frame["save_as"])
+        if dest.exists() and not force:
+            saved.append(dest)
+            continue
+        params = {"dataset": hf_id, "split": split, "offset": int(frame["offset"]), "length": 1}
+        if config_name:
+            params["config"] = config_name
+        url = f"{api}?{urlencode(params)}"
+        last_err: Exception | None = None
+        for attempt in range(3):
+            try:
+                response = session.get(url, timeout=60)
+                response.raise_for_status()
+                row = response.json()["rows"][0]["row"]
+                image_info = row.get("image") or {}
+                # Prefer bytes via nested fetch if URL present.
+                img_url = image_info.get("src") or image_info.get("url")
+                if img_url:
+                    img_resp = session.get(img_url, timeout=60)
+                    img_resp.raise_for_status()
+                    Image.open(BytesIO(img_resp.content)).convert("RGB").save(dest)
+                else:
+                    raise KeyError("No image URL in HF row")
+                saved.append(dest)
+                last_err = None
+                break
+            except Exception as exc:  # noqa: BLE001
+                last_err = exc
+                time.sleep(1.5 * (attempt + 1))
+        if last_err is not None:
+            raise RuntimeError(f"Failed to fetch HF row {frame}: {last_err}") from last_err
+    (target / "source_meta.json").write_text(
+        json.dumps(
+            {
+                "dataset": _source_name(source),
+                "hf_id": hf_id,
+                "split": split,
+                "config": config_name,
+                "note": source.get("attribution", ""),
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+    return saved

@@ -1,0 +1,15 @@
+id: rdd2022
+label: "RDD2022 road damage (China_MotorBike subset)"
+license: "CC BY-SA 4.0"
+attribution: >-
+  RDD2022 (CRDDC'2022). Classes: longitudinal crack (D00), transverse crack (D10),
+  alligator crack (D20), pothole (D40).
+source_hint: "a real road-damage survey photograph from RDD2022"
+workshop_anomalies:
+  - pothole
+  - alligator_crack
+  - traffic_cone
+method_by_anomaly:
+  pothole: inpaint
+  alligator_crack: inpaint
+  traffic_cone: inpaint
