@@ -14,7 +14,7 @@ import numpy as np
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 from PIL import Image
-from ultralytics import YOLO  # type: ignore[attr-defined]
+from ultralytics import YOLO  # type: ignore[attr-defined, unused-ignore]
 
 from edgecase_synthesis.data.eda import write_json
 

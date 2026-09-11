@@ -145,7 +145,7 @@ class AnomalyEditor:
                 torch.cuda.empty_cache()
 
         dtype = self._dtype()
-        depth_cn = ControlNetModel.from_pretrained(  # type: ignore[no-untyped-call]
+        depth_cn = ControlNetModel.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
             self.depth_controlnet_id, torch_dtype=dtype
         )
         if self.family == "sdxl":
@@ -156,17 +156,17 @@ class AnomalyEditor:
                 "torch_dtype": dtype,
             }
             if self.vae_id:
-                kwargs["vae"] = AutoencoderKL.from_pretrained(  # type: ignore[no-untyped-call]
+                kwargs["vae"] = AutoencoderKL.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
                     self.vae_id, torch_dtype=dtype
                 )
-            pipe = StableDiffusionXLControlNetImg2ImgPipeline.from_pretrained(  # type: ignore[no-untyped-call]
+            pipe = StableDiffusionXLControlNetImg2ImgPipeline.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
                 self.base_model_id, **kwargs
             )
             return self._place(pipe)
 
         pass
 
-        pipe = StableDiffusionControlNetImg2ImgPipeline.from_pretrained(  # type: ignore[no-untyped-call]
+        pipe = StableDiffusionControlNetImg2ImgPipeline.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
             self.base_model_id,
             controlnet=depth_cn,
             torch_dtype=dtype,
@@ -195,7 +195,7 @@ class AnomalyEditor:
         pass
 
         dtype = self._dtype()
-        pipe = AutoPipelineForInpainting.from_pretrained(  # type: ignore[no-untyped-call]
+        pipe = AutoPipelineForInpainting.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
             self.inpaint_model_id,
             torch_dtype=dtype,
             variant="fp16" if dtype == torch.float16 else None,

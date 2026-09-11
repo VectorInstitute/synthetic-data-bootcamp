@@ -11,7 +11,7 @@ import cv2
 import numpy as np
 import torch
 from PIL import Image
-from ultralytics import YOLO  # type: ignore[attr-defined]
+from ultralytics import YOLO  # type: ignore[attr-defined, unused-ignore]
 
 from edgecase_synthesis.generate.conditioning import resolve_device
 

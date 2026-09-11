@@ -68,9 +68,9 @@ def _get_pipeline(model_id: str, device: torch.device) -> Any:
     # Spread across GPUs when available (e.g. gpu_l4x2).
     if device.type == "cuda" and torch.cuda.device_count() > 1:
         kwargs["device_map"] = "balanced"
-        pipe = QwenImageEditPipeline.from_pretrained(model_id, **kwargs)  # type: ignore[no-untyped-call]
+        pipe = QwenImageEditPipeline.from_pretrained(model_id, **kwargs)  # type: ignore[no-untyped-call, unused-ignore]
     else:
-        pipe = QwenImageEditPipeline.from_pretrained(model_id, **kwargs)  # type: ignore[no-untyped-call]
+        pipe = QwenImageEditPipeline.from_pretrained(model_id, **kwargs)  # type: ignore[no-untyped-call, unused-ignore]
         pipe.to(device)
 
     pipe.set_progress_bar_config(disable=True)

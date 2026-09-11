@@ -34,7 +34,8 @@ class ImageSample:
     @property
     def size(self) -> tuple[int, int]:
         """Return the image dimensions."""
-        return self.image.size
+        width, height = self.image.size
+        return (int(width), int(height))
 
 
 @dataclass(frozen=True)

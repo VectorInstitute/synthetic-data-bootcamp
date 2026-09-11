@@ -442,7 +442,7 @@ class MethodComparer:
         pass
 
         dtype = self._dtype()
-        pipe = AutoPipelineForInpainting.from_pretrained(  # type: ignore[no-untyped-call]
+        pipe = AutoPipelineForInpainting.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
             self.inpaint_model_id,
             torch_dtype=dtype,
             variant="fp16" if dtype == torch.float16 else None,
@@ -455,10 +455,10 @@ class MethodComparer:
         pass
 
         dtype = self._dtype()
-        depth_cn = ControlNetModel.from_pretrained(  # type: ignore[no-untyped-call]
+        depth_cn = ControlNetModel.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
             self.depth_controlnet_id, torch_dtype=dtype
         )
-        seg_cn = ControlNetModel.from_pretrained(  # type: ignore[no-untyped-call]
+        seg_cn = ControlNetModel.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
             self.seg_controlnet_id, torch_dtype=dtype
         )
         controlnets = [depth_cn, seg_cn]
@@ -468,17 +468,17 @@ class MethodComparer:
 
             kwargs: dict[str, Any] = {"controlnet": controlnets, "torch_dtype": dtype}
             if self.vae_id:
-                kwargs["vae"] = AutoencoderKL.from_pretrained(  # type: ignore[no-untyped-call]
+                kwargs["vae"] = AutoencoderKL.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
                     self.vae_id, torch_dtype=dtype
                 )
-            pipe = StableDiffusionXLControlNetImg2ImgPipeline.from_pretrained(  # type: ignore[no-untyped-call]
+            pipe = StableDiffusionXLControlNetImg2ImgPipeline.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
                 self.base_model_id, **kwargs
             )
             return self._place(pipe)
 
         pass
 
-        pipe = StableDiffusionControlNetImg2ImgPipeline.from_pretrained(  # type: ignore[no-untyped-call]
+        pipe = StableDiffusionControlNetImg2ImgPipeline.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
             self.base_model_id,
             controlnet=controlnets,
             torch_dtype=dtype,
@@ -504,19 +504,19 @@ class MethodComparer:
         if self.family == "sdxl" and "sdxl" in self.instruct_model_id.lower():
             pass
 
-            pipe = StableDiffusionXLInstructPix2PixPipeline.from_pretrained(  # type: ignore[no-untyped-call]
+            pipe = StableDiffusionXLInstructPix2PixPipeline.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
                 self.instruct_model_id,
                 torch_dtype=dtype,
             )
         else:
             pass
 
-            pipe = StableDiffusionInstructPix2PixPipeline.from_pretrained(  # type: ignore[no-untyped-call]
+            pipe = StableDiffusionInstructPix2PixPipeline.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
                 self.instruct_model_id,
                 torch_dtype=dtype,
                 safety_checker=None,
             )
-            pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(  # type: ignore[no-untyped-call]
+            pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(  # type: ignore[no-untyped-call, unused-ignore]
                 pipe.scheduler.config
             )
         return self._place(pipe)

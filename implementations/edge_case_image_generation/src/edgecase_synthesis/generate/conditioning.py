@@ -372,13 +372,13 @@ def _seg_support(
         mask: np.ndarray = segmentation.edit_mask.astype(np.uint8)
         if mask.shape != (height, width):
             mask = cv2.resize(mask, (width, height), interpolation=cv2.INTER_NEAREST)
-        return mask.astype(bool)
+        return np.asarray(mask, dtype=bool)
     return np.ones((height, width), dtype=bool)
 
 
 def _dilate(mask: np.ndarray, iterations: int) -> np.ndarray:
     if iterations <= 0:
-        return mask.astype(bool)
+        return np.asarray(mask, dtype=bool)
     k = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
     out = cv2.dilate(mask.astype(np.uint8), k, iterations=iterations)
-    return out.astype(bool)
+    return np.asarray(out, dtype=bool)
