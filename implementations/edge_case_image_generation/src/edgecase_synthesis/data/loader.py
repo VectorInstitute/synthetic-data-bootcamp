@@ -277,7 +277,7 @@ def prepare_sample_images(
 
 def _ensure_mapillary_samples(target: Path) -> list[Path]:
     """Extract the Mapillary toy subset when ``samples_dir`` is empty."""
-    from edgecase_synthesis.mapillary_extract import ensure_mapillary_samples
+    from edgecase_synthesis.data.mapillary_extract import ensure_mapillary_samples
 
     root = Path(__file__).resolve().parents[2]
     paths = ensure_mapillary_samples(root, min_images=1)

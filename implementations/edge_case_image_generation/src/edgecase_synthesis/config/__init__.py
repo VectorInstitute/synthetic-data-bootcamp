@@ -9,7 +9,7 @@ from hydra import compose, initialize_config_dir
 from hydra.core.global_hydra import GlobalHydra
 from omegaconf import DictConfig, OmegaConf
 
-from edgecase_synthesis.data import project_root
+from edgecase_synthesis.data.loader import project_root
 
 
 def load_env(start: Path | None = None) -> Path | None:

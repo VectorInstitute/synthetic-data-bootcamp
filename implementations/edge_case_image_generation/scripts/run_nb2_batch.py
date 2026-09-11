@@ -118,12 +118,12 @@ def main(argv: list[str] | None = None) -> int:
     project_root = _find_project_root()
     sys.path.insert(0, str(project_root / "src"))
 
-    from edgecase_synthesis.batch_checkpoint import write_split_snapshot
-    from edgecase_synthesis.batch_export import export_nb2_dataset
-    from edgecase_synthesis.batch_runner import run_batch_synthesis
+    from edgecase_synthesis.batch.checkpoint import write_split_snapshot
+    from edgecase_synthesis.batch.export import export_nb2_dataset
+    from edgecase_synthesis.batch.runner import run_batch_synthesis
     from edgecase_synthesis.config import load_config, load_env
     from edgecase_synthesis.data import prepare_sample_images
-    from edgecase_synthesis.eda import (
+    from edgecase_synthesis.data.eda import (
         allocate_budget,
         clamp_counts,
         group_by_tag,
@@ -134,7 +134,7 @@ def main(argv: list[str] | None = None) -> int:
         summarize_distribution,
         write_json,
     )
-    from edgecase_synthesis.pipeline import resolve_method_map
+    from edgecase_synthesis.generate.pipeline import resolve_method_map
 
     load_env(project_root)
     cfg = load_config(

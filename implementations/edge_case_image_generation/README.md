@@ -67,6 +67,15 @@ Notebooks load `.env` automatically on startup — no `export` in the terminal n
 
 Notebooks add `src/` to `sys.path` automatically — no separate package install needed.
 
+Package layout under `src/edgecase_synthesis/`:
+
+```text
+config/   data/   generate/   judge/   batch/   train/   viz/
+preflight.py   bootstrap.py
+```
+
+Flat import paths (`edgecase_synthesis.pipeline`, `.batch_runner`, …) still work via thin re-exports.
+
 ## Notebooks
 
 - `notebooks/00_flight_precheck.ipynb` — env / API / GPU / **data download** / model cache check

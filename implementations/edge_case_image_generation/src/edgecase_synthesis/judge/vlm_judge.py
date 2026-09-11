@@ -21,7 +21,7 @@ from typing import Any
 import torch
 from PIL import Image
 
-from edgecase_synthesis.conditioning import resolve_device
+from edgecase_synthesis.generate.conditioning import resolve_device
 
 
 @dataclass
@@ -148,7 +148,7 @@ class VLMJudge:
             enabled = bool(raw.get("enabled", True))
         if not enabled:
             return None
-        from edgecase_synthesis.embedding_gate import embedding_gate_from_config
+        from edgecase_synthesis.judge.embedding_gate import embedding_gate_from_config
 
         # Build a tiny shim so embedding_gate_from_config can read embedding_gate.
         class _Shim:
@@ -344,7 +344,7 @@ class VLMJudge:
         if gate is None or not gate.config.enabled:
             return result
 
-        from edgecase_synthesis.embedding_gate import crop_from_mask_or_boxes
+        from edgecase_synthesis.judge.embedding_gate import crop_from_mask_or_boxes
 
         detections = list(getattr(annotation, "detections", None) or [])
         crop = crop_from_mask_or_boxes(
@@ -387,7 +387,7 @@ class VLMJudge:
         *,
         exclude_stems: set[str] | None = None,
     ) -> list[Any]:
-        from edgecase_synthesis.references import pick_class_references
+        from edgecase_synthesis.judge.references import pick_class_references
 
         assert self.samples_dir is not None
         # Leave one slot for the candidate under max_judge_images.
@@ -396,7 +396,7 @@ class VLMJudge:
         n_crops = min(self.n_reference_crops, max(0, budget - n_full))
         if self._labels_cache is None:
             try:
-                from edgecase_synthesis.eda import load_labels_for_dir
+                from edgecase_synthesis.data.eda import load_labels_for_dir
 
                 self._labels_cache = load_labels_for_dir(self.samples_dir)
             except Exception:
@@ -548,7 +548,7 @@ class VLMJudge:
         source_hint: str,
         references: list[Any] | None = None,
     ) -> JudgeResult:
-        from edgecase_synthesis.vlm_api import infer_api_provider, resolve_judge_model, vision_chat
+        from edgecase_synthesis.judge.vlm_api import infer_api_provider, resolve_judge_model, vision_chat
 
         refs = list(references or [])
         user_text = self._judge_user_text(

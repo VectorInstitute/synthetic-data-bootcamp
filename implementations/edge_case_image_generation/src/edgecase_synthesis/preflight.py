@@ -139,7 +139,7 @@ def check_proxy_chat(
 ) -> CheckResult:
     """Tiny text-only call — proves the Vector proxy key works."""
     try:
-        from edgecase_synthesis.vlm_api import make_openai_client, resolve_proxy_base_url
+        from edgecase_synthesis.judge.vlm_api import make_openai_client, resolve_proxy_base_url
     except Exception as exc:  # noqa: BLE001
         return CheckResult("Vector proxy chat", "fail", f"import error: {exc}")
 
@@ -295,7 +295,7 @@ def ensure_workshop_data(
         prepare_sample_images(cfg=cfg, force=clean)
         return list_sample_images(Path(cfg.paths.samples_dir))
 
-    from edgecase_synthesis.mapillary_extract import ensure_mapillary_samples
+    from edgecase_synthesis.data.mapillary_extract import ensure_mapillary_samples
 
     return ensure_mapillary_samples(
         project_root, clean=clean, min_images=min_images

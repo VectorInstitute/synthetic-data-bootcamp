@@ -9,10 +9,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 
-from edgecase_synthesis.annotation import AnnotationResult
-from edgecase_synthesis.conditioning import DepthResult, SegmentationResult
-from edgecase_synthesis.data import ImageSample
-from edgecase_synthesis.generation import GenerationResult
+from edgecase_synthesis.generate.annotation import AnnotationResult
+from edgecase_synthesis.generate.conditioning import DepthResult, SegmentationResult
+from edgecase_synthesis.data.loader import ImageSample
+from edgecase_synthesis.generate.generation import GenerationResult
 
 
 def show_image(image: Image.Image | np.ndarray, *, title: str = "", ax=None):
@@ -174,7 +174,7 @@ def show_method_comparison(
     figsize=(16, 10),
 ):
     """Notebook 1.5 panel: original | mask/depth/seg | method outputs."""
-    from edgecase_synthesis.compare_methods import METHOD_SPECS, COMPARE_METHODS
+    from edgecase_synthesis.generate.compare_methods import METHOD_SPECS, COMPARE_METHODS
 
     methods = tuple(methods) if methods is not None else tuple(COMPARE_METHODS)
     n_out = max(len(methods), 1)
