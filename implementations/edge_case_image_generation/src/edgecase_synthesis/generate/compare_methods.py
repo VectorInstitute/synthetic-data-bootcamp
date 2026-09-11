@@ -1,6 +1,7 @@
 """Side-by-side comparison of edge-case edit / generate methods (Notebook 1.5).
 
-NB1.5 compares five edit paths; **production (NB1 / NB2) defaults to ``instruct`` (Klein)
+NB1.5 compares five edit paths; **production (NB1 / NB2) defaults to ``instruct``
+(Klein)
 + API VLM judge** — see ``configs/default/generation.yaml`` and ``judge.yaml``.
 
 1. ``controlnet_dual`` — depth + segmentation ControlNets, full-frame
@@ -13,28 +14,58 @@ NB1.5 compares five edit paths; **production (NB1 / NB2) defaults to ``instruct`
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass, field
 from typing import Any
 
 import cv2
 import numpy as np
 import torch
-from PIL import Image
+from diffusers import (
+    AutoencoderKL,
+    AutoPipelineForInpainting,
+    ControlNetModel,
+    EulerAncestralDiscreteScheduler,
+    StableDiffusionControlNetImg2ImgPipeline,
+    StableDiffusionInstructPix2PixPipeline,
+    StableDiffusionXLControlNetImg2ImgPipeline,
+    StableDiffusionXLInstructPix2PixPipeline,
+)
+from PIL import Image, ImageDraw, ImageFont
 
+from edgecase_synthesis.config import merge_generation_anomaly, resolve_method_prompt
 from edgecase_synthesis.generate.conditioning import (
     DepthResult,
     SegmentationResult,
     build_anomaly_edit_mask,
     resolve_device,
 )
+from edgecase_synthesis.generate.diffusers_klein import (
+    configure_klein_pipe,
+    from_pretrained_klein,
+    import_flux2_klein_inpaint_pipeline,
+    import_flux2_klein_pipeline,
+)
 from edgecase_synthesis.generate.generation import (
     GenerationResult,
+    _composite,
     _depth_to_control_image,
     _ensure_same_size,
     _fit_for_diffusion,
     _mask_to_pil,
-    _composite,
 )
+from edgecase_synthesis.generate.variations import resolve_prompt_variation
+from edgecase_synthesis.generate.vlm_edit_local import (
+    VlmLocalEditConfig,
+    edit_with_qwen_local,
+    unload_qwen_edit_pipeline,
+)
+from edgecase_synthesis.generate.vlm_generate import (
+    VlmGenerateConfig,
+    generate_with_vlm,
+    require_vlm_api_enabled,
+)
+
 
 # Diffusion stack (offline once weights are cached).
 LOCAL_DIFFUSION_METHODS = ("controlnet_dual", "inpaint", "instruct")
@@ -58,8 +89,8 @@ def _failed_generation_result(
     method: str,
     error: Exception,
 ) -> GenerationResult:
-    """Placeholder when a compare method OOMs, runs out of disk, or lacks API keys."""
-    from PIL import ImageDraw, ImageFont
+    """Create a placeholder when a comparison method cannot run."""
+    pass
 
     img = original.convert("RGB").copy()
     draw = ImageDraw.Draw(img)
@@ -264,9 +295,9 @@ class MethodComparer:
         self.vlm_local_num_inference_steps = int(vlm_local_num_inference_steps)
         self.vlm_local_true_cfg_scale = float(vlm_local_true_cfg_scale)
         self.vlm_local_max_side = int(vlm_local_max_side)
-        self._inpaint_pipe = None
-        self._dual_pipe = None
-        self._instruct_pipe = None
+        self._inpaint_pipe: Any | None = None
+        self._dual_pipe: Any | None = None
+        self._instruct_pipe: Any | None = None
 
     @staticmethod
     def _is_klein_model(model_id: str) -> bool:
@@ -275,18 +306,22 @@ class MethodComparer:
 
     @property
     def instruct_is_klein(self) -> bool:
+        """Check whether instruction editing uses FLUX.2 Klein."""
         return self._is_klein_model(self.instruct_model_id)
 
     @property
     def inpaint_is_klein(self) -> bool:
+        """Check whether inpainting uses FLUX.2 Klein."""
         return self._is_klein_model(self.inpaint_model_id)
 
     @property
     def uses_klein(self) -> bool:
+        """Check whether the method uses FLUX.2 Klein."""
         return self.instruct_is_klein or self.inpaint_is_klein
 
     def unload(self) -> None:
-        from edgecase_synthesis.generate.vlm_edit_local import unload_qwen_edit_pipeline
+        """Release loaded model resources."""
+        pass
 
         self._inpaint_pipe = None
         self._dual_pipe = None
@@ -314,7 +349,7 @@ class MethodComparer:
             torch.cuda.empty_cache()
 
     def _place(self, pipe: Any) -> Any:
-        import os
+        pass
 
         disable_bar = os.environ.get("EDGECASE_DISABLE_PIPE_PROGRESS", "").lower() in {
             "1",
@@ -338,7 +373,7 @@ class MethodComparer:
 
     def _sync_pipe_progress(self, pipe: Any) -> None:
         """Re-apply Diffusers bar on/off from env (batch tqdm owns the console)."""
-        import os
+        pass
 
         disable_bar = os.environ.get("EDGECASE_DISABLE_PIPE_PROGRESS", "").lower() in {
             "1",
@@ -349,14 +384,14 @@ class MethodComparer:
             pipe.set_progress_bar_config(disable=disable_bar)
 
     def _place_klein(self, pipe: Any) -> Any:
-        import os
+        pass
 
         disable_bar = os.environ.get("EDGECASE_DISABLE_PIPE_PROGRESS", "").lower() in {
             "1",
             "true",
             "yes",
         }
-        from edgecase_synthesis.generate.diffusers_klein import configure_klein_pipe
+        pass
 
         # Prefer cpu_offload when device is bare ``cuda`` (index=None) — the
         # ~8s/image L4 recipe. Explicit ``cuda:N`` skips offload (device_map).
@@ -389,17 +424,14 @@ class MethodComparer:
 
     # --- builders ---------------------------------------------------------
 
-    def _build_inpaint(self):
+    def _build_inpaint(self) -> Any:
         if self.inpaint_is_klein:
             self._free_other_edit_pipes(keep="inpaint")
-            from edgecase_synthesis.generate.diffusers_klein import (
-                from_pretrained_klein,
-                import_flux2_klein_inpaint_pipeline,
-            )
+            pass
 
-            Flux2KleinInpaintPipeline = import_flux2_klein_inpaint_pipeline()
+            flux2_klein_inpaint_pipeline = import_flux2_klein_inpaint_pipeline()
             pipe = from_pretrained_klein(
-                Flux2KleinInpaintPipeline,
+                flux2_klein_inpaint_pipeline,
                 self.inpaint_model_id,
                 dtype=self._dtype(for_klein=True),
                 device=self.device,
@@ -407,40 +439,46 @@ class MethodComparer:
             )
             return self._place_klein(pipe)
 
-        from diffusers import AutoPipelineForInpainting
+        pass
 
         dtype = self._dtype()
-        pipe = AutoPipelineForInpainting.from_pretrained(
+        pipe = AutoPipelineForInpainting.from_pretrained(  # type: ignore[no-untyped-call]
             self.inpaint_model_id,
             torch_dtype=dtype,
             variant="fp16" if dtype == torch.float16 else None,
         )
         return self._place(pipe)
 
-    def _build_dual(self):
+    def _build_dual(self) -> Any:
         if self.uses_klein:
             self._free_other_edit_pipes(keep="dual")
-        from diffusers import ControlNetModel
+        pass
 
         dtype = self._dtype()
-        depth_cn = ControlNetModel.from_pretrained(self.depth_controlnet_id, torch_dtype=dtype)
-        seg_cn = ControlNetModel.from_pretrained(self.seg_controlnet_id, torch_dtype=dtype)
+        depth_cn = ControlNetModel.from_pretrained(  # type: ignore[no-untyped-call]
+            self.depth_controlnet_id, torch_dtype=dtype
+        )
+        seg_cn = ControlNetModel.from_pretrained(  # type: ignore[no-untyped-call]
+            self.seg_controlnet_id, torch_dtype=dtype
+        )
         controlnets = [depth_cn, seg_cn]
 
         if self.family == "sdxl":
-            from diffusers import AutoencoderKL, StableDiffusionXLControlNetImg2ImgPipeline
+            pass
 
             kwargs: dict[str, Any] = {"controlnet": controlnets, "torch_dtype": dtype}
             if self.vae_id:
-                kwargs["vae"] = AutoencoderKL.from_pretrained(self.vae_id, torch_dtype=dtype)
-            pipe = StableDiffusionXLControlNetImg2ImgPipeline.from_pretrained(
+                kwargs["vae"] = AutoencoderKL.from_pretrained(  # type: ignore[no-untyped-call]
+                    self.vae_id, torch_dtype=dtype
+                )
+            pipe = StableDiffusionXLControlNetImg2ImgPipeline.from_pretrained(  # type: ignore[no-untyped-call]
                 self.base_model_id, **kwargs
             )
             return self._place(pipe)
 
-        from diffusers import StableDiffusionControlNetImg2ImgPipeline
+        pass
 
-        pipe = StableDiffusionControlNetImg2ImgPipeline.from_pretrained(
+        pipe = StableDiffusionControlNetImg2ImgPipeline.from_pretrained(  # type: ignore[no-untyped-call]
             self.base_model_id,
             controlnet=controlnets,
             torch_dtype=dtype,
@@ -448,17 +486,14 @@ class MethodComparer:
         )
         return self._place(pipe)
 
-    def _build_instruct(self):
+    def _build_instruct(self) -> Any:
         if self.instruct_is_klein:
             self._free_other_edit_pipes(keep="instruct")
-            from edgecase_synthesis.generate.diffusers_klein import (
-                from_pretrained_klein,
-                import_flux2_klein_pipeline,
-            )
+            pass
 
-            Flux2KleinPipeline = import_flux2_klein_pipeline()
+            flux2_klein_pipeline = import_flux2_klein_pipeline()
             pipe = from_pretrained_klein(
-                Flux2KleinPipeline,
+                flux2_klein_pipeline,
                 self.instruct_model_id,
                 dtype=self._dtype(for_klein=True),
                 device=self.device,
@@ -467,42 +502,134 @@ class MethodComparer:
             return self._place_klein(pipe)
         dtype = self._dtype()
         if self.family == "sdxl" and "sdxl" in self.instruct_model_id.lower():
-            from diffusers import StableDiffusionXLInstructPix2PixPipeline
+            pass
 
-            pipe = StableDiffusionXLInstructPix2PixPipeline.from_pretrained(
+            pipe = StableDiffusionXLInstructPix2PixPipeline.from_pretrained(  # type: ignore[no-untyped-call]
                 self.instruct_model_id,
                 torch_dtype=dtype,
             )
         else:
-            from diffusers import EulerAncestralDiscreteScheduler, StableDiffusionInstructPix2PixPipeline
+            pass
 
-            pipe = StableDiffusionInstructPix2PixPipeline.from_pretrained(
+            pipe = StableDiffusionInstructPix2PixPipeline.from_pretrained(  # type: ignore[no-untyped-call]
                 self.instruct_model_id,
                 torch_dtype=dtype,
                 safety_checker=None,
             )
-            pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(pipe.scheduler.config)
+            pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(  # type: ignore[no-untyped-call]
+                pipe.scheduler.config
+            )
         return self._place(pipe)
 
     @property
-    def inpaint_pipe(self):
+    def inpaint_pipe(self) -> Any:
+        """Return the loaded inpainting pipeline."""
         if self._inpaint_pipe is None:
             self._inpaint_pipe = self._build_inpaint()
         return self._inpaint_pipe
 
     @property
-    def dual_pipe(self):
+    def dual_pipe(self) -> Any:
+        """Return the loaded dual-ControlNet pipeline."""
         if self._dual_pipe is None:
             self._dual_pipe = self._build_dual()
         return self._dual_pipe
 
     @property
-    def instruct_pipe(self):
+    def instruct_pipe(self) -> Any:
+        """Return the loaded instruction-editing pipeline."""
         if self._instruct_pipe is None:
             self._instruct_pipe = self._build_instruct()
         return self._instruct_pipe
 
     # --- public API -------------------------------------------------------
+
+    def _run_configured_inpaint(
+        self,
+        original: Image.Image,
+        *,
+        merged: Any,
+        prompt: str,
+        negative: str,
+        steps: int,
+        guidance: float,
+        inpaint_strength: float,
+        seed: int,
+        edit_mask: np.ndarray,
+        edit_weight: np.ndarray,
+        edit_mask_cfg: dict[str, Any],
+        anomaly_id: str,
+        padding_crop: int | None,
+    ) -> GenerationResult:
+        """Run inpainting with Klein-specific parameter overrides."""
+        if self.inpaint_is_klein:
+            klein_steps = merged.get("inpaint_num_inference_steps", self.inpaint_num_inference_steps)
+            steps = int(klein_steps) if klein_steps not in (None, "") else steps
+            klein_gs = merged.get("inpaint_guidance_scale", self.inpaint_guidance_scale)
+            guidance = float(klein_gs) if klein_gs not in (None, "") else guidance
+            run_strength = min(float(merged.get("strength", 1.0)), 1.0)
+        else:
+            run_strength = min(inpaint_strength, 0.99)
+        return self._run_inpaint(
+            original,
+            prompt=prompt,
+            negative_prompt=negative,
+            steps=steps,
+            guidance=guidance,
+            strength=run_strength,
+            seed=seed,
+            edit_mask=edit_mask,
+            edit_weight=edit_weight,
+            edit_mask_cfg=edit_mask_cfg,
+            anomaly_id=anomaly_id,
+            padding_mask_crop=padding_crop,
+        )
+
+    def _run_configured_dual(
+        self,
+        original: Image.Image,
+        depth: DepthResult,
+        segmentation: SegmentationResult,
+        *,
+        merged: Any,
+        prompt: str,
+        negative: str,
+        steps: int,
+        guidance: float,
+        cn_strength: float,
+        seed: int,
+        anomaly_id: str,
+    ) -> GenerationResult:
+        """Run dual ControlNet with configured scales and strength cap."""
+        scales = merged.get("controlnet_scale") or {}
+        if hasattr(scales, "get"):
+            depth_scale = float(scales.get("depth", self.controlnet_scale_depth))
+            seg_scale = float(scales.get("seg", self.controlnet_scale_seg))
+        else:
+            depth_scale = self.controlnet_scale_depth
+            seg_scale = self.controlnet_scale_seg
+        local_ids = {str(x) for x in (merged.get("local_anomaly_ids") or [])}
+        global_ids = {str(x) for x in (merged.get("global_anomaly_ids") or [])}
+        if anomaly_id in global_ids:
+            strength_cap = float(merged.get("controlnet_strength_cap_global", 0.70))
+        elif anomaly_id in local_ids:
+            strength_cap = float(merged.get("controlnet_strength_cap_local", 0.45))
+        else:
+            strength_cap = float(merged.get("controlnet_strength_cap_default", 0.50))
+        return self._run_dual(
+            original,
+            depth,
+            segmentation,
+            prompt=prompt,
+            negative_prompt=negative,
+            steps=steps,
+            guidance=min(guidance, 6.5),
+            strength=float(np.clip(cn_strength, 0.25, strength_cap)),
+            seed=seed,
+            anomaly_id=anomaly_id,
+            controlnet_scale_depth=depth_scale,
+            controlnet_scale_seg=seg_scale,
+        )
 
     def run_method(
         self,
@@ -516,8 +643,9 @@ class MethodComparer:
         seed_offset: int = 0,
         variation_index: int | None = None,
     ) -> GenerationResult:
-        from edgecase_synthesis.config import merge_generation_anomaly, resolve_method_prompt
-        from edgecase_synthesis.generate.variations import resolve_prompt_variation
+        """Run method."""
+        pass
+        pass
 
         method = str(method).lower()
         if method not in ALL_COMPARE_METHODS:
@@ -551,7 +679,8 @@ class MethodComparer:
         width, height = original.size
         steps = int(merged.get("num_inference_steps", 24))
         guidance = float(merged.get("guidance_scale", 7.5))
-        # Inpaint uses high denoise; ControlNet img2img must stay low or it rewrites the scene.
+        # Inpaint uses high denoise; ControlNet img2img must stay low or it
+        # rewrites the scene.
         inpaint_strength = float(merged.get("strength", 0.88))
         cn_strength = float(
             merged.get(
@@ -562,9 +691,7 @@ class MethodComparer:
 
         edit_mask_cfg = dict(anom.get("edit_mask", {"mode": "ellipse"}))
         spec = METHOD_SPECS.get(effective) or METHOD_SPECS.get(method)
-        needs_conditioning = bool(
-            spec is None or spec.uses_mask or spec.uses_depth or spec.uses_seg
-        )
+        needs_conditioning = bool(spec is None or spec.uses_mask or spec.uses_depth or spec.uses_seg)
         if needs_conditioning:
             if depth is None or segmentation is None:
                 raise ValueError(
@@ -611,64 +738,39 @@ class MethodComparer:
             )
 
         if effective == "inpaint":
-            if self.inpaint_is_klein:
-                klein_steps = merged.get("inpaint_num_inference_steps", self.inpaint_num_inference_steps)
-                steps = int(klein_steps) if klein_steps not in (None, "") else steps
-                klein_gs = merged.get("inpaint_guidance_scale", self.inpaint_guidance_scale)
-                guidance = float(klein_gs) if klein_gs not in (None, "") else guidance
-                run_strength = min(float(merged.get("strength", 1.0)), 1.0)
-            else:
-                run_strength = min(inpaint_strength, 0.99)
+            assert edit_mask is not None and edit_weight is not None
             return _finish(
-                self._run_inpaint(
+                self._run_configured_inpaint(
                     original,
+                    merged=merged,
                     prompt=prompt,
-                    negative_prompt=negative,
+                    negative=negative,
                     steps=steps,
                     guidance=guidance,
-                    strength=run_strength,
+                    inpaint_strength=inpaint_strength,
                     seed=seed,
                     edit_mask=edit_mask,
                     edit_weight=edit_weight,
                     edit_mask_cfg=edit_mask_cfg,
                     anomaly_id=anomaly_id,
-                    padding_mask_crop=padding_crop,
+                    padding_crop=padding_crop,
                 )
             )
         if effective == "controlnet_dual":
-            scales = merged.get("controlnet_scale") or {}
-            if hasattr(scales, "get"):
-                depth_scale = float(scales.get("depth", self.controlnet_scale_depth))
-                seg_scale = float(scales.get("seg", self.controlnet_scale_seg))
-            else:
-                depth_scale = self.controlnet_scale_depth
-                seg_scale = self.controlnet_scale_seg
-            local_ids = {
-                str(x) for x in (merged.get("local_anomaly_ids") or [])
-            }
-            global_ids = {
-                str(x) for x in (merged.get("global_anomaly_ids") or [])
-            }
-            if anomaly_id in global_ids:
-                strength_cap = float(merged.get("controlnet_strength_cap_global", 0.70))
-            elif anomaly_id in local_ids:
-                strength_cap = float(merged.get("controlnet_strength_cap_local", 0.45))
-            else:
-                strength_cap = float(merged.get("controlnet_strength_cap_default", 0.50))
+            assert depth is not None and segmentation is not None
             return _finish(
-                self._run_dual(
+                self._run_configured_dual(
                     original,
                     depth,
                     segmentation,
+                    merged=merged,
                     prompt=prompt,
-                    negative_prompt=negative,
+                    negative=negative,
                     steps=steps,
                     guidance=min(guidance, 6.5),
-                    strength=float(np.clip(cn_strength, 0.25, strength_cap)),
+                    cn_strength=cn_strength,
                     seed=seed,
                     anomaly_id=anomaly_id,
-                    controlnet_scale_depth=depth_scale,
-                    controlnet_scale_seg=seg_scale,
                 )
             )
         instruct_steps = merged.get("instruct_num_inference_steps", self.instruct_num_inference_steps)
@@ -680,9 +782,7 @@ class MethodComparer:
                 seed=seed,
                 anomaly_id=anomaly_id,
                 edit_mask=None,
-                image_guidance=float(
-                    merged.get("instruct_image_guidance", self.instruct_image_guidance)
-                ),
+                image_guidance=float(merged.get("instruct_image_guidance", self.instruct_image_guidance)),
                 text_guidance=float(merged.get("instruct_guidance_scale", self.instruct_guidance)),
                 instruct_steps=instruct_steps,
             )
@@ -699,7 +799,8 @@ class MethodComparer:
         anomaly_cfg: Any,
         methods: tuple[str, ...] = COMPARE_METHODS,
     ) -> CompareBundle:
-        from edgecase_synthesis.config import merge_generation_anomaly
+        """Compare one."""
+        pass
 
         merged = merge_generation_anomaly(generation_cfg, anomaly_cfg)
         anom = merged.get("anomaly", anomaly_cfg)
@@ -775,9 +876,7 @@ class MethodComparer:
             # Rebuild mask at Klein resolution (ellipse was built at `original` size).
             mask_arr = edit_mask
             if mask_arr.shape[0] != rh or mask_arr.shape[1] != rw:
-                mask_arr = cv2.resize(
-                    mask_arr.astype(np.uint8), (rw, rh), interpolation=cv2.INTER_NEAREST
-                )
+                mask_arr = cv2.resize(mask_arr.astype(np.uint8), (rw, rh), interpolation=cv2.INTER_NEAREST)
             mask_pil = _mask_to_pil(mask_arr)
             kwargs: dict[str, Any] = {
                 "prompt": prompt,
@@ -868,19 +967,9 @@ class MethodComparer:
     ) -> GenerationResult:
         width, height = original.size
         depth_image = _depth_to_control_image(depth, width, height)
-        seg_image = _seg_to_control_image(
-            segmentation, width, height, as_canny=self.seg_as_canny
-        )
-        depth_scale = (
-            self.controlnet_scale_depth
-            if controlnet_scale_depth is None
-            else float(controlnet_scale_depth)
-        )
-        seg_scale = (
-            self.controlnet_scale_seg
-            if controlnet_scale_seg is None
-            else float(controlnet_scale_seg)
-        )
+        seg_image = _seg_to_control_image(segmentation, width, height, as_canny=self.seg_as_canny)
+        depth_scale = self.controlnet_scale_depth if controlnet_scale_depth is None else float(controlnet_scale_depth)
+        seg_scale = self.controlnet_scale_seg if controlnet_scale_seg is None else float(controlnet_scale_seg)
         generated = self.dual_pipe(
             prompt=prompt,
             negative_prompt=negative_prompt or None,
@@ -925,7 +1014,7 @@ class MethodComparer:
 
         if self.instruct_is_klein:
             # Distilled Klein: ~4 steps when configured; guidance ignored when >1.
-            n_steps = int(instruct_steps) if instruct_steps not in (None, "") else 4
+            n_steps = int(instruct_steps) if instruct_steps is not None else 4
             txt_g = 1.0 if text_guidance is None else float(text_guidance)
             run_image = self._fit_klein_image(original, max_side=768)
             self._sync_pipe_progress(self.instruct_pipe)
@@ -965,13 +1054,9 @@ class MethodComparer:
                 run_image = original.resize((new_w, new_h), Image.Resampling.LANCZOS)
             else:
                 run_image = original
-            img_g = (
-                self.instruct_image_guidance
-                if image_guidance is None
-                else float(image_guidance)
-            )
+            img_g = self.instruct_image_guidance if image_guidance is None else float(image_guidance)
             txt_g = self.instruct_guidance if text_guidance is None else float(text_guidance)
-            n_steps = int(instruct_steps) if instruct_steps not in (None, "") else max(steps, 20)
+            n_steps = int(instruct_steps) if instruct_steps is not None else max(steps, 20)
             self._sync_pipe_progress(self.instruct_pipe)
             generated = self.instruct_pipe(
                 prompt=instruction,
@@ -1002,7 +1087,7 @@ class MethodComparer:
         generation_cfg: Any,
         family: str,
     ) -> GenerationResult:
-        from edgecase_synthesis.generate.vlm_edit_local import VlmLocalEditConfig, edit_with_qwen_local
+        pass
 
         self._free_other_edit_pipes(keep="")
         cfg = VlmLocalEditConfig(
@@ -1010,9 +1095,7 @@ class MethodComparer:
             num_inference_steps=int(
                 generation_cfg.get("vlm_local_num_inference_steps", self.vlm_local_num_inference_steps)
             ),
-            true_cfg_scale=float(
-                generation_cfg.get("vlm_local_true_cfg_scale", self.vlm_local_true_cfg_scale)
-            ),
+            true_cfg_scale=float(generation_cfg.get("vlm_local_true_cfg_scale", self.vlm_local_true_cfg_scale)),
             max_side=int(generation_cfg.get("vlm_local_max_side", self.vlm_local_max_side)),
         )
         edited = edit_with_qwen_local(
@@ -1042,11 +1125,7 @@ class MethodComparer:
         anomaly_id: str,
         generation_cfg: Any,
     ) -> GenerationResult:
-        from edgecase_synthesis.generate.vlm_generate import (
-            VlmGenerateConfig,
-            generate_with_vlm,
-            require_vlm_api_enabled,
-        )
+        pass
 
         require_vlm_api_enabled(generation_cfg.get("vlm_api_enabled", False))
 
@@ -1062,7 +1141,7 @@ class MethodComparer:
         cfg = VlmGenerateConfig(
             model=model,
             mode="generate" if mode == "generate" else "edit",
-            provider=provider,  # type: ignore[arg-type]
+            provider=provider,
             api_key=api_key,
             api_base_url=str(api_base_url) if api_base_url not in (None, "") else None,
             aspect_ratio=str(aspect) if aspect not in (None, "") else None,
@@ -1085,6 +1164,7 @@ class MethodComparer:
 
     @classmethod
     def from_config(cls, cfg: Any, device: str | None = None) -> "MethodComparer":
+        """Create an instance from configuration."""
         generation = cfg.get("generation", cfg)
         controlnet = generation.get("controlnet", {})
         scales = generation.get("controlnet_scale", {}) or {}
@@ -1107,23 +1187,15 @@ class MethodComparer:
             inpaint_model_id=str(generation["inpaint_model_id"]),
             depth_controlnet_id=str(controlnet["depth"]),
             seg_controlnet_id=seg_cn,
-            instruct_model_id=str(
-                generation.get("instruct_model_id") or "timbrooks/instruct-pix2pix"
-            ),
+            instruct_model_id=str(generation.get("instruct_model_id") or "timbrooks/instruct-pix2pix"),
             vae_id=generation.get("vae_id"),
             controlnet_scale_depth=float(scales.get("depth", 0.55)),
             controlnet_scale_seg=float(scales.get("seg", 0.45)),
             instruct_image_guidance=float(generation.get("instruct_image_guidance", 1.4)),
             instruct_guidance=float(generation.get("instruct_guidance_scale", 7.0)),
-            instruct_num_inference_steps=(
-                int(instruct_steps) if instruct_steps not in (None, "") else None
-            ),
-            inpaint_num_inference_steps=(
-                int(inpaint_steps) if inpaint_steps not in (None, "") else None
-            ),
-            inpaint_guidance_scale=(
-                float(inpaint_gs) if inpaint_gs not in (None, "") else None
-            ),
+            instruct_num_inference_steps=(int(instruct_steps) if instruct_steps not in (None, "") else None),
+            inpaint_num_inference_steps=(int(inpaint_steps) if inpaint_steps not in (None, "") else None),
+            inpaint_guidance_scale=(float(inpaint_gs) if inpaint_gs not in (None, "") else None),
             device=device,
             seg_as_canny=seg_as_canny,
             vlm_api_model=str(generation.get("vlm_api_model") or "gemini-3.1-flash-image"),

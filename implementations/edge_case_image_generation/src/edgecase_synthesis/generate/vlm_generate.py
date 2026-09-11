@@ -15,6 +15,8 @@ import urllib.request
 from dataclasses import dataclass
 from typing import Any, Literal
 
+from google import genai
+from google.genai import types
 from PIL import Image
 
 from edgecase_synthesis.judge.vlm_api import (
@@ -25,7 +27,9 @@ from edgecase_synthesis.judge.vlm_api import (
     resolve_api_base_url,
 )
 
-# Only IDs that can emit pixels. Chat models (gemini-3-flash-preview, gpt-4o) are judge-only.
+
+# Only IDs that can emit pixels. Chat models such as gemini-3-flash-preview and
+# gpt-4o are judge-only.
 # "Nano Banana 2" is Google's public name for gemini-3.1-flash-image.
 VLM_MODEL_ALIASES: dict[str, str] = {
     "gemini-3.1-flash-image": "gemini-3.1-flash-image",
@@ -50,6 +54,8 @@ _VLM_API_DISABLED_MSG = (
 
 @dataclass
 class VlmGenerateConfig:
+    """Represent VlmGenerateConfig configuration and behavior."""
+
     model: str = "gemini-3.1-flash-image"
     mode: VlmMode = "edit"
     provider: VlmProvider | None = None
@@ -70,6 +76,7 @@ def require_vlm_api_enabled(flag: Any) -> None:
 
 
 def resolve_vlm_model(name: str) -> str:
+    """Resolve a vision-language model alias."""
     raw = str(name or "").strip()
     spaced = " ".join(raw.lower().replace("_", " ").replace("-", " ").split())
     keyed = raw.lower().replace("_", "-")
@@ -77,6 +84,7 @@ def resolve_vlm_model(name: str) -> str:
 
 
 def infer_provider(model: str, *, api_base_url: str | None = None) -> VlmProvider:
+    """Infer the image-generation provider."""
     if api_base_url:
         return "vector_proxy"
     if model.lower().startswith("gpt") or "openai" in model.lower():
@@ -90,6 +98,7 @@ def generate_with_vlm(
     seed_image: Image.Image | None = None,
     config: VlmGenerateConfig | None = None,
 ) -> Image.Image:
+    """Generate with vlm."""
     cfg = config or VlmGenerateConfig()
     model = resolve_vlm_model(cfg.model)
     provider = cfg.provider or infer_provider(model, api_base_url=cfg.api_base_url)
@@ -114,10 +123,7 @@ def _edit_prompt(prompt: str) -> str:
 
 
 def _gen_prompt(prompt: str) -> str:
-    return (
-        "Generate a photorealistic street-level dashcam / Mapillary-style photo. "
-        f"{prompt.strip()}"
-    )
+    return f"Generate a photorealistic street-level dashcam / Mapillary-style photo. {prompt.strip()}"
 
 
 def _bytes_to_pil(data: bytes) -> Image.Image:
@@ -182,12 +188,11 @@ def _generate_gemini(
     cfg: VlmGenerateConfig,
 ) -> Image.Image:
     try:
-        from google import genai
-        from google.genai import types
+        pass
+        pass
     except ImportError as exc:  # pragma: no cover
         raise ImportError(
-            "google-genai is required for Gemini image generation. "
-            "Install: uv sync --group edge-case-image-generation"
+            "google-genai is required for Gemini image generation. Install: uv sync --group edge-case-image-generation"
         ) from exc
 
     client = genai.Client(api_key=gemini_api_key(cfg.api_key))
@@ -243,13 +248,13 @@ def _generate_openai(
             model=model,
             image=buf,
             prompt=_edit_prompt(prompt),
-            size=cfg.size,  # type: ignore[arg-type]
+            size=cfg.size,
         )
     else:
         result = client.images.generate(
             model=model,
             prompt=_gen_prompt(prompt),
-            size=cfg.size,  # type: ignore[arg-type]
+            size=cfg.size,
         )
     return _extract_images_api(result)
 
@@ -305,7 +310,7 @@ def _generate_vector_proxy(
                     model=model,
                     image=buf,
                     prompt=text,
-                    size=cfg.size,  # type: ignore[arg-type]
+                    size=cfg.size,
                     response_format="b64_json",
                 )
             )
@@ -319,7 +324,7 @@ def _generate_vector_proxy(
         client.images.generate(
             model=model,
             prompt=text,
-            size=cfg.size,  # type: ignore[arg-type]
+            size=cfg.size,
             response_format="b64_json",
             n=1,
         )

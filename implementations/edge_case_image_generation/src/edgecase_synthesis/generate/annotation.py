@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import contextlib
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -10,9 +11,9 @@ import cv2
 import numpy as np
 import torch
 from PIL import Image
-from ultralytics import YOLO
 
 from edgecase_synthesis.generate.conditioning import resolve_device
+from ultralytics import YOLO  # type: ignore[attr-defined]
 
 
 @dataclass(frozen=True)
@@ -55,21 +56,16 @@ class OpenVocabAnnotator:
         self.detector_model = detector_model
         self.classes = list(classes or [])
         if not self.classes:
-            raise ValueError(
-                "annotation.classes is empty — set classes in "
-                "configs/datasets/<dataset>/annotation.yaml"
-            )
+            raise ValueError("annotation.classes is empty — set classes in configs/datasets/<dataset>/annotation.yaml")
         self.conf = float(conf)
         self.max_detections = int(max_detections)
         self.device = resolve_device(device)
         weights = _resolve_yolo_weights(detector_model)
-        self.model = YOLO(weights)
+        self.model: Any | None = YOLO(weights)
         # Keep detector + CLIP on CPU until predict(); set_classes tokenizes on CPU
         # and will crash if CLIP weights were already placed on CUDA.
-        try:
+        with contextlib.suppress(Exception):
             self.model.to("cpu")
-        except Exception:  # noqa: BLE001
-            pass
         # Respect cuda:N when dual-GPU batch workers pin models per device.
         self._yolo_device = str(self.device) if self.device.type == "cuda" else "cpu"
         self._active_classes: list[str] | None = None
@@ -101,21 +97,26 @@ class OpenVocabAnnotator:
         threshold = self.conf if conf is None else float(conf)
 
         self._set_classes(active_classes)
-        results = self.model.predict(
-            source=rgb,
-            conf=threshold,
-            verbose=False,
-            device=self._yolo_device,
-            max_det=self.max_detections,
+        assert self.model is not None
+        results = list(
+            self.model.predict(
+                source=rgb,
+                conf=threshold,
+                verbose=False,
+                device=self._yolo_device,
+                max_det=self.max_detections,
+            )
         )
         detections: list[Detection] = []
         if results:
-            boxes = results[0].boxes
+            result: Any = results[0]
+            boxes = result.boxes
             if boxes is not None and len(boxes) > 0:
-                xyxy = boxes.xyxy.cpu().numpy()
-                scores = boxes.conf.cpu().numpy()
-                cls_ids = boxes.cls.cpu().numpy().astype(int)
-                names = results[0].names or {}
+                xyxy = np.asarray(boxes.xyxy.cpu() if hasattr(boxes.xyxy, "cpu") else boxes.xyxy)
+                scores = np.asarray(boxes.conf.cpu() if hasattr(boxes.conf, "cpu") else boxes.conf)
+                raw_cls = boxes.cls.cpu() if hasattr(boxes.cls, "cpu") else boxes.cls
+                cls_ids = np.asarray(raw_cls).astype(int)
+                names = result.names or {}
                 order = np.argsort(-scores)[: self.max_detections]
                 for idx in order:
                     cid = int(cls_ids[idx])
@@ -141,17 +142,8 @@ class OpenVocabAnnotator:
             overlay=rgb,
             num_instances=len(detections),
         )
-        has_target = (
-            has_target_detections(tmp, target_labels)
-            if target_labels
-            else bool(detections)
-        )
-        if (
-            require_seed_if_empty
-            and seed_mask is not None
-            and seed_label
-            and not has_target
-        ):
+        has_target = has_target_detections(tmp, target_labels) if target_labels else bool(detections)
+        if require_seed_if_empty and seed_mask is not None and seed_label and not has_target:
             seeded = detection_from_mask(
                 seed_mask,
                 label=str(seed_label),
@@ -177,37 +169,34 @@ class OpenVocabAnnotator:
         """
         if self._active_classes == active_classes:
             return
+        if self.model is None:
+            raise RuntimeError("Annotator model has been unloaded")
         # CLIP encode must see matching devices; safest is CPU for set_classes.
-        try:
+        with contextlib.suppress(Exception):
             self.model.to("cpu")
-        except Exception:  # noqa: BLE001 — some ultralytics builds lack .to
-            pass
         if hasattr(self.model, "clip_model") and self.model.clip_model is not None:
-            try:
+            with contextlib.suppress(Exception):
                 self.model.clip_model.to("cpu")
-            except Exception:  # noqa: BLE001
-                pass
         self.model.set_classes(active_classes)
         self._active_classes = list(active_classes)
 
     def unload(self) -> None:
         """Drop model weights to free VRAM before loading the judge."""
-        self.model = None  # type: ignore[assignment]
+        self.model = None
         self._active_classes = None
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
     @classmethod
-    def from_config(cls, cfg: dict[str, Any] | Any, device: str | None = None):
+    def from_config(cls, cfg: dict[str, Any] | Any, device: str | None = None) -> OpenVocabAnnotator:
+        """Create an instance from configuration."""
         annotation = cfg.get("annotation", cfg)
         if device is None:
             hardware = cfg.get("hardware") if hasattr(cfg, "get") else None
             if hardware is not None:
                 device = hardware.get("device")
         return cls(
-            detector_model=str(
-                annotation.get("detector_model", "yolov8s-worldv2.pt")
-            ),
+            detector_model=str(annotation.get("detector_model", "yolov8s-worldv2.pt")),
             classes=list(annotation.get("classes", [])),
             conf=float(annotation.get("conf", 0.15)),
             max_detections=int(annotation.get("max_detections", 20)),
@@ -246,6 +235,7 @@ _CONTEXT_LABELS = {
 
 
 def canonicalize_label(label: str) -> str:
+    """Canonicalize a label for matching."""
     return str(label).lower().strip().replace("-", " ").replace("_", " ")
 
 
@@ -269,25 +259,20 @@ def has_target_detections(
     annotation: AnnotationResult | None,
     target_labels: set[str],
 ) -> bool:
+    """Check whether has target detections."""
     if annotation is None or not target_labels:
         return False
-    for det in annotation.detections:
-        if canonicalize_label(det.label) in target_labels:
-            return True
-    return False
+    return any(canonicalize_label(det.label) in target_labels for det in annotation.detections)
 
 
 def target_detections(
     annotation: AnnotationResult | None,
     target_labels: set[str],
 ) -> list[Detection]:
+    """Filter detections to requested target classes."""
     if annotation is None or not target_labels:
         return []
-    return [
-        d
-        for d in annotation.detections
-        if canonicalize_label(d.label) in target_labels
-    ]
+    return [d for d in annotation.detections if canonicalize_label(d.label) in target_labels]
 
 
 def check_box_placement(
@@ -320,22 +305,43 @@ def check_box_placement(
     max_bottom = gates.get("max_bottom_edge_frac")
 
     for det in dets:
-        x1, y1, x2, y2 = (float(v) for v in det.bbox_xyxy)
-        bw = max(0.0, x2 - x1)
-        bh = max(0.0, y2 - y1)
-        area_frac = (bw * bh) / float(width * height)
-        cy = ((y1 + y2) / 2.0) / float(height)
-        bottom = y2 / float(height)
-
-        if max_area is not None and area_frac > float(max_area):
-            return False, f"box too large (area_frac={area_frac:.3f} > {max_area})"
-        if min_cy is not None and cy < float(min_cy):
-            return False, f"box too high in frame (cy={cy:.3f} < {min_cy})"
-        if max_cy is not None and cy > float(max_cy):
-            return False, f"box too low in frame (cy={cy:.3f} > {max_cy}; hood/crop risk)"
-        if max_bottom is not None and bottom > float(max_bottom):
-            return False, f"box clipped at bottom (bottom={bottom:.3f} > {max_bottom})"
+        failure = _box_placement_failure(
+            det,
+            image_size=image_size,
+            max_area=max_area,
+            min_cy=min_cy,
+            max_cy=max_cy,
+            max_bottom=max_bottom,
+        )
+        if failure:
+            return False, failure
     return True, ""
+
+
+def _box_placement_failure(
+    det: Detection,
+    *,
+    image_size: tuple[int, int],
+    max_area: Any,
+    min_cy: Any,
+    max_cy: Any,
+    max_bottom: Any,
+) -> str | None:
+    """Return the first placement-gate failure for one detection."""
+    width, height = image_size
+    x1, y1, x2, y2 = (float(v) for v in det.bbox_xyxy)
+    area_frac = (max(0.0, x2 - x1) * max(0.0, y2 - y1)) / float(width * height)
+    cy = ((y1 + y2) / 2.0) / float(height)
+    bottom = y2 / float(height)
+    if max_area is not None and area_frac > float(max_area):
+        return f"box too large (area_frac={area_frac:.3f} > {max_area})"
+    if min_cy is not None and cy < float(min_cy):
+        return f"box too high in frame (cy={cy:.3f} < {min_cy})"
+    if max_cy is not None and cy > float(max_cy):
+        return f"box too low in frame (cy={cy:.3f} > {max_cy}; hood/crop risk)"
+    if max_bottom is not None and bottom > float(max_bottom):
+        return f"box clipped at bottom (bottom={bottom:.3f} > {max_bottom})"
+    return None
 
 
 def detection_from_mask(
@@ -351,7 +357,7 @@ def detection_from_mask(
         arr = arr.any(axis=-1)
     if image_hw is not None and arr.shape[:2] != image_hw:
         # Nearest resize to the annotated image (generation may have resized).
-        import cv2
+        pass
 
         h, w = image_hw
         arr = cv2.resize(arr.astype(np.uint8), (w, h), interpolation=cv2.INTER_NEAREST)

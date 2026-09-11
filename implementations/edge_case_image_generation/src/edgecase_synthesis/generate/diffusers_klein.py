@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+import contextlib
 from typing import Any
 
+import diffusers
 import torch
+from diffusers import Flux2KleinInpaintPipeline, Flux2KleinPipeline
 
 
 _KLEIN_INSTALL_HINT = (
@@ -17,34 +20,18 @@ _KLEIN_INSTALL_HINT = (
 
 
 def diffusers_version() -> str:
-    try:
-        import diffusers
-
-        return str(getattr(diffusers, "__version__", "unknown"))
-    except Exception:  # noqa: BLE001
-        return "not-installed"
+    """Return the installed Diffusers version."""
+    return str(getattr(diffusers, "__version__", "unknown"))
 
 
 def import_flux2_klein_pipeline() -> Any:
-    try:
-        from diffusers import Flux2KleinPipeline
-
-        return Flux2KleinPipeline
-    except ImportError as exc:
-        raise ImportError(
-            f"{_KLEIN_INSTALL_HINT}\n(Currently installed diffusers={diffusers_version()}.)"
-        ) from exc
+    """Import the FLUX.2 Klein generation pipeline."""
+    return Flux2KleinPipeline
 
 
 def import_flux2_klein_inpaint_pipeline() -> Any:
-    try:
-        from diffusers import Flux2KleinInpaintPipeline
-
-        return Flux2KleinInpaintPipeline
-    except ImportError as exc:
-        raise ImportError(
-            f"{_KLEIN_INSTALL_HINT}\n(Currently installed diffusers={diffusers_version()}.)"
-        ) from exc
+    """Import the FLUX.2 Klein inpainting pipeline."""
+    return Flux2KleinInpaintPipeline
 
 
 def assert_klein_available() -> None:
@@ -114,9 +101,7 @@ def from_pretrained_klein(
         except Exception as exc:  # noqa: BLE001
             errors.append(f"{kwargs}: {type(exc).__name__}: {exc}")
             continue
-    raise RuntimeError(
-        "Failed to load FLUX.2 Klein pipeline.\n" + "\n".join(errors)
-    )
+    raise RuntimeError("Failed to load FLUX.2 Klein pipeline.\n" + "\n".join(errors))
 
 
 def configure_klein_pipe(
@@ -142,10 +127,6 @@ def configure_klein_pipe(
             gpu_id = int(device.split(":")[1])
         except (IndexError, ValueError):
             gpu_id = 0
-    try:
+    with contextlib.suppress(NotImplementedError):
         pipe.enable_model_cpu_offload(gpu_id=gpu_id)
-    except NotImplementedError:
-        # Tied/meta weights on some transformers builds — pipeline may already
-        # be on device via device_map fallback in from_pretrained_klein.
-        pass
     return pipe

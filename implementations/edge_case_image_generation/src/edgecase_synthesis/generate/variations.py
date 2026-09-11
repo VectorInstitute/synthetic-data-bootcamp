@@ -29,9 +29,7 @@ def parse_variation_axes(raw: Any) -> dict[str, list[str]]:
     """Normalize anomaly ``variations`` YAML → ordered axis → value list."""
     if raw is None:
         return {}
-    if hasattr(raw, "items"):
-        items = list(raw.items())
-    elif isinstance(raw, dict):
+    if hasattr(raw, "items") or isinstance(raw, dict):
         items = list(raw.items())
     else:
         return {}
@@ -91,10 +89,11 @@ def combo_at(
 
 
 def render_template(template: str, values: dict[str, str], *, extras: dict[str, str] | None = None) -> str:
-    """Format ``template`` with variation values (+ optional extras like description)."""
+    """Format a template with variation values and optional extras."""
     mapping = {**(extras or {}), **values}
+
     # Prefer str.format_map so missing keys can be left alone if needed.
-    class _Safe(dict):
+    class _Safe(dict[str, str]):
         def __missing__(self, key: str) -> str:
             return "{" + key + "}"
 
@@ -109,7 +108,8 @@ def _as_dict(cfg: Any) -> dict[str, Any]:
     if isinstance(cfg, dict):
         return cfg
     try:
-        return dict(OmegaConf.to_container(cfg, resolve=True) or {})
+        container = OmegaConf.to_container(cfg, resolve=True)
+        return {str(key): value for key, value in container.items()} if isinstance(container, dict) else {}
     except Exception:
         return {}
 
@@ -122,6 +122,40 @@ def _get(cfg: Any, key: str, default: Any = None) -> Any:
     if isinstance(cfg, dict):
         return cfg.get(key, default)
     return getattr(cfg, key, default)
+
+
+def _variation_template(anom: Any, block: Any) -> str | None:
+    """Resolve the method-level or anomaly-level prompt template."""
+    raw = _get(block, "prompt_template") if block is not None else None
+    if not raw:
+        raw = _get(anom, "prompt_template")
+    return str(raw).strip() if raw else None
+
+
+def _variation_extras(anom: Any) -> dict[str, str]:
+    """Collect optional anomaly fields exposed to prompt templates."""
+    extras: dict[str, str] = {}
+    for key in ("description", "display_name", "id"):
+        value = _get(anom, key)
+        if value:
+            extras[key] = str(value).strip()
+    return extras
+
+
+def _variation_negative(
+    anom: Any,
+    block: Any,
+    values: dict[str, str],
+    extras: dict[str, str],
+    base_negative: str,
+) -> str:
+    """Render a negative template or preserve the static negative prompt."""
+    raw = _get(block, "negative_prompt_template") if block is not None else None
+    if not raw:
+        raw = _get(anom, "negative_prompt_template")
+    if raw:
+        return render_template(str(raw).strip(), values, extras=extras)
+    return str(base_negative or "").strip()
 
 
 def resolve_prompt_variation(
@@ -146,16 +180,7 @@ def resolve_prompt_variation(
     if method_key and methods is not None:
         block = _get(methods, method_key)
 
-    template = None
-    if block is not None:
-        raw_t = _get(block, "prompt_template")
-        if raw_t:
-            template = str(raw_t).strip()
-    if not template:
-        raw_t = _get(anom, "prompt_template")
-        if raw_t:
-            template = str(raw_t).strip()
-
+    template = _variation_template(anom, block)
     axes = parse_variation_axes(_get(anom, "variations"))
     if not template or not axes:
         return PromptVariation(
@@ -168,32 +193,9 @@ def resolve_prompt_variation(
         )
 
     values, n_combos = combo_at(axes, int(variation_index), seed=int(seed))
-    extras: dict[str, str] = {}
-    description = _get(anom, "description")
-    if description:
-        extras["description"] = str(description).strip()
-    display = _get(anom, "display_name")
-    if display:
-        extras["display_name"] = str(display).strip()
-    anomaly_id = _get(anom, "id")
-    if anomaly_id:
-        extras["id"] = str(anomaly_id).strip()
-
+    extras = _variation_extras(anom)
     prompt = render_template(template, values, extras=extras)
-    # Optional negative template (rare); else keep method/anomaly negative as-is.
-    neg_template = None
-    if block is not None:
-        raw_n = _get(block, "negative_prompt_template")
-        if raw_n:
-            neg_template = str(raw_n).strip()
-    if not neg_template:
-        raw_n = _get(anom, "negative_prompt_template")
-        if raw_n:
-            neg_template = str(raw_n).strip()
-    if neg_template:
-        negative = render_template(neg_template, values, extras=extras)
-    else:
-        negative = str(base_negative or "").strip()
+    negative = _variation_negative(anom, block, values, extras, base_negative)
 
     return PromptVariation(
         prompt=prompt,

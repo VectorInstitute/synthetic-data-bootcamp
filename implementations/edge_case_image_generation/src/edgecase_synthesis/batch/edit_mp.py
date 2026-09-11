@@ -12,10 +12,21 @@ hangs on interrupt. Notebook defaults to a single edit worker unless
 
 from __future__ import annotations
 
+import gc
 import os
 import traceback
 from dataclasses import dataclass
+from pathlib import Path as _Path
 from typing import Any
+
+import numpy as np
+import torch
+from PIL import Image
+
+from edgecase_synthesis.config import load_config
+from edgecase_synthesis.generate.annotation import AnnotationResult, Detection
+from edgecase_synthesis.generate.generation import GenerationResult
+from edgecase_synthesis.generate.pipeline import synthesize_one
 
 
 @dataclass(frozen=True)
@@ -32,7 +43,7 @@ class EditJob:
 
 
 def _box_mask(shape: tuple[int, int], bbox: tuple[int, int, int, int]) -> Any:
-    import numpy as np
+    pass
 
     h, w = shape
     x1, y1, x2, y2 = bbox
@@ -42,8 +53,10 @@ def _box_mask(shape: tuple[int, int], bbox: tuple[int, int, int, int]) -> Any:
 
 
 def annotation_from_payload(payload: dict[str, Any], image_size: tuple[int, int]) -> Any:
-    from edgecase_synthesis.generate.annotation import AnnotationResult, Detection
-    import numpy as np
+    """Build an annotation from a worker payload."""
+    pass
+
+    pass
 
     w, h = image_size
     detections = []
@@ -88,13 +101,15 @@ def mp_synthesize_shard(payload: dict[str, Any]) -> list[dict[str, Any]]:
     os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_id)
     os.environ["EDGECASE_DISABLE_PIPE_PROGRESS"] = "1"
 
-    from pathlib import Path as _Path
+    pass
 
-    from PIL import Image
+    pass
 
-    from edgecase_synthesis.batch.runner import PendingItem, _annotate_item, _load_edit_stack
-    from edgecase_synthesis.config import load_config
-    from edgecase_synthesis.generate.pipeline import synthesize_one
+    # runner imports this worker module when multiprocessing is enabled.
+    from edgecase_synthesis.batch.runner import PendingItem, _annotate_item, _load_edit_stack  # noqa: PLC0415
+
+    pass
+    pass
 
     project_root = _Path(payload["project_root"])
     cfg = load_config(
@@ -121,21 +136,18 @@ def mp_synthesize_shard(payload: dict[str, Any]) -> list[dict[str, Any]]:
     base_classes = list(payload.get("base_classes") or [])
     out: list[dict[str, Any]] = []
 
-    import gc
+    pass
 
-    import torch
+    pass
 
     for job in jobs:
         try:
             image = Image.open(job.source_path).convert("RGB")
             print(
-                f"[gpu{gpu_id}] edit {job.anomaly_id} seed={job.source_stem} "
-                f"attempt={job.attempt}",
+                f"[gpu{gpu_id}] edit {job.anomaly_id} seed={job.source_stem} attempt={job.attempt}",
                 flush=True,
             )
-            depth = (
-                stack.depth_model.predict(image) if stack.depth_model is not None else None
-            )
+            depth = stack.depth_model.predict(image) if stack.depth_model is not None else None
             seg = stack.segmenter.predict(image) if stack.segmenter is not None else None
             syn = synthesize_one(
                 image,
@@ -171,7 +183,7 @@ def mp_synthesize_shard(payload: dict[str, Any]) -> list[dict[str, Any]]:
             edit_mask = getattr(syn.generated, "edit_mask", None)
             mask_path = None
             if edit_mask is not None:
-                import numpy as np
+                pass
 
                 mask_path = str(tmp_dir / f"gpu{gpu_id}_job{job.job_id}_mask.npy")
                 np.save(mask_path, edit_mask)
@@ -220,26 +232,26 @@ def apply_mp_results_to_items(
     results: list[dict[str, Any]],
 ) -> list[Any]:
     """Merge worker payloads back onto PendingItem list. Returns failed items."""
-    from PIL import Image
+    pass
 
-    from edgecase_synthesis.generate.generation import GenerationResult
+    pass
 
     by_id = {int(r["job_id"]): r for r in results}
     failed: list[Any] = []
     for item in items:
-        job_id = int(getattr(item, "_job_id"))
+        job_id = int(item._job_id)
         payload = by_id.get(job_id)
         if payload is None or not payload.get("ok", False):
             item.generated = None
             item.annotation = None
             failed.append(item)
             err = (payload or {}).get("error") or "missing worker result"
-            setattr(item, "_edit_error", err)
+            item._edit_error = err
             continue
         image = Image.open(payload["image_path"]).convert("RGB")
         edit_mask = None
         if payload.get("edit_mask_path"):
-            import numpy as np
+            pass
 
             edit_mask = np.load(payload["edit_mask_path"])
         item.generated = GenerationResult(

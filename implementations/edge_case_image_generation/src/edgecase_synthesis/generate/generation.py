@@ -8,18 +8,39 @@ from typing import Any
 import cv2
 import numpy as np
 import torch
+from diffusers import (
+    AutoencoderKL,
+    AutoPipelineForInpainting,
+    ControlNetModel,
+    StableDiffusionControlNetImg2ImgPipeline,
+    StableDiffusionXLControlNetImg2ImgPipeline,
+)
 from PIL import Image
 
+from edgecase_synthesis.config import merge_generation_anomaly, resolve_method_prompt
 from edgecase_synthesis.generate.conditioning import (
     DepthResult,
     SegmentationResult,
     build_anomaly_edit_mask,
     resolve_device,
 )
+from edgecase_synthesis.generate.diffusers_klein import (
+    configure_klein_pipe,
+    from_pretrained_klein,
+    import_flux2_klein_inpaint_pipeline,
+)
+from edgecase_synthesis.generate.variations import resolve_prompt_variation
+from edgecase_synthesis.generate.vlm_generate import (
+    VlmGenerateConfig,
+    generate_with_vlm,
+    require_vlm_api_enabled,
+)
 
 
 @dataclass
 class GenerationResult:
+    """Represent GenerationResult configuration and behavior."""
+
     image: Image.Image
     prompt: str
     negative_prompt: str
@@ -56,27 +77,31 @@ class AnomalyEditor:
         self.depth_controlnet_id = depth_controlnet_id
         self.vae_id = vae_id
         self.device = resolve_device(device)
-        self._controlnet_pipe = None
-        self._inpaint_pipe = None
+        self._controlnet_pipe: Any | None = None
+        self._inpaint_pipe: Any | None = None
 
     # Back-compat name used in earlier notebook cells.
     @property
-    def pipe(self):
+    def pipe(self) -> Any:
+        """Return the loaded generation pipeline."""
         return self.controlnet_pipe
 
     @property
-    def controlnet_pipe(self):
+    def controlnet_pipe(self) -> Any:
+        """Return the loaded ControlNet pipeline."""
         if self._controlnet_pipe is None:
             self._controlnet_pipe = self._build_controlnet()
         return self._controlnet_pipe
 
     @property
-    def inpaint_pipe(self):
+    def inpaint_pipe(self) -> Any:
+        """Return the loaded inpainting pipeline."""
         if self._inpaint_pipe is None:
             self._inpaint_pipe = self._build_inpaint()
         return self._inpaint_pipe
 
     def unload(self) -> None:
+        """Release loaded model resources."""
         self._controlnet_pipe = None
         self._inpaint_pipe = None
         if torch.cuda.is_available():
@@ -84,6 +109,7 @@ class AnomalyEditor:
 
     @property
     def inpaint_is_klein(self) -> bool:
+        """Check whether inpainting uses FLUX.2 Klein."""
         mid = str(self.inpaint_model_id or "").lower()
         return "klein" in mid or "flux.2" in mid or "flux2" in mid
 
@@ -110,8 +136,8 @@ class AnomalyEditor:
             pipe.to(self.device)
         return pipe
 
-    def _build_controlnet(self):
-        from diffusers import ControlNetModel
+    def _build_controlnet(self) -> Any:
+        pass
 
         if self.inpaint_is_klein:
             self._inpaint_pipe = None
@@ -119,24 +145,28 @@ class AnomalyEditor:
                 torch.cuda.empty_cache()
 
         dtype = self._dtype()
-        depth_cn = ControlNetModel.from_pretrained(self.depth_controlnet_id, torch_dtype=dtype)
+        depth_cn = ControlNetModel.from_pretrained(  # type: ignore[no-untyped-call]
+            self.depth_controlnet_id, torch_dtype=dtype
+        )
         if self.family == "sdxl":
-            from diffusers import AutoencoderKL, StableDiffusionXLControlNetImg2ImgPipeline
+            pass
 
             kwargs: dict[str, Any] = {
                 "controlnet": depth_cn,
                 "torch_dtype": dtype,
             }
             if self.vae_id:
-                kwargs["vae"] = AutoencoderKL.from_pretrained(self.vae_id, torch_dtype=dtype)
-            pipe = StableDiffusionXLControlNetImg2ImgPipeline.from_pretrained(
+                kwargs["vae"] = AutoencoderKL.from_pretrained(  # type: ignore[no-untyped-call]
+                    self.vae_id, torch_dtype=dtype
+                )
+            pipe = StableDiffusionXLControlNetImg2ImgPipeline.from_pretrained(  # type: ignore[no-untyped-call]
                 self.base_model_id, **kwargs
             )
             return self._place(pipe)
 
-        from diffusers import StableDiffusionControlNetImg2ImgPipeline
+        pass
 
-        pipe = StableDiffusionControlNetImg2ImgPipeline.from_pretrained(
+        pipe = StableDiffusionControlNetImg2ImgPipeline.from_pretrained(  # type: ignore[no-untyped-call]
             self.base_model_id,
             controlnet=depth_cn,
             torch_dtype=dtype,
@@ -144,32 +174,28 @@ class AnomalyEditor:
         )
         return self._place(pipe)
 
-    def _build_inpaint(self):
+    def _build_inpaint(self) -> Any:
         if not self.inpaint_model_id:
             raise ValueError("generation.inpaint_model_id required for method=inpaint")
         if self.inpaint_is_klein:
             self._controlnet_pipe = None
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
-            from edgecase_synthesis.generate.diffusers_klein import (
-                configure_klein_pipe,
-                from_pretrained_klein,
-                import_flux2_klein_inpaint_pipeline,
-            )
+            pass
 
-            Flux2KleinInpaintPipeline = import_flux2_klein_inpaint_pipeline()
+            flux2_klein_inpaint_pipeline = import_flux2_klein_inpaint_pipeline()
             pipe = from_pretrained_klein(
-                Flux2KleinInpaintPipeline,
+                flux2_klein_inpaint_pipeline,
                 self.inpaint_model_id,
                 dtype=self._dtype(for_klein=True),
                 device=self.device,
             )
             return configure_klein_pipe(pipe, device=self.device, use_cpu_offload=True)
 
-        from diffusers import AutoPipelineForInpainting
+        pass
 
         dtype = self._dtype()
-        pipe = AutoPipelineForInpainting.from_pretrained(
+        pipe = AutoPipelineForInpainting.from_pretrained(  # type: ignore[no-untyped-call]
             self.inpaint_model_id,
             torch_dtype=dtype,
             variant="fp16" if dtype == torch.float16 else None,
@@ -184,8 +210,7 @@ class AnomalyEditor:
         generation_cfg: Any,
         anomaly_cfg: Any,
     ) -> GenerationResult:
-        from edgecase_synthesis.config import merge_generation_anomaly, resolve_method_prompt
-
+        """Generate anomaly."""
         merged = merge_generation_anomaly(generation_cfg, anomaly_cfg)
         anom = merged.get("anomaly", anomaly_cfg)
         method = _resolve_method(anom, merged)
@@ -194,7 +219,7 @@ class AnomalyEditor:
         max_side = int(merged.get("max_side", 512))
         seed = int(merged.get("seed", 42))
         prompt, negative = resolve_method_prompt(merged, method)
-        from edgecase_synthesis.generate.variations import resolve_prompt_variation
+        pass
 
         varied = resolve_prompt_variation(
             anom,
@@ -256,19 +281,21 @@ class AnomalyEditor:
             )
 
         if method in {"vlm_generate", "vlm_generate_local", "vlm_generate_api"}:
-            from edgecase_synthesis.generate.compare_methods import resolve_effective_method
-            from edgecase_synthesis.generate.vlm_generate import (
-                VlmGenerateConfig,
-                generate_with_vlm,
-                require_vlm_api_enabled,
-            )
+            # compare_methods imports this module for shared generation helpers.
+            from edgecase_synthesis.generate.compare_methods import resolve_effective_method  # noqa: PLC0415
+
+            pass
 
             effective = resolve_effective_method(method, merged)
             if effective == "vlm_generate_local":
-                from edgecase_synthesis.generate.vlm_edit_local import VlmLocalEditConfig, edit_with_qwen_local
+                # vlm_edit_local imports shared sizing helpers from this module.
+                from edgecase_synthesis.generate.vlm_edit_local import (  # noqa: PLC0415
+                    VlmLocalEditConfig,
+                    edit_with_qwen_local,
+                )
 
                 family = str(merged.get("family", self.family)).lower()
-                cfg = VlmLocalEditConfig(
+                local_cfg = VlmLocalEditConfig(
                     model_id=str(merged.get("vlm_local_model_id") or "Qwen/Qwen-Image-Edit"),
                     num_inference_steps=int(merged.get("vlm_local_num_inference_steps") or 20),
                     true_cfg_scale=float(merged.get("vlm_local_true_cfg_scale") or 4.0),
@@ -277,7 +304,7 @@ class AnomalyEditor:
                 generated = edit_with_qwen_local(
                     original,
                     prompt,
-                    config=cfg,
+                    config=local_cfg,
                     device=str(self.device),
                     seed=seed,
                     family=family,
@@ -302,14 +329,10 @@ class AnomalyEditor:
                 provider=merged.get("vlm_provider"),
                 api_key=merged.get("vlm_api_key"),
                 api_base_url=(
-                    str(merged.get("vlm_api_base_url"))
-                    if merged.get("vlm_api_base_url") not in (None, "")
-                    else None
+                    str(merged.get("vlm_api_base_url")) if merged.get("vlm_api_base_url") not in (None, "") else None
                 ),
                 aspect_ratio=(
-                    str(merged.get("vlm_aspect_ratio"))
-                    if merged.get("vlm_aspect_ratio") not in (None, "")
-                    else None
+                    str(merged.get("vlm_aspect_ratio")) if merged.get("vlm_aspect_ratio") not in (None, "") else None
                 ),
                 size=str(merged.get("vlm_size") or "1024x1024"),
                 max_side=int(merged.get("vlm_max_side") or max_side or 1024),
@@ -331,14 +354,9 @@ class AnomalyEditor:
             )
 
         scale_cfg = merged.get("controlnet_scale", 0.55)
-        if isinstance(scale_cfg, (int, float)):
-            cn_scale = float(scale_cfg)
-        else:
-            cn_scale = float(scale_cfg.get("depth", 0.75))
+        cn_scale = float(scale_cfg) if isinstance(scale_cfg, (int, float)) else float(scale_cfg.get("depth", 0.75))
 
-        cn_strength = float(
-            merged.get("controlnet_strength", merged.get("strength", 0.45))
-        )
+        cn_strength = float(merged.get("controlnet_strength", merged.get("strength", 0.45)))
         return _finish(
             self._controlnet(
                 original,
@@ -489,7 +507,8 @@ class AnomalyEditor:
         )
 
     @classmethod
-    def from_config(cls, cfg: Any, device: str | None = None):
+    def from_config(cls, cfg: Any, device: str | None = None) -> AnomalyEditor:
+        """Create an instance from configuration."""
         generation = cfg.get("generation", cfg)
         controlnet = generation.get("controlnet", {})
         if device is None:
@@ -523,7 +542,7 @@ def _resolve_method(anom: Any, merged: Any) -> str:
 
 
 def _mask_to_pil(mask: np.ndarray) -> Image.Image:
-    u8 = (np.asarray(mask).astype(np.float32) > 0.5).astype(np.uint8) * 255
+    u8: np.ndarray = (np.asarray(mask).astype(np.float32) > 0.5).astype(np.uint8) * 255
     if u8.any():
         k = max(3, int(round(0.01 * max(u8.shape))))
         if k % 2 == 0:
@@ -542,16 +561,10 @@ def _fit_klein_inpaint(
     scale = target / long if long else 1.0
     new_w = max(16, int(round(width * scale / 16) * 16))
     new_h = max(16, int(round(height * scale / 16) * 16))
-    run_image = (
-        image
-        if (new_w, new_h) == (width, height)
-        else image.resize((new_w, new_h), Image.Resampling.LANCZOS)
-    )
+    run_image = image if (new_w, new_h) == (width, height) else image.resize((new_w, new_h), Image.Resampling.LANCZOS)
     mask_arr = np.asarray(edit_mask)
     if mask_arr.shape[0] != new_h or mask_arr.shape[1] != new_w:
-        mask_arr = cv2.resize(
-            mask_arr.astype(np.uint8), (new_w, new_h), interpolation=cv2.INTER_NEAREST
-        )
+        mask_arr = cv2.resize(mask_arr.astype(np.uint8), (new_w, new_h), interpolation=cv2.INTER_NEAREST)
     return run_image, _mask_to_pil(mask_arr)
 
 
@@ -561,10 +574,7 @@ def _depth_to_control_image(depth: DepthResult, width: int, height: int) -> Imag
     if d.shape != (height, width):
         d = cv2.resize(d, (width, height), interpolation=cv2.INTER_CUBIC)
     lo, hi = float(d.min()), float(d.max())
-    if hi > lo:
-        d = (d - lo) / (hi - lo)
-    else:
-        d = np.zeros_like(d)
+    d = (d - lo) / (hi - lo) if hi > lo else np.zeros_like(d)
     u8 = (np.clip(d, 0.0, 1.0) * 255.0).astype(np.uint8)
     rgb = np.stack([u8, u8, u8], axis=-1)
     return Image.fromarray(rgb, mode="RGB")

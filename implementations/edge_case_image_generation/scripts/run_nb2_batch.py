@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CLI for Notebook 2 batch synthesis (background / dual-GPU friendly).
+r"""CLI for Notebook 2 batch synthesis (background / dual-GPU friendly).
 
 Examples::
 
@@ -24,6 +24,25 @@ import argparse
 import os
 import sys
 from pathlib import Path
+from typing import Any
+
+from edgecase_synthesis.batch.checkpoint import write_split_snapshot
+from edgecase_synthesis.batch.export import export_nb2_dataset
+from edgecase_synthesis.batch.runner import run_batch_synthesis
+from edgecase_synthesis.config import load_config, load_env
+from edgecase_synthesis.data import prepare_sample_images
+from edgecase_synthesis.data.eda import (
+    allocate_budget,
+    clamp_counts,
+    group_by_tag,
+    list_tagged_images,
+    load_labels_for_dir,
+    pick_synth_seeds,
+    stratified_holdout,
+    summarize_distribution,
+    write_json,
+)
+from edgecase_synthesis.generate.pipeline import resolve_method_map
 
 
 def _find_project_root() -> Path:
@@ -37,8 +56,8 @@ def _parse_kv_ints(raw: str | None) -> dict[str, int]:
     if not raw:
         return {}
     out: dict[str, int] = {}
-    for part in raw.split(","):
-        part = part.strip()
+    for raw_part in raw.split(","):
+        part = raw_part.strip()
         if not part:
             continue
         if "=" not in part:
@@ -50,7 +69,7 @@ def _parse_kv_ints(raw: str | None) -> dict[str, int]:
 
 def _parse_methods(raw: list[str] | None, workshop: list[str]) -> dict[str, str]:
     if not raw:
-        return {aid: "instruct" for aid in workshop}
+        return dict.fromkeys(workshop, "instruct")
     out: dict[str, str] = {}
     for part in raw:
         if "=" not in part:
@@ -62,9 +81,8 @@ def _parse_methods(raw: list[str] | None, workshop: list[str]) -> dict[str, str]
     return out
 
 
-def main(argv: list[str] | None = None) -> int:
-    os.environ.setdefault("HF_HUB_DISABLE_XET", "1")
-
+def _build_parser() -> argparse.ArgumentParser:
+    """Build the Notebook 2 batch CLI parser."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", default="mapillary_vistas")
     parser.add_argument("--hardware", default="gpu_l4x2")
@@ -113,28 +131,21 @@ def main(argv: list[str] | None = None) -> int:
         action=argparse.BooleanOptionalAction,
         default=True,
     )
-    args = parser.parse_args(argv)
+    return parser
 
+
+def _prepare_run(args: argparse.Namespace, project_root: Path) -> dict[str, Any]:
+    """Prepare source splits, synthesis seeds, and checkpoint metadata."""
     project_root = _find_project_root()
     sys.path.insert(0, str(project_root / "src"))
 
-    from edgecase_synthesis.batch.checkpoint import write_split_snapshot
-    from edgecase_synthesis.batch.export import export_nb2_dataset
-    from edgecase_synthesis.batch.runner import run_batch_synthesis
-    from edgecase_synthesis.config import load_config, load_env
-    from edgecase_synthesis.data import prepare_sample_images
-    from edgecase_synthesis.data.eda import (
-        allocate_budget,
-        clamp_counts,
-        group_by_tag,
-        list_tagged_images,
-        load_labels_for_dir,
-        pick_synth_seeds,
-        stratified_holdout,
-        summarize_distribution,
-        write_json,
-    )
-    from edgecase_synthesis.generate.pipeline import resolve_method_map
+    pass
+    pass
+    pass
+    pass
+    pass
+    pass
+    pass
 
     load_env(project_root)
     cfg = load_config(
@@ -183,10 +194,7 @@ def main(argv: list[str] | None = None) -> int:
         rare_classes=workshop,
         seed=args.split_seed,
     )
-    target_accepts = {
-        k: min(int(target_accepts_cfg.get(k, len(v))), len(v))
-        for k, v in seeds_by_anomaly.items()
-    }
+    target_accepts = {k: min(int(target_accepts_cfg.get(k, len(v))), len(v)) for k, v in seeds_by_anomaly.items()}
 
     config_snapshot = {
         "dataset": args.dataset,
@@ -211,25 +219,42 @@ def main(argv: list[str] | None = None) -> int:
         target_accepts=target_accepts,
         config_snapshot=config_snapshot,
     )
+    return {
+        "cfg": cfg,
+        "output_dir": output_dir,
+        "train_real": train_real,
+        "test": test,
+        "labels": labels,
+        "seeds_by_anomaly": seeds_by_anomaly,
+        "method_map": method_map,
+        "target_accepts": target_accepts,
+        "config_snapshot": config_snapshot,
+    }
 
+
+def _print_run_summary(args: argparse.Namespace, project_root: Path, run: dict[str, Any]) -> None:
+    """Print the resolved batch configuration."""
     print("NB2 CLI")
     print(f"  project_root = {project_root}")
-    print(f"  output_dir   = {output_dir}")
+    print(f"  output_dir   = {run['output_dir']}")
     print(f"  hardware     = {args.hardware}")
-    print(f"  methods      = {method_map}")
-    print(f"  seeds        = { {k: len(v) for k, v in seeds_by_anomaly.items()} }")
-    print(f"  targets      = {target_accepts}")
+    print(f"  methods      = {run['method_map']}")
+    print(f"  seeds        = { {k: len(v) for k, v in run['seeds_by_anomaly'].items()} }")
+    print(f"  targets      = {run['target_accepts']}")
     print(f"  resume       = {args.resume}")
 
-    synth_dir = output_dir / "synthetic"
-    batch = run_batch_synthesis(
-        seeds_by_anomaly,
-        method_map,
-        cfg=cfg,
+
+def _run_batch(args: argparse.Namespace, project_root: Path, run: dict[str, Any]) -> Any:
+    """Execute synthesis using the prepared run inputs."""
+    output_dir = run["output_dir"]
+    return run_batch_synthesis(
+        run["seeds_by_anomaly"],
+        run["method_map"],
+        cfg=run["cfg"],
         project_root=project_root,
-        synth_dir=synth_dir,
+        synth_dir=output_dir / "synthetic",
         max_retries=args.max_retries,
-        target_accepts=target_accepts,
+        target_accepts=run["target_accepts"],
         require_target_boxes=args.require_target_boxes,
         resume=args.resume,
         nb2_dir=output_dir,
@@ -237,6 +262,9 @@ def main(argv: list[str] | None = None) -> int:
         verbose=bool(args.verbose),
     )
 
+
+def _report_and_export(args: argparse.Namespace, run: dict[str, Any], batch: Any) -> int:
+    """Print acceptance statistics and optionally export the dataset."""
     print("\nAcceptance rate per class:")
     for aid, st in batch.stats.items():
         print(
@@ -246,22 +274,33 @@ def main(argv: list[str] | None = None) -> int:
         )
 
     if args.no_export:
-        print("Skipped export (--no-export). Checkpoint under", output_dir / "checkpoint")
+        print("Skipped export (--no-export). Checkpoint under", run["output_dir"] / "checkpoint")
         return 0
 
     paths = export_nb2_dataset(
-        output_dir=output_dir,
+        output_dir=run["output_dir"],
         accepted=batch.accepted,
-        train_real=train_real,
-        test=test,
-        real_labels=labels,
+        train_real=run["train_real"],
+        test=run["test"],
+        real_labels=run["labels"],
         run_stats=batch.stats,
-        config_snapshot=config_snapshot,
+        config_snapshot=run["config_snapshot"],
     )
     print("Wrote:")
     for key, path in paths.items():
         print(f"  {key}: {path}")
     return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    """Run the batch generation command."""
+    os.environ.setdefault("HF_HUB_DISABLE_XET", "1")
+    args = _build_parser().parse_args(argv)
+    project_root = _find_project_root()
+    run = _prepare_run(args, project_root)
+    _print_run_summary(args, project_root, run)
+    batch = _run_batch(args, project_root, run)
+    return _report_and_export(args, run, batch)
 
 
 if __name__ == "__main__":

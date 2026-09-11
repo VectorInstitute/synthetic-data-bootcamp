@@ -4,11 +4,14 @@ from __future__ import annotations
 
 import json
 import random
-from collections import Counter
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Iterable, cast
 
-from edgecase_synthesis.data.loader import DetectionBox, IMAGE_EXTENSIONS, load_detection_labels
+import matplotlib.pyplot as plt
+from matplotlib.axes import Axes
+from matplotlib.figure import Figure
+
+from edgecase_synthesis.data.loader import IMAGE_EXTENSIONS, DetectionBox, load_detection_labels
 
 
 def stem_tag(path: Path | str, prefixes: list[str] | None = None) -> str:
@@ -34,12 +37,11 @@ def stem_tag(path: Path | str, prefixes: list[str] | None = None) -> str:
 
 
 def list_tagged_images(samples_dir: Path | str) -> list[Path]:
+    """List images carrying filename tags."""
     root = Path(samples_dir)
     if not root.exists():
         return []
-    return sorted(
-        p for p in root.iterdir() if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS
-    )
+    return sorted(p for p in root.iterdir() if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS)
 
 
 def group_by_tag(
@@ -48,10 +50,10 @@ def group_by_tag(
     tags: list[str] | None = None,
     prefixes: list[str] | None = None,
 ) -> dict[str, list[Path]]:
-    """Group image paths by stem tag. If ``tags`` is set, only those keys (empty lists ok).
+    """Group image paths by stem tag.
 
-    Pass ``prefixes`` (e.g. ``cfg.data.stem_prefixes``) so multi-word tags like
-    ``traffic_cone`` resolve correctly.
+    If ``tags`` is set, include only those keys. Pass ``prefixes`` so multi-word
+    tags such as ``traffic_cone`` resolve correctly.
     """
     match_prefixes = list(prefixes) if prefixes is not None else (list(tags) if tags else None)
     out: dict[str, list[Path]] = {t: [] for t in (tags or [])}
@@ -60,8 +62,8 @@ def group_by_tag(
         if tags is not None and tag not in out:
             continue
         out.setdefault(tag, []).append(path)
-    for key in out:
-        out[key] = sorted(out[key])
+    for key, values in out.items():
+        out[key] = sorted(values)
     return out
 
 
@@ -70,7 +72,7 @@ def image_has_label(
     labels: dict[str, list[DetectionBox]],
     class_names: list[str],
 ) -> bool:
-    """True if labels.json entry for this file contains any of ``class_names``."""
+    """Return whether the file's labels contain any requested class."""
     boxes = labels.get(path.name) or labels.get(path.stem) or []
     wanted = {c.lower() for c in class_names}
     return any(str(b.label).lower() in wanted for b in boxes)
@@ -84,21 +86,19 @@ def class_image_counts(
 ) -> dict[str, int]:
     """Count images per tag bucket (filename prefix).
 
-    Also adds ``clean_scene`` = scene-tagged images with none of ``rare_classes`` in labels
+    Also adds ``clean_scene`` = scene-tagged images with none of ``rare_classes`` in
+    labels
     when labels + rare_classes are provided.
     """
     counts = {tag: len(paths) for tag, paths in paths_by_tag.items()}
     if labels is not None and rare_classes and "scene" in paths_by_tag:
-        clean = [
-            p
-            for p in paths_by_tag["scene"]
-            if not image_has_label(p, labels, rare_classes)
-        ]
+        clean = [p for p in paths_by_tag["scene"] if not image_has_label(p, labels, rare_classes)]
         counts["clean_scene"] = len(clean)
     return counts
 
 
 def counts_to_shares(counts: dict[str, int]) -> dict[str, float]:
+    """Convert category counts to shares."""
     total = sum(counts.values()) or 1
     return {k: v / total for k, v in counts.items()}
 
@@ -107,17 +107,17 @@ def plot_class_bars(
     counts: dict[str, int],
     *,
     title: str = "Class distribution (images)",
-    ax=None,
-):
+    ax: Axes | None = None,
+) -> tuple[Figure, Axes]:
     """Bar chart of image counts. Returns (fig, ax)."""
-    import matplotlib.pyplot as plt
+    pass
 
     keys = list(counts.keys())
     vals = [counts[k] for k in keys]
     if ax is None:
         fig, ax = plt.subplots(figsize=(8, 4))
     else:
-        fig = ax.figure
+        fig = cast(Figure, ax.figure)
     bars = ax.bar(keys, vals, color="#3d7ea6")
     ax.set_ylabel("images")
     ax.set_title(title)
@@ -169,6 +169,7 @@ def stratified_holdout(
 
 
 def flatten_tag_groups(groups: dict[str, list[Path]]) -> list[Path]:
+    """Flatten grouped image paths."""
     out: list[Path] = []
     for paths in groups.values():
         out.extend(paths)
@@ -202,10 +203,10 @@ def pick_synth_seeds(
         )
     out: dict[str, list[Path]] = {}
     i = 0
-    for anomaly_id, n in n_per_class.items():
-        n = int(n)
-        out[anomaly_id] = sorted(pool[i : i + n])
-        i += n
+    for anomaly_id, requested_count in n_per_class.items():
+        count = int(requested_count)
+        out[anomaly_id] = sorted(pool[i : i + count])
+        i += count
     return out
 
 
@@ -214,6 +215,7 @@ def summarize_distribution(
     *,
     focus_tags: list[str] | None = None,
 ) -> dict[str, Any]:
+    """Summarize distribution."""
     if focus_tags is not None:
         counts = {t: len(paths_by_tag.get(t) or []) for t in focus_tags}
     else:
@@ -227,10 +229,12 @@ def summarize_distribution(
 
 
 def load_labels_for_dir(samples_dir: Path | str) -> dict[str, list[DetectionBox]]:
+    """Load labels for an image directory."""
     return load_detection_labels(samples_dir)
 
 
 def write_json(path: Path | str, payload: Any) -> Path:
+    """Write json."""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
@@ -259,7 +263,7 @@ def allocate_budget(requested: dict[str, int], budget: int) -> dict[str, int]:
     if total <= budget:
         return req
     if total == 0 or budget == 0:
-        return {k: 0 for k in req}
+        return dict.fromkeys(req, 0)
     out = {k: int(budget * (v / total)) for k, v in req.items()}
     # Distribute leftover to keys that were truncated the most.
     while sum(out.values()) < budget:

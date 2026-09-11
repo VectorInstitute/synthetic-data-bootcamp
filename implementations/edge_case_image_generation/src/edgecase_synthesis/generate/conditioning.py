@@ -8,23 +8,30 @@ from typing import Any
 
 import cv2
 import numpy as np
+import scipy  # noqa: F401
 import torch
+import transformers.utils.import_utils as iu
 from PIL import Image
 from transformers import (
     AutoImageProcessor,
     AutoModelForDepthEstimation,
     AutoModelForSemanticSegmentation,
+    Mask2FormerForUniversalSegmentation,
 )
 
 
 @dataclass
 class DepthResult:
+    """Represent DepthResult configuration and behavior."""
+
     depth_map: np.ndarray  # float32 (H, W) in [0, 1]
     colormap: np.ndarray  # uint8 RGB
 
 
 @dataclass
 class SegmentationResult:
+    """Represent SegmentationResult configuration and behavior."""
+
     label_map: np.ndarray  # int (H, W)
     colored_map: np.ndarray  # uint8 RGB
     overlay: np.ndarray  # uint8 RGB
@@ -33,6 +40,7 @@ class SegmentationResult:
 
 
 def resolve_device(device: str | None = None) -> torch.device:
+    """Resolve the requested inference device."""
     if device is not None:
         return torch.device(device)
     if torch.cuda.is_available():
@@ -68,9 +76,7 @@ def _colorize_labels(label_map: np.ndarray) -> np.ndarray:
 
 
 def _blend(rgb: np.ndarray, colored: np.ndarray, alpha: float = 0.45) -> np.ndarray:
-    return np.clip(rgb.astype(np.float32) * (1 - alpha) + colored.astype(np.float32) * alpha, 0, 255).astype(
-        np.uint8
-    )
+    return np.clip(rgb.astype(np.float32) * (1 - alpha) + colored.astype(np.float32) * alpha, 0, 255).astype(np.uint8)
 
 
 class DepthEstimator:
@@ -79,12 +85,13 @@ class DepthEstimator:
     def __init__(self, model_id: str, device: str | None = None) -> None:
         self.model_id = model_id
         self.device = resolve_device(device)
-        self.processor = AutoImageProcessor.from_pretrained(model_id)
+        self.processor = AutoImageProcessor.from_pretrained(model_id)  # type: ignore[no-untyped-call]
         self.model = AutoModelForDepthEstimation.from_pretrained(model_id)
         self.model.to(self.device).eval()
 
     @torch.inference_mode()
     def predict(self, image: Image.Image | np.ndarray | Path | str) -> DepthResult:
+        """Run model inference on an image."""
         pil = _to_pil(image)
         inputs = self.processor(images=pil, return_tensors="pt")
         inputs = {k: v.to(self.device) for k, v in inputs.items()}
@@ -99,7 +106,8 @@ class DepthEstimator:
         return DepthResult(depth_map=norm.astype(np.float32), colormap=colormap)
 
     @classmethod
-    def from_config(cls, cfg: Any, device: str | None = None):
+    def from_config(cls, cfg: Any, device: str | None = None) -> DepthEstimator:
+        """Create an instance from configuration."""
         conditioning = cfg.get("conditioning", cfg)
         depth = conditioning.get("depth", conditioning)
         if device is None:
@@ -112,7 +120,8 @@ class DepthEstimator:
 class Segmenter:
     """Semantic segmentation (model id + optional ground class ids from config)."""
 
-    # Used when Mask2Former is configured but scipy is missing / invisible to transformers.
+    # Used when Mask2Former is configured but scipy is missing or invisible to
+    # transformers.
     _FALLBACK_SEGFORMER = "nvidia/segformer-b3-finetuned-ade-512-512"
 
     def __init__(
@@ -125,24 +134,24 @@ class Segmenter:
         self.model_name = model_name
         self.ground_class_ids = list(ground_class_ids or [])
         self.device = resolve_device(device)
-        self.processor = None
-        self.model = None
+        self.processor: Any | None = None
+        self.model: Any | None = None
         self._is_mask2former = "mask2former" in model_name.lower()
 
     @staticmethod
     def _scipy_ready() -> bool:
-        """True only if scipy is importable *and* transformers agrees (it caches at import)."""
+        """Return whether SciPy is available to Transformers."""
         try:
-            import scipy  # noqa: F401
+            pass
         except ImportError:
             return False
         try:
-            import transformers.utils.import_utils as iu
+            pass
 
             # transformers sets `_scipy_available` once at import — refresh if needed.
             if not iu.is_scipy_available():
                 available, version = iu._is_package_available("scipy")
-                iu._scipy_available = available
+                iu._scipy_available = available  # type: ignore[attr-defined]
                 if hasattr(iu, "_scipy_version"):
                     iu._scipy_version = version
             return bool(iu.is_scipy_available())
@@ -154,20 +163,20 @@ class Segmenter:
             return
         if self._is_mask2former and not self._scipy_ready():
             print(
-                f"Mask2Former needs scipy (not visible in this kernel) — "
-                f"falling back to {self._FALLBACK_SEGFORMER}",
+                f"Mask2Former needs scipy (not visible in this kernel) — falling back to {self._FALLBACK_SEGFORMER}",
                 flush=True,
             )
             self.model_name = self._FALLBACK_SEGFORMER
             self._is_mask2former = False
-        self.processor = AutoImageProcessor.from_pretrained(self.model_name)
+        self.processor = AutoImageProcessor.from_pretrained(self.model_name)  # type: ignore[no-untyped-call]
         if self._is_mask2former:
-            from transformers import Mask2FormerForUniversalSegmentation
+            pass
 
             self.model = Mask2FormerForUniversalSegmentation.from_pretrained(self.model_name)
         else:
             self.model = AutoModelForSemanticSegmentation.from_pretrained(self.model_name)
-        self.model.to(self.device).eval()
+        model: Any = self.model
+        model.to(self.device).eval()
 
     @torch.inference_mode()
     def predict(
@@ -177,6 +186,7 @@ class Segmenter:
         overlay_alpha: float = 0.45,
         label_map_path: Path | str | None = None,
     ) -> SegmentationResult:
+        """Run model inference on an image."""
         pil = _to_pil(image)
         rgb = np.array(pil)
         h, w = rgb.shape[:2]
@@ -195,15 +205,11 @@ class Segmenter:
             inputs = {k: v.to(self.device) for k, v in inputs.items()}
             outputs = self.model(**inputs)
             if self._is_mask2former:
-                labels_t = self.processor.post_process_semantic_segmentation(
-                    outputs, target_sizes=[(h, w)]
-                )[0]
+                labels_t = self.processor.post_process_semantic_segmentation(outputs, target_sizes=[(h, w)])[0]
                 labels = labels_t.cpu().numpy().astype(np.int32)
             else:
                 logits = outputs.logits
-                up = torch.nn.functional.interpolate(
-                    logits, size=(h, w), mode="bilinear", align_corners=False
-                )
+                up = torch.nn.functional.interpolate(logits, size=(h, w), mode="bilinear", align_corners=False)
                 labels = up.argmax(dim=1)[0].cpu().numpy().astype(np.int32)
 
         colored = _colorize_labels(labels)
@@ -219,7 +225,8 @@ class Segmenter:
         )
 
     @classmethod
-    def from_config(cls, cfg: Any, device: str | None = None):
+    def from_config(cls, cfg: Any, device: str | None = None) -> Segmenter:
+        """Create an instance from configuration."""
         conditioning = cfg.get("conditioning", cfg)
         seg = conditioning.get("segmentation", conditioning)
         if device is None:
@@ -235,7 +242,7 @@ class Segmenter:
 
 def build_anomaly_edit_mask(
     segmentation: SegmentationResult | None,
-    edit_mask_cfg: dict | None,
+    edit_mask_cfg: dict[str, Any] | None,
     *,
     width: int,
     height: int,
@@ -264,9 +271,7 @@ def build_anomaly_edit_mask(
         y1 = float(cfg.get("y1", 0.75)) * height
         mask = (xx >= x0) & (xx <= x1) & (yy >= y0) & (yy <= y1)
     elif mode == "road_patch":
-        mask = _road_patch_ellipse(
-            segmentation, depth, width=width, height=height, cfg=cfg, xx=xx, yy=yy
-        )
+        mask = _road_patch_ellipse(segmentation, depth, width=width, height=height, cfg=cfg, xx=xx, yy=yy)
     else:  # ellipse (default) and seg_intersection base
         cx = float(cfg.get("cx", 0.5)) * width
         cy = float(cfg.get("cy", 0.5)) * height
@@ -283,7 +288,7 @@ def build_anomaly_edit_mask(
 
     seed_mask = mask.copy()
 
-    # Optional: prefer nearer pixels when depth is available (generic, not domain-specific).
+    # Optionally prefer nearer pixels when depth is available.
     if depth is not None and bool(cfg.get("prefer_near", False)) and mask.any():
         d = depth.depth_map
         if d.shape != (height, width):
@@ -294,10 +299,7 @@ def build_anomaly_edit_mask(
         clipped = mask & near
         # If prefer_near collapses to a crescent/sliver, keep the seed ellipse.
         min_keep = float(cfg.get("min_mask_keep", 0.35))
-        if float(clipped.mean()) >= min_keep * float(seed_mask.mean() + 1e-8):
-            mask = clipped
-        else:
-            mask = seed_mask
+        mask = clipped if float(clipped.mean()) >= min_keep * float(seed_mask.mean() + 1e-08) else seed_mask
 
     mask = _dilate(mask, int(cfg.get("dilate", 1)))
     weight = cv2.GaussianBlur(mask.astype(np.float32), (0, 0), max(blur_sigma, 0.5))
@@ -310,7 +312,7 @@ def _road_patch_ellipse(
     *,
     width: int,
     height: int,
-    cfg: dict,
+    cfg: dict[str, Any],
     xx: np.ndarray,
     yy: np.ndarray,
 ) -> np.ndarray:
@@ -320,12 +322,7 @@ def _road_patch_ellipse(
     y_max = float(cfg.get("y_max", 0.92))
     x_min = float(cfg.get("x_min", 0.22))
     x_max = float(cfg.get("x_max", 0.78))
-    band = (
-        (yy >= y_min * height)
-        & (yy <= y_max * height)
-        & (xx >= x_min * width)
-        & (xx <= x_max * width)
-    )
+    band = (yy >= y_min * height) & (yy <= y_max * height) & (xx >= x_min * width) & (xx <= x_max * width)
     region = support & band
     if not region.any():
         region = support & (yy >= y_min * height) & (yy <= y_max * height)
@@ -361,7 +358,7 @@ def _seg_support(
     segmentation: SegmentationResult | None,
     width: int,
     height: int,
-    cfg: dict,
+    cfg: dict[str, Any],
 ) -> np.ndarray:
     if segmentation is None:
         return np.ones((height, width), dtype=bool)
@@ -372,7 +369,7 @@ def _seg_support(
             labels = cv2.resize(labels.astype(np.int32), (width, height), interpolation=cv2.INTER_NEAREST)
         return np.isin(labels, list(class_ids))
     if segmentation.edit_mask is not None:
-        mask = segmentation.edit_mask.astype(np.uint8)
+        mask: np.ndarray = segmentation.edit_mask.astype(np.uint8)
         if mask.shape != (height, width):
             mask = cv2.resize(mask, (width, height), interpolation=cv2.INTER_NEAREST)
         return mask.astype(bool)

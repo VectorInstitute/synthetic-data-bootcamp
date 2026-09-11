@@ -12,11 +12,22 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Literal
 
+import torch
+from huggingface_hub import get_token, try_to_load_from_cache
+
+from edgecase_synthesis.config import load_config, load_env
+from edgecase_synthesis.data import list_sample_images, prepare_sample_images
+from edgecase_synthesis.data.mapillary_extract import ensure_mapillary_samples
+from edgecase_synthesis.judge.vlm_api import make_openai_client, resolve_proxy_base_url
+
+
 Status = Literal["pass", "warn", "fail", "skip"]
 
 
 @dataclass
 class CheckResult:
+    """Represent CheckResult configuration and behavior."""
+
     name: str
     status: Status
     detail: str
@@ -24,30 +35,38 @@ class CheckResult:
 
     @property
     def ok(self) -> bool:
+        """Return whether all checks passed."""
         return self.status in {"pass", "warn", "skip"}
 
 
 @dataclass
 class PreflightReport:
+    """Represent PreflightReport configuration and behavior."""
+
     results: list[CheckResult] = field(default_factory=list)
     recommended_hardware: str = "cpu"
 
     def add(self, result: CheckResult) -> None:
+        """Add the requested operation."""
         self.results.append(result)
 
     @property
     def failed(self) -> list[CheckResult]:
+        """Return the failed checks."""
         return [r for r in self.results if r.status == "fail"]
 
     @property
     def warnings(self) -> list[CheckResult]:
+        """Return checks that produced warnings."""
         return [r for r in self.results if r.status == "warn"]
 
     @property
     def ready(self) -> bool:
+        """Return whether preflight checks passed."""
         return not self.failed
 
     def print_table(self) -> None:
+        """Print a table of preflight results."""
         width = max((len(r.name) for r in self.results), default=8)
         icon = {"pass": "OK", "warn": "!!", "fail": "XX", "skip": "--"}
         print(f"{'STATUS':<6}  {'CHECK':<{width}}  DETAIL")
@@ -58,9 +77,7 @@ class PreflightReport:
                 print(f"{'':6}  {'':<{width}}  → {r.fix}")
         print()
         if self.ready:
-            print(
-                f"Preflight READY — recommended HARDWARE=\"{self.recommended_hardware}\""
-            )
+            print(f'Preflight READY — recommended HARDWARE="{self.recommended_hardware}"')
         else:
             print("Preflight BLOCKED — fix the XX rows before Notebook 1.")
 
@@ -74,6 +91,7 @@ def _mask_key(key: str | None) -> str:
 
 
 def check_imports() -> CheckResult:
+    """Check imports."""
     missing: list[str] = []
     for mod in ("torch", "transformers", "PIL", "omegaconf", "hydra", "openai"):
         try:
@@ -87,7 +105,7 @@ def check_imports() -> CheckResult:
             f"missing: {', '.join(missing)}",
             "From repo root: uv sync --dev --group edge-case-image-generation",
         )
-    import torch
+    pass
 
     return CheckResult(
         "python packages",
@@ -97,6 +115,7 @@ def check_imports() -> CheckResult:
 
 
 def check_env_file(project_root: Path) -> CheckResult:
+    """Check env file."""
     env_path = project_root / ".env"
     example = project_root / ".env.example"
     if env_path.is_file():
@@ -110,11 +129,8 @@ def check_env_file(project_root: Path) -> CheckResult:
 
 
 def check_proxy_key() -> CheckResult:
-    key = (
-        os.environ.get("OPENAI_API_KEY")
-        or os.environ.get("VECTOR_PROXY_API_KEY")
-        or ""
-    ).strip()
+    """Check proxy key."""
+    key = (os.environ.get("OPENAI_API_KEY") or os.environ.get("VECTOR_PROXY_API_KEY") or "").strip()
     if not key:
         return CheckResult(
             "Vector API key",
@@ -139,7 +155,7 @@ def check_proxy_chat(
 ) -> CheckResult:
     """Tiny text-only call — proves the Vector proxy key works."""
     try:
-        from edgecase_synthesis.judge.vlm_api import make_openai_client, resolve_proxy_base_url
+        pass
     except Exception as exc:  # noqa: BLE001
         return CheckResult("Vector proxy chat", "fail", f"import error: {exc}")
 
@@ -179,7 +195,7 @@ def check_proxy_chat(
 
 def probe_hardware() -> tuple[CheckResult, str, dict[str, Any]]:
     """Return (check, recommended_hardware_name, facts)."""
-    import torch
+    pass
 
     facts: dict[str, Any] = {
         "cuda_available": bool(torch.cuda.is_available()),
@@ -191,7 +207,7 @@ def probe_hardware() -> tuple[CheckResult, str, dict[str, Any]]:
             CheckResult(
                 "GPU / CUDA",
                 "warn",
-                "CUDA not available — use HARDWARE=\"cpu\" (slow edits)",
+                'CUDA not available — use HARDWARE="cpu" (slow edits)',
                 "For workshop speed, run on a Vertex / cloud L4 notebook",
             ),
             "cpu",
@@ -235,6 +251,7 @@ def probe_hardware() -> tuple[CheckResult, str, dict[str, Any]]:
 
 
 def check_disk(path: Path, *, min_free_gb: float = 15.0) -> CheckResult:
+    """Check disk."""
     usage = shutil.disk_usage(path)
     free_gb = usage.free / (1024**3)
     if free_gb < min_free_gb:
@@ -248,8 +265,9 @@ def check_disk(path: Path, *, min_free_gb: float = 15.0) -> CheckResult:
 
 
 def check_samples(project_root: Path, *, dataset_name: str = "mapillary_vistas") -> CheckResult:
-    from edgecase_synthesis.config import load_config
-    from edgecase_synthesis.data import list_sample_images
+    """Check samples."""
+    pass
+    pass
 
     cfg = load_config(
         start=project_root,
@@ -270,8 +288,7 @@ def check_samples(project_root: Path, *, dataset_name: str = "mapillary_vistas")
     return CheckResult(
         "sample images",
         "pass",
-        f"{len(paths)} images in {samples_dir.name}/ "
-        f"({len(scenes)} scene_ seeds, {len(tagged)} tagged)",
+        f"{len(paths)} images in {samples_dir.name}/ ({len(scenes)} scene_ seeds, {len(tagged)} tagged)",
     )
 
 
@@ -285,8 +302,8 @@ def ensure_workshop_data(
     """Download / verify workshop samples (Mapillary toy extract with tqdm)."""
     if dataset_name != "mapillary_vistas":
         # Other datasets still use prepare_sample_images / local folders.
-        from edgecase_synthesis.config import load_config
-        from edgecase_synthesis.data import list_sample_images, prepare_sample_images
+        pass
+        pass
 
         cfg = load_config(
             start=project_root,
@@ -295,22 +312,17 @@ def ensure_workshop_data(
         prepare_sample_images(cfg=cfg, force=clean)
         return list_sample_images(Path(cfg.paths.samples_dir))
 
-    from edgecase_synthesis.data.mapillary_extract import ensure_mapillary_samples
+    pass
 
-    return ensure_mapillary_samples(
-        project_root, clean=clean, min_images=min_images
-    )
+    return ensure_mapillary_samples(project_root, clean=clean, min_images=min_images)
 
 
 def check_hf_token() -> CheckResult:
-    token = (
-        os.environ.get("HF_TOKEN")
-        or os.environ.get("HUGGING_FACE_HUB_TOKEN")
-        or ""
-    ).strip()
+    """Check hf token."""
+    token = (os.environ.get("HF_TOKEN") or os.environ.get("HUGGING_FACE_HUB_TOKEN") or "").strip()
     home = Path.home() / ".cache" / "huggingface" / "token"
     try:
-        from huggingface_hub import get_token
+        pass
 
         hub_token = get_token()
     except Exception:
@@ -330,9 +342,9 @@ def check_hf_token() -> CheckResult:
 
 
 def _hub_cached(repo_id: str) -> bool | None:
-    """True if any snapshot exists locally; None if hub helpers unavailable."""
+    """Return whether any model snapshot exists locally, if detectable."""
     try:
-        from huggingface_hub import try_to_load_from_cache
+        pass
     except ImportError:
         return None
     # Prefer checking config.json / model_index.json presence in cache.
@@ -347,17 +359,16 @@ def _hub_cached(repo_id: str) -> bool | None:
     hub = Path(os.environ.get("HF_HOME", Path.home() / ".cache" / "huggingface")) / "hub"
     safe = "models--" + repo_id.replace("/", "--")
     snap = hub / safe / "snapshots"
-    if snap.is_dir() and any(snap.iterdir()):
-        return True
-    return False
+    return bool(snap.is_dir() and any(snap.iterdir()))
 
 
 def check_model_availability(project_root: Path, *, hardware: str) -> CheckResult:
-    from edgecase_synthesis.config import load_config
+    """Check model availability."""
+    pass
 
     cfg = load_config(
         start=project_root,
-        overrides=[f"dataset_name=mapillary_vistas", f"hardware={hardware}"],
+        overrides=["dataset_name=mapillary_vistas", f"hardware={hardware}"],
     )
     repos = [
         ("depth", str(cfg.conditioning.depth.model_id)),
@@ -377,9 +388,9 @@ def check_model_availability(project_root: Path, *, hardware: str) -> CheckResul
             # Ultralytics weight name — check common cache locations lightly.
             ultra = Path.home() / ".cache" / "ultralytics" / repo
             cwd_pt = Path.cwd() / repo
-            hit = ultra.is_file() or cwd_pt.is_file()
-            cached_n += int(hit)
-            lines.append(f"{role}: {repo} [{'cached' if hit else 'will download on first use'}]")
+            weight_hit = ultra.is_file() or cwd_pt.is_file()
+            cached_n += int(weight_hit)
+            lines.append(f"{role}: {repo} [{'cached' if weight_hit else 'will download on first use'}]")
             continue
         hit = _hub_cached(repo)
         if hit is True:
@@ -402,6 +413,7 @@ def check_model_availability(project_root: Path, *, hardware: str) -> CheckResul
 
 
 def check_yolo_weight() -> CheckResult:
+    """Check yolo weight."""
     name = "yolov8s-worldv2.pt"
     candidates = [
         Path.cwd() / name,
@@ -426,7 +438,7 @@ def run_preflight(
     hardware_override: str | None = None,
 ) -> PreflightReport:
     """Run the full checklist and return a printable report."""
-    from edgecase_synthesis.config import load_env
+    pass
 
     load_env(project_root)
     report = PreflightReport()
@@ -442,9 +454,7 @@ def run_preflight(
     report.recommended_hardware = hardware_override or recommended
 
     report.add(check_samples(project_root, dataset_name=dataset_name))
-    report.add(
-        check_model_availability(project_root, hardware=report.recommended_hardware)
-    )
+    report.add(check_model_availability(project_root, hardware=report.recommended_hardware))
     report.add(check_yolo_weight())
 
     if ping_proxy and not any(r.name == "Vector API key" and r.status == "fail" for r in report.results):

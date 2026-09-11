@@ -16,18 +16,22 @@ from pathlib import Path
 from threading import Lock
 from typing import Any
 
+import cv2
 import numpy as np
 import torch
 from PIL import Image
+from transformers import CLIPModel, CLIPProcessor
 
-from edgecase_synthesis.generate.conditioning import resolve_device
-from edgecase_synthesis.data.loader import DetectionBox
 from edgecase_synthesis.data.eda import group_by_tag, list_tagged_images, load_labels_for_dir
+from edgecase_synthesis.data.loader import DetectionBox
+from edgecase_synthesis.generate.conditioning import resolve_device
 from edgecase_synthesis.judge.references import _crop_box, _label_matches
 
 
 @dataclass
 class EmbeddingGateConfig:
+    """Represent EmbeddingGateConfig configuration and behavior."""
+
     enabled: bool = True
     model_id: str = "openai/clip-vit-base-patch32"
     # Cosine similarity in [−1, 1]; CLIP image pairs are typically ~0.5–0.95.
@@ -56,6 +60,7 @@ class EmbeddingGateMetrics:
     reason: str = ""
 
     def to_dict(self) -> dict[str, Any]:
+        """Convert the value to to dict."""
         return {
             "enabled": self.enabled,
             "model_id": self.model_id,
@@ -96,19 +101,22 @@ class ClipImageEncoder:
     ) -> None:
         self.model_id = model_id
         self.device = resolve_device(device)
-        self._processor = None
-        self._model = None
+        self._processor: CLIPProcessor | None = None
+        self._model: CLIPModel | None = None
 
     def _ensure(self) -> None:
         if self._model is not None:
             return
-        from transformers import CLIPModel, CLIPProcessor
+        pass
 
         self._processor = CLIPProcessor.from_pretrained(self.model_id)
         self._model = CLIPModel.from_pretrained(self.model_id)
-        self._model.to(self.device).eval()
+        assert self._model is not None
+        model: Any = self._model
+        model.to(self.device).eval()
 
     def unload(self) -> None:
+        """Release loaded model resources."""
         self._model = None
         self._processor = None
         if torch.cuda.is_available():
@@ -139,15 +147,15 @@ class ClipImageEncoder:
 
 
 def cosine_sim(a: np.ndarray, b: np.ndarray) -> float:
+    """Compute cosine similarity between vectors."""
     a = np.asarray(a, dtype=np.float32).reshape(-1)
     b = np.asarray(b, dtype=np.float32).reshape(-1)
     denom = float(np.linalg.norm(a) * np.linalg.norm(b)) + 1e-8
     return float(np.dot(a, b) / denom)
 
 
-def nearest_neighbor(
-    query: np.ndarray, bank: list[_BankEntry]
-) -> tuple[float | None, str | None]:
+def nearest_neighbor(query: np.ndarray, bank: list[_BankEntry]) -> tuple[float | None, str | None]:
+    """Return the nearest reference embedding."""
     if not bank:
         return None, None
     best_sim = -1.0
@@ -183,8 +191,7 @@ def crop_from_mask_or_boxes(
         if targets:
             # Largest target box.
             targets.sort(
-                key=lambda b: max(0.0, float(b[2]) - float(b[0]))
-                * max(0.0, float(b[3]) - float(b[1])),
+                key=lambda b: max(0.0, float(b[2]) - float(b[0])) * max(0.0, float(b[3]) - float(b[1])),
                 reverse=True,
             )
             return _crop_box(image, targets[0], pad=0.08, max_side=max_side)
@@ -194,11 +201,9 @@ def crop_from_mask_or_boxes(
         if mask.ndim == 3:
             mask = mask.any(axis=-1)
         if mask.shape[:2] != (h, w):
-            import cv2
+            pass
 
-            mask = cv2.resize(
-                mask.astype(np.uint8), (w, h), interpolation=cv2.INTER_NEAREST
-            ).astype(bool)
+            mask = cv2.resize(mask.astype(np.uint8), (w, h), interpolation=cv2.INTER_NEAREST).astype(bool)
         ys, xs = np.where(mask)
         if len(xs) >= 8:
             x1, x2 = int(xs.min()), int(xs.max()) + 1
@@ -227,6 +232,7 @@ class EmbeddingGate:
         self._lock = Lock()
 
     def unload(self) -> None:
+        """Release loaded model resources."""
         self.encoder.unload()
 
     def _load_labels(self) -> dict[str, list[DetectionBox]]:
@@ -280,21 +286,17 @@ class EmbeddingGate:
                 if not class_boxes:
                     continue
                 class_boxes.sort(
-                    key=lambda b: max(0.0, float(b.bbox_xyxy[2]) - float(b.bbox_xyxy[0]))
-                    * max(0.0, float(b.bbox_xyxy[3]) - float(b.bbox_xyxy[1])),
+                    key=lambda b: (
+                        max(0.0, float(b.bbox_xyxy[2]) - float(b.bbox_xyxy[0]))
+                        * max(0.0, float(b.bbox_xyxy[3]) - float(b.bbox_xyxy[1]))
+                    ),
                     reverse=True,
                 )
                 try:
                     full = Image.open(path).convert("RGB")
-                    crop = _crop_box(
-                        full, class_boxes[0].bbox_xyxy, pad=0.08, max_side=max_side
-                    )
+                    crop = _crop_box(full, class_boxes[0].bbox_xyxy, pad=0.08, max_side=max_side)
                     cvec = self.encoder.encode(crop)
-                    banks.real_crop.append(
-                        _BankEntry(
-                            vector=cvec, path=str(path), kind="real", role="crop"
-                        )
-                    )
+                    banks.real_crop.append(_BankEntry(vector=cvec, path=str(path), kind="real", role="crop"))
                 except Exception:
                     continue
         return banks
@@ -339,6 +341,7 @@ class EmbeddingGate:
         crop: Image.Image | None = None,
         exclude_paths: set[str] | None = None,
     ) -> EmbeddingGateMetrics:
+        """Evaluate the requested operation."""
         cfg = self.config
         metrics = EmbeddingGateMetrics(enabled=cfg.enabled, model_id=cfg.model_id)
         if not cfg.enabled:
@@ -351,11 +354,7 @@ class EmbeddingGate:
             def _filter(entries: list[_BankEntry]) -> list[_BankEntry]:
                 if not exclude:
                     return list(entries)
-                return [
-                    e
-                    for e in entries
-                    if Path(e.path).stem not in exclude and e.path not in exclude
-                ]
+                return [e for e in entries if Path(e.path).stem not in exclude and e.path not in exclude]
 
             try:
                 full_vec = self.encoder.encode(image)
@@ -377,9 +376,7 @@ class EmbeddingGate:
                 pass
             elif float(sim_g) < float(cfg.min_real_sim_global):
                 metrics.failed_fidelity = True
-                reasons.append(
-                    f"real_sim_global={sim_g:.3f} < min={cfg.min_real_sim_global:.3f}"
-                )
+                reasons.append(f"real_sim_global={sim_g:.3f} < min={cfg.min_real_sim_global:.3f}")
 
             if cfg.use_local and crop is not None and banks.real_crop:
                 try:
@@ -388,17 +385,13 @@ class EmbeddingGate:
                     metrics.real_sim_local = sim_l
                     if sim_l is not None and float(sim_l) < float(cfg.min_real_sim_local):
                         metrics.failed_fidelity = True
-                        reasons.append(
-                            f"real_sim_local={sim_l:.3f} < min={cfg.min_real_sim_local:.3f}"
-                        )
+                        reasons.append(f"real_sim_local={sim_l:.3f} < min={cfg.min_real_sim_local:.3f}")
                 except Exception:
                     pass
 
             if sim_n is not None and float(sim_n) > float(cfg.max_neighbor_sim):
                 metrics.failed_novelty = True
-                reasons.append(
-                    f"neighbor_sim={sim_n:.3f} > max={cfg.max_neighbor_sim:.3f}"
-                )
+                reasons.append(f"neighbor_sim={sim_n:.3f} > max={cfg.max_neighbor_sim:.3f}")
 
             metrics.reason = "; ".join(reasons)
             return metrics
@@ -411,6 +404,7 @@ def embedding_gate_from_config(
     stem_prefixes: list[str] | None = None,
     device: str | None = None,
 ) -> EmbeddingGate:
+    """Create an embedding gate from configuration."""
     raw = {}
     if judge_cfg is not None and hasattr(judge_cfg, "get"):
         raw = dict(judge_cfg.get("embedding_gate") or {})

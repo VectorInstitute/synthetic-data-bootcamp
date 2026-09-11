@@ -5,12 +5,11 @@ from __future__ import annotations
 import random
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
 
 from PIL import Image
 
-from edgecase_synthesis.data.loader import DetectionBox
 from edgecase_synthesis.data.eda import group_by_tag, list_tagged_images, load_labels_for_dir
+from edgecase_synthesis.data.loader import DetectionBox
 
 
 @dataclass
@@ -91,9 +90,7 @@ def pick_class_references(
                 crop = _crop_box(full, box.bbox_xyxy, pad=0.08, max_side=max_side)
             except Exception:
                 continue
-            out.append(
-                ReferenceImage(image=crop, path=path, role="crop", label=str(box.label))
-            )
+            out.append(ReferenceImage(image=crop, path=path, role="crop", label=str(box.label)))
             crop_count += 1
 
     return out
@@ -110,9 +107,7 @@ def _load_rgb(path: Path, *, max_side: int) -> Image.Image:
     return img
 
 
-def _boxes_for_path(
-    path: Path, labels: dict[str, list[DetectionBox]]
-) -> list[DetectionBox]:
+def _boxes_for_path(path: Path, labels: dict[str, list[DetectionBox]]) -> list[DetectionBox]:
     return list(labels.get(path.name) or labels.get(path.stem) or [])
 
 

@@ -2,20 +2,24 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any
 
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.axes import Axes
+from matplotlib.figure import Figure
 from PIL import Image
 
-from edgecase_synthesis.generate.annotation import AnnotationResult
-from edgecase_synthesis.generate.conditioning import DepthResult, SegmentationResult
 from edgecase_synthesis.data.loader import ImageSample
+from edgecase_synthesis.generate.annotation import AnnotationResult
+from edgecase_synthesis.generate.compare_methods import COMPARE_METHODS, METHOD_SPECS
+from edgecase_synthesis.generate.conditioning import DepthResult, SegmentationResult
 from edgecase_synthesis.generate.generation import GenerationResult
 
 
-def show_image(image: Image.Image | np.ndarray, *, title: str = "", ax=None):
+def show_image(image: Image.Image | np.ndarray, *, title: str = "", ax: Axes | None = None) -> Axes:
     """Display a single image on a matplotlib axis."""
     if ax is None:
         _, ax = plt.subplots(figsize=(6, 4))
@@ -28,7 +32,12 @@ def show_image(image: Image.Image | np.ndarray, *, title: str = "", ax=None):
     return ax
 
 
-def show_samples(samples: list[ImageSample], *, ncol: int = 3, figsize=(12, 4)):
+def show_samples(
+    samples: list[ImageSample],
+    *,
+    ncol: int = 3,
+    figsize: tuple[float, float] = (12, 4),
+) -> tuple[Figure, Any]:
     """Grid of loaded real images."""
     n = len(samples)
     nrow = int(np.ceil(n / ncol))
@@ -50,8 +59,8 @@ def show_depth_result(
     sample: ImageSample,
     depth: DepthResult,
     *,
-    figsize=(12, 4),
-):
+    figsize: tuple[float, float] = (12, 4),
+) -> tuple[Figure, Any]:
     """Original | grayscale depth | colormap depth."""
     fig, axes = plt.subplots(1, 3, figsize=figsize)
 
@@ -70,8 +79,8 @@ def show_segmentation_result(
     sample: ImageSample,
     seg: SegmentationResult,
     *,
-    figsize=(12, 4),
-):
+    figsize: tuple[float, float] = (12, 4),
+) -> tuple[Figure, Any]:
     """Original | colored regions | overlay."""
     fig, axes = plt.subplots(1, 3, figsize=figsize)
 
@@ -89,8 +98,8 @@ def show_structure_overview(
     depth: DepthResult,
     seg: SegmentationResult,
     *,
-    figsize=(14, 8),
-):
+    figsize: tuple[float, float] = (14, 8),
+) -> tuple[Figure, Any]:
     """2×2 panel: original, depth, segmentation, overlay — for notebook summaries."""
     fig, axes = plt.subplots(2, 2, figsize=figsize)
 
@@ -100,8 +109,7 @@ def show_structure_overview(
     show_image(seg.overlay, title="4. Segmentation overlay", ax=axes[1, 1])
 
     fig.suptitle(
-        f"Structure extraction — {sample.name}\n"
-        "(these maps guide diffusion; they are NOT sent to the VLM judge later)",
+        f"Structure extraction — {sample.name}\n(these maps guide diffusion; they are NOT sent to the VLM judge later)",
         fontsize=13,
         y=1.02,
     )
@@ -146,8 +154,8 @@ def show_generation_result(
     sample: ImageSample,
     generated: GenerationResult,
     *,
-    figsize=(12, 5),
-):
+    figsize: tuple[float, float] = (12, 5),
+) -> tuple[Figure, Any]:
     """Original vs ControlNet edit with the prompt used."""
     fig, axes = plt.subplots(1, 2, figsize=figsize)
     show_image(sample.image, title="Source", ax=axes[0])
@@ -171,10 +179,10 @@ def show_method_comparison(
     bundle: Any,
     *,
     methods: tuple[str, ...] | None = None,
-    figsize=(16, 10),
-):
+    figsize: tuple[float, float] = (16, 10),
+) -> Figure:
     """Notebook 1.5 panel: original | mask/depth/seg | method outputs."""
-    from edgecase_synthesis.generate.compare_methods import METHOD_SPECS, COMPARE_METHODS
+    pass
 
     methods = tuple(methods) if methods is not None else tuple(COMPARE_METHODS)
     n_out = max(len(methods), 1)
@@ -225,9 +233,7 @@ def show_method_comparison(
                 0.05,
                 0.5,
                 "\n".join(
-                    f"• {METHOD_SPECS[m].title}: {METHOD_SPECS[m].summary}"
-                    for m in methods
-                    if m in METHOD_SPECS
+                    f"• {METHOD_SPECS[m].title}: {METHOD_SPECS[m].summary}" for m in methods if m in METHOD_SPECS
                 ),
                 va="center",
                 fontsize=9,
@@ -272,7 +278,7 @@ def save_compare_artifacts(
             "seed": result.seed,
         }
     meta_path = root / "meta.json"
-    import json
+    pass
 
     meta_path.write_text(json.dumps(meta, indent=2))
     paths["meta"] = meta_path
@@ -284,8 +290,8 @@ def show_annotation_result(
     annotation: AnnotationResult,
     *,
     title: str = "Annotations",
-    figsize=(12, 5),
-):
+    figsize: tuple[float, float] = (12, 5),
+) -> tuple[Figure, Any]:
     """Original vs open-vocabulary detections (YOLO-World boxes)."""
     fig, axes = plt.subplots(1, 2, figsize=figsize)
     show_image(image, title="Image", ax=axes[0])
@@ -349,8 +355,8 @@ def show_judge_result(
     judgment: Any,
     *,
     title: str | None = None,
-    figsize=(10, 4),
-):
+    figsize: tuple[float, float] = (10, 4),
+) -> tuple[Figure, Any]:
     """Show the judged RGB image with a scorecard (depth/seg are not used)."""
     fig, axes = plt.subplots(1, 2, figsize=figsize, gridspec_kw={"width_ratios": [1.2, 1]})
     show_image(image, title="Judged image (RGB only)", ax=axes[0])
@@ -417,7 +423,7 @@ def save_judge_artifact(
     output_dir: Path | str,
 ) -> Path:
     """Persist judge JSON next to other notebook artifacts."""
-    import json
+    pass
 
     root = Path(output_dir) / "judgments"
     root.mkdir(parents=True, exist_ok=True)

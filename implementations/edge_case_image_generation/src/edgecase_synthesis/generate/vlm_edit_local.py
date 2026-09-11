@@ -10,6 +10,7 @@ from dataclasses import dataclass
 from typing import Any, Literal
 
 import torch
+from diffusers import QwenImageEditPipeline
 from PIL import Image
 
 from edgecase_synthesis.generate.conditioning import resolve_device
@@ -18,6 +19,8 @@ from edgecase_synthesis.generate.generation import _ensure_same_size, _fit_for_d
 
 @dataclass
 class VlmLocalEditConfig:
+    """Represent VlmLocalEditConfig configuration and behavior."""
+
     model_id: str = "Qwen/Qwen-Image-Edit"
     num_inference_steps: int = 20
     true_cfg_scale: float = 4.0
@@ -34,15 +37,10 @@ def _cache_key(model_id: str, device: str) -> tuple[str, str]:
 
 def unload_qwen_edit_pipeline(*, model_id: str | None = None, device: str | None = None) -> None:
     """Drop cached pipeline (call before loading Klein / SD pipes on the same GPU)."""
-    global _pipe_cache
     if model_id is None and device is None:
         _pipe_cache.clear()
     else:
-        keys = [
-            k
-            for k in _pipe_cache
-            if (model_id is None or k[0] == model_id) and (device is None or k[1] == device)
-        ]
+        keys = [k for k in _pipe_cache if (model_id is None or k[0] == model_id) and (device is None or k[1] == device)]
         for k in keys:
             _pipe_cache.pop(k, None)
     if torch.cuda.is_available():
@@ -55,7 +53,7 @@ def _get_pipeline(model_id: str, device: torch.device) -> Any:
         return _pipe_cache[key]
 
     try:
-        from diffusers import QwenImageEditPipeline
+        pass
     except ImportError as exc:  # pragma: no cover
         raise ImportError(
             "diffusers with QwenImageEditPipeline is required for vlm_generate_local. "
@@ -70,9 +68,9 @@ def _get_pipeline(model_id: str, device: torch.device) -> Any:
     # Spread across GPUs when available (e.g. gpu_l4x2).
     if device.type == "cuda" and torch.cuda.device_count() > 1:
         kwargs["device_map"] = "balanced"
-        pipe = QwenImageEditPipeline.from_pretrained(model_id, **kwargs)
+        pipe = QwenImageEditPipeline.from_pretrained(model_id, **kwargs)  # type: ignore[no-untyped-call]
     else:
-        pipe = QwenImageEditPipeline.from_pretrained(model_id, **kwargs)
+        pipe = QwenImageEditPipeline.from_pretrained(model_id, **kwargs)  # type: ignore[no-untyped-call]
         pipe.to(device)
 
     pipe.set_progress_bar_config(disable=True)

@@ -7,14 +7,20 @@ import random
 import shutil
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.axes import Axes
+from matplotlib.figure import Figure
 from PIL import Image
 
 from edgecase_synthesis.data.eda import write_json
+from ultralytics import YOLO  # type: ignore[attr-defined]
 
 
 def canonicalize_label(label: str) -> str:
+    """Canonicalize a label for matching."""
     return str(label).lower().strip().replace("-", " ").replace("_", " ")
 
 
@@ -37,6 +43,7 @@ def build_alias_lookup(
 
 
 def box_to_class_id(label: str, lookup: dict[str, int]) -> int | None:
+    """Map a detection box to its class identifier."""
     return lookup.get(canonicalize_label(label))
 
 
@@ -72,11 +79,14 @@ def xyxy_to_yolo(
 
 
 def load_manifest(path: Path | str) -> list[dict[str, Any]]:
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+    """Load a dataset manifest."""
+    return cast(list[dict[str, Any]], json.loads(Path(path).read_text(encoding="utf-8")))
 
 
 @dataclass
 class DatasetBuildStats:
+    """Represent DatasetBuildStats configuration and behavior."""
+
     n_images: int = 0
     n_boxes: int = 0
     n_skipped_boxes: int = 0
@@ -103,8 +113,7 @@ def _limit_scene_rows(
         n_scene = sum(
             1
             for r in rows
-            if str(r.get("split", "real")).lower() != "synthetic"
-            and str(r.get("tag", "")).lower() == "scene"
+            if str(r.get("split", "real")).lower() != "synthetic" and str(r.get("tag", "")).lower() == "scene"
         )
         return rows, n_scene, 0
 
@@ -195,8 +204,7 @@ def count_usable_synthetic(
             continue
         if drop_empty_synthetic:
             has_box = any(
-                box_to_class_id(str(box.get("label", "")), lookup) is not None
-                for box in (row.get("boxes") or [])
+                box_to_class_id(str(box.get("label", "")), lookup) is not None for box in (row.get("boxes") or [])
             )
             if not has_box:
                 continue
@@ -213,7 +221,7 @@ def synth_caps_for_fraction(
     aliases: dict[str, list[str]] | None = None,
     drop_empty_synthetic: bool = True,
 ) -> dict[str, int]:
-    """Per-class caps = floor(usable_count × fraction). Used for 50% / 100% ablations."""
+    """Calculate per-class synthetic caps for an ablation fraction."""
     if fraction < 0 or fraction > 1:
         raise ValueError(f"fraction must be in [0, 1], got {fraction}")
     available = count_usable_synthetic(
@@ -236,6 +244,97 @@ def _resolve_synth_cap(
             return None  # class absent from fraction map → keep all of that key
         return int(caps[key])
     return int(caps)
+
+
+def _should_skip_yolo_row(
+    row: dict[str, Any],
+    *,
+    split: str,
+    include_synthetic: bool,
+    drop_empty_synthetic: bool,
+    lookup: dict[str, int],
+    resolved_caps: int | dict[str, int] | None,
+    synth_kept: dict[str, int],
+    stats: DatasetBuildStats,
+) -> bool:
+    """Apply synthetic filtering and per-class caps to one manifest row."""
+    kind = str(row.get("split", "real")).lower()
+    if split == "train" and kind == "synthetic" and not include_synthetic:
+        return True
+    if split == "val" and kind == "synthetic":
+        return True
+    if split == "train" and kind == "synthetic" and drop_empty_synthetic:
+        has_target = any(
+            box_to_class_id(str(box.get("label", "")), lookup) is not None for box in row.get("boxes") or []
+        )
+        if not has_target:
+            stats.n_skipped_boxes += 1
+            return True
+    if split == "train" and kind == "synthetic" and resolved_caps is not None:
+        synth_key = _synth_class_key(row)
+        cap = _resolve_synth_cap(synth_key, resolved_caps)
+        return cap is not None and synth_kept.get(synth_key, 0) >= cap
+    return False
+
+
+def _ingest_yolo_rows(
+    rows: list[dict[str, Any]],
+    *,
+    split: str,
+    root: Path,
+    stats: DatasetBuildStats,
+    lookup: dict[str, int],
+    class_names: list[str],
+    include_synthetic: bool,
+    drop_empty_synthetic: bool,
+    resolved_caps: int | dict[str, int] | None,
+    synth_kept: dict[str, int],
+    copy_images: bool,
+) -> None:
+    """Materialize one YOLO split and update its build statistics."""
+    for row in rows:
+        if _should_skip_yolo_row(
+            row,
+            split=split,
+            include_synthetic=include_synthetic,
+            drop_empty_synthetic=drop_empty_synthetic,
+            lookup=lookup,
+            resolved_caps=resolved_caps,
+            synth_kept=synth_kept,
+            stats=stats,
+        ):
+            continue
+        kind = str(row.get("split", "real")).lower()
+        src = Path(str(row["path"]))
+        if not src.exists():
+            raise FileNotFoundError(f"Manifest image missing: {src}")
+        stem = src.stem
+        dst_img = root / "images" / split / src.name
+        if dst_img.exists() or (root / "labels" / split / f"{stem}.txt").exists():
+            stem = f"{kind}_{stem}"
+            dst_img = root / "images" / split / f"{stem}{src.suffix}"
+        _link_or_copy(src, dst_img, copy=copy_images)
+        with Image.open(src) as im:
+            width, height = im.size
+        write_yolo_label_file(
+            root / "labels" / split / f"{stem}.txt",
+            list(row.get("boxes") or []),
+            width=width,
+            height=height,
+            lookup=lookup,
+            class_names=class_names,
+            stats=stats,
+        )
+        stats.n_images += 1
+        if kind == "synthetic":
+            stats.n_synthetic += 1
+            if split == "train":
+                key = _synth_class_key(row)
+                synth_kept[key] = synth_kept.get(key, 0) + 1
+        else:
+            stats.n_real += 1
+            if str(row.get("tag", "")).lower() == "scene":
+                stats.n_scene += 1
 
 
 def build_yolo_dataset(
@@ -310,67 +409,23 @@ def build_yolo_dataset(
             drop_empty_synthetic=drop_empty_synthetic,
         )
 
-    def _row_has_target_box(row: dict[str, Any]) -> bool:
-        for box in row.get("boxes") or []:
-            if box_to_class_id(str(box.get("label", "")), lookup) is not None:
-                return True
-        return False
-
-    def _ingest(rows: list[dict[str, Any]], split: str, stats: DatasetBuildStats) -> None:
-        for row in rows:
-            kind = str(row.get("split", "real")).lower()
-            if split == "train" and kind == "synthetic" and not include_synthetic:
-                continue
-            if split == "val" and kind == "synthetic":
-                # Never evaluate on synthetic / auto-labels.
-                continue
-            if (
-                split == "train"
-                and kind == "synthetic"
-                and drop_empty_synthetic
-                and not _row_has_target_box(row)
-            ):
-                stats.n_skipped_boxes += 1  # reuse counter: empty synth dropped
-                continue
-            if split == "train" and kind == "synthetic" and resolved_caps is not None:
-                synth_key = _synth_class_key(row)
-                cap = _resolve_synth_cap(synth_key, resolved_caps)
-                if cap is not None and synth_kept.get(synth_key, 0) >= cap:
-                    continue
-            src = Path(str(row["path"]))
-            if not src.exists():
-                raise FileNotFoundError(f"Manifest image missing: {src}")
-            stem = src.stem
-            dst_img = root / "images" / split / src.name
-            # Avoid collisions if two sources share a filename.
-            if dst_img.exists() or (root / "labels" / split / f"{stem}.txt").exists():
-                stem = f"{kind}_{stem}"
-                dst_img = root / "images" / split / f"{stem}{src.suffix}"
-            _link_or_copy(src, dst_img, copy=copy_images)
-            with Image.open(src) as im:
-                width, height = im.size
-            write_yolo_label_file(
-                root / "labels" / split / f"{stem}.txt",
-                list(row.get("boxes") or []),
-                width=width,
-                height=height,
-                lookup=lookup,
-                class_names=class_names,
-                stats=stats,
-            )
-            stats.n_images += 1
-            if kind == "synthetic":
-                stats.n_synthetic += 1
-                if split == "train":
-                    key = _synth_class_key(row)
-                    synth_kept[key] = synth_kept.get(key, 0) + 1
-            else:
-                stats.n_real += 1
-                if str(row.get("tag", "")).lower() == "scene":
-                    stats.n_scene += 1
-
-    _ingest(train_manifest, "train", train_stats)
-    _ingest(test_manifest, "val", val_stats)
+    for rows, split, stats in (
+        (train_manifest, "train", train_stats),
+        (test_manifest, "val", val_stats),
+    ):
+        _ingest_yolo_rows(
+            rows,
+            split=split,
+            stats=stats,
+            root=root,
+            lookup=lookup,
+            class_names=class_names,
+            include_synthetic=include_synthetic,
+            drop_empty_synthetic=drop_empty_synthetic,
+            resolved_caps=resolved_caps,
+            synth_kept=synth_kept,
+            copy_images=copy_images,
+        )
 
     data_yaml = root / "data.yaml"
     names_block = "\n".join(f"  {i}: {n}" for i, n in enumerate(class_names))
@@ -411,6 +466,8 @@ def build_yolo_dataset(
 
 @dataclass
 class TrainResult:
+    """Represent TrainResult configuration and behavior."""
+
     name: str
     weights: Path
     metrics: dict[str, Any]
@@ -450,7 +507,7 @@ def train_detector(
     patience: int = 20,
 ) -> TrainResult:
     """Fine-tune an Ultralytics YOLO detector; return best weights + val metrics."""
-    from ultralytics import YOLO
+    pass
 
     data_yaml = Path(data_yaml)
     project_dir = Path(project_dir)
@@ -500,7 +557,7 @@ def evaluate_detector(
     split: str = "val",
 ) -> dict[str, Any]:
     """Run Ultralytics val and return a flat metrics dict (mAP + per-class AP)."""
-    from ultralytics import YOLO
+    pass
 
     model = YOLO(str(weights))
     kwargs: dict[str, Any] = {
@@ -513,10 +570,7 @@ def evaluate_detector(
         kwargs["device"] = device
     results = model.val(**kwargs)
     names = getattr(results, "names", None) or {}
-    if isinstance(names, dict):
-        class_names = [names[i] for i in sorted(names)]
-    else:
-        class_names = list(names)
+    class_names = [names[i] for i in sorted(names)] if isinstance(names, dict) else list(names)
 
     per_class: dict[str, float] = {}
     box = getattr(results, "box", None)
@@ -562,19 +616,24 @@ def metrics_table(runs: list[TrainResult]) -> list[dict[str, Any]]:
     return rows
 
 
-def plot_map_comparison(runs: list[TrainResult], *, title: str = "Detector comparison", ax=None):
-    """Grouped bars: mAP50 + per-class AP50 for each run."""
-    import matplotlib.pyplot as plt
-    import numpy as np
+def plot_map_comparison(
+    runs: list[TrainResult],
+    *,
+    title: str = "Detector comparison",
+    ax: Axes | None = None,
+) -> tuple[Figure, Axes]:
+    """Plot grouped mAP50 and per-class AP50 bars for each run."""
+    pass
+    pass
 
     if ax is None:
         fig, ax = plt.subplots(figsize=(9, 4.5))
     else:
-        fig = ax.figure
+        fig = cast(Figure, ax.figure)
 
     class_keys: list[str] = []
     for run in runs:
-        for cls in (run.metrics.get("per_class_ap50") or {}):
+        for cls in run.metrics.get("per_class_ap50") or {}:
             if cls not in class_keys:
                 class_keys.append(cls)
     metric_keys = ["map50", *[f"ap50::{c}" for c in class_keys]]
@@ -611,7 +670,7 @@ def predict_gallery(
     max_images: int = 8,
 ) -> list[Path]:
     """Save prediction overlays for a handful of test images."""
-    from ultralytics import YOLO
+    pass
 
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -621,10 +680,11 @@ def predict_gallery(
         kwargs: dict[str, Any] = {"conf": conf, "verbose": False}
         if device is not None:
             kwargs["device"] = device
-        results = model.predict(str(path), **kwargs)
+        results = list(model.predict(str(path), **kwargs))
         if not results:
             continue
-        plotted = results[0].plot()  # BGR ndarray
+        result: Any = results[0]
+        plotted = result.plot()  # BGR ndarray
         dest = out_dir / f"pred_{path.stem}.jpg"
         Image.fromarray(plotted[:, :, ::-1]).save(dest, quality=92)
         saved.append(dest)

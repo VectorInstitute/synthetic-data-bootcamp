@@ -38,7 +38,7 @@ load_config(overrides=["dataset_name=mapillary_vistas", "hardware=cpu"])
 load_config(overrides=["dataset_name=mapillary_vistas", "hardware=gpu_l4"])
 ```
 
-**L4:** FLUX.2-klein-4B for inpaint + instruct (default generator); SD 1.5 ControlNet depth+seg.  
+**L4:** FLUX.2-klein-4B for inpaint + instruct (default generator); SD 1.5 ControlNet depth+seg.
 **Judge:** API vision chat by default (`configs/default/judge.yaml`); optional local Qwen for offline.
 
 ## Setup

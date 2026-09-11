@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
+from dotenv import load_dotenv
 from hydra import compose, initialize_config_dir
 from hydra.core.global_hydra import GlobalHydra
 from omegaconf import DictConfig, OmegaConf
@@ -13,9 +14,9 @@ from edgecase_synthesis.data.loader import project_root
 
 
 def load_env(start: Path | None = None) -> Path | None:
-    """Load ``.env`` from the implementation root (never overrides existing env vars)."""
+    """Load ``.env`` without overriding existing environment variables."""
     try:
-        from dotenv import load_dotenv
+        pass
     except ImportError:
         return None
     env_path = project_root(start) / ".env"
@@ -26,36 +27,32 @@ def load_env(start: Path | None = None) -> Path | None:
 
 
 def configs_dir(start: Path | None = None) -> Path:
+    """Return the configuration directory."""
     return project_root(start) / "configs"
 
 
 def datasets_dir(start: Path | None = None) -> Path:
+    """Return the dataset configuration directory."""
     return configs_dir(start) / "datasets"
 
 
 def merge_skip_null(base: Any, overlay: Any) -> Any:
     """Deep-merge overlay into base; ``null`` / ``None`` means keep base value."""
-    base_cfg = OmegaConf.create(
-        OmegaConf.to_container(base, resolve=False) if OmegaConf.is_config(base) else base
-    )
+    base_cfg = OmegaConf.create(OmegaConf.to_container(base, resolve=False) if OmegaConf.is_config(base) else base)
     OmegaConf.set_struct(base_cfg, False)
     if overlay is None:
         return base_cfg
-    if OmegaConf.is_config(overlay):
-        over_obj = OmegaConf.to_container(overlay, resolve=False)
-    else:
-        over_obj = overlay
+    over_obj = OmegaConf.to_container(overlay, resolve=False) if OmegaConf.is_config(overlay) else overlay
     if not isinstance(over_obj, dict):
         return OmegaConf.create(over_obj)
+    if not isinstance(base_cfg, DictConfig):
+        base_cfg = OmegaConf.create({})
+    assert isinstance(base_cfg, DictConfig)
 
     for key, val in over_obj.items():
         if val is None:
             continue
-        if (
-            key in base_cfg
-            and OmegaConf.is_dict(base_cfg[key])
-            and isinstance(val, dict)
-        ):
+        if key in base_cfg and OmegaConf.is_dict(base_cfg[key]) and isinstance(val, dict):
             base_cfg[key] = merge_skip_null(base_cfg[key], val)
         else:
             base_cfg[key] = val
@@ -67,22 +64,19 @@ def _load_yaml(path: Path) -> DictConfig:
         return OmegaConf.create({})
     cfg = OmegaConf.load(path)
     OmegaConf.set_struct(cfg, False)
-    return cfg  # type: ignore[return-value]
+    return cast(DictConfig, cfg)
 
 
 def list_dataset_names(*, start: Path | None = None) -> list[str]:
+    """List available dataset packages."""
     root = datasets_dir(start)
     if not root.exists():
         return []
-    return sorted(
-        p.name
-        for p in root.iterdir()
-        if p.is_dir() and not p.name.startswith(".") and p.name != "_template"
-    )
+    return sorted(p.name for p in root.iterdir() if p.is_dir() and not p.name.startswith(".") and p.name != "_template")
 
 
 def load_dataset_package(dataset_name: str, *, start: Path | None = None) -> DictConfig:
-    """Load configs/datasets/<name>/{dataset,data,annotation,generation/default}.yaml."""
+    """Load the named dataset configuration package."""
     root = datasets_dir(start) / dataset_name
     if not root.is_dir():
         available = ", ".join(list_dataset_names(start=start)) or "(none)"
@@ -138,8 +132,7 @@ def load_config(
     cfg.paths.project_root = str(root)
     # Re-resolve after dataset_name / paths are final.
     OmegaConf.resolve(cfg)
-    cfg = _prune_nulls(cfg)
-    return cfg
+    return cast(DictConfig, _prune_nulls(cfg))
 
 
 def _prune_nulls(cfg: Any) -> Any:
@@ -167,6 +160,7 @@ def anomalies_dir(dataset: str, *, start: Path | None = None) -> Path:
 
 
 def list_anomalies(dataset: str, *, start: Path | None = None) -> list[str]:
+    """List configured anomalies for a dataset."""
     root = anomalies_dir(dataset, start=start)
     if not root.exists():
         return []
@@ -179,24 +173,24 @@ def load_anomaly(
     *,
     start: Path | None = None,
 ) -> DictConfig:
+    """Load an anomaly configuration."""
     path = anomalies_dir(dataset, start=start) / f"{anomaly_id}.yaml"
     if not path.exists():
         available = ", ".join(list_anomalies(dataset, start=start)) or "(none)"
-        raise FileNotFoundError(
-            f"Unknown anomaly {dataset}/{anomaly_id!r}. Available: {available}"
-        )
+        raise FileNotFoundError(f"Unknown anomaly {dataset}/{anomaly_id!r}. Available: {available}")
     return _load_yaml(path)
 
 
 def merge_generation_anomaly(
-    generation: DictConfig | dict,
-    anomaly: DictConfig | dict,
+    generation: DictConfig | dict[str, Any],
+    anomaly: DictConfig | dict[str, Any],
     *,
     method: str | None = None,
 ) -> DictConfig:
     """Merge shared generation + anomaly + optional method block (null-safe)."""
     base = merge_skip_null(OmegaConf.create({}), generation)
     anom = OmegaConf.create(OmegaConf.to_container(anomaly, resolve=True))
+    assert isinstance(anom, DictConfig)
     OmegaConf.set_struct(anom, False)
 
     # Shared anomaly fields (excluding nested methods / metadata-only).
@@ -239,11 +233,11 @@ def merge_generation_anomaly(
             base = merge_skip_null(base, block)
 
     base.anomaly = anom
-    return base  # type: ignore[return-value]
+    return cast(DictConfig, base)
 
 
-def resolve_method_prompt(merged: DictConfig | dict, method: str) -> tuple[str, str]:
-    """Return (prompt, negative_prompt) after method merge; apply CN fidelity if needed."""
+def resolve_method_prompt(merged: DictConfig | dict[str, Any], method: str) -> tuple[str, str]:
+    """Return merged positive and negative prompts for a method."""
     prompt = str(merged.get("prompt") or "").strip()
     negative = str(merged.get("negative_prompt") or "").strip()
     method = str(method).lower()
@@ -265,5 +259,6 @@ def resolve_method_prompt(merged: DictConfig | dict, method: str) -> tuple[str, 
     return prompt, negative
 
 
-def config_to_dict(cfg: DictConfig) -> dict:
-    return OmegaConf.to_container(cfg, resolve=True)  # type: ignore[return-value]
+def config_to_dict(cfg: DictConfig) -> dict[str, Any]:
+    """Convert configuration data to a dictionary."""
+    return cast(dict[str, Any], OmegaConf.to_container(cfg, resolve=True))

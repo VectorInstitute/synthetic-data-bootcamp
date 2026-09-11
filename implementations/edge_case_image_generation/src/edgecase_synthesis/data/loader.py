@@ -3,16 +3,21 @@
 from __future__ import annotations
 
 import json
+import shutil
 import time
+import xml.etree.ElementTree as ET
+import zipfile
 from dataclasses import dataclass
 from io import BytesIO
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 from urllib.parse import urlencode
 
 import requests
+from datasets import load_dataset
 from omegaconf import DictConfig, OmegaConf
 from PIL import Image
+
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".bmp"}
 USER_AGENT = "edgecase-synthesis/0.2 (educational)"
@@ -28,6 +33,7 @@ class ImageSample:
 
     @property
     def size(self) -> tuple[int, int]:
+        """Return the image dimensions."""
         return self.image.size
 
 
@@ -41,6 +47,8 @@ class DetectionBox:
 
 @dataclass(frozen=True)
 class DataSourceInfo:
+    """Represent DataSourceInfo configuration and behavior."""
+
     name: str
     label: str
     license: str
@@ -48,10 +56,7 @@ class DataSourceInfo:
 
 
 def _is_impl_root(candidate: Path) -> bool:
-    return (
-        (candidate / "configs" / "config.yaml").is_file()
-        and (candidate / "src" / "edgecase_synthesis").is_dir()
-    )
+    return (candidate / "configs" / "config.yaml").is_file() and (candidate / "src" / "edgecase_synthesis").is_dir()
 
 
 def project_root(start: Path | None = None) -> Path:
@@ -75,7 +80,7 @@ def project_root(start: Path | None = None) -> Path:
 def _as_dict(cfg: DictConfig | dict[str, Any]) -> dict[str, Any]:
     if isinstance(cfg, dict):
         return cfg
-    return OmegaConf.to_container(cfg, resolve=True)  # type: ignore[return-value]
+    return cast(dict[str, Any], OmegaConf.to_container(cfg, resolve=True))
 
 
 def get_data_source_info(cfg: DictConfig | dict[str, Any]) -> DataSourceInfo:
@@ -93,12 +98,11 @@ def get_data_source_info(cfg: DictConfig | dict[str, Any]) -> DataSourceInfo:
 
 
 def list_sample_images(samples_dir: Path | str) -> list[Path]:
+    """List sample images in a directory."""
     root = Path(samples_dir)
     if not root.exists():
         return []
-    return sorted(
-        p for p in root.iterdir() if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS
-    )
+    return sorted(p for p in root.iterdir() if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS)
 
 
 def _prefer_sample_paths(
@@ -127,8 +131,9 @@ def load_sample_images(
     *,
     cfg: DictConfig | dict[str, Any] | None = None,
 ) -> list[ImageSample]:
+    """Load sample images from a directory."""
     if cfg is None and samples_dir is None:
-        from edgecase_synthesis.config import load_config
+        from edgecase_synthesis.config import load_config  # noqa: PLC0415
 
         cfg = load_config()
     config = _as_dict(cfg) if cfg is not None else {}
@@ -151,6 +156,8 @@ def load_detection_labels(
     """Load optional bbox labels written next to samples (labels.json)."""
     if cfg is not None and samples_dir is None:
         samples_dir = _as_dict(cfg)["paths"]["samples_dir"]
+    if samples_dir is None:
+        samples_dir = project_root() / "data" / "samples"
     path = Path(samples_dir) / "labels.json"
     if not path.exists():
         return {}
@@ -176,23 +183,20 @@ def _read_source_meta(target: Path) -> dict[str, Any]:
     if not path.exists():
         return {}
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
+        return cast(dict[str, Any], json.loads(path.read_text(encoding="utf-8")))
     except json.JSONDecodeError:
         return {}
 
 
 def _cache_matches_source(target: Path, source: dict[str, Any]) -> bool:
-    """True if samples_dir looks like the active Hydra data source (not a stale domain)."""
+    """Return whether the sample cache matches the active data source."""
     paths = list_sample_images(target)
     if not paths:
         return False
 
     expected = _source_name(source)
     meta = _read_source_meta(target)
-    blob = " ".join(
-        str(meta.get(k, "")).lower()
-        for k in ("dataset", "name", "hf_id", "archive_url", "note")
-    )
+    blob = " ".join(str(meta.get(k, "")).lower() for k in ("dataset", "name", "hf_id", "archive_url", "note"))
     stems = [p.stem.lower() for p in paths]
     prefixes = [str(p).lower() for p in (source.get("stem_prefixes") or [])]
 
@@ -231,7 +235,7 @@ def prepare_sample_images(
 ) -> list[Path]:
     """Populate samples_dir from the active Hydra data source."""
     if cfg is None:
-        from edgecase_synthesis.config import load_config
+        from edgecase_synthesis.config import load_config  # noqa: PLC0415
 
         cfg = load_config()
 
@@ -251,40 +255,41 @@ def prepare_sample_images(
             return existing
 
     if kind == "local":
-        if existing and _cache_matches_source(target, source):
-            return existing
-        if existing:
-            raise _stale_cache_error(target, source)
-        name = _source_name(source)
-        if name in {"mapillary_vistas", "mapillary"}:
-            return _ensure_mapillary_samples(target)
-        raise FileNotFoundError(
-            f"No images in {target}. Drop files there or run the dataset extract/"
-            f"prepare step (dataset={name!r})."
-        )
-    if kind == "urls":
-        return _prepare_urls(target, source, force=force)
-    if kind == "hf_detection":
-        return _prepare_hf_detection(target, source, force=force)
-    if kind == "voc_zip":
-        return _prepare_voc_zip(target, source, force=force)
-    if kind == "hf_rows":
-        return _prepare_hf_rows(target, source, force=force)
-    raise ValueError(
-        f"Unknown data.kind={kind!r}. Use local | urls | hf_detection | voc_zip | hf_rows."
+        return _prepare_local(target, source, existing)
+    preparers = {
+        "urls": _prepare_urls,
+        "hf_detection": _prepare_hf_detection,
+        "voc_zip": _prepare_voc_zip,
+        "hf_rows": _prepare_hf_rows,
+    }
+    if kind not in preparers:
+        raise ValueError(f"Unknown data.kind={kind!r}. Use local | urls | hf_detection | voc_zip | hf_rows.")
+    return preparers[kind](target, source, force=force)
+
+
+def _prepare_local(target: Path, source: dict[str, Any], existing: list[Path]) -> list[Path]:
+    """Return a valid local cache or provision the Mapillary sample cache."""
+    if existing and _cache_matches_source(target, source):
+        return existing
+    if existing:
+        raise _stale_cache_error(target, source)
+    name = _source_name(source)
+    if name in {"mapillary_vistas", "mapillary"}:
+        return _ensure_mapillary_samples(target)
+    raise FileNotFoundError(
+        f"No images in {target}. Drop files there or run the dataset extract/prepare step (dataset={name!r})."
     )
 
 
 def _ensure_mapillary_samples(target: Path) -> list[Path]:
     """Extract the Mapillary toy subset when ``samples_dir`` is empty."""
-    from edgecase_synthesis.data.mapillary_extract import ensure_mapillary_samples
+    from edgecase_synthesis.data.mapillary_extract import ensure_mapillary_samples  # noqa: PLC0415
 
     root = Path(__file__).resolve().parents[2]
     paths = ensure_mapillary_samples(root, min_images=1)
     if not paths:
         raise FileNotFoundError(
-            f"Extract finished but {target} is still empty. "
-            "Check HF login / access to candylion/mapillary-vistas-v2."
+            f"Extract finished but {target} is still empty. Check HF login / access to candylion/mapillary-vistas-v2."
         )
     return paths
 
@@ -309,9 +314,8 @@ def _prepare_urls(target: Path, source: dict[str, Any], *, force: bool) -> list[
 
 
 def _prepare_voc_zip(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:
-    """Download a Pascal-VOC zip (e.g. RDD2022 country subset) and cache samples + labels."""
-    import xml.etree.ElementTree as ET
-    import zipfile
+    """Download a Pascal-VOC archive and cache its samples and labels."""
+    pass
 
     archive_url = str(source.get("archive_url") or "")
     if not archive_url:
@@ -326,16 +330,7 @@ def _prepare_voc_zip(target: Path, source: dict[str, Any], *, force: bool) -> li
         print(f"Downloading {archive_url} → {zip_path} …")
         _download_file(archive_url, zip_path)
 
-    extract_dir = dataset_root / str(source.get("extract_dirname") or zip_path.stem)
-    if not extract_dir.exists() or force:
-        print(f"Extracting {zip_path.name} …")
-        if extract_dir.exists() and force:
-            import shutil
-
-            shutil.rmtree(extract_dir)
-        with zipfile.ZipFile(zip_path, "r") as zf:
-            zf.extractall(extract_dir)
-
+    extract_dir = _extract_voc_archive(dataset_root, zip_path, source, force=force)
     images_glob = str(source.get("images_glob") or "**/train/images/*.[jJ][pP][gG]")
     ann_glob = str(source.get("annotations_glob") or "**/train/annotations/xmls/*.xml")
     image_paths = sorted(extract_dir.glob(images_glob))
@@ -351,7 +346,47 @@ def _prepare_voc_zip(target: Path, source: dict[str, Any], *, force: bool) -> li
     max_images = int(source.get("max_images", 8))
     include_empty = bool(source.get("include_unlabeled", False))
 
-    # Score images: prefer rare classes first (e.g. pothole D40).
+    picked = _pick_voc_images(
+        image_paths,
+        xml_by_stem,
+        class_map,
+        prefer,
+        max_images=max_images,
+        include_empty=include_empty,
+    )
+    if not picked:
+        raise RuntimeError(f"No annotated images found under {extract_dir}")
+    return _save_voc_samples(target, source, archive_url, picked, force=force)
+
+
+def _extract_voc_archive(
+    dataset_root: Path,
+    zip_path: Path,
+    source: dict[str, Any],
+    *,
+    force: bool,
+) -> Path:
+    """Extract a downloaded VOC archive when needed."""
+    extract_dir = dataset_root / str(source.get("extract_dirname") or zip_path.stem)
+    if not extract_dir.exists() or force:
+        print(f"Extracting {zip_path.name} …")
+        if extract_dir.exists() and force:
+            shutil.rmtree(extract_dir)
+        with zipfile.ZipFile(zip_path, "r") as zf:
+            zf.extractall(extract_dir)
+    return extract_dir
+
+
+def _pick_voc_images(
+    image_paths: list[Path],
+    xml_by_stem: dict[str, Path],
+    class_map: dict[str, str],
+    prefer: list[str],
+    *,
+    max_images: int,
+    include_empty: bool,
+) -> list[tuple[Path, list[DetectionBox]]]:
+    """Rank VOC images and round-robin preferred classes."""
     scored: list[tuple[int, Path, list[DetectionBox]]] = []
     for img_path in image_paths:
         boxes = _parse_voc_xml(xml_by_stem.get(img_path.stem), class_map)
@@ -380,9 +415,18 @@ def _prepare_voc_zip(target: Path, source: dict[str, Any], *, force: bool) -> li
             if buckets[rank] and len(picked) < max_images:
                 picked.append(buckets[rank].pop(0))
 
-    if not picked:
-        raise RuntimeError(f"No annotated images found under {extract_dir}")
+    return picked
 
+
+def _save_voc_samples(
+    target: Path,
+    source: dict[str, Any],
+    archive_url: str,
+    picked: list[tuple[Path, list[DetectionBox]]],
+    *,
+    force: bool,
+) -> list[Path]:
+    """Write selected VOC images, labels, and source metadata."""
     labels_out: dict[str, list[dict[str, Any]]] = {}
     saved: list[Path] = []
     class_counts: dict[str, int] = {}
@@ -414,7 +458,7 @@ def _prepare_voc_zip(target: Path, source: dict[str, Any], *, force: bool) -> li
 
 
 def _parse_voc_xml(xml_path: Path | None, class_map: dict[str, str]) -> list[DetectionBox]:
-    import xml.etree.ElementTree as ET
+    pass
 
     if xml_path is None or not xml_path.exists():
         return []
@@ -453,11 +497,9 @@ def _download_file(url: str, dest: Path) -> None:
 def _prepare_hf_detection(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:
     """Pull a detection dataset via `datasets` and cache RGB + labels.json."""
     try:
-        from datasets import load_dataset
+        pass
     except ImportError as exc:  # pragma: no cover
-        raise ImportError(
-            "Install `datasets` to use hf_detection sources: uv add datasets"
-        ) from exc
+        raise ImportError("Install `datasets` to use hf_detection sources: uv add datasets") from exc
 
     hf_id = str(source.get("hf_id", ""))
     if not hf_id:
@@ -482,10 +524,15 @@ def _prepare_hf_detection(target: Path, source: dict[str, Any], *, force: bool) 
             # Round-robin prefer_classes when possible.
             want = prefer[len(saved) % len(prefer)]
             labels_lower = {b.label.lower() for b in boxes}
-            if want not in labels_lower and primary and primary not in prefer:
+            if (
+                want not in labels_lower
+                and primary
+                and primary not in prefer
+                and idx < max_images * 20
+                and len(saved) < max_images
+            ):
                 # Soft skip early rows that don't help class coverage.
-                if idx < max_images * 20 and len(saved) < max_images:
-                    continue
+                continue
         stem = f"neu_{len(saved):04d}"
         if primary:
             stem = f"{primary.replace(' ', '_')}_{len(saved):04d}"
@@ -496,14 +543,10 @@ def _prepare_hf_detection(target: Path, source: dict[str, Any], *, force: bool) 
         else:
             image.convert("RGB").save(dest)
             saved.append(dest)
-        labels_out[stem] = [
-            {"label": b.label, "bbox_xyxy": list(b.bbox_xyxy)} for b in boxes
-        ]
+        labels_out[stem] = [{"label": b.label, "bbox_xyxy": list(b.bbox_xyxy)} for b in boxes]
 
     if not saved:
-        raise RuntimeError(
-            f"No images extracted from {hf_id}. Check schema or use kind: local."
-        )
+        raise RuntimeError(f"No images extracted from {hf_id}. Check schema or use kind: local.")
     (target / "labels.json").write_text(json.dumps(labels_out, indent=2), encoding="utf-8")
     meta = {
         "hf_id": hf_id,
@@ -517,6 +560,14 @@ def _prepare_hf_detection(target: Path, source: dict[str, Any], *, force: bool) 
 
 def _extract_hf_detection_row(row: dict[str, Any]) -> tuple[Image.Image | None, list[DetectionBox]]:
     """Best-effort parse of common HF detection schemas (incl. AI4Manufacturing/191)."""
+    image = _extract_hf_image(row)
+    boxes = _extract_hf_objects(row, image)
+    boxes.extend(_extract_hf_annot(row, image))
+    return image, boxes
+
+
+def _extract_hf_image(row: dict[str, Any]) -> Image.Image | None:
+    """Decode an image from common Hugging Face row schemas."""
     image = row.get("image") or row.get("img")
     if image is None and "images" in row and row["images"]:
         image = row["images"][0]
@@ -527,7 +578,11 @@ def _extract_hf_detection_row(row: dict[str, Any]) -> tuple[Image.Image | None, 
             image = None
     if isinstance(image, Image.Image):
         image = image.convert("RGB")
+    return image
 
+
+def _extract_hf_objects(row: dict[str, Any], image: Image.Image | None) -> list[DetectionBox]:
+    """Parse COCO-like object dictionaries and object lists."""
     boxes: list[DetectionBox] = []
     meta = row.get("metadata") or {}
     objects = meta.get("objects") or row.get("objects") or {}
@@ -546,11 +601,16 @@ def _extract_hf_detection_row(row: dict[str, Any]) -> tuple[Image.Image | None, 
             if bbox is not None:
                 boxes.append(_box_from_any(bbox, label, image))
 
-    # AI4Manufacturing annot lines: "class,[x,y,w,h]"
+    return boxes
+
+
+def _extract_hf_annot(row: dict[str, Any], image: Image.Image | None) -> list[DetectionBox]:
+    """Parse AI4Manufacturing ``class,[x,y,w,h]`` annotation lines."""
+    boxes: list[DetectionBox] = []
     annot = row.get("annot") or row.get("answer")
     if isinstance(annot, str) and image is not None:
-        for line in annot.strip().splitlines():
-            line = line.strip()
+        for raw_line in annot.strip().splitlines():
+            line = raw_line.strip()
             if not line or "," not in line:
                 continue
             label, rest = line.split(",", 1)
@@ -558,7 +618,7 @@ def _extract_hf_detection_row(row: dict[str, Any]) -> tuple[Image.Image | None, 
             if len(nums) >= 4:
                 boxes.append(_box_from_any(nums[:4], label.strip(), image))
 
-    return image, boxes
+    return boxes
 
 
 def _box_from_any(
@@ -568,13 +628,15 @@ def _box_from_any(
 ) -> DetectionBox:
     vals = [float(x) for x in list(bbox)[:4]]
     # Heuristic: COCO xywh if w,h look like sizes; else assume xyxy.
-    if image is not None and vals[2] < image.size[0] and vals[3] < image.size[1]:
-        # If x2,y2 would exceed image when treated as xywh→xyxy expansion needed.
-        if vals[0] + vals[2] <= image.size[0] * 1.05 and vals[1] + vals[3] <= image.size[1] * 1.05:
-            # Treat as xywh when fourth value is small relative to height.
-            if vals[2] < image.size[0] * 0.95 and vals[3] < image.size[1] * 0.95:
-                x1, y1, w, h = vals
-                return DetectionBox(label=label, bbox_xyxy=(x1, y1, x1 + w, y1 + h))
+    if (
+        image is not None
+        and vals[2] < image.size[0] * 0.95
+        and vals[3] < image.size[1] * 0.95
+        and vals[0] + vals[2] <= image.size[0] * 1.05
+        and vals[1] + vals[3] <= image.size[1] * 1.05
+    ):
+        x1, y1, w, h = vals
+        return DetectionBox(label=label, bbox_xyxy=(x1, y1, x1 + w, y1 + h))
     x1, y1, x2, y2 = vals
     return DetectionBox(label=label, bbox_xyxy=(x1, y1, x2, y2))
 

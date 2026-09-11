@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import json
 import shutil
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
@@ -10,15 +9,17 @@ from typing import Any
 
 from PIL import Image
 
-from edgecase_synthesis.generate.annotation import AnnotationResult, Detection
-from edgecase_synthesis.data.loader import DetectionBox
 from edgecase_synthesis.data.eda import write_json
+from edgecase_synthesis.data.loader import DetectionBox
+from edgecase_synthesis.generate.annotation import AnnotationResult
 from edgecase_synthesis.generate.generation import GenerationResult
 from edgecase_synthesis.judge import JudgeResult
 
 
 @dataclass
 class ClassRunStats:
+    """Represent ClassRunStats configuration and behavior."""
+
     anomaly_id: str
     attempts: int = 0
     accepts: int = 0
@@ -27,6 +28,7 @@ class ClassRunStats:
 
     @property
     def acceptance_rate(self) -> float:
+        """Calculate the sample acceptance rate."""
         return self.accepts / self.attempts if self.attempts else 0.0
 
 
@@ -48,6 +50,7 @@ class AcceptedSample:
 
 
 def detections_to_boxes(annotation: AnnotationResult) -> list[dict[str, Any]]:
+    """Convert detections to serializable boxes."""
     return [
         {
             "label": d.label,
@@ -59,13 +62,12 @@ def detections_to_boxes(annotation: AnnotationResult) -> list[dict[str, Any]]:
 
 
 def gt_boxes_to_dicts(boxes: list[DetectionBox]) -> list[dict[str, Any]]:
-    return [
-        {"label": b.label, "bbox_xyxy": [float(x) for x in b.bbox_xyxy]}
-        for b in boxes
-    ]
+    """Convert ground-truth boxes to dictionaries."""
+    return [{"label": b.label, "bbox_xyxy": [float(x) for x in b.bbox_xyxy]} for b in boxes]
 
 
 def judge_to_dict(result: JudgeResult) -> dict[str, Any]:
+    """Convert a judge result to a dictionary."""
     payload = {
         "decision": result.decision,
         "overall": float(result.overall),
@@ -102,6 +104,7 @@ def save_accepted_image(
     out_dir: Path,
     image_name: str,
 ) -> Path:
+    """Save accepted image."""
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / image_name
@@ -120,7 +123,7 @@ def export_nb2_dataset(
     config_snapshot: dict[str, Any],
     copy_real_images: bool = False,
 ) -> dict[str, Path]:
-    """Write synth images, combined labels, manifests, and stats under ``output_dir``."""
+    """Write synthetic images, labels, manifests, and statistics."""
     root = Path(output_dir)
     synth_dir = root / "synthetic"
     synth_dir.mkdir(parents=True, exist_ok=True)
@@ -140,9 +143,7 @@ def export_nb2_dataset(
                         "tag": tag,
                         "path": str(path),
                         "split": "real",
-                        "boxes": gt_boxes_to_dicts(
-                            real_labels.get(path.name) or real_labels.get(path.stem) or []
-                        ),
+                        "boxes": gt_boxes_to_dicts(real_labels.get(path.name) or real_labels.get(path.stem) or []),
                     }
                 )
         return rows
@@ -212,6 +213,7 @@ def record_generation(
     source_stem: str,
     image_name: str,
 ) -> AcceptedSample:
+    """Record an accepted or rejected generation."""
     return AcceptedSample(
         sample_id=Path(image_name).stem,
         anomaly_id=anomaly_id,

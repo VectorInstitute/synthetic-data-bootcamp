@@ -1,4 +1,4 @@
-"""Shared helpers for cloud vision / image API calls (Gemini + OpenAI / Vector proxy)."""
+"""Provide shared helpers for cloud vision and image API calls."""
 
 from __future__ import annotations
 
@@ -7,7 +7,11 @@ import io
 import os
 from typing import Any, Literal
 
+from google import genai
+from google.genai import types
+from openai import OpenAI
 from PIL import Image
+
 
 ApiProvider = Literal["gemini", "openai", "vector_proxy"]
 
@@ -27,12 +31,14 @@ JUDGE_MODEL_ALIASES: dict[str, str] = {
 
 
 def resolve_judge_model(name: str) -> str:
+    """Resolve the configured judge model."""
     raw = str(name or "").strip()
     spaced = " ".join(raw.lower().replace("_", " ").replace("-", " ").split())
     return JUDGE_MODEL_ALIASES.get(spaced, raw)
 
 
 def infer_api_provider(model: str, *, api_base_url: str | None = None) -> ApiProvider:
+    """Infer the API provider for a model."""
     if api_base_url:
         return "vector_proxy"
     mid = model.lower()
@@ -99,6 +105,7 @@ def resolve_api_base_url(
 
 
 def resolve_proxy_base_url(explicit: str | None = None) -> str:
+    """Resolve the proxy API base URL."""
     return (
         explicit
         or os.environ.get("VECTOR_PROXY_BASE_URL")
@@ -127,6 +134,7 @@ def gemini_api_key(explicit: str | None = None) -> str:
 
 
 def openai_api_key(explicit: str | None = None) -> str:
+    """Return the configured OpenAI API key."""
     return vector_api_key(explicit)
 
 
@@ -136,12 +144,12 @@ def make_openai_client(
     base_url: str | None = None,
     role: str | None = None,
 ) -> Any:
+    """Create openai client."""
     try:
-        from openai import OpenAI
+        pass
     except ImportError as exc:  # pragma: no cover
         raise ImportError(
-            "openai is required for API judge / Vector proxy. "
-            "Install: uv sync --group edge-case-image-generation"
+            "openai is required for API judge / Vector proxy. Install: uv sync --group edge-case-image-generation"
         ) from exc
     key = resolve_api_key(api_key, role=role)
     url = resolve_api_base_url(base_url, role=role) if (base_url or role) else None
@@ -151,6 +159,7 @@ def make_openai_client(
 
 
 def pil_to_png_bytes(image: Image.Image, *, max_side: int | None = 1024) -> bytes:
+    """Encode a PIL image as PNG bytes."""
     img = image.convert("RGB")
     if max_side is not None and max(img.size) > max_side:
         scale = max_side / max(img.size)
@@ -164,6 +173,7 @@ def pil_to_png_bytes(image: Image.Image, *, max_side: int | None = 1024) -> byte
 
 
 def pil_to_b64(image: Image.Image, *, max_side: int | None = 1024) -> str:
+    """Encode a PIL image as base64 PNG data."""
     return base64.b64encode(pil_to_png_bytes(image, max_side=max_side)).decode("ascii")
 
 
@@ -215,18 +225,16 @@ def _vision_chat_gemini(
     max_side: int,
 ) -> str:
     try:
-        from google import genai
-        from google.genai import types
+        pass
+        pass
     except ImportError as exc:  # pragma: no cover
         raise ImportError(
-            "google-genai is required for Gemini API judge. "
-            "Install: uv sync --group edge-case-image-generation"
+            "google-genai is required for Gemini API judge. Install: uv sync --group edge-case-image-generation"
         ) from exc
 
     client = genai.Client(api_key=gemini_api_key(api_key))
     parts: list[Any] = [
-        types.Part.from_bytes(data=pil_to_png_bytes(img, max_side=max_side), mime_type="image/png")
-        for img in images
+        types.Part.from_bytes(data=pil_to_png_bytes(img, max_side=max_side), mime_type="image/png") for img in images
     ]
     parts.append(types.Part.from_text(text=user_text))
     response = client.models.generate_content(model=model, contents=parts)
