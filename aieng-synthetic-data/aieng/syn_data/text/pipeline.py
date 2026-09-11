@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import random
 import uuid
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -47,6 +48,10 @@ from aieng.syn_data.text.schemas import (
     Paragraph,
     ParagraphSplit,
     QASample,
+)
+from aieng.syn_data.text.seed_examples import (
+    default_few_shot_examples,
+    default_seed_example,
 )
 
 
@@ -151,20 +156,6 @@ def generate_test_qa_batch(
             modes = [FailureMode.DOMAIN_VOCABULARY_DRIFT]
         # Paragraph-scoped topics (not document-wide) for precise, grounded Q&As.
         topics = extract_topics(teacher, paragraph)[:questions_per_para]
-        if not topics:
-            failure_mode = modes[0]
-            sample = topic_controlled_generate(
-                teacher,
-                paragraph,
-                failure_mode=failure_mode,
-                max_topics=1,
-            )[0]
-            sample.id = f"test-{paragraph.para_id}-0"
-            sample.split = ParagraphSplit.TEST
-            sample.failure_mode = failure_mode
-            samples.append(sample)
-            continue
-
         for offset, topic in enumerate(topics):
             failure_mode = modes[offset % len(modes)]
             sample = topic_controlled_generate(
@@ -188,24 +179,9 @@ def compare_generation_strategies(
     few_shot_examples: list[QASample] | None = None,
     topic_controlled_topic: str | None = None,
 ) -> dict[str, QASample]:
-    """Generate one sample per strategy for side-by-side comparison.
-
-    TODO(follow-up): move default seed / few-shot examples into a domain-specific
-    module (e.g. ``seed_examples.py``) so participants adapting a new domain know
-    where to edit prompts and exemplars. Tracked as a follow-up issue.
-    """
-    # Domain-specific finance seed used only when the caller does not supply one.
-    seed = seed_example or QASample(
-        id="seed",
-        question="What is the grace period for new purchases?",
-        gold_answer="The grace period ends 21 days after the close of the billing cycle.",
-        doc_id=paragraph.doc_id,
-        para_id=paragraph.para_id,
-        context=paragraph.text,
-        instruction="Answer using the source passage. Respond in one sentence.",
-    )
-    # Without caller-provided few-shots this collapses to one-shot.
-    few_shot = few_shot_examples or [seed]
+    """Generate one sample per strategy for side-by-side comparison."""
+    seed = seed_example or default_seed_example(paragraph)
+    few_shot = few_shot_examples or default_few_shot_examples(paragraph)
     # Side-by-side view keeps one topic-controlled sample; full per-topic
     # expansion is used in generate_test_qa_batch / topic_controlled_generate.
     topic_samples = topic_controlled_generate(
@@ -310,8 +286,16 @@ def filter_with_judge(
     samples: list[QASample],
     *,
     threshold: float = DEFAULT_JUDGE_THRESHOLD,
+    on_progress: Callable[[], None] | None = None,
 ) -> tuple[list[QASample], list[JudgeScore], list[dict[str, str]]]:
-    """Apply heuristics then keep samples that pass the judge threshold."""
+    """Apply heuristics then keep samples that pass the judge threshold.
+
+    Parameters
+    ----------
+    on_progress:
+        Called once per finished sample. A Rich ``Progress.advance`` hook
+        stays valid if judging is later parallelized.
+    """
     kept, rejected = apply_heuristic_filters(samples)
     accepted: list[QASample] = []
     scores: list[JudgeScore] = []
@@ -320,6 +304,8 @@ def filter_with_judge(
     for sample in kept:
         score = judge_synthetic_sample(judge, sample)
         scores.append(score)
+        if on_progress is not None:
+            on_progress()
         if score.average >= threshold:
             accepted.append(sample)
         else:
