@@ -1,0 +1,536 @@
+{
+    "date_epochs_yymmdd": {
+        "account": "930101",
+        "card": "931107",
+        "client": null,
+        "disp": null,
+        "district": null,
+        "loan": "930705",
+        "order": null,
+        "trans": "930116"
+    },
+    "n_rows": {
+        "account": 4500,
+        "card": 892,
+        "client": 5369,
+        "disp": 5369,
+        "district": 77,
+        "loan": 682,
+        "order": 6471,
+        "trans": 20000
+    },
+    "tables": {
+        "account": {
+            "id_columns": [
+                "account_id",
+                "district_id"
+            ],
+            "discrete_columns": [
+                "frequency"
+            ],
+            "continuous_columns": [
+                "account_date"
+            ],
+            "output_columns": [
+                "account_id",
+                "district_id",
+                "frequency",
+                "account_date"
+            ],
+            "label_classes": {
+                "frequency": [
+                    "POPLATEK MESICNE",
+                    "POPLATEK PO OBRATU",
+                    "POPLATEK TYDNE"
+                ]
+            }
+        },
+        "card": {
+            "id_columns": [
+                "card_id",
+                "disp_id"
+            ],
+            "discrete_columns": [
+                "card_type"
+            ],
+            "continuous_columns": [
+                "issued"
+            ],
+            "output_columns": [
+                "card_id",
+                "disp_id",
+                "card_type",
+                "issued"
+            ],
+            "label_classes": {
+                "card_type": [
+                    "classic",
+                    "gold",
+                    "junior"
+                ]
+            }
+        },
+        "client": {
+            "id_columns": [
+                "client_id",
+                "district_id"
+            ],
+            "discrete_columns": [
+                "year",
+                "month",
+                "client_date",
+                "gender"
+            ],
+            "continuous_columns": [],
+            "output_columns": [
+                "client_id",
+                "district_id",
+                "year",
+                "month",
+                "client_date",
+                "gender"
+            ],
+            "label_classes": {
+                "year": [
+                    "11",
+                    "12",
+                    "13",
+                    "14",
+                    "15",
+                    "16",
+                    "17",
+                    "18",
+                    "19",
+                    "20",
+                    "21",
+                    "22",
+                    "23",
+                    "24",
+                    "25",
+                    "26",
+                    "27",
+                    "28",
+                    "29",
+                    "30",
+                    "31",
+                    "32",
+                    "33",
+                    "34",
+                    "35",
+                    "36",
+                    "37",
+                    "38",
+                    "39",
+                    "40",
+                    "41",
+                    "42",
+                    "43",
+                    "44",
+                    "45",
+                    "46",
+                    "47",
+                    "48",
+                    "49",
+                    "50",
+                    "51",
+                    "52",
+                    "53",
+                    "54",
+                    "55",
+                    "56",
+                    "57",
+                    "58",
+                    "59",
+                    "60",
+                    "61",
+                    "62",
+                    "63",
+                    "64",
+                    "65",
+                    "66",
+                    "67",
+                    "68",
+                    "69",
+                    "70",
+                    "71",
+                    "72",
+                    "73",
+                    "74",
+                    "75",
+                    "76",
+                    "77",
+                    "78",
+                    "79",
+                    "80",
+                    "81",
+                    "82",
+                    "83",
+                    "84",
+                    "85",
+                    "86",
+                    "87"
+                ],
+                "month": [
+                    "1",
+                    "10",
+                    "11",
+                    "12",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9"
+                ],
+                "client_date": [
+                    "1",
+                    "10",
+                    "11",
+                    "12",
+                    "13",
+                    "14",
+                    "15",
+                    "16",
+                    "17",
+                    "18",
+                    "19",
+                    "2",
+                    "20",
+                    "21",
+                    "22",
+                    "23",
+                    "24",
+                    "25",
+                    "26",
+                    "27",
+                    "28",
+                    "29",
+                    "3",
+                    "30",
+                    "31",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9"
+                ],
+                "gender": [
+                    "0",
+                    "1"
+                ]
+            }
+        },
+        "disp": {
+            "id_columns": [
+                "disp_id",
+                "client_id",
+                "account_id"
+            ],
+            "discrete_columns": [
+                "disp_type"
+            ],
+            "continuous_columns": [],
+            "output_columns": [
+                "disp_id",
+                "client_id",
+                "account_id",
+                "disp_type"
+            ],
+            "label_classes": {
+                "disp_type": [
+                    "DISPONENT",
+                    "OWNER"
+                ]
+            }
+        },
+        "district": {
+            "id_columns": [
+                "district_id"
+            ],
+            "discrete_columns": [
+                "A2",
+                "A3"
+            ],
+            "continuous_columns": [
+                "A4",
+                "A5",
+                "A6",
+                "A7",
+                "A8",
+                "A9",
+                "A10",
+                "A11",
+                "A12",
+                "A13",
+                "A14",
+                "A15",
+                "A16"
+            ],
+            "output_columns": [
+                "district_id",
+                "A2",
+                "A3",
+                "A4",
+                "A5",
+                "A6",
+                "A7",
+                "A8",
+                "A9",
+                "A10",
+                "A11",
+                "A12",
+                "A13",
+                "A14",
+                "A15",
+                "A16"
+            ],
+            "label_classes": {
+                "A2": [
+                    "Benesov",
+                    "Beroun",
+                    "Blansko",
+                    "Breclav",
+                    "Brno - mesto",
+                    "Brno - venkov",
+                    "Bruntal",
+                    "Ceska Lipa",
+                    "Ceske Budejovice",
+                    "Cesky Krumlov",
+                    "Cheb",
+                    "Chomutov",
+                    "Chrudim",
+                    "Decin",
+                    "Domazlice",
+                    "Frydek - Mistek",
+                    "Havlickuv Brod",
+                    "Hl.m. Praha",
+                    "Hodonin",
+                    "Hradec Kralove",
+                    "Jablonec n. Nisou",
+                    "Jesenik",
+                    "Jicin",
+                    "Jihlava",
+                    "Jindrichuv Hradec",
+                    "Karlovy Vary",
+                    "Karvina",
+                    "Kladno",
+                    "Klatovy",
+                    "Kolin",
+                    "Kromeriz",
+                    "Kutna Hora",
+                    "Liberec",
+                    "Litomerice",
+                    "Louny",
+                    "Melnik",
+                    "Mlada Boleslav",
+                    "Most",
+                    "Nachod",
+                    "Novy Jicin",
+                    "Nymburk",
+                    "Olomouc",
+                    "Opava",
+                    "Ostrava - mesto",
+                    "Pardubice",
+                    "Pelhrimov",
+                    "Pisek",
+                    "Plzen - jih",
+                    "Plzen - mesto",
+                    "Plzen - sever",
+                    "Prachatice",
+                    "Praha - vychod",
+                    "Praha - zapad",
+                    "Prerov",
+                    "Pribram",
+                    "Prostejov",
+                    "Rakovnik",
+                    "Rokycany",
+                    "Rychnov nad Kneznou",
+                    "Semily",
+                    "Sokolov",
+                    "Strakonice",
+                    "Sumperk",
+                    "Svitavy",
+                    "Tabor",
+                    "Tachov",
+                    "Teplice",
+                    "Trebic",
+                    "Trutnov",
+                    "Uherske Hradiste",
+                    "Usti nad Labem",
+                    "Usti nad Orlici",
+                    "Vsetin",
+                    "Vyskov",
+                    "Zdar nad Sazavou",
+                    "Zlin",
+                    "Znojmo"
+                ],
+                "A3": [
+                    "Prague",
+                    "central Bohemia",
+                    "east Bohemia",
+                    "north Bohemia",
+                    "north Moravia",
+                    "south Bohemia",
+                    "south Moravia",
+                    "west Bohemia"
+                ]
+            }
+        },
+        "loan": {
+            "id_columns": [
+                "loan_id",
+                "account_id"
+            ],
+            "discrete_columns": [
+                "status"
+            ],
+            "continuous_columns": [
+                "loan_date",
+                "amount",
+                "duration",
+                "payments"
+            ],
+            "output_columns": [
+                "loan_id",
+                "account_id",
+                "loan_date",
+                "amount",
+                "duration",
+                "payments",
+                "status"
+            ],
+            "label_classes": {
+                "status": [
+                    "A",
+                    "B",
+                    "C",
+                    "D"
+                ]
+            }
+        },
+        "order": {
+            "id_columns": [
+                "order_id",
+                "account_id"
+            ],
+            "discrete_columns": [
+                "bank_to",
+                "k_symbol"
+            ],
+            "continuous_columns": [
+                "account_to",
+                "amount"
+            ],
+            "output_columns": [
+                "order_id",
+                "account_id",
+                "bank_to",
+                "account_to",
+                "amount",
+                "k_symbol"
+            ],
+            "label_classes": {
+                "bank_to": [
+                    "AB",
+                    "CD",
+                    "EF",
+                    "GH",
+                    "IJ",
+                    "KL",
+                    "MN",
+                    "OP",
+                    "QR",
+                    "ST",
+                    "UV",
+                    "WX",
+                    "YZ"
+                ],
+                "k_symbol": [
+                    " ",
+                    "LEASING",
+                    "POJISTNE",
+                    "SIPO",
+                    "UVER"
+                ]
+            }
+        },
+        "trans": {
+            "id_columns": [
+                "trans_id",
+                "account_id"
+            ],
+            "discrete_columns": [
+                "trans_type",
+                "operation",
+                "k_symbol",
+                "bank"
+            ],
+            "continuous_columns": [
+                "trans_date",
+                "amount",
+                "balance",
+                "account"
+            ],
+            "output_columns": [
+                "trans_id",
+                "account_id",
+                "trans_date",
+                "trans_type",
+                "operation",
+                "amount",
+                "balance",
+                "k_symbol",
+                "bank",
+                "account"
+            ],
+            "label_classes": {
+                "trans_type": [
+                    "PRIJEM",
+                    "VYBER",
+                    "VYDAJ"
+                ],
+                "operation": [
+                    "",
+                    "PREVOD NA UCET",
+                    "PREVOD Z UCTU",
+                    "VKLAD",
+                    "VYBER",
+                    "VYBER KARTOU"
+                ],
+                "k_symbol": [
+                    "",
+                    " ",
+                    "DUCHOD",
+                    "POJISTNE",
+                    "SANKC. UROK",
+                    "SIPO",
+                    "SLUZBY",
+                    "UROK",
+                    "UVER"
+                ],
+                "bank": [
+                    "",
+                    "AB",
+                    "CD",
+                    "EF",
+                    "GH",
+                    "IJ",
+                    "KL",
+                    "MN",
+                    "OP",
+                    "QR",
+                    "ST",
+                    "UV",
+                    "WX",
+                    "YZ"
+                ]
+            }
+        }
+    },
+    "date_epoch": null,
+    "trans_sample_size": 20000,
+    "seed": 42
+}
