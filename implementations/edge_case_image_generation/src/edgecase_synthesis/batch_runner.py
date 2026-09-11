@@ -140,9 +140,8 @@ def _edit_workers(cfg: Any, *, log: Callable[[str], None] | None = None) -> int:
     if n > 1 and _in_ipython() and not allow_nb_mp:
         if log:
             log(
-                "Notebook detected: capping edit_workers=1 (ProcessPool+CUDA is flaky "
-                "in Jupyter). Use scripts/run_nb2_batch.py for dual-GPU, or set "
-                "EDGECASE_ALLOW_NOTEBOOK_MP=1 to override."
+                "Notebook: edit_workers capped to 1 "
+                "(use scripts/run_nb2_batch.py for dual-GPU)."
             )
         return 1
     return n
@@ -369,6 +368,13 @@ def run_batch_synthesis(
 
     log_phase, log_item, use_tqdm = _resolve_progress(progress, verbose=verbose)
     log = log_phase  # phase / summary messages
+    # Outer Editing/Judging bars own the console — mute Diffusers step bars
+    # unless the user asked for per-image verbose dumps.
+    _prev_pipe_progress = os.environ.get("EDGECASE_DISABLE_PIPE_PROGRESS")
+    if verbose and not use_tqdm:
+        os.environ.pop("EDGECASE_DISABLE_PIPE_PROGRESS", None)
+    else:
+        os.environ["EDGECASE_DISABLE_PIPE_PROGRESS"] = "1"
     dataset = str(cfg.dataset_name)
     source_hint = str(cfg.dataset.get("source_hint", "a real photograph"))
     base_classes = list(cfg.annotation.classes)
@@ -489,9 +495,7 @@ def run_batch_synthesis(
                 f"Edit phase: {n_edit} process workers (one Klein per GPU). "
                 "Note: Flux2Klein list(image)+list(prompt) is multi-ref, not paired batch."
             )
-            os.environ.pop("EDGECASE_DISABLE_PIPE_PROGRESS", None)
             return
-        os.environ.pop("EDGECASE_DISABLE_PIPE_PROGRESS", None)
         log("Loading edit stack on default device…")
         stacks.append(
             _load_edit_stack(
@@ -862,7 +866,10 @@ def run_batch_synthesis(
 
     unload_edit_stacks()
     _unload(judge)
-    os.environ.pop("EDGECASE_DISABLE_PIPE_PROGRESS", None)
+    if _prev_pipe_progress is None:
+        os.environ.pop("EDGECASE_DISABLE_PIPE_PROGRESS", None)
+    else:
+        os.environ["EDGECASE_DISABLE_PIPE_PROGRESS"] = _prev_pipe_progress
     _persist_state([])
     log(
         f"Done. Accepted {len(result.accepted)} / "

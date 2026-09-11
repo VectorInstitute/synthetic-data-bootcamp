@@ -336,6 +336,18 @@ class MethodComparer:
             pipe.to(self.device)
         return pipe
 
+    def _sync_pipe_progress(self, pipe: Any) -> None:
+        """Re-apply Diffusers bar on/off from env (batch tqdm owns the console)."""
+        import os
+
+        disable_bar = os.environ.get("EDGECASE_DISABLE_PIPE_PROGRESS", "").lower() in {
+            "1",
+            "true",
+            "yes",
+        }
+        if hasattr(pipe, "set_progress_bar_config"):
+            pipe.set_progress_bar_config(disable=disable_bar)
+
     def _place_klein(self, pipe: Any) -> Any:
         import os
 
@@ -782,9 +794,11 @@ class MethodComparer:
             if padding_mask_crop is not None and padding_mask_crop > 0:
                 kwargs["padding_mask_crop"] = int(padding_mask_crop)
             try:
+                self._sync_pipe_progress(self.inpaint_pipe)
                 generated = self.inpaint_pipe(**kwargs).images[0]
             except TypeError:
                 kwargs.pop("padding_mask_crop", None)
+                self._sync_pipe_progress(self.inpaint_pipe)
                 generated = self.inpaint_pipe(**kwargs).images[0]
             generated = _ensure_same_size(generated, original)
             # Map edit_mask back to original size for annotation/viz.
@@ -809,9 +823,11 @@ class MethodComparer:
             if padding_mask_crop is not None and padding_mask_crop > 0:
                 kwargs["padding_mask_crop"] = int(padding_mask_crop)
             try:
+                self._sync_pipe_progress(self.inpaint_pipe)
                 generated = self.inpaint_pipe(**kwargs).images[0]
             except TypeError:
                 kwargs.pop("padding_mask_crop", None)
+                self._sync_pipe_progress(self.inpaint_pipe)
                 generated = self.inpaint_pipe(**kwargs).images[0]
             generated = _ensure_same_size(generated, original)
             out_mask = edit_mask
@@ -912,6 +928,7 @@ class MethodComparer:
             n_steps = int(instruct_steps) if instruct_steps not in (None, "") else 4
             txt_g = 1.0 if text_guidance is None else float(text_guidance)
             run_image = self._fit_klein_image(original, max_side=768)
+            self._sync_pipe_progress(self.instruct_pipe)
             generated = self.instruct_pipe(
                 prompt=instruction,
                 image=run_image,
@@ -927,6 +944,7 @@ class MethodComparer:
             run_image = original.resize((side, side), Image.Resampling.LANCZOS)
             img_g = 1.5 if image_guidance is None else float(image_guidance)
             txt_g = 3.0 if text_guidance is None else float(text_guidance)
+            self._sync_pipe_progress(self.instruct_pipe)
             generated = self.instruct_pipe(
                 prompt=instruction,
                 image=run_image,
@@ -954,6 +972,7 @@ class MethodComparer:
             )
             txt_g = self.instruct_guidance if text_guidance is None else float(text_guidance)
             n_steps = int(instruct_steps) if instruct_steps not in (None, "") else max(steps, 20)
+            self._sync_pipe_progress(self.instruct_pipe)
             generated = self.instruct_pipe(
                 prompt=instruction,
                 image=run_image,
