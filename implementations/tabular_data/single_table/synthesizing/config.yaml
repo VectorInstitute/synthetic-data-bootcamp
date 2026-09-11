@@ -3,10 +3,10 @@
 diffusion_config:
   d_layers: [512, 1024, 1024, 1024, 1024, 512]
   dropout: 0.0
-  num_timesteps: 500
+  num_timesteps: 2000
   model_type: mlp
-  iterations: 5000
-  batch_size: 256
+  iterations: 20000
+  batch_size: 4096
   lr: 0.0006
   gaussian_loss_type: mse
   weight_decay: 1e-05
@@ -16,7 +16,7 @@ sample_scale: 1.0 # Used to define the number of sampled samples based on the tr
 
 # No need to change these for single table settings. These are used for multi-table settings.
 sampling_config:
-    batch_size: 1
+    batch_size: 20000
     classifier_scale: 1.0
 
 matching_config:
