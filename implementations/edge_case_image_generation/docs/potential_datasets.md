@@ -30,7 +30,3 @@
 | **Dataset**                  | **Size**    | **Rare-condition angle**                                            | **Link**                                                                                                                           |
 | COCO subset — infrastructure | Filterable  | Cell tower damage, cable damage, corrosion patches are rare classes | [cocodataset.org](http://cocodataset.org)                                                                                          |
 | Wind Turbine Blade Defects   | ~600 images | Very small, perfect proof-of-rare-data scenario                     | [kaggle.com/datasets/ajifoster3/wind-turbine-blade-defects](https://www.kaggle.com/datasets/ajifoster3/wind-turbine-blade-defects) |
-
-
-
-

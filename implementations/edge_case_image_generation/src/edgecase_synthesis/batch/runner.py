@@ -608,6 +608,7 @@ def _gate_judgment(
     ctx: _BatchContext,
     item: PendingItem,
     judgment: JudgeResult,
+    *,
     boxed: bool,
     anomaly_cfg: Any,
     targets: set[str],
@@ -696,7 +697,14 @@ def _apply_judgments(
         anomaly_cfg = load_anomaly(ctx.dataset, item.anomaly_id, start=ctx.project_root)
         anomaly_classes = list(anomaly_cfg.get("annotation_classes", []) or [])
         targets = target_label_names(item.anomaly_id, anomaly_classes)
-        decision = _gate_judgment(ctx, item, judgment, boxed, anomaly_cfg, targets)
+        decision = _gate_judgment(
+            ctx,
+            item,
+            judgment,
+            boxed=boxed,
+            anomaly_cfg=anomaly_cfg,
+            targets=targets,
+        )
         _log_judgment(ctx, item, judgment, decision, boxed)
         if decision == "accept":
             counts["accept"] += 1
@@ -741,6 +749,7 @@ def _judge_queue(ctx: _BatchContext, items: list[PendingItem]) -> list[PendingIt
 def _restore_batch_checkpoint(
     root_dir: Path,
     result: BatchResult,
+    *,
     accepted_counts: dict[str, int],
     variation_counters: dict[str, int],
     anomaly_ids: list[str],
@@ -830,10 +839,10 @@ def _prepare_batch_context(
         _restore_batch_checkpoint(
             root_dir,
             result,
-            accepted_counts,
-            variation_counters,
-            list(seeds_by_anomaly),
-            log,
+            accepted_counts=accepted_counts,
+            variation_counters=variation_counters,
+            anomaly_ids=list(seeds_by_anomaly),
+            log=log,
         )
         if resume
         else set()

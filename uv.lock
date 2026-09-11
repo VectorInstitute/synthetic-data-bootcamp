@@ -756,7 +756,7 @@ wheels = [
 [[package]]
 name = "clip"
 version = "1.0"
-source = { git = "https://github.com/ultralytics/CLIP.git#68dce32140994dfcb645a1320c4ebdc034fc19fd" }
+source = { git = "https://github.com/ultralytics/CLIP.git?rev=68dce32140994dfcb645a1320c4ebdc034fc19fd#68dce32140994dfcb645a1320c4ebdc034fc19fd" }
 dependencies = [
     { name = "ftfy" },
     { name = "regex" },
@@ -764,17 +764,6 @@ dependencies = [
     { name = "torchvision" },
     { name = "tqdm" },
 ]
-
-[package.metadata]
-requires-dist = [
-    { name = "ftfy" },
-    { name = "pytest", marker = "extra == 'dev'" },
-    { name = "regex" },
-    { name = "torch" },
-    { name = "torchvision" },
-    { name = "tqdm" },
-]
-provides-extras = ["dev"]
 
 [[package]]
 name = "cloudpickle"
@@ -4530,7 +4519,7 @@ dev = [
 ]
 edge-case-image-generation = [
     { name = "accelerate", specifier = ">=0.34" },
-    { name = "clip", git = "https://github.com/ultralytics/CLIP.git", rev = "68dce32140994dfcb645a1320c4ebdc034fc19fd" },
+    { name = "clip", git = "https://github.com/ultralytics/CLIP.git?rev=68dce32140994dfcb645a1320c4ebdc034fc19fd" },
     { name = "datasets", specifier = ">=2.20" },
     { name = "diffusers", specifier = ">=0.39.0" },
     { name = "google-genai", specifier = ">=1.0" },

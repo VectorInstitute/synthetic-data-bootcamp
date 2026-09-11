@@ -38,5 +38,3 @@ VLM judges: ++[https://github.com/QwenLM/Qwen2.5-VL](https://github.com/QwenLM/Q
 DriveLM / SkyScenes / DiffusionEngine show closely related patterns: ++[https://github.com/OpenDriveLab/DriveLM](https://github.com/OpenDriveLab/DriveLM)++
 
 ++[https://github.com/bravegroup/DiffusionEngine](https://github.com/bravegroup/DiffusionEngine)++
-
-
