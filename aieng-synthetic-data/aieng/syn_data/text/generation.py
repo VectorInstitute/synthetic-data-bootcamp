@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import logging
 import uuid
 from typing import Any, cast
 
@@ -15,9 +14,6 @@ from aieng.syn_data.text.schemas import (
     Paragraph,
     QASample,
 )
-
-
-logger = logging.getLogger(__name__)
 
 
 def _base_generation_prompt(
@@ -54,8 +50,7 @@ def zero_shot_generate(
     prompt = _base_generation_prompt(
         paragraph, domain=domain, failure_mode=failure_mode
     )
-    payload = _parse_generation_response(client, prompt, domain=domain)
-    logger.info("Payload: %s", payload)
+    payload = _ask_json(client, prompt, domain=domain)
     return _to_qa_sample(
         paragraph,
         payload,
@@ -81,7 +76,7 @@ def one_shot_generate(
         failure_mode=failure_mode,
         extra_instruction=extra,
     )
-    payload = _parse_generation_response(client, prompt, domain=domain)
+    payload = _ask_json(client, prompt, domain=domain)
     return _to_qa_sample(
         paragraph,
         payload,
@@ -111,7 +106,7 @@ def few_shot_generate(
         failure_mode=failure_mode,
         extra_instruction=extra,
     )
-    payload = _parse_generation_response(client, prompt, domain=domain)
+    payload = _ask_json(client, prompt, domain=domain)
     return _to_qa_sample(
         paragraph,
         payload,
@@ -129,33 +124,7 @@ def topic_controlled_generate(
     failure_mode: FailureMode | None = None,
     max_topics: int | None = None,
 ) -> list[QASample]:
-    """Generate one Q&A pair per topic extracted from (or supplied for) a paragraph.
-
-    Topics are **paragraph-scoped** on purpose: shorter context keeps questions
-    precise and reduces the risk of hallucinated themes that can appear when
-    topics are mined from a whole document.
-
-    Parameters
-    ----------
-    client:
-        Teacher LLM client.
-    paragraph:
-        Source paragraph for topic extraction and grounding.
-    topics:
-        Optional precomputed topics. If omitted, topics are extracted from the
-        paragraph only.
-    domain:
-        Domain label injected into prompts (from ``DEFAULT_DOMAIN`` / config).
-    failure_mode:
-        Optional small-model failure mode to condition each generation.
-    max_topics:
-        Optional cap on how many topics (and thus Q&As) to generate.
-
-    Returns
-    -------
-    list[QASample]
-        One sample per topic, each tagged with ``metadata["topic"]``.
-    """
+    """Generate one Q&A pair per topic in the paragraph (or the given topic list)."""
     topic_list = (
         list(topics)
         if topics is not None
@@ -179,7 +148,7 @@ def topic_controlled_generate(
             failure_mode=failure_mode,
             extra_instruction=extra,
         )
-        payload = _parse_generation_response(client, prompt, domain=domain)
+        payload = _ask_json(client, prompt, domain=domain)
         sample = _to_qa_sample(
             paragraph,
             payload,
@@ -206,32 +175,31 @@ def extract_topics(
         'Return JSON: {"topics": ["..."]}\n'
         f"Passage:\n{paragraph.text}"
     )
-    system = f"You extract {domain} topics from a short passage."
-    if hasattr(client, "complete_json"):
-        payload = client.complete_json(prompt, system=system)
-        return list(payload.get("topics", []))
-    raw = client.complete(prompt, system=system)
-    return list(json.loads(extract_json_text(raw)).get("topics", []))
+    payload = _ask_json(
+        client, prompt, system=f"You extract {domain} topics from a short passage."
+    )
+    return list(payload.get("topics", []))
 
 
-def _parse_generation_response(
+def _ask_json(
     client: LLMClient,
     prompt: str,
+    system: str | None = None,
     *,
     domain: str = DEFAULT_DOMAIN,
 ) -> dict[str, Any]:
-    system = f"You generate grounded {domain} Q&A from source text."
+    """Ask the teacher for a JSON object."""
+    if system is None:
+        system = f"You generate grounded {domain} Q&A from source text."
     if hasattr(client, "complete_json"):
-        return cast(
-            dict[str, Any],
-            client.complete_json(
-                prompt,
-                system=system,
-                max_tokens=2048,
-            ),
-        )
-    raw = client.complete(prompt, system=system, max_tokens=2048)
-    return cast(dict[str, Any], json.loads(extract_json_text(raw)))
+        payload = client.complete_json(prompt, system=system, max_tokens=2048)
+    else:
+        text = client.complete(prompt, system=system, max_tokens=2048)
+        payload = json.loads(extract_json_text(text))
+    if not isinstance(payload, dict):
+        msg = f"Expected a JSON object, got {type(payload).__name__}"
+        raise TypeError(msg)
+    return cast(dict[str, Any], payload)
 
 
 def _to_qa_sample(
