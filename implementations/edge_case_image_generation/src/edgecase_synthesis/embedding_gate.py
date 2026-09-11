@@ -116,18 +116,33 @@ class ClipImageEncoder:
 
     @torch.inference_mode()
     def encode(self, image: Image.Image) -> np.ndarray:
+        """Return an L2-normalized 1-D CLIP image embedding."""
         self._ensure()
         assert self._processor is not None and self._model is not None
         inputs = self._processor(images=image.convert("RGB"), return_tensors="pt")
         inputs = {k: v.to(self.device) for k, v in inputs.items()}
-        feats = self._model.get_image_features(**inputs)
-        vec = feats[0].detach().float().cpu().numpy()
+        # Prefer the documented pooled path; some transformers builds have returned
+        # token sequences from get_image_features, which breaks cosine KNN.
+        vision_out = self._model.vision_model(
+            pixel_values=inputs["pixel_values"],
+            return_dict=True,
+        )
+        pooled = vision_out.pooler_output
+        if pooled is None:
+            # Fall back to CLS token if pooler is missing.
+            pooled = vision_out.last_hidden_state[:, 0]
+        feats = self._model.visual_projection(pooled)
+        vec = feats.detach().float().cpu().numpy()
+        vec = np.asarray(vec, dtype=np.float32).reshape(-1)
         norm = float(np.linalg.norm(vec) + 1e-8)
         return (vec / norm).astype(np.float32)
 
 
 def cosine_sim(a: np.ndarray, b: np.ndarray) -> float:
-    return float(np.dot(a, b) / (float(np.linalg.norm(a) * np.linalg.norm(b)) + 1e-8))
+    a = np.asarray(a, dtype=np.float32).reshape(-1)
+    b = np.asarray(b, dtype=np.float32).reshape(-1)
+    denom = float(np.linalg.norm(a) * np.linalg.norm(b)) + 1e-8
+    return float(np.dot(a, b) / denom)
 
 
 def nearest_neighbor(
