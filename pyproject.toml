@@ -83,7 +83,7 @@ aieng-synthetic-data = { workspace = true }
 clip = { git = "https://github.com/ultralytics/CLIP.git", rev = "68dce32140994dfcb645a1320c4ebdc034fc19fd" }
 
 [tool.mypy]
-mypy_path = ["aieng-synthetic-data"]
+mypy_path = ["aieng-synthetic-data", "implementations/edge_case_image_generation/src"]
 ignore_missing_imports = true
 install_types = true
 pretty = true
