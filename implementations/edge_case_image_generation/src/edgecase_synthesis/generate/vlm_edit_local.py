@@ -57,7 +57,7 @@ def _get_pipeline(model_id: str, device: torch.device) -> Any:
     except ImportError as exc:  # pragma: no cover
         raise ImportError(
             "diffusers with QwenImageEditPipeline is required for vlm_generate_local. "
-            "Install the edge-case-image-generation dependency group."
+            "Install the edge-case-image-generation dependency group.",
         ) from exc
 
     dtype = torch.bfloat16 if device.type == "cuda" and torch.cuda.is_bf16_supported() else torch.float16

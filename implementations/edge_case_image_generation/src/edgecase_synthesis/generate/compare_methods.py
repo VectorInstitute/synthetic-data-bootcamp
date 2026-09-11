@@ -456,10 +456,12 @@ class MethodComparer:
 
         dtype = self._dtype()
         depth_cn = ControlNetModel.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
-            self.depth_controlnet_id, torch_dtype=dtype
+            self.depth_controlnet_id,
+            torch_dtype=dtype,
         )
         seg_cn = ControlNetModel.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
-            self.seg_controlnet_id, torch_dtype=dtype
+            self.seg_controlnet_id,
+            torch_dtype=dtype,
         )
         controlnets = [depth_cn, seg_cn]
 
@@ -469,10 +471,12 @@ class MethodComparer:
             kwargs: dict[str, Any] = {"controlnet": controlnets, "torch_dtype": dtype}
             if self.vae_id:
                 kwargs["vae"] = AutoencoderKL.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
-                    self.vae_id, torch_dtype=dtype
+                    self.vae_id,
+                    torch_dtype=dtype,
                 )
             pipe = StableDiffusionXLControlNetImg2ImgPipeline.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
-                self.base_model_id, **kwargs
+                self.base_model_id,
+                **kwargs,
             )
             return self._place(pipe)
 
@@ -517,7 +521,7 @@ class MethodComparer:
                 safety_checker=None,
             )
             pipe.scheduler = EulerAncestralDiscreteScheduler.from_config(  # type: ignore[no-untyped-call, unused-ignore]
-                pipe.scheduler.config
+                pipe.scheduler.config,
             )
         return self._place(pipe)
 
@@ -686,7 +690,7 @@ class MethodComparer:
             merged.get(
                 "controlnet_strength",
                 min(0.45, inpaint_strength),
-            )
+            ),
         )
 
         edit_mask_cfg = dict(anom.get("edit_mask", {"mode": "ellipse"}))
@@ -696,7 +700,7 @@ class MethodComparer:
             if depth is None or segmentation is None:
                 raise ValueError(
                     f"Method {effective!r} requires depth and segmentation "
-                    "(got depth={depth is not None}, seg={segmentation is not None})"
+                    "(got depth={depth is not None}, seg={segmentation is not None})",
                 )
             edit_mask, edit_weight = build_anomaly_edit_mask(
                 segmentation,
@@ -723,7 +727,7 @@ class MethodComparer:
                     seed=seed,
                     anomaly_id=anomaly_id,
                     generation_cfg=merged,
-                )
+                ),
             )
         if effective == "vlm_generate_local":
             return _finish(
@@ -734,7 +738,7 @@ class MethodComparer:
                     anomaly_id=anomaly_id,
                     generation_cfg=merged,
                     family=family,
-                )
+                ),
             )
 
         if effective == "inpaint":
@@ -754,7 +758,7 @@ class MethodComparer:
                     edit_mask_cfg=edit_mask_cfg,
                     anomaly_id=anomaly_id,
                     padding_crop=padding_crop,
-                )
+                ),
             )
         if effective == "controlnet_dual":
             assert depth is not None and segmentation is not None
@@ -771,7 +775,7 @@ class MethodComparer:
                     cn_strength=cn_strength,
                     seed=seed,
                     anomaly_id=anomaly_id,
-                )
+                ),
             )
         instruct_steps = merged.get("instruct_num_inference_steps", self.instruct_num_inference_steps)
         return _finish(
@@ -785,7 +789,7 @@ class MethodComparer:
                 image_guidance=float(merged.get("instruct_image_guidance", self.instruct_image_guidance)),
                 text_guidance=float(merged.get("instruct_guidance_scale", self.instruct_guidance)),
                 instruct_steps=instruct_steps,
-            )
+            ),
         )
 
     def compare_one(
@@ -1093,7 +1097,7 @@ class MethodComparer:
         cfg = VlmLocalEditConfig(
             model_id=str(generation_cfg.get("vlm_local_model_id") or self.vlm_local_model_id),
             num_inference_steps=int(
-                generation_cfg.get("vlm_local_num_inference_steps", self.vlm_local_num_inference_steps)
+                generation_cfg.get("vlm_local_num_inference_steps", self.vlm_local_num_inference_steps),
             ),
             true_cfg_scale=float(generation_cfg.get("vlm_local_true_cfg_scale", self.vlm_local_true_cfg_scale)),
             max_side=int(generation_cfg.get("vlm_local_max_side", self.vlm_local_max_side)),

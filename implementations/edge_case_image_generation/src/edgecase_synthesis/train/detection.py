@@ -439,7 +439,7 @@ def build_yolo_dataset(
                 "names:",
                 names_block,
                 "",
-            ]
+            ],
         ),
         encoding="utf-8",
     )

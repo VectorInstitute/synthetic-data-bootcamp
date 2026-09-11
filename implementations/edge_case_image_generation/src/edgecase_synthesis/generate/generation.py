@@ -146,7 +146,8 @@ class AnomalyEditor:
 
         dtype = self._dtype()
         depth_cn = ControlNetModel.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
-            self.depth_controlnet_id, torch_dtype=dtype
+            self.depth_controlnet_id,
+            torch_dtype=dtype,
         )
         if self.family == "sdxl":
             pass
@@ -157,10 +158,12 @@ class AnomalyEditor:
             }
             if self.vae_id:
                 kwargs["vae"] = AutoencoderKL.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
-                    self.vae_id, torch_dtype=dtype
+                    self.vae_id,
+                    torch_dtype=dtype,
                 )
             pipe = StableDiffusionXLControlNetImg2ImgPipeline.from_pretrained(  # type: ignore[no-untyped-call, unused-ignore]
-                self.base_model_id, **kwargs
+                self.base_model_id,
+                **kwargs,
             )
             return self._place(pipe)
 
@@ -277,7 +280,7 @@ class AnomalyEditor:
                         if merged.get("padding_mask_crop") not in (None, "", False)
                         else None
                     ),
-                )
+                ),
             )
 
         if method in {"vlm_generate", "vlm_generate_local", "vlm_generate_api"}:
@@ -318,7 +321,7 @@ class AnomalyEditor:
                         edit_mask=None,
                         anomaly_id=anomaly_id,
                         method="vlm_generate_local",
-                    )
+                    ),
                 )
 
             require_vlm_api_enabled(merged.get("vlm_api_enabled", False))
@@ -350,7 +353,7 @@ class AnomalyEditor:
                     edit_mask=None,
                     anomaly_id=anomaly_id,
                     method="vlm_generate_api",
-                )
+                ),
             )
 
         scale_cfg = merged.get("controlnet_scale", 0.55)
@@ -372,7 +375,7 @@ class AnomalyEditor:
                 edit_weight=edit_weight,
                 edit_mask_cfg=edit_mask_cfg,
                 anomaly_id=anomaly_id,
-            )
+            ),
         )
 
     @torch.inference_mode()
@@ -552,7 +555,10 @@ def _mask_to_pil(mask: np.ndarray) -> Image.Image:
 
 
 def _fit_klein_inpaint(
-    image: Image.Image, edit_mask: np.ndarray, *, max_side: int = 768
+    image: Image.Image,
+    edit_mask: np.ndarray,
+    *,
+    max_side: int = 768,
 ) -> tuple[Image.Image, Image.Image]:
     """Resize RGB + mask to Klein-friendly multiples of 16."""
     width, height = image.size

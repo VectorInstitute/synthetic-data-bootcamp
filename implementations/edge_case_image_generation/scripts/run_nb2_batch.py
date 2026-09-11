@@ -270,7 +270,7 @@ def _report_and_export(args: argparse.Namespace, run: dict[str, Any], batch: Any
         print(
             f"  {aid:16s}  accept={st.accepts}/{st.attempts}  "
             f"rate={100 * st.acceptance_rate:5.1f}%  "
-            f"reject={st.rejects}  retry_events={st.retries}"
+            f"reject={st.rejects}  retry_events={st.retries}",
         )
 
     if args.no_export:

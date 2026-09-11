@@ -74,7 +74,7 @@ def from_pretrained_klein(
             [
                 {"dtype": dtype, "device_map": device_map},
                 {"torch_dtype": dtype, "device_map": device_map},
-            ]
+            ],
         )
     attempts.extend(
         [
@@ -82,7 +82,7 @@ def from_pretrained_klein(
             {"torch_dtype": dtype},
             {"dtype": dtype, "low_cpu_mem_usage": False},
             {"torch_dtype": dtype, "low_cpu_mem_usage": False},
-        ]
+        ],
     )
     if not prefer_device_map:
         device_map = klein_device_map(device)
@@ -90,7 +90,7 @@ def from_pretrained_klein(
             [
                 {"dtype": dtype, "device_map": device_map},
                 {"torch_dtype": dtype, "device_map": device_map},
-            ]
+            ],
         )
     for kwargs in attempts:
         try:

@@ -190,7 +190,7 @@ def _parse_central_directory(directory: bytes) -> list[dict[str, Any]]:
                 "comp": comp_size,
                 "uncomp": uncomp_size,
                 "local_off": local_offset,
-            }
+            },
         )
         position += 46 + name_len + extra_len + comment_len
     return entries
@@ -415,7 +415,7 @@ def _bbox_from_mapillary_polygon(
             {
                 "label": paths.target[internal],
                 "bbox_xyxy": [min(xs) * scale, min(ys) * scale, max(xs) * scale, max(ys) * scale],
-            }
+            },
         )
     return boxes
 
@@ -524,7 +524,7 @@ def extract_mapillary_toy(
     if not token:
         raise RuntimeError(
             "No Hugging Face token. Set HF_TOKEN in .env or run `huggingface-cli login` "
-            "(and accept Mapillary Vistas terms once in the browser)."
+            "(and accept Mapillary Vistas terms once in the browser).",
         )
 
     url = hf_hub_url(paths.repo, paths.zip_name, repo_type="dataset")

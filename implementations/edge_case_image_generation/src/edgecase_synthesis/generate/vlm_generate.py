@@ -192,7 +192,7 @@ def _generate_gemini(
         pass
     except ImportError as exc:  # pragma: no cover
         raise ImportError(
-            "google-genai is required for Gemini image generation. Install: uv sync --group edge-case-image-generation"
+            "google-genai is required for Gemini image generation. Install: uv sync --group edge-case-image-generation",
         ) from exc
 
     client = genai.Client(api_key=gemini_api_key(cfg.api_key))
@@ -202,7 +202,7 @@ def _generate_gemini(
             types.Part.from_bytes(
                 data=pil_to_png_bytes(seed_image, max_side=cfg.max_side),
                 mime_type="image/png",
-            )
+            ),
         )
         text = _edit_prompt(prompt)
     else:
@@ -229,7 +229,7 @@ def _generate_gemini(
             return _bytes_to_pil(data)
     raise RuntimeError(
         f"Gemini model {model!r} returned no image. Use an image-capable ID "
-        "(e.g. gemini-3.1-flash-image), not a chat-only Flash/Pro model."
+        "(e.g. gemini-3.1-flash-image), not a chat-only Flash/Pro model.",
     )
 
 
@@ -284,7 +284,7 @@ def _generate_vector_proxy(
                     {"type": "text", "text": text},
                     {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{b64}"}},
                 ],
-            }
+            },
         ]
     else:
         messages = [{"role": "user", "content": text}]
@@ -312,12 +312,12 @@ def _generate_vector_proxy(
                     prompt=text,
                     size=cfg.size,
                     response_format="b64_json",
-                )
+                ),
             )
         except Exception as exc:
             raise RuntimeError(
                 f"Vector proxy model {model!r} returned no edited image. "
-                "Need an image-capable model ID from inference.vectorinstitute.ai."
+                "Need an image-capable model ID from inference.vectorinstitute.ai.",
             ) from exc
 
     return _extract_images_api(
@@ -327,5 +327,5 @@ def _generate_vector_proxy(
             size=cfg.size,
             response_format="b64_json",
             n=1,
-        )
+        ),
     )

@@ -144,7 +144,7 @@ def export_nb2_dataset(
                         "path": str(path),
                         "split": "real",
                         "boxes": gt_boxes_to_dicts(real_labels.get(path.name) or real_labels.get(path.stem) or []),
-                    }
+                    },
                 )
         return rows
 
@@ -166,7 +166,7 @@ def export_nb2_dataset(
                 "judge": sample.judge,
                 "variation": sample.variation,
                 "variation_index": sample.variation_index,
-            }
+            },
         )
 
     stats_payload = {

@@ -26,5 +26,5 @@ def bootstrap_project_root(start: Path | None = None) -> Path:
                 sys.path.insert(0, src)
             return base
     raise FileNotFoundError(
-        f"Could not find edge_case_image_generation root (need src/edgecase_synthesis + configs/) from {here}"
+        f"Could not find edge_case_image_generation root (need src/edgecase_synthesis + configs/) from {here}",
     )

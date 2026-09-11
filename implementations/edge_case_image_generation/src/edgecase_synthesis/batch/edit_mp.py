@@ -68,7 +68,7 @@ def annotation_from_payload(payload: dict[str, Any], image_size: tuple[int, int]
                 confidence=float(d["confidence"]),
                 bbox_xyxy=bbox,  # type: ignore[arg-type]
                 mask=_box_mask((h, w), bbox),  # type: ignore[arg-type]
-            )
+            ),
         )
     overlay = np.zeros((h, w, 3), dtype=np.uint8)
     return AnnotationResult(
@@ -87,7 +87,7 @@ def _annotation_to_payload(annotation: Any) -> dict[str, Any]:
                 "bbox_xyxy": [int(x) for x in d.bbox_xyxy],
             }
             for d in annotation.detections
-        ]
+        ],
     }
 
 
@@ -201,7 +201,7 @@ def mp_synthesize_shard(payload: dict[str, Any]) -> list[dict[str, Any]]:
                     "variation_index": syn.generated.variation_index,
                     "edit_mask_path": mask_path,
                     "annotation": _annotation_to_payload(annotation),
-                }
+                },
             )
         except Exception as exc:  # noqa: BLE001 — keep shard alive
             print(
@@ -214,7 +214,7 @@ def mp_synthesize_shard(payload: dict[str, Any]) -> list[dict[str, Any]]:
                     "ok": False,
                     "job_id": job.job_id,
                     "error": f"{type(exc).__name__}: {exc}",
-                }
+                },
             )
         finally:
             gc.collect()

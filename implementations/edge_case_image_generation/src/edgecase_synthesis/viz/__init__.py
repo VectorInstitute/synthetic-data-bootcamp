@@ -381,7 +381,7 @@ def show_judge_result(
         lines.append(
             f"embed KNN: real={emb_g if emb_g is not None else '?'}  "
             f"local={emb_l if emb_l is not None else '?'}  "
-            f"neighbor={emb_n if emb_n is not None else '?'}"
+            f"neighbor={emb_n if emb_n is not None else '?'}",
         )
         reason = getattr(judgment, "embed_gate_reason", None)
         if reason:
@@ -399,7 +399,7 @@ def show_judge_result(
             f"model: {getattr(judgment, 'model_id', '?')}",
             "",
             str(getattr(judgment, "rationale", "") or ""),
-        ]
+        ],
     )
     axes[1].text(
         0.0,

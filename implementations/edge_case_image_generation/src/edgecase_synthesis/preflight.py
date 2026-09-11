@@ -465,7 +465,7 @@ def run_preflight(
                 "Vector proxy chat",
                 "skip",
                 "skipped — fix API key first",
-            )
+            ),
         )
 
     return report

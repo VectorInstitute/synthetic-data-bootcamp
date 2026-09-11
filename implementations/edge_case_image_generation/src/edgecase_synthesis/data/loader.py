@@ -74,7 +74,7 @@ def project_root(start: Path | None = None) -> Path:
     raise FileNotFoundError(
         "Could not locate edge_case_image_generation root "
         "(expected configs/config.yaml + src/edgecase_synthesis). "
-        "Run from the implementation folder or pass start=PROJECT_ROOT."
+        "Run from the implementation folder or pass start=PROJECT_ROOT.",
     )
 
 
@@ -224,7 +224,7 @@ def _stale_cache_error(target: Path, source: dict[str, Any]) -> FileNotFoundErro
     return FileNotFoundError(
         f"{target} does not match data source {expected!r} "
         f"(meta={meta.get('dataset') or meta.get('hf_id') or 'missing'}; "
-        f"examples={found}). {hint}"
+        f"examples={found}). {hint}",
     )
 
 
@@ -278,7 +278,7 @@ def _prepare_local(target: Path, source: dict[str, Any], existing: list[Path]) -
     if name in {"mapillary_vistas", "mapillary"}:
         return _ensure_mapillary_samples(target)
     raise FileNotFoundError(
-        f"No images in {target}. Drop files there or run the dataset extract/prepare step (dataset={name!r})."
+        f"No images in {target}. Drop files there or run the dataset extract/prepare step (dataset={name!r}).",
     )
 
 
@@ -290,7 +290,7 @@ def _ensure_mapillary_samples(target: Path) -> list[Path]:
     paths = ensure_mapillary_samples(root, min_images=1)
     if not paths:
         raise FileNotFoundError(
-            f"Extract finished but {target} is still empty. Check HF login / access to candylion/mapillary-vistas-v2."
+            f"Extract finished but {target} is still empty. Check HF login / access to candylion/mapillary-vistas-v2.",
         )
     return paths
 

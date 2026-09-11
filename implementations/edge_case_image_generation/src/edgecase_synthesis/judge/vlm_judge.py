@@ -492,7 +492,7 @@ class VLMJudge:
                     {"type": "image", "image": image},
                     {"type": "text", "text": user_text},
                 ],
-            }
+            },
         ]
 
         inputs = self._processor.apply_chat_template(

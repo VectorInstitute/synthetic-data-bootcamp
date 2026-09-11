@@ -252,7 +252,7 @@ def _synthesize_items(
                 continue
         log(
             f"  edit  {item.anomaly_id}  seed={item.source_stem}  "
-            f"attempt={item.attempt}  method={item.method}  device={stack.device}"
+            f"attempt={item.attempt}  method={item.method}  device={stack.device}",
         )
         depth = stack.depth_model.predict(item.source_image) if stack.depth_model is not None else None
         seg = stack.segmenter.predict(item.source_image) if stack.segmenter is not None else None
@@ -391,7 +391,7 @@ def _load_edit_stacks(ctx: _BatchContext) -> None:
     if ctx.n_edit > 1:
         ctx.log(
             f"Edit phase: {ctx.n_edit} process workers (one Klein per GPU). "
-            "Note: Flux2Klein list(image)+list(prompt) is multi-ref, not paired batch."
+            "Note: Flux2Klein list(image)+list(prompt) is multi-ref, not paired batch.",
         )
         return
     ctx.log("Loading edit stack on default device…")
@@ -403,7 +403,7 @@ def _load_edit_stacks(ctx: _BatchContext) -> None:
             need_seg=ctx.need_seg,
             warm_methods=ctx.methods_in_queue,
             log=ctx.log,
-        )
+        ),
     )
 
 
@@ -473,7 +473,7 @@ def _edit_worker_payloads(ctx: _BatchContext, active: list[PendingItem], tmp_roo
                 "warm_methods": list(ctx.methods_in_queue),
                 "base_classes": ctx.base_classes,
                 "tmp_dir": str(tmp_root / f"gpu{gpu_id}"),
-            }
+            },
         )
     return payloads
 
@@ -646,7 +646,7 @@ def _log_judgment(ctx: _BatchContext, item: PendingItem, judgment: JudgeResult, 
             if judgment.embed_real_sim_global is not None and judgment.embed_neighbor_sim is not None
             else ""
         )
-        + f"  boxes={'yes' if boxed else 'NO'}"
+        + f"  boxes={'yes' if boxed else 'NO'}",
     )
 
 
@@ -741,7 +741,7 @@ def _judge_queue(ctx: _BatchContext, items: list[PendingItem]) -> list[PendingIt
     counts = _apply_judgments(ctx, _run_judgments(ctx, ready), retries)
     ctx.log(
         f"Judge round: accept={counts[0]}  retry={counts[1]}  reject={counts[2]}  "
-        f"accepted_total={len(ctx.result.accepted)}"
+        f"accepted_total={len(ctx.result.accepted)}",
     )
     return retries
 
@@ -773,7 +773,7 @@ def _restore_batch_checkpoint(
     )
     log(
         f"Resume: loaded {len(result.accepted)} accepted, "
-        f"{len(result.rejected)} rejected; skipping {len(done_keys)} seeds."
+        f"{len(result.rejected)} rejected; skipping {len(done_keys)} seeds.",
     )
     return done_keys
 
@@ -801,7 +801,7 @@ def _queue_batch_items(
                     source_path=path,
                     source_image=Image.open(path).convert("RGB"),
                     source_stem=path.stem,
-                )
+                ),
             )
     return queue
 
@@ -888,7 +888,7 @@ def _prepare_batch_context(
     if queue:
         context.log(
             f"Batch parallelism: edit_workers={context.n_edit}  judge_workers={context.n_judge}  "
-            f"depth={need_depth}  seg={need_seg}"
+            f"depth={need_depth}  seg={need_seg}",
         )
     return context, queue, previous_progress
 

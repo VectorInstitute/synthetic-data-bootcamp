@@ -154,7 +154,7 @@ def stratified_holdout(
         if len(pool) < n_test:
             raise ValueError(
                 f"Need {n_test} images for test tag={tag!r}, found {len(pool)}. "
-                "Re-run extract with higher caps or lower TEST counts."
+                "Re-run extract with higher caps or lower TEST counts.",
             )
         shuffled = pool[:]
         rng.shuffle(shuffled)
@@ -199,7 +199,7 @@ def pick_synth_seeds(
     if len(pool) < need:
         raise ValueError(
             f"Need {need} scene seeds for synthesis, found {len(pool)}. "
-            "Extract more scene_* images or lower N_SYNTH_PER_CLASS."
+            "Extract more scene_* images or lower N_SYNTH_PER_CLASS.",
         )
     out: dict[str, list[Path]] = {}
     i = 0

@@ -82,7 +82,7 @@ def load_dataset_package(dataset_name: str, *, start: Path | None = None) -> Dic
         available = ", ".join(list_dataset_names(start=start)) or "(none)"
         raise FileNotFoundError(
             f"Unknown dataset package {dataset_name!r}. Available: {available}. "
-            f"Copy configs/datasets/_template to configs/datasets/{dataset_name}."
+            f"Copy configs/datasets/_template to configs/datasets/{dataset_name}.",
         )
     return OmegaConf.create(
         {
@@ -90,7 +90,7 @@ def load_dataset_package(dataset_name: str, *, start: Path | None = None) -> Dic
             "data": _load_yaml(root / "data.yaml"),
             "annotation": _load_yaml(root / "annotation.yaml"),
             "generation": _load_yaml(root / "generation" / "default.yaml"),
-        }
+        },
     )
 
 

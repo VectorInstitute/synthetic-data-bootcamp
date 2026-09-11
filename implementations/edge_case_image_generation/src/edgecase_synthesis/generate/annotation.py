@@ -105,7 +105,7 @@ class OpenVocabAnnotator:
                 verbose=False,
                 device=self._yolo_device,
                 max_det=self.max_detections,
-            )
+            ),
         )
         detections: list[Detection] = []
         if results:
@@ -134,7 +134,7 @@ class OpenVocabAnnotator:
                             confidence=float(scores[idx]),
                             bbox_xyxy=(x1, y1, x2, y2),
                             mask=mask,
-                        )
+                        ),
                     )
 
         tmp = AnnotationResult(
