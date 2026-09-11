@@ -6,11 +6,11 @@ authors = [ {name = "Vector AI Engineering", email = "ai_engineering@vectorinsti
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "aieng-platform-onboard>=0.4.0",
     "aieng-synthetic-data",
     "aiohttp>=3.14.3",
     "bleach==6.4.0",
     "filelock==3.32.0",
+    "httpx>=0.28.0",
     "jupyter-server==2.20.0",
     "jupyterlab==4.5.10",
     "mistune==3.3.3",
@@ -50,6 +50,15 @@ text-sft = [
     "torch",
     "transformers",
     "trl",
+]
+
+[tool.uv]
+default-groups = ["dev"]
+# aieng-platform-onboard pins filelock and virtualenv to older exact versions;
+# override so the security floors in [project.dependencies] still win.
+override-dependencies = [
+    "filelock==3.32.0",
+    "virtualenv==21.7.0",
 ]
 
 [tool.uv.workspace]

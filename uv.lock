@@ -18,6 +18,10 @@ members = [
     "aieng-synthetic-data",
     "synthetic-data-bootcamp",
 ]
+overrides = [
+    { name = "filelock", specifier = "==3.32.0" },
+    { name = "virtualenv", specifier = "==21.7.0" },
+]
 
 [[package]]
 name = "accelerate"
@@ -39,25 +43,33 @@ wheels = [
 
 [[package]]
 name = "aieng-platform-onboard"
-version = "0.4.0"
+version = "0.7.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
+    { name = "authlib" },
+    { name = "cryptography" },
+    { name = "filelock" },
     { name = "firebase-admin" },
     { name = "google-auth" },
     { name = "google-cloud-firestore" },
     { name = "google-cloud-secret-manager" },
     { name = "google-cloud-storage" },
+    { name = "idna" },
+    { name = "msgpack" },
     { name = "openai" },
     { name = "pandas" },
+    { name = "pygments" },
+    { name = "pyjwt" },
     { name = "python-dotenv" },
     { name = "requests" },
     { name = "rich" },
     { name = "urllib3" },
+    { name = "virtualenv" },
     { name = "weaviate-client" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/29/7a/c646b4e0c7f94e6b6c17ecc6cd9b0b73dca969c1f2bdd7431d3f2dd8ee3a/aieng_platform_onboard-0.4.0.tar.gz", hash = "sha256:3cbd7b6cd214d16575ed700166d92c570a73fe531e2123a59c03ef00d54a7bce", size = 22353, upload-time = "2025-12-12T20:31:20.22Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/54/94/9e27ccc9d8f801013c777455dc04261601e52b44ba7ee0765fa8f3253c7d/aieng_platform_onboard-0.7.4.tar.gz", hash = "sha256:0ed298144e6968573654ae317d4f77613c014169d0ee9115e867a8a7be767834", size = 38389, upload-time = "2026-08-10T15:28:12.017Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/8c/53/2c14c5df333046a732272b15b3dfbacfe7c00f6b08759e1a7515b71397e6/aieng_platform_onboard-0.4.0-py3-none-any.whl", hash = "sha256:aa3c71aed820b0f28810d5b29891ab5dd9dc425a2fe8f1852d40162374ed5fda", size = 25542, upload-time = "2025-12-12T20:31:19.142Z" },
+    { url = "https://files.pythonhosted.org/packages/60/a1/e25cd68a482cd08a112af218f3906820e03e3c074bf454bf4d11032b8154/aieng_platform_onboard-0.7.4-py3-none-any.whl", hash = "sha256:6adaed0616dc1e684a9ef82f380736c51577a5686fc000263ef9625ab49a5177", size = 48508, upload-time = "2026-08-10T15:28:10.67Z" },
 ]
 
 [[package]]
@@ -428,15 +440,14 @@ wheels = [
 
 [[package]]
 name = "authlib"
-version = "1.8.0"
+version = "1.6.12"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cryptography" },
-    { name = "joserfc" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f1/51/bc1729d3cfdc214b4935f4e886e4dd443c3065fd8e1e66423fe84b490f81/authlib-1.8.0.tar.gz", hash = "sha256:f3ecd5f1da737262fb53bf1a4d95c4ea1ad9dd509316587a255c99ab1838a4f0", size = 177759, upload-time = "2026-08-30T12:12:34.833Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d3/30/6691fdc63b35f54a5a65e04fa1e59d827f4d4e8f4a39678ba7d3088ce0c8/authlib-1.6.12.tar.gz", hash = "sha256:0656d8482f28fc8221929d5f35b2bde5d13e10555ebc06b4561b0d622e83b1bd", size = 165368, upload-time = "2026-05-04T08:11:31.826Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b8/c6/6f124bcfbbfb20fba22c939b4e43a06dccfc0e1ca20e5634ca573cb1e271/authlib-1.8.0-py2.py3-none-any.whl", hash = "sha256:88aebbd9af6757e14e912d5dc007ae1dc1f3e27e3b2152ce7c552ee2c3b3c121", size = 260804, upload-time = "2026-08-30T12:12:33.162Z" },
+    { url = "https://files.pythonhosted.org/packages/cd/51/9b0b5cd4cf683a02db937a6f9bbebcdc9c56558a7bb3763ce7d3512103c3/authlib-1.6.12-py2.py3-none-any.whl", hash = "sha256:e9229ad7fde610b139dd12f5edbe97eab9ee78bfb85691247e767727850b99ab", size = 244473, upload-time = "2026-05-04T08:11:30.354Z" },
 ]
 
 [[package]]
@@ -1843,18 +1854,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/1a/07/421f1d5b65493a76e16027b848aba6a7d28073ae75944fa4289cc914d39f/jiter-0.16.0-graalpy312-graalpy250_312_native-macosx_11_0_arm64.whl", hash = "sha256:96e38eea538c8ddf853a35727c7be0741c76c13f04148ac5c116222f50ece3b3", size = 304658, upload-time = "2026-06-29T13:05:08.708Z" },
     { url = "https://files.pythonhosted.org/packages/0a/db/bba1155f01a01c3c37a89425d571da751bbedf5c54247b831a04cb971798/jiter-0.16.0-graalpy312-graalpy250_312_native-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d284fb8d94d5855d60c44fefcab4bf966f1da6fada73992b01f6f0c9bc0c6702", size = 339719, upload-time = "2026-06-29T13:05:10.41Z" },
     { url = "https://files.pythonhosted.org/packages/78/f7/18a1afcd64f35314b68c1f23afcd9994d0bc13e65cc77517afff4e83986d/jiter-0.16.0-graalpy312-graalpy250_312_native-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:64d613743df53199b1aa256a7d328340da6d7078aac7705a7db9d7a791e9cfd2", size = 343885, upload-time = "2026-06-29T13:05:12.087Z" },
-]
-
-[[package]]
-name = "joserfc"
-version = "1.7.5"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "cryptography" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/19/94/80fea1514b7c6d7d37804d3fe9ca81455f633347fc98731bd71ffe1faa17/joserfc-1.7.5.tar.gz", hash = "sha256:d5ff536e658e17664f8c1b1ab60dc4aa62aa973fcef1edd33cc44bda45d6f5ea", size = 234990, upload-time = "2026-08-29T13:05:42.057Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/67/c5/82addfd375e5ee6520644e0553e4aadde92d668c4fc99cc716d337fe7bb3/joserfc-1.7.5-py3-none-any.whl", hash = "sha256:add2c2c84e8373b084d526a8b53daba5d7a513a118cd2dcd9fc9f979d0922159", size = 71269, upload-time = "2026-08-29T13:05:40.718Z" },
 ]
 
 [[package]]
@@ -4129,11 +4128,11 @@ name = "synthetic-data-bootcamp"
 version = "0.1.1"
 source = { virtual = "." }
 dependencies = [
-    { name = "aieng-platform-onboard" },
     { name = "aieng-synthetic-data" },
     { name = "aiohttp" },
     { name = "bleach" },
     { name = "filelock" },
+    { name = "httpx" },
     { name = "jupyter-server" },
     { name = "jupyterlab" },
     { name = "mistune" },
@@ -4153,6 +4152,7 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "aieng-platform-onboard" },
     { name = "codecov" },
     { name = "mypy" },
     { name = "nbqa" },
@@ -4176,11 +4176,11 @@ text-sft = [
 
 [package.metadata]
 requires-dist = [
-    { name = "aieng-platform-onboard", specifier = ">=0.4.0" },
     { name = "aieng-synthetic-data", editable = "aieng-synthetic-data" },
     { name = "aiohttp", specifier = ">=3.14.3" },
     { name = "bleach", specifier = "==6.4.0" },
     { name = "filelock", specifier = "==3.32.0" },
+    { name = "httpx", specifier = ">=0.28.0" },
     { name = "jupyter-server", specifier = "==2.20.0" },
     { name = "jupyterlab", specifier = "==4.5.10" },
     { name = "mistune", specifier = "==3.3.3" },
@@ -4200,6 +4200,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "aieng-platform-onboard", specifier = ">=0.7.3" },
     { name = "codecov", specifier = ">=2.1.13" },
     { name = "mypy", specifier = ">=2.3.0" },
     { name = "nbqa", specifier = ">=1.9.1" },
