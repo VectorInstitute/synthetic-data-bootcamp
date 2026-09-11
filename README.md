@@ -6,10 +6,10 @@ This repository contains reference implementations from the Vector AI Engineerin
 
 This bootcamp has four main themes. In each one we try to target a known data bottleneck of modern AI systems, and show how synthetic data can be leveraged to target these bottlenecks.
 
-1. **QA generation for SLM alignment** — generate grounded question–answer data to fine-tune and align small language models.
-2. **Agent benchmark generation** — synthesize evaluation tasks for multi-step customer service agents.
-3. **Tabular data synthesis** — generate single-table and relational multi-table datasets while preserving schema and statistics.
-4. **Edge case image synthesis** — generate rare or hard-to-collect visual scenarios for downstream vision tasks.
+1. **QA generation for SLM alignment**: generate grounded question–answer data to fine-tune and align small language models.
+2. **Agent benchmark generation**: synthesize evaluation tasks for multi-step customer service agents.
+3. **Tabular data synthesis**: generate single-table and relational multi-table datasets while preserving schema and statistics.
+4. **Edge case image synthesis**: generate rare or hard-to-collect visual scenarios for downstream vision tasks.
 
 ## Repository Structure
 
