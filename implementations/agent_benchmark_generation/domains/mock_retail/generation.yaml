@@ -53,7 +53,7 @@ persona_related: user_id
 persona_field: name
 
 # Optional per-task_type hints for evaluation_criteria.communicate_info.
-# Keys should match task_types in state_machine.yaml. Missing keys use a
+# Keys should match task types in task_types.yaml. Missing keys use a
 # generic default in PromptBuilder.
 communicate_hints:
   inquiry: "Usually []. Add substrings only if the user must hear specific facts back."

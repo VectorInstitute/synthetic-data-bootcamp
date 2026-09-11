@@ -24,7 +24,6 @@ def get_tool_specs() -> list[ToolSpec]:
                 "required": ["name"],
             },
             tool_type=ToolType.READ,
-            fsm_tag="lookup",
         ),
         ToolSpec(
             name="get_order",
@@ -35,7 +34,6 @@ def get_tool_specs() -> list[ToolSpec]:
                 "required": ["order_id"],
             },
             tool_type=ToolType.READ,
-            fsm_tag="lookup",
         ),
         ToolSpec(
             name="list_orders",
@@ -46,7 +44,6 @@ def get_tool_specs() -> list[ToolSpec]:
                 "required": ["user_id"],
             },
             tool_type=ToolType.READ,
-            fsm_tag="lookup",
         ),
         ToolSpec(
             name="cancel_order",
@@ -57,7 +54,6 @@ def get_tool_specs() -> list[ToolSpec]:
                 "required": ["order_id"],
             },
             tool_type=ToolType.WRITE,
-            fsm_tag="mutate",
         ),
         ToolSpec(
             name="update_shipping",
@@ -71,7 +67,6 @@ def get_tool_specs() -> list[ToolSpec]:
                 "required": ["order_id", "shipping_address"],
             },
             tool_type=ToolType.WRITE,
-            fsm_tag="mutate",
         ),
     ]
 

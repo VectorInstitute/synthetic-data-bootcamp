@@ -19,12 +19,12 @@ SynBench builds **τ-bench–style** benchmarks for customer-service agents that
 
 ### Features
 
-- τ-inspired domain bundles (policy, tools, DB, FSM, user simulator, seed tasks)
+- τ-inspired domain bundles (policy, tools, DB, task types, user simulator, seed tasks)
 - OpenAI-compatible API for task generation
 - Multi-turn tool-calling agent loop and multi-role pipeline (planner / executor / user_sim / critic)
 - Multi-turn dialogue with different types of personas/customers.
 - Provider-agnostic LLM layer via OpenAI-compatible chat completions API
-- Rule-based verification: FSM, replay, policy rules
+- Rule-based verification: task-type write rules, replay, policy rules
 - Outcome-first scoring (`DB` + `COMMUNICATE`, matching τ-bench semantics)
 
 
@@ -41,11 +41,11 @@ Smoke-tests your LLM credentials against the Vector Institute OpenAI-compatible 
 
 Walks through the **benchmark creation** path on `domains/mock_retail`:
 
-1. Load and validate the domain bundle (policy, DB, tools, FSM, seed tasks)
+1. Load and validate the domain bundle (policy, DB, tools, task types, seed tasks)
 2. Inspect a seed task’s oracle actions and communicate criteria
 3. Replay tools in the Environment and compute a target DB hash
 4. Sample constraints and generate synthetic task drafts via the LLM
-5. Run the verification gate (policy rules → FSM → replay) and write passing tasks to `data/benchmarks/mock_retail/tasks.json`
+5. Run the verification gate (policy rules → task-type write rules → replay) and write passing tasks to `data/benchmarks/mock_retail/tasks.json`
 6. Optionally reload and re-verify saved tasks
 
 ### `3-single_agent_evaluation.ipynb`
@@ -70,7 +70,7 @@ Same setup and scoring as notebook 3, but runs **`AgentPipeline`** instead of a 
 ├─────────────────────────────────────────────────────────────────┤
 │ 2. GENERATE TASKS  LLM proposes scenario + oracle tool trace   │
 ├─────────────────────────────────────────────────────────────────┤
-│ 3. VERIFY          policy rules → FSM → replay → target hash   │
+│ 3. VERIFY          policy rules → task types → replay → hash   │
 ├─────────────────────────────────────────────────────────────────┤
 │ 4. RUN AGENT       multi-turn tool loop (single or pipeline)   │
 ├─────────────────────────────────────────────────────────────────┤
@@ -91,7 +91,7 @@ Copy `domains/mock_retail/` and provide:
 1. `policy.md` — agent rules
 2. `db.json` — initial state
 3. `tools.py` — `get_tool_specs()` + `ToolKit` class
-4. `state_machine.yaml` — `task_types` with `path`, `allow_write`
+4. `task_types.yaml` — per-type `allow_write`
 5. `user_simulator.yaml` — personas and goal templates
 6. `tasks.seed.json` — 2–3 hand-verified seed tasks
 7. `verify.py` - domain-specific rules to verify the generated tasks with.
@@ -99,10 +99,12 @@ Copy `domains/mock_retail/` and provide:
 
 ### Domain bundle files (`domains/mock_retail/`)
 
+For a file-by-file guide (who sees what, how to author each artifact, task JSON, sampling), see [domains/mock_retail/README.md](domains/mock_retail/README.md).
+
 - **`policy.md`** — rules the agent must follow (e.g. only cancel pending orders)
 - **`db.json`** — initial world state (users, orders)
 - **`tools.py`** — `get_tool_specs()` + `ToolKit` class implementing tools
-- **`state_machine.yaml`** — allowed tool patterns per `task_type` (`lookup`, `mutate`)
+- **`task_types.yaml`** — per `task_type`, whether the oracle may (and must) use WRITE tools (`allow_write`)
 - **`user_simulator.yaml`** — persona templates for the user simulator role
 - **`tasks.seed.json`** — hand-written example tasks the LLM imitates
 

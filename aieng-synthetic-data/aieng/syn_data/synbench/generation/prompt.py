@@ -26,28 +26,21 @@ def _seed_examples(domain: DomainBundle, task_type: str, limit: int = 2) -> list
     return ordered[:limit]
 
 
-def _fsm_rules(domain: DomainBundle, task_type: str) -> str:
-    """Human-readable FSM / oracle trajectory rules for the prompt.
+def _task_type_rules(domain: DomainBundle, task_type: str) -> str:
+    """Human-readable write-tool rules for the generation prompt.
 
-    Derived from ``state_machine.yaml`` for ``task_type`` (path length, tag
-    order, ``allow_write``). The verifier enforces the same rules later.
+    Derived from ``task_types.yaml`` ``allow_write`` for ``task_type``.
+    The verifier enforces the same rule later; it does not check action order.
     """
-    cfg = domain.state_machine.get("task_types", {}).get(task_type, {})
-    path = cfg.get("path", [])
+    cfg = domain.task_types.get(task_type, {})
     allow_write = cfg.get("allow_write", True)
     description = cfg.get("description", "")
-    n = len(path)
-    path_str = " → ".join(path) if path else "(none)"
     write_rule = (
-        "Include exactly one write tool as the final action."
-        if allow_write and n > 1
+        "Include at least one write tool in the oracle actions."
+        if allow_write
         else "Use read-only tools only; do not call write tools."
     )
-    return (
-        f"- task_type `{task_type}`: {description}\n"
-        f"- Oracle must contain exactly {n} action(s) in order: {path_str}\n"
-        f"- {write_rule}"
-    )
+    return f"- task_type `{task_type}`: {description}\n- {write_rule}"
 
 
 def _communicate_guidance(domain: DomainBundle, task_type: str) -> str:
@@ -159,7 +152,7 @@ class PromptBuilder:
     - ``generation.agent_role``
     - sampled ``entities`` / ``primary_id``
     - ``entity_context`` (DB snapshot)
-    - ``communicate_hints`` / FSM rules / seed examples
+    - ``communicate_hints`` / task-type rules / seed examples
     """
 
     def build(
@@ -190,7 +183,7 @@ class PromptBuilder:
         )
         # Prompt-only snapshot; see SampleConstraints.entity_context
         entity_ctx = json.dumps(constraints.entity_context, indent=2)
-        fsm_rules = _fsm_rules(domain, constraints.task_type)
+        task_type_rules = _task_type_rules(domain, constraints.task_type)
         comm_guidance = _communicate_guidance(domain, constraints.task_type)
         # Name from DB; style from user_simulator.yaml — kept separate in the Task.
         name_hint = _customer_name_hint(domain, constraints)
@@ -220,8 +213,8 @@ Return a single JSON object. Match the shape of the seed tasks exactly — no ex
 ## Sampled customer interaction style
 {style_block}
 
-## FSM / oracle trajectory rules
-{fsm_rules}
+## Task type write-tool rules
+{task_type_rules}
 
 ## Example seed task(s)
 {seeds}
@@ -263,6 +256,7 @@ Use this skeleton. Do not add additional fields. For example, do not add action_
 ## Do not include
 - Structured {{"contains": ...}} objects anywhere — put substrings in communicate_info.
 - Write tools for read-only task types (allow_write: false).
+- Omitting write tools for task types that require a DB mutation (allow_write: true).
 - Legacy ``persona`` field — use user_name + personality_style instead.
 
 Output only the JSON object, no markdown fences or commentary.

@@ -4,10 +4,6 @@ from __future__ import annotations
 
 from aieng.syn_data.synbench.environment.core import ToolDispatchError, replay_actions
 from aieng.syn_data.synbench.environment.hashing import db_hash
-from aieng.syn_data.synbench.fsm.validator import (
-    FSMValidationError,
-    validate_actions_against_fsm,
-)
 from aieng.syn_data.synbench.schemas.actions import actions_fingerprint
 from aieng.syn_data.synbench.schemas.domain import DomainBundle
 from aieng.syn_data.synbench.schemas.tasks import Task
@@ -17,22 +13,26 @@ from aieng.syn_data.synbench.schemas.verification import (
 )
 from aieng.syn_data.synbench.verification.domain_checks import run_domain_checks
 from aieng.syn_data.synbench.verification.errors import VerificationError
+from aieng.syn_data.synbench.verification.task_type_checks import (
+    TaskTypeValidationError,
+    validate_task_type_actions,
+)
 
 
 def verify_draft(domain: DomainBundle, draft: Task) -> VerifiedTask:
-    """Run domain checks, FSM validation, and oracle replay on ``draft``."""
+    """Run domain checks, task-type validation, and oracle replay on ``draft``."""
     errors: list[str] = []
     target_hash: str | None = None
 
     errors.extend(run_domain_checks(domain, draft))
 
     try:
-        validate_actions_against_fsm(
+        validate_task_type_actions(
             domain,
             draft.task_type,
             draft.evaluation_criteria.actions,
         )
-    except FSMValidationError as e:
+    except TaskTypeValidationError as e:
         errors.append(str(e))
 
     if not errors:

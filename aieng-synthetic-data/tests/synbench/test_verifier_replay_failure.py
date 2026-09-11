@@ -1,4 +1,4 @@
-"""Tests that verification rejects drafts which fail replay or FSM checks."""
+"""Tests that verification rejects drafts which fail replay or task-type checks."""
 
 import json
 from pathlib import Path
@@ -23,10 +23,10 @@ def test_invalid_replay_fails(mock_retail_path):
     )
 
 
-def test_invalid_fsm_fails(mock_retail_path):
-    """A draft whose actions violate the FSM path is rejected."""
+def test_invalid_task_type_fails(mock_retail_path):
+    """A draft whose actions violate the task type's write policy is rejected."""
     domain = load_domain(mock_retail_path)
-    with open(FIXTURES / "tasks_invalid_fsm.json") as f:
+    with open(FIXTURES / "tasks_invalid_task_type.json") as f:
         draft = Task.model_validate(json.load(f))
     result = verify_draft(domain, draft)
     assert not result.verification_report.passed

@@ -20,4 +20,3 @@ class ToolSpec(BaseModel):
     description: str
     parameters: dict[str, Any] = Field(default_factory=dict)
     tool_type: ToolType = ToolType.READ
-    fsm_tag: str | None = None

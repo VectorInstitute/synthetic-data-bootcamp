@@ -8,7 +8,7 @@ from aieng.syn_data.synbench.agents.loop import ToolCallingLoop
 from aieng.syn_data.synbench.agents.planner import Planner
 from aieng.syn_data.synbench.agents.session import AgentSession
 from aieng.syn_data.synbench.agents.user_sim import UserSimulator
-from aieng.syn_data.synbench.evaluation.scoring import ScoreResult, score_trajectory
+from aieng.syn_data.synbench.evaluation.scoring import ScoreResult, score_agent_run
 from aieng.syn_data.synbench.llm.client import LLMClient, get_client
 from aieng.syn_data.synbench.schemas.domain import DomainBundle
 from aieng.syn_data.synbench.schemas.tasks import Task
@@ -55,8 +55,10 @@ class AgentPipeline:
         )
 
     def run_and_score_task(self, task: Task) -> ScoreResult:
-        """Run ``task`` and score the resulting trajectory on a fresh environment."""
-        session = self.run_task(task)
-        return score_trajectory(
-            self.domain, task, session.agent_actions, session.agent_messages
-        )
+        """Run ``task`` and score the resulting trajectory on a fresh environment.
+
+        Uncaught exceptions from ``run_task`` become ``execution_ok=False`` and
+        reward 0 (no agent replay). Tool errors during the loop are attached as
+        ``tool_errors`` and still scored by outcome.
+        """
+        return score_agent_run(self.domain, task, self.run_task)

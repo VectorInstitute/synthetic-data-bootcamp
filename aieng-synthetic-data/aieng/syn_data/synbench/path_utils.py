@@ -11,7 +11,7 @@ def find_repo_root(start: Path | None = None) -> Path:
     current = (start or Path.cwd()).resolve()
     for candidate in [current, *current.parents]:
         if (candidate / "pyproject.toml").exists() and (
-            candidate / "implementations" / "qa_text_generation"
+            candidate / "implementations" / "agent_benchmark_generation"
         ).exists():
             return candidate
     return current
