@@ -1,0 +1,21 @@
+# Dataset package metadata (merged onto cfg.dataset).
+id: mapillary_vistas
+label: "Mapillary Vistas v2 (toy street subset)"
+license: "CC BY-NC-SA 4.0"
+attribution: >-
+  Mapillary Vistas Dataset v2.0 (Neuhold et al.). HF mirror:
+  https://huggingface.co/datasets/candylion/mapillary-vistas-v2
+source_hint: "a real Mapillary street-level road photograph"
+workshop_anomalies:
+  - road_debris
+  - traffic_cone
+  - trash_bin
+  - fog
+# Defaults after Notebook 1.5 — notebooks may override.
+# Prefer instruct on L4/Klein: local inpaint masks are brittle for animals/debris.
+method_by_anomaly:
+  road_debris: instruct
+  traffic_cone: instruct
+  fog: instruct
+  pothole: instruct
+  trash_bin: instruct

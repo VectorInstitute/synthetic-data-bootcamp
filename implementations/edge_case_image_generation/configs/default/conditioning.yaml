@@ -1,0 +1,8 @@
+# @package conditioning
+# Shared depth / segmentation stack (model vocabulary, not dataset labels).
+depth:
+  model_id: depth-anything/Depth-Anything-V2-Base-hf
+segmentation:
+  model_name: nvidia/segformer-b2-finetuned-ade-512-512
+  # ADE20K: 6 = road (used by edit_mask.road_patch / intersect_seg).
+  ground_class_ids: [6]

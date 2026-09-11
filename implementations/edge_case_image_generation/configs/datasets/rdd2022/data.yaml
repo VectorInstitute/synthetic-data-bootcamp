@@ -1,0 +1,33 @@
+name: rdd2022
+kind: voc_zip
+archive_url: >-
+  https://bigdatacup.s3.ap-northeast-1.amazonaws.com/2022/CRDDC2022/RDD2022/Country_Specific_Data_CRDDC2022/RDD2022_China_MotorBike.zip
+archive_name: RDD2022_China_MotorBike.zip
+extract_dirname: RDD2022_China_MotorBike
+dataset_root: ${paths.data_dir}
+images_glob: "**/train/images/*.[jJ][pP][gG]"
+annotations_glob: "**/train/annotations/xmls/*.xml"
+max_images: 8
+stem_prefixes:
+  - pothole_
+  - alligator_crack_
+  - traffic_cone_
+  - longitudinal_crack_
+  - transverse_crack_
+  - scene_
+prefer_classes:
+  - D40
+  - D20
+  - D10
+  - D00
+class_map:
+  D00: longitudinal_crack
+  D10: transverse_crack
+  D20: alligator_crack
+  D40: pothole
+classes:
+  - longitudinal_crack
+  - transverse_crack
+  - alligator_crack
+  - pothole
+  - traffic_cone

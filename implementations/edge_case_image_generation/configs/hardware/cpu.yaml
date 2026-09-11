@@ -1,0 +1,15 @@
+# @package _global_
+# Laptop / CPU — only keys that truly differ from shared defaults.
+# Omit a key (don't set null) to inherit from conditioning/generation/judge/annotation.
+# No hardware.device → resolve_device(None) auto-picks CPU (or CUDA if present).
+hardware:
+  name: cpu
+
+generation:
+  num_inference_steps: 36
+  guidance_scale: 8.0
+  strength: 0.99
+  max_side: 512
+  padding_mask_crop: 128
+  instruct_image_guidance: 2.2
+  instruct_guidance_scale: 6.5

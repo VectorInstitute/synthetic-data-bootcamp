@@ -1,0 +1,14 @@
+id: nordland_hf
+label: "Nordland (Somayeh-h/Nordland on Hugging Face)"
+license: "CC BY-NC-SA 4.0"
+attribution: >-
+  Nordlandsbanen imagery via Somayeh-h/Nordland (HF).
+source_hint: "a real Nordland railway corridor photograph"
+workshop_anomalies:
+  - snow
+  - dusk
+  - fog
+method_by_anomaly:
+  snow: instruct
+  dusk: instruct
+  fog: instruct

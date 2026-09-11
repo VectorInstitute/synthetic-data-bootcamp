@@ -1,0 +1,11 @@
+# Copy this folder to configs/datasets/<your_dataset_id>/ and fill in values.
+# Then set dataset_name: <your_dataset_id> in configs/config.yaml (or override in a notebook).
+id: _template
+label: "Your dataset (template)"
+license: "TODO"
+attribution: "TODO — cite the dataset owners"
+source_hint: "a real photograph from your domain"
+workshop_anomalies:
+  - example_anomaly
+method_by_anomaly:
+  example_anomaly: inpaint
