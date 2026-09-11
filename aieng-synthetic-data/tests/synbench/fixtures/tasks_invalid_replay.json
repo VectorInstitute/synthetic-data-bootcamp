@@ -1,0 +1,10 @@
+{
+  "id": "bad_replay",
+  "task_type": "cancel",
+  "evaluation_criteria": {
+    "actions": [
+      {"name": "get_order", "arguments": {"order_id": "ord_MISSING"}},
+      {"name": "cancel_order", "arguments": {"order_id": "ord_1001"}}
+    ]
+  }
+}
