@@ -1,0 +1,182 @@
+{
+  "tasks": [
+    {
+      "id": "seed_inquiry_avery",
+      "description": "Look up an open invoice",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Avery Kim",
+        "personality_style": "rushed",
+        "instructions": "Ask for the status, amount, and due date of invoice inv_avery_open.",
+        "initial_message": "I need the details of my latest invoice right now."
+      },
+      "evaluation_criteria": {
+        "actions": [{"name": "get_invoice", "arguments": {"invoice_id": "inv_avery_open"}}],
+        "communicate_info": ["open"],
+        "reward_basis": ["DB", "COMMUNICATE"]
+      }
+    },
+    {
+      "id": "seed_inquiry_noah",
+      "description": "Look up an open invoice amount",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Noah Patel",
+        "personality_style": "domain_expert",
+        "instructions": "Ask for the amount and status of invoice inv_noah_open.",
+        "initial_message": "Please confirm the current status and total of my recent invoice."
+      },
+      "evaluation_criteria": {
+        "actions": [{"name": "get_invoice", "arguments": {"invoice_id": "inv_noah_open"}}],
+        "communicate_info": ["open"],
+        "reward_basis": ["DB", "COMMUNICATE"]
+      }
+    },
+    {
+      "id": "seed_void_avery",
+      "description": "Void an open invoice",
+      "task_type": "void_invoice",
+      "user_scenario": {
+        "user_name": "Avery Kim",
+        "personality_style": "anxious",
+        "instructions": "Request that open invoice inv_avery_open be voided.",
+        "initial_message": "I think this invoice is wrong. Can you stop it before I'm charged?"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {"name": "get_invoice", "arguments": {"invoice_id": "inv_avery_open"}},
+          {"name": "void_invoice", "arguments": {"invoice_id": "inv_avery_open"}}
+        ],
+        "communicate_info": ["voided"],
+        "reward_basis": ["DB", "COMMUNICATE"]
+      }
+    },
+    {
+      "id": "seed_void_maya",
+      "description": "Void a past-due invoice",
+      "task_type": "void_invoice",
+      "user_scenario": {
+        "user_name": "Maya Chen",
+        "personality_style": "inconsistent",
+        "instructions": "Request that past-due invoice inv_maya_pastdue be voided.",
+        "initial_message": "I was going to pay, but no—please remove that overdue invoice instead."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {"name": "get_invoice", "arguments": {"invoice_id": "inv_maya_pastdue"}},
+          {"name": "void_invoice", "arguments": {"invoice_id": "inv_maya_pastdue"}}
+        ],
+        "communicate_info": ["voided"],
+        "reward_basis": ["DB", "COMMUNICATE"]
+      }
+    },
+    {
+      "id": "seed_refuse_avery",
+      "description": "Refuse to void a paid invoice",
+      "task_type": "refuse_void",
+      "user_scenario": {
+        "user_name": "Avery Kim",
+        "personality_style": "rule_breaker",
+        "instructions": "Insist that paid invoice inv_avery_paid be voided.",
+        "initial_message": "Void my paid invoice anyway. I need you to make an exception."
+      },
+      "evaluation_criteria": {
+        "actions": [{"name": "get_invoice", "arguments": {"invoice_id": "inv_avery_paid"}}],
+        "communicate_info": ["cannot be voided"],
+        "reward_basis": ["DB", "COMMUNICATE"]
+      }
+    },
+    {
+      "id": "seed_refuse_luis",
+      "description": "Explain why another paid invoice cannot be voided",
+      "task_type": "refuse_void",
+      "user_scenario": {
+        "user_name": "Luis Ortega",
+        "personality_style": "anxious",
+        "instructions": "Ask to void paid invoice inv_luis_paid and accept a policy explanation.",
+        "initial_message": "I already paid this, but can it still be voided? I'm worried."
+      },
+      "evaluation_criteria": {
+        "actions": [{"name": "get_invoice", "arguments": {"invoice_id": "inv_luis_paid"}}],
+        "communicate_info": ["cannot be voided"],
+        "reward_basis": ["DB", "COMMUNICATE"]
+      }
+    },
+    {
+      "id": "seed_email_noah",
+      "description": "Update an account billing email",
+      "task_type": "update_billing_email",
+      "user_scenario": {
+        "user_name": "Noah Patel",
+        "personality_style": "domain_expert",
+        "instructions": "Using invoice inv_noah_open for account context, update billing email to ap@cedar.example.",
+        "initial_message": "Our accounts-payable mailbox changed. Please update the billing contact."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {"name": "get_invoice", "arguments": {"invoice_id": "inv_noah_open"}},
+          {"name": "update_billing_email", "arguments": {"account_id": "acct_noah", "billing_email": "ap@cedar.example"}}
+        ],
+        "communicate_info": ["ap@cedar.example"],
+        "reward_basis": ["DB", "COMMUNICATE"]
+      }
+    },
+    {
+      "id": "seed_email_priya",
+      "description": "Update another account billing email",
+      "task_type": "update_billing_email",
+      "user_scenario": {
+        "user_name": "Priya Shah",
+        "personality_style": "rushed",
+        "instructions": "Using invoice inv_priya_open for account context, update billing email to finance@bluebird.example.",
+        "initial_message": "Change where our invoices go—quickly, please."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {"name": "get_invoice", "arguments": {"invoice_id": "inv_priya_open"}},
+          {"name": "update_billing_email", "arguments": {"account_id": "acct_priya", "billing_email": "finance@bluebird.example"}}
+        ],
+        "communicate_info": ["finance@bluebird.example"],
+        "reward_basis": ["DB", "COMMUNICATE"]
+      }
+    },
+    {
+      "id": "seed_seats_avery",
+      "description": "Increase seats on an active subscription",
+      "task_type": "update_seats",
+      "user_scenario": {
+        "user_name": "Avery Kim",
+        "personality_style": "anxious",
+        "instructions": "Using invoice inv_avery_open for context, update active subscription sub_avery_1 to 5 seats.",
+        "initial_message": "We hired people and I need more seats before they start. Can you help?"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {"name": "get_invoice", "arguments": {"invoice_id": "inv_avery_open"}},
+          {"name": "update_seats", "arguments": {"subscription_id": "sub_avery_1", "seats": 5}}
+        ],
+        "communicate_info": ["5"],
+        "reward_basis": ["DB", "COMMUNICATE"]
+      }
+    },
+    {
+      "id": "seed_seats_luis",
+      "description": "Change seats on another active subscription",
+      "task_type": "update_seats",
+      "user_scenario": {
+        "user_name": "Luis Ortega",
+        "personality_style": "inconsistent",
+        "instructions": "Using invoice inv_luis_paid for context, update active subscription sub_luis_1 to 8 seats.",
+        "initial_message": "Actually, not ten—make it eight seats on our subscription."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {"name": "get_invoice", "arguments": {"invoice_id": "inv_luis_paid"}},
+          {"name": "update_seats", "arguments": {"subscription_id": "sub_luis_1", "seats": 8}}
+        ],
+        "communicate_info": ["8"],
+        "reward_basis": ["DB", "COMMUNICATE"]
+      }
+    }
+  ]
+}

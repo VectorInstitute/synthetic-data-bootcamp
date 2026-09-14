@@ -60,3 +60,9 @@ class AgentPipeline:
         return score_trajectory(
             self.domain, task, session.agent_actions, session.agent_messages
         )
+    
+    def score_session(self, session: AgentSession) -> ScoreResult:
+        """Score the resulting trajectory on a fresh environment."""
+        return score_trajectory(
+            self.domain, session.task, session.agent_actions, session.agent_messages
+        )

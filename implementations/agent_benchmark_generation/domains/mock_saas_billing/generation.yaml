@@ -1,0 +1,46 @@
+agent_role: "billing support agent"
+primary_collection: invoices
+id_field: invoice_id
+
+related:
+  account_id:
+    collection: accounts
+    via: account_id
+    fields: [name, email, billing_email, company]
+  subscription_id:
+    collection: subscriptions
+    via: subscription_id
+    fields: [plan, status, seats, monthly_cents]
+
+context_fields:
+  - invoice_id
+  - account_id
+  - subscription_id
+  - status
+  - amount_cents
+  - currency
+  - due_date
+  - billing_address
+  - line_items
+
+persona_related: account_id
+persona_field: name
+
+communicate_hints:
+  inquiry: "Include amount, status, or due date only when the customer must hear it."
+  void_invoice: 'Include a confirmation substring such as ["voided"].'
+  refuse_void: 'Include a policy refusal substring such as ["cannot be voided"].'
+  update_billing_email: "Include the exact new billing email."
+  update_seats: "Include the new seat count as a short substring."
+
+eligibility:
+  inquiry:
+    status: [open, paid, past_due, void]
+  void_invoice:
+    status: [open, past_due]
+  refuse_void:
+    status: [paid]
+  update_billing_email:
+    status: [open, paid, past_due]
+  update_seats:
+    status: [open, paid, past_due]

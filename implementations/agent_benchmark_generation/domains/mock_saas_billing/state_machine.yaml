@@ -1,0 +1,21 @@
+task_types:
+  inquiry:
+    description: Look up invoice details
+    path: [lookup]
+    allow_write: false
+  void_invoice:
+    description: Void an eligible invoice after lookup
+    path: [lookup, mutate]
+    allow_write: true
+  refuse_void:
+    description: Look up and refuse to void an ineligible invoice
+    path: [lookup]
+    allow_write: false
+  update_billing_email:
+    description: Update an account billing email after lookup
+    path: [lookup, mutate]
+    allow_write: true
+  update_seats:
+    description: Update seats on an active subscription after lookup
+    path: [lookup, mutate]
+    allow_write: true

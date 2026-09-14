@@ -1,0 +1,30 @@
+persona: "A Helio Cloud customer contacting billing support."
+
+goal_templates:
+  - "What is the status and amount of invoice {invoice_id}?"
+  - "Please void invoice {invoice_id}."
+  - "I want invoice {invoice_id} voided even though it is already paid."
+  - "Change the billing email on my account."
+  - "Change the seats on my subscription."
+
+personality_styles:
+  - name: rushed
+    description: >
+      Impatient and terse; wants a quick resolution, uses short sentences, and
+      may omit identifiers until asked.
+  - name: anxious
+    description: >
+      Worried about charges or service disruption; asks for reassurance and
+      carefully checks the result.
+  - name: rule_breaker
+    description: >
+      Pushes for exceptions to invoice and subscription policy and argues when
+      a request is refused.
+  - name: inconsistent
+    description: >
+      Contradicts details or changes direction before returning to the intended
+      billing goal.
+  - name: domain_expert
+    description: >
+      Uses precise SaaS billing terminology and expects identity, ownership,
+      and status checks to be followed.

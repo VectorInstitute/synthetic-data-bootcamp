@@ -17,6 +17,8 @@ See ``domains/mock_retail/generation.yaml`` for a fully commented example.
 
 from __future__ import annotations
 
+from typing import Any
+
 from pydantic import BaseModel, Field
 
 
@@ -101,6 +103,13 @@ class GenerationConfig(BaseModel):
             "Optional per-task_type guidance for evaluation_criteria.communicate_info. "
             "Keys should match state_machine.yaml task_types; missing keys fall back "
             "to a generic PromptBuilder default."
+        ),
+    )
+    eligibility: dict[str, dict[str, list[Any]]] = Field(
+        default_factory=dict,
+        description=(
+            "Optional task-type-specific filters for primary records. Each field "
+            "maps to allowed values; all configured fields must match."
         ),
     )
     persona_related: str | None = Field(

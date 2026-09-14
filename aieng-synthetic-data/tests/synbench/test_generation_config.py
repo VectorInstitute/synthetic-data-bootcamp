@@ -60,6 +60,33 @@ def test_sampler_draws_personality_style(mock_retail_path):
     assert constraints.personality_style["description"]
 
 
+def test_sampler_accepts_task_and_personality_overrides(mock_retail_path):
+    """Notebook-scale generation can stratify task type and personality."""
+    domain = load_domain(mock_retail_path)
+    constraints = ConstraintSampler(domain, seed=0).sample(
+        task_type="cancel",
+        personality_name="anxious",
+    )
+    assert constraints.task_type == "cancel"
+    assert constraints.personality_style is not None
+    assert constraints.personality_style["name"] == "anxious"
+
+
+def test_sampler_applies_task_eligibility(mock_retail_path, tmp_path):
+    """Task eligibility filters incompatible primary records before sampling."""
+    domain_dir = _copy_mock_retail(mock_retail_path, tmp_path / "eligible")
+    gen_path = domain_dir / "generation.yaml"
+    cfg = yaml.safe_load(gen_path.read_text())
+    cfg["eligibility"] = {"cancel": {"status": ["pending"]}}
+    gen_path.write_text(yaml.safe_dump(cfg))
+
+    domain = load_domain(domain_dir)
+    sampler = ConstraintSampler(domain, seed=0)
+    for _ in range(10):
+        constraints = sampler.sample(task_type="cancel")
+        assert constraints.entity_context["status"] == "pending"
+
+
 def test_sampler_personality_style_none_without_config(mock_retail_path, tmp_path):
     """Domains without a style catalog sample no personality style."""
     domain_dir = _copy_mock_retail(mock_retail_path, tmp_path / "no_styles")
@@ -123,6 +150,18 @@ def test_validate_unknown_communicate_hint(mock_retail_path, tmp_path):
 
     errors = validate_domain(domain_dir)
     assert any("not_a_task" in e for e in errors)
+
+
+def test_validate_eligibility_with_no_matching_records(mock_retail_path, tmp_path):
+    """Eligibility filters that eliminate every record fail domain validation."""
+    domain_dir = _copy_mock_retail(mock_retail_path, tmp_path / "bad_eligibility")
+    gen_path = domain_dir / "generation.yaml"
+    cfg = yaml.safe_load(gen_path.read_text())
+    cfg["eligibility"] = {"cancel": {"status": ["missing-status"]}}
+    gen_path.write_text(yaml.safe_dump(cfg))
+
+    errors = validate_domain(domain_dir)
+    assert any("leaves no eligible" in e for e in errors)
 
 
 def test_missing_generation_yaml_raises(mock_retail_path, tmp_path):
