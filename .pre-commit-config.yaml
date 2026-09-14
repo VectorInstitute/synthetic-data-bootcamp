@@ -42,6 +42,17 @@ repos:
       types: [python]
       exclude: "tests"
 
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.9.1
+    hooks:
+    - id: nbqa-ruff
+      # E402 is a false positive here: nbQA concatenates all cells into one
+      # module, so per-section imports in teaching notebooks look misplaced.
+      args:
+      - --fix
+      - --exit-non-zero-on-fix
+      - '--config=lint.extend-ignore=["D100","E402"]'
+
 ci:
     autofix_commit_msg: |
         [pre-commit.ci] Add auto fixes from pre-commit.com hooks

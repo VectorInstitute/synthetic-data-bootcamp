@@ -1,0 +1,127 @@
+{
+  "tasks": [
+    {
+      "id": "seed_inquiry",
+      "description": "Look up a pending order for the user",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Alice Chen",
+        "personality_style": "rushed",
+        "instructions": "Ask about order ord_1001 status.",
+        "initial_message": "Where's my order? Need an update now."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_1001"
+            }
+          }
+        ],
+        "communicate_info": [],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "seed_cancel",
+      "description": "Cancel a pending order",
+      "task_type": "cancel",
+      "user_scenario": {
+        "user_name": "Alice Chen",
+        "personality_style": "anxious",
+        "instructions": "Request cancellation of pending order ord_1001.",
+        "initial_message": "I'm worried my order will ship before I can stop it — can you help?"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_1001"
+            }
+          },
+          {
+            "name": "cancel_order",
+            "arguments": {
+              "order_id": "ord_1001"
+            }
+          }
+        ],
+        "communicate_info": [
+          "canceled"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "seed_refuse_cancel",
+      "description": "Refuse cancellation of shipped order",
+      "task_type": "refuse_cancel",
+      "user_scenario": {
+        "user_name": "Alice Chen",
+        "personality_style": "rule_breaker",
+        "instructions": "Insist on canceling shipped order ord_1002.",
+        "initial_message": "Cancel my order immediately — I don't care that it may have shipped, make an exception."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_1002"
+            }
+          }
+        ],
+        "communicate_info": [
+          "cannot be canceled"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "seed_update_address",
+      "description": "Update shipping address for a pending order",
+      "task_type": "update_address",
+      "user_scenario": {
+        "user_name": "Bob Martinez",
+        "personality_style": "domain_expert",
+        "instructions": "Request to change shipping address for order ord_2001 to 456 Elm St, Austin, TX.",
+        "initial_message": "Hi, I need to change the shipping address on my recent order."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_2001"
+            }
+          },
+          {
+            "name": "update_shipping",
+            "arguments": {
+              "order_id": "ord_2001",
+              "shipping_address": "456 Elm St, Austin, TX"
+            }
+          }
+        ],
+        "communicate_info": [
+          "456 Elm St"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    }
+  ]
+}

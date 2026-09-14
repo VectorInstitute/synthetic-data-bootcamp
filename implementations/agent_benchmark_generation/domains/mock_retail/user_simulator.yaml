@@ -1,0 +1,34 @@
+# Fallback display name when a task omits user_scenario.user_name.
+persona: "A retail customer contacting support about their order."
+
+# Optional goal wording hints for generation / future simulators.
+goal_templates:
+  - "I want to cancel order {order_id}."
+  - "Can you update the shipping address for order {order_id} to {address}?"
+  - "What is the status of my order {order_id}?"
+  - "Please cancel order {order_id} even though it may already have shipped."
+
+# Styles sampled into task user_scenario.personality_style (name key only).
+# Same user_name can be paired with any style across tasks.
+personality_styles:
+  - name: rushed
+    description: >
+      Impatient and terse; wants a quick resolution, uses short sentences,
+      may skip pleasantries and push for immediate action.
+  - name: anxious
+    description: >
+      Worried and emotional; seeks reassurance, repeats concerns, and asks
+      whether anything could go wrong with their order.
+  - name: rule_breaker
+    description: >
+      Tries to bend or break policy; requests exceptions, refunds, or
+      cancellations that may not be allowed, and argues when refused.
+  - name: inconsistent
+    description: >
+      Changes or contradicts prior requests mid-conversation; may ask about
+      a different goal than the stated intent while still needing the main
+      task resolved.
+  - name: domain_expert
+    description: >
+      Knowledgeable about retail policy and tools; uses precise terminology,
+      cites expected steps, and challenges incorrect agent actions.
