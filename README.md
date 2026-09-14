@@ -56,8 +56,11 @@ All dependency groups are defined in the root `pyproject.toml`. Install only the
 | [Edge Case Image Synthesis](implementations/edge_case_image_generation) | `edge-case-image-generation` | `uv sync --dev --group edge-case-image-generation` |
 
 ### API keys
+In this bootcamp you are provided with the required API keys to work with LLM models. They're automatically loaded for every participant upon the workspace start up into your shell and `env`, so you do not handle them manually. If for any reasons you needed to get it again run this in your terminal:
 
-To be added.
+```bash
+eval "$(onboard --bootcamp-name pets-3-bootcamp --test-script aieng-synthetic-data/tests/test_integration.py)"
+```
 
 ## License
 This project is licensed under the terms of the [LICENSE](LICENSE.md) file located in the root directory of this repository.
