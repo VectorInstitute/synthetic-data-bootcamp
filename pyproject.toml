@@ -28,7 +28,7 @@ dependencies = [
     "soupsieve==2.8.4",
     "tornado==6.5.8",
     "urllib3>=2.7.0",
-    "virtualenv==21.7.0",
+    "virtualenv==21.7.9",
 ]
 
 [dependency-groups]
@@ -68,7 +68,7 @@ default-groups = ["dev"]
 # override so the security floors in [project.dependencies] still win.
 override-dependencies = [
     "filelock==3.32.0",
-    "virtualenv==21.7.0",
+    "virtualenv==21.7.9",
 ]
 
 [tool.uv.workspace]
