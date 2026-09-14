@@ -4166,6 +4166,7 @@ name = "synthetic-data-bootcamp"
 version = "0.1.1"
 source = { virtual = "." }
 dependencies = [
+    { name = "aieng-platform-onboard" },
     { name = "aieng-synthetic-data" },
     { name = "aiohttp" },
     { name = "bleach" },
@@ -4192,7 +4193,6 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
-    { name = "aieng-platform-onboard" },
     { name = "codecov" },
     { name = "mypy" },
     { name = "nbqa" },
@@ -4223,6 +4223,7 @@ text-sft = [
 
 [package.metadata]
 requires-dist = [
+    { name = "aieng-platform-onboard", specifier = ">=0.7.5" },
     { name = "aieng-synthetic-data", editable = "aieng-synthetic-data" },
     { name = "aiohttp", specifier = ">=3.14.3" },
     { name = "bleach", specifier = "==6.4.0" },
@@ -4249,7 +4250,6 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "aieng-platform-onboard", specifier = ">=0.7.3" },
     { name = "codecov", specifier = ">=2.1.13" },
     { name = "mypy", specifier = ">=2.3.0" },
     { name = "nbqa", specifier = ">=1.9.1" },
