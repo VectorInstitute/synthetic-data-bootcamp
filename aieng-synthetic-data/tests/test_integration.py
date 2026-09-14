@@ -1,7 +1,8 @@
 """Onboarding gate: verify bootcamp API keys against live services.
 
 Run automatically on Coder workspace startup, or manually with
-``onboard --bootcamp-name pets-3-bootcamp --test-script aieng-synthetic-data/tests/test_integration.py``.
+``onboard --bootcamp-name pets-3-bootcamp`` and
+``--test-script aieng-synthetic-data/tests/test_integration.py``.
 """
 
 import os
@@ -9,6 +10,7 @@ import os
 import httpx
 import pytest
 from dotenv import load_dotenv
+
 
 pytestmark = pytest.mark.integration_test
 
