@@ -1,0 +1,6 @@
+# @package annotation
+# YOLO-World open-vocab boxes (no SAM). Class lists live on each dataset package.
+detector_model: yolov8s-worldv2.pt
+conf: 0.15
+max_detections: 20
+classes: []
