@@ -1,8 +1,13 @@
 # @package conditioning
 # Shared depth / segmentation stack (model vocabulary, not dataset labels).
 depth:
+  # Monocular relative depth → near/far map for ControlNet-depth and mask priors.
   model_id: depth-anything/Depth-Anything-V2-Base-hf
 segmentation:
+  # Semantic labels (ADE20K) → road support for edit masks + ControlNet-seg edges.
   model_name: nvidia/segformer-b2-finetuned-ade-512-512
-  # ADE20K: 6 = road (used by edit_mask.road_patch / intersect_seg).
+  # ADE20K class ids treated as "ground / drivable" for edit_mask.road_patch
+  # and intersect_seg. Default workshop set:
+  #   6  = road
+  # (add more ADE20K ids here if you want sidewalk/parking etc. in the mask prior)
   ground_class_ids: [6]

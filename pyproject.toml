@@ -94,7 +94,7 @@ clip = { git = "https://github.com/ultralytics/CLIP.git", rev = "68dce32140994df
 
 
 [tool.mypy]
-mypy_path = ["aieng-synthetic-data", "implementations/edge_case_image_generation/src"]
+mypy_path = ["aieng-synthetic-data"]
 ignore_missing_imports = true
 install_types = true
 pretty = true

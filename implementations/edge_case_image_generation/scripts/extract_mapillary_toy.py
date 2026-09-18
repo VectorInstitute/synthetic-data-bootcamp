@@ -9,14 +9,7 @@ Examples::
 
 from __future__ import annotations
 
-import sys
-from pathlib import Path
-
-
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
-
-from edgecase_synthesis.data.mapillary_extract import main  # noqa: E402
+from aieng.syn_data.image.data.mapillary_extract import main
 
 
 if __name__ == "__main__":

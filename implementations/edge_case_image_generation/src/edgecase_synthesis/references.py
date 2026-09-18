@@ -1,3 +1,0 @@
-"""Compatibility re-export — prefer the new subpackage path."""
-
-from edgecase_synthesis.judge.references import *  # noqa: F403

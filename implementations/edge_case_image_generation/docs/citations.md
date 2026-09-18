@@ -17,7 +17,7 @@ claims should point here rather than inventing authority.
 4. **Black Forest Labs.** FLUX.2 / Klein family (instruction and inpaint checkpoints used as the local L4 editor in this bootcamp).
    Product / model cards: https://huggingface.co/black-forest-labs
 
-5. **Qwen Team.** Qwen-Image-Edit (large instruction-class image editor; optional NB1.5 column).
+5. **Qwen Team.** Qwen-Image-Edit (large instruction-class image editor; optional NB0.5 column).
    https://huggingface.co/Qwen/Qwen-Image-Edit
 
 ## Detection / open vocabulary

@@ -11,7 +11,7 @@ workshop_anomalies:
   - traffic_cone
   - trash_bin
   - fog
-# Defaults after Notebook 1.5 — notebooks may override.
+# Defaults after Notebook 0.5 — notebooks may override.
 # Prefer instruct on L4/Klein: local inpaint masks are brittle for animals/debris.
 method_by_anomaly:
   road_debris: instruct

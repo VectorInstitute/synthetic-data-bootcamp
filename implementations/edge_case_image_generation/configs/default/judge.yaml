@@ -9,7 +9,7 @@ backend: api
 model_id: gemini-3-flash-preview
 api_base_url: https://proxy.vectorinstitute.ai/v1
 api_provider: null   # null → auto (vector_proxy when api_base_url is set)
-api_key: null        # null → OPENAI_API_KEY from .env (see .env.example)
+api_key: null        # null → OPENAI_API_KEY / VECTOR_PROXY_API_KEY (process env or optional .env)
 api_max_side: 1024
 
 # Concurrent API judge calls in Notebook 2 (I/O bound; safe with Vector proxy).

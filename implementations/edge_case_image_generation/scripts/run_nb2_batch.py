@@ -22,16 +22,16 @@ from __future__ import annotations
 
 import argparse
 import os
-import sys
 from pathlib import Path
 from typing import Any
 
-from edgecase_synthesis.batch.checkpoint import write_split_snapshot
-from edgecase_synthesis.batch.export import export_nb2_dataset
-from edgecase_synthesis.batch.runner import run_batch_synthesis
-from edgecase_synthesis.config import load_config, load_env
-from edgecase_synthesis.data import prepare_sample_images
-from edgecase_synthesis.data.eda import (
+from aieng.syn_data.image.batch.checkpoint import write_split_snapshot
+from aieng.syn_data.image.batch.export import export_nb2_dataset
+from aieng.syn_data.image.batch.runner import run_batch_synthesis
+from aieng.syn_data.image.bootstrap import bootstrap_project_root
+from aieng.syn_data.image.config import load_config, load_env
+from aieng.syn_data.image.data import prepare_sample_images
+from aieng.syn_data.image.data.eda import (
     allocate_budget,
     clamp_counts,
     group_by_tag,
@@ -42,14 +42,7 @@ from edgecase_synthesis.data.eda import (
     summarize_distribution,
     write_json,
 )
-from edgecase_synthesis.generate.pipeline import resolve_method_map
-
-
-def _find_project_root() -> Path:
-    here = Path(__file__).resolve().parent.parent
-    if (here / "src" / "edgecase_synthesis").is_dir() and (here / "configs").is_dir():
-        return here
-    raise FileNotFoundError(f"Could not find edge_case_image_generation root near {here}")
+from aieng.syn_data.image.generate.pipeline import resolve_method_map
 
 
 def _parse_kv_ints(raw: str | None) -> dict[str, int]:
@@ -136,17 +129,6 @@ def _build_parser() -> argparse.ArgumentParser:
 
 def _prepare_run(args: argparse.Namespace, project_root: Path) -> dict[str, Any]:
     """Prepare source splits, synthesis seeds, and checkpoint metadata."""
-    project_root = _find_project_root()
-    sys.path.insert(0, str(project_root / "src"))
-
-    pass
-    pass
-    pass
-    pass
-    pass
-    pass
-    pass
-
     load_env(project_root)
     cfg = load_config(
         start=project_root,
@@ -296,7 +278,7 @@ def main(argv: list[str] | None = None) -> int:
     """Run the batch generation command."""
     os.environ.setdefault("HF_HUB_DISABLE_XET", "1")
     args = _build_parser().parse_args(argv)
-    project_root = _find_project_root()
+    project_root = bootstrap_project_root(Path(__file__).resolve().parent.parent)
     run = _prepare_run(args, project_root)
     _print_run_summary(args, project_root, run)
     batch = _run_batch(args, project_root, run)
