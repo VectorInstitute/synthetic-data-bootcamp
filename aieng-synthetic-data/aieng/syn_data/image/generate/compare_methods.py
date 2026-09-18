@@ -567,7 +567,9 @@ class MethodComparer:
     ) -> GenerationResult:
         """Run inpainting with Klein-specific parameter overrides."""
         if self.inpaint_is_klein:
-            klein_steps = merged.get("inpaint_num_inference_steps", self.inpaint_num_inference_steps)
+            klein_steps = merged.get(
+                "inpaint_num_inference_steps", self.inpaint_num_inference_steps
+            )
             steps = int(klein_steps) if klein_steps not in (None, "") else steps
             klein_gs = merged.get("inpaint_guidance_scale", self.inpaint_guidance_scale)
             guidance = float(klein_gs) if klein_gs not in (None, "") else guidance
@@ -653,11 +655,15 @@ class MethodComparer:
 
         method = str(method).lower()
         if method not in ALL_COMPARE_METHODS:
-            raise ValueError(f"Unknown compare method {method!r}. Choose from {ALL_COMPARE_METHODS}")
+            raise ValueError(
+                f"Unknown compare method {method!r}. Choose from {ALL_COMPARE_METHODS}"
+            )
 
         effective = resolve_effective_method(method, generation_cfg)
         prompt_key = prompt_method_key(effective)
-        merged = merge_generation_anomaly(generation_cfg, anomaly_cfg, method=prompt_key)
+        merged = merge_generation_anomaly(
+            generation_cfg, anomaly_cfg, method=prompt_key
+        )
         anom = merged.get("anomaly", anomaly_cfg)
         max_side = int(merged.get("max_side", 512))
         base_seed = int(merged.get("seed", 42))
@@ -679,7 +685,9 @@ class MethodComparer:
         variation = dict(varied.values) if varied.template_used else None
         anomaly_id = str(anom.get("id", ""))
         family = str(merged.get("family", self.family)).lower()
-        original = _fit_for_diffusion(image.convert("RGB"), max_side=max_side, family=family)
+        original = _fit_for_diffusion(
+            image.convert("RGB"), max_side=max_side, family=family
+        )
         width, height = original.size
         steps = int(merged.get("num_inference_steps", 24))
         guidance = float(merged.get("guidance_scale", 7.5))
@@ -695,7 +703,9 @@ class MethodComparer:
 
         edit_mask_cfg = dict(anom.get("edit_mask", {"mode": "ellipse"}))
         spec = METHOD_SPECS.get(effective) or METHOD_SPECS.get(method)
-        needs_conditioning = bool(spec is None or spec.uses_mask or spec.uses_depth or spec.uses_seg)
+        needs_conditioning = bool(
+            spec is None or spec.uses_mask or spec.uses_depth or spec.uses_seg
+        )
         if needs_conditioning:
             if depth is None or segmentation is None:
                 raise ValueError(
@@ -712,7 +722,9 @@ class MethodComparer:
         else:
             edit_mask, edit_weight = None, None
         padding_crop = merged.get("padding_mask_crop", None)
-        padding_crop = int(padding_crop) if padding_crop not in (None, "", False) else None
+        padding_crop = (
+            int(padding_crop) if padding_crop not in (None, "", False) else None
+        )
 
         def _finish(result: GenerationResult) -> GenerationResult:
             result.variation = variation
@@ -777,7 +789,9 @@ class MethodComparer:
                     anomaly_id=anomaly_id,
                 ),
             )
-        instruct_steps = merged.get("instruct_num_inference_steps", self.instruct_num_inference_steps)
+        instruct_steps = merged.get(
+            "instruct_num_inference_steps", self.instruct_num_inference_steps
+        )
         return _finish(
             self._run_instruct(
                 original,
@@ -786,8 +800,12 @@ class MethodComparer:
                 seed=seed,
                 anomaly_id=anomaly_id,
                 edit_mask=None,
-                image_guidance=float(merged.get("instruct_image_guidance", self.instruct_image_guidance)),
-                text_guidance=float(merged.get("instruct_guidance_scale", self.instruct_guidance)),
+                image_guidance=float(
+                    merged.get("instruct_image_guidance", self.instruct_image_guidance)
+                ),
+                text_guidance=float(
+                    merged.get("instruct_guidance_scale", self.instruct_guidance)
+                ),
                 instruct_steps=instruct_steps,
             ),
         )
@@ -812,7 +830,9 @@ class MethodComparer:
         prompt = str(merged.get("prompt", ""))
         family = str(merged.get("family", self.family)).lower()
         max_side = int(merged.get("max_side", 512))
-        fitted = _fit_for_diffusion(image.convert("RGB"), max_side=max_side, family=family)
+        fitted = _fit_for_diffusion(
+            image.convert("RGB"), max_side=max_side, family=family
+        )
         w, h = fitted.size
         edit_mask, _ = build_anomaly_edit_mask(
             segmentation,
@@ -880,7 +900,9 @@ class MethodComparer:
             # Rebuild mask at Klein resolution (ellipse was built at `original` size).
             mask_arr = edit_mask
             if mask_arr.shape[0] != rh or mask_arr.shape[1] != rw:
-                mask_arr = cv2.resize(mask_arr.astype(np.uint8), (rw, rh), interpolation=cv2.INTER_NEAREST)
+                mask_arr = cv2.resize(
+                    mask_arr.astype(np.uint8), (rw, rh), interpolation=cv2.INTER_NEAREST
+                )
             mask_pil = _mask_to_pil(mask_arr)
             kwargs: dict[str, Any] = {
                 "prompt": prompt,
@@ -971,9 +993,19 @@ class MethodComparer:
     ) -> GenerationResult:
         width, height = original.size
         depth_image = _depth_to_control_image(depth, width, height)
-        seg_image = _seg_to_control_image(segmentation, width, height, as_canny=self.seg_as_canny)
-        depth_scale = self.controlnet_scale_depth if controlnet_scale_depth is None else float(controlnet_scale_depth)
-        seg_scale = self.controlnet_scale_seg if controlnet_scale_seg is None else float(controlnet_scale_seg)
+        seg_image = _seg_to_control_image(
+            segmentation, width, height, as_canny=self.seg_as_canny
+        )
+        depth_scale = (
+            self.controlnet_scale_depth
+            if controlnet_scale_depth is None
+            else float(controlnet_scale_depth)
+        )
+        seg_scale = (
+            self.controlnet_scale_seg
+            if controlnet_scale_seg is None
+            else float(controlnet_scale_seg)
+        )
         generated = self.dual_pipe(
             prompt=prompt,
             negative_prompt=negative_prompt or None,
@@ -1058,9 +1090,19 @@ class MethodComparer:
                 run_image = original.resize((new_w, new_h), Image.Resampling.LANCZOS)
             else:
                 run_image = original
-            img_g = self.instruct_image_guidance if image_guidance is None else float(image_guidance)
-            txt_g = self.instruct_guidance if text_guidance is None else float(text_guidance)
-            n_steps = int(instruct_steps) if instruct_steps is not None else max(steps, 20)
+            img_g = (
+                self.instruct_image_guidance
+                if image_guidance is None
+                else float(image_guidance)
+            )
+            txt_g = (
+                self.instruct_guidance
+                if text_guidance is None
+                else float(text_guidance)
+            )
+            n_steps = (
+                int(instruct_steps) if instruct_steps is not None else max(steps, 20)
+            )
             self._sync_pipe_progress(self.instruct_pipe)
             generated = self.instruct_pipe(
                 prompt=instruction,
@@ -1095,12 +1137,22 @@ class MethodComparer:
 
         self._free_other_edit_pipes(keep="")
         cfg = VlmLocalEditConfig(
-            model_id=str(generation_cfg.get("vlm_local_model_id") or self.vlm_local_model_id),
-            num_inference_steps=int(
-                generation_cfg.get("vlm_local_num_inference_steps", self.vlm_local_num_inference_steps),
+            model_id=str(
+                generation_cfg.get("vlm_local_model_id") or self.vlm_local_model_id
             ),
-            true_cfg_scale=float(generation_cfg.get("vlm_local_true_cfg_scale", self.vlm_local_true_cfg_scale)),
-            max_side=int(generation_cfg.get("vlm_local_max_side", self.vlm_local_max_side)),
+            num_inference_steps=int(
+                generation_cfg.get(
+                    "vlm_local_num_inference_steps", self.vlm_local_num_inference_steps
+                ),
+            ),
+            true_cfg_scale=float(
+                generation_cfg.get(
+                    "vlm_local_true_cfg_scale", self.vlm_local_true_cfg_scale
+                )
+            ),
+            max_side=int(
+                generation_cfg.get("vlm_local_max_side", self.vlm_local_max_side)
+            ),
         )
         edited = edit_with_qwen_local(
             original,
@@ -1191,18 +1243,30 @@ class MethodComparer:
             inpaint_model_id=str(generation["inpaint_model_id"]),
             depth_controlnet_id=str(controlnet["depth"]),
             seg_controlnet_id=seg_cn,
-            instruct_model_id=str(generation.get("instruct_model_id") or "timbrooks/instruct-pix2pix"),
+            instruct_model_id=str(
+                generation.get("instruct_model_id") or "timbrooks/instruct-pix2pix"
+            ),
             vae_id=generation.get("vae_id"),
             controlnet_scale_depth=float(scales.get("depth", 0.55)),
             controlnet_scale_seg=float(scales.get("seg", 0.45)),
-            instruct_image_guidance=float(generation.get("instruct_image_guidance", 1.4)),
+            instruct_image_guidance=float(
+                generation.get("instruct_image_guidance", 1.4)
+            ),
             instruct_guidance=float(generation.get("instruct_guidance_scale", 7.0)),
-            instruct_num_inference_steps=(int(instruct_steps) if instruct_steps not in (None, "") else None),
-            inpaint_num_inference_steps=(int(inpaint_steps) if inpaint_steps not in (None, "") else None),
-            inpaint_guidance_scale=(float(inpaint_gs) if inpaint_gs not in (None, "") else None),
+            instruct_num_inference_steps=(
+                int(instruct_steps) if instruct_steps not in (None, "") else None
+            ),
+            inpaint_num_inference_steps=(
+                int(inpaint_steps) if inpaint_steps not in (None, "") else None
+            ),
+            inpaint_guidance_scale=(
+                float(inpaint_gs) if inpaint_gs not in (None, "") else None
+            ),
             device=device,
             seg_as_canny=seg_as_canny,
-            vlm_api_model=str(generation.get("vlm_api_model") or "gemini-3.1-flash-image"),
+            vlm_api_model=str(
+                generation.get("vlm_api_model") or "gemini-3.1-flash-image"
+            ),
             vlm_generate_backend=str(generation.get("vlm_generate_backend") or "local"),
             vlm_mode=str(generation.get("vlm_mode") or "edit"),
             vlm_provider=generation.get("vlm_provider"),
@@ -1210,9 +1274,15 @@ class MethodComparer:
             vlm_api_base_url=generation.get("vlm_api_base_url"),
             vlm_max_side=int(generation.get("vlm_max_side") or 1024),
             vlm_size=str(generation.get("vlm_size") or "1024x1024"),
-            vlm_local_model_id=str(generation.get("vlm_local_model_id") or "Qwen/Qwen-Image-Edit"),
-            vlm_local_num_inference_steps=int(generation.get("vlm_local_num_inference_steps") or 20),
-            vlm_local_true_cfg_scale=float(generation.get("vlm_local_true_cfg_scale") or 4.0),
+            vlm_local_model_id=str(
+                generation.get("vlm_local_model_id") or "Qwen/Qwen-Image-Edit"
+            ),
+            vlm_local_num_inference_steps=int(
+                generation.get("vlm_local_num_inference_steps") or 20
+            ),
+            vlm_local_true_cfg_scale=float(
+                generation.get("vlm_local_true_cfg_scale") or 4.0
+            ),
             vlm_local_max_side=int(generation.get("vlm_local_max_side") or 768),
         )
 

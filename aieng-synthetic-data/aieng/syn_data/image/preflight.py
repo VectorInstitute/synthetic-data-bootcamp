@@ -18,7 +18,10 @@ from huggingface_hub import get_token, try_to_load_from_cache
 from aieng.syn_data.image.config import load_config, load_env
 from aieng.syn_data.image.data import list_sample_images, prepare_sample_images
 from aieng.syn_data.image.data.mapillary_extract import ensure_mapillary_samples
-from aieng.syn_data.image.judge.vlm_api import make_openai_client, resolve_proxy_base_url
+from aieng.syn_data.image.judge.vlm_api import (
+    make_openai_client,
+    resolve_proxy_base_url,
+)
 
 
 Status = Literal["pass", "warn", "fail", "skip"]
@@ -77,7 +80,9 @@ class PreflightReport:
                 print(f"{'':6}  {'':<{width}}  → {r.fix}")
         print()
         if self.ready:
-            print(f'Preflight READY — recommended HARDWARE="{self.recommended_hardware}"')
+            print(
+                f'Preflight READY — recommended HARDWARE="{self.recommended_hardware}"'
+            )
         else:
             print("Preflight BLOCKED — fix the XX rows before Notebook 1.")
 
@@ -115,13 +120,17 @@ def check_imports() -> CheckResult:
 
 
 def check_env_file(project_root: Path) -> CheckResult:
-    """Check optional local `.env` (workshop machines often inject keys via process env)."""
+    """Check optional local ``.env`` (workshop env often injects keys already)."""
     env_path = project_root / ".env"
     example = project_root / ".env.example"
     if env_path.is_file():
         return CheckResult("env file", "pass", str(env_path))
     has_baseline = bool(
-        (os.environ.get("OPENAI_API_KEY") or os.environ.get("VECTOR_PROXY_API_KEY") or "").strip()
+        (
+            os.environ.get("OPENAI_API_KEY")
+            or os.environ.get("VECTOR_PROXY_API_KEY")
+            or ""
+        ).strip()
     )
     if has_baseline:
         return CheckResult(
@@ -140,7 +149,9 @@ def check_env_file(project_root: Path) -> CheckResult:
 
 def check_proxy_key() -> CheckResult:
     """Check proxy key."""
-    key = (os.environ.get("OPENAI_API_KEY") or os.environ.get("VECTOR_PROXY_API_KEY") or "").strip()
+    key = (
+        os.environ.get("OPENAI_API_KEY") or os.environ.get("VECTOR_PROXY_API_KEY") or ""
+    ).strip()
     if not key:
         return CheckResult(
             "Vector API key",
@@ -210,7 +221,9 @@ def probe_hardware() -> tuple[CheckResult, str, dict[str, Any]]:
 
     facts: dict[str, Any] = {
         "cuda_available": bool(torch.cuda.is_available()),
-        "device_count": int(torch.cuda.device_count()) if torch.cuda.is_available() else 0,
+        "device_count": int(torch.cuda.device_count())
+        if torch.cuda.is_available()
+        else 0,
         "devices": [],
     }
     if not torch.cuda.is_available():
@@ -232,7 +245,9 @@ def probe_hardware() -> tuple[CheckResult, str, dict[str, Any]]:
         gb = float(props.total_memory) / (1024**3)
         names.append(props.name)
         vrams.append(gb)
-        facts["devices"].append({"index": i, "name": props.name, "vram_gb": round(gb, 1)})
+        facts["devices"].append(
+            {"index": i, "name": props.name, "vram_gb": round(gb, 1)}
+        )
 
     n = len(names)
     min_vram = min(vrams) if vrams else 0.0
@@ -275,7 +290,9 @@ def check_disk(path: Path, *, min_free_gb: float = 15.0) -> CheckResult:
     return CheckResult("disk space", "pass", f"{free_gb:.1f} GB free")
 
 
-def check_samples(project_root: Path, *, dataset_name: str = "mapillary_vistas") -> CheckResult:
+def check_samples(
+    project_root: Path, *, dataset_name: str = "mapillary_vistas"
+) -> CheckResult:
     """Check samples."""
     pass
     pass
@@ -330,7 +347,9 @@ def ensure_workshop_data(
 
 def check_hf_token() -> CheckResult:
     """Check hf token."""
-    token = (os.environ.get("HF_TOKEN") or os.environ.get("HUGGING_FACE_HUB_TOKEN") or "").strip()
+    token = (
+        os.environ.get("HF_TOKEN") or os.environ.get("HUGGING_FACE_HUB_TOKEN") or ""
+    ).strip()
     home = Path.home() / ".cache" / "huggingface" / "token"
     try:
         pass
@@ -367,7 +386,9 @@ def _hub_cached(repo_id: str) -> bool | None:
         except Exception:
             continue
     # Fallback: look under HF_HOME hub folder.
-    hub = Path(os.environ.get("HF_HOME", Path.home() / ".cache" / "huggingface")) / "hub"
+    hub = (
+        Path(os.environ.get("HF_HOME", Path.home() / ".cache" / "huggingface")) / "hub"
+    )
     safe = "models--" + repo_id.replace("/", "--")
     snap = hub / safe / "snapshots"
     return bool(snap.is_dir() and any(snap.iterdir()))
@@ -386,7 +407,13 @@ def check_model_availability(project_root: Path, *, hardware: str) -> CheckResul
         ("seg", str(cfg.conditioning.segmentation.model_name)),
         ("instruct", str(cfg.generation.instruct_model_id)),
         ("judge", str(cfg.judge.model_id)),
-        ("embed", str((cfg.judge.get("embedding_gate") or {}).get("model_id") or "openai/clip-vit-base-patch32")),
+        (
+            "embed",
+            str(
+                (cfg.judge.get("embedding_gate") or {}).get("model_id")
+                or "openai/clip-vit-base-patch32"
+            ),
+        ),
     ]
     lines: list[str] = []
     cached_n = 0
@@ -401,7 +428,9 @@ def check_model_availability(project_root: Path, *, hardware: str) -> CheckResul
             cwd_pt = Path.cwd() / repo
             weight_hit = ultra.is_file() or cwd_pt.is_file()
             cached_n += int(weight_hit)
-            lines.append(f"{role}: {repo} [{'cached' if weight_hit else 'will download on first use'}]")
+            lines.append(
+                f"{role}: {repo} [{'cached' if weight_hit else 'will download on first use'}]"
+            )
             continue
         hit = _hub_cached(repo)
         if hit is True:
@@ -465,10 +494,14 @@ def run_preflight(
     report.recommended_hardware = hardware_override or recommended
 
     report.add(check_samples(project_root, dataset_name=dataset_name))
-    report.add(check_model_availability(project_root, hardware=report.recommended_hardware))
+    report.add(
+        check_model_availability(project_root, hardware=report.recommended_hardware)
+    )
     report.add(check_yolo_weight())
 
-    if ping_proxy and not any(r.name == "Vector API key" and r.status == "fail" for r in report.results):
+    if ping_proxy and not any(
+        r.name == "Vector API key" and r.status == "fail" for r in report.results
+    ):
         report.add(check_proxy_chat())
     elif ping_proxy:
         report.add(

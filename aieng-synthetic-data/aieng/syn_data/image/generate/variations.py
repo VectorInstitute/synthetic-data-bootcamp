@@ -88,7 +88,9 @@ def combo_at(
     return dict(shuffled_combos(axes, seed=int(seed) + pass_idx)[within]), n
 
 
-def render_template(template: str, values: dict[str, str], *, extras: dict[str, str] | None = None) -> str:
+def render_template(
+    template: str, values: dict[str, str], *, extras: dict[str, str] | None = None
+) -> str:
     """Format a template with variation values and optional extras."""
     mapping = {**(extras or {}), **values}
 
@@ -109,7 +111,11 @@ def _as_dict(cfg: Any) -> dict[str, Any]:
         return cfg
     try:
         container = OmegaConf.to_container(cfg, resolve=True)
-        return {str(key): value for key, value in container.items()} if isinstance(container, dict) else {}
+        return (
+            {str(key): value for key, value in container.items()}
+            if isinstance(container, dict)
+            else {}
+        )
     except Exception:
         return {}
 

@@ -38,11 +38,19 @@ def datasets_dir(start: Path | None = None) -> Path:
 
 def merge_skip_null(base: Any, overlay: Any) -> Any:
     """Deep-merge overlay into base; ``null`` / ``None`` means keep base value."""
-    base_cfg = OmegaConf.create(OmegaConf.to_container(base, resolve=False) if OmegaConf.is_config(base) else base)
+    base_cfg = OmegaConf.create(
+        OmegaConf.to_container(base, resolve=False)
+        if OmegaConf.is_config(base)
+        else base
+    )
     OmegaConf.set_struct(base_cfg, False)
     if overlay is None:
         return base_cfg
-    over_obj = OmegaConf.to_container(overlay, resolve=False) if OmegaConf.is_config(overlay) else overlay
+    over_obj = (
+        OmegaConf.to_container(overlay, resolve=False)
+        if OmegaConf.is_config(overlay)
+        else overlay
+    )
     if not isinstance(over_obj, dict):
         return OmegaConf.create(over_obj)
     if not isinstance(base_cfg, DictConfig):
@@ -52,7 +60,11 @@ def merge_skip_null(base: Any, overlay: Any) -> Any:
     for key, val in over_obj.items():
         if val is None:
             continue
-        if key in base_cfg and OmegaConf.is_dict(base_cfg[key]) and isinstance(val, dict):
+        if (
+            key in base_cfg
+            and OmegaConf.is_dict(base_cfg[key])
+            and isinstance(val, dict)
+        ):
             base_cfg[key] = merge_skip_null(base_cfg[key], val)
         else:
             base_cfg[key] = val
@@ -72,7 +84,11 @@ def list_dataset_names(*, start: Path | None = None) -> list[str]:
     root = datasets_dir(start)
     if not root.exists():
         return []
-    return sorted(p.name for p in root.iterdir() if p.is_dir() and not p.name.startswith(".") and p.name != "_template")
+    return sorted(
+        p.name
+        for p in root.iterdir()
+        if p.is_dir() and not p.name.startswith(".") and p.name != "_template"
+    )
 
 
 def load_dataset_package(dataset_name: str, *, start: Path | None = None) -> DictConfig:
@@ -164,7 +180,9 @@ def list_anomalies(dataset: str, *, start: Path | None = None) -> list[str]:
     root = anomalies_dir(dataset, start=start)
     if not root.exists():
         return []
-    return sorted(path.stem for path in root.glob("*.yaml") if not path.name.startswith("_"))
+    return sorted(
+        path.stem for path in root.glob("*.yaml") if not path.name.startswith("_")
+    )
 
 
 def load_anomaly(
@@ -177,7 +195,9 @@ def load_anomaly(
     path = anomalies_dir(dataset, start=start) / f"{anomaly_id}.yaml"
     if not path.exists():
         available = ", ".join(list_anomalies(dataset, start=start)) or "(none)"
-        raise FileNotFoundError(f"Unknown anomaly {dataset}/{anomaly_id!r}. Available: {available}")
+        raise FileNotFoundError(
+            f"Unknown anomaly {dataset}/{anomaly_id!r}. Available: {available}"
+        )
     return _load_yaml(path)
 
 
@@ -236,7 +256,9 @@ def merge_generation_anomaly(
     return cast(DictConfig, base)
 
 
-def resolve_method_prompt(merged: DictConfig | dict[str, Any], method: str) -> tuple[str, str]:
+def resolve_method_prompt(
+    merged: DictConfig | dict[str, Any], method: str
+) -> tuple[str, str]:
     """Return merged positive and negative prompts for a method."""
     prompt = str(merged.get("prompt") or "").strip()
     negative = str(merged.get("negative_prompt") or "").strip()

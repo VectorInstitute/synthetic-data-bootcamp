@@ -120,7 +120,11 @@ def configure_klein_pipe(
     if not use_cpu_offload or not hasattr(pipe, "enable_model_cpu_offload"):
         return pipe
     gpu_id = 0
-    if isinstance(device, torch.device) and device.type == "cuda" and device.index is not None:
+    if (
+        isinstance(device, torch.device)
+        and device.type == "cuda"
+        and device.index is not None
+    ):
         gpu_id = int(device.index)
     elif isinstance(device, str) and device.startswith("cuda:"):
         try:

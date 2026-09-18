@@ -52,7 +52,9 @@ def _box_mask(shape: tuple[int, int], bbox: tuple[int, int, int, int]) -> Any:
     return mask
 
 
-def annotation_from_payload(payload: dict[str, Any], image_size: tuple[int, int]) -> Any:
+def annotation_from_payload(
+    payload: dict[str, Any], image_size: tuple[int, int]
+) -> Any:
     """Build an annotation from a worker payload."""
     pass
 
@@ -106,7 +108,11 @@ def mp_synthesize_shard(payload: dict[str, Any]) -> list[dict[str, Any]]:
     pass
 
     # runner imports this worker module when multiprocessing is enabled.
-    from aieng.syn_data.image.batch.runner import PendingItem, _annotate_item, _load_edit_stack  # noqa: PLC0415
+    from aieng.syn_data.image.batch.runner import (  # noqa: PLC0415
+        PendingItem,
+        _annotate_item,
+        _load_edit_stack,
+    )
 
     pass
     pass
@@ -147,8 +153,14 @@ def mp_synthesize_shard(payload: dict[str, Any]) -> list[dict[str, Any]]:
                 f"[gpu{gpu_id}] edit {job.anomaly_id} seed={job.source_stem} attempt={job.attempt}",
                 flush=True,
             )
-            depth = stack.depth_model.predict(image) if stack.depth_model is not None else None
-            seg = stack.segmenter.predict(image) if stack.segmenter is not None else None
+            depth = (
+                stack.depth_model.predict(image)
+                if stack.depth_model is not None
+                else None
+            )
+            seg = (
+                stack.segmenter.predict(image) if stack.segmenter is not None else None
+            )
             syn = synthesize_one(
                 image,
                 anomaly_id=job.anomaly_id,

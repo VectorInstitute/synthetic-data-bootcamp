@@ -8,7 +8,11 @@ from pathlib import Path
 
 from PIL import Image
 
-from aieng.syn_data.image.data.eda import group_by_tag, list_tagged_images, load_labels_for_dir
+from aieng.syn_data.image.data.eda import (
+    group_by_tag,
+    list_tagged_images,
+    load_labels_for_dir,
+)
 from aieng.syn_data.image.data.loader import DetectionBox
 
 
@@ -90,7 +94,9 @@ def pick_class_references(
                 crop = _crop_box(full, box.bbox_xyxy, pad=0.08, max_side=max_side)
             except Exception:
                 continue
-            out.append(ReferenceImage(image=crop, path=path, role="crop", label=str(box.label)))
+            out.append(
+                ReferenceImage(image=crop, path=path, role="crop", label=str(box.label))
+            )
             crop_count += 1
 
     return out
@@ -101,13 +107,18 @@ def _load_rgb(path: Path, *, max_side: int) -> Image.Image:
     if max_side > 0 and max(img.size) > max_side:
         scale = max_side / max(img.size)
         img = img.resize(
-            (max(1, int(round(img.size[0] * scale))), max(1, int(round(img.size[1] * scale)))),
+            (
+                max(1, int(round(img.size[0] * scale))),
+                max(1, int(round(img.size[1] * scale))),
+            ),
             Image.Resampling.LANCZOS,
         )
     return img
 
 
-def _boxes_for_path(path: Path, labels: dict[str, list[DetectionBox]]) -> list[DetectionBox]:
+def _boxes_for_path(
+    path: Path, labels: dict[str, list[DetectionBox]]
+) -> list[DetectionBox]:
     return list(labels.get(path.name) or labels.get(path.stem) or [])
 
 

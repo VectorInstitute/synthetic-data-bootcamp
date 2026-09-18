@@ -19,7 +19,9 @@ from aieng.syn_data.image.generate.conditioning import DepthResult, Segmentation
 from aieng.syn_data.image.generate.generation import GenerationResult
 
 
-def show_image(image: Image.Image | np.ndarray, *, title: str = "", ax: Axes | None = None) -> Axes:
+def show_image(
+    image: Image.Image | np.ndarray, *, title: str = "", ax: Axes | None = None
+) -> Axes:
     """Display a single image on a matplotlib axis."""
     if ax is None:
         _, ax = plt.subplots(figsize=(6, 4))
@@ -104,7 +106,9 @@ def show_structure_overview(
     fig, axes = plt.subplots(2, 2, figsize=figsize)
 
     show_image(sample.image, title="1. Real image", ax=axes[0, 0])
-    show_image(depth.colormap, title="2. Depth (ControlNet conditioning)", ax=axes[0, 1])
+    show_image(
+        depth.colormap, title="2. Depth (ControlNet conditioning)", ax=axes[0, 1]
+    )
     show_image(seg.colored_map, title="3. Segmentation map", ax=axes[1, 0])
     show_image(seg.overlay, title="4. Segmentation overlay", ax=axes[1, 1])
 
@@ -164,7 +168,11 @@ def show_generation_result(
         method = generated.method or ""
         title = f"{generated.anomaly_id}" + (f" [{method}]" if method else "")
     show_image(generated.image, title=title, ax=axes[1])
-    prompt_preview = generated.prompt if len(generated.prompt) < 140 else generated.prompt[:137] + "..."
+    prompt_preview = (
+        generated.prompt
+        if len(generated.prompt) < 140
+        else generated.prompt[:137] + "..."
+    )
     fig.suptitle(
         f"Anomaly edit — {sample.name}\nPrompt: {prompt_preview}",
         fontsize=13,
@@ -233,7 +241,9 @@ def show_method_comparison(
                 0.05,
                 0.5,
                 "\n".join(
-                    f"• {METHOD_SPECS[m].title}: {METHOD_SPECS[m].summary}" for m in methods if m in METHOD_SPECS
+                    f"• {METHOD_SPECS[m].title}: {METHOD_SPECS[m].summary}"
+                    for m in methods
+                    if m in METHOD_SPECS
                 ),
                 va="center",
                 fontsize=9,
@@ -262,7 +272,9 @@ def save_compare_artifacts(
     Image.fromarray(bundle.depth.colormap).save(root / "depth.png")
     Image.fromarray(bundle.segmentation.colored_map).save(root / "seg.png")
     if bundle.edit_mask is not None:
-        Image.fromarray((bundle.edit_mask.astype(np.uint8) * 255)).save(root / "mask.png")
+        Image.fromarray((bundle.edit_mask.astype(np.uint8) * 255)).save(
+            root / "mask.png"
+        )
     meta = {
         "sample": sample.name,
         "anomaly_id": bundle.anomaly_id,
@@ -358,7 +370,9 @@ def show_judge_result(
     figsize: tuple[float, float] = (10, 4),
 ) -> tuple[Figure, Any]:
     """Show the judged RGB image with a scorecard (depth/seg are not used)."""
-    fig, axes = plt.subplots(1, 2, figsize=figsize, gridspec_kw={"width_ratios": [1.2, 1]})
+    fig, axes = plt.subplots(
+        1, 2, figsize=figsize, gridspec_kw={"width_ratios": [1.2, 1]}
+    )
     show_image(image, title="Judged image (RGB only)", ax=axes[0])
     axes[1].axis("off")
     lines = [
@@ -412,7 +426,9 @@ def show_judge_result(
         wrap=True,
         transform=axes[1].transAxes,
     )
-    fig.suptitle(title or f"VLM judge — {getattr(judgment, 'anomaly_id', '')}", fontsize=13)
+    fig.suptitle(
+        title or f"VLM judge — {getattr(judgment, 'anomaly_id', '')}", fontsize=13
+    )
     plt.tight_layout()
     return fig, axes
 

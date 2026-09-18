@@ -62,8 +62,13 @@ def _load_extract_paths(start: Path | None = None) -> _ExtractPaths:
     root = project_root(start)
     cfg = load_config(overrides=["dataset_name=mapillary_vistas"], start=root)
     data = cfg.data
-    target = {str(k): str(v) for k, v in dict(data.get("extract_label_map") or {}).items()}
-    readable = {k: str(_READABLE_DEFAULTS.get(k) or v.replace("_", " ").title()) for k, v in target.items()}
+    target = {
+        str(k): str(v) for k, v in dict(data.get("extract_label_map") or {}).items()
+    }
+    readable = {
+        k: str(_READABLE_DEFAULTS.get(k) or v.replace("_", " ").title())
+        for k, v in target.items()
+    }
     aliases: dict[str, str] = {}
     for internal in target:
         aliases[internal] = internal
@@ -73,7 +78,9 @@ def _load_extract_paths(start: Path | None = None) -> _ExtractPaths:
     cache = Path(str(cfg.paths.dataset_cache_dir))
     return _ExtractPaths(
         repo=str(data.get("hf_repo") or "candylion/mapillary-vistas-v2"),
-        zip_name=str(data.get("hf_zip_name") or "mapillary-vistas-dataset_public_v2.0.zip"),
+        zip_name=str(
+            data.get("hf_zip_name") or "mapillary-vistas-dataset_public_v2.0.zip"
+        ),
         cache=cache,
         samples=Path(str(cfg.paths.samples_dir)),
         index=cache / "_zip_index.jsonl",
@@ -112,7 +119,9 @@ def _zip_size(url: str, token: str) -> int:
         cr = r.headers.get("Content-Range") or ""
     if "/" in cr:
         return int(cr.rsplit("/", 1)[-1])
-    raise RuntimeError("Could not determine remote zip size (Content-Length / Content-Range).")
+    raise RuntimeError(
+        "Could not determine remote zip size (Content-Length / Content-Range)."
+    )
 
 
 def _central_directory_location(tail: bytes, http_range: HttpRange) -> tuple[int, int]:
@@ -125,10 +134,14 @@ def _central_directory_location(tail: bytes, http_range: HttpRange) -> tuple[int
         z64 = http_range(z64_offset, z64_offset + 128)
         if z64[:4] != b"PK\x06\x06":
             raise RuntimeError("ZIP64 EOCD signature mismatch")
-        return struct.unpack_from("<Q", z64, 40)[0], struct.unpack_from("<Q", z64, 48)[0]
+        return struct.unpack_from("<Q", z64, 40)[0], struct.unpack_from("<Q", z64, 48)[
+            0
+        ]
     if eocds:
         eocd = tail[eocds[-1] :]
-        return struct.unpack_from("<I", eocd, 12)[0], struct.unpack_from("<I", eocd, 16)[0]
+        return struct.unpack_from("<I", eocd, 12)[0], struct.unpack_from(
+            "<I", eocd, 16
+        )[0]
     raise RuntimeError("Could not find EOCD / ZIP64 locator in zip tail")
 
 
@@ -176,9 +189,17 @@ def _parse_central_directory(directory: bytes) -> list[dict[str, Any]]:
         comment_len = struct.unpack_from("<H", directory, position + 32)[0]
         local_offset = struct.unpack_from("<I", directory, position + 42)[0]
         name = directory[position + 46 : position + 46 + name_len]
-        extra = directory[position + 46 + name_len : position + 46 + name_len + extra_len]
-        if comp_size == 0xFFFFFFFF or uncomp_size == 0xFFFFFFFF or local_offset == 0xFFFFFFFF:
-            comp_size, uncomp_size, local_offset = _expand_zip64_values(extra, comp_size, uncomp_size, local_offset)
+        extra = directory[
+            position + 46 + name_len : position + 46 + name_len + extra_len
+        ]
+        if (
+            comp_size == 0xFFFFFFFF
+            or uncomp_size == 0xFFFFFFFF
+            or local_offset == 0xFFFFFFFF
+        ):
+            comp_size, uncomp_size, local_offset = _expand_zip64_values(
+                extra, comp_size, uncomp_size, local_offset
+            )
         try:
             decoded_name = name.decode("utf-8")
         except UnicodeDecodeError:
@@ -213,7 +234,9 @@ def build_zip_index(
     tail = http_range(size - tail_len, size - 1)
 
     cd_size, cd_offset = _central_directory_location(tail, http_range)
-    tqdm.write(f"central directory offset={cd_offset} size={cd_size / 1e6:.1f} MB — downloading…")
+    tqdm.write(
+        f"central directory offset={cd_offset} size={cd_size / 1e6:.1f} MB — downloading…"
+    )
     cd = http_range(cd_offset, cd_offset + cd_size - 1)
     tqdm.write(f"cd bytes={len(cd):,} — parsing…")
 
@@ -256,14 +279,18 @@ def _make_http_range(url: str, token: str, *, max_retries: int = 8) -> HttpRange
                 if exc.code not in _RETRYABLE_HTTP or attempt >= max_retries:
                     raise
                 delay = min(90.0, (2 ** (attempt - 1)) + random.uniform(0, 1.5))
-                tqdm.write(f"  HTTP {exc.code} on Range GET — retry {attempt}/{max_retries} in {delay:.1f}s…")
+                tqdm.write(
+                    f"  HTTP {exc.code} on Range GET — retry {attempt}/{max_retries} in {delay:.1f}s…"
+                )
                 time.sleep(delay)
             except (URLError, TimeoutError, ConnectionError) as exc:
                 last_err = exc
                 if attempt >= max_retries:
                     raise
                 delay = min(90.0, (2 ** (attempt - 1)) + random.uniform(0, 1.5))
-                tqdm.write(f"  network error ({exc}) — retry {attempt}/{max_retries} in {delay:.1f}s…")
+                tqdm.write(
+                    f"  network error ({exc}) — retry {attempt}/{max_retries} in {delay:.1f}s…"
+                )
                 time.sleep(delay)
         raise RuntimeError(f"Range GET failed after retries: {last_err}")
 
@@ -298,8 +325,12 @@ def _load_mapillary_index(
 ) -> dict[str, dict[str, Any]]:
     """Build when needed and load useful Mapillary archive entries."""
     if not paths.index.exists():
-        tqdm.write(f"missing {paths.index.name} — building via EOCD Range parse (one-time)…")
-        build_zip_index(http_range, url=url, token=token, dest=paths.index, cache_dir=paths.cache)
+        tqdm.write(
+            f"missing {paths.index.name} — building via EOCD Range parse (one-time)…"
+        )
+        build_zip_index(
+            http_range, url=url, token=token, dest=paths.index, cache_dir=paths.cache
+        )
     by_name: dict[str, dict[str, Any]] = {}
     with paths.index.open() as handle:
         for line in handle:
@@ -323,7 +354,11 @@ def _resolve_internal(label: str, aliases: dict[str, str]) -> str | None:
 
 def _internals_in_aliases(aliases: set[str], label_aliases: dict[str, str]) -> set[str]:
     """Resolve every known internal category in an alias set."""
-    return {internal for alias in aliases if (internal := _resolve_internal(alias, label_aliases)) is not None}
+    return {
+        internal
+        for alias in aliases
+        if (internal := _resolve_internal(alias, label_aliases)) is not None
+    }
 
 
 def _mapillary_categories_by_image(
@@ -336,14 +371,18 @@ def _mapillary_categories_by_image(
     images_by_id = {image["id"]: image for image in (panoptic.get("images") or [])}
     id_to_aliases = {
         category.get("id"): {
-            str(category[key]) for key in ("name", "title", "supercategory", "readable") if category.get(key)
+            str(category[key])
+            for key in ("name", "title", "supercategory", "readable")
+            if category.get(key)
         }
         for category in categories
     }
     per_image: dict[str, set[str]] = {}
     if annotations and "segments_info" in annotations[0]:
         for annotation in annotations:
-            file_name = annotation.get("file_name") or images_by_id.get(annotation.get("image_id"), {}).get("file_name")
+            file_name = annotation.get("file_name") or images_by_id.get(
+                annotation.get("image_id"), {}
+            ).get("file_name")
             found: set[str] = set()
             for segment in annotation.get("segments_info") or []:
                 category_id = segment.get("category_id")
@@ -358,7 +397,9 @@ def _mapillary_categories_by_image(
         image = images_by_id[annotation["image_id"]]
         stem = Path(image["file_name"]).stem
         category_id = annotation["category_id"]
-        found = _internals_in_aliases(id_to_aliases.get(category_id, {str(category_id)}), label_aliases)
+        found = _internals_in_aliases(
+            id_to_aliases.get(category_id, {str(category_id)}), label_aliases
+        )
         per_image.setdefault(stem, set()).update(found)
     return per_image
 
@@ -368,8 +409,16 @@ def _select_mapillary_stems(
     per_image: dict[str, set[str]],
 ) -> tuple[dict[str, list[str]], list[str]]:
     """Select per-target and generic image stems within configured caps."""
-    counts = Counter(target for categories in per_image.values() for target in paths.target if target in categories)
-    tqdm.write("target counts in val: " + str({paths.target[k]: int(counts.get(k, 0)) for k in paths.target}))
+    counts = Counter(
+        target
+        for categories in per_image.values()
+        for target in paths.target
+        if target in categories
+    )
+    tqdm.write(
+        "target counts in val: "
+        + str({paths.target[k]: int(counts.get(k, 0)) for k in paths.target})
+    )
     found: dict[str, list[str]] = {target: [] for target in paths.target}
     for stem, categories in per_image.items():
         for target in paths.target:
@@ -414,7 +463,12 @@ def _bbox_from_mapillary_polygon(
         boxes.append(
             {
                 "label": paths.target[internal],
-                "bbox_xyxy": [min(xs) * scale, min(ys) * scale, max(xs) * scale, max(ys) * scale],
+                "bbox_xyxy": [
+                    min(xs) * scale,
+                    min(ys) * scale,
+                    max(xs) * scale,
+                    max(ys) * scale,
+                ],
             },
         )
     return boxes
@@ -455,7 +509,9 @@ def _extract_mapillary_jobs(
         if output_path.exists() and not clean and output_name in labels:
             boxes = labels[output_name]
         else:
-            image = Image.open(BytesIO(_extract_zip_entry(http_range, by_name[image_key]))).convert("RGB")
+            image = Image.open(
+                BytesIO(_extract_zip_entry(http_range, by_name[image_key]))
+            ).convert("RGB")
             original_width, _ = image.size
             image.thumbnail((paths.thumb, paths.thumb))
             scale = image.size[0] / original_width
@@ -474,12 +530,16 @@ def _extract_mapillary_jobs(
             )
             labels[output_name] = boxes
             labels_path.write_text(json.dumps(labels, indent=2), encoding="utf-8")
-        metadata.append({"file": output_name, "stem": stem, "tag": tag, "n_boxes": len(boxes)})
+        metadata.append(
+            {"file": output_name, "stem": stem, "tag": tag, "n_boxes": len(boxes)}
+        )
     labels_path.write_text(json.dumps(labels, indent=2), encoding="utf-8")
     return metadata
 
 
-def _write_mapillary_metadata(paths: _ExtractPaths, metadata: list[dict[str, Any]]) -> None:
+def _write_mapillary_metadata(
+    paths: _ExtractPaths, metadata: list[dict[str, Any]]
+) -> None:
     """Write attribution and extraction metadata files."""
     (paths.samples / "ATTRIBUTION.txt").write_text(
         "Mapillary Vistas Dataset v2.0 — CC BY-NC-SA.\n"
@@ -529,7 +589,9 @@ def extract_mapillary_toy(
 
     url = hf_hub_url(paths.repo, paths.zip_name, repo_type="dataset")
     http_range = _make_http_range(url, token, max_retries=max_retries)
-    tqdm.write("HF auth ok — preparing Mapillary toy extract (Range GETs, not full zip)")
+    tqdm.write(
+        "HF auth ok — preparing Mapillary toy extract (Range GETs, not full zip)"
+    )
 
     by_name = _load_mapillary_index(paths, http_range, url=url, token=token)
 
@@ -542,7 +604,9 @@ def extract_mapillary_toy(
     paths.samples.mkdir(parents=True, exist_ok=True)
     if clean:
         removed = 0
-        for old in list(paths.samples.glob("*.jpg")) + list(paths.samples.glob("*.png")):
+        for old in list(paths.samples.glob("*.jpg")) + list(
+            paths.samples.glob("*.png")
+        ):
             old.unlink()
             removed += 1
         tqdm.write(f"clean: removed {removed} existing sample images")
@@ -582,10 +646,14 @@ def ensure_mapillary_samples(
     if not clean and len(existing) >= min_images:
         scenes = sum(1 for p in existing if p.stem.startswith("scene_"))
         tagged = len(existing) - scenes
-        tqdm.write(f"Samples OK: {len(existing)} images ({scenes} scene_ seeds, {tagged} tagged) in {paths.samples}")
+        tqdm.write(
+            f"Samples OK: {len(existing)} images ({scenes} scene_ seeds, {tagged} tagged) in {paths.samples}"
+        )
         return existing
     if existing and not clean:
-        tqdm.write(f"Only {len(existing)} sample(s) found (need ≥{min_images}) — extracting…")
+        tqdm.write(
+            f"Only {len(existing)} sample(s) found (need ≥{min_images}) — extracting…"
+        )
     elif clean:
         tqdm.write("Re-extracting Mapillary toy subset (clean=True)…")
     else:

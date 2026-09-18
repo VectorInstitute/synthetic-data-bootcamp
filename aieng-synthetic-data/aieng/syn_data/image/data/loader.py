@@ -106,7 +106,11 @@ def list_sample_images(samples_dir: Path | str) -> list[Path]:
     root = Path(samples_dir)
     if not root.exists():
         return []
-    return sorted(p for p in root.iterdir() if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS)
+    return sorted(
+        p
+        for p in root.iterdir()
+        if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS
+    )
 
 
 def _prefer_sample_paths(
@@ -121,7 +125,11 @@ def _prefer_sample_paths(
     remaining = list(paths)
     for cls in prefer_classes:
         key = cls.lower().replace(" ", "_")
-        hit = [p for p in remaining if p.stem.lower().startswith(f"{key}_") or key in p.stem.lower()]
+        hit = [
+            p
+            for p in remaining
+            if p.stem.lower().startswith(f"{key}_") or key in p.stem.lower()
+        ]
         for p in hit:
             if p not in ranked:
                 ranked.append(p)
@@ -200,7 +208,10 @@ def _cache_matches_source(target: Path, source: dict[str, Any]) -> bool:
 
     expected = _source_name(source)
     meta = _read_source_meta(target)
-    blob = " ".join(str(meta.get(k, "")).lower() for k in ("dataset", "name", "hf_id", "archive_url", "note"))
+    blob = " ".join(
+        str(meta.get(k, "")).lower()
+        for k in ("dataset", "name", "hf_id", "archive_url", "note")
+    )
     stems = [p.stem.lower() for p in paths]
     prefixes = [str(p).lower() for p in (source.get("stem_prefixes") or [])]
 
@@ -210,7 +221,12 @@ def _cache_matches_source(target: Path, source: dict[str, Any]) -> bool:
         return True
     if expected and expected in blob:
         return True
-    if blob and expected and expected not in blob and expected.replace("_", " ") not in blob:
+    if (
+        blob
+        and expected
+        and expected not in blob
+        and expected.replace("_", " ") not in blob
+    ):
         return False
     return bool(stems)
 
@@ -254,7 +270,10 @@ def prepare_sample_images(
         raise _stale_cache_error(target, source)
 
     if not force and existing and _cache_matches_source(target, source):
-        needs_labels = kind in {"hf_detection", "voc_zip"} and not (target / "labels.json").exists()
+        needs_labels = (
+            kind in {"hf_detection", "voc_zip"}
+            and not (target / "labels.json").exists()
+        )
         if not needs_labels:
             return existing
 
@@ -267,11 +286,15 @@ def prepare_sample_images(
         "hf_rows": _prepare_hf_rows,
     }
     if kind not in preparers:
-        raise ValueError(f"Unknown data.kind={kind!r}. Use local | urls | hf_detection | voc_zip | hf_rows.")
+        raise ValueError(
+            f"Unknown data.kind={kind!r}. Use local | urls | hf_detection | voc_zip | hf_rows."
+        )
     return preparers[kind](target, source, force=force)
 
 
-def _prepare_local(target: Path, source: dict[str, Any], existing: list[Path]) -> list[Path]:
+def _prepare_local(
+    target: Path, source: dict[str, Any], existing: list[Path]
+) -> list[Path]:
     """Return a valid local cache or provision the Mapillary sample cache."""
     if existing and _cache_matches_source(target, source):
         return existing
@@ -287,7 +310,9 @@ def _prepare_local(target: Path, source: dict[str, Any], existing: list[Path]) -
 
 def _ensure_mapillary_samples(target: Path) -> list[Path]:
     """Extract the Mapillary toy subset when ``samples_dir`` is empty."""
-    from aieng.syn_data.image.data.mapillary_extract import ensure_mapillary_samples  # noqa: PLC0415
+    from aieng.syn_data.image.data.mapillary_extract import (  # noqa: PLC0415
+        ensure_mapillary_samples,
+    )
 
     root = Path(__file__).resolve().parents[2]
     paths = ensure_mapillary_samples(root, min_images=1)
@@ -317,7 +342,9 @@ def _prepare_urls(target: Path, source: dict[str, Any], *, force: bool) -> list[
     return saved
 
 
-def _prepare_voc_zip(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:
+def _prepare_voc_zip(
+    target: Path, source: dict[str, Any], *, force: bool
+) -> list[Path]:
     """Download a Pascal-VOC archive and cache its samples and labels."""
     pass
 
@@ -441,11 +468,15 @@ def _save_voc_samples(
         if not dest.exists() or force:
             Image.open(path).convert("RGB").save(dest, quality=95)
         saved.append(dest)
-        labels_out[stem] = [{"label": b.label, "bbox_xyxy": list(b.bbox_xyxy)} for b in boxes]
+        labels_out[stem] = [
+            {"label": b.label, "bbox_xyxy": list(b.bbox_xyxy)} for b in boxes
+        ]
         for b in boxes:
             class_counts[b.label] = class_counts.get(b.label, 0) + 1
 
-    (target / "labels.json").write_text(json.dumps(labels_out, indent=2), encoding="utf-8")
+    (target / "labels.json").write_text(
+        json.dumps(labels_out, indent=2), encoding="utf-8"
+    )
     (target / "source_meta.json").write_text(
         json.dumps(
             {
@@ -461,7 +492,9 @@ def _save_voc_samples(
     return saved
 
 
-def _parse_voc_xml(xml_path: Path | None, class_map: dict[str, str]) -> list[DetectionBox]:
+def _parse_voc_xml(
+    xml_path: Path | None, class_map: dict[str, str]
+) -> list[DetectionBox]:
     pass
 
     if xml_path is None or not xml_path.exists():
@@ -498,12 +531,16 @@ def _download_file(url: str, dest: Path) -> None:
     partial.replace(dest)
 
 
-def _prepare_hf_detection(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:
+def _prepare_hf_detection(
+    target: Path, source: dict[str, Any], *, force: bool
+) -> list[Path]:
     """Pull a detection dataset via `datasets` and cache RGB + labels.json."""
     try:
         pass
     except ImportError as exc:  # pragma: no cover
-        raise ImportError("Install `datasets` to use hf_detection sources: uv add datasets") from exc
+        raise ImportError(
+            "Install `datasets` to use hf_detection sources: uv add datasets"
+        ) from exc
 
     hf_id = str(source.get("hf_id", ""))
     if not hf_id:
@@ -547,22 +584,32 @@ def _prepare_hf_detection(target: Path, source: dict[str, Any], *, force: bool) 
         else:
             image.convert("RGB").save(dest)
             saved.append(dest)
-        labels_out[stem] = [{"label": b.label, "bbox_xyxy": list(b.bbox_xyxy)} for b in boxes]
+        labels_out[stem] = [
+            {"label": b.label, "bbox_xyxy": list(b.bbox_xyxy)} for b in boxes
+        ]
 
     if not saved:
-        raise RuntimeError(f"No images extracted from {hf_id}. Check schema or use kind: local.")
-    (target / "labels.json").write_text(json.dumps(labels_out, indent=2), encoding="utf-8")
+        raise RuntimeError(
+            f"No images extracted from {hf_id}. Check schema or use kind: local."
+        )
+    (target / "labels.json").write_text(
+        json.dumps(labels_out, indent=2), encoding="utf-8"
+    )
     meta = {
         "hf_id": hf_id,
         "split": split,
         "classes": source.get("classes", []),
         "class_counts": class_counts,
     }
-    (target / "source_meta.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
+    (target / "source_meta.json").write_text(
+        json.dumps(meta, indent=2), encoding="utf-8"
+    )
     return saved
 
 
-def _extract_hf_detection_row(row: dict[str, Any]) -> tuple[Image.Image | None, list[DetectionBox]]:
+def _extract_hf_detection_row(
+    row: dict[str, Any],
+) -> tuple[Image.Image | None, list[DetectionBox]]:
     """Best-effort parse of common HF detection schemas (incl. AI4Manufacturing/191)."""
     image = _extract_hf_image(row)
     boxes = _extract_hf_objects(row, image)
@@ -585,14 +632,21 @@ def _extract_hf_image(row: dict[str, Any]) -> Image.Image | None:
     return image
 
 
-def _extract_hf_objects(row: dict[str, Any], image: Image.Image | None) -> list[DetectionBox]:
+def _extract_hf_objects(
+    row: dict[str, Any], image: Image.Image | None
+) -> list[DetectionBox]:
     """Parse COCO-like object dictionaries and object lists."""
     boxes: list[DetectionBox] = []
     meta = row.get("metadata") or {}
     objects = meta.get("objects") or row.get("objects") or {}
     # COCO-ish: objects = {bbox: [...], category: [...]}
     if isinstance(objects, dict) and "bbox" in objects:
-        cats = objects.get("category") or objects.get("categories") or objects.get("label") or []
+        cats = (
+            objects.get("category")
+            or objects.get("categories")
+            or objects.get("label")
+            or []
+        )
         for bbox, cat in zip(objects["bbox"], cats, strict=False):
             label = str(cat)
             if isinstance(cat, int) and "categories" in meta:
@@ -608,7 +662,9 @@ def _extract_hf_objects(row: dict[str, Any], image: Image.Image | None) -> list[
     return boxes
 
 
-def _extract_hf_annot(row: dict[str, Any], image: Image.Image | None) -> list[DetectionBox]:
+def _extract_hf_annot(
+    row: dict[str, Any], image: Image.Image | None
+) -> list[DetectionBox]:
     """Parse AI4Manufacturing ``class,[x,y,w,h]`` annotation lines."""
     boxes: list[DetectionBox] = []
     annot = row.get("annot") or row.get("answer")
@@ -645,7 +701,9 @@ def _box_from_any(
     return DetectionBox(label=label, bbox_xyxy=(x1, y1, x2, y2))
 
 
-def _prepare_hf_rows(target: Path, source: dict[str, Any], *, force: bool) -> list[Path]:
+def _prepare_hf_rows(
+    target: Path, source: dict[str, Any], *, force: bool
+) -> list[Path]:
     """Fetch individual rows from HF datasets-server (image-only sources)."""
     frames = list(source.get("frames") or [])
     if not frames:
@@ -662,7 +720,12 @@ def _prepare_hf_rows(target: Path, source: dict[str, Any], *, force: bool) -> li
         if dest.exists() and not force:
             saved.append(dest)
             continue
-        params = {"dataset": hf_id, "split": split, "offset": int(frame["offset"]), "length": 1}
+        params = {
+            "dataset": hf_id,
+            "split": split,
+            "offset": int(frame["offset"]),
+            "length": 1,
+        }
         if config_name:
             params["config"] = config_name
         url = f"{api}?{urlencode(params)}"
@@ -688,7 +751,9 @@ def _prepare_hf_rows(target: Path, source: dict[str, Any], *, force: bool) -> li
                 last_err = exc
                 time.sleep(1.5 * (attempt + 1))
         if last_err is not None:
-            raise RuntimeError(f"Failed to fetch HF row {frame}: {last_err}") from last_err
+            raise RuntimeError(
+                f"Failed to fetch HF row {frame}: {last_err}"
+            ) from last_err
     (target / "source_meta.json").write_text(
         json.dumps(
             {

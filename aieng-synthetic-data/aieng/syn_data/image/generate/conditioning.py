@@ -76,7 +76,11 @@ def _colorize_labels(label_map: np.ndarray) -> np.ndarray:
 
 
 def _blend(rgb: np.ndarray, colored: np.ndarray, alpha: float = 0.45) -> np.ndarray:
-    return np.clip(rgb.astype(np.float32) * (1 - alpha) + colored.astype(np.float32) * alpha, 0, 255).astype(np.uint8)
+    return np.clip(
+        rgb.astype(np.float32) * (1 - alpha) + colored.astype(np.float32) * alpha,
+        0,
+        255,
+    ).astype(np.uint8)
 
 
 class DepthEstimator:
@@ -102,7 +106,9 @@ class DepthEstimator:
         lo, hi = float(depth.min()), float(depth.max())
         norm = (depth - lo) / (hi - lo) if hi > lo else np.zeros_like(depth)
         depth_u8 = (norm * 255).astype(np.uint8)
-        colormap = cv2.cvtColor(cv2.applyColorMap(depth_u8, cv2.COLORMAP_INFERNO), cv2.COLOR_BGR2RGB)
+        colormap = cv2.cvtColor(
+            cv2.applyColorMap(depth_u8, cv2.COLORMAP_INFERNO), cv2.COLOR_BGR2RGB
+        )
         return DepthResult(depth_map=norm.astype(np.float32), colormap=colormap)
 
     @classmethod
@@ -172,9 +178,13 @@ class Segmenter:
         if self._is_mask2former:
             pass
 
-            self.model = Mask2FormerForUniversalSegmentation.from_pretrained(self.model_name)
+            self.model = Mask2FormerForUniversalSegmentation.from_pretrained(
+                self.model_name
+            )
         else:
-            self.model = AutoModelForSemanticSegmentation.from_pretrained(self.model_name)
+            self.model = AutoModelForSemanticSegmentation.from_pretrained(
+                self.model_name
+            )
         model: Any = self.model
         model.to(self.device).eval()
 
@@ -196,7 +206,9 @@ class Segmenter:
             if labels.ndim == 3:
                 labels = labels[..., 0]
             if labels.shape != (h, w):
-                labels = cv2.resize(labels.astype(np.uint8), (w, h), interpolation=cv2.INTER_NEAREST)
+                labels = cv2.resize(
+                    labels.astype(np.uint8), (w, h), interpolation=cv2.INTER_NEAREST
+                )
             labels = labels.astype(np.int32)
         else:
             self._ensure()
@@ -205,11 +217,15 @@ class Segmenter:
             inputs = {k: v.to(self.device) for k, v in inputs.items()}
             outputs = self.model(**inputs)
             if self._is_mask2former:
-                labels_t = self.processor.post_process_semantic_segmentation(outputs, target_sizes=[(h, w)])[0]
+                labels_t = self.processor.post_process_semantic_segmentation(
+                    outputs, target_sizes=[(h, w)]
+                )[0]
                 labels = labels_t.cpu().numpy().astype(np.int32)
             else:
                 logits = outputs.logits
-                up = torch.nn.functional.interpolate(logits, size=(h, w), mode="bilinear", align_corners=False)
+                up = torch.nn.functional.interpolate(
+                    logits, size=(h, w), mode="bilinear", align_corners=False
+                )
                 labels = up.argmax(dim=1)[0].cpu().numpy().astype(np.int32)
 
         colored = _colorize_labels(labels)
@@ -271,7 +287,9 @@ def build_anomaly_edit_mask(
         y1 = float(cfg.get("y1", 0.75)) * height
         mask = (xx >= x0) & (xx <= x1) & (yy >= y0) & (yy <= y1)
     elif mode == "road_patch":
-        mask = _road_patch_ellipse(segmentation, depth, width=width, height=height, cfg=cfg, xx=xx, yy=yy)
+        mask = _road_patch_ellipse(
+            segmentation, depth, width=width, height=height, cfg=cfg, xx=xx, yy=yy
+        )
     else:  # ellipse (default) and seg_intersection base
         cx = float(cfg.get("cx", 0.5)) * width
         cy = float(cfg.get("cy", 0.5)) * height
@@ -299,7 +317,11 @@ def build_anomaly_edit_mask(
         clipped = mask & near
         # If prefer_near collapses to a crescent/sliver, keep the seed ellipse.
         min_keep = float(cfg.get("min_mask_keep", 0.35))
-        mask = clipped if float(clipped.mean()) >= min_keep * float(seed_mask.mean() + 1e-08) else seed_mask
+        mask = (
+            clipped
+            if float(clipped.mean()) >= min_keep * float(seed_mask.mean() + 1e-08)
+            else seed_mask
+        )
 
     mask = _dilate(mask, int(cfg.get("dilate", 1)))
     weight = cv2.GaussianBlur(mask.astype(np.float32), (0, 0), max(blur_sigma, 0.5))
@@ -322,7 +344,12 @@ def _road_patch_ellipse(
     y_max = float(cfg.get("y_max", 0.92))
     x_min = float(cfg.get("x_min", 0.22))
     x_max = float(cfg.get("x_max", 0.78))
-    band = (yy >= y_min * height) & (yy <= y_max * height) & (xx >= x_min * width) & (xx <= x_max * width)
+    band = (
+        (yy >= y_min * height)
+        & (yy <= y_max * height)
+        & (xx >= x_min * width)
+        & (xx <= x_max * width)
+    )
     region = support & band
     if not region.any():
         region = support & (yy >= y_min * height) & (yy <= y_max * height)
@@ -334,7 +361,10 @@ def _road_patch_ellipse(
         ys, xs = np.where(region)
         prior_cx = float(cfg.get("cx", 0.5)) * width
         prior_cy = float(cfg.get("cy", 0.75)) * height
-        dist = np.sqrt((xs.astype(np.float32) - prior_cx) ** 2 + (ys.astype(np.float32) - prior_cy) ** 2)
+        dist = np.sqrt(
+            (xs.astype(np.float32) - prior_cx) ** 2
+            + (ys.astype(np.float32) - prior_cy) ** 2
+        )
         dist_n = dist / (float(dist.max()) + 1e-6)
         if depth is not None:
             d = depth.depth_map
@@ -366,7 +396,11 @@ def _seg_support(
     if class_ids and segmentation.label_map is not None:
         labels = segmentation.label_map
         if labels.shape != (height, width):
-            labels = cv2.resize(labels.astype(np.int32), (width, height), interpolation=cv2.INTER_NEAREST)
+            labels = cv2.resize(
+                labels.astype(np.int32),
+                (width, height),
+                interpolation=cv2.INTER_NEAREST,
+            )
         return np.isin(labels, list(class_ids))
     if segmentation.edit_mask is not None:
         mask: np.ndarray = segmentation.edit_mask.astype(np.uint8)

@@ -70,7 +70,9 @@ def accepted_sample_to_row(sample: AcceptedSample) -> dict[str, Any]:
 def row_to_accepted_sample(row: dict[str, Any]) -> AcceptedSample:
     """Deserialize an accepted sample."""
     return AcceptedSample(
-        sample_id=str(row.get("sample_id") or Path(str(row.get("image_name", ""))).stem),
+        sample_id=str(
+            row.get("sample_id") or Path(str(row.get("image_name", ""))).stem
+        ),
         anomaly_id=str(row["anomaly_id"]),
         method=str(row.get("method") or "instruct"),
         source_stem=str(row["source_stem"]),
@@ -111,7 +113,9 @@ def load_checkpoint(nb2_dir: Path | str) -> dict[str, Any]:
 def save_state(nb2_dir: Path | str, payload: dict[str, Any]) -> Path:
     """Save state."""
     path = state_path(nb2_dir)
-    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
     return path
 
 
@@ -161,7 +165,9 @@ def rebuild_stats(
     """Rebuild run statistics from checkpoint records."""
     stats = {aid: ClassRunStats(anomaly_id=aid) for aid in anomaly_ids}
     for sample in accepted:
-        st = stats.setdefault(sample.anomaly_id, ClassRunStats(anomaly_id=sample.anomaly_id))
+        st = stats.setdefault(
+            sample.anomaly_id, ClassRunStats(anomaly_id=sample.anomaly_id)
+        )
         st.accepts += 1
         st.attempts += 1
     for row in rejected:

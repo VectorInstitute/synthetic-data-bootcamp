@@ -22,13 +22,26 @@ from typing import Any
 import torch
 from PIL import Image
 from PIL import Image as _Image
-from transformers import AutoModelForImageTextToText, AutoProcessor, CLIPModel, CLIPProcessor
+from transformers import (
+    AutoModelForImageTextToText,
+    AutoProcessor,
+    CLIPModel,
+    CLIPProcessor,
+)
 
 from aieng.syn_data.image.data.eda import load_labels_for_dir
 from aieng.syn_data.image.generate.conditioning import resolve_device
-from aieng.syn_data.image.judge.embedding_gate import EmbeddingGate, crop_from_mask_or_boxes, embedding_gate_from_config
+from aieng.syn_data.image.judge.embedding_gate import (
+    EmbeddingGate,
+    crop_from_mask_or_boxes,
+    embedding_gate_from_config,
+)
 from aieng.syn_data.image.judge.references import pick_class_references
-from aieng.syn_data.image.judge.vlm_api import infer_api_provider, resolve_judge_model, vision_chat
+from aieng.syn_data.image.judge.vlm_api import (
+    infer_api_provider,
+    resolve_judge_model,
+    vision_chat,
+)
 
 
 @dataclass
@@ -197,7 +210,9 @@ class VLMJudge:
         try:
             pass
         except ImportError as exc:  # pragma: no cover
-            raise ImportError("transformers with VLM support is required for backend=qwen_vl") from exc
+            raise ImportError(
+                "transformers with VLM support is required for backend=qwen_vl"
+            ) from exc
 
         dtype_kw: dict[str, Any] = {}
         # Prefer dtype= for newer transformers; torch_dtype still widely accepted.
@@ -296,9 +311,7 @@ class VLMJudge:
                 # CPU machines without enough RAM / missing VLM deps still get a score.
                 self._ensure_clip()
                 result = self._judge_clip(pil, prompt=prompt, rare=rare)
-                result.rationale = (
-                    f"Qwen VLM unavailable ({type(exc).__name__}: {exc}); used CLIP fallback. {result.rationale}"
-                )
+                result.rationale = f"Qwen VLM unavailable ({type(exc).__name__}: {exc}); used CLIP fallback. {result.rationale}"
 
         result.anomaly_id = anomaly_id
         result.reference_paths = [
@@ -309,7 +322,11 @@ class VLMJudge:
         result = self._reconcile(result)
         result.decision = self._decide(result)
         # Soft pressure from the VLM side; batch_runner also hard-gates accepts.
-        if require_target_boxes and has_target_boxes is False and result.decision == "accept":
+        if (
+            require_target_boxes
+            and has_target_boxes is False
+            and result.decision == "accept"
+        ):
             result.decision = "retry"
             result.annotation_correctness = min(result.annotation_correctness, 2.0)
             note = " [judge: blocked accept — missing target boxes]"
@@ -431,14 +448,20 @@ class VLMJudge:
             path = getattr(ref, "path", None)
             name = Path(path).name if path is not None else f"ref_{i}"
             if role == "crop":
-                ref_lines.append(f"  Image {i + 1}: REAL {rare} object crop from dataset ({name})")
+                ref_lines.append(
+                    f"  Image {i + 1}: REAL {rare} object crop from dataset ({name})"
+                )
             else:
-                ref_lines.append(f"  Image {i + 1}: REAL same-class photo containing {rare} ({name})")
+                ref_lines.append(
+                    f"  Image {i + 1}: REAL same-class photo containing {rare} ({name})"
+                )
         ref_block = ""
         if ref_lines:
             ref_block = (
                 "Images attached (in order):\n"
-                "  Image 1: CANDIDATE synthetic edit to judge\n" + "\n".join(ref_lines) + "\n\n"
+                "  Image 1: CANDIDATE synthetic edit to judge\n"
+                + "\n".join(ref_lines)
+                + "\n\n"
                 "Fidelity rules:\n"
                 "- global_fidelity: score how well Image 1 matches the look of the real "
                 "reference photos (camera style, lighting, street realism).\n"
@@ -502,7 +525,10 @@ class VLMJudge:
             return_dict=True,
             return_tensors="pt",
         )
-        inputs = {key: value.to(self._model.device) if hasattr(value, "to") else value for key, value in inputs.items()}
+        inputs = {
+            key: value.to(self._model.device) if hasattr(value, "to") else value
+            for key, value in inputs.items()
+        }
 
         generated_ids = self._model.generate(
             **inputs,
@@ -511,7 +537,10 @@ class VLMJudge:
         )
         # Trim prompt tokens when present.
         if "input_ids" in inputs:
-            trimmed = [out[len(inp) :] for inp, out in zip(inputs["input_ids"], generated_ids, strict=True)]
+            trimmed = [
+                out[len(inp) :]
+                for inp, out in zip(inputs["input_ids"], generated_ids, strict=True)
+            ]
             text = self._processor.batch_decode(
                 trimmed,
                 skip_special_tokens=True,
@@ -554,7 +583,9 @@ class VLMJudge:
             if len(images) >= self.max_judge_images:
                 break
         model = resolve_judge_model(self.model_id)
-        provider = self.api_provider or infer_api_provider(model, api_base_url=self.api_base_url)
+        provider = self.api_provider or infer_api_provider(
+            model, api_base_url=self.api_base_url
+        )
         text = vision_chat(
             user_text,
             images,
@@ -568,7 +599,9 @@ class VLMJudge:
         self.model_id = model
         parsed = _parse_judge_json(text)
         result = _result_from_parsed(parsed, raw_response=text)
-        result.reference_paths = [str(getattr(r, "path", "")) for r in refs if getattr(r, "path", None)]
+        result.reference_paths = [
+            str(getattr(r, "path", "")) for r in refs if getattr(r, "path", None)
+        ]
         return result
 
     def _judge_clip(
@@ -592,8 +625,12 @@ class VLMJudge:
         )
         inputs = {key: value.to(self.device) for key, value in inputs.items()}
         outputs = model(**inputs)
-        image_embeds = outputs.image_embeds / outputs.image_embeds.norm(dim=-1, keepdim=True)
-        text_embeds = outputs.text_embeds / outputs.text_embeds.norm(dim=-1, keepdim=True)
+        image_embeds = outputs.image_embeds / outputs.image_embeds.norm(
+            dim=-1, keepdim=True
+        )
+        text_embeds = outputs.text_embeds / outputs.text_embeds.norm(
+            dim=-1, keepdim=True
+        )
         sims = (image_embeds @ text_embeds.T).squeeze(0)
         pos, neg, prompt_sim = (float(x) for x in sims.tolist())
         delta = pos - neg
@@ -615,7 +652,9 @@ class VLMJudge:
             rationale=(
                 f"CLIP Δ(rare−normal)={delta:.3f}; sim(prompt)={prompt_sim:.3f}. Heuristic fallback, not a full VLM."
             ),
-            raw_response=json.dumps({"pos": pos, "neg": neg, "prompt_sim": prompt_sim, "delta": delta}),
+            raw_response=json.dumps(
+                {"pos": pos, "neg": neg, "prompt_sim": prompt_sim, "delta": delta}
+            ),
         )
 
     def _reconcile(self, result: JudgeResult) -> JudgeResult:
@@ -626,7 +665,9 @@ class VLMJudge:
         Do NOT force-present when physical plausibility is poor (mask artifacts,
         cropped inserts, etc.).
         """
-        looks_present = result.prompt_faithfulness >= 6.0 or result.overall >= (self.threshold - 0.5)
+        looks_present = result.prompt_faithfulness >= 6.0 or result.overall >= (
+            self.threshold - 0.5
+        )
         physically_ok = result.physical_plausibility >= 4.5
         if not result.edge_case_present and looks_present and physically_ok:
             result.edge_case_present = True
@@ -653,7 +694,9 @@ class VLMJudge:
         - overall < 5 or no edge → reject
         - otherwise → retry
         """
-        if (not result.edge_case_present) or result.overall < (self.threshold - self.reject_margin):
+        if (not result.edge_case_present) or result.overall < (
+            self.threshold - self.reject_margin
+        ):
             return "reject"
         if result.physical_plausibility < 4.5:
             if result.overall < (self.threshold - self.reject_margin):
@@ -677,7 +720,9 @@ class VLMJudge:
         return "retry"
 
     @classmethod
-    def from_config(cls, cfg: dict[str, Any] | Any, device: str | None = None) -> VLMJudge:
+    def from_config(
+        cls, cfg: dict[str, Any] | Any, device: str | None = None
+    ) -> VLMJudge:
         """Create an instance from configuration."""
         judge = cfg.get("judge", cfg)
         if device is None:

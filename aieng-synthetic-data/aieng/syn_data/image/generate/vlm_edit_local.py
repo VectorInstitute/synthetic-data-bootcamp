@@ -14,7 +14,10 @@ from diffusers import QwenImageEditPipeline
 from PIL import Image
 
 from aieng.syn_data.image.generate.conditioning import resolve_device
-from aieng.syn_data.image.generate.generation import _ensure_same_size, _fit_for_diffusion
+from aieng.syn_data.image.generate.generation import (
+    _ensure_same_size,
+    _fit_for_diffusion,
+)
 
 
 @dataclass
@@ -25,7 +28,9 @@ class VlmLocalEditConfig:
     num_inference_steps: int = 20
     true_cfg_scale: float = 4.0
     max_side: int = 768
-    negative_prompt: str = "blurry, distorted, cartoon, painting, watermark, text overlay"
+    negative_prompt: str = (
+        "blurry, distorted, cartoon, painting, watermark, text overlay"
+    )
 
 
 _pipe_cache: dict[tuple[str, str], Any] = {}
@@ -35,12 +40,19 @@ def _cache_key(model_id: str, device: str) -> tuple[str, str]:
     return model_id, device
 
 
-def unload_qwen_edit_pipeline(*, model_id: str | None = None, device: str | None = None) -> None:
+def unload_qwen_edit_pipeline(
+    *, model_id: str | None = None, device: str | None = None
+) -> None:
     """Drop cached pipeline (call before loading Klein / SD pipes on the same GPU)."""
     if model_id is None and device is None:
         _pipe_cache.clear()
     else:
-        keys = [k for k in _pipe_cache if (model_id is None or k[0] == model_id) and (device is None or k[1] == device)]
+        keys = [
+            k
+            for k in _pipe_cache
+            if (model_id is None or k[0] == model_id)
+            and (device is None or k[1] == device)
+        ]
         for k in keys:
             _pipe_cache.pop(k, None)
     if torch.cuda.is_available():
@@ -60,7 +72,11 @@ def _get_pipeline(model_id: str, device: torch.device) -> Any:
             "Install the edge-case-image-generation dependency group.",
         ) from exc
 
-    dtype = torch.bfloat16 if device.type == "cuda" and torch.cuda.is_bf16_supported() else torch.float16
+    dtype = (
+        torch.bfloat16
+        if device.type == "cuda" and torch.cuda.is_bf16_supported()
+        else torch.float16
+    )
     if device.type == "cpu":
         dtype = torch.float32
 
@@ -92,7 +108,9 @@ def edit_with_qwen_local(
     cfg = config or VlmLocalEditConfig()
     dev = resolve_device(device)
     original = image.convert("RGB")
-    run_image = _fit_for_diffusion(original, max_side=int(cfg.max_side), family=str(family).lower())
+    run_image = _fit_for_diffusion(
+        original, max_side=int(cfg.max_side), family=str(family).lower()
+    )
 
     pipe = _get_pipeline(str(cfg.model_id), dev)
     gen_device = "cuda" if dev.type == "cuda" else "cpu"

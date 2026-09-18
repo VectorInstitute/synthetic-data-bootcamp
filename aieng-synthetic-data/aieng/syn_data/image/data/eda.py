@@ -11,7 +11,11 @@ import matplotlib.pyplot as plt
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 
-from aieng.syn_data.image.data.loader import IMAGE_EXTENSIONS, DetectionBox, load_detection_labels
+from aieng.syn_data.image.data.loader import (
+    IMAGE_EXTENSIONS,
+    DetectionBox,
+    load_detection_labels,
+)
 
 
 def stem_tag(path: Path | str, prefixes: list[str] | None = None) -> str:
@@ -41,7 +45,11 @@ def list_tagged_images(samples_dir: Path | str) -> list[Path]:
     root = Path(samples_dir)
     if not root.exists():
         return []
-    return sorted(p for p in root.iterdir() if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS)
+    return sorted(
+        p
+        for p in root.iterdir()
+        if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS
+    )
 
 
 def group_by_tag(
@@ -55,7 +63,9 @@ def group_by_tag(
     If ``tags`` is set, include only those keys. Pass ``prefixes`` so multi-word
     tags such as ``traffic_cone`` resolve correctly.
     """
-    match_prefixes = list(prefixes) if prefixes is not None else (list(tags) if tags else None)
+    match_prefixes = (
+        list(prefixes) if prefixes is not None else (list(tags) if tags else None)
+    )
     out: dict[str, list[Path]] = {t: [] for t in (tags or [])}
     for path in paths:
         tag = stem_tag(path, match_prefixes)
@@ -92,7 +102,11 @@ def class_image_counts(
     """
     counts = {tag: len(paths) for tag, paths in paths_by_tag.items()}
     if labels is not None and rare_classes and "scene" in paths_by_tag:
-        clean = [p for p in paths_by_tag["scene"] if not image_has_label(p, labels, rare_classes)]
+        clean = [
+            p
+            for p in paths_by_tag["scene"]
+            if not image_has_label(p, labels, rare_classes)
+        ]
         counts["clean_scene"] = len(clean)
     return counts
 

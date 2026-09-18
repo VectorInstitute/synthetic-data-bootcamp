@@ -56,7 +56,9 @@ class OpenVocabAnnotator:
         self.detector_model = detector_model
         self.classes = list(classes or [])
         if not self.classes:
-            raise ValueError("annotation.classes is empty — set classes in configs/datasets/<dataset>/annotation.yaml")
+            raise ValueError(
+                "annotation.classes is empty — set classes in configs/datasets/<dataset>/annotation.yaml"
+            )
         self.conf = float(conf)
         self.max_detections = int(max_detections)
         self.device = resolve_device(device)
@@ -91,7 +93,9 @@ class OpenVocabAnnotator:
         """
         pil_image = _to_pil(image)
         rgb = np.array(pil_image)
-        active_classes = [str(c).strip() for c in (classes or self.classes) if str(c).strip()]
+        active_classes = [
+            str(c).strip() for c in (classes or self.classes) if str(c).strip()
+        ]
         if not active_classes:
             raise ValueError("No annotation classes provided")
         threshold = self.conf if conf is None else float(conf)
@@ -112,8 +116,12 @@ class OpenVocabAnnotator:
             result: Any = results[0]
             boxes = result.boxes
             if boxes is not None and len(boxes) > 0:
-                xyxy = np.asarray(boxes.xyxy.cpu() if hasattr(boxes.xyxy, "cpu") else boxes.xyxy)
-                scores = np.asarray(boxes.conf.cpu() if hasattr(boxes.conf, "cpu") else boxes.conf)
+                xyxy = np.asarray(
+                    boxes.xyxy.cpu() if hasattr(boxes.xyxy, "cpu") else boxes.xyxy
+                )
+                scores = np.asarray(
+                    boxes.conf.cpu() if hasattr(boxes.conf, "cpu") else boxes.conf
+                )
                 raw_cls = boxes.cls.cpu() if hasattr(boxes.cls, "cpu") else boxes.cls
                 cls_ids = np.asarray(raw_cls).astype(int)
                 names = result.names or {}
@@ -142,8 +150,17 @@ class OpenVocabAnnotator:
             overlay=rgb,
             num_instances=len(detections),
         )
-        has_target = has_target_detections(tmp, target_labels) if target_labels else bool(detections)
-        if require_seed_if_empty and seed_mask is not None and seed_label and not has_target:
+        has_target = (
+            has_target_detections(tmp, target_labels)
+            if target_labels
+            else bool(detections)
+        )
+        if (
+            require_seed_if_empty
+            and seed_mask is not None
+            and seed_label
+            and not has_target
+        ):
             seeded = detection_from_mask(
                 seed_mask,
                 label=str(seed_label),
@@ -188,7 +205,9 @@ class OpenVocabAnnotator:
             torch.cuda.empty_cache()
 
     @classmethod
-    def from_config(cls, cfg: dict[str, Any] | Any, device: str | None = None) -> OpenVocabAnnotator:
+    def from_config(
+        cls, cfg: dict[str, Any] | Any, device: str | None = None
+    ) -> OpenVocabAnnotator:
         """Create an instance from configuration."""
         annotation = cfg.get("annotation", cfg)
         if device is None:
@@ -262,7 +281,9 @@ def has_target_detections(
     """Check whether has target detections."""
     if annotation is None or not target_labels:
         return False
-    return any(canonicalize_label(det.label) in target_labels for det in annotation.detections)
+    return any(
+        canonicalize_label(det.label) in target_labels for det in annotation.detections
+    )
 
 
 def target_detections(
@@ -272,7 +293,9 @@ def target_detections(
     """Filter detections to requested target classes."""
     if annotation is None or not target_labels:
         return []
-    return [d for d in annotation.detections if canonicalize_label(d.label) in target_labels]
+    return [
+        d for d in annotation.detections if canonicalize_label(d.label) in target_labels
+    ]
 
 
 def check_box_placement(

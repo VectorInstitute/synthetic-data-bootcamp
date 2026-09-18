@@ -108,7 +108,9 @@ def generate_with_vlm(
         seed_image = None
 
     if provider == "vector_proxy":
-        return _generate_vector_proxy(prompt, seed_image=seed_image, model=model, cfg=cfg)
+        return _generate_vector_proxy(
+            prompt, seed_image=seed_image, model=model, cfg=cfg
+        )
     if provider == "gemini":
         return _generate_gemini(prompt, seed_image=seed_image, model=model, cfg=cfg)
     return _generate_openai(prompt, seed_image=seed_image, model=model, cfg=cfg)
@@ -130,7 +132,9 @@ def _bytes_to_pil(data: bytes) -> Image.Image:
     return Image.open(io.BytesIO(data)).convert("RGB")
 
 
-def _image_from_url_or_b64(*, url: str | None = None, b64: str | None = None) -> Image.Image | None:
+def _image_from_url_or_b64(
+    *, url: str | None = None, b64: str | None = None
+) -> Image.Image | None:
     if b64:
         raw = b64.split(",", 1)[-1] if b64.startswith("data:") else b64
         return _bytes_to_pil(base64.b64decode(raw))
@@ -138,7 +142,11 @@ def _image_from_url_or_b64(*, url: str | None = None, b64: str | None = None) ->
         return None
     if url.startswith("data:"):
         match = re.search(r"base64,([A-Za-z0-9+/=\s]+)", url)
-        return _bytes_to_pil(base64.b64decode(match.group(1).replace("\n", ""))) if match else None
+        return (
+            _bytes_to_pil(base64.b64decode(match.group(1).replace("\n", "")))
+            if match
+            else None
+        )
     with urllib.request.urlopen(url) as resp:  # noqa: S310 — API HTTPS URL
         return _bytes_to_pil(resp.read())
 
@@ -282,7 +290,10 @@ def _generate_vector_proxy(
                 "role": "user",
                 "content": [
                     {"type": "text", "text": text},
-                    {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{b64}"}},
+                    {
+                        "type": "image_url",
+                        "image_url": {"url": f"data:image/png;base64,{b64}"},
+                    },
                 ],
             },
         ]

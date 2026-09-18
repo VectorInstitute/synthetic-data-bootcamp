@@ -15,7 +15,7 @@ def _is_impl_root(candidate: Path) -> bool:
 def bootstrap_project_root(start: Path | None = None) -> Path:
     """Locate ``implementations/edge_case_image_generation`` (Hydra configs + data).
 
-    Package code lives in ``aieng.syn_data.image`` (installed via ``aieng-synthetic-data``);
+    Package code lives in ``aieng.syn_data.image`` (via ``aieng-synthetic-data``);
     this only finds the implementation folder for configs / data / outputs.
     """
     here = (start or Path.cwd()).resolve()

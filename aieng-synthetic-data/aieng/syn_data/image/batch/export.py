@@ -63,7 +63,9 @@ def detections_to_boxes(annotation: AnnotationResult) -> list[dict[str, Any]]:
 
 def gt_boxes_to_dicts(boxes: list[DetectionBox]) -> list[dict[str, Any]]:
     """Convert ground-truth boxes to dictionaries."""
-    return [{"label": b.label, "bbox_xyxy": [float(x) for x in b.bbox_xyxy]} for b in boxes]
+    return [
+        {"label": b.label, "bbox_xyxy": [float(x) for x in b.bbox_xyxy]} for b in boxes
+    ]
 
 
 def judge_to_dict(result: JudgeResult) -> dict[str, Any]:
@@ -143,7 +145,11 @@ def export_nb2_dataset(
                         "tag": tag,
                         "path": str(path),
                         "split": "real",
-                        "boxes": gt_boxes_to_dicts(real_labels.get(path.name) or real_labels.get(path.stem) or []),
+                        "boxes": gt_boxes_to_dicts(
+                            real_labels.get(path.name)
+                            or real_labels.get(path.stem)
+                            or []
+                        ),
                     },
                 )
         return rows

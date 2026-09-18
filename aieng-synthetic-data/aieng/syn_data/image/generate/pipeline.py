@@ -30,7 +30,9 @@ def validate_method(method: str) -> str:
     """Validate method."""
     method = str(method).lower()
     if method not in ALL_COMPARE_METHODS:
-        raise ValueError(f"Unknown method {method!r}. Choose from {ALL_COMPARE_METHODS}")
+        raise ValueError(
+            f"Unknown method {method!r}. Choose from {ALL_COMPARE_METHODS}"
+        )
     return method
 
 
@@ -39,7 +41,9 @@ def default_method_map(cfg: Any) -> dict[str, str]:
     dataset = cfg.get("dataset") if hasattr(cfg, "get") else None
     raw: dict[str, Any] = {}
     if dataset is not None:
-        container = OmegaConf.to_container(dataset.get("method_by_anomaly") or {}, resolve=True)
+        container = OmegaConf.to_container(
+            dataset.get("method_by_anomaly") or {}, resolve=True
+        )
         if isinstance(container, dict):
             raw = {str(k): v for k, v in container.items()}
     return {str(k): str(v) for k, v in raw.items()}
@@ -64,7 +68,9 @@ def resolve_method_map(
     out: dict[str, str] = {}
     provided = method_by_anomaly or {}
     for anomaly_id in workshop_anomalies:
-        out[anomaly_id] = validate_method(provided.get(anomaly_id, defaults.get(anomaly_id, fallback)))
+        out[anomaly_id] = validate_method(
+            provided.get(anomaly_id, defaults.get(anomaly_id, fallback))
+        )
     return out
 
 
@@ -98,7 +104,9 @@ def synthesize_one(
     return SynthesisResult(anomaly_id=anomaly_id, method=method, generated=generated)
 
 
-def merged_prompt(cfg: Any, anomaly_id: str, *, method: str | None = None, project_root: Any = None) -> str:
+def merged_prompt(
+    cfg: Any, anomaly_id: str, *, method: str | None = None, project_root: Any = None
+) -> str:
     """Build merged prompts for an anomaly method."""
     dataset = str(cfg.dataset_name)
     anomaly_cfg = load_anomaly(dataset, anomaly_id, start=project_root)

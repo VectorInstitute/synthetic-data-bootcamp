@@ -243,7 +243,9 @@ class AnomalyEditor:
             result.variation_index = 0 if variation is not None else None
             return result
 
-        original = _fit_for_diffusion(image.convert("RGB"), max_side=max_side, family=family)
+        original = _fit_for_diffusion(
+            image.convert("RGB"), max_side=max_side, family=family
+        )
         width, height = original.size
         edit_mask, edit_weight = build_anomaly_edit_mask(
             segmentation,
@@ -285,7 +287,9 @@ class AnomalyEditor:
 
         if method in {"vlm_generate", "vlm_generate_local", "vlm_generate_api"}:
             # compare_methods imports this module for shared generation helpers.
-            from aieng.syn_data.image.generate.compare_methods import resolve_effective_method  # noqa: PLC0415
+            from aieng.syn_data.image.generate.compare_methods import (  # noqa: PLC0415
+                resolve_effective_method,
+            )
 
             pass
 
@@ -299,8 +303,12 @@ class AnomalyEditor:
 
                 family = str(merged.get("family", self.family)).lower()
                 local_cfg = VlmLocalEditConfig(
-                    model_id=str(merged.get("vlm_local_model_id") or "Qwen/Qwen-Image-Edit"),
-                    num_inference_steps=int(merged.get("vlm_local_num_inference_steps") or 20),
+                    model_id=str(
+                        merged.get("vlm_local_model_id") or "Qwen/Qwen-Image-Edit"
+                    ),
+                    num_inference_steps=int(
+                        merged.get("vlm_local_num_inference_steps") or 20
+                    ),
                     true_cfg_scale=float(merged.get("vlm_local_true_cfg_scale") or 4.0),
                     max_side=int(merged.get("vlm_local_max_side") or 768),
                 )
@@ -332,10 +340,14 @@ class AnomalyEditor:
                 provider=merged.get("vlm_provider"),
                 api_key=merged.get("vlm_api_key"),
                 api_base_url=(
-                    str(merged.get("vlm_api_base_url")) if merged.get("vlm_api_base_url") not in (None, "") else None
+                    str(merged.get("vlm_api_base_url"))
+                    if merged.get("vlm_api_base_url") not in (None, "")
+                    else None
                 ),
                 aspect_ratio=(
-                    str(merged.get("vlm_aspect_ratio")) if merged.get("vlm_aspect_ratio") not in (None, "") else None
+                    str(merged.get("vlm_aspect_ratio"))
+                    if merged.get("vlm_aspect_ratio") not in (None, "")
+                    else None
                 ),
                 size=str(merged.get("vlm_size") or "1024x1024"),
                 max_side=int(merged.get("vlm_max_side") or max_side or 1024),
@@ -357,9 +369,15 @@ class AnomalyEditor:
             )
 
         scale_cfg = merged.get("controlnet_scale", 0.55)
-        cn_scale = float(scale_cfg) if isinstance(scale_cfg, (int, float)) else float(scale_cfg.get("depth", 0.75))
+        cn_scale = (
+            float(scale_cfg)
+            if isinstance(scale_cfg, (int, float))
+            else float(scale_cfg.get("depth", 0.75))
+        )
 
-        cn_strength = float(merged.get("controlnet_strength", merged.get("strength", 0.45)))
+        cn_strength = float(
+            merged.get("controlnet_strength", merged.get("strength", 0.45))
+        )
         return _finish(
             self._controlnet(
                 original,
@@ -550,7 +568,9 @@ def _mask_to_pil(mask: np.ndarray) -> Image.Image:
         k = max(3, int(round(0.01 * max(u8.shape))))
         if k % 2 == 0:
             k += 1
-        u8 = cv2.dilate(u8, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k)), iterations=1)
+        u8 = cv2.dilate(
+            u8, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k)), iterations=1
+        )
     return Image.fromarray(u8, mode="L")
 
 
@@ -567,10 +587,16 @@ def _fit_klein_inpaint(
     scale = target / long if long else 1.0
     new_w = max(16, int(round(width * scale / 16) * 16))
     new_h = max(16, int(round(height * scale / 16) * 16))
-    run_image = image if (new_w, new_h) == (width, height) else image.resize((new_w, new_h), Image.Resampling.LANCZOS)
+    run_image = (
+        image
+        if (new_w, new_h) == (width, height)
+        else image.resize((new_w, new_h), Image.Resampling.LANCZOS)
+    )
     mask_arr = np.asarray(edit_mask)
     if mask_arr.shape[0] != new_h or mask_arr.shape[1] != new_w:
-        mask_arr = cv2.resize(mask_arr.astype(np.uint8), (new_w, new_h), interpolation=cv2.INTER_NEAREST)
+        mask_arr = cv2.resize(
+            mask_arr.astype(np.uint8), (new_w, new_h), interpolation=cv2.INTER_NEAREST
+        )
     return run_image, _mask_to_pil(mask_arr)
 
 
@@ -600,7 +626,9 @@ def _composite(
     weight_arr = np.asarray(weight, dtype=np.float32)
     if weight_arr.shape[:2] != (h, w):
         weight_arr = cv2.resize(weight_arr, (w, h), interpolation=cv2.INTER_LINEAR)
-    soft = np.clip(cv2.GaussianBlur(weight_arr, (0, 0), max(blur_sigma, 0.5)), 0, 1)[..., None]
+    soft = np.clip(cv2.GaussianBlur(weight_arr, (0, 0), max(blur_sigma, 0.5)), 0, 1)[
+        ..., None
+    ]
     out = base * (1.0 - soft) + gen * soft
     return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
 
@@ -611,7 +639,9 @@ def _ensure_same_size(image: Image.Image, reference: Image.Image) -> Image.Image
     return image.resize(reference.size, Image.Resampling.LANCZOS)
 
 
-def _fit_for_diffusion(image: Image.Image, *, max_side: int, family: str) -> Image.Image:
+def _fit_for_diffusion(
+    image: Image.Image, *, max_side: int, family: str
+) -> Image.Image:
     fitted = _fit_max_side(image, max_side)
     if family != "sdxl":
         return fitted

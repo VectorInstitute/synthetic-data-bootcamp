@@ -80,7 +80,9 @@ def xyxy_to_yolo(
 
 def load_manifest(path: Path | str) -> list[dict[str, Any]]:
     """Load a dataset manifest."""
-    return cast(list[dict[str, Any]], json.loads(Path(path).read_text(encoding="utf-8")))
+    return cast(
+        list[dict[str, Any]], json.loads(Path(path).read_text(encoding="utf-8"))
+    )
 
 
 @dataclass
@@ -113,7 +115,8 @@ def _limit_scene_rows(
         n_scene = sum(
             1
             for r in rows
-            if str(r.get("split", "real")).lower() != "synthetic" and str(r.get("tag", "")).lower() == "scene"
+            if str(r.get("split", "real")).lower() != "synthetic"
+            and str(r.get("tag", "")).lower() == "scene"
         )
         return rows, n_scene, 0
 
@@ -204,7 +207,8 @@ def count_usable_synthetic(
             continue
         if drop_empty_synthetic:
             has_box = any(
-                box_to_class_id(str(box.get("label", "")), lookup) is not None for box in (row.get("boxes") or [])
+                box_to_class_id(str(box.get("label", "")), lookup) is not None
+                for box in (row.get("boxes") or [])
             )
             if not has_box:
                 continue
@@ -265,7 +269,8 @@ def _should_skip_yolo_row(
         return True
     if split == "train" and kind == "synthetic" and drop_empty_synthetic:
         has_target = any(
-            box_to_class_id(str(box.get("label", "")), lookup) is not None for box in row.get("boxes") or []
+            box_to_class_id(str(box.get("label", "")), lookup) is not None
+            for box in row.get("boxes") or []
         )
         if not has_target:
             stats.n_skipped_boxes += 1
@@ -570,7 +575,9 @@ def evaluate_detector(
         kwargs["device"] = device
     results = model.val(**kwargs)
     names = getattr(results, "names", None) or {}
-    class_names = [names[i] for i in sorted(names)] if isinstance(names, dict) else list(names)
+    class_names = (
+        [names[i] for i in sorted(names)] if isinstance(names, dict) else list(names)
+    )
 
     per_class: dict[str, float] = {}
     box = getattr(results, "box", None)
@@ -584,15 +591,23 @@ def evaluate_detector(
             pass
 
     return {
-        "map50": _metric_float(results, "map50", default=_metric_float(box, "map50") if box else float("nan")),
+        "map50": _metric_float(
+            results,
+            "map50",
+            default=_metric_float(box, "map50") if box else float("nan"),
+        ),
         "map50_95": _metric_float(
             results,
             "map",
             "map50-95",
             default=_metric_float(box, "map") if box else float("nan"),
         ),
-        "precision": _metric_float(results, "mp", default=_metric_float(box, "mp") if box else float("nan")),
-        "recall": _metric_float(results, "mr", default=_metric_float(box, "mr") if box else float("nan")),
+        "precision": _metric_float(
+            results, "mp", default=_metric_float(box, "mp") if box else float("nan")
+        ),
+        "recall": _metric_float(
+            results, "mr", default=_metric_float(box, "mr") if box else float("nan")
+        ),
         "per_class_ap50": per_class,
         "class_names": class_names,
     }
@@ -648,7 +663,9 @@ def plot_map_comparison(
                 vals.append(float(run.metrics.get("map50") or 0.0))
             else:
                 cls = key.split("::", 1)[1]
-                vals.append(float((run.metrics.get("per_class_ap50") or {}).get(cls) or 0.0))
+                vals.append(
+                    float((run.metrics.get("per_class_ap50") or {}).get(cls) or 0.0)
+                )
         ax.bar(x + i * width, vals, width, label=run.name)
     ax.set_xticks(x + width * (len(runs) - 1) / 2)
     ax.set_xticklabels(labels, rotation=15)

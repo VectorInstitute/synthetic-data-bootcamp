@@ -165,7 +165,10 @@ def pil_to_png_bytes(image: Image.Image, *, max_side: int | None = 1024) -> byte
     if max_side is not None and max(img.size) > max_side:
         scale = max_side / max(img.size)
         img = img.resize(
-            (max(1, int(round(img.size[0] * scale))), max(1, int(round(img.size[1] * scale)))),
+            (
+                max(1, int(round(img.size[0] * scale))),
+                max(1, int(round(img.size[1] * scale))),
+            ),
             Image.Resampling.LANCZOS,
         )
     buf = io.BytesIO()
@@ -214,7 +217,9 @@ def vision_chat(
             max_side=max_side,
             role="JUDGE",
         )
-    return _vision_chat_gemini(user_text, images, model=model, api_key=api_key, max_side=max_side)
+    return _vision_chat_gemini(
+        user_text, images, model=model, api_key=api_key, max_side=max_side
+    )
 
 
 def _vision_chat_gemini(
@@ -235,7 +240,10 @@ def _vision_chat_gemini(
 
     client = genai.Client(api_key=gemini_api_key(api_key))
     parts: list[Any] = [
-        types.Part.from_bytes(data=pil_to_png_bytes(img, max_side=max_side), mime_type="image/png") for img in images
+        types.Part.from_bytes(
+            data=pil_to_png_bytes(img, max_side=max_side), mime_type="image/png"
+        )
+        for img in images
     ]
     parts.append(types.Part.from_text(text=user_text))
     response = client.models.generate_content(model=model, contents=parts)

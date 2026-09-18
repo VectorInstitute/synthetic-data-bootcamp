@@ -22,7 +22,11 @@ import torch
 from PIL import Image
 from transformers import CLIPModel, CLIPProcessor
 
-from aieng.syn_data.image.data.eda import group_by_tag, list_tagged_images, load_labels_for_dir
+from aieng.syn_data.image.data.eda import (
+    group_by_tag,
+    list_tagged_images,
+    load_labels_for_dir,
+)
 from aieng.syn_data.image.data.loader import DetectionBox
 from aieng.syn_data.image.generate.conditioning import resolve_device
 from aieng.syn_data.image.judge.references import _crop_box, _label_matches
@@ -154,7 +158,9 @@ def cosine_sim(a: np.ndarray, b: np.ndarray) -> float:
     return float(np.dot(a, b) / denom)
 
 
-def nearest_neighbor(query: np.ndarray, bank: list[_BankEntry]) -> tuple[float | None, str | None]:
+def nearest_neighbor(
+    query: np.ndarray, bank: list[_BankEntry]
+) -> tuple[float | None, str | None]:
     """Return the nearest reference embedding."""
     if not bank:
         return None, None
@@ -182,7 +188,9 @@ def crop_from_mask_or_boxes(
         targets = []
         for box in boxes:
             label = str(getattr(box, "label", "") or "")
-            if target_labels and not any(_label_matches(label, t) for t in target_labels):
+            if target_labels and not any(
+                _label_matches(label, t) for t in target_labels
+            ):
                 continue
             bbox = getattr(box, "bbox_xyxy", None)
             if bbox is None:
@@ -191,7 +199,10 @@ def crop_from_mask_or_boxes(
         if targets:
             # Largest target box.
             targets.sort(
-                key=lambda b: max(0.0, float(b[2]) - float(b[0])) * max(0.0, float(b[3]) - float(b[1])),
+                key=lambda b: (
+                    max(0.0, float(b[2]) - float(b[0]))
+                    * max(0.0, float(b[3]) - float(b[1]))
+                ),
                 reverse=True,
             )
             return _crop_box(image, targets[0], pad=0.08, max_side=max_side)
@@ -203,7 +214,9 @@ def crop_from_mask_or_boxes(
         if mask.shape[:2] != (h, w):
             pass
 
-            mask = cv2.resize(mask.astype(np.uint8), (w, h), interpolation=cv2.INTER_NEAREST).astype(bool)
+            mask = cv2.resize(
+                mask.astype(np.uint8), (w, h), interpolation=cv2.INTER_NEAREST
+            ).astype(bool)
         ys, xs = np.where(mask)
         if len(xs) >= 8:
             x1, x2 = int(xs.min()), int(xs.max()) + 1
@@ -294,9 +307,15 @@ class EmbeddingGate:
                 )
                 try:
                     full = Image.open(path).convert("RGB")
-                    crop = _crop_box(full, class_boxes[0].bbox_xyxy, pad=0.08, max_side=max_side)
+                    crop = _crop_box(
+                        full, class_boxes[0].bbox_xyxy, pad=0.08, max_side=max_side
+                    )
                     cvec = self.encoder.encode(crop)
-                    banks.real_crop.append(_BankEntry(vector=cvec, path=str(path), kind="real", role="crop"))
+                    banks.real_crop.append(
+                        _BankEntry(
+                            vector=cvec, path=str(path), kind="real", role="crop"
+                        )
+                    )
                 except Exception:
                     continue
         return banks
@@ -354,7 +373,11 @@ class EmbeddingGate:
             def _filter(entries: list[_BankEntry]) -> list[_BankEntry]:
                 if not exclude:
                     return list(entries)
-                return [e for e in entries if Path(e.path).stem not in exclude and e.path not in exclude]
+                return [
+                    e
+                    for e in entries
+                    if Path(e.path).stem not in exclude and e.path not in exclude
+                ]
 
             try:
                 full_vec = self.encoder.encode(image)
@@ -376,22 +399,30 @@ class EmbeddingGate:
                 pass
             elif float(sim_g) < float(cfg.min_real_sim_global):
                 metrics.failed_fidelity = True
-                reasons.append(f"real_sim_global={sim_g:.3f} < min={cfg.min_real_sim_global:.3f}")
+                reasons.append(
+                    f"real_sim_global={sim_g:.3f} < min={cfg.min_real_sim_global:.3f}"
+                )
 
             if cfg.use_local and crop is not None and banks.real_crop:
                 try:
                     crop_vec = self.encoder.encode(crop)
                     sim_l, _ = nearest_neighbor(crop_vec, _filter(banks.real_crop))
                     metrics.real_sim_local = sim_l
-                    if sim_l is not None and float(sim_l) < float(cfg.min_real_sim_local):
+                    if sim_l is not None and float(sim_l) < float(
+                        cfg.min_real_sim_local
+                    ):
                         metrics.failed_fidelity = True
-                        reasons.append(f"real_sim_local={sim_l:.3f} < min={cfg.min_real_sim_local:.3f}")
+                        reasons.append(
+                            f"real_sim_local={sim_l:.3f} < min={cfg.min_real_sim_local:.3f}"
+                        )
                 except Exception:
                     pass
 
             if sim_n is not None and float(sim_n) > float(cfg.max_neighbor_sim):
                 metrics.failed_novelty = True
-                reasons.append(f"neighbor_sim={sim_n:.3f} > max={cfg.max_neighbor_sim:.3f}")
+                reasons.append(
+                    f"neighbor_sim={sim_n:.3f} > max={cfg.max_neighbor_sim:.3f}"
+                )
 
             metrics.reason = "; ".join(reasons)
             return metrics
