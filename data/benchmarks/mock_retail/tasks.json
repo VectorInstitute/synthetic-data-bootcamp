@@ -1,0 +1,120 @@
+{
+  "tasks": [
+    {
+      "id": "gen_739597cc_0",
+      "description": "Look up order details for a customer inquiry",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Alice Chen",
+        "personality_style": "rule_breaker",
+        "instructions": "Inquire about the status of order ord_1001. If the agent asks for the order ID, provide ord_1001. Argue if the agent refuses to provide information immediately.",
+        "initial_message": "I'm Alice Chen and I demand to know exactly what is going on with my recent purchase right now. I shouldn't have to wait for your slow systems to tell me where it is!"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "find_user_id",
+            "arguments": {
+              "name": "Alice Chen"
+            }
+          },
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_1001"
+            }
+          }
+        ],
+        "communicate_info": [
+          "pending",
+          "123 main st"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "gen_dae9dfa7_1",
+      "description": "Verify customer identity and cancel a pending order",
+      "task_type": "cancel",
+      "user_scenario": {
+        "user_name": "Alice Chen",
+        "personality_style": "anxious",
+        "instructions": "The user wants to cancel order ord_1001. The user's name is Alice Chen. The agent must verify identity first by calling find_user_id with the name, then list their orders to confirm ownership before proceeding to cancel ord_1001.",
+        "initial_message": "I'm so incredibly worried about my recent purchase, I really need to cancel it right away, is that possible? I'm terrified it's going to ship and I'll be stuck with it, please tell me I'm not too late!"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "find_user_id",
+            "arguments": {
+              "name": "Alice Chen"
+            }
+          },
+          {
+            "name": "list_orders",
+            "arguments": {
+              "user_id": "user_alice"
+            }
+          },
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_1001"
+            }
+          },
+          {
+            "name": "cancel_order",
+            "arguments": {
+              "order_id": "ord_1001"
+            }
+          }
+        ],
+        "communicate_info": [
+          "canceled"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "gen_d5b1dd1e_2",
+      "description": "Retrieve order status details for a customer",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Bob Martinez",
+        "personality_style": "domain_expert",
+        "instructions": "Inquire about the status of order ord_2001. If asked, provide the full name Bob Martinez. If the agent fails to use find_user_id first, express dissatisfaction regarding policy adherence.",
+        "initial_message": "I need to check the current status of my recent purchase."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "find_user_id",
+            "arguments": {
+              "name": "Bob Martinez"
+            }
+          },
+          {
+            "name": "get_order",
+            "arguments": {
+              "order_id": "ord_2001"
+            }
+          }
+        ],
+        "communicate_info": [
+          "pending",
+          "789 pine rd, austin, tx"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    }
+  ]
+}

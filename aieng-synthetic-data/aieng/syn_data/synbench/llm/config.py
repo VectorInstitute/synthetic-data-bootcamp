@@ -7,15 +7,20 @@ import os
 from dotenv import load_dotenv
 
 
-DEFAULT_MODEL = "gemini-2.0-flash"
+DEFAULT_MODEL = "gemini-3-flash-preview"
 
 # Loads your environment variables from the .env file
 load_dotenv()
 
 
-def get_model() -> str:
-    """Model name from ``SYNBENCH_MODEL``, falling back to ``DEFAULT_MODEL``."""
-    return os.environ.get("SYNBENCH_MODEL", DEFAULT_MODEL)
+def get_agent_model() -> str:
+    """Model name from ``AGENT_MODEL``, falling back to ``DEFAULT_MODEL``."""
+    return os.environ.get("AGENT_MODEL", DEFAULT_MODEL)
+
+
+def get_generator_model() -> str:
+    """Model name from ``GENERATOR_MODEL``, falling back to ``DEFAULT_MODEL``."""
+    return os.environ.get("GENERATOR_MODEL", DEFAULT_MODEL)
 
 
 def get_base_url() -> str:

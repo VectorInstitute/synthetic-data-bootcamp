@@ -1,7 +1,7 @@
 """LLM client abstraction for OpenAI-compatible chat completions."""
 
 from aieng.syn_data.synbench.llm.client import LLMClient, LLMResponse, get_client
-from aieng.syn_data.synbench.llm.config import DEFAULT_MODEL, get_model
+from aieng.syn_data.synbench.llm.config import DEFAULT_MODEL, get_agent_model, get_generator_model
 
 
 __all__ = [
@@ -9,5 +9,6 @@ __all__ = [
     "LLMClient",
     "LLMResponse",
     "get_client",
-    "get_model",
+    "get_agent_model",
+    "get_generator_model",
 ]
