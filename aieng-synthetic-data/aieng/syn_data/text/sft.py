@@ -1,4 +1,4 @@
-"""Supervised fine-tuning helpers for the optional Step 5 notebook."""
+"""Supervised fine-tuning helpers for the Step 4 notebook."""
 
 from __future__ import annotations
 
@@ -97,7 +97,7 @@ def train_lora_sft(
         ]
         if platform.system() == "Darwin":
             hints.append(
-                "You are on macOS: notebook 05 LoRA needs a Linux NVIDIA GPU "
+                "You are on macOS: notebook 04 LoRA needs a Linux NVIDIA GPU "
                 "(Colab, GCP GPU VM, etc.).",
             )
         elif (
@@ -165,7 +165,7 @@ def train_lora_sft(
 class Hf4BitInferenceClient:
     """Run inference with a 4-bit Hugging Face model, optionally plus a LoRA adapter.
 
-    Use this (not Ollama) as the same-stack control for notebook 05: the
+    Use this (not Ollama) as the same-stack control for notebook 04: the
     un-adapted base model is loaded with the same bitsandbytes nf4 path as
     the PEFT adapters.
     """
