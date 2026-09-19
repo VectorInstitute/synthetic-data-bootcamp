@@ -13,6 +13,7 @@ diffusion_config:
   scheduler: cosine
 
 sample_scale: 1.0 # Used to define the number of sampled samples based on the train data size.
+random_seed: 42
 
 # No need to change these for single table settings. These are used for multi-table settings.
 sampling_config:

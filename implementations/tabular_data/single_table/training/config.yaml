@@ -11,3 +11,9 @@ diffusion_config:
   gaussian_loss_type: mse
   weight_decay: 1e-05
   scheduler: cosine
+  data_split_ratios: [0.99, 0.005, 0.005] # Train, Val, Test splits. Note: only train set is used in this pipeline.
+  # Set to false to train a TabDDPM model, which models the discrete columns as categoricals with
+  # the multinomial part of the diffusion model instead of merging them into the numerical columns.
+  merge_categoricals_into_numerical: false
+
+random_seed: 42

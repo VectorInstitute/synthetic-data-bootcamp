@@ -73,7 +73,7 @@ members = [
 
 [tool.uv.sources]
 aieng-synthetic-data = { workspace = true }
-midst-toolkit = { git = "https://github.com/VectorInstitute/midst-toolkit.git" }
+midst-toolkit = { git = "https://github.com/VectorInstitute/midst-toolkit.git", rev = "52e4500a03afc7f36d93abd7591413ff6393f27c" }
 
 [tool.mypy]
 mypy_path = ["aieng-synthetic-data"]
