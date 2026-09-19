@@ -9,3 +9,5 @@ matching_config:
     matching_batch_size: 1000
     unique_matching: True
     no_matching: False
+
+random_seed: 42

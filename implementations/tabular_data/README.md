@@ -1,6 +1,6 @@
 # Tabular data reference implementations
 
-Two diffusion-based pipelines on the [Berka](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset) Czech bank dataset are implemented. The single-table pipeline trains a tabular diffusion model on the transaction table of this dataset, and the multi-table implementation, trains a diffusion model on the whole relational dataset. Both pipelines cover training, synthesizing, and evaluation steps.
+Two diffusion-based pipelines on the [Berka](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset) Czech bank dataset are implemented. The single-table pipeline trains a tabular diffusion model on the transaction table of this dataset, and the multi-table implementation, trains a diffusion model on the whole relational dataset. Both pipelines cover training, synthesizing, and evaluation steps. This implementation uses [`midst-toolkit`](https://github.com/VectorInstitute/midst-toolkit) throughout all the steps.
 
 | Track | Model | What it covers |
 |-------|--------|----------------|
