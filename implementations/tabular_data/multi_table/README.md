@@ -2,6 +2,26 @@
 
 While TabDDPM is one of the SOTA models for modeling single-table data, we can have excellent tabular data, but it won't model the relations between parent and child tables. ClavaDDPM is introduced to extend TabDDPM to relational datasets. This method leverages clustering labels as intermediaries to model relationships between tables, specifically focusing on foreign key constraints.  ClavaDDPM leverages the robust generation capabilities of diffusion models while incorporating efficient algorithms to propagate the learned latent variables across tables. This enables ClavaDDPM to capture long-range dependencies effectively.
 
+### Layout
+
+
+```
+multi_table/
+├── data_preprocessing/           # Download and preprocess 8 tables in Berka dataset
+├── training/                     # Clustering + per-edge training — README.md
+├── synthesizing/                 # Root-first sampling + multi-parent matching — README.md
+├── evaluation/                   # Relational quality (e.g. account → loan)
+├── data/berka/                   # Preprocessed CSVs, *_domain.json, dataset_meta.json
+
+```
+#### Suggested Path
+
+**Multi table:** [`data_preprocessing/README.md`](multi_table/data_preprocessing/README.md) (raw files via `download_and_save_multi_table_data`, then `pre_process_berka_all_tabels.py` or the notebook) → [`training/README.md`](multi_table/training/README.md) / `ClavaDDPM_training.ipynb` → [`synthesizing/README.md`](multi_table/synthesizing/README.md) / `ClavaDDPM_synthesizing.ipynb` → `multi_table/evaluation/multi_table_metrics.ipynb` for 1-hop relational metrics. Use [`evaluation/`](evaluation/) for per-table column metrics on a generated table.
+
+#### Install and activate the virtual env
+From the repo root, run `uv sync --dev --group tabular-data` to install tabular data implementation as well as dev dependencies, and start the first Jupyter notebook. Select the kernel and run the cells.
+
+
 ### Multi-relational databases
 Berka is a multi-relational database. This means that its information lives in several tables that are linked by parent–child (foreign-key) relationships, not in one flat table. A **child** table stores a key that points to a row in a **parent** table, so rows only make sense together.
 
@@ -10,13 +30,3 @@ For example, `Loan` is a child of `Account`, and `Account` is a child of `Demogr
 <div align="center">
   <img src="./images/multi_table_relation.png" alt="Multi-relational databases" width="730" height="250">
 </div>
-
-
-### To Run:
-
-#### Install and activate the virtual env
-From the repo root, run `uv sync --dev --group tabular-data` to install tabular data implementation as well as dev dependencies, and start the first Jupyter notebook. Select the kernel and run the cells.
-
-#### Suggested Path
-
-**Multi table:** [`data_preprocessing/README.md`](multi_table/data_preprocessing/README.md) (raw files via `download_and_save_multi_table_data`, then `pre_process_berka_all_tabels.py` or the notebook) → [`training/README.md`](multi_table/training/README.md) / `ClavaDDPM_training.ipynb` → [`synthesizing/README.md`](multi_table/synthesizing/README.md) / `ClavaDDPM_synthesizing.ipynb` → `multi_table/evaluation/multi_table_quality.ipynb` for 1-hop relational metrics. Use [`evaluation/`](evaluation/) for per-table column metrics on a generated table.
