@@ -24,16 +24,15 @@ class SampleConstraints:
     Attributes
     ----------
     task_type:
-        Key from ``state_machine.yaml`` → ``task_types`` (e.g. ``cancel``).
+        Key from ``task_types.yaml`` (e.g. ``cancel``).
     entities:
         String IDs the draft task must use. Always includes
         ``generation.id_field`` → primary id; plus one entry per key in
         ``generation.related`` (e.g. ``{"order_id": "ord_1001",
         "user_id": "user_alice"}``).
-    fsm_path:
-        Expected oracle FSM tag sequence for ``task_type`` (copied from the
-        state machine for prompt wording; validator uses the state machine
-        directly when verifying).
+    allow_write:
+        Whether this ``task_type`` may (and must) include WRITE tools,
+        copied from ``task_types.yaml``.
     primary_id:
         Convenience copy of ``entities[id_field]`` for prompt templates.
     entity_context:
@@ -50,7 +49,7 @@ class SampleConstraints:
 
     task_type: str
     entities: dict[str, str]
-    fsm_path: list[str]
+    allow_write: bool
     primary_id: str = ""
     entity_context: dict[str, Any] = field(default_factory=dict)
     personality_style: dict[str, str] | None = None
@@ -61,7 +60,7 @@ class ConstraintSampler:
 
     Sampling policy is entirely driven by ``domain.generation``:
 
-    1. Choose a task type uniformly from ``state_machine["task_types"]``.
+    1. Choose a task type uniformly from ``domain.task_types``.
     2. Choose a record uniformly from ``db[primary_collection]``.
         Primary collection is the collection that is used to generate the task.
         It is specified in the ``generation.yaml`` file.
@@ -94,12 +93,12 @@ class ConstraintSampler:
             If there are no task types, or the primary collection is empty /
             missing (``validate_domain`` should catch this earlier).
         """
-        task_types = list(self.domain.state_machine.get("task_types", {}).keys())
+        task_types = list(self.domain.task_types.keys())
         if not task_types:
-            raise ValueError("state_machine.yaml has no task_types to sample")
+            raise ValueError("task_types.yaml has no task types to sample")
         task_type = self.rng.choice(task_types)
-        # FSM path / allow_write for this task type (prompt + later verify)
-        cfg = self.domain.state_machine["task_types"][task_type]
+        # allow_write for this task type (prompt + later verify)
+        cfg = self.domain.task_types[task_type]
 
         collection = self.domain.db.get(self.cfg.primary_collection) or {}
         records = list(collection.values())
@@ -121,7 +120,7 @@ class ConstraintSampler:
         return SampleConstraints(
             task_type=task_type,
             entities=entities,
-            fsm_path=cfg.get("path", []),
+            allow_write=bool(cfg.get("allow_write", True)),
             primary_id=primary_id,
             entity_context=entity_context,
             personality_style=_sample_personality_style(

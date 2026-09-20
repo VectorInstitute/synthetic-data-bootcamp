@@ -98,13 +98,15 @@ class ToolCallingLoop:
                 for i, action in enumerate(response.tool_calls):
                     session.agent_actions.append(action)
                     try:
-                        # returns the result of the tool call which can be an error
-                        # or the result (output) of the tool call which could be
-                        # anything such as dictionary or list
                         result = env.dispatch(action)
                         result_str = json.dumps(result, default=str)
                     except Exception as e:
-                        result_str = json.dumps({"error": str(e)})
+                        # Domain tools raise (e.g. "User not found"); keep the
+                        # conversation going so the model can recover. Record
+                        # the error for scoring diagnostics — do not abort.
+                        err = str(e)
+                        session.tool_errors.append(err)
+                        result_str = json.dumps({"error": err})
                     call_id = "call_0"
                     if raw.get("tool_calls") and i < len(raw["tool_calls"]):
                         call_id = raw["tool_calls"][i].get("id", f"call_{i}")

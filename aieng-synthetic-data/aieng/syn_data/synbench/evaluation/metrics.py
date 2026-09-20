@@ -16,7 +16,6 @@ class RunMetrics:
     reward: float
     db_reward: float
     communicate_reward: float
-    partial_action_match: float
 
 
 @dataclass
@@ -33,7 +32,6 @@ class MetricsCollector:
                 reward=score.reward,
                 db_reward=score.db_reward,
                 communicate_reward=score.communicate_reward,
-                partial_action_match=score.partial_action_match,
             )
         )
 
@@ -51,8 +49,6 @@ class MetricsCollector:
             "mean_db_reward": sum(r.db_reward for r in self.runs)
             / max(len(self.runs), 1),
             "mean_communicate_reward": sum(r.communicate_reward for r in self.runs)
-            / max(len(self.runs), 1),
-            "mean_partial_action_match": sum(r.partial_action_match for r in self.runs)
             / max(len(self.runs), 1),
             "runs": [r.__dict__ for r in self.runs],
         }

@@ -30,7 +30,7 @@ class DomainBundle(BaseModel):
     policy: str
     db: dict[str, Any]
     tools: list[ToolSpec]
-    state_machine: dict[str, Any]
+    task_types: dict[str, Any]
     user_simulator: dict[str, Any]
     seed_tasks: list[Task]
     generation: GenerationConfig

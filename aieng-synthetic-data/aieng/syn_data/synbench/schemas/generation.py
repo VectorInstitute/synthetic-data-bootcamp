@@ -10,7 +10,7 @@ Consumed by
 - ``ConstraintSampler`` — picks a primary entity and related IDs from ``db.json``
 - ``PromptBuilder`` — fills the generation prompt (role, entity snapshot, hints)
 - ``agent_system_prompt`` — uses ``agent_role`` for the agent-under-test persona
-- ``_validate_generation_readiness`` — checks config against ``db.json`` / FSM
+- ``_validate_generation_readiness`` — checks config against ``db.json`` / task types
 
 See ``domains/mock_retail/generation.yaml`` for a fully commented example.
 """
@@ -99,7 +99,7 @@ class GenerationConfig(BaseModel):
         default_factory=dict,
         description=(
             "Optional per-task_type guidance for evaluation_criteria.communicate_info. "
-            "Keys should match state_machine.yaml task_types; missing keys fall back "
+            "Keys should match task_types.yaml; missing keys fall back "
             "to a generic PromptBuilder default."
         ),
     )

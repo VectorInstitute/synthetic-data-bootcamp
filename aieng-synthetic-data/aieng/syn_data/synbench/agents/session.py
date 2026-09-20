@@ -20,6 +20,7 @@ class AgentSession:
     messages: list[dict[str, Any]] = field(default_factory=list)
     agent_actions: list[Action] = field(default_factory=list)
     agent_messages: list[str] = field(default_factory=list)
+    tool_errors: list[str] = field(default_factory=list)
     role_trace: list[str] = field(default_factory=list)
     plan: str = ""
     env: Environment | None = None

@@ -21,10 +21,7 @@ def test_refuse_cancel_with_write_fails(mock_retail_path):
     )
     result = verify_draft(domain, draft)
     assert not result.verification_report.passed
-    assert any(
-        "path" in e.lower() or "write" in e.lower()
-        for e in result.verification_report.errors
-    )
+    assert any("write" in e.lower() for e in result.verification_report.errors)
 
 
 def test_cancel_non_pending_fails_domain_check(mock_retail_path):

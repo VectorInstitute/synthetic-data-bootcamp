@@ -24,7 +24,7 @@ REQUIRED_FILES = [
     "policy.md",
     "db.json",
     "tools.py",
-    "state_machine.yaml",
+    "task_types.yaml",
     "user_simulator.yaml",
     "tasks.seed.json",
     "generation.yaml",
@@ -64,6 +64,22 @@ def _load_generation_config(root: Path) -> GenerationConfig:
         raise DomainLoadError(f"Invalid generation.yaml: {e}") from e
 
 
+def _load_task_types(path: Path) -> dict[str, Any]:
+    """Parse ``task_types.yaml`` into ``{name: config}``.
+
+    Accepts either a wrapped file (``task_types: {inquiry: ...}``) or a
+    flat map of type names. Empty or non-mapping files fail load.
+    """
+    with open(path) as f:
+        raw = yaml.safe_load(f)
+    if not isinstance(raw, dict) or not raw:
+        raise DomainLoadError(f"{path.name} must be a non-empty mapping")
+    types = raw.get("task_types", raw)
+    if not isinstance(types, dict) or not types:
+        raise DomainLoadError(f"{path.name} must define at least one task type")
+    return types
+
+
 def load_domain(path: str | Path) -> DomainBundle:
     """Load a domain directory into a ``DomainBundle``.
 
@@ -90,10 +106,11 @@ def load_domain(path: str | Path) -> DomainBundle:
         raise DomainLoadError(f"Database loading failed: {e}") from e
 
     try:
-        with open(root / "state_machine.yaml") as f:
-            state_machine = yaml.safe_load(f)
+        task_types = _load_task_types(root / "task_types.yaml")
+    except DomainLoadError:
+        raise
     except Exception as e:
-        raise DomainLoadError(f"State machine loading failed: {e}") from e
+        raise DomainLoadError(f"Task types loading failed: {e}") from e
 
     try:
         with open(root / "user_simulator.yaml") as f:
@@ -127,7 +144,7 @@ def load_domain(path: str | Path) -> DomainBundle:
         policy=policy,
         db=db,
         tools=tool_specs,
-        state_machine=state_machine,
+        task_types=task_types,
         user_simulator=user_simulator,
         seed_tasks=seed_tasks,
         generation=generation,
@@ -135,7 +152,7 @@ def load_domain(path: str | Path) -> DomainBundle:
 
 
 def _validate_generation_readiness(bundle: DomainBundle) -> list[str]:
-    """Check that ``generation.yaml`` lines up with ``db.json`` / the FSM.
+    """Check that ``generation.yaml`` lines up with ``db.json`` / task types.
 
     Purpose
     -------
@@ -159,7 +176,7 @@ def _validate_generation_readiness(bundle: DomainBundle) -> list[str]:
     """
     errors: list[str] = []
     cfg = bundle.generation
-    task_types = bundle.state_machine.get("task_types") or {}
+    task_types = bundle.task_types or {}
 
     # --- structural: can we even look up a primary table? ---
     if cfg.primary_collection not in bundle.db:
@@ -191,11 +208,11 @@ def _validate_generation_readiness(bundle: DomainBundle) -> list[str]:
     for eid, record in collection.items():
         errors.extend(_validate_record(bundle, cfg, eid, record))
 
-    # --- communicate_hints keys should match FSM task_types (catch typos) ---
+    # --- communicate_hints keys should match task_types.yaml (catch typos) ---
     for hint_type in cfg.communicate_hints:
         if hint_type not in task_types:
             errors.append(
-                f"generation.communicate_hints key '{hint_type}' is not a state_machine task_type"
+                f"generation.communicate_hints key '{hint_type}' is not a task_types.yaml key"
             )
 
     # --- end-to-end smoke: sampler must be able to produce one SampleConstraints ---
@@ -249,7 +266,7 @@ def _validate_record(
 def validate_domain(path: str | Path) -> list[str]:
     """Return validation errors for a domain folder (empty list if OK).
 
-    Covers loadability, tools/seeds/FSM basics, ToolKit method presence, and
+    Covers loadability, tools/seeds/task-type basics, ToolKit method presence, and
     generation readiness (``generation.yaml`` ↔ ``db.json``). Used by
     ``synbench domain validate``.
     """
@@ -263,8 +280,8 @@ def validate_domain(path: str | Path) -> list[str]:
         errors.append("No tools defined")
     if not bundle.seed_tasks:
         errors.append("No seed tasks in tasks.seed.json")
-    if "task_types" not in bundle.state_machine:
-        errors.append("state_machine.yaml must define task_types")
+    if not bundle.task_types:
+        errors.append("task_types.yaml must define at least one task type")
 
     tools_mod = _load_tools_module(Path(path).resolve() / "tools.py")
     try:
