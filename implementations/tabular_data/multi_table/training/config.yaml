@@ -10,7 +10,7 @@ diffusion_config:
   gaussian_loss_type: mse
   weight_decay: 1e-05
   scheduler: cosine
-  data_split_ratios: [0.99, 0.005, 0.005] # Train, Val, Test splits. 
+  data_split_ratios: [0.99, 0.005, 0.005] # Train, Val, Test splits.
   # Note: only train set is used for training, and val loss and test accuracy results are reported in `train_classifier`.
   merge_categoricals_into_numerical: true # Set to true for the ClavaDDPM model.
 

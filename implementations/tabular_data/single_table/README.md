@@ -1,6 +1,6 @@
 ## TabDDPM: modelling tabular data with diffusion models
 
-TabDDPM (Tabular Denoising Diffusion Probabilistic Model) is a generative framework that applies diffusion processes to tabular data by combining continuous Gaussian noise for numerical variables with discrete multinomial noise for categorical variables. It is widely considered a state-of-the-art (SOTA) tabular generative model. 
+TabDDPM (Tabular Denoising Diffusion Probabilistic Model) is a generative framework that applies diffusion processes to tabular data by combining continuous Gaussian noise for numerical variables with discrete multinomial noise for categorical variables. It is widely considered a state-of-the-art (SOTA) tabular generative model.
 
 ### Layout
 
@@ -61,7 +61,7 @@ Alpha is a precomputed number between 0 and 1 that shrinks as t grows (close to 
 **Loss**: They compare the predicted noise to the ground truth added noise: MSE (numeric) + KL (categorical)
 
 ## TabDDPM compared to LLMs
-Compared to using general-purpose Large Language Models (LLMs) out of the box, TabDDPM is significantly superior for pure tabular synthesis for three key reasons:  
+Compared to using general-purpose Large Language Models (LLMs) out of the box, TabDDPM is significantly superior for pure tabular synthesis for three key reasons:
 
 - Native Heterogeneous Modeling: Out-of-the-box LLMs process text sequentially and often convert numerical tables into string formats (e.g., CSV or JSON prompts), which forces the model to learn arithmetic rules and data schemas implicitly rather than directly modeling joint probability distributions.
 

@@ -331,7 +331,7 @@ Unless you add it to YAML, data are split with the toolkit default `data_split_r
 
 ### `d_layers`
 
-Hidden widths of the denoising network, in order from the first hidden layer to the last. Example `[512, 512]` is a two-layer MLP with 512 units each.
+Hidden widths of the denoising network, in order from the first hidden layer to the last.
 
 These become `DiffusionParameters.layers_dimensions`. Wider or deeper nets fit more complex tables and use more memory.
 
@@ -345,7 +345,7 @@ Length of the diffusion process $T$: how many noise levels the model is trained 
 
 Also reused when training the **classifier**: noisy examples $x_t$ are drawn with a uniform schedule over these $T$ steps, so the classifier sees the same noise schedule as the denoiser.
 
-Larger $T$ is a more standard diffusion setup and is slower. The example uses `10` for a quick run.
+Larger $T$ is a more standard diffusion setup and is slower.
 
 ### `model_type`
 
@@ -406,7 +406,7 @@ The split default is again `data_split_ratios: [0.7, 0.2, 0.1]` unless you add t
 
 ### `d_layers`
 
-Hidden widths of the classifier MLP after the timestep embedding (example `[128, 128]`). Passed as `hidden_sizes` to `Classifier`. This network is usually smaller than the denoiser.
+Hidden widths of the classifier MLP after the timestep embedding. Passed as `hidden_sizes` to `Classifier`. This network is usually smaller than the denoiser.
 
 ### `lr`
 
@@ -414,7 +414,7 @@ Learning rate of the classifier optimizer (`AdamW`). Example `0.0001`. Independe
 
 ### `dim_t`
 
-Width of the **timestep embedding** and of the projection of numerical features into that space (`timestep_dimension` on `Classifier`). Example `128`.
+Width of the **timestep embedding** and of the projection of numerical features into that space (`timestep_dimension` on `Classifier`).
 
 The model embeds $t$, projects the (noisy) numerical features to `dim_t`, combines them, and then predicts a distribution over cluster ids. Larger values give a richer time-conditioned representation at higher compute cost.
 
@@ -424,22 +424,7 @@ Rows per classifier training (and eval) batch. Independent of `diffusion_config.
 
 ### `iterations`
 
-Number of classifier optimizer steps. Example `10` is a smoke test. Each step runs one train batch; validation runs periodically. Set this to `0` to skip the classifier entirely (child sampling then has no trained guidance network).
-
----
-
-## Fields not in the example YAML
-
-These exist on the toolkit configs and take defaults if omitted:
-
-
-| Field                                 | Default           | Role                                                           |
-| ------------------------------------- | ----------------- | -------------------------------------------------------------- |
-| `diffusion_config.data_split_ratios`  | `[0.7, 0.2, 0.1]` | Train / validation / test fractions for the diffusion dataset. |
-| `classifier_config.data_split_ratios` | `[0.7, 0.2, 0.1]` | Same split for the classifier dataset.                         |
-
-
-Must be three numbers. They do not need to sum to 1 in the validator; the dataset builder uses them as relative percentages.
+Number of classifier optimizer steps. Each step runs one train batch; validation runs periodically. Set this to `0` to skip the classifier entirely (child sampling then has no trained guidance network).
 
 ---
 
@@ -450,6 +435,5 @@ Must be three numbers. They do not need to sum to 1 in the validator; the datase
 | ------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `multi_table/results/cluster_ckpt.pkl`                 | Clustered tables plus group-length distributions.                                    |
 | `multi_table/results/models/{parent}_{child}_ckpt.pkl` | `ClavaDDPMModelArtifacts`: diffusion model, optional classifier, encoders, metadata. |
-
 
 Those artifacts are the inputs to `[../synthesizing](../synthesizing/)`. Sampling-time knobs (`sample_scale`, `classifier_scale`, matching) live in the synthesizer config, not here.

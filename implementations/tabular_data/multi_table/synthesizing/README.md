@@ -119,7 +119,7 @@ This argument is passed to `clava_synthesizing(..., sample_scale=...)`. It is no
 
 How many rows the diffusion model draws **per sampling step**. It does not set the total number of rows.
 
-Larger batches usually run faster on GPU but need more memory. If sampling crashes (out of memory), lower this first. A small value such as `10` is conservative and is fine for a first run.
+Larger batches usually run faster on GPU but need more memory. If sampling crashes (out of memory), lower this first.
 
 Used for both the unconditional root-table sampler and the classifier-guided child sampler.
 
