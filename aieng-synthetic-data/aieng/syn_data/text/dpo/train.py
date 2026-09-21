@@ -1,4 +1,4 @@
-"""Direct Preference Optimization helpers for the optional Step 6 notebook."""
+"""Direct Preference Optimization helpers for the optional Step 5 notebook."""
 
 from __future__ import annotations
 
@@ -57,7 +57,7 @@ def _require_cuda() -> None:
     ]
     if platform.system() == "Darwin":
         hints.append(
-            "You are on macOS: run notebook 06 with RUN_DPO=0 locally, "
+            "You are on macOS: run notebook 05 with RUN_DPO=0 locally, "
             "or use a Linux NVIDIA GPU (Colab, GCP GPU VM, etc.).",
         )
     elif (
