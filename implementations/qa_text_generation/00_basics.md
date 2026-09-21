@@ -200,6 +200,36 @@ Every strategy uses the same contract: **answer only from the passage**, return 
 
 ---
 
+### Quality evaluation of synthetic text
+
+Never fine-tune on the raw teacher dump. Score the pool, then keep the head.
+
+```mermaid
+flowchart TB
+    Raw[Raw synthetic pairs] --> H[Heuristics]
+    H --> J[LLM-as-a-Judge]
+    J --> Keep[Train split]
+    H --> Drop[Reject]
+    J --> Drop
+```
+
+**Heuristics (cheap, first pass)**
+
+- Length bounds, language ID, empty / truncated answers
+- Near-duplicate questions (embedding or n-gram overlap)
+- Grounding checks: answer tokens overlap the source chunk; citation present if required
+- Schema validity: parseable JSON, required keys, no leaked chain-of-thought
+
+**LLM-as-a-Judge (selective, second pass)**
+
+- Rubric dimensions: faithfulness, completeness, question usefulness, difficulty
+- Pairwise or Likert scores from a **stronger** model than the student
+- Sample, don’t judge every row if cost matters; calibrate the judge on a handful of human-labeled items
+
+Heuristics catch garbage. Judges catch subtle unfaithfulness. Humans still own the golden set.
+
+---
+
 ### Where synthetic QA shows up
 
 Same loop, different corpora and risk levels.
@@ -230,36 +260,6 @@ Synthetic data is a **multiplier on documents you already trust**. It is not a s
 - Evaluating usefulness of generated data by evaluating the fine-tuned model
 
 ![Model Improvement Loop Flowchart](./images/SLM_finetuning_flowchart.png)
-
----
-
-### Quality evaluation of synthetic text
-
-Never fine-tune on the raw teacher dump. Score the pool, then keep the head.
-
-```mermaid
-flowchart TB
-    Raw[Raw synthetic pairs] --> H[Heuristics]
-    H --> J[LLM-as-a-Judge]
-    J --> Keep[Train split]
-    H --> Drop[Reject]
-    J --> Drop
-```
-
-**Heuristics (cheap, first pass)**
-
-- Length bounds, language ID, empty / truncated answers
-- Near-duplicate questions (embedding or n-gram overlap)
-- Grounding checks: answer tokens overlap the source chunk; citation present if required
-- Schema validity: parseable JSON, required keys, no leaked chain-of-thought
-
-**LLM-as-a-Judge (selective, second pass)**
-
-- Rubric dimensions: faithfulness, completeness, question usefulness, difficulty
-- Pairwise or Likert scores from a **stronger** model than the student
-- Sample, don’t judge every row if cost matters; calibrate the judge on a handful of human-labeled items
-
-Heuristics catch garbage. Judges catch subtle unfaithfulness. Humans still own the golden set.
 
 ---
 
