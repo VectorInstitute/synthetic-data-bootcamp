@@ -1,0 +1,32 @@
+# @package _global_
+# g2-standard-8 / 1× NVIDIA L4 — real deltas only.
+hardware:
+  name: gpu_l4
+  device: cuda
+
+conditioning:
+  depth:
+    model_id: depth-anything/Depth-Anything-V2-Large-hf
+  segmentation:
+    model_name: nvidia/segformer-b3-finetuned-ade-512-512
+
+generation:
+  inpaint_model_id: black-forest-labs/FLUX.2-klein-4B
+  instruct_model_id: black-forest-labs/FLUX.2-klein-4B
+  inpaint_num_inference_steps: 4
+  inpaint_guidance_scale: 1.0
+  instruct_num_inference_steps: 4
+  instruct_guidance_scale: 1.0
+  controlnet_strength: 0.50
+  num_inference_steps: 40
+  guidance_scale: 8.0
+  strength: 1.0
+  max_side: 640
+  padding_mask_crop: 128
+
+annotation:
+  detector_model: yolov8s-worldv2.pt
+  conf: 0.20
+  max_detections: 25
+
+# Judge: see configs/default/judge.yaml (API default). Override backend/model here if needed.

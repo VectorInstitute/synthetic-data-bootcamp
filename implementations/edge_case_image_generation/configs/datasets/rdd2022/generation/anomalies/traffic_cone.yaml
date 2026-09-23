@@ -1,0 +1,37 @@
+id: traffic_cone
+display_name: Traffic cone on road
+description: traffic cone on asphalt
+annotation_classes:
+  - traffic cone
+  - road
+edit_mask:
+  mode: road_patch
+  cx: 0.46
+  cy: 0.78
+  rx: 0.07
+  ry: 0.12
+  y_min: 0.55
+  y_max: 0.94
+  prefer_near: true
+  blur_sigma: 1.2
+  dilate: 2
+variations:
+  size: [small, medium]
+  color: [orange, yellow-orange]
+  stripe: [with a white stripe, plain]
+  placement: [in the near foreground, mid-distance in the lane]
+prompt: >-
+  bright orange traffic cone with white stripe standing on asphalt,
+  natural contact shadow, photorealistic
+negative_prompt: >-
+  blurry blob, cartoon, sticker, floating cone, watermark, text, logo
+strength: 1.0
+methods:
+  inpaint:
+    prompt: null
+  controlnet_dual:
+    prompt: null
+  instruct:
+    prompt_template: >-
+      Add one {size} {color} traffic cone {stripe} on the road {placement},
+      do not recolor the rest of the scene
