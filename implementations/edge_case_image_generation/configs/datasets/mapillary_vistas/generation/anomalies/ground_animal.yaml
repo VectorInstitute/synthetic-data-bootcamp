@@ -1,0 +1,70 @@
+id: ground_animal
+display_name: Ground animal on road (optional)
+description: ground animal on asphalt road
+annotation_classes:
+  - animal
+  - dog
+  - deer
+  - cat
+  - road
+edit_mask:
+  # Mid-lane prior (used for mask-fallback labels; instruct does not crop to it).
+  mode: road_patch
+  cx: 0.50
+  cy: 0.62
+  rx: 0.06
+  ry: 0.08
+  y_min: 0.52
+  y_max: 0.78
+  x_min: 0.32
+  x_max: 0.68
+  prefer_near: false
+  blur_sigma: 1.2
+  dilate: 2
+  recomposite: false
+# Reject giant / hood / bottom-cropped inserts after annotate (notebook still teaches retries).
+accept_gates:
+  max_box_area_frac: 0.10
+  min_center_y: 0.40
+  max_center_y: 0.82
+  max_bottom_edge_frac: 0.97
+# Pre-gen novelty: 3×2×3×2×2 = 72 combos, shuffled then cycled.
+variations:
+  animal: [dog, deer, cat]
+  size: [small, medium]
+  fur: [brown-and-white fur, dark brown fur, gray fur]
+  placement: [further down the open asphalt lane ahead, mid-distance in the driving lane]
+  pose: [standing, walking]
+prompt: >-
+  one small real dog standing on the asphalt road surface ahead in the driving lane,
+  roughly the size of a real dog relative to the lane markings, brown-and-white fur,
+  lit from the same sun as the street (matching highlight side and shadow direction),
+  soft contact shadow on the pavement, photorealistic dashcam photo
+negative_prompt: >-
+  black silhouette, solid black animal, cutout, stencil, sticker, giant dog, huge animal,
+  dog on car hood, dog on windshield, dog on vehicle, on dashboard, floating,
+  mismatched shadow, shadow in the wrong direction, extra light source, flat studio lighting,
+  cartoon, CGI, toy, watermark, text, logo, blurry, melted, deformed
+strength: 0.92
+methods:
+  inpaint:
+    prompt: null
+    negative_prompt: null
+  controlnet_dual:
+    prompt: null
+    negative_prompt: null
+  instruct:
+    prompt_template: >-
+      Add one {size} real {animal} with {fur} {pose} {placement}
+      (not right against the camera), correctly scaled like a real {animal} and much
+      smaller than nearby cars, paws on the pavement. Match the existing sunlight:
+      same highlight side and the same shadow direction as the cars and poles, with
+      a soft contact shadow on the asphalt. Photorealistic. Do not place the {animal}
+      on any car hood windshield dashboard bumper or vehicle. Do not make a giant
+      animal, black silhouette, or a pasted cutout with the wrong lighting. Keep
+      every car building and the sky unchanged.
+  vlm_generate:
+    prompt_template: >-
+      Add one {size} real {animal} with {fur} {pose} {placement}, correctly scaled
+      vs cars, paws on pavement, matching the scene sun and shadow direction. Do not
+      put the {animal} on any vehicle. Keep cars buildings and sky unchanged.

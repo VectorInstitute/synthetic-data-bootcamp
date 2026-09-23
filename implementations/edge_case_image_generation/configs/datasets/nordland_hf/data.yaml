@@ -1,0 +1,25 @@
+name: nordland_hf
+kind: hf_rows
+hf_id: Somayeh-h/Nordland
+config: default
+split: fall
+rows_api: https://datasets-server.huggingface.co/rows
+max_images: 5
+stem_prefixes:
+  - nordland_
+  - scene_
+frames:
+  - offset: 285
+    save_as: nordland_fall_00285.png
+  - offset: 88
+    save_as: nordland_fall_00088.png
+  - offset: 29049
+    save_as: nordland_fall_29049.png
+  - offset: 11983
+    save_as: nordland_fall_11983.png
+  - offset: 9658
+    save_as: nordland_fall_09658.png
+classes:
+  - snow
+  - dusk
+  - fog

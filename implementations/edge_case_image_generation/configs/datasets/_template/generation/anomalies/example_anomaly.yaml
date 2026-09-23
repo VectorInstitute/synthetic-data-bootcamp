@@ -1,0 +1,37 @@
+id: example_anomaly
+display_name: Example local insert
+description: example object on road
+annotation_classes:
+  - example object
+  - road
+# Prefer road_patch (dynamic) over a fixed ellipse for local objects.
+edit_mask:
+  mode: road_patch
+  cx: 0.50
+  cy: 0.75
+  rx: 0.10
+  ry: 0.10
+  y_min: 0.50
+  y_max: 0.92
+  prefer_near: true
+  blur_sigma: 1.2
+  dilate: 2
+  recomposite: false
+# Optional pre-gen novelty axes (cartesian product → shuffle → cycle).
+variations:
+  size: [small, medium]
+  placement: [in the near foreground, mid-distance]
+prompt: >-
+  a clear example object sitting on the road surface, photorealistic
+negative_prompt: >-
+  blurry, cartoon, sticker, floating, watermark, text, logo
+strength: 1.0
+methods:
+  inpaint:
+    prompt: null
+  controlnet_dual:
+    prompt: null
+  instruct:
+    prompt_template: >-
+      Add one {size} example object on the road {placement} only,
+      keep the rest of the photo unchanged

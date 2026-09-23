@@ -9,7 +9,7 @@ from aieng.syn_data.text.schemas import QASample
 
 
 # ---------------------------------------------------------------------------
-# Instruction back-translation (notebook 04)
+# Instruction back-translation (notebook 02 generation, notebook 03 filter)
 # Technique: given text y, generate instruction x for which y is a good answer.
 # See: https://openreview.net/forum?id=1oijHJBRsT
 # ---------------------------------------------------------------------------
