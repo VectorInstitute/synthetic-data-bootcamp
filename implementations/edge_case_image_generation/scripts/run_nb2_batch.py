@@ -92,8 +92,8 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--n-synth-seeds",
-        default="traffic_cone=100,trash_bin=100",
-        help="anomaly=count,... scene seed pool per class",
+        default="traffic_cone=300,trash_bin=300",
+        help="anomaly=count,... scene pool per class (unused scenes are drawn first)",
     )
     parser.add_argument(
         "--target-accepted",
@@ -107,6 +107,12 @@ def _build_parser() -> argparse.ArgumentParser:
         type=int,
         default=400,
         help="Per-class edit budget (first edits + retries + seed revisits); 0 = no revisits",
+    )
+    parser.add_argument(
+        "--oversample",
+        type=float,
+        default=0.1,
+        help="Extra edits per round on top of the deficit/rate estimate (0.1 = 10%%)",
     )
     parser.add_argument("--max-retries", type=int, default=2)
     parser.add_argument("--split-seed", type=int, default=42)
@@ -195,6 +201,7 @@ def _prepare_run(args: argparse.Namespace, project_root: Path) -> dict[str, Any]
         "n_synth_seeds": seed_request,
         "target_accepted": target_accepted,
         "max_attempts": max_attempts,
+        "oversample": args.oversample,
         "max_retries": args.max_retries,
         "split_seed": args.split_seed,
         "judge_model": str(cfg.judge.model_id),
@@ -250,6 +257,7 @@ def _run_batch(args: argparse.Namespace, project_root: Path, run: dict[str, Any]
         max_retries=args.max_retries,
         target_accepts=run["target_accepted"],
         max_attempts=run["max_attempts"],
+        oversample=args.oversample,
         require_target_boxes=args.require_target_boxes,
         resume=args.resume,
         nb2_dir=output_dir,
@@ -263,6 +271,7 @@ def _report_and_export(args: argparse.Namespace, run: dict[str, Any], batch: Any
     print("\nBatch summary:")
     print(format_batch_summary(batch))
     run["config_snapshot"]["target_reached"] = batch.target_reached()
+    run["config_snapshot"]["scene_usage"] = batch.scene_usage
 
     if args.no_export:
         print("Skipped export (--no-export). Checkpoint under", run["output_dir"] / "checkpoint")

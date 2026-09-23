@@ -342,7 +342,9 @@ def ensure_workshop_data(
 
     pass
 
-    return ensure_mapillary_samples(project_root, clean=clean, min_images=min_images)
+    return ensure_mapillary_samples(
+        project_root, clean=clean, min_images=min_images, top_up=True
+    )
 
 
 def check_hf_token() -> CheckResult:

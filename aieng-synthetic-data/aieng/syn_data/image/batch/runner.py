@@ -118,6 +118,7 @@ class BatchResult:
     surplus: dict[str, int] = field(default_factory=dict)
     targets: dict[str, int] = field(default_factory=dict)
     max_attempts: dict[str, int] = field(default_factory=dict)
+    scene_usage: dict[str, dict[str, int]] = field(default_factory=dict)
     elapsed_s: float = 0.0
 
     def accepted_counts(self) -> dict[str, int]:
@@ -432,6 +433,7 @@ class _BatchContext:
     seed_pool: dict[str, list[Path]] = field(default_factory=dict)
     method_map: dict[str, str] = field(default_factory=dict)
     seed_cursors: dict[str, int] = field(default_factory=dict)
+    oversample: float = 0.1
 
 
 def _target_met(ctx: _BatchContext, anomaly_id: str) -> bool:
@@ -940,14 +942,45 @@ def _judge_queue(ctx: _BatchContext, items: list[PendingItem]) -> list[PendingIt
     return retries
 
 
-def _refill_items(ctx: _BatchContext, pending: list[PendingItem]) -> list[PendingItem]:
-    """Queue seed-pool revisits for classes still below target (budget permitting).
+def _draw_seeds(
+    ctx: _BatchContext, anomaly_id: str, n: int, claimed: set[str]
+) -> list[PendingItem]:
+    """Take the next ``n`` seeds: unused scenes first, then revisits (pass ≥ 1)."""
+    pool = ctx.seed_pool.get(anomaly_id) or []
+    out: list[PendingItem] = []
+    tries = 0
+    while pool and len(out) < n and tries < n + len(pool):
+        tries += 1
+        cursor = ctx.seed_cursors.get(anomaly_id, 0)
+        ctx.seed_cursors[anomaly_id] = cursor + 1
+        path = pool[cursor % len(pool)]
+        item = PendingItem(
+            anomaly_id=anomaly_id,
+            method=ctx.method_map[anomaly_id],
+            source_path=path,
+            source_image=Image.open(path).convert("RGB"),
+            source_stem=path.stem,
+            pass_index=cursor // len(pool),
+        )
+        if item.key in ctx.done_keys or item.key in claimed:
+            continue
+        claimed.add(item.key)
+        out.append(item)
+    return out
 
-    Sized from the observed acceptance rate so a round rarely overshoots; the
+
+def _refill_items(ctx: _BatchContext, pending: list[PendingItem]) -> list[PendingItem]:
+    """Queue new seeds for classes still below target (budget permitting).
+
+    Round size ≈ ``(1 + oversample) × deficit / acceptance rate``, filled first
+    by the retries already in flight and then by new seeds (rate = 1 before
+    anything has been judged, so the first round is ``target × (1 + oversample)``).
+    New seeds are unused scenes while the pool lasts, then revisits. The
     per-class attempt budget bounds the total, so the loop always terminates.
     """
     if not ctx.target_accepts or not ctx.max_attempts:
         return []
+    claimed = {p.key for p in pending}
     new_items: list[PendingItem] = []
     for anomaly_id, pool in ctx.seed_pool.items():
         left = _attempts_left(ctx, anomaly_id)
@@ -958,35 +991,74 @@ def _refill_items(ctx: _BatchContext, pending: list[PendingItem]) -> list[Pendin
         if left <= 0:
             continue
         st = ctx.result.stats[anomaly_id]
-        rate = st.accepts / st.attempts if st.attempts else 0.5
+        rate = st.accepts / st.attempts if st.attempts else 1.0
         deficit = int(ctx.target_accepts[anomaly_id]) - ctx.accepted_counts[anomaly_id]
-        expected = in_flight * rate
-        n_new = math.ceil(max(0.0, deficit - expected) / max(rate, _MIN_REFILL_RATE))
+        want = (1.0 + ctx.oversample) * deficit - in_flight * rate
+        n_new = math.ceil(round(max(0.0, want) / max(rate, _MIN_REFILL_RATE), 6))
         n_new = min(n_new, left, len(pool))
-        for _ in range(n_new):
-            cursor = ctx.seed_cursors.get(anomaly_id, len(pool))
-            ctx.seed_cursors[anomaly_id] = cursor + 1
-            path = pool[cursor % len(pool)]
-            item = PendingItem(
-                anomaly_id=anomaly_id,
-                method=ctx.method_map[anomaly_id],
-                source_path=path,
-                source_image=Image.open(path).convert("RGB"),
-                source_stem=path.stem,
-                pass_index=cursor // len(pool),
-            )
-            if item.key in ctx.done_keys:
-                continue
-            new_items.append(item)
+        new_items.extend(_draw_seeds(ctx, anomaly_id, n_new, claimed))
     if new_items:
-        per_class = {
-            aid: sum(1 for i in new_items if i.anomaly_id == aid)
+        summary = {
+            aid: {
+                "new_scenes": sum(
+                    1 for i in new_items if i.anomaly_id == aid and i.pass_index == 0
+                ),
+                "reused_scenes": sum(
+                    1 for i in new_items if i.anomaly_id == aid and i.pass_index > 0
+                ),
+            }
             for aid in ctx.seed_pool
         }
-        ctx.log(
-            f"Refill (below target, revisiting seeds with new variations): {per_class}"
-        )
+        ctx.log(f"Queue new seeds (below target): {summary}")
     return new_items
+
+
+def _pending_from_state(
+    ctx: _BatchContext, rows: list[dict[str, Any]]
+) -> list[PendingItem]:
+    """Rebuild in-flight items saved in ``state.json`` (resume)."""
+    items: list[PendingItem] = []
+    seen: set[str] = set()
+    for row in rows:
+        anomaly_id = str(row.get("anomaly_id") or "")
+        path = Path(str(row.get("source_path") or ""))
+        if anomaly_id not in ctx.seed_pool or not path.exists():
+            continue
+        item = PendingItem(
+            anomaly_id=anomaly_id,
+            method=str(row.get("method") or ctx.method_map[anomaly_id]),
+            source_path=path,
+            source_image=Image.open(path).convert("RGB"),
+            source_stem=path.stem,
+            attempt=int(row.get("attempt") or 0),
+            pass_index=int(row.get("pass_index") or 0),
+        )
+        if (
+            item.key in ctx.done_keys
+            or item.key in seen
+            or _target_met(ctx, anomaly_id)
+        ):
+            continue
+        seen.add(item.key)
+        items.append(item)
+    return items
+
+
+def _initial_queue(
+    ctx: _BatchContext, saved_pending: list[dict[str, Any]]
+) -> list[PendingItem]:
+    """First edit round (fresh run or resume)."""
+    if ctx.target_accepts and ctx.max_attempts:
+        pending = _pending_from_state(ctx, saved_pending) if ctx.resume else []
+        return pending + _refill_items(ctx, pending)
+    # No attempt budget: one pass over every seed (each tried ≤ 1 + max_retries times).
+    queue: list[PendingItem] = []
+    for anomaly_id, pool in ctx.seed_pool.items():
+        if _target_met(ctx, anomaly_id):
+            continue
+        ctx.seed_cursors[anomaly_id] = 0
+        queue.extend(_draw_seeds(ctx, anomaly_id, len(pool), set()))
+    return queue
 
 
 def _restore_batch_checkpoint(
@@ -998,8 +1070,8 @@ def _restore_batch_checkpoint(
     seed_cursors: dict[str, int],
     anomaly_ids: list[str],
     log: Callable[[str], None],
-) -> set[str]:
-    """Restore accepted, rejected, statistics, variation counters, and seed cursors."""
+) -> tuple[set[str], list[dict[str, Any]]]:
+    """Restore accepts/rejects/stats/counters; return done keys + in-flight rows."""
     checkpoint = load_checkpoint(root_dir)
     result.accepted = list(checkpoint["accepted"])
     result.rejected = list(checkpoint["rejected"])
@@ -1026,37 +1098,7 @@ def _restore_batch_checkpoint(
         f"Resume: loaded {len(result.accepted)} accepted, "
         f"{len(result.rejected)} rejected; skipping {len(done_keys)} seeds.",
     )
-    return done_keys
-
-
-def _queue_batch_items(
-    seeds_by_anomaly: dict[str, list[Path]],
-    method_map: dict[str, str],
-    done_keys: set[str],
-    accepted_counts: dict[str, int],
-    target_accepts: dict[str, int] | None,
-) -> list[PendingItem]:
-    """Load source images for seeds that still need processing."""
-    queue: list[PendingItem] = []
-    for anomaly_id, paths in seeds_by_anomaly.items():
-        method = method_map[anomaly_id]
-        for path in paths:
-            if sample_key(anomaly_id, path.stem) in done_keys:
-                continue
-            if target_accepts and accepted_counts.get(anomaly_id, 0) >= int(
-                target_accepts.get(anomaly_id, 10**9)
-            ):
-                continue
-            queue.append(
-                PendingItem(
-                    anomaly_id=anomaly_id,
-                    method=method,
-                    source_path=path,
-                    source_image=Image.open(path).convert("RGB"),
-                    source_stem=path.stem,
-                ),
-            )
-    return queue
+    return done_keys, list(state.get("pending") or [])
 
 
 def _prepare_batch_context(
@@ -1069,6 +1111,7 @@ def _prepare_batch_context(
     max_retries: int,
     target_accepts: dict[str, int] | None,
     max_attempts: dict[str, int] | None,
+    oversample: float,
     require_target_boxes: bool,
     progress: Any,
     verbose: bool,
@@ -1094,8 +1137,10 @@ def _prepare_batch_context(
     accepted_counts = dict.fromkeys(seeds_by_anomaly, 0)
     variation_counters: dict[str, int] = dict.fromkeys(seeds_by_anomaly, 0)
     seed_cursors: dict[str, int] = {}
-    done_keys = (
-        _restore_batch_checkpoint(
+    done_keys: set[str] = set()
+    saved_pending: list[dict[str, Any]] = []
+    if resume:
+        done_keys, saved_pending = _restore_batch_checkpoint(
             root_dir,
             result,
             accepted_counts=accepted_counts,
@@ -1104,22 +1149,17 @@ def _prepare_batch_context(
             anomaly_ids=list(seeds_by_anomaly),
             log=log,
         )
-        if resume
-        else set()
-    )
-    queue = _queue_batch_items(
-        seeds_by_anomaly, method_map, done_keys, accepted_counts, target_accepts
-    )
-    will_refill = bool(target_accepts and max_attempts) and any(
-        accepted_counts.get(aid, 0) < int(want)
-        for aid, want in (target_accepts or {}).items()
-    )
-    methods = {item.method for item in queue} or (
-        {method_map[aid] for aid in seeds_by_anomaly} if will_refill else set()
-    )
+    open_classes = [
+        aid
+        for aid in seeds_by_anomaly
+        if not target_accepts
+        or aid not in target_accepts
+        or accepted_counts.get(aid, 0) < int(target_accepts[aid])
+    ]
+    methods = {method_map[aid] for aid in open_classes}
     need_depth, need_seg = _methods_need_conditioning(methods)
     n_edit, n_judge = 1, 1
-    if queue or will_refill:
+    if open_classes:
         n_edit = _edit_workers(cfg, log=log)
         n_judge = _judge_workers(cfg)
         instruct_id = str(cfg.generation.get("instruct_model_id") or "")
@@ -1156,8 +1196,10 @@ def _prepare_batch_context(
         seed_pool={aid: list(paths) for aid, paths in seeds_by_anomaly.items()},
         method_map=dict(method_map),
         seed_cursors=seed_cursors,
+        oversample=max(0.0, float(oversample)),
     )
-    if queue or will_refill:
+    queue = _initial_queue(context, saved_pending)
+    if queue:
         context.log(
             f"Batch parallelism: edit_workers={context.n_edit}  judge_workers={context.n_judge}  "
             f"depth={need_depth}  seg={need_seg}",
@@ -1175,6 +1217,7 @@ def run_batch_synthesis(
     max_retries: int = 2,
     target_accepts: dict[str, int] | None = None,
     max_attempts: dict[str, int] | int | None = None,
+    oversample: float = 0.1,
     require_target_boxes: bool = True,
     progress: Any = "tqdm",
     verbose: bool = False,
@@ -1187,15 +1230,21 @@ def run_batch_synthesis(
       1. Load edit stack(s) → synthesize + annotate (optionally 1 stack per GPU)
       2. Unload edit stack → load judge → concurrent API decisions
       3. On retries: reload edit stack(s), re-edit, re-judge
-      4. Classes still below ``target_accepts`` revisit their seed pool with new
-         variations (only when ``max_attempts`` is set)
+      4. Classes still below ``target_accepts`` draw more seeds (only when
+         ``max_attempts`` is set)
 
     ``target_accepts`` is the number of *accepted* images wanted per class; a
     class stops as soon as it gets there. ``max_attempts`` (int = same for every
     class) caps edits per class, counting first edits, retries, and revisits.
-    When the budget runs out first the run ends normally and
-    ``BatchResult.target_reached()`` reports which classes fell short. With
-    ``max_attempts=None`` each seed is tried at most ``1 + max_retries`` times.
+
+    With a budget, ``seeds_by_anomaly`` is a *pool*: the first round edits
+    ``target × (1 + oversample)`` unused scenes; each later round is sized
+    ``(1 + oversample) × deficit / acceptance rate``, filled by pending retries
+    and then new seeds — unused scenes while they last, then revisits of used
+    scenes with a new variation + diffusion seed. When the budget runs out
+    first the run ends normally and ``BatchResult.target_reached()`` reports
+    which classes fell short. With ``max_attempts=None`` every seed in the pool
+    is edited once, with up to ``max_retries`` retries.
 
     When ``require_target_boxes`` is True (default), an item cannot be accepted
     without at least one target-class box (YOLO-World or edit-mask fallback).
@@ -1218,6 +1267,7 @@ def run_batch_synthesis(
         max_retries=max_retries,
         target_accepts=target_accepts,
         max_attempts=max_attempts,
+        oversample=oversample,
         require_target_boxes=require_target_boxes,
         progress=progress,
         verbose=verbose,
@@ -1227,7 +1277,7 @@ def run_batch_synthesis(
     log = ctx.log
     result = ctx.result
 
-    active = queue or _refill_items(ctx, [])
+    active = queue
     if active:
         log(f"Loading edit stack once ({len(active)} jobs)…")
         _load_edit_stacks(ctx)
@@ -1258,6 +1308,13 @@ def run_batch_synthesis(
         os.environ["EDGECASE_DISABLE_PIPE_PROGRESS"] = previous_progress
     _persist_batch_state(ctx, [])
     result.elapsed_s = time.perf_counter() - started
+    for aid, pool in ctx.seed_pool.items():
+        drawn = ctx.seed_cursors.get(aid, 0)
+        result.scene_usage[aid] = {
+            "pool": len(pool),
+            "new": min(drawn, len(pool)),
+            "reused": max(0, drawn - len(pool)),
+        }
     log(
         f"Done. Accepted {len(result.accepted)} / {sum(s.attempts for s in result.stats.values())} attempts."
     )
@@ -1290,6 +1347,10 @@ def batch_summary_rows(result: BatchResult) -> list[dict[str, Any]]:
                 "rejects": st.rejects,
                 "surplus": result.surplus.get(aid, 0),
                 "acceptance_rate": st.acceptance_rate,
+                **{
+                    f"scenes_{k}": v
+                    for k, v in (result.scene_usage.get(aid) or {}).items()
+                },
             },
         )
     return rows
@@ -1299,9 +1360,14 @@ def format_batch_summary(result: BatchResult) -> str:
     """Human-readable batch summary; flags classes that missed their target."""
     lines = [
         f"{'class':16s} {'target':>6s} {'accepted':>8s} {'attempts':>13s} "
-        f"{'retries':>7s} {'rejects':>7s} {'accept rate':>11s}  status",
+        f"{'retries':>7s} {'rejects':>7s} {'accept rate':>11s} {'scenes new/reused/pool':>22s}  status",
     ]
     for row in batch_summary_rows(result):
+        scenes = (
+            f"{row['scenes_new']}/{row['scenes_reused']}/{row['scenes_pool']}"
+            if "scenes_pool" in row
+            else "-"
+        )
         budget = f"/{row['max_attempts']}" if row["max_attempts"] is not None else ""
         target = "-" if row["target"] is None else str(row["target"])
         if row["target_reached"] is None:
@@ -1315,7 +1381,7 @@ def format_batch_summary(result: BatchResult) -> str:
         lines.append(
             f"{row['anomaly_id']:16s} {target:>6s} {row['accepted']:>8d} "
             f"{str(row['attempts']) + budget:>13s} {row['retries']:>7d} {row['rejects']:>7d} "
-            f"{100 * row['acceptance_rate']:>10.1f}%  {status}",
+            f"{100 * row['acceptance_rate']:>10.1f}% {scenes:>22s}  {status}",
         )
     total_acc = len(result.accepted)
     total_att = sum(s.attempts for s in result.stats.values())

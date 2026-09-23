@@ -636,20 +636,32 @@ def ensure_mapillary_samples(
     clean: bool = False,
     min_images: int = 1,
     max_retries: int = 8,
+    top_up: bool = False,
 ) -> list[Path]:
     """Return sample paths, extracting the toy subset when missing or ``clean``.
+
+    With ``top_up=True``, an existing extract with fewer ``scene_`` images than
+    ``extract_max_generic`` is extended in place (existing files are kept, only
+    the missing scenes are downloaded).
 
     Safe to call from Notebook 0. Does not download Klein / diffusion weights.
     """
     paths = _load_extract_paths(start)
     existing = list_sample_images(paths.samples)
-    if not clean and len(existing) >= min_images:
-        scenes = sum(1 for p in existing if p.stem.startswith("scene_"))
+    scenes = sum(1 for p in existing if p.stem.startswith("scene_"))
+    needs_top_up = top_up and scenes < paths.max_generic
+    if not clean and len(existing) >= min_images and not needs_top_up:
         tagged = len(existing) - scenes
         tqdm.write(
             f"Samples OK: {len(existing)} images ({scenes} scene_ seeds, {tagged} tagged) in {paths.samples}"
         )
         return existing
+    if needs_top_up and existing and not clean:
+        tqdm.write(
+            f"Only {scenes} scene_ images (extract_max_generic={paths.max_generic}) — "
+            "extracting the missing scenes…"
+        )
+        return extract_mapillary_toy(start=start, clean=False, max_retries=max_retries)
     if existing and not clean:
         tqdm.write(
             f"Only {len(existing)} sample(s) found (need ≥{min_images}) — extracting…"

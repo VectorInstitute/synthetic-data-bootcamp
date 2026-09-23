@@ -200,14 +200,21 @@ def pick_synth_seeds(
 ) -> dict[str, list[Path]]:
     """Disjoint clean scene seeds per anomaly id.
 
-    Prefers scenes without rare GT boxes when labels are provided.
+    When labels are provided only scenes without rare GT boxes are used; if
+    there are fewer clean scenes than requested, the per-class counts shrink
+    proportionally (printed) rather than seeding from scenes that already
+    contain a rare object.
     """
     rng = random.Random(int(seed))
     pool = list(scene_paths)
     if labels is not None and rare_classes:
-        clean = [p for p in pool if not image_has_label(p, labels, rare_classes)]
-        if sum(n_per_class.values()) <= len(clean):
-            pool = clean
+        pool = [p for p in pool if not image_has_label(p, labels, rare_classes)]
+        shrunk = allocate_budget(n_per_class, len(pool))
+        if shrunk != {k: int(v) for k, v in n_per_class.items()}:
+            print(
+                f"Only {len(pool)} clean scenes: seed pools {dict(n_per_class)} → {shrunk}"
+            )
+        n_per_class = shrunk
     rng.shuffle(pool)
     need = sum(int(v) for v in n_per_class.values())
     if len(pool) < need:
