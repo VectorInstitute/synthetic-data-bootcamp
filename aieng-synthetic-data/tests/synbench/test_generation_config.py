@@ -45,7 +45,8 @@ def test_sampler_uses_generation_config(mock_retail_path):
     assert "status" in constraints.entity_context
     assert "users" in constraints.entity_context
     assert "name" in constraints.entity_context["users"]
-    assert constraints.fsm_path
+    assert constraints.task_type in domain.task_types
+    assert isinstance(constraints.allow_write, bool)
 
 
 def test_sampler_draws_personality_style(mock_retail_path):

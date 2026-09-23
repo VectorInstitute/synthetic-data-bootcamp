@@ -32,23 +32,30 @@ def agent_system_prompt(domain: DomainBundle, task: Task, extra: str = "") -> st
 
 
 def planner_system_prompt(domain: DomainBundle, task: Task) -> str:
-    """System prompt for the planner role (plan only, no tool calls)."""
+    """System prompt for the planner role (plan only, no tool calls).
+
+    Same visible knowledge as the agent under test: policy and live
+    conversation only.
+    """
     return "\n".join(
         [
             "You are the planner. Produce a short numbered plan (3-5 steps) for the agent.",
             "Do not call tools. Output plain text only.",
+            "Infer the goal from the customer's messages; do not invent goals beyond what they say.",
             f"task_id: {task.id}",
             "",
             "## Policy (excerpt)",
             domain.policy[:2000],
-            "",
-            f"Task: {task.description}",
         ]
     )
 
 
 def critic_system_prompt(domain: DomainBundle, task: Task) -> str:
-    """System prompt for the critic role (approve or give revision notes)."""
+    """System prompt for the critic role (approve or give revision notes).
+
+    Same visible knowledge as the agent under test: policy and the
+    plan / tool trace / draft reply.
+    """
     return "\n".join(
         [
             "You are the critic. Review the agent plan, tool trace, and draft reply.",

@@ -12,7 +12,6 @@ def _score(reward: float) -> ScoreResult:
         communicate_reward=reward,
         target_db_hash="t",
         predicted_db_hash="t" if reward == 1.0 else "p",
-        partial_action_match=reward,
         missing_communicate=[],
     )
 
