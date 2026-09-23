@@ -26,6 +26,7 @@ from aieng.syn_data.text.config import (
     RESULTS_DIR,
     SYNTHETIC_FILTERED_PATH,
     SYNTHETIC_IBT_PATH,
+    SYNTHETIC_IBT_RAW_PATH,
     SYNTHETIC_RAW_PATH,
     TEST_SET_PATH,
 )
@@ -153,6 +154,7 @@ __all__ = [
     "SYNTHETIC_FILTERED_PATH",
     "SYNTHETIC_RAW_PATH",
     "SYNTHETIC_IBT_PATH",
+    "SYNTHETIC_IBT_RAW_PATH",
     "TEST_SET_PATH",
     "PeftInferenceClient",
     "apply_heuristic_filters",

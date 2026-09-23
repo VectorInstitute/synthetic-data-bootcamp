@@ -1,9 +1,10 @@
 """Passage-grounded synthetic Q&A via instruction back-translation.
 
 Also includes a lightweight lexical retriever for optional RAG-style workflows.
-The notebook-04 training path uses instruction back-translation: given passage
+The notebook-02 training path uses instruction back-translation: given passage
 text *y*, generate a question/instruction *x* for which *y* is a good answer
-(https://openreview.net/forum?id=1oijHJBRsT).
+(https://openreview.net/forum?id=1oijHJBRsT). The raw pairs are filtered in
+notebook 03.
 """
 
 from __future__ import annotations
@@ -78,7 +79,7 @@ def retrieve_paragraphs(
 ) -> list[Paragraph]:
     """Retrieve the most relevant train paragraphs for a query.
 
-    Not used by the default notebook-04 back-translation path (each sample is
+    Not used by the default notebook-02 back-translation path (each sample is
     generated from a known paragraph). Kept for optional retrieval-augmented
     variants.
     """

@@ -29,19 +29,20 @@ data/
 ├── test/
 │   └── test_set.jsonl  # held-out evaluation Q&A (notebook 01)
 ├── synthetic/
-│   ├── synthetic_raw.jsonl                 # notebook 02
-│   ├── synthetic_filtered.jsonl            # notebook 03
-│   ├── synthetic_back_translation.jsonl    # notebook 04
-│   ├── dpo_candidates.jsonl      # notebook 06 (optional)
-│   └── dpo_preference_pairs.jsonl  # notebook 06 (optional)
+│   ├── synthetic_raw.jsonl                      # notebook 02 (strategy Q&A)
+│   ├── synthetic_back_translation_raw.jsonl     # notebook 02 (IBT)
+│   ├── synthetic_filtered.jsonl                 # notebook 03
+│   ├── synthetic_back_translation.jsonl         # notebook 03 (filtered IBT)
+│   ├── dpo_candidates.jsonl      # notebook 05 (optional)
+│   └── dpo_preference_pairs.jsonl  # notebook 05 (optional)
 └── results/
     ├── baseline_predictions.jsonl            # notebook 01 (Ollama)
     ├── baseline_scores.json                  # notebook 01
-    ├── hf_base_predictions.jsonl             # notebook 05 (HF 4-bit, no adapter)
-    ├── hf_base_scores.json                   # notebook 05
-    ├── finetuned_predictions.jsonl           # notebook 05 (IBT SFT)
-    ├── finetuned_filtered_predictions.jsonl  # notebook 05 (filtered SFT)
-    └── comparison_report.json                # notebook 05
+    ├── hf_base_predictions.jsonl             # notebook 04 (HF 4-bit, no adapter)
+    ├── hf_base_scores.json                   # notebook 04
+    ├── finetuned_predictions.jsonl           # notebook 04 (IBT SFT)
+    ├── finetuned_filtered_predictions.jsonl  # notebook 04 (filtered SFT)
+    └── comparison_report.json                # notebook 04
 ```
 
 ## Notebooks
@@ -52,11 +53,10 @@ Run in order. Each notebook is a tutorial; reusable logic lives in
 | Notebook | Step | Description |
 |----------|------|-------------|
 | [01_baseline_evaluation.ipynb](./01_baseline_evaluation.ipynb) | 1 | Build test set, run baseline, LLM-as-judge |
-| [02_synthetic_qa_generation.ipynb](./02_synthetic_qa_generation.ipynb) | 2 | Compare generation strategies (teacher LLM) |
-| [03_quality_filtering.ipynb](./03_quality_filtering.ipynb) | 3 | Heuristic filters + judge scoring |
-| [04_grounded_data_augmentation.ipynb](./04_grounded_data_augmentation.ipynb) | 4 | Instruction back-translation SFT corpus |
-| [05_finetune_and_compare.ipynb](./05_finetune_and_compare.ipynb) | 5 | LoRA SFT vs a same-stack HF 4-bit control (filtered vs IBT corpora) |
-| [06_dpo_preference_pairs.ipynb](./06_dpo_preference_pairs.ipynb) | 6 (optional) | SEC refusal-calibration DPO pairs (+ optional LoRA DPO) |
+| [02_synthetic_qa_generation.ipynb](./02_synthetic_qa_generation.ipynb) | 2 | Generate all training data (strategies + instruction back-translation) |
+| [03_quality_filtering.ipynb](./03_quality_filtering.ipynb) | 3 | Heuristic/judge filters; save both SFT corpora |
+| [04_finetune_and_compare.ipynb](./04_finetune_and_compare.ipynb) | 4 | LoRA SFT vs a same-stack HF 4-bit control (filtered vs IBT corpora) |
+| [05_dpo_preference_pairs.ipynb](./05_dpo_preference_pairs.ipynb) | 5 (optional) | SEC refusal-calibration DPO pairs (+ optional LoRA DPO) |
 
 ## Package
 
@@ -87,7 +87,7 @@ uv sync --dev --group text-sft
 
 ```bash
 # from implementations/qa_text_generation/
-cp .env.example .env   # then set OPENAI_API_KEY (and adjust models if needed)
+cp .env.example .env
 ```
 
 Notebooks load this file via `load_implementation_dotenv()` (path is fixed to this RI, so it works after the notebook `chdir`s to the repo root).
@@ -112,13 +112,13 @@ To try a different SLM, update **both** of these in `.env` (keep them equal), th
 
 Optional local cleanup: `ollama stop qwen2.5:0.5b-instruct` (Coder VMs usually tear this down on stop anyway).
 
-4. Open `01_baseline_evaluation.ipynb` and work through notebooks 01 → 05.
-   Notebook 06 is optional: it builds DPO preference pairs from the SEC
+4. Open `01_baseline_evaluation.ipynb` and work through notebooks 01 → 04.
+   Notebook 05 is optional: it builds DPO preference pairs from the SEC
    (scope-boundary) train paragraphs only.
 
-Notebook 05 always runs LoRA fine-tuning and the Hugging Face 4-bit same-stack control. It needs **NVIDIA CUDA** (bitsandbytes); it will raise if no GPU is available.
+Notebook 04 always runs LoRA fine-tuning and the Hugging Face 4-bit same-stack control. It needs **NVIDIA CUDA** (bitsandbytes); it will raise if no GPU is available.
 
-Notebook 06 writes preference JSONL without a GPU. LoRA DPO runs only when `RUN_DPO=1` (same CUDA requirement as notebook 05).
+Notebook 05 writes preference JSONL without a GPU. LoRA DPO runs only when `RUN_DPO=1` (same CUDA requirement as notebook 04).
 
 To confirm CUDA on a GPU workspace:
 
@@ -162,7 +162,7 @@ Open Jupyter at `http://localhost:8888`, copy `.env` under this RI if needed, th
 4. Mount a persistent volume on `/home/coder/.ollama` so the model is not re-downloaded every restart.
 5. Keep teacher/judge on the cloud API; only the small model runs locally via Ollama.
 
-**Optional GPU VM (NVIDIA only):** LoRA SFT in notebook 05 needs **NVIDIA CUDA** (not Apple Silicon / Metal).
+**Optional GPU VM (NVIDIA only):** LoRA SFT in notebook 04 needs **NVIDIA CUDA** (not Apple Silicon / Metal).
 
 ```bash
 docker run --rm --gpus all -p 8888:8888 \
