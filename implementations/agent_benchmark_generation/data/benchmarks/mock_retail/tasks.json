@@ -1,14 +1,14 @@
 {
   "tasks": [
     {
-      "id": "gen_a7caeeea_0",
+      "id": "gen_739597cc_0",
       "description": "Look up order details for a customer inquiry",
       "task_type": "inquiry",
       "user_scenario": {
         "user_name": "Alice Chen",
         "personality_style": "rule_breaker",
-        "instructions": "Inquire about the status of order ord_1001. If the agent asks for the order ID, provide ord_1001. If they ask for your name, provide Alice Chen.",
-        "initial_message": "I need to know what's happening with my stuff right now. Just tell me what's going on with it, I'm tired of waiting for things to move."
+        "instructions": "Inquire about the status of order ord_1001. If the agent asks for the order ID, provide ord_1001. Argue if the agent refuses to provide information immediately.",
+        "initial_message": "I'm Alice Chen and I demand to know exactly what is going on with my recent purchase right now. I shouldn't have to wait for your slow systems to tell me where it is!"
       },
       "evaluation_criteria": {
         "actions": [
@@ -16,12 +16,6 @@
             "name": "find_user_id",
             "arguments": {
               "name": "Alice Chen"
-            }
-          },
-          {
-            "name": "list_orders",
-            "arguments": {
-              "user_id": "user_alice"
             }
           },
           {
@@ -33,7 +27,7 @@
         ],
         "communicate_info": [
           "pending",
-          "123 main st, boston, ma"
+          "123 main st"
         ],
         "reward_basis": [
           "DB",
@@ -42,14 +36,14 @@
       }
     },
     {
-      "id": "gen_e6b7a060_1",
-      "description": "Verify and execute the cancellation of a pending retail order",
+      "id": "gen_dae9dfa7_1",
+      "description": "Verify customer identity and cancel a pending order",
       "task_type": "cancel",
       "user_scenario": {
         "user_name": "Alice Chen",
         "personality_style": "anxious",
-        "instructions": "As the customer, request that the agent cancel order ord_1001. If the agent asks for identification, provide the name Alice Chen. Ensure the agent verifies the details before completing the cancellation.",
-        "initial_message": "Oh no, I'm really panicking about my purchase! I think I made a mistake and need to cancel it right away before it's too late. Is that possible? I'm so worried something will go wrong!"
+        "instructions": "The user wants to cancel order ord_1001. The user's name is Alice Chen. The agent must verify identity first by calling find_user_id with the name, then list their orders to confirm ownership before proceeding to cancel ord_1001.",
+        "initial_message": "I'm so incredibly worried about my recent purchase, I really need to cancel it right away, is that possible? I'm terrified it's going to ship and I'll be stuck with it, please tell me I'm not too late!"
       },
       "evaluation_criteria": {
         "actions": [
@@ -79,9 +73,7 @@
           }
         ],
         "communicate_info": [
-          "canceled",
-          "order details",
-          "confirmed"
+          "canceled"
         ],
         "reward_basis": [
           "DB",
@@ -90,14 +82,14 @@
       }
     },
     {
-      "id": "gen_11483642_2",
-      "description": "Look up an order status as an inquiry task",
+      "id": "gen_d5b1dd1e_2",
+      "description": "Retrieve order status details for a customer",
       "task_type": "inquiry",
       "user_scenario": {
         "user_name": "Bob Martinez",
         "personality_style": "domain_expert",
-        "instructions": "Inquire about the current status of order ord_2001. Ensure the agent follows the protocol of identifying the user by name first before looking up order details.",
-        "initial_message": "Hello, I am looking for the status of one of my recent orders. Could you assist me with that?"
+        "instructions": "Inquire about the status of order ord_2001. If asked, provide the full name Bob Martinez. If the agent fails to use find_user_id first, express dissatisfaction regarding policy adherence.",
+        "initial_message": "I need to check the current status of my recent purchase."
       },
       "evaluation_criteria": {
         "actions": [
