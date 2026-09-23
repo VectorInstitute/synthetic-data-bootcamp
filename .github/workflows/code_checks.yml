@@ -48,8 +48,9 @@ jobs:
         run: |
           uv venv .venv
           source .venv/bin/activate
-          # Include optional dependencies for text-sft and tabular-data groups.
-          uv sync --all-extras --dev --group text-sft --group tabular-data
+          # Include text-sft so pip-audit covers notebook 05 LoRA dependencies
+          # (see scripts/setup.sh: uv sync --dev --group text-sft).
+          uv sync --all-extras --dev --group text-sft
           pre-commit run --all-files
 
       - name: pip-audit (gh-action-pip-audit)

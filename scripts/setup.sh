@@ -15,7 +15,7 @@ else
 fi
 
 source .venv/bin/activate
-echo "Syncing dependencies including the text-sft group (notebook 05 LoRA)..."
+echo "Syncing dependencies including the text-sft group (notebook 04 LoRA)..."
 uv sync --dev --group text-sft
 
 echo "Virtual environment activated and dependencies synced."
