@@ -141,6 +141,31 @@ module = "aieng.syn_data.synbench.display"
 disallow_untyped_calls = false
 
 [[tool.mypy.overrides]]
+# Image helpers pass numpy arrays whose dtype and shape vary at runtime
+# (uint8 RGB, float weights, bool masks), so annotations stay bare np.ndarray.
+module = "aieng.syn_data.image.*"
+allow_any_generics = true
+
+[[tool.mypy.overrides]]
+# Shapes come back from numpy as tuple[int, ...] and boolean reductions widen
+# to np.bool_; both are narrower in practice than mypy can prove.
+module = [
+    "aieng.syn_data.image.generate.annotation",
+    "aieng.syn_data.image.generate.conditioning",
+    "aieng.syn_data.image.judge.embedding_gate",
+]
+disable_error_code = ["arg-type", "assignment"]
+
+[[tool.mypy.overrides]]
+# transformers and scipy stubs vary by version, so the ignores in these modules
+# are needed in some environments and redundant in others.
+module = [
+    "aieng.syn_data.image.generate.conditioning",
+    "aieng.syn_data.image.judge.vlm_judge",
+]
+warn_unused_ignores = false
+
+[[tool.mypy.overrides]]
 # Pytest test functions and their fixture parameters are conventionally left
 # unannotated; type checking still applies to the code under test.
 module = "tests.*"
