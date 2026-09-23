@@ -11,8 +11,10 @@ class CommunicateChecker:
         """Score the agent messages and return ``(score, missing_strings)``."""
         if not required:
             return 1.0, []
-        combined = " ".join(agent_messages).lower()
-        missing = [s for s in required if s.lower() not in combined]
+        # Remove dots from combined messages
+        combined = " ".join(agent_messages).replace(".", "").lower()
+        # Also remove dots from required items for robust matching
+        missing = [s for s in required if s.replace(".", "").lower() not in combined]
         if missing:
             return 0.0, missing
         return 1.0, []

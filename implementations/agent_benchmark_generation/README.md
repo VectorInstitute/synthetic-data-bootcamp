@@ -6,10 +6,10 @@ These notebooks walks through **SynBench** end to end: loading a domain, generat
 
 You can also activate the environment in terminal using `source .venv/bin/activate` command.
 
-Then, copy env defaults into this directory and set your API key:
+
+
 ```bash
-# from implementations/agent_benchmark_generation/
-cp implementations/agent_benchmark_generation/.env.example .env   # Adjust the models if needed
+cp implementations/agent_benchmark_generation/.env.example .env   # then set OPENAI_API_KEY (and adjust models if needed)
 ```
 ---
 
@@ -62,6 +62,14 @@ Evaluates a **single tool-calling agent** on the verified tasks:
 
 Same setup and scoring as notebook 3, but runs **`AgentPipeline`** instead of a single agent. Per dialogue turn the roles are `user_sim` → `planner` → `executor` → `critic` (only the executor calls tools). Ends with batch metrics over the verified task set.
 
+### `5-saas-billing-scale.ipynb`
+
+Uses the larger `domains/mock_saas_billing` world (48 accounts, 96
+subscriptions, and 192 invoices). It generates a stratified set of tasks for
+each of five task types across five personality styles and distinct accounts,
+verifies and saves the passing tasks, reloads them, and evaluates the
+multi-agent pipeline.
+
 ## Pipeline steps (overview)
 
 ```
@@ -93,8 +101,10 @@ Copy `domains/mock_retail/` and provide:
 3. `tools.py` — `get_tool_specs()` + `ToolKit` class
 4. `task_types.yaml` — per-type `allow_write`
 5. `user_simulator.yaml` — personas and goal templates
-6. `tasks.seed.json` — 2–3 hand-verified seed tasks
-7. `verify.py` - domain-specific rules to verify the generated tasks with.
+6. `tasks.seed.json` — hand-verified seed tasks
+7. `generation.yaml` — primary collection, related joins, generation hints,
+   and optional task-type eligibility filters
+8. `verify.py` — domain-specific rules for generated tasks
 
 
 ### Domain bundle files (`domains/mock_retail/`)

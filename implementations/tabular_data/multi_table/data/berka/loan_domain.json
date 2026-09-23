@@ -1,0 +1,17 @@
+{
+    "loan_date": {
+        "type": "continuous"
+    },
+    "amount": {
+        "type": "continuous"
+    },
+    "duration": {
+        "type": "continuous"
+    },
+    "payments": {
+        "type": "continuous"
+    },
+    "status": {
+        "type": "discrete"
+    }
+}

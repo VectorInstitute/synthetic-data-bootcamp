@@ -2,17 +2,25 @@
 
 from __future__ import annotations
 
+import logging
+
 from aieng.syn_data.synbench.agents.critic import Critic
 from aieng.syn_data.synbench.agents.dialogue import run_user_dialogue
 from aieng.syn_data.synbench.agents.loop import ToolCallingLoop
 from aieng.syn_data.synbench.agents.planner import Planner
 from aieng.syn_data.synbench.agents.session import AgentSession
 from aieng.syn_data.synbench.agents.user_sim import UserSimulator
-from aieng.syn_data.synbench.evaluation.scoring import ScoreResult, score_agent_run
+from aieng.syn_data.synbench.evaluation.scoring import (
+    ScoreResult,
+    score_agent_run,
+    score_trajectory,
+)
 from aieng.syn_data.synbench.llm.client import LLMClient, get_client
 from aieng.syn_data.synbench.schemas.domain import DomainBundle
 from aieng.syn_data.synbench.schemas.tasks import Task
 
+
+logger = logging.getLogger(__name__)
 
 DEFAULT_ROLES = ["user_sim", "planner", "executor", "critic"]
 
@@ -26,18 +34,19 @@ class AgentPipeline:
         roles: list[str] | None = None,
         max_turns: int = 12,
         max_dialogue_turns: int = 5,
-        client: LLMClient | None = None,
+        agent_client: LLMClient | None = None,
+        user_simulator_client: LLMClient | None = None,
     ):
         self.domain = domain
         self.roles = roles or DEFAULT_ROLES
         self.max_turns = max_turns  # tool-call rounds per user utterance
         self.max_dialogue_turns = max_dialogue_turns  # user ↔ pipeline rounds
-        self.client = client or get_client()
-        self.user_sim = UserSimulator(self.client)
-        self.planner = Planner(self.client)
-        self.critic = Critic(self.client)
+        self.agent_client = agent_client or get_client()
+        self.user_sim = UserSimulator(user_simulator_client)
+        self.planner = Planner(self.agent_client)
+        self.critic = Critic(self.agent_client)
         self.executor = ToolCallingLoop(
-            self.domain, client=self.client, max_turns=max_turns
+            self.domain, client=self.agent_client, max_turns=max_turns
         )
 
     def run_task(self, task: Task) -> AgentSession:
@@ -62,3 +71,14 @@ class AgentPipeline:
         ``tool_errors`` and still scored by outcome.
         """
         return score_agent_run(self.domain, task, self.run_task)
+
+    def score_session(self, session: AgentSession) -> ScoreResult:
+        """Score the resulting trajectory on a fresh environment."""
+        return score_trajectory(
+            self.domain,
+            session.task,
+            session.agent_actions,
+            session.agent_messages,
+            tool_errors=session.tool_errors,
+            dialogue_turns=session.dialogue_turns,
+        )

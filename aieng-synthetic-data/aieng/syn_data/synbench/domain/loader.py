@@ -215,6 +215,8 @@ def _validate_generation_readiness(bundle: DomainBundle) -> list[str]:
                 f"generation.communicate_hints key '{hint_type}' is not a task_types.yaml key"
             )
 
+    errors.extend(_validate_eligibility(cfg, task_types, list(collection.values())))
+
     # --- end-to-end smoke: sampler must be able to produce one SampleConstraints ---
     if not errors:
         try:
@@ -222,6 +224,42 @@ def _validate_generation_readiness(bundle: DomainBundle) -> list[str]:
         except Exception as e:
             errors.append(f"ConstraintSampler smoke sample failed: {e}")
 
+    return errors
+
+
+def _validate_eligibility(
+    cfg: GenerationConfig,
+    task_types: dict[str, Any],
+    records: list[Any],
+) -> list[str]:
+    """Validate task-specific primary-record filters."""
+    errors: list[str] = []
+    for eligible_type, filters in cfg.eligibility.items():
+        if eligible_type not in task_types:
+            errors.append(
+                f"generation.eligibility key '{eligible_type}' is not a state_machine task_type"
+            )
+            continue
+        for field, allowed in filters.items():
+            if not allowed:
+                errors.append(
+                    f"generation.eligibility.{eligible_type}.{field} must not be empty"
+                )
+            if any(
+                isinstance(record, dict) and field not in record for record in records
+            ):
+                errors.append(
+                    f"generation.eligibility.{eligible_type} field '{field}' "
+                    "is missing from one or more primary records"
+                )
+        if filters and not any(
+            isinstance(record, dict)
+            and all(record.get(field) in allowed for field, allowed in filters.items())
+            for record in records
+        ):
+            errors.append(
+                f"generation.eligibility.{eligible_type} leaves no eligible primary records"
+            )
     return errors
 
 

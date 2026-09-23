@@ -24,6 +24,7 @@ class AgentSession:
     role_trace: list[str] = field(default_factory=list)
     plan: str = ""
     env: Environment | None = None
+    dialogue_turns: int = 0
 
     def ensure_env(self) -> Environment:
         """Return the session environment, creating it on first use."""

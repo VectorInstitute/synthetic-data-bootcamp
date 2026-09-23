@@ -1,0 +1,4424 @@
+{
+  "accounts": {
+    "acct_avery": {
+      "account_id": "acct_avery",
+      "name": "Avery Kim",
+      "email": "avery.kim@example.com",
+      "billing_email": "billing+avery.kim@example.com",
+      "company": "Northstar Labs",
+      "plan": "starter"
+    },
+    "acct_noah": {
+      "account_id": "acct_noah",
+      "name": "Noah Patel",
+      "email": "noah.patel@example.com",
+      "billing_email": "billing+noah.patel@example.com",
+      "company": "Cedar Analytics",
+      "plan": "pro"
+    },
+    "acct_maya": {
+      "account_id": "acct_maya",
+      "name": "Maya Chen",
+      "email": "maya.chen@example.com",
+      "billing_email": "billing+maya.chen@example.com",
+      "company": "Orbit Works",
+      "plan": "business"
+    },
+    "acct_luis": {
+      "account_id": "acct_luis",
+      "name": "Luis Ortega",
+      "email": "luis.ortega@example.com",
+      "billing_email": "billing+luis.ortega@example.com",
+      "company": "Summit Systems",
+      "plan": "starter"
+    },
+    "acct_priya": {
+      "account_id": "acct_priya",
+      "name": "Priya Shah",
+      "email": "priya.shah@example.com",
+      "billing_email": "billing+priya.shah@example.com",
+      "company": "Bluebird Studio",
+      "plan": "pro"
+    },
+    "acct_jordan": {
+      "account_id": "acct_jordan",
+      "name": "Jordan Blake",
+      "email": "jordan.blake@example.com",
+      "billing_email": "billing+jordan.blake@example.com",
+      "company": "Harbor Digital",
+      "plan": "business"
+    },
+    "acct_007": {
+      "account_id": "acct_007",
+      "name": "Amara Adams",
+      "email": "amara.adams@example.com",
+      "billing_email": "billing+amara.adams@example.com",
+      "company": "Adams 07 Software",
+      "plan": "starter"
+    },
+    "acct_008": {
+      "account_id": "acct_008",
+      "name": "Amara Brooks",
+      "email": "amara.brooks@example.com",
+      "billing_email": "billing+amara.brooks@example.com",
+      "company": "Brooks 08 Software",
+      "plan": "pro"
+    },
+    "acct_009": {
+      "account_id": "acct_009",
+      "name": "Amara Cole",
+      "email": "amara.cole@example.com",
+      "billing_email": "billing+amara.cole@example.com",
+      "company": "Cole 09 Software",
+      "plan": "business"
+    },
+    "acct_010": {
+      "account_id": "acct_010",
+      "name": "Amara Diaz",
+      "email": "amara.diaz@example.com",
+      "billing_email": "billing+amara.diaz@example.com",
+      "company": "Diaz 10 Software",
+      "plan": "starter"
+    },
+    "acct_011": {
+      "account_id": "acct_011",
+      "name": "Amara Evans",
+      "email": "amara.evans@example.com",
+      "billing_email": "billing+amara.evans@example.com",
+      "company": "Evans 11 Software",
+      "plan": "pro"
+    },
+    "acct_012": {
+      "account_id": "acct_012",
+      "name": "Amara Foster",
+      "email": "amara.foster@example.com",
+      "billing_email": "billing+amara.foster@example.com",
+      "company": "Foster 12 Software",
+      "plan": "business"
+    },
+    "acct_013": {
+      "account_id": "acct_013",
+      "name": "Ben Adams",
+      "email": "ben.adams@example.com",
+      "billing_email": "billing+ben.adams@example.com",
+      "company": "Adams 13 Software",
+      "plan": "starter"
+    },
+    "acct_014": {
+      "account_id": "acct_014",
+      "name": "Ben Brooks",
+      "email": "ben.brooks@example.com",
+      "billing_email": "billing+ben.brooks@example.com",
+      "company": "Brooks 14 Software",
+      "plan": "pro"
+    },
+    "acct_015": {
+      "account_id": "acct_015",
+      "name": "Ben Cole",
+      "email": "ben.cole@example.com",
+      "billing_email": "billing+ben.cole@example.com",
+      "company": "Cole 15 Software",
+      "plan": "business"
+    },
+    "acct_016": {
+      "account_id": "acct_016",
+      "name": "Ben Diaz",
+      "email": "ben.diaz@example.com",
+      "billing_email": "billing+ben.diaz@example.com",
+      "company": "Diaz 16 Software",
+      "plan": "starter"
+    },
+    "acct_017": {
+      "account_id": "acct_017",
+      "name": "Ben Evans",
+      "email": "ben.evans@example.com",
+      "billing_email": "billing+ben.evans@example.com",
+      "company": "Evans 17 Software",
+      "plan": "pro"
+    },
+    "acct_018": {
+      "account_id": "acct_018",
+      "name": "Ben Foster",
+      "email": "ben.foster@example.com",
+      "billing_email": "billing+ben.foster@example.com",
+      "company": "Foster 18 Software",
+      "plan": "business"
+    },
+    "acct_019": {
+      "account_id": "acct_019",
+      "name": "Chloe Adams",
+      "email": "chloe.adams@example.com",
+      "billing_email": "billing+chloe.adams@example.com",
+      "company": "Adams 19 Software",
+      "plan": "starter"
+    },
+    "acct_020": {
+      "account_id": "acct_020",
+      "name": "Chloe Brooks",
+      "email": "chloe.brooks@example.com",
+      "billing_email": "billing+chloe.brooks@example.com",
+      "company": "Brooks 20 Software",
+      "plan": "pro"
+    },
+    "acct_021": {
+      "account_id": "acct_021",
+      "name": "Chloe Cole",
+      "email": "chloe.cole@example.com",
+      "billing_email": "billing+chloe.cole@example.com",
+      "company": "Cole 21 Software",
+      "plan": "business"
+    },
+    "acct_022": {
+      "account_id": "acct_022",
+      "name": "Chloe Diaz",
+      "email": "chloe.diaz@example.com",
+      "billing_email": "billing+chloe.diaz@example.com",
+      "company": "Diaz 22 Software",
+      "plan": "starter"
+    },
+    "acct_023": {
+      "account_id": "acct_023",
+      "name": "Chloe Evans",
+      "email": "chloe.evans@example.com",
+      "billing_email": "billing+chloe.evans@example.com",
+      "company": "Evans 23 Software",
+      "plan": "pro"
+    },
+    "acct_024": {
+      "account_id": "acct_024",
+      "name": "Chloe Foster",
+      "email": "chloe.foster@example.com",
+      "billing_email": "billing+chloe.foster@example.com",
+      "company": "Foster 24 Software",
+      "plan": "business"
+    },
+    "acct_025": {
+      "account_id": "acct_025",
+      "name": "Diego Adams",
+      "email": "diego.adams@example.com",
+      "billing_email": "billing+diego.adams@example.com",
+      "company": "Adams 25 Software",
+      "plan": "starter"
+    },
+    "acct_026": {
+      "account_id": "acct_026",
+      "name": "Diego Brooks",
+      "email": "diego.brooks@example.com",
+      "billing_email": "billing+diego.brooks@example.com",
+      "company": "Brooks 26 Software",
+      "plan": "pro"
+    },
+    "acct_027": {
+      "account_id": "acct_027",
+      "name": "Diego Cole",
+      "email": "diego.cole@example.com",
+      "billing_email": "billing+diego.cole@example.com",
+      "company": "Cole 27 Software",
+      "plan": "business"
+    },
+    "acct_028": {
+      "account_id": "acct_028",
+      "name": "Diego Diaz",
+      "email": "diego.diaz@example.com",
+      "billing_email": "billing+diego.diaz@example.com",
+      "company": "Diaz 28 Software",
+      "plan": "starter"
+    },
+    "acct_029": {
+      "account_id": "acct_029",
+      "name": "Diego Evans",
+      "email": "diego.evans@example.com",
+      "billing_email": "billing+diego.evans@example.com",
+      "company": "Evans 29 Software",
+      "plan": "pro"
+    },
+    "acct_030": {
+      "account_id": "acct_030",
+      "name": "Diego Foster",
+      "email": "diego.foster@example.com",
+      "billing_email": "billing+diego.foster@example.com",
+      "company": "Foster 30 Software",
+      "plan": "business"
+    },
+    "acct_031": {
+      "account_id": "acct_031",
+      "name": "Elena Adams",
+      "email": "elena.adams@example.com",
+      "billing_email": "billing+elena.adams@example.com",
+      "company": "Adams 31 Software",
+      "plan": "starter"
+    },
+    "acct_032": {
+      "account_id": "acct_032",
+      "name": "Elena Brooks",
+      "email": "elena.brooks@example.com",
+      "billing_email": "billing+elena.brooks@example.com",
+      "company": "Brooks 32 Software",
+      "plan": "pro"
+    },
+    "acct_033": {
+      "account_id": "acct_033",
+      "name": "Elena Cole",
+      "email": "elena.cole@example.com",
+      "billing_email": "billing+elena.cole@example.com",
+      "company": "Cole 33 Software",
+      "plan": "business"
+    },
+    "acct_034": {
+      "account_id": "acct_034",
+      "name": "Elena Diaz",
+      "email": "elena.diaz@example.com",
+      "billing_email": "billing+elena.diaz@example.com",
+      "company": "Diaz 34 Software",
+      "plan": "starter"
+    },
+    "acct_035": {
+      "account_id": "acct_035",
+      "name": "Elena Evans",
+      "email": "elena.evans@example.com",
+      "billing_email": "billing+elena.evans@example.com",
+      "company": "Evans 35 Software",
+      "plan": "pro"
+    },
+    "acct_036": {
+      "account_id": "acct_036",
+      "name": "Elena Foster",
+      "email": "elena.foster@example.com",
+      "billing_email": "billing+elena.foster@example.com",
+      "company": "Foster 36 Software",
+      "plan": "business"
+    },
+    "acct_037": {
+      "account_id": "acct_037",
+      "name": "Finn Adams",
+      "email": "finn.adams@example.com",
+      "billing_email": "billing+finn.adams@example.com",
+      "company": "Adams 37 Software",
+      "plan": "starter"
+    },
+    "acct_038": {
+      "account_id": "acct_038",
+      "name": "Finn Brooks",
+      "email": "finn.brooks@example.com",
+      "billing_email": "billing+finn.brooks@example.com",
+      "company": "Brooks 38 Software",
+      "plan": "pro"
+    },
+    "acct_039": {
+      "account_id": "acct_039",
+      "name": "Finn Cole",
+      "email": "finn.cole@example.com",
+      "billing_email": "billing+finn.cole@example.com",
+      "company": "Cole 39 Software",
+      "plan": "business"
+    },
+    "acct_040": {
+      "account_id": "acct_040",
+      "name": "Finn Diaz",
+      "email": "finn.diaz@example.com",
+      "billing_email": "billing+finn.diaz@example.com",
+      "company": "Diaz 40 Software",
+      "plan": "starter"
+    },
+    "acct_041": {
+      "account_id": "acct_041",
+      "name": "Finn Evans",
+      "email": "finn.evans@example.com",
+      "billing_email": "billing+finn.evans@example.com",
+      "company": "Evans 41 Software",
+      "plan": "pro"
+    },
+    "acct_042": {
+      "account_id": "acct_042",
+      "name": "Finn Foster",
+      "email": "finn.foster@example.com",
+      "billing_email": "billing+finn.foster@example.com",
+      "company": "Foster 42 Software",
+      "plan": "business"
+    },
+    "acct_043": {
+      "account_id": "acct_043",
+      "name": "Grace Adams",
+      "email": "grace.adams@example.com",
+      "billing_email": "billing+grace.adams@example.com",
+      "company": "Adams 43 Software",
+      "plan": "starter"
+    },
+    "acct_044": {
+      "account_id": "acct_044",
+      "name": "Grace Brooks",
+      "email": "grace.brooks@example.com",
+      "billing_email": "billing+grace.brooks@example.com",
+      "company": "Brooks 44 Software",
+      "plan": "pro"
+    },
+    "acct_045": {
+      "account_id": "acct_045",
+      "name": "Grace Cole",
+      "email": "grace.cole@example.com",
+      "billing_email": "billing+grace.cole@example.com",
+      "company": "Cole 45 Software",
+      "plan": "business"
+    },
+    "acct_046": {
+      "account_id": "acct_046",
+      "name": "Grace Diaz",
+      "email": "grace.diaz@example.com",
+      "billing_email": "billing+grace.diaz@example.com",
+      "company": "Diaz 46 Software",
+      "plan": "starter"
+    },
+    "acct_047": {
+      "account_id": "acct_047",
+      "name": "Grace Evans",
+      "email": "grace.evans@example.com",
+      "billing_email": "billing+grace.evans@example.com",
+      "company": "Evans 47 Software",
+      "plan": "pro"
+    },
+    "acct_048": {
+      "account_id": "acct_048",
+      "name": "Grace Foster",
+      "email": "grace.foster@example.com",
+      "billing_email": "billing+grace.foster@example.com",
+      "company": "Foster 48 Software",
+      "plan": "business"
+    }
+  },
+  "subscriptions": {
+    "sub_avery_1": {
+      "subscription_id": "sub_avery_1",
+      "account_id": "acct_avery",
+      "plan": "starter",
+      "status": "active",
+      "seats": 3,
+      "monthly_cents": 2900
+    },
+    "sub_avery_2": {
+      "subscription_id": "sub_avery_2",
+      "account_id": "acct_avery",
+      "plan": "pro",
+      "status": "active",
+      "seats": 10,
+      "monthly_cents": 9900
+    },
+    "sub_noah_1": {
+      "subscription_id": "sub_noah_1",
+      "account_id": "acct_noah",
+      "plan": "pro",
+      "status": "active",
+      "seats": 12,
+      "monthly_cents": 9900
+    },
+    "sub_noah_2": {
+      "subscription_id": "sub_noah_2",
+      "account_id": "acct_noah",
+      "plan": "business",
+      "status": "active",
+      "seats": 26,
+      "monthly_cents": 24900
+    },
+    "sub_maya_1": {
+      "subscription_id": "sub_maya_1",
+      "account_id": "acct_maya",
+      "plan": "business",
+      "status": "active",
+      "seats": 26,
+      "monthly_cents": 24900
+    },
+    "sub_maya_2": {
+      "subscription_id": "sub_maya_2",
+      "account_id": "acct_maya",
+      "plan": "starter",
+      "status": "active",
+      "seats": 4,
+      "monthly_cents": 2900
+    },
+    "sub_luis_1": {
+      "subscription_id": "sub_luis_1",
+      "account_id": "acct_luis",
+      "plan": "starter",
+      "status": "active",
+      "seats": 3,
+      "monthly_cents": 2900
+    },
+    "sub_luis_2": {
+      "subscription_id": "sub_luis_2",
+      "account_id": "acct_luis",
+      "plan": "pro",
+      "status": "active",
+      "seats": 14,
+      "monthly_cents": 9900
+    },
+    "sub_priya_1": {
+      "subscription_id": "sub_priya_1",
+      "account_id": "acct_priya",
+      "plan": "pro",
+      "status": "active",
+      "seats": 10,
+      "monthly_cents": 9900
+    },
+    "sub_priya_2": {
+      "subscription_id": "sub_priya_2",
+      "account_id": "acct_priya",
+      "plan": "business",
+      "status": "active",
+      "seats": 29,
+      "monthly_cents": 24900
+    },
+    "sub_jordan_1": {
+      "subscription_id": "sub_jordan_1",
+      "account_id": "acct_jordan",
+      "plan": "business",
+      "status": "canceled",
+      "seats": 28,
+      "monthly_cents": 24900
+    },
+    "sub_jordan_2": {
+      "subscription_id": "sub_jordan_2",
+      "account_id": "acct_jordan",
+      "plan": "starter",
+      "status": "active",
+      "seats": 3,
+      "monthly_cents": 2900
+    },
+    "sub_007_1": {
+      "subscription_id": "sub_007_1",
+      "account_id": "acct_007",
+      "plan": "starter",
+      "status": "active",
+      "seats": 3,
+      "monthly_cents": 2900
+    },
+    "sub_007_2": {
+      "subscription_id": "sub_007_2",
+      "account_id": "acct_007",
+      "plan": "pro",
+      "status": "active",
+      "seats": 10,
+      "monthly_cents": 9900
+    },
+    "sub_008_1": {
+      "subscription_id": "sub_008_1",
+      "account_id": "acct_008",
+      "plan": "pro",
+      "status": "active",
+      "seats": 11,
+      "monthly_cents": 9900
+    },
+    "sub_008_2": {
+      "subscription_id": "sub_008_2",
+      "account_id": "acct_008",
+      "plan": "business",
+      "status": "active",
+      "seats": 26,
+      "monthly_cents": 24900
+    },
+    "sub_009_1": {
+      "subscription_id": "sub_009_1",
+      "account_id": "acct_009",
+      "plan": "business",
+      "status": "active",
+      "seats": 29,
+      "monthly_cents": 24900
+    },
+    "sub_009_2": {
+      "subscription_id": "sub_009_2",
+      "account_id": "acct_009",
+      "plan": "starter",
+      "status": "active",
+      "seats": 7,
+      "monthly_cents": 2900
+    },
+    "sub_010_1": {
+      "subscription_id": "sub_010_1",
+      "account_id": "acct_010",
+      "plan": "starter",
+      "status": "active",
+      "seats": 3,
+      "monthly_cents": 2900
+    },
+    "sub_010_2": {
+      "subscription_id": "sub_010_2",
+      "account_id": "acct_010",
+      "plan": "pro",
+      "status": "active",
+      "seats": 14,
+      "monthly_cents": 9900
+    },
+    "sub_011_1": {
+      "subscription_id": "sub_011_1",
+      "account_id": "acct_011",
+      "plan": "pro",
+      "status": "active",
+      "seats": 11,
+      "monthly_cents": 9900
+    },
+    "sub_011_2": {
+      "subscription_id": "sub_011_2",
+      "account_id": "acct_011",
+      "plan": "business",
+      "status": "active",
+      "seats": 29,
+      "monthly_cents": 24900
+    },
+    "sub_012_1": {
+      "subscription_id": "sub_012_1",
+      "account_id": "acct_012",
+      "plan": "business",
+      "status": "active",
+      "seats": 28,
+      "monthly_cents": 24900
+    },
+    "sub_012_2": {
+      "subscription_id": "sub_012_2",
+      "account_id": "acct_012",
+      "plan": "starter",
+      "status": "active",
+      "seats": 4,
+      "monthly_cents": 2900
+    },
+    "sub_013_1": {
+      "subscription_id": "sub_013_1",
+      "account_id": "acct_013",
+      "plan": "starter",
+      "status": "active",
+      "seats": 6,
+      "monthly_cents": 2900
+    },
+    "sub_013_2": {
+      "subscription_id": "sub_013_2",
+      "account_id": "acct_013",
+      "plan": "pro",
+      "status": "active",
+      "seats": 14,
+      "monthly_cents": 9900
+    },
+    "sub_014_1": {
+      "subscription_id": "sub_014_1",
+      "account_id": "acct_014",
+      "plan": "pro",
+      "status": "active",
+      "seats": 12,
+      "monthly_cents": 9900
+    },
+    "sub_014_2": {
+      "subscription_id": "sub_014_2",
+      "account_id": "acct_014",
+      "plan": "business",
+      "status": "active",
+      "seats": 25,
+      "monthly_cents": 24900
+    },
+    "sub_015_1": {
+      "subscription_id": "sub_015_1",
+      "account_id": "acct_015",
+      "plan": "business",
+      "status": "active",
+      "seats": 26,
+      "monthly_cents": 24900
+    },
+    "sub_015_2": {
+      "subscription_id": "sub_015_2",
+      "account_id": "acct_015",
+      "plan": "starter",
+      "status": "active",
+      "seats": 6,
+      "monthly_cents": 2900
+    },
+    "sub_016_1": {
+      "subscription_id": "sub_016_1",
+      "account_id": "acct_016",
+      "plan": "starter",
+      "status": "active",
+      "seats": 5,
+      "monthly_cents": 2900
+    },
+    "sub_016_2": {
+      "subscription_id": "sub_016_2",
+      "account_id": "acct_016",
+      "plan": "pro",
+      "status": "active",
+      "seats": 12,
+      "monthly_cents": 9900
+    },
+    "sub_017_1": {
+      "subscription_id": "sub_017_1",
+      "account_id": "acct_017",
+      "plan": "pro",
+      "status": "active",
+      "seats": 11,
+      "monthly_cents": 9900
+    },
+    "sub_017_2": {
+      "subscription_id": "sub_017_2",
+      "account_id": "acct_017",
+      "plan": "business",
+      "status": "past_due",
+      "seats": 26,
+      "monthly_cents": 24900
+    },
+    "sub_018_1": {
+      "subscription_id": "sub_018_1",
+      "account_id": "acct_018",
+      "plan": "business",
+      "status": "past_due",
+      "seats": 27,
+      "monthly_cents": 24900
+    },
+    "sub_018_2": {
+      "subscription_id": "sub_018_2",
+      "account_id": "acct_018",
+      "plan": "starter",
+      "status": "active",
+      "seats": 3,
+      "monthly_cents": 2900
+    },
+    "sub_019_1": {
+      "subscription_id": "sub_019_1",
+      "account_id": "acct_019",
+      "plan": "starter",
+      "status": "active",
+      "seats": 3,
+      "monthly_cents": 2900
+    },
+    "sub_019_2": {
+      "subscription_id": "sub_019_2",
+      "account_id": "acct_019",
+      "plan": "pro",
+      "status": "active",
+      "seats": 13,
+      "monthly_cents": 9900
+    },
+    "sub_020_1": {
+      "subscription_id": "sub_020_1",
+      "account_id": "acct_020",
+      "plan": "pro",
+      "status": "active",
+      "seats": 10,
+      "monthly_cents": 9900
+    },
+    "sub_020_2": {
+      "subscription_id": "sub_020_2",
+      "account_id": "acct_020",
+      "plan": "business",
+      "status": "active",
+      "seats": 27,
+      "monthly_cents": 24900
+    },
+    "sub_021_1": {
+      "subscription_id": "sub_021_1",
+      "account_id": "acct_021",
+      "plan": "business",
+      "status": "active",
+      "seats": 27,
+      "monthly_cents": 24900
+    },
+    "sub_021_2": {
+      "subscription_id": "sub_021_2",
+      "account_id": "acct_021",
+      "plan": "starter",
+      "status": "active",
+      "seats": 7,
+      "monthly_cents": 2900
+    },
+    "sub_022_1": {
+      "subscription_id": "sub_022_1",
+      "account_id": "acct_022",
+      "plan": "starter",
+      "status": "active",
+      "seats": 5,
+      "monthly_cents": 2900
+    },
+    "sub_022_2": {
+      "subscription_id": "sub_022_2",
+      "account_id": "acct_022",
+      "plan": "pro",
+      "status": "active",
+      "seats": 10,
+      "monthly_cents": 9900
+    },
+    "sub_023_1": {
+      "subscription_id": "sub_023_1",
+      "account_id": "acct_023",
+      "plan": "pro",
+      "status": "active",
+      "seats": 13,
+      "monthly_cents": 9900
+    },
+    "sub_023_2": {
+      "subscription_id": "sub_023_2",
+      "account_id": "acct_023",
+      "plan": "business",
+      "status": "active",
+      "seats": 29,
+      "monthly_cents": 24900
+    },
+    "sub_024_1": {
+      "subscription_id": "sub_024_1",
+      "account_id": "acct_024",
+      "plan": "business",
+      "status": "active",
+      "seats": 25,
+      "monthly_cents": 24900
+    },
+    "sub_024_2": {
+      "subscription_id": "sub_024_2",
+      "account_id": "acct_024",
+      "plan": "starter",
+      "status": "active",
+      "seats": 6,
+      "monthly_cents": 2900
+    },
+    "sub_025_1": {
+      "subscription_id": "sub_025_1",
+      "account_id": "acct_025",
+      "plan": "starter",
+      "status": "active",
+      "seats": 3,
+      "monthly_cents": 2900
+    },
+    "sub_025_2": {
+      "subscription_id": "sub_025_2",
+      "account_id": "acct_025",
+      "plan": "pro",
+      "status": "active",
+      "seats": 14,
+      "monthly_cents": 9900
+    },
+    "sub_026_1": {
+      "subscription_id": "sub_026_1",
+      "account_id": "acct_026",
+      "plan": "pro",
+      "status": "active",
+      "seats": 12,
+      "monthly_cents": 9900
+    },
+    "sub_026_2": {
+      "subscription_id": "sub_026_2",
+      "account_id": "acct_026",
+      "plan": "business",
+      "status": "active",
+      "seats": 29,
+      "monthly_cents": 24900
+    },
+    "sub_027_1": {
+      "subscription_id": "sub_027_1",
+      "account_id": "acct_027",
+      "plan": "business",
+      "status": "active",
+      "seats": 27,
+      "monthly_cents": 24900
+    },
+    "sub_027_2": {
+      "subscription_id": "sub_027_2",
+      "account_id": "acct_027",
+      "plan": "starter",
+      "status": "active",
+      "seats": 7,
+      "monthly_cents": 2900
+    },
+    "sub_028_1": {
+      "subscription_id": "sub_028_1",
+      "account_id": "acct_028",
+      "plan": "starter",
+      "status": "active",
+      "seats": 4,
+      "monthly_cents": 2900
+    },
+    "sub_028_2": {
+      "subscription_id": "sub_028_2",
+      "account_id": "acct_028",
+      "plan": "pro",
+      "status": "active",
+      "seats": 10,
+      "monthly_cents": 9900
+    },
+    "sub_029_1": {
+      "subscription_id": "sub_029_1",
+      "account_id": "acct_029",
+      "plan": "pro",
+      "status": "active",
+      "seats": 10,
+      "monthly_cents": 9900
+    },
+    "sub_029_2": {
+      "subscription_id": "sub_029_2",
+      "account_id": "acct_029",
+      "plan": "business",
+      "status": "active",
+      "seats": 26,
+      "monthly_cents": 24900
+    },
+    "sub_030_1": {
+      "subscription_id": "sub_030_1",
+      "account_id": "acct_030",
+      "plan": "business",
+      "status": "active",
+      "seats": 27,
+      "monthly_cents": 24900
+    },
+    "sub_030_2": {
+      "subscription_id": "sub_030_2",
+      "account_id": "acct_030",
+      "plan": "starter",
+      "status": "active",
+      "seats": 3,
+      "monthly_cents": 2900
+    },
+    "sub_031_1": {
+      "subscription_id": "sub_031_1",
+      "account_id": "acct_031",
+      "plan": "starter",
+      "status": "active",
+      "seats": 4,
+      "monthly_cents": 2900
+    },
+    "sub_031_2": {
+      "subscription_id": "sub_031_2",
+      "account_id": "acct_031",
+      "plan": "pro",
+      "status": "active",
+      "seats": 10,
+      "monthly_cents": 9900
+    },
+    "sub_032_1": {
+      "subscription_id": "sub_032_1",
+      "account_id": "acct_032",
+      "plan": "pro",
+      "status": "active",
+      "seats": 13,
+      "monthly_cents": 9900
+    },
+    "sub_032_2": {
+      "subscription_id": "sub_032_2",
+      "account_id": "acct_032",
+      "plan": "business",
+      "status": "active",
+      "seats": 27,
+      "monthly_cents": 24900
+    },
+    "sub_033_1": {
+      "subscription_id": "sub_033_1",
+      "account_id": "acct_033",
+      "plan": "business",
+      "status": "active",
+      "seats": 28,
+      "monthly_cents": 24900
+    },
+    "sub_033_2": {
+      "subscription_id": "sub_033_2",
+      "account_id": "acct_033",
+      "plan": "starter",
+      "status": "active",
+      "seats": 5,
+      "monthly_cents": 2900
+    },
+    "sub_034_1": {
+      "subscription_id": "sub_034_1",
+      "account_id": "acct_034",
+      "plan": "starter",
+      "status": "active",
+      "seats": 4,
+      "monthly_cents": 2900
+    },
+    "sub_034_2": {
+      "subscription_id": "sub_034_2",
+      "account_id": "acct_034",
+      "plan": "pro",
+      "status": "past_due",
+      "seats": 12,
+      "monthly_cents": 9900
+    },
+    "sub_035_1": {
+      "subscription_id": "sub_035_1",
+      "account_id": "acct_035",
+      "plan": "pro",
+      "status": "past_due",
+      "seats": 12,
+      "monthly_cents": 9900
+    },
+    "sub_035_2": {
+      "subscription_id": "sub_035_2",
+      "account_id": "acct_035",
+      "plan": "business",
+      "status": "active",
+      "seats": 26,
+      "monthly_cents": 24900
+    },
+    "sub_036_1": {
+      "subscription_id": "sub_036_1",
+      "account_id": "acct_036",
+      "plan": "business",
+      "status": "active",
+      "seats": 27,
+      "monthly_cents": 24900
+    },
+    "sub_036_2": {
+      "subscription_id": "sub_036_2",
+      "account_id": "acct_036",
+      "plan": "starter",
+      "status": "active",
+      "seats": 3,
+      "monthly_cents": 2900
+    },
+    "sub_037_1": {
+      "subscription_id": "sub_037_1",
+      "account_id": "acct_037",
+      "plan": "starter",
+      "status": "active",
+      "seats": 7,
+      "monthly_cents": 2900
+    },
+    "sub_037_2": {
+      "subscription_id": "sub_037_2",
+      "account_id": "acct_037",
+      "plan": "pro",
+      "status": "active",
+      "seats": 11,
+      "monthly_cents": 9900
+    },
+    "sub_038_1": {
+      "subscription_id": "sub_038_1",
+      "account_id": "acct_038",
+      "plan": "pro",
+      "status": "active",
+      "seats": 14,
+      "monthly_cents": 9900
+    },
+    "sub_038_2": {
+      "subscription_id": "sub_038_2",
+      "account_id": "acct_038",
+      "plan": "business",
+      "status": "active",
+      "seats": 26,
+      "monthly_cents": 24900
+    },
+    "sub_039_1": {
+      "subscription_id": "sub_039_1",
+      "account_id": "acct_039",
+      "plan": "business",
+      "status": "active",
+      "seats": 26,
+      "monthly_cents": 24900
+    },
+    "sub_039_2": {
+      "subscription_id": "sub_039_2",
+      "account_id": "acct_039",
+      "plan": "starter",
+      "status": "active",
+      "seats": 6,
+      "monthly_cents": 2900
+    },
+    "sub_040_1": {
+      "subscription_id": "sub_040_1",
+      "account_id": "acct_040",
+      "plan": "starter",
+      "status": "active",
+      "seats": 6,
+      "monthly_cents": 2900
+    },
+    "sub_040_2": {
+      "subscription_id": "sub_040_2",
+      "account_id": "acct_040",
+      "plan": "pro",
+      "status": "active",
+      "seats": 12,
+      "monthly_cents": 9900
+    },
+    "sub_041_1": {
+      "subscription_id": "sub_041_1",
+      "account_id": "acct_041",
+      "plan": "pro",
+      "status": "active",
+      "seats": 14,
+      "monthly_cents": 9900
+    },
+    "sub_041_2": {
+      "subscription_id": "sub_041_2",
+      "account_id": "acct_041",
+      "plan": "business",
+      "status": "active",
+      "seats": 26,
+      "monthly_cents": 24900
+    },
+    "sub_042_1": {
+      "subscription_id": "sub_042_1",
+      "account_id": "acct_042",
+      "plan": "business",
+      "status": "active",
+      "seats": 27,
+      "monthly_cents": 24900
+    },
+    "sub_042_2": {
+      "subscription_id": "sub_042_2",
+      "account_id": "acct_042",
+      "plan": "starter",
+      "status": "active",
+      "seats": 3,
+      "monthly_cents": 2900
+    },
+    "sub_043_1": {
+      "subscription_id": "sub_043_1",
+      "account_id": "acct_043",
+      "plan": "starter",
+      "status": "active",
+      "seats": 4,
+      "monthly_cents": 2900
+    },
+    "sub_043_2": {
+      "subscription_id": "sub_043_2",
+      "account_id": "acct_043",
+      "plan": "pro",
+      "status": "active",
+      "seats": 10,
+      "monthly_cents": 9900
+    },
+    "sub_044_1": {
+      "subscription_id": "sub_044_1",
+      "account_id": "acct_044",
+      "plan": "pro",
+      "status": "active",
+      "seats": 12,
+      "monthly_cents": 9900
+    },
+    "sub_044_2": {
+      "subscription_id": "sub_044_2",
+      "account_id": "acct_044",
+      "plan": "business",
+      "status": "active",
+      "seats": 28,
+      "monthly_cents": 24900
+    },
+    "sub_045_1": {
+      "subscription_id": "sub_045_1",
+      "account_id": "acct_045",
+      "plan": "business",
+      "status": "active",
+      "seats": 27,
+      "monthly_cents": 24900
+    },
+    "sub_045_2": {
+      "subscription_id": "sub_045_2",
+      "account_id": "acct_045",
+      "plan": "starter",
+      "status": "active",
+      "seats": 3,
+      "monthly_cents": 2900
+    },
+    "sub_046_1": {
+      "subscription_id": "sub_046_1",
+      "account_id": "acct_046",
+      "plan": "starter",
+      "status": "active",
+      "seats": 4,
+      "monthly_cents": 2900
+    },
+    "sub_046_2": {
+      "subscription_id": "sub_046_2",
+      "account_id": "acct_046",
+      "plan": "pro",
+      "status": "active",
+      "seats": 14,
+      "monthly_cents": 9900
+    },
+    "sub_047_1": {
+      "subscription_id": "sub_047_1",
+      "account_id": "acct_047",
+      "plan": "pro",
+      "status": "active",
+      "seats": 12,
+      "monthly_cents": 9900
+    },
+    "sub_047_2": {
+      "subscription_id": "sub_047_2",
+      "account_id": "acct_047",
+      "plan": "business",
+      "status": "active",
+      "seats": 26,
+      "monthly_cents": 24900
+    },
+    "sub_048_1": {
+      "subscription_id": "sub_048_1",
+      "account_id": "acct_048",
+      "plan": "business",
+      "status": "active",
+      "seats": 28,
+      "monthly_cents": 24900
+    },
+    "sub_048_2": {
+      "subscription_id": "sub_048_2",
+      "account_id": "acct_048",
+      "plan": "starter",
+      "status": "active",
+      "seats": 6,
+      "monthly_cents": 2900
+    }
+  },
+  "invoices": {
+    "inv_avery_open": {
+      "invoice_id": "inv_avery_open",
+      "account_id": "acct_avery",
+      "subscription_id": "sub_avery_1",
+      "status": "open",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-01-15",
+      "billing_address": "100 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_avery_paid": {
+      "invoice_id": "inv_avery_paid",
+      "account_id": "acct_avery",
+      "subscription_id": "sub_avery_2",
+      "status": "paid",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-01-29",
+      "billing_address": "100 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_avery_3": {
+      "invoice_id": "inv_avery_3",
+      "account_id": "acct_avery",
+      "subscription_id": "sub_avery_1",
+      "status": "past_due",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-02-12",
+      "billing_address": "100 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_avery_4": {
+      "invoice_id": "inv_avery_4",
+      "account_id": "acct_avery",
+      "subscription_id": "sub_avery_2",
+      "status": "void",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-02-26",
+      "billing_address": "100 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_noah_open": {
+      "invoice_id": "inv_noah_open",
+      "account_id": "acct_noah",
+      "subscription_id": "sub_noah_1",
+      "status": "open",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2026-01-29",
+      "billing_address": "101 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_noah_2": {
+      "invoice_id": "inv_noah_2",
+      "account_id": "acct_noah",
+      "subscription_id": "sub_noah_2",
+      "status": "past_due",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2026-02-12",
+      "billing_address": "101 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_noah_3": {
+      "invoice_id": "inv_noah_3",
+      "account_id": "acct_noah",
+      "subscription_id": "sub_noah_1",
+      "status": "void",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2026-02-26",
+      "billing_address": "101 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_noah_4": {
+      "invoice_id": "inv_noah_4",
+      "account_id": "acct_noah",
+      "subscription_id": "sub_noah_2",
+      "status": "open",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2026-03-12",
+      "billing_address": "101 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_maya_pastdue": {
+      "invoice_id": "inv_maya_pastdue",
+      "account_id": "acct_maya",
+      "subscription_id": "sub_maya_1",
+      "status": "past_due",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2026-02-12",
+      "billing_address": "102 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_maya_2": {
+      "invoice_id": "inv_maya_2",
+      "account_id": "acct_maya",
+      "subscription_id": "sub_maya_2",
+      "status": "void",
+      "amount_cents": 3600,
+      "currency": "USD",
+      "due_date": "2026-02-26",
+      "billing_address": "102 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 4,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_maya_3": {
+      "invoice_id": "inv_maya_3",
+      "account_id": "acct_maya",
+      "subscription_id": "sub_maya_1",
+      "status": "open",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2026-03-12",
+      "billing_address": "102 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_maya_4": {
+      "invoice_id": "inv_maya_4",
+      "account_id": "acct_maya",
+      "subscription_id": "sub_maya_2",
+      "status": "paid",
+      "amount_cents": 3600,
+      "currency": "USD",
+      "due_date": "2026-03-26",
+      "billing_address": "102 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 4,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_luis_paid": {
+      "invoice_id": "inv_luis_paid",
+      "account_id": "acct_luis",
+      "subscription_id": "sub_luis_1",
+      "status": "paid",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-02-26",
+      "billing_address": "103 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_luis_2": {
+      "invoice_id": "inv_luis_2",
+      "account_id": "acct_luis",
+      "subscription_id": "sub_luis_2",
+      "status": "open",
+      "amount_cents": 12600,
+      "currency": "USD",
+      "due_date": "2026-03-12",
+      "billing_address": "103 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 14,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_luis_3": {
+      "invoice_id": "inv_luis_3",
+      "account_id": "acct_luis",
+      "subscription_id": "sub_luis_1",
+      "status": "paid",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-03-26",
+      "billing_address": "103 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_luis_4": {
+      "invoice_id": "inv_luis_4",
+      "account_id": "acct_luis",
+      "subscription_id": "sub_luis_2",
+      "status": "past_due",
+      "amount_cents": 12600,
+      "currency": "USD",
+      "due_date": "2026-04-09",
+      "billing_address": "103 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 14,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_priya_open": {
+      "invoice_id": "inv_priya_open",
+      "account_id": "acct_priya",
+      "subscription_id": "sub_priya_1",
+      "status": "open",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-03-12",
+      "billing_address": "104 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_priya_2": {
+      "invoice_id": "inv_priya_2",
+      "account_id": "acct_priya",
+      "subscription_id": "sub_priya_2",
+      "status": "paid",
+      "amount_cents": 26100,
+      "currency": "USD",
+      "due_date": "2026-03-26",
+      "billing_address": "104 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 29,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_priya_3": {
+      "invoice_id": "inv_priya_3",
+      "account_id": "acct_priya",
+      "subscription_id": "sub_priya_1",
+      "status": "past_due",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-04-09",
+      "billing_address": "104 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_priya_4": {
+      "invoice_id": "inv_priya_4",
+      "account_id": "acct_priya",
+      "subscription_id": "sub_priya_2",
+      "status": "void",
+      "amount_cents": 26100,
+      "currency": "USD",
+      "due_date": "2026-04-23",
+      "billing_address": "104 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 29,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_jordan_open": {
+      "invoice_id": "inv_jordan_open",
+      "account_id": "acct_jordan",
+      "subscription_id": "sub_jordan_1",
+      "status": "open",
+      "amount_cents": 25200,
+      "currency": "USD",
+      "due_date": "2026-03-26",
+      "billing_address": "105 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 28,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_jordan_2": {
+      "invoice_id": "inv_jordan_2",
+      "account_id": "acct_jordan",
+      "subscription_id": "sub_jordan_2",
+      "status": "past_due",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-04-09",
+      "billing_address": "105 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_jordan_3": {
+      "invoice_id": "inv_jordan_3",
+      "account_id": "acct_jordan",
+      "subscription_id": "sub_jordan_1",
+      "status": "void",
+      "amount_cents": 25200,
+      "currency": "USD",
+      "due_date": "2026-04-23",
+      "billing_address": "105 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 28,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_jordan_4": {
+      "invoice_id": "inv_jordan_4",
+      "account_id": "acct_jordan",
+      "subscription_id": "sub_jordan_2",
+      "status": "open",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-05-07",
+      "billing_address": "105 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_007_1": {
+      "invoice_id": "inv_007_1",
+      "account_id": "acct_007",
+      "subscription_id": "sub_007_1",
+      "status": "past_due",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-04-09",
+      "billing_address": "106 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_007_2": {
+      "invoice_id": "inv_007_2",
+      "account_id": "acct_007",
+      "subscription_id": "sub_007_2",
+      "status": "void",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-04-23",
+      "billing_address": "106 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_007_3": {
+      "invoice_id": "inv_007_3",
+      "account_id": "acct_007",
+      "subscription_id": "sub_007_1",
+      "status": "open",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-05-07",
+      "billing_address": "106 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_007_4": {
+      "invoice_id": "inv_007_4",
+      "account_id": "acct_007",
+      "subscription_id": "sub_007_2",
+      "status": "paid",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-05-21",
+      "billing_address": "106 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_008_1": {
+      "invoice_id": "inv_008_1",
+      "account_id": "acct_008",
+      "subscription_id": "sub_008_1",
+      "status": "void",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-04-23",
+      "billing_address": "107 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 11,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_008_2": {
+      "invoice_id": "inv_008_2",
+      "account_id": "acct_008",
+      "subscription_id": "sub_008_2",
+      "status": "open",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2026-05-07",
+      "billing_address": "107 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_008_3": {
+      "invoice_id": "inv_008_3",
+      "account_id": "acct_008",
+      "subscription_id": "sub_008_1",
+      "status": "paid",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-05-21",
+      "billing_address": "107 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 11,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_008_4": {
+      "invoice_id": "inv_008_4",
+      "account_id": "acct_008",
+      "subscription_id": "sub_008_2",
+      "status": "past_due",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2026-06-04",
+      "billing_address": "107 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_009_1": {
+      "invoice_id": "inv_009_1",
+      "account_id": "acct_009",
+      "subscription_id": "sub_009_1",
+      "status": "open",
+      "amount_cents": 26100,
+      "currency": "USD",
+      "due_date": "2026-05-07",
+      "billing_address": "108 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 29,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_009_2": {
+      "invoice_id": "inv_009_2",
+      "account_id": "acct_009",
+      "subscription_id": "sub_009_2",
+      "status": "paid",
+      "amount_cents": 6300,
+      "currency": "USD",
+      "due_date": "2026-05-21",
+      "billing_address": "108 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 7,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_009_3": {
+      "invoice_id": "inv_009_3",
+      "account_id": "acct_009",
+      "subscription_id": "sub_009_1",
+      "status": "past_due",
+      "amount_cents": 26100,
+      "currency": "USD",
+      "due_date": "2026-06-04",
+      "billing_address": "108 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 29,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_009_4": {
+      "invoice_id": "inv_009_4",
+      "account_id": "acct_009",
+      "subscription_id": "sub_009_2",
+      "status": "void",
+      "amount_cents": 6300,
+      "currency": "USD",
+      "due_date": "2026-06-18",
+      "billing_address": "108 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 7,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_010_1": {
+      "invoice_id": "inv_010_1",
+      "account_id": "acct_010",
+      "subscription_id": "sub_010_1",
+      "status": "paid",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-05-21",
+      "billing_address": "109 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_010_2": {
+      "invoice_id": "inv_010_2",
+      "account_id": "acct_010",
+      "subscription_id": "sub_010_2",
+      "status": "past_due",
+      "amount_cents": 12600,
+      "currency": "USD",
+      "due_date": "2026-06-04",
+      "billing_address": "109 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 14,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_010_3": {
+      "invoice_id": "inv_010_3",
+      "account_id": "acct_010",
+      "subscription_id": "sub_010_1",
+      "status": "void",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-06-18",
+      "billing_address": "109 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_010_4": {
+      "invoice_id": "inv_010_4",
+      "account_id": "acct_010",
+      "subscription_id": "sub_010_2",
+      "status": "open",
+      "amount_cents": 12600,
+      "currency": "USD",
+      "due_date": "2026-07-02",
+      "billing_address": "109 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 14,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_011_1": {
+      "invoice_id": "inv_011_1",
+      "account_id": "acct_011",
+      "subscription_id": "sub_011_1",
+      "status": "past_due",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-06-04",
+      "billing_address": "110 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 11,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_011_2": {
+      "invoice_id": "inv_011_2",
+      "account_id": "acct_011",
+      "subscription_id": "sub_011_2",
+      "status": "void",
+      "amount_cents": 26100,
+      "currency": "USD",
+      "due_date": "2026-06-18",
+      "billing_address": "110 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 29,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_011_3": {
+      "invoice_id": "inv_011_3",
+      "account_id": "acct_011",
+      "subscription_id": "sub_011_1",
+      "status": "open",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-07-02",
+      "billing_address": "110 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 11,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_011_4": {
+      "invoice_id": "inv_011_4",
+      "account_id": "acct_011",
+      "subscription_id": "sub_011_2",
+      "status": "paid",
+      "amount_cents": 26100,
+      "currency": "USD",
+      "due_date": "2026-07-16",
+      "billing_address": "110 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 29,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_012_1": {
+      "invoice_id": "inv_012_1",
+      "account_id": "acct_012",
+      "subscription_id": "sub_012_1",
+      "status": "void",
+      "amount_cents": 25200,
+      "currency": "USD",
+      "due_date": "2026-06-18",
+      "billing_address": "111 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 28,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_012_2": {
+      "invoice_id": "inv_012_2",
+      "account_id": "acct_012",
+      "subscription_id": "sub_012_2",
+      "status": "open",
+      "amount_cents": 3600,
+      "currency": "USD",
+      "due_date": "2026-07-02",
+      "billing_address": "111 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 4,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_012_3": {
+      "invoice_id": "inv_012_3",
+      "account_id": "acct_012",
+      "subscription_id": "sub_012_1",
+      "status": "paid",
+      "amount_cents": 25200,
+      "currency": "USD",
+      "due_date": "2026-07-16",
+      "billing_address": "111 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 28,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_012_4": {
+      "invoice_id": "inv_012_4",
+      "account_id": "acct_012",
+      "subscription_id": "sub_012_2",
+      "status": "past_due",
+      "amount_cents": 3600,
+      "currency": "USD",
+      "due_date": "2026-07-30",
+      "billing_address": "111 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 4,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_013_1": {
+      "invoice_id": "inv_013_1",
+      "account_id": "acct_013",
+      "subscription_id": "sub_013_1",
+      "status": "open",
+      "amount_cents": 5400,
+      "currency": "USD",
+      "due_date": "2026-07-02",
+      "billing_address": "112 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 6,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_013_2": {
+      "invoice_id": "inv_013_2",
+      "account_id": "acct_013",
+      "subscription_id": "sub_013_2",
+      "status": "paid",
+      "amount_cents": 12600,
+      "currency": "USD",
+      "due_date": "2026-07-16",
+      "billing_address": "112 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 14,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_013_3": {
+      "invoice_id": "inv_013_3",
+      "account_id": "acct_013",
+      "subscription_id": "sub_013_1",
+      "status": "past_due",
+      "amount_cents": 5400,
+      "currency": "USD",
+      "due_date": "2026-07-30",
+      "billing_address": "112 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 6,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_013_4": {
+      "invoice_id": "inv_013_4",
+      "account_id": "acct_013",
+      "subscription_id": "sub_013_2",
+      "status": "void",
+      "amount_cents": 12600,
+      "currency": "USD",
+      "due_date": "2026-08-13",
+      "billing_address": "112 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 14,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_014_1": {
+      "invoice_id": "inv_014_1",
+      "account_id": "acct_014",
+      "subscription_id": "sub_014_1",
+      "status": "paid",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2026-07-16",
+      "billing_address": "113 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_014_2": {
+      "invoice_id": "inv_014_2",
+      "account_id": "acct_014",
+      "subscription_id": "sub_014_2",
+      "status": "past_due",
+      "amount_cents": 24900,
+      "currency": "USD",
+      "due_date": "2026-07-30",
+      "billing_address": "113 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 25,
+          "unit_cents": 996
+        }
+      ]
+    },
+    "inv_014_3": {
+      "invoice_id": "inv_014_3",
+      "account_id": "acct_014",
+      "subscription_id": "sub_014_1",
+      "status": "void",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2026-08-13",
+      "billing_address": "113 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_014_4": {
+      "invoice_id": "inv_014_4",
+      "account_id": "acct_014",
+      "subscription_id": "sub_014_2",
+      "status": "open",
+      "amount_cents": 24900,
+      "currency": "USD",
+      "due_date": "2026-08-27",
+      "billing_address": "113 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 25,
+          "unit_cents": 996
+        }
+      ]
+    },
+    "inv_015_1": {
+      "invoice_id": "inv_015_1",
+      "account_id": "acct_015",
+      "subscription_id": "sub_015_1",
+      "status": "past_due",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2026-07-30",
+      "billing_address": "114 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_015_2": {
+      "invoice_id": "inv_015_2",
+      "account_id": "acct_015",
+      "subscription_id": "sub_015_2",
+      "status": "void",
+      "amount_cents": 5400,
+      "currency": "USD",
+      "due_date": "2026-08-13",
+      "billing_address": "114 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 6,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_015_3": {
+      "invoice_id": "inv_015_3",
+      "account_id": "acct_015",
+      "subscription_id": "sub_015_1",
+      "status": "open",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2026-08-27",
+      "billing_address": "114 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_015_4": {
+      "invoice_id": "inv_015_4",
+      "account_id": "acct_015",
+      "subscription_id": "sub_015_2",
+      "status": "paid",
+      "amount_cents": 5400,
+      "currency": "USD",
+      "due_date": "2026-09-10",
+      "billing_address": "114 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 6,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_016_1": {
+      "invoice_id": "inv_016_1",
+      "account_id": "acct_016",
+      "subscription_id": "sub_016_1",
+      "status": "void",
+      "amount_cents": 4500,
+      "currency": "USD",
+      "due_date": "2026-08-13",
+      "billing_address": "115 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 5,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_016_2": {
+      "invoice_id": "inv_016_2",
+      "account_id": "acct_016",
+      "subscription_id": "sub_016_2",
+      "status": "open",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2026-08-27",
+      "billing_address": "115 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_016_3": {
+      "invoice_id": "inv_016_3",
+      "account_id": "acct_016",
+      "subscription_id": "sub_016_1",
+      "status": "paid",
+      "amount_cents": 4500,
+      "currency": "USD",
+      "due_date": "2026-09-10",
+      "billing_address": "115 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 5,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_016_4": {
+      "invoice_id": "inv_016_4",
+      "account_id": "acct_016",
+      "subscription_id": "sub_016_2",
+      "status": "past_due",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2026-09-24",
+      "billing_address": "115 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_017_1": {
+      "invoice_id": "inv_017_1",
+      "account_id": "acct_017",
+      "subscription_id": "sub_017_1",
+      "status": "open",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-08-27",
+      "billing_address": "116 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 11,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_017_2": {
+      "invoice_id": "inv_017_2",
+      "account_id": "acct_017",
+      "subscription_id": "sub_017_2",
+      "status": "paid",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2026-09-10",
+      "billing_address": "116 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_017_3": {
+      "invoice_id": "inv_017_3",
+      "account_id": "acct_017",
+      "subscription_id": "sub_017_1",
+      "status": "past_due",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-09-24",
+      "billing_address": "116 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 11,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_017_4": {
+      "invoice_id": "inv_017_4",
+      "account_id": "acct_017",
+      "subscription_id": "sub_017_2",
+      "status": "void",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2026-10-08",
+      "billing_address": "116 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_018_1": {
+      "invoice_id": "inv_018_1",
+      "account_id": "acct_018",
+      "subscription_id": "sub_018_1",
+      "status": "paid",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2026-09-10",
+      "billing_address": "117 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_018_2": {
+      "invoice_id": "inv_018_2",
+      "account_id": "acct_018",
+      "subscription_id": "sub_018_2",
+      "status": "past_due",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-09-24",
+      "billing_address": "117 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_018_3": {
+      "invoice_id": "inv_018_3",
+      "account_id": "acct_018",
+      "subscription_id": "sub_018_1",
+      "status": "void",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2026-10-08",
+      "billing_address": "117 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_018_4": {
+      "invoice_id": "inv_018_4",
+      "account_id": "acct_018",
+      "subscription_id": "sub_018_2",
+      "status": "open",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "billing_address": "117 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_019_1": {
+      "invoice_id": "inv_019_1",
+      "account_id": "acct_019",
+      "subscription_id": "sub_019_1",
+      "status": "past_due",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-09-24",
+      "billing_address": "118 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_019_2": {
+      "invoice_id": "inv_019_2",
+      "account_id": "acct_019",
+      "subscription_id": "sub_019_2",
+      "status": "void",
+      "amount_cents": 11700,
+      "currency": "USD",
+      "due_date": "2026-10-08",
+      "billing_address": "118 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 13,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_019_3": {
+      "invoice_id": "inv_019_3",
+      "account_id": "acct_019",
+      "subscription_id": "sub_019_1",
+      "status": "open",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "billing_address": "118 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_019_4": {
+      "invoice_id": "inv_019_4",
+      "account_id": "acct_019",
+      "subscription_id": "sub_019_2",
+      "status": "paid",
+      "amount_cents": 11700,
+      "currency": "USD",
+      "due_date": "2026-11-05",
+      "billing_address": "118 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 13,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_020_1": {
+      "invoice_id": "inv_020_1",
+      "account_id": "acct_020",
+      "subscription_id": "sub_020_1",
+      "status": "void",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-10-08",
+      "billing_address": "119 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_020_2": {
+      "invoice_id": "inv_020_2",
+      "account_id": "acct_020",
+      "subscription_id": "sub_020_2",
+      "status": "open",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "billing_address": "119 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_020_3": {
+      "invoice_id": "inv_020_3",
+      "account_id": "acct_020",
+      "subscription_id": "sub_020_1",
+      "status": "paid",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-11-05",
+      "billing_address": "119 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_020_4": {
+      "invoice_id": "inv_020_4",
+      "account_id": "acct_020",
+      "subscription_id": "sub_020_2",
+      "status": "past_due",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2026-11-19",
+      "billing_address": "119 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_021_1": {
+      "invoice_id": "inv_021_1",
+      "account_id": "acct_021",
+      "subscription_id": "sub_021_1",
+      "status": "open",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2026-10-22",
+      "billing_address": "120 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_021_2": {
+      "invoice_id": "inv_021_2",
+      "account_id": "acct_021",
+      "subscription_id": "sub_021_2",
+      "status": "paid",
+      "amount_cents": 6300,
+      "currency": "USD",
+      "due_date": "2026-11-05",
+      "billing_address": "120 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 7,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_021_3": {
+      "invoice_id": "inv_021_3",
+      "account_id": "acct_021",
+      "subscription_id": "sub_021_1",
+      "status": "past_due",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2026-11-19",
+      "billing_address": "120 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_021_4": {
+      "invoice_id": "inv_021_4",
+      "account_id": "acct_021",
+      "subscription_id": "sub_021_2",
+      "status": "void",
+      "amount_cents": 6300,
+      "currency": "USD",
+      "due_date": "2026-12-03",
+      "billing_address": "120 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 7,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_022_1": {
+      "invoice_id": "inv_022_1",
+      "account_id": "acct_022",
+      "subscription_id": "sub_022_1",
+      "status": "paid",
+      "amount_cents": 4500,
+      "currency": "USD",
+      "due_date": "2026-11-05",
+      "billing_address": "121 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 5,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_022_2": {
+      "invoice_id": "inv_022_2",
+      "account_id": "acct_022",
+      "subscription_id": "sub_022_2",
+      "status": "past_due",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-11-19",
+      "billing_address": "121 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_022_3": {
+      "invoice_id": "inv_022_3",
+      "account_id": "acct_022",
+      "subscription_id": "sub_022_1",
+      "status": "void",
+      "amount_cents": 4500,
+      "currency": "USD",
+      "due_date": "2026-12-03",
+      "billing_address": "121 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 5,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_022_4": {
+      "invoice_id": "inv_022_4",
+      "account_id": "acct_022",
+      "subscription_id": "sub_022_2",
+      "status": "open",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2026-12-17",
+      "billing_address": "121 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_023_1": {
+      "invoice_id": "inv_023_1",
+      "account_id": "acct_023",
+      "subscription_id": "sub_023_1",
+      "status": "past_due",
+      "amount_cents": 11700,
+      "currency": "USD",
+      "due_date": "2026-11-19",
+      "billing_address": "122 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 13,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_023_2": {
+      "invoice_id": "inv_023_2",
+      "account_id": "acct_023",
+      "subscription_id": "sub_023_2",
+      "status": "void",
+      "amount_cents": 26100,
+      "currency": "USD",
+      "due_date": "2026-12-03",
+      "billing_address": "122 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 29,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_023_3": {
+      "invoice_id": "inv_023_3",
+      "account_id": "acct_023",
+      "subscription_id": "sub_023_1",
+      "status": "open",
+      "amount_cents": 11700,
+      "currency": "USD",
+      "due_date": "2026-12-17",
+      "billing_address": "122 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 13,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_023_4": {
+      "invoice_id": "inv_023_4",
+      "account_id": "acct_023",
+      "subscription_id": "sub_023_2",
+      "status": "paid",
+      "amount_cents": 26100,
+      "currency": "USD",
+      "due_date": "2026-12-31",
+      "billing_address": "122 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 29,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_024_1": {
+      "invoice_id": "inv_024_1",
+      "account_id": "acct_024",
+      "subscription_id": "sub_024_1",
+      "status": "void",
+      "amount_cents": 24900,
+      "currency": "USD",
+      "due_date": "2026-12-03",
+      "billing_address": "123 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 25,
+          "unit_cents": 996
+        }
+      ]
+    },
+    "inv_024_2": {
+      "invoice_id": "inv_024_2",
+      "account_id": "acct_024",
+      "subscription_id": "sub_024_2",
+      "status": "open",
+      "amount_cents": 5400,
+      "currency": "USD",
+      "due_date": "2026-12-17",
+      "billing_address": "123 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 6,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_024_3": {
+      "invoice_id": "inv_024_3",
+      "account_id": "acct_024",
+      "subscription_id": "sub_024_1",
+      "status": "paid",
+      "amount_cents": 24900,
+      "currency": "USD",
+      "due_date": "2026-12-31",
+      "billing_address": "123 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 25,
+          "unit_cents": 996
+        }
+      ]
+    },
+    "inv_024_4": {
+      "invoice_id": "inv_024_4",
+      "account_id": "acct_024",
+      "subscription_id": "sub_024_2",
+      "status": "past_due",
+      "amount_cents": 5400,
+      "currency": "USD",
+      "due_date": "2027-01-14",
+      "billing_address": "123 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 6,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_025_1": {
+      "invoice_id": "inv_025_1",
+      "account_id": "acct_025",
+      "subscription_id": "sub_025_1",
+      "status": "open",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2026-12-17",
+      "billing_address": "124 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_025_2": {
+      "invoice_id": "inv_025_2",
+      "account_id": "acct_025",
+      "subscription_id": "sub_025_2",
+      "status": "paid",
+      "amount_cents": 12600,
+      "currency": "USD",
+      "due_date": "2026-12-31",
+      "billing_address": "124 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 14,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_025_3": {
+      "invoice_id": "inv_025_3",
+      "account_id": "acct_025",
+      "subscription_id": "sub_025_1",
+      "status": "past_due",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2027-01-14",
+      "billing_address": "124 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_025_4": {
+      "invoice_id": "inv_025_4",
+      "account_id": "acct_025",
+      "subscription_id": "sub_025_2",
+      "status": "void",
+      "amount_cents": 12600,
+      "currency": "USD",
+      "due_date": "2027-01-28",
+      "billing_address": "124 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 14,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_026_1": {
+      "invoice_id": "inv_026_1",
+      "account_id": "acct_026",
+      "subscription_id": "sub_026_1",
+      "status": "paid",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2026-12-31",
+      "billing_address": "125 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_026_2": {
+      "invoice_id": "inv_026_2",
+      "account_id": "acct_026",
+      "subscription_id": "sub_026_2",
+      "status": "past_due",
+      "amount_cents": 26100,
+      "currency": "USD",
+      "due_date": "2027-01-14",
+      "billing_address": "125 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 29,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_026_3": {
+      "invoice_id": "inv_026_3",
+      "account_id": "acct_026",
+      "subscription_id": "sub_026_1",
+      "status": "void",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2027-01-28",
+      "billing_address": "125 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_026_4": {
+      "invoice_id": "inv_026_4",
+      "account_id": "acct_026",
+      "subscription_id": "sub_026_2",
+      "status": "open",
+      "amount_cents": 26100,
+      "currency": "USD",
+      "due_date": "2027-02-11",
+      "billing_address": "125 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 29,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_027_1": {
+      "invoice_id": "inv_027_1",
+      "account_id": "acct_027",
+      "subscription_id": "sub_027_1",
+      "status": "past_due",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2027-01-14",
+      "billing_address": "126 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_027_2": {
+      "invoice_id": "inv_027_2",
+      "account_id": "acct_027",
+      "subscription_id": "sub_027_2",
+      "status": "void",
+      "amount_cents": 6300,
+      "currency": "USD",
+      "due_date": "2027-01-28",
+      "billing_address": "126 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 7,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_027_3": {
+      "invoice_id": "inv_027_3",
+      "account_id": "acct_027",
+      "subscription_id": "sub_027_1",
+      "status": "open",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2027-02-11",
+      "billing_address": "126 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_027_4": {
+      "invoice_id": "inv_027_4",
+      "account_id": "acct_027",
+      "subscription_id": "sub_027_2",
+      "status": "paid",
+      "amount_cents": 6300,
+      "currency": "USD",
+      "due_date": "2027-02-25",
+      "billing_address": "126 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 7,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_028_1": {
+      "invoice_id": "inv_028_1",
+      "account_id": "acct_028",
+      "subscription_id": "sub_028_1",
+      "status": "void",
+      "amount_cents": 3600,
+      "currency": "USD",
+      "due_date": "2027-01-28",
+      "billing_address": "127 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 4,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_028_2": {
+      "invoice_id": "inv_028_2",
+      "account_id": "acct_028",
+      "subscription_id": "sub_028_2",
+      "status": "open",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2027-02-11",
+      "billing_address": "127 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_028_3": {
+      "invoice_id": "inv_028_3",
+      "account_id": "acct_028",
+      "subscription_id": "sub_028_1",
+      "status": "paid",
+      "amount_cents": 3600,
+      "currency": "USD",
+      "due_date": "2027-02-25",
+      "billing_address": "127 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 4,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_028_4": {
+      "invoice_id": "inv_028_4",
+      "account_id": "acct_028",
+      "subscription_id": "sub_028_2",
+      "status": "past_due",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2027-03-11",
+      "billing_address": "127 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_029_1": {
+      "invoice_id": "inv_029_1",
+      "account_id": "acct_029",
+      "subscription_id": "sub_029_1",
+      "status": "open",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2027-02-11",
+      "billing_address": "128 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_029_2": {
+      "invoice_id": "inv_029_2",
+      "account_id": "acct_029",
+      "subscription_id": "sub_029_2",
+      "status": "paid",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2027-02-25",
+      "billing_address": "128 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_029_3": {
+      "invoice_id": "inv_029_3",
+      "account_id": "acct_029",
+      "subscription_id": "sub_029_1",
+      "status": "past_due",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2027-03-11",
+      "billing_address": "128 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_029_4": {
+      "invoice_id": "inv_029_4",
+      "account_id": "acct_029",
+      "subscription_id": "sub_029_2",
+      "status": "void",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2027-03-25",
+      "billing_address": "128 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_030_1": {
+      "invoice_id": "inv_030_1",
+      "account_id": "acct_030",
+      "subscription_id": "sub_030_1",
+      "status": "paid",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2027-02-25",
+      "billing_address": "129 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_030_2": {
+      "invoice_id": "inv_030_2",
+      "account_id": "acct_030",
+      "subscription_id": "sub_030_2",
+      "status": "past_due",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2027-03-11",
+      "billing_address": "129 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_030_3": {
+      "invoice_id": "inv_030_3",
+      "account_id": "acct_030",
+      "subscription_id": "sub_030_1",
+      "status": "void",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2027-03-25",
+      "billing_address": "129 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_030_4": {
+      "invoice_id": "inv_030_4",
+      "account_id": "acct_030",
+      "subscription_id": "sub_030_2",
+      "status": "open",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2027-04-08",
+      "billing_address": "129 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_031_1": {
+      "invoice_id": "inv_031_1",
+      "account_id": "acct_031",
+      "subscription_id": "sub_031_1",
+      "status": "past_due",
+      "amount_cents": 3600,
+      "currency": "USD",
+      "due_date": "2027-03-11",
+      "billing_address": "130 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 4,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_031_2": {
+      "invoice_id": "inv_031_2",
+      "account_id": "acct_031",
+      "subscription_id": "sub_031_2",
+      "status": "void",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2027-03-25",
+      "billing_address": "130 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_031_3": {
+      "invoice_id": "inv_031_3",
+      "account_id": "acct_031",
+      "subscription_id": "sub_031_1",
+      "status": "open",
+      "amount_cents": 3600,
+      "currency": "USD",
+      "due_date": "2027-04-08",
+      "billing_address": "130 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 4,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_031_4": {
+      "invoice_id": "inv_031_4",
+      "account_id": "acct_031",
+      "subscription_id": "sub_031_2",
+      "status": "paid",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2027-04-22",
+      "billing_address": "130 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_032_1": {
+      "invoice_id": "inv_032_1",
+      "account_id": "acct_032",
+      "subscription_id": "sub_032_1",
+      "status": "void",
+      "amount_cents": 11700,
+      "currency": "USD",
+      "due_date": "2027-03-25",
+      "billing_address": "131 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 13,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_032_2": {
+      "invoice_id": "inv_032_2",
+      "account_id": "acct_032",
+      "subscription_id": "sub_032_2",
+      "status": "open",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2027-04-08",
+      "billing_address": "131 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_032_3": {
+      "invoice_id": "inv_032_3",
+      "account_id": "acct_032",
+      "subscription_id": "sub_032_1",
+      "status": "paid",
+      "amount_cents": 11700,
+      "currency": "USD",
+      "due_date": "2027-04-22",
+      "billing_address": "131 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 13,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_032_4": {
+      "invoice_id": "inv_032_4",
+      "account_id": "acct_032",
+      "subscription_id": "sub_032_2",
+      "status": "past_due",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2027-05-06",
+      "billing_address": "131 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_033_1": {
+      "invoice_id": "inv_033_1",
+      "account_id": "acct_033",
+      "subscription_id": "sub_033_1",
+      "status": "open",
+      "amount_cents": 25200,
+      "currency": "USD",
+      "due_date": "2027-04-08",
+      "billing_address": "132 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 28,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_033_2": {
+      "invoice_id": "inv_033_2",
+      "account_id": "acct_033",
+      "subscription_id": "sub_033_2",
+      "status": "paid",
+      "amount_cents": 4500,
+      "currency": "USD",
+      "due_date": "2027-04-22",
+      "billing_address": "132 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 5,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_033_3": {
+      "invoice_id": "inv_033_3",
+      "account_id": "acct_033",
+      "subscription_id": "sub_033_1",
+      "status": "past_due",
+      "amount_cents": 25200,
+      "currency": "USD",
+      "due_date": "2027-05-06",
+      "billing_address": "132 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 28,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_033_4": {
+      "invoice_id": "inv_033_4",
+      "account_id": "acct_033",
+      "subscription_id": "sub_033_2",
+      "status": "void",
+      "amount_cents": 4500,
+      "currency": "USD",
+      "due_date": "2027-05-20",
+      "billing_address": "132 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 5,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_034_1": {
+      "invoice_id": "inv_034_1",
+      "account_id": "acct_034",
+      "subscription_id": "sub_034_1",
+      "status": "paid",
+      "amount_cents": 3600,
+      "currency": "USD",
+      "due_date": "2027-04-22",
+      "billing_address": "133 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 4,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_034_2": {
+      "invoice_id": "inv_034_2",
+      "account_id": "acct_034",
+      "subscription_id": "sub_034_2",
+      "status": "past_due",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2027-05-06",
+      "billing_address": "133 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_034_3": {
+      "invoice_id": "inv_034_3",
+      "account_id": "acct_034",
+      "subscription_id": "sub_034_1",
+      "status": "void",
+      "amount_cents": 3600,
+      "currency": "USD",
+      "due_date": "2027-05-20",
+      "billing_address": "133 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 4,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_034_4": {
+      "invoice_id": "inv_034_4",
+      "account_id": "acct_034",
+      "subscription_id": "sub_034_2",
+      "status": "open",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2027-06-03",
+      "billing_address": "133 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_035_1": {
+      "invoice_id": "inv_035_1",
+      "account_id": "acct_035",
+      "subscription_id": "sub_035_1",
+      "status": "past_due",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2027-05-06",
+      "billing_address": "134 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_035_2": {
+      "invoice_id": "inv_035_2",
+      "account_id": "acct_035",
+      "subscription_id": "sub_035_2",
+      "status": "void",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2027-05-20",
+      "billing_address": "134 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_035_3": {
+      "invoice_id": "inv_035_3",
+      "account_id": "acct_035",
+      "subscription_id": "sub_035_1",
+      "status": "open",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2027-06-03",
+      "billing_address": "134 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_035_4": {
+      "invoice_id": "inv_035_4",
+      "account_id": "acct_035",
+      "subscription_id": "sub_035_2",
+      "status": "paid",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2027-06-17",
+      "billing_address": "134 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_036_1": {
+      "invoice_id": "inv_036_1",
+      "account_id": "acct_036",
+      "subscription_id": "sub_036_1",
+      "status": "void",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2027-05-20",
+      "billing_address": "135 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_036_2": {
+      "invoice_id": "inv_036_2",
+      "account_id": "acct_036",
+      "subscription_id": "sub_036_2",
+      "status": "open",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2027-06-03",
+      "billing_address": "135 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_036_3": {
+      "invoice_id": "inv_036_3",
+      "account_id": "acct_036",
+      "subscription_id": "sub_036_1",
+      "status": "paid",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2027-06-17",
+      "billing_address": "135 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_036_4": {
+      "invoice_id": "inv_036_4",
+      "account_id": "acct_036",
+      "subscription_id": "sub_036_2",
+      "status": "past_due",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2027-07-01",
+      "billing_address": "135 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_037_1": {
+      "invoice_id": "inv_037_1",
+      "account_id": "acct_037",
+      "subscription_id": "sub_037_1",
+      "status": "open",
+      "amount_cents": 6300,
+      "currency": "USD",
+      "due_date": "2027-06-03",
+      "billing_address": "136 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 7,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_037_2": {
+      "invoice_id": "inv_037_2",
+      "account_id": "acct_037",
+      "subscription_id": "sub_037_2",
+      "status": "paid",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2027-06-17",
+      "billing_address": "136 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 11,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_037_3": {
+      "invoice_id": "inv_037_3",
+      "account_id": "acct_037",
+      "subscription_id": "sub_037_1",
+      "status": "past_due",
+      "amount_cents": 6300,
+      "currency": "USD",
+      "due_date": "2027-07-01",
+      "billing_address": "136 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 7,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_037_4": {
+      "invoice_id": "inv_037_4",
+      "account_id": "acct_037",
+      "subscription_id": "sub_037_2",
+      "status": "void",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2027-07-15",
+      "billing_address": "136 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 11,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_038_1": {
+      "invoice_id": "inv_038_1",
+      "account_id": "acct_038",
+      "subscription_id": "sub_038_1",
+      "status": "paid",
+      "amount_cents": 12600,
+      "currency": "USD",
+      "due_date": "2027-06-17",
+      "billing_address": "137 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 14,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_038_2": {
+      "invoice_id": "inv_038_2",
+      "account_id": "acct_038",
+      "subscription_id": "sub_038_2",
+      "status": "past_due",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2027-07-01",
+      "billing_address": "137 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_038_3": {
+      "invoice_id": "inv_038_3",
+      "account_id": "acct_038",
+      "subscription_id": "sub_038_1",
+      "status": "void",
+      "amount_cents": 12600,
+      "currency": "USD",
+      "due_date": "2027-07-15",
+      "billing_address": "137 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 14,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_038_4": {
+      "invoice_id": "inv_038_4",
+      "account_id": "acct_038",
+      "subscription_id": "sub_038_2",
+      "status": "open",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2027-07-29",
+      "billing_address": "137 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_039_1": {
+      "invoice_id": "inv_039_1",
+      "account_id": "acct_039",
+      "subscription_id": "sub_039_1",
+      "status": "past_due",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2027-07-01",
+      "billing_address": "138 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_039_2": {
+      "invoice_id": "inv_039_2",
+      "account_id": "acct_039",
+      "subscription_id": "sub_039_2",
+      "status": "void",
+      "amount_cents": 5400,
+      "currency": "USD",
+      "due_date": "2027-07-15",
+      "billing_address": "138 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 6,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_039_3": {
+      "invoice_id": "inv_039_3",
+      "account_id": "acct_039",
+      "subscription_id": "sub_039_1",
+      "status": "open",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2027-07-29",
+      "billing_address": "138 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_039_4": {
+      "invoice_id": "inv_039_4",
+      "account_id": "acct_039",
+      "subscription_id": "sub_039_2",
+      "status": "paid",
+      "amount_cents": 5400,
+      "currency": "USD",
+      "due_date": "2027-08-12",
+      "billing_address": "138 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 6,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_040_1": {
+      "invoice_id": "inv_040_1",
+      "account_id": "acct_040",
+      "subscription_id": "sub_040_1",
+      "status": "void",
+      "amount_cents": 5400,
+      "currency": "USD",
+      "due_date": "2027-07-15",
+      "billing_address": "139 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 6,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_040_2": {
+      "invoice_id": "inv_040_2",
+      "account_id": "acct_040",
+      "subscription_id": "sub_040_2",
+      "status": "open",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2027-07-29",
+      "billing_address": "139 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_040_3": {
+      "invoice_id": "inv_040_3",
+      "account_id": "acct_040",
+      "subscription_id": "sub_040_1",
+      "status": "paid",
+      "amount_cents": 5400,
+      "currency": "USD",
+      "due_date": "2027-08-12",
+      "billing_address": "139 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 6,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_040_4": {
+      "invoice_id": "inv_040_4",
+      "account_id": "acct_040",
+      "subscription_id": "sub_040_2",
+      "status": "past_due",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2027-08-26",
+      "billing_address": "139 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_041_1": {
+      "invoice_id": "inv_041_1",
+      "account_id": "acct_041",
+      "subscription_id": "sub_041_1",
+      "status": "open",
+      "amount_cents": 12600,
+      "currency": "USD",
+      "due_date": "2027-07-29",
+      "billing_address": "140 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 14,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_041_2": {
+      "invoice_id": "inv_041_2",
+      "account_id": "acct_041",
+      "subscription_id": "sub_041_2",
+      "status": "paid",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2027-08-12",
+      "billing_address": "140 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_041_3": {
+      "invoice_id": "inv_041_3",
+      "account_id": "acct_041",
+      "subscription_id": "sub_041_1",
+      "status": "past_due",
+      "amount_cents": 12600,
+      "currency": "USD",
+      "due_date": "2027-08-26",
+      "billing_address": "140 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 14,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_041_4": {
+      "invoice_id": "inv_041_4",
+      "account_id": "acct_041",
+      "subscription_id": "sub_041_2",
+      "status": "void",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2027-09-09",
+      "billing_address": "140 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_042_1": {
+      "invoice_id": "inv_042_1",
+      "account_id": "acct_042",
+      "subscription_id": "sub_042_1",
+      "status": "paid",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2027-08-12",
+      "billing_address": "141 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_042_2": {
+      "invoice_id": "inv_042_2",
+      "account_id": "acct_042",
+      "subscription_id": "sub_042_2",
+      "status": "past_due",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2027-08-26",
+      "billing_address": "141 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_042_3": {
+      "invoice_id": "inv_042_3",
+      "account_id": "acct_042",
+      "subscription_id": "sub_042_1",
+      "status": "void",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2027-09-09",
+      "billing_address": "141 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_042_4": {
+      "invoice_id": "inv_042_4",
+      "account_id": "acct_042",
+      "subscription_id": "sub_042_2",
+      "status": "open",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2027-09-23",
+      "billing_address": "141 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_043_1": {
+      "invoice_id": "inv_043_1",
+      "account_id": "acct_043",
+      "subscription_id": "sub_043_1",
+      "status": "past_due",
+      "amount_cents": 3600,
+      "currency": "USD",
+      "due_date": "2027-08-26",
+      "billing_address": "142 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 4,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_043_2": {
+      "invoice_id": "inv_043_2",
+      "account_id": "acct_043",
+      "subscription_id": "sub_043_2",
+      "status": "void",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2027-09-09",
+      "billing_address": "142 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_043_3": {
+      "invoice_id": "inv_043_3",
+      "account_id": "acct_043",
+      "subscription_id": "sub_043_1",
+      "status": "open",
+      "amount_cents": 3600,
+      "currency": "USD",
+      "due_date": "2027-09-23",
+      "billing_address": "142 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 4,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_043_4": {
+      "invoice_id": "inv_043_4",
+      "account_id": "acct_043",
+      "subscription_id": "sub_043_2",
+      "status": "paid",
+      "amount_cents": 9900,
+      "currency": "USD",
+      "due_date": "2027-10-07",
+      "billing_address": "142 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 10,
+          "unit_cents": 990
+        }
+      ]
+    },
+    "inv_044_1": {
+      "invoice_id": "inv_044_1",
+      "account_id": "acct_044",
+      "subscription_id": "sub_044_1",
+      "status": "void",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2027-09-09",
+      "billing_address": "143 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_044_2": {
+      "invoice_id": "inv_044_2",
+      "account_id": "acct_044",
+      "subscription_id": "sub_044_2",
+      "status": "open",
+      "amount_cents": 25200,
+      "currency": "USD",
+      "due_date": "2027-09-23",
+      "billing_address": "143 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 28,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_044_3": {
+      "invoice_id": "inv_044_3",
+      "account_id": "acct_044",
+      "subscription_id": "sub_044_1",
+      "status": "paid",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2027-10-07",
+      "billing_address": "143 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_044_4": {
+      "invoice_id": "inv_044_4",
+      "account_id": "acct_044",
+      "subscription_id": "sub_044_2",
+      "status": "past_due",
+      "amount_cents": 25200,
+      "currency": "USD",
+      "due_date": "2027-10-21",
+      "billing_address": "143 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 28,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_045_1": {
+      "invoice_id": "inv_045_1",
+      "account_id": "acct_045",
+      "subscription_id": "sub_045_1",
+      "status": "open",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2027-09-23",
+      "billing_address": "144 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_045_2": {
+      "invoice_id": "inv_045_2",
+      "account_id": "acct_045",
+      "subscription_id": "sub_045_2",
+      "status": "paid",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2027-10-07",
+      "billing_address": "144 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_045_3": {
+      "invoice_id": "inv_045_3",
+      "account_id": "acct_045",
+      "subscription_id": "sub_045_1",
+      "status": "past_due",
+      "amount_cents": 24894,
+      "currency": "USD",
+      "due_date": "2027-10-21",
+      "billing_address": "144 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 27,
+          "unit_cents": 922
+        }
+      ]
+    },
+    "inv_045_4": {
+      "invoice_id": "inv_045_4",
+      "account_id": "acct_045",
+      "subscription_id": "sub_045_2",
+      "status": "void",
+      "amount_cents": 2898,
+      "currency": "USD",
+      "due_date": "2027-11-04",
+      "billing_address": "144 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 3,
+          "unit_cents": 966
+        }
+      ]
+    },
+    "inv_046_1": {
+      "invoice_id": "inv_046_1",
+      "account_id": "acct_046",
+      "subscription_id": "sub_046_1",
+      "status": "paid",
+      "amount_cents": 3600,
+      "currency": "USD",
+      "due_date": "2027-10-07",
+      "billing_address": "145 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 4,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_046_2": {
+      "invoice_id": "inv_046_2",
+      "account_id": "acct_046",
+      "subscription_id": "sub_046_2",
+      "status": "past_due",
+      "amount_cents": 12600,
+      "currency": "USD",
+      "due_date": "2027-10-21",
+      "billing_address": "145 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 14,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_046_3": {
+      "invoice_id": "inv_046_3",
+      "account_id": "acct_046",
+      "subscription_id": "sub_046_1",
+      "status": "void",
+      "amount_cents": 3600,
+      "currency": "USD",
+      "due_date": "2027-11-04",
+      "billing_address": "145 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 4,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_046_4": {
+      "invoice_id": "inv_046_4",
+      "account_id": "acct_046",
+      "subscription_id": "sub_046_2",
+      "status": "open",
+      "amount_cents": 12600,
+      "currency": "USD",
+      "due_date": "2027-11-18",
+      "billing_address": "145 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 14,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_047_1": {
+      "invoice_id": "inv_047_1",
+      "account_id": "acct_047",
+      "subscription_id": "sub_047_1",
+      "status": "past_due",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2027-10-21",
+      "billing_address": "146 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_047_2": {
+      "invoice_id": "inv_047_2",
+      "account_id": "acct_047",
+      "subscription_id": "sub_047_2",
+      "status": "void",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2027-11-04",
+      "billing_address": "146 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_047_3": {
+      "invoice_id": "inv_047_3",
+      "account_id": "acct_047",
+      "subscription_id": "sub_047_1",
+      "status": "open",
+      "amount_cents": 10800,
+      "currency": "USD",
+      "due_date": "2027-11-18",
+      "billing_address": "146 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Pro plan seats",
+          "quantity": 12,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_047_4": {
+      "invoice_id": "inv_047_4",
+      "account_id": "acct_047",
+      "subscription_id": "sub_047_2",
+      "status": "paid",
+      "amount_cents": 24882,
+      "currency": "USD",
+      "due_date": "2027-12-02",
+      "billing_address": "146 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 26,
+          "unit_cents": 957
+        }
+      ]
+    },
+    "inv_048_1": {
+      "invoice_id": "inv_048_1",
+      "account_id": "acct_048",
+      "subscription_id": "sub_048_1",
+      "status": "void",
+      "amount_cents": 25200,
+      "currency": "USD",
+      "due_date": "2027-11-04",
+      "billing_address": "147 Market St, Suite 1",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 28,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_048_2": {
+      "invoice_id": "inv_048_2",
+      "account_id": "acct_048",
+      "subscription_id": "sub_048_2",
+      "status": "open",
+      "amount_cents": 5400,
+      "currency": "USD",
+      "due_date": "2027-11-18",
+      "billing_address": "147 Market St, Suite 2",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 6,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_048_3": {
+      "invoice_id": "inv_048_3",
+      "account_id": "acct_048",
+      "subscription_id": "sub_048_1",
+      "status": "paid",
+      "amount_cents": 25200,
+      "currency": "USD",
+      "due_date": "2027-12-02",
+      "billing_address": "147 Market St, Suite 3",
+      "line_items": [
+        {
+          "description": "Business plan seats",
+          "quantity": 28,
+          "unit_cents": 900
+        }
+      ]
+    },
+    "inv_048_4": {
+      "invoice_id": "inv_048_4",
+      "account_id": "acct_048",
+      "subscription_id": "sub_048_2",
+      "status": "past_due",
+      "amount_cents": 5400,
+      "currency": "USD",
+      "due_date": "2027-12-16",
+      "billing_address": "147 Market St, Suite 4",
+      "line_items": [
+        {
+          "description": "Starter plan seats",
+          "quantity": 6,
+          "unit_cents": 900
+        }
+      ]
+    }
+  }
+}

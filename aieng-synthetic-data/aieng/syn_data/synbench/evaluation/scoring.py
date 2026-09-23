@@ -26,6 +26,7 @@ class ScoreResult:
     missing_communicate: list[str]
     execution_ok: bool = True
     tool_errors: list[str] = field(default_factory=list)
+    dialogue_turns: int = 0
 
 
 def failed_execution_score(errors: list[str]) -> ScoreResult:
@@ -55,6 +56,7 @@ def score_trajectory(
     agent_messages: list[str],
     *,
     tool_errors: list[str] | None = None,
+    dialogue_turns: int = 0,
 ) -> ScoreResult:
     """Score a recorded trajectory by replaying it on a fresh environment.
 
@@ -97,6 +99,7 @@ def score_trajectory(
         missing_communicate=missing,
         execution_ok=True,
         tool_errors=errors,
+        dialogue_turns=dialogue_turns,
     )
 
 
@@ -121,4 +124,5 @@ def score_agent_run(
         session.agent_actions,
         session.agent_messages,
         tool_errors=session.tool_errors,
+        dialogue_turns=session.dialogue_turns,
     )

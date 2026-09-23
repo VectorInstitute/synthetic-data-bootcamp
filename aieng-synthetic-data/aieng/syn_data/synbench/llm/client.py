@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Protocol
 
-from aieng.syn_data.synbench.llm.config import get_model
+from aieng.syn_data.synbench.llm.config import get_agent_model
 from aieng.syn_data.synbench.schemas.actions import Action
 
 
@@ -37,9 +37,14 @@ class LLMClient(Protocol):
 
 
 def get_client(model: str | None = None) -> LLMClient:
-    """Build the remote OpenAI-compatible chat client."""
+    """Build the remote OpenAI-compatible chat client.
+
+    Args:
+        model: The model to use for the chat client. Can be either the agent model
+            or the generator model. If None, defaults to the agent model.
+    """
     # Imported lazily so chat_client's optional openai dependency is not
     # required just to import this module (e.g. for LLMClient / LLMResponse).
     from aieng.syn_data.synbench.llm.chat_client import ChatClient  # noqa: PLC0415
 
-    return ChatClient(model=model or get_model())
+    return ChatClient(model=model or get_agent_model())

@@ -32,3 +32,18 @@ def test_pass_at_1_partial():
     metrics.add("task_a", _score(1.0))
     metrics.add("task_b", _score(0.0))
     assert metrics.pass_at_1() == 0.5
+
+
+def test_summary_includes_dialogue_turns():
+    """Per-run dialogue_turns and mean_dialogue_turns appear in the summary."""
+    metrics = MetricsCollector()
+    first = _score(1.0)
+    first.dialogue_turns = 1
+    second = _score(0.0)
+    second.dialogue_turns = 3
+    metrics.add("task_a", first)
+    metrics.add("task_b", second)
+    summary = metrics.summary()
+    assert summary["mean_dialogue_turns"] == 2.0
+    assert summary["runs"][0]["dialogue_turns"] == 1
+    assert summary["runs"][1]["dialogue_turns"] == 3

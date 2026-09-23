@@ -1,0 +1,877 @@
+{
+  "tasks": [
+    {
+      "id": "scale_inquiry_rushed",
+      "description": "Look up a voided invoice",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Finn Evans",
+        "personality_style": "rushed",
+        "instructions": "Ask for the status, amount, and due date of invoice inv_041_4.",
+        "initial_message": "I need my invoice details right now. Just tell me the status and amount quickly."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_041_4"
+            }
+          }
+        ],
+        "communicate_info": [
+          "void"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_inquiry_anxious",
+      "description": "Look up an invoice",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Amara Brooks",
+        "personality_style": "anxious",
+        "instructions": "Ask for the status, amount, and due date of invoice inv_008_1.",
+        "initial_message": "I'm so worried that my service might get disrupted! Can someone please check my recent invoice? I really need to make sure I know how much it is and if there are any issues."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_008_1"
+            }
+          }
+        ],
+        "communicate_info": [
+          "void"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_inquiry_rule_breaker",
+      "description": "Look up invoice details",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Noah Patel",
+        "personality_style": "rule_breaker",
+        "instructions": "Ask for the status, amount, and due date of invoice inv_noah_3.",
+        "initial_message": "I need the details of my latest invoice immediately. Don't waste my time with standard procedures or asking me to verify twenty things, just look it up!"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_noah_3"
+            }
+          }
+        ],
+        "communicate_info": [
+          "void",
+          "108",
+          "2026-02-26"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_inquiry_inconsistent",
+      "description": "Look up an open invoice",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Grace Foster",
+        "personality_style": "inconsistent",
+        "instructions": "Ask for the status, amount, and due date of invoice inv_048_2.",
+        "initial_message": "Hi, I need to add more seats to my plan. Wait, no, actually let's hold off on that. I just need to check my current invoice instead. I can't remember if I owe anything on it right now."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_048_2"
+            }
+          }
+        ],
+        "communicate_info": [
+          "open",
+          "54",
+          "2027-11-18"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_inquiry_domain_expert",
+      "description": "Look up the details of a voided invoice",
+      "task_type": "inquiry",
+      "user_scenario": {
+        "user_name": "Ben Foster",
+        "personality_style": "domain_expert",
+        "instructions": "Ask for the status, amount, and due date of invoice inv_018_3.",
+        "initial_message": "I am reviewing our SaaS billing records and need to verify the ledger entries for my latest invoice. Please confirm its current status, total amount, and due date. Proceed with your standard identity and ownership checks, and let me know what details you require."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "find_account_id",
+            "arguments": {
+              "name": "Ben Foster"
+            }
+          },
+          {
+            "name": "list_invoices",
+            "arguments": {
+              "account_id": "acct_018"
+            }
+          },
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_018_3"
+            }
+          }
+        ],
+        "communicate_info": [
+          "void",
+          "248.94",
+          "2026-10-08"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_void_invoice_rushed",
+      "description": "Void an open invoice",
+      "task_type": "void_invoice",
+      "user_scenario": {
+        "user_name": "Ben Cole",
+        "personality_style": "rushed",
+        "instructions": "Request that open invoice inv_015_3 be voided. Your full name is Ben Cole.",
+        "initial_message": "Cancel my open invoice right now! I don't have time to wait, I need this done ASAP."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "find_account_id",
+            "arguments": {
+              "name": "Ben Cole"
+            }
+          },
+          {
+            "name": "list_invoices",
+            "arguments": {
+              "account_id": "acct_015"
+            }
+          },
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_015_3"
+            }
+          },
+          {
+            "name": "void_invoice",
+            "arguments": {
+              "invoice_id": "inv_015_3"
+            }
+          }
+        ],
+        "communicate_info": [
+          "voided"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_void_invoice_anxious",
+      "description": "Void an eligible invoice after lookup",
+      "task_type": "void_invoice",
+      "user_scenario": {
+        "user_name": "Ben Brooks",
+        "personality_style": "anxious",
+        "instructions": "Request that past-due invoice inv_014_2 be voided.",
+        "initial_message": "Oh no, I'm really worried. I have a past-due invoice and I'm scared my service will be cut off or I'll be charged unexpectedly. Can you please cancel it for me?"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_014_2"
+            }
+          },
+          {
+            "name": "void_invoice",
+            "arguments": {
+              "invoice_id": "inv_014_2"
+            }
+          }
+        ],
+        "communicate_info": [
+          "voided"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_void_invoice_rule_breaker",
+      "description": "Void a past-due invoice",
+      "task_type": "void_invoice",
+      "user_scenario": {
+        "user_name": "Amara Brooks",
+        "personality_style": "rule_breaker",
+        "instructions": "Request that past-due invoice inv_008_4 be voided.",
+        "initial_message": "This overdue invoice I got is ridiculous! I'm not paying it, so you guys better just wipe it right now. Don't bore me with your standard policies, just make it go away."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "find_account_id",
+            "arguments": {
+              "name": "Amara Brooks"
+            }
+          },
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_008_4"
+            }
+          },
+          {
+            "name": "void_invoice",
+            "arguments": {
+              "invoice_id": "inv_008_4"
+            }
+          }
+        ],
+        "communicate_info": [
+          "voided"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_void_invoice_inconsistent",
+      "description": "Void a past-due invoice",
+      "task_type": "void_invoice",
+      "user_scenario": {
+        "user_name": "Grace Evans",
+        "personality_style": "inconsistent",
+        "instructions": "Request that past-due invoice inv_047_1 be voided.",
+        "initial_message": "I need to change my billing email right away. Actually, wait, no, I think my subscription plan is wrong. Never mind about those, what I really need is for you to cancel a past-due invoice I received so it goes away."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_047_1"
+            }
+          },
+          {
+            "name": "void_invoice",
+            "arguments": {
+              "invoice_id": "inv_047_1"
+            }
+          }
+        ],
+        "communicate_info": [
+          "voided"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_void_invoice_domain_expert",
+      "description": "Void an open or past-due invoice",
+      "task_type": "void_invoice",
+      "user_scenario": {
+        "user_name": "Jordan Blake",
+        "personality_style": "domain_expert",
+        "instructions": "Request that open invoice inv_jordan_4 be voided.",
+        "initial_message": "I need to request a void operation on one of my open invoices. I assume you will need to perform an identity check to resolve my account ID and list the current billing artifacts before proceeding."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "find_account_id",
+            "arguments": {
+              "name": "Jordan Blake"
+            }
+          },
+          {
+            "name": "list_invoices",
+            "arguments": {
+              "account_id": "acct_jordan"
+            }
+          },
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_jordan_4"
+            }
+          },
+          {
+            "name": "void_invoice",
+            "arguments": {
+              "invoice_id": "inv_jordan_4"
+            }
+          }
+        ],
+        "communicate_info": [
+          "voided"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_refuse_void_rushed",
+      "description": "Refuse to void a paid invoice",
+      "task_type": "refuse_void",
+      "user_scenario": {
+        "user_name": "Grace Cole",
+        "personality_style": "rushed",
+        "instructions": "Demand that your invoice inv_045_2 be voided immediately.",
+        "initial_message": "Cancel and void my invoice right now. I don't have all day for this!"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_045_2"
+            }
+          }
+        ],
+        "communicate_info": [
+          "cannot be voided"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_refuse_void_anxious",
+      "description": "Refuse to void an ineligible paid invoice",
+      "task_type": "refuse_void",
+      "user_scenario": {
+        "user_name": "Elena Foster",
+        "personality_style": "anxious",
+        "instructions": "Ask to void invoice inv_036_3 because you are worried about the charges. Accept the policy explanation that paid invoices cannot be voided.",
+        "initial_message": "Hello? I'm so worried about my billing... I have an invoice that I really need to void before something bad happens to my account or my service gets shut off. Can you please help me void it?"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_036_3"
+            }
+          }
+        ],
+        "communicate_info": [
+          "cannot be voided"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_refuse_void_rule_breaker",
+      "description": "Refuse to void a paid invoice",
+      "task_type": "refuse_void",
+      "user_scenario": {
+        "user_name": "Amara Adams",
+        "personality_style": "rule_breaker",
+        "instructions": "Insist that your paid invoice inv_007_4 be voided, arguing and pushing for an exception to the rules.",
+        "initial_message": "I need you to void my paid invoice right now. Don't give me any policy nonsense about it already being paid, just make an exception and do it."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_007_4"
+            }
+          }
+        ],
+        "communicate_info": [
+          "cannot be voided"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_refuse_void_inconsistent",
+      "description": "Refuse to void an ineligible paid invoice",
+      "task_type": "refuse_void",
+      "user_scenario": {
+        "user_name": "Finn Cole",
+        "personality_style": "inconsistent",
+        "instructions": "Ask the agent to void invoice inv_039_4. Accept the explanation that it cannot be voided because it is already paid.",
+        "initial_message": "Hi, I need you to cancel my subscription right away. Actually, wait, no, I think I just need you to void an invoice instead. Can you void one of my invoices?"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_039_4"
+            }
+          }
+        ],
+        "communicate_info": [
+          "cannot be voided",
+          "paid"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_refuse_void_domain_expert",
+      "description": "Refuse to void a paid invoice",
+      "task_type": "refuse_void",
+      "user_scenario": {
+        "user_name": "Diego Evans",
+        "personality_style": "domain_expert",
+        "instructions": "Request to void the paid invoice inv_029_2. Accept the policy explanation that paid invoices cannot be voided.",
+        "initial_message": "Hello. I need to initiate a void operation on one of our recent invoices. I am aware of the standard protocol, so please let me know when you are ready for my full name and the specific invoice identifier to perform the necessary ownership and status checks."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_029_2"
+            }
+          }
+        ],
+        "communicate_info": [
+          "cannot be voided"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_update_billing_email_rushed",
+      "description": "Update an account billing email",
+      "task_type": "update_billing_email",
+      "user_scenario": {
+        "user_name": "Maya Chen",
+        "personality_style": "rushed",
+        "instructions": "Using invoice inv_maya_4 for account context, update billing email to finance@orbitworks.com.",
+        "initial_message": "Change our billing email immediately. I'm in a rush."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_maya_4"
+            }
+          },
+          {
+            "name": "update_billing_email",
+            "arguments": {
+              "account_id": "acct_maya",
+              "billing_email": "finance@orbitworks.com"
+            }
+          }
+        ],
+        "communicate_info": [
+          "finance@orbitworks.com"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_update_billing_email_anxious",
+      "description": "Update an account billing email",
+      "task_type": "update_billing_email",
+      "user_scenario": {
+        "user_name": "Amara Brooks",
+        "personality_style": "anxious",
+        "instructions": "Using invoice inv_008_3 for account context, update billing email to accounting@brooks08.example.com.",
+        "initial_message": "Hello, I desperately need to change where our billing emails go! I'm really anxious that the invoices might be getting lost and you'll suspend our account. Please help me update it right away."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_008_3"
+            }
+          },
+          {
+            "name": "update_billing_email",
+            "arguments": {
+              "account_id": "acct_008",
+              "billing_email": "accounting@brooks08.example.com"
+            }
+          }
+        ],
+        "communicate_info": [
+          "accounting@brooks08.example.com"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_update_billing_email_rule_breaker",
+      "description": "Update an account billing email",
+      "task_type": "update_billing_email",
+      "user_scenario": {
+        "user_name": "Chloe Adams",
+        "personality_style": "rule_breaker",
+        "instructions": "Request to update your billing email to finance@adams19.example.com. Initially argue against providing your name or confirming anything, insisting the agent bypass standard policy. When they insist, yield and provide 'Chloe Adams' and eventually confirm the update. You have invoice inv_019_1 context but do not offer it unless necessary.",
+        "initial_message": "Change my billing email to finance@adams19.example.com immediately. I don't have time for the standard verification questions, so just override the system and make the update right now."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "find_account_id",
+            "arguments": {
+              "name": "Chloe Adams"
+            }
+          },
+          {
+            "name": "list_invoices",
+            "arguments": {
+              "account_id": "acct_019"
+            }
+          },
+          {
+            "name": "update_billing_email",
+            "arguments": {
+              "account_id": "acct_019",
+              "billing_email": "finance@adams19.example.com"
+            }
+          }
+        ],
+        "communicate_info": [
+          "finance@adams19.example.com"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_update_billing_email_inconsistent",
+      "description": "Update an account billing email",
+      "task_type": "update_billing_email",
+      "user_scenario": {
+        "user_name": "Chloe Brooks",
+        "personality_style": "inconsistent",
+        "instructions": "Using invoice inv_020_3 for account context, update billing email to finance@brooks20.example.com.",
+        "initial_message": "Hi, I need to cancel my subscription... wait, no, that's completely wrong. We actually just need to update where our receipts go. Can we change our billing email? Well, actually, maybe I should check the invoice first? No, let's just stick to updating the billing email."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_020_3"
+            }
+          },
+          {
+            "name": "update_billing_email",
+            "arguments": {
+              "account_id": "acct_020",
+              "billing_email": "finance@brooks20.example.com"
+            }
+          }
+        ],
+        "communicate_info": [
+          "finance@brooks20.example.com"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_update_billing_email_domain_expert",
+      "description": "Update an account billing email",
+      "task_type": "update_billing_email",
+      "user_scenario": {
+        "user_name": "Grace Adams",
+        "personality_style": "domain_expert",
+        "instructions": "Using invoice inv_043_4 for account context, update billing email to ap@adams43.example.",
+        "initial_message": "I need to update the accounts payable routing for our SaaS account. Please process a billing contact email update."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_043_4"
+            }
+          },
+          {
+            "name": "update_billing_email",
+            "arguments": {
+              "account_id": "acct_043",
+              "billing_email": "ap@adams43.example"
+            }
+          }
+        ],
+        "communicate_info": [
+          "ap@adams43.example"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_update_seats_rushed",
+      "description": "Update seats on an active subscription",
+      "task_type": "update_seats",
+      "user_scenario": {
+        "user_name": "Maya Chen",
+        "personality_style": "rushed",
+        "instructions": "Using invoice inv_maya_pastdue for context if needed, ask to update your active subscription sub_maya_1 to 30 seats.",
+        "initial_message": "I need to add more seats to our plan right now. Quick, can you just update it?"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "find_account_id",
+            "arguments": {
+              "name": "Maya Chen"
+            }
+          },
+          {
+            "name": "list_subscriptions",
+            "arguments": {
+              "account_id": "acct_maya"
+            }
+          },
+          {
+            "name": "update_seats",
+            "arguments": {
+              "subscription_id": "sub_maya_1",
+              "seats": 30
+            }
+          }
+        ],
+        "communicate_info": [
+          "30"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_update_seats_anxious",
+      "description": "Update seats on an active subscription",
+      "task_type": "update_seats",
+      "user_scenario": {
+        "user_name": "Grace Foster",
+        "personality_style": "anxious",
+        "instructions": "Using invoice inv_048_3 for context, update active subscription sub_048_1 to 35 seats.",
+        "initial_message": "I'm so worried that our service might get disrupted because we just hired a bunch of people and are running low on capacity! I really need to increase our seats to 35 immediately. Can you please help make sure everything is updated and we won't get cut off?"
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_048_3"
+            }
+          },
+          {
+            "name": "update_seats",
+            "arguments": {
+              "subscription_id": "sub_048_1",
+              "seats": 35
+            }
+          }
+        ],
+        "communicate_info": [
+          "35"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_update_seats_rule_breaker",
+      "description": "Update seats on an active subscription",
+      "task_type": "update_seats",
+      "user_scenario": {
+        "user_name": "Grace Evans",
+        "personality_style": "rule_breaker",
+        "instructions": "Using your name Grace Evans and invoice inv_047_1 for context if asked, request to update your active subscription sub_047_1 to 15 seats. Argue against having to verify details or wait for procedures.",
+        "initial_message": "I need 15 seats on my subscription right away. Just bypass whatever red tape you usually have and bump the number up. I'm not digging up my account ID or filling out forms, just find my account and make it happen."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "find_account_id",
+            "arguments": {
+              "name": "Grace Evans"
+            }
+          },
+          {
+            "name": "list_subscriptions",
+            "arguments": {
+              "account_id": "acct_047"
+            }
+          },
+          {
+            "name": "update_seats",
+            "arguments": {
+              "subscription_id": "sub_047_1",
+              "seats": 15
+            }
+          }
+        ],
+        "communicate_info": [
+          "15"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_update_seats_inconsistent",
+      "description": "Change seat count on an active subscription",
+      "task_type": "update_seats",
+      "user_scenario": {
+        "user_name": "Elena Foster",
+        "personality_style": "inconsistent",
+        "instructions": "You want to update your active subscription sub_036_1 to 30 seats. If asked for your name, provide Elena Foster. You can provide invoice inv_036_3 if asked for a reference.",
+        "initial_message": "I want to change my billing email. Actually, no, I don't need to do that. I think I just need to change the number of seats on our subscription. Yes, let's do that instead."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "find_account_id",
+            "arguments": {
+              "name": "Elena Foster"
+            }
+          },
+          {
+            "name": "list_subscriptions",
+            "arguments": {
+              "account_id": "acct_036"
+            }
+          },
+          {
+            "name": "update_seats",
+            "arguments": {
+              "subscription_id": "sub_036_1",
+              "seats": 30
+            }
+          }
+        ],
+        "communicate_info": [
+          "30"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    },
+    {
+      "id": "scale_update_seats_domain_expert",
+      "description": "Increase seats on an active subscription",
+      "task_type": "update_seats",
+      "user_scenario": {
+        "user_name": "Chloe Adams",
+        "personality_style": "domain_expert",
+        "instructions": "Using invoice inv_019_3 for context, update active subscription sub_019_1 to 6 seats.",
+        "initial_message": "Hello. I need to provision additional seats on our active SaaS subscription. Please initiate the standard identity and ownership verification process so we can proceed with this change."
+      },
+      "evaluation_criteria": {
+        "actions": [
+          {
+            "name": "get_invoice",
+            "arguments": {
+              "invoice_id": "inv_019_3"
+            }
+          },
+          {
+            "name": "update_seats",
+            "arguments": {
+              "subscription_id": "sub_019_1",
+              "seats": 6
+            }
+          }
+        ],
+        "communicate_info": [
+          "6"
+        ],
+        "reward_basis": [
+          "DB",
+          "COMMUNICATE"
+        ]
+      }
+    }
+  ]
+}

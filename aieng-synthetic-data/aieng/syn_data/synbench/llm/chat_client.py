@@ -8,7 +8,11 @@ from typing import Any
 from openai import OpenAI
 
 from aieng.syn_data.synbench.llm.client import LLMResponse
-from aieng.syn_data.synbench.llm.config import get_api_key, get_base_url, get_model
+from aieng.syn_data.synbench.llm.config import (
+    get_api_key,
+    get_base_url,
+    get_reasoning_effort,
+)
 from aieng.syn_data.synbench.llm.parsing import (
     assistant_message_to_dict,
     tool_calls_from_message,
@@ -18,8 +22,15 @@ from aieng.syn_data.synbench.llm.parsing import (
 class ChatClient:
     """Remote LLM client using the OpenAI-compatible chat completions API."""
 
-    def __init__(self, model: str | None = None):
-        self.model = model or get_model()
+    def __init__(self, model: str):
+        """Initialize the chat client with the given model.
+
+        Args:
+            model: The model to use for the chat client. Can be either the agent model
+                or the generator model.
+
+        """
+        self.model = model
         self._api = OpenAI(
             base_url=get_base_url(),
             api_key=get_api_key(),
@@ -42,6 +53,9 @@ class ChatClient:
             kwargs["tool_choice"] = "auto"
         if json_mode:
             kwargs["response_format"] = {"type": "json_object"}
+        reasoning_effort = get_reasoning_effort(self.model)
+        if reasoning_effort:
+            kwargs["reasoning_effort"] = reasoning_effort
 
         response = self._api.chat.completions.create(**kwargs)
         message = response.choices[0].message

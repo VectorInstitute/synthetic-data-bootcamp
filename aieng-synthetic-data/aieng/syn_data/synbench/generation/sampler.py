@@ -84,7 +84,11 @@ class ConstraintSampler:
         # Shorthand for domains/<name>/generation.yaml
         self.cfg = domain.generation
 
-    def sample(self) -> SampleConstraints:
+    def sample(
+        self,
+        task_type: str | None = None,
+        personality_name: str | None = None,
+    ) -> SampleConstraints:
         """Draw one set of constraints for a single draft task.
 
         Raises
@@ -96,15 +100,27 @@ class ConstraintSampler:
         task_types = list(self.domain.task_types.keys())
         if not task_types:
             raise ValueError("task_types.yaml has no task types to sample")
-        task_type = self.rng.choice(task_types)
+        if task_type is not None and task_type not in task_types:
+            raise ValueError(f"Unknown task_type: {task_type}")
+        task_type = task_type or self.rng.choice(task_types)
         # allow_write for this task type (prompt + later verify)
         cfg = self.domain.task_types[task_type]
 
         collection = self.domain.db.get(self.cfg.primary_collection) or {}
         records = list(collection.values())
+        filters = self.cfg.eligibility.get(task_type, {})
+        if filters:
+            records = [
+                record
+                for record in records
+                if all(
+                    record.get(field) in allowed for field, allowed in filters.items()
+                )
+            ]
         if not records:
             raise ValueError(
-                f"Cannot sample: db['{self.cfg.primary_collection}'] is empty"
+                f"Cannot sample task_type '{task_type}': no eligible records in "
+                f"db['{self.cfg.primary_collection}']"
             )
         record = self.rng.choice(records)
         primary_id = str(record[self.cfg.id_field])
@@ -124,13 +140,15 @@ class ConstraintSampler:
             primary_id=primary_id,
             entity_context=entity_context,
             personality_style=_sample_personality_style(
-                self.domain.user_simulator or {}, self.rng
+                self.domain.user_simulator or {}, self.rng, personality_name
             ),
         )
 
 
 def _sample_personality_style(
-    user_simulator: dict[str, Any], rng: random.Random
+    user_simulator: dict[str, Any],
+    rng: random.Random,
+    personality_name: str | None = None,
 ) -> dict[str, str] | None:
     """Uniformly pick one ``personality_styles`` entry, or ``None`` if absent.
 
@@ -147,7 +165,14 @@ def _sample_personality_style(
         if name and description:
             valid.append({"name": name, "description": description})
     if not valid:
+        if personality_name:
+            raise ValueError(f"Unknown personality style: {personality_name}")
         return None
+    if personality_name:
+        for style in valid:
+            if style["name"] == personality_name:
+                return dict(style)
+        raise ValueError(f"Unknown personality style: {personality_name}")
     return dict(rng.choice(valid))
 
 

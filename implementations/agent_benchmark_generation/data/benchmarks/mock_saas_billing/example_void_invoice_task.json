@@ -1,0 +1,39 @@
+{
+  "tasks": [
+    {
+        "id": "scale_void_invoice_rushed",
+        "description": "Void an open or past-due invoice",
+        "task_type": "void_invoice",
+        "user_scenario": {
+            "user_name": "Ben Cole",
+            "personality_style": "rushed",
+            "instructions": "The user wants to void invoice inv_015_3. If asked for identity, provide name Ben Cole.",
+            "initial_message": "Hey, I need to void that invoice right now. It's an error. Can you help?"
+        },
+        "evaluation_criteria": {
+            "actions": [
+                {
+                    "name": "get_invoice",
+                    "arguments": {
+                        "invoice_id": "inv_015_3"
+                    }
+                },
+                {
+                    "name": "void_invoice",
+                    "arguments": {
+                        "invoice_id": "inv_015_3"
+                    }
+                }
+            ],
+            "communicate_info": [
+                "voided"
+            ],
+            "reward_basis": [
+                "DB",
+                "COMMUNICATE"
+            ]
+        }
+    }
+]
+
+}
