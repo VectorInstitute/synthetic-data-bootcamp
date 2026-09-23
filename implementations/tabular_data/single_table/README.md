@@ -41,6 +41,8 @@ You never need to actually run the forward process step-by-step during training.
 
 
 Numeric columns:
+
+
 $$
 x_t = \sqrt{\bar{\alpha}_t}\,x_0
 + \sqrt{1 - \bar{\alpha}_t}\,\epsilon,
@@ -50,6 +52,8 @@ $$
 
 
 Categorical columns (one-hot encoded, K possible categories): gets blended into uniform distribution.
+
+
 
 $$
 x_t = \bar{\alpha}_t x_0 + \frac{1 - \bar{\alpha}_t}{K}\mathbf{1}

@@ -85,6 +85,7 @@ synbench = [
     "python-dotenv>=1.2.2",
 ]
 
+
 tabular-data = [
     "gdown>=6.1.0",
     "midst-toolkit",
@@ -107,6 +108,7 @@ members = [
 
 [tool.uv.sources]
 aieng-synthetic-data = { workspace = true }
+clip = { git = "https://github.com/ultralytics/CLIP.git", rev = "68dce32140994dfcb645a1320c4ebdc034fc19fd" }
 midst-toolkit = { git = "https://github.com/VectorInstitute/midst-toolkit.git", rev = "52e4500a03afc7f36d93abd7591413ff6393f27c" }
 
 [tool.mypy]
@@ -219,3 +221,7 @@ ignore_errors = true
 [[tool.mypy.overrides]]
 module = "aieng.syn_data.text.dpo.train"
 ignore_errors = true
+
+
+[tool.uv.audit]
+ignore-until-fixed = ["GHSA-4j2p-28q2-5m79"]

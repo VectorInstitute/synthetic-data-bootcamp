@@ -137,12 +137,11 @@ Every child of parent $g$ is then overwritten with $y_g$. The same id is written
 
 For each cluster $k$, the trainer counts how often a parent in that cluster had exactly $\ell$ children:
 
+
 $$
-p(\ell \mid y = k)
-=
-\frac{\text{parents with cluster }k\text{ and }\ell\text{ children}}
-{\text{parents with cluster }k}.
+p(l | y = k) = (number of parents with cluster k and l children) / (number of parents with cluster k)
 $$
+
 
 These histograms are `all_group_lengths_prob_dicts` in `cluster_ckpt.pkl`. They are **not** used during training of the neural nets; they tell the synthesizer how many child rows to draw for each synthetic parent.
 
@@ -183,23 +182,14 @@ $$
 The forward process (training) adds noise in closed form:
 
 $$
-q(\mathbf{x}_t^{\text{num}} \mid \mathbf{x}_0^{\text{num}})
-=
-\mathcal{N}\big(
-\sqrt{\bar{\alpha}_t}\mathbf{x}_0^{\text{num}},
-(1-\bar{\alpha}_t)\mathbf{I}
-\big).
+q(\mathbf{x}_t^{\text{num}} \mid \mathbf{x}_0^{\text{num}}) = \mathcal{N}\big(\sqrt{\bar{\alpha}_t}\mathbf{x}{\text{num}},(1-\bar{\alpha}_t)\mathbf{I}\big).
 $$
 
 The network $\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t)$ is trained to predict that noise. With `gaussian_loss_type: mse`:
 
 $$
-\mathcal{L}*{\text{gauss}}
-=
-\mathbb{E}*{t,\mathbf{x}*0,\boldsymbol{\epsilon}}
-\big\lVert
-\boldsymbol{\epsilon} - \boldsymbol{\epsilon}*\theta(\mathbf{x}_t, t)
-\big\rVert^2.
+\mathcal{L}*{\text{gauss}} = \mathbb{E}*{t,\mathbf{x}*0,\boldsymbol{\epsilon}}
+\big\lVert \boldsymbol{\epsilon} - \boldsymbol{\epsilon}*\theta(\mathbf{x}_t, t) \big\rVert^2.
 $$
 
 (`kl` replaces this with a variational Gaussian term.)
