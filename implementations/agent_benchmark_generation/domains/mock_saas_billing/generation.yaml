@@ -33,14 +33,27 @@ communicate_hints:
   update_billing_email: "Include the exact new billing email."
   update_seats: "Include the new seat count as a short substring."
 
+# Optional per-task_type filters on the primary collection (invoices).
+# ConstraintSampler keeps only invoices whose field values are in each
+# allow-list, so a draft starts from a row that can satisfy policy.
+# Keys must match task_types.yaml. Omitted types sample from all invoices.
 eligibility:
   inquiry:
+    # Lookup-only; any invoice status is a valid target.
     status: [open, paid, past_due, void]
   void_invoice:
+    # Policy: only open or past_due invoices may be voided.
     status: [open, past_due]
   refuse_void:
+    # Policy: a paid invoice cannot be voided, so the oracle should refuse.
     status: [paid]
   update_billing_email:
+    # Account-level write, still sampled via an invoice. Exclude void invoices
+    # so the scenario is a live billing relationship.
     status: [open, paid, past_due]
   update_seats:
+    # Seats live on subscriptions, but sampling still picks an invoice.
+    # Exclude void invoices for the same "live billing" reason. This does not
+    # filter subscription.status; the seed/generator must still pick an
+    # active subscription.
     status: [open, paid, past_due]

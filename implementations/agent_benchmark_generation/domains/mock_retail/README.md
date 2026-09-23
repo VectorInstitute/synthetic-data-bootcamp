@@ -32,7 +32,9 @@ Which models those notebooks call is **not** defined here; it comes from `.env` 
 
 ## Who knows what
 
-SynBench uses several LLM roles. They share the same API credentials, but **different prompts and hidden fields**. That knowledge hierarchy is intentional: the generator can write a short oracle because it sees IDs; the agent must elicit details from conversation.
+SynBench uses several LLM roles. They share the same API credentials, but **different prompts and hidden fields**. 
+That knowledge hierarchy is intentional: the generator can write a short oracle because it sees IDs; the agent must elicit details from conversation.
+
 
 | Role | Prompt / config source | Sees | Hidden |
 |------|------------------------|------|--------|

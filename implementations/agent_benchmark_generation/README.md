@@ -6,9 +6,9 @@ These notebooks walks through **SynBench** end to end: loading a domain, generat
 
 You can also activate the environment in terminal using `source .venv/bin/activate` command.
 
-Then, copy env defaults into this directory and set your API key:
+
+
 ```bash
-# from implementations/agent_benchmark_generation/
 cp implementations/agent_benchmark_generation/.env.example .env   # then set OPENAI_API_KEY (and adjust models if needed)
 ```
 ---
