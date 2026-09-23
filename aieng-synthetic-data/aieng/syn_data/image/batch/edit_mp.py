@@ -40,6 +40,7 @@ class EditJob:
     source_stem: str
     attempt: int
     variation_index: int
+    seed_offset: int = 0
 
 
 def _box_mask(shape: tuple[int, int], bbox: tuple[int, int, int, int]) -> Any:
@@ -170,7 +171,7 @@ def mp_synthesize_shard(payload: dict[str, Any]) -> list[dict[str, Any]]:
                 depth=depth,
                 segmentation=seg,
                 project_root=project_root,
-                seed_offset=job.attempt,
+                seed_offset=job.seed_offset,
                 variation_index=job.variation_index,
             )
             item = PendingItem(

@@ -12,7 +12,7 @@ Examples::
   # Smoke test
   python scripts/run_nb2_batch.py --hardware gpu_l4 \\
       --n-synth-seeds traffic_cone=4,trash_bin=4 \\
-      --target-accepts traffic_cone=2,trash_bin=2
+      --target-accepted traffic_cone=2,trash_bin=2 --max-attempts 12
 
 Run from the implementation root. Prefer this over the NB2 notebook cell for
 ``parallel_edit_workers>1`` (Jupyter + ProcessPool + CUDA is flaky).
@@ -27,7 +27,7 @@ from typing import Any
 
 from aieng.syn_data.image.batch.checkpoint import write_split_snapshot
 from aieng.syn_data.image.batch.export import export_nb2_dataset
-from aieng.syn_data.image.batch.runner import run_batch_synthesis
+from aieng.syn_data.image.batch.runner import format_batch_summary, run_batch_synthesis
 from aieng.syn_data.image.bootstrap import bootstrap_project_root
 from aieng.syn_data.image.config import load_config, load_env
 from aieng.syn_data.image.data import prepare_sample_images
@@ -93,12 +93,20 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--n-synth-seeds",
         default="traffic_cone=100,trash_bin=100",
-        help="anomaly=count,... scene seeds per class",
+        help="anomaly=count,... scene seed pool per class",
     )
     parser.add_argument(
+        "--target-accepted",
         "--target-accepts",
+        dest="target_accepted",
         default="traffic_cone=100,trash_bin=100",
-        help="anomaly=count,... stop early when hit",
+        help="anomaly=count,... accepted images wanted per class (a class stops when hit)",
+    )
+    parser.add_argument(
+        "--max-attempts",
+        type=int,
+        default=400,
+        help="Per-class edit budget (first edits + retries + seed revisits); 0 = no revisits",
     )
     parser.add_argument("--max-retries", type=int, default=2)
     parser.add_argument("--split-seed", type=int, default=42)
@@ -141,7 +149,7 @@ def _prepare_run(args: argparse.Namespace, project_root: Path) -> dict[str, Any]
     method_map = resolve_method_map(method_by_anomaly, workshop, cfg=cfg)
     test_counts_req = _parse_kv_ints(args.test_counts)
     n_synth_req = _parse_kv_ints(args.n_synth_seeds)
-    target_accepts_cfg = _parse_kv_ints(args.target_accepts)
+    target_accepted_cfg = _parse_kv_ints(args.target_accepted)
     focus_tags = ["scene", *workshop]
     stem_prefixes = list(cfg.data.get("stem_prefixes") or focus_tags)
 
@@ -176,7 +184,8 @@ def _prepare_run(args: argparse.Namespace, project_root: Path) -> dict[str, Any]
         rare_classes=workshop,
         seed=args.split_seed,
     )
-    target_accepts = {k: min(int(target_accepts_cfg.get(k, len(v))), len(v)) for k, v in seeds_by_anomaly.items()}
+    target_accepted = {k: int(target_accepted_cfg.get(k, len(v))) for k, v in seeds_by_anomaly.items()}
+    max_attempts = dict.fromkeys(seeds_by_anomaly, args.max_attempts) if args.max_attempts > 0 else None
 
     config_snapshot = {
         "dataset": args.dataset,
@@ -184,7 +193,8 @@ def _prepare_run(args: argparse.Namespace, project_root: Path) -> dict[str, Any]
         "method_by_anomaly": dict(method_map),
         "test_counts": test_counts,
         "n_synth_seeds": seed_request,
-        "target_accepts": target_accepts,
+        "target_accepted": target_accepted,
+        "max_attempts": max_attempts,
         "max_retries": args.max_retries,
         "split_seed": args.split_seed,
         "judge_model": str(cfg.judge.model_id),
@@ -198,7 +208,7 @@ def _prepare_run(args: argparse.Namespace, project_root: Path) -> dict[str, Any]
         test=test,
         seeds_by_anomaly=seeds_by_anomaly,
         method_map=method_map,
-        target_accepts=target_accepts,
+        target_accepts=target_accepted,
         config_snapshot=config_snapshot,
     )
     return {
@@ -209,7 +219,8 @@ def _prepare_run(args: argparse.Namespace, project_root: Path) -> dict[str, Any]
         "labels": labels,
         "seeds_by_anomaly": seeds_by_anomaly,
         "method_map": method_map,
-        "target_accepts": target_accepts,
+        "target_accepted": target_accepted,
+        "max_attempts": max_attempts,
         "config_snapshot": config_snapshot,
     }
 
@@ -222,7 +233,8 @@ def _print_run_summary(args: argparse.Namespace, project_root: Path, run: dict[s
     print(f"  hardware     = {args.hardware}")
     print(f"  methods      = {run['method_map']}")
     print(f"  seeds        = { {k: len(v) for k, v in run['seeds_by_anomaly'].items()} }")
-    print(f"  targets      = {run['target_accepts']}")
+    print(f"  targets      = {run['target_accepted']}  (accepted images per class)")
+    print(f"  max_attempts = {run['max_attempts']}")
     print(f"  resume       = {args.resume}")
 
 
@@ -236,7 +248,8 @@ def _run_batch(args: argparse.Namespace, project_root: Path, run: dict[str, Any]
         project_root=project_root,
         synth_dir=output_dir / "synthetic",
         max_retries=args.max_retries,
-        target_accepts=run["target_accepts"],
+        target_accepts=run["target_accepted"],
+        max_attempts=run["max_attempts"],
         require_target_boxes=args.require_target_boxes,
         resume=args.resume,
         nb2_dir=output_dir,
@@ -247,13 +260,9 @@ def _run_batch(args: argparse.Namespace, project_root: Path, run: dict[str, Any]
 
 def _report_and_export(args: argparse.Namespace, run: dict[str, Any], batch: Any) -> int:
     """Print acceptance statistics and optionally export the dataset."""
-    print("\nAcceptance rate per class:")
-    for aid, st in batch.stats.items():
-        print(
-            f"  {aid:16s}  accept={st.accepts}/{st.attempts}  "
-            f"rate={100 * st.acceptance_rate:5.1f}%  "
-            f"reject={st.rejects}  retry_events={st.retries}",
-        )
+    print("\nBatch summary:")
+    print(format_batch_summary(batch))
+    run["config_snapshot"]["target_reached"] = batch.target_reached()
 
     if args.no_export:
         print("Skipped export (--no-export). Checkpoint under", run["output_dir"] / "checkpoint")

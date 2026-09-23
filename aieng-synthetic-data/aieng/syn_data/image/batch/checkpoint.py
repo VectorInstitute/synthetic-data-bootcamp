@@ -31,6 +31,11 @@ def rejected_path(nb2_dir: Path | str) -> Path:
     return checkpoint_dir(nb2_dir) / "rejected.jsonl"
 
 
+def judged_path(nb2_dir: Path | str) -> Path:
+    """Return the per-judgment record path (every judged edit, any outcome)."""
+    return checkpoint_dir(nb2_dir) / "judged.jsonl"
+
+
 def state_path(nb2_dir: Path | str) -> Path:
     """Return the checkpoint state path."""
     return checkpoint_dir(nb2_dir) / "state.json"
@@ -90,6 +95,7 @@ def load_checkpoint(nb2_dir: Path | str) -> dict[str, Any]:
     """Load prior accepts/rejects/state for resume."""
     accepted_rows = read_jsonl(accepted_path(nb2_dir))
     rejected_rows = read_jsonl(rejected_path(nb2_dir))
+    judged_rows = read_jsonl(judged_path(nb2_dir))
     state: dict[str, Any] = {}
     sp = state_path(nb2_dir)
     if sp.exists():
@@ -106,6 +112,7 @@ def load_checkpoint(nb2_dir: Path | str) -> dict[str, Any]:
         "accepted_keys": accepted_keys,
         "rejected": rejected_rows,
         "rejected_keys": rejected_keys,
+        "judged": judged_rows,
         "state": state,
     }
 

@@ -447,3 +447,114 @@ def save_judge_artifact(
     payload = judgment.to_dict() if hasattr(judgment, "to_dict") else dict(judgment)
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     return path
+
+
+_OUTCOME_STYLE = {
+    "accept": ("tab:green", "accepted"),
+    "retry": ("tab:orange", "sent to retry"),
+    "reject": ("tab:red", "rejected"),
+    "surplus": ("tab:gray", "passed after target met (not exported)"),
+}
+_CLASS_MARKERS = ["o", "s", "^", "D", "v", "P"]
+
+
+def plot_fidelity_novelty(
+    judged_rows: list[dict[str, Any]],
+    *,
+    min_real_sim: float,
+    max_neighbor_sim: float,
+    title: str | None = None,
+    figsize: tuple[float, float] = (8.5, 6.5),
+) -> tuple[Figure, Axes]:
+    """Scatter judged edits on the CLIP embedding fidelity/novelty proxies.
+
+    x = cosine sim to the nearest *real* same-class image (fidelity proxy).
+    y = cosine sim to the nearest image in real ∪ accepted synth (redundancy);
+    the y axis is inverted so "up" means more novel. Dashed lines are the
+    configured ``embedding_gate`` thresholds. Points inside the safe zone can
+    still be retried/rejected by the VLM score, reference fidelity, box, or
+    placement gates — this plot shows only the embedding signals.
+    """
+    rows = [
+        r
+        for r in judged_rows
+        if r.get("embed_real_sim_global") is not None
+        and r.get("embed_neighbor_sim") is not None
+    ]
+    fig, ax = plt.subplots(figsize=figsize)
+    if not rows:
+        ax.text(
+            0.5,
+            0.5,
+            "No judged edits with embedding sims yet",
+            ha="center",
+            va="center",
+        )
+        ax.axis("off")
+        return fig, ax
+
+    classes = sorted({str(r.get("anomaly_id", "?")) for r in rows})
+    markers = {
+        c: _CLASS_MARKERS[i % len(_CLASS_MARKERS)] for i, c in enumerate(classes)
+    }
+    for outcome, (color, label) in _OUTCOME_STYLE.items():
+        for cls in classes:
+            pts = [
+                r
+                for r in rows
+                if r.get("outcome") == outcome and str(r.get("anomaly_id")) == cls
+            ]
+            if not pts:
+                continue
+            ax.scatter(
+                [float(p["embed_real_sim_global"]) for p in pts],
+                [float(p["embed_neighbor_sim"]) for p in pts],
+                c=color,
+                marker=markers[cls],
+                s=28,
+                alpha=0.7,
+                edgecolors="none",
+                label=f"{label} · {cls} (n={len(pts)})",
+            )
+
+    ax.axvline(min_real_sim, color="k", ls="--", lw=1)
+    ax.axhline(max_neighbor_sim, color="k", ls="--", lw=1)
+    ax.invert_yaxis()
+    ax.text(
+        min_real_sim,
+        0.02,
+        f"  min_real_sim_global={min_real_sim:.2f}\n  ← too far from real class images",
+        transform=ax.get_xaxis_transform(),
+        fontsize=8,
+        va="bottom",
+    )
+    ax.text(
+        0.99,
+        max_neighbor_sim,
+        f"max_neighbor_sim={max_neighbor_sim:.2f}  \nnear-duplicate below ↓  ",
+        transform=ax.get_yaxis_transform(),
+        fontsize=8,
+        ha="right",
+        va="top",
+    )
+    ax.text(
+        0.98,
+        0.97,
+        "embedding safe zone",
+        transform=ax.transAxes,
+        ha="right",
+        va="top",
+        fontsize=9,
+        style="italic",
+    )
+    ax.set_xlabel("Fidelity proxy: CLIP cosine sim to nearest real same-class image  →")
+    ax.set_ylabel(
+        "Novelty proxy: CLIP cosine sim to nearest real ∪ accepted synth\n(axis inverted — up = more novel)"
+    )
+    ax.set_title(
+        title
+        or "Fidelity vs novelty of judged edits (practical embedding-based proxies)"
+    )
+    ax.legend(fontsize=7, loc="lower left", bbox_to_anchor=(1.01, 0.0), frameon=False)
+    fig.tight_layout()
+    return fig, ax

@@ -6,15 +6,22 @@ Speed path on ``gpu_l4x2`` (prefer ``scripts/run_nb2_batch.py``):
     treats ``image=[...]`` as multi-ref for every prompt, not paired rows).
   - Fan out API judge calls with a thread pool (I/O bound).
   - Checkpoint accepts/rejects under ``nb2/checkpoint/`` for ``--resume``.
+
+Target semantics: ``target_accepts`` is the number of *accepted* images wanted
+per class. With ``max_attempts`` set, classes still short of their target after
+the first pass revisit their seed pool (next prompt variation + new diffusion
+seed) until the target is met or the per-class attempt budget is spent.
 """
 
 from __future__ import annotations
 
 import gc
+import math
 import os
 import shutil
 import tempfile
 import threading
+import time
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
@@ -28,6 +35,7 @@ from aieng.syn_data.image.batch.checkpoint import (
     accepted_path,
     accepted_sample_to_row,
     append_jsonl,
+    judged_path,
     load_checkpoint,
     rebuild_stats,
     rejected_path,
@@ -37,6 +45,7 @@ from aieng.syn_data.image.batch.checkpoint import (
 from aieng.syn_data.image.batch.export import (
     AcceptedSample,
     ClassRunStats,
+    judge_to_dict,
     record_generation,
     save_accepted_image,
 )
@@ -55,6 +64,12 @@ from aieng.syn_data.image.generate.pipeline import synthesize_one
 from aieng.syn_data.image.judge import JudgeResult, VLMJudge, summarize_annotations
 
 
+# Diffusion seed stride between seed-pool passes (pass 0 keeps seed_offset=attempt).
+_PASS_SEED_STRIDE = 1000
+# Floor on the observed acceptance rate when sizing refills (avoids huge requests).
+_MIN_REFILL_RATE = 0.1
+
+
 @dataclass
 class PendingItem:
     """One seed × anomaly still in the batch pipeline."""
@@ -68,15 +83,54 @@ class PendingItem:
     variation_index: int | None = None
     generated: Any | None = None
     annotation: AnnotationResult | None = None
+    pass_index: int = 0
+
+    @property
+    def seed_offset(self) -> int:
+        """Diffusion seed offset; unique per (pass, attempt) for one seed."""
+        return int(self.attempt) + _PASS_SEED_STRIDE * int(self.pass_index)
+
+    @property
+    def key(self) -> str:
+        """Checkpoint key; revisits of a seed get their own key."""
+        stem = (
+            self.source_stem
+            if self.pass_index == 0
+            else f"{self.source_stem}@p{self.pass_index}"
+        )
+        return sample_key(self.anomaly_id, stem)
 
 
 @dataclass
 class BatchResult:
-    """Represent BatchResult configuration and behavior."""
+    """Represent BatchResult configuration and behavior.
+
+    ``judged`` holds one row per judged edit (accepted, retried, rejected, or
+    surplus) with the judge scores and embedding sims, for plots/diagnostics.
+    ``surplus`` counts edits that passed every gate after their class had
+    already reached its target (not exported).
+    """
 
     accepted: list[AcceptedSample] = field(default_factory=list)
     stats: dict[str, ClassRunStats] = field(default_factory=dict)
     rejected: list[dict[str, Any]] = field(default_factory=list)
+    judged: list[dict[str, Any]] = field(default_factory=list)
+    surplus: dict[str, int] = field(default_factory=dict)
+    targets: dict[str, int] = field(default_factory=dict)
+    max_attempts: dict[str, int] = field(default_factory=dict)
+    elapsed_s: float = 0.0
+
+    def accepted_counts(self) -> dict[str, int]:
+        """Count accepted images per class."""
+        counts = dict.fromkeys(self.stats, 0)
+        for sample in self.accepted:
+            counts[sample.anomaly_id] = counts.get(sample.anomaly_id, 0) + 1
+        return counts
+
+    def target_reached(self) -> dict[str, bool]:
+        """Whether each targeted class reached its accepted-image target."""
+        counts = self.accepted_counts()
+        return {aid: counts.get(aid, 0) >= want for aid, want in self.targets.items()}
 
 
 @dataclass
@@ -283,7 +337,7 @@ def _synthesize_items(
                 depth=depth,
                 segmentation=seg,
                 project_root=project_root,
-                seed_offset=item.attempt,
+                seed_offset=item.seed_offset,
                 variation_index=var_idx,
             )
             item.generated = syn.generated
@@ -374,6 +428,24 @@ class _BatchContext:
     use_tqdm: bool
     stacks: list[_EditStack] = field(default_factory=list)
     judge: VLMJudge | None = None
+    max_attempts: dict[str, int] | None = None
+    seed_pool: dict[str, list[Path]] = field(default_factory=dict)
+    method_map: dict[str, str] = field(default_factory=dict)
+    seed_cursors: dict[str, int] = field(default_factory=dict)
+
+
+def _target_met(ctx: _BatchContext, anomaly_id: str) -> bool:
+    if not ctx.target_accepts or anomaly_id not in ctx.target_accepts:
+        return False
+    return ctx.accepted_counts[anomaly_id] >= int(ctx.target_accepts[anomaly_id])
+
+
+def _attempts_left(ctx: _BatchContext, anomaly_id: str) -> int | None:
+    """Remaining edit budget for a class (``None`` = unlimited)."""
+    if not ctx.max_attempts or anomaly_id not in ctx.max_attempts:
+        return None
+    used = ctx.result.stats[anomaly_id].attempts
+    return max(0, int(ctx.max_attempts[anomaly_id]) - used)
 
 
 def _persist_batch_state(ctx: _BatchContext, pending: list[PendingItem]) -> None:
@@ -381,7 +453,9 @@ def _persist_batch_state(ctx: _BatchContext, pending: list[PendingItem]) -> None
         ctx.root_dir,
         {
             "variation_counters": dict(ctx.variation_counters),
+            "seed_cursors": dict(ctx.seed_cursors),
             "stats": {k: asdict(v) for k, v in ctx.result.stats.items()},
+            "surplus": dict(ctx.result.surplus),
             "pending": [
                 {
                     "anomaly_id": p.anomaly_id,
@@ -389,6 +463,7 @@ def _persist_batch_state(ctx: _BatchContext, pending: list[PendingItem]) -> None
                     "source_path": str(p.source_path),
                     "method": p.method,
                     "attempt": int(p.attempt),
+                    "pass_index": int(p.pass_index),
                     "variation_index": p.variation_index,
                 }
                 for p in pending
@@ -452,14 +527,23 @@ def _assign_variations(
     ctx: _BatchContext, items: list[PendingItem]
 ) -> list[PendingItem]:
     active: list[PendingItem] = []
+    admitted: dict[str, int] = {}
+    dropped: dict[str, int] = {}
     for item in items:
-        if ctx.target_accepts:
-            want = int(ctx.target_accepts.get(item.anomaly_id, 10**9))
-            if ctx.accepted_counts[item.anomaly_id] >= want:
-                continue
+        if _target_met(ctx, item.anomaly_id):
+            continue
+        left = _attempts_left(ctx, item.anomaly_id)
+        if left is not None and admitted.get(item.anomaly_id, 0) >= left:
+            dropped[item.anomaly_id] = dropped.get(item.anomaly_id, 0) + 1
+            continue
+        admitted[item.anomaly_id] = admitted.get(item.anomaly_id, 0) + 1
         item.variation_index = ctx.variation_counters[item.anomaly_id]
         ctx.variation_counters[item.anomaly_id] = int(item.variation_index) + 1
         active.append(item)
+    for anomaly_id, n in dropped.items():
+        ctx.log(
+            f"  {anomaly_id}: attempt budget exhausted — dropped {n} queued edit(s)."
+        )
     return active
 
 
@@ -487,6 +571,7 @@ def _edit_worker_payloads(
                 source_stem=item.source_stem,
                 attempt=int(item.attempt),
                 variation_index=int(item.variation_index or 0),
+                seed_offset=item.seed_offset,
             )
             for item in shard
         ]
@@ -525,9 +610,10 @@ def _synthesize_multiprocess(ctx: _BatchContext, active: list[PendingItem]) -> N
             shard_results = list(pool.map(mp_synthesize_shard, payloads))
         flat = [row for part in shard_results for row in part]
         failed = apply_mp_results_to_items(active, flat)
+        # Failed edits count too (same as the single-process path) so the
+        # attempt budget always shrinks.
         for item in active:
-            if item.generated is not None:
-                ctx.result.stats[item.anomaly_id].attempts += 1
+            ctx.result.stats[item.anomaly_id].attempts += 1
         if failed:
             ctx.log(f"  {len(failed)} edit(s) failed in workers (will retry/reject).")
         ctx.log(f"Process edit done ({len(flat) - len(failed)} ok / {len(flat)} jobs)")
@@ -535,13 +621,16 @@ def _synthesize_multiprocess(ctx: _BatchContext, active: list[PendingItem]) -> N
         shutil.rmtree(tmp_root, ignore_errors=True)
 
 
-def _synthesize_queue(ctx: _BatchContext, items: list[PendingItem]) -> None:
+def _synthesize_queue(
+    ctx: _BatchContext, items: list[PendingItem]
+) -> list[PendingItem]:
+    """Edit + annotate items within target/budget; return the items actually edited."""
     active = _assign_variations(ctx, items)
     if not active:
-        return
+        return active
     if ctx.n_edit > 1:
         _synthesize_multiprocess(ctx, active)
-        return
+        return active
     if not ctx.stacks:
         _load_edit_stacks(ctx)
     assert ctx.stacks
@@ -557,6 +646,7 @@ def _synthesize_queue(ctx: _BatchContext, items: list[PendingItem]) -> None:
         log=ctx.log_item,
         show_progress=ctx.use_tqdm,
     )
+    return active
 
 
 def _judge_api_call(
@@ -610,6 +700,7 @@ def _handle_edit_failures(
             row = {
                 "anomaly_id": item.anomaly_id,
                 "source_stem": item.source_stem,
+                "pass_index": item.pass_index,
                 "attempt": item.attempt,
                 "decision": "reject",
                 "overall": 0.0,
@@ -618,7 +709,7 @@ def _handle_edit_failures(
             }
             ctx.result.rejected.append(row)
             append_jsonl(rejected_path(ctx.root_dir), row)
-            ctx.done_keys.add(sample_key(item.anomaly_id, item.source_stem))
+            ctx.done_keys.add(item.key)
             ctx.log_item(
                 f"  edit-fail {item.anomaly_id}  seed={item.source_stem}  → reject ({err})"
             )
@@ -711,7 +802,10 @@ def _accept_judgment(
     stats = ctx.result.stats[item.anomaly_id]
     stats.accepts += 1
     ctx.accepted_counts[item.anomaly_id] += 1
-    image_name = f"synth_{item.anomaly_id}_{item.source_stem}_a{item.attempt}.jpg"
+    pass_tag = f"_p{item.pass_index}" if item.pass_index else ""
+    image_name = (
+        f"synth_{item.anomaly_id}_{item.source_stem}{pass_tag}_a{item.attempt}.jpg"
+    )
     assert (
         item.generated is not None
         and item.annotation is not None
@@ -734,7 +828,7 @@ def _accept_judgment(
     )
     ctx.result.accepted.append(sample)
     append_jsonl(accepted_path(ctx.root_dir), accepted_sample_to_row(sample))
-    ctx.done_keys.add(sample_key(item.anomaly_id, item.source_stem))
+    ctx.done_keys.add(item.key)
 
 
 def _reject_judgment(
@@ -748,6 +842,7 @@ def _reject_judgment(
     row = {
         "anomaly_id": item.anomaly_id,
         "source_stem": item.source_stem,
+        "pass_index": item.pass_index,
         "attempt": item.attempt,
         "decision": decision,
         "overall": float(judgment.overall),
@@ -755,15 +850,36 @@ def _reject_judgment(
     }
     ctx.result.rejected.append(row)
     append_jsonl(rejected_path(ctx.root_dir), row)
-    ctx.done_keys.add(sample_key(item.anomaly_id, item.source_stem))
+    ctx.done_keys.add(item.key)
+
+
+def _record_judged(
+    ctx: _BatchContext,
+    item: PendingItem,
+    judgment: JudgeResult,
+    *,
+    outcome: str,
+    boxed: bool,
+) -> None:
+    row = {
+        **judge_to_dict(judgment),
+        "anomaly_id": item.anomaly_id,
+        "source_stem": item.source_stem,
+        "pass_index": item.pass_index,
+        "attempt": item.attempt,
+        "outcome": outcome,
+        "has_target_boxes": boxed,
+    }
+    ctx.result.judged.append(row)
+    append_jsonl(judged_path(ctx.root_dir), row)
 
 
 def _apply_judgments(
     ctx: _BatchContext,
     judged: list[tuple[PendingItem, JudgeResult, bool]],
     retries: list[PendingItem],
-) -> tuple[int, int, int]:
-    counts = {"accept": 0, "retry": 0, "reject": 0}
+) -> dict[str, int]:
+    counts = {"accept": 0, "retry": 0, "reject": 0, "surplus": 0}
     for item, judgment, boxed in judged:
         anomaly_cfg = load_anomaly(ctx.dataset, item.anomaly_id, start=ctx.project_root)
         anomaly_classes = list(anomaly_cfg.get("annotation_classes", []) or [])
@@ -777,20 +893,29 @@ def _apply_judgments(
             targets=targets,
         )
         _log_judgment(ctx, item, judgment, decision, boxed)
-        if decision == "accept":
-            counts["accept"] += 1
+        if decision == "accept" and _target_met(ctx, item.anomaly_id):
+            outcome = "surplus"
+            ctx.result.surplus[item.anomaly_id] = (
+                ctx.result.surplus.get(item.anomaly_id, 0) + 1
+            )
+            ctx.done_keys.add(item.key)
+        elif decision == "accept":
+            outcome = "accept"
             _accept_judgment(ctx, item, judgment)
         elif decision == "retry" and item.attempt < ctx.max_retries:
-            counts["retry"] += 1
+            outcome = "retry"
             ctx.result.stats[item.anomaly_id].retries += 1
+        else:
+            outcome = "reject"
+            _reject_judgment(ctx, item, judgment, decision, boxed)
+        counts[outcome] += 1
+        _record_judged(ctx, item, judgment, outcome=outcome, boxed=boxed)
+        if outcome == "retry":
             item.attempt += 1
             item.generated = None
             item.annotation = None
             retries.append(item)
-        else:
-            counts["reject"] += 1
-            _reject_judgment(ctx, item, judgment, decision, boxed)
-    return counts["accept"], counts["retry"], counts["reject"]
+    return counts
 
 
 def _judge_queue(ctx: _BatchContext, items: list[PendingItem]) -> list[PendingItem]:
@@ -802,20 +927,66 @@ def _judge_queue(ctx: _BatchContext, items: list[PendingItem]) -> list[PendingIt
         for item in items
         if item.generated is not None
         and item.annotation is not None
-        and (
-            not ctx.target_accepts
-            or ctx.accepted_counts[item.anomaly_id]
-            < int(ctx.target_accepts.get(item.anomaly_id, 10**9))
-        )
+        and not _target_met(ctx, item.anomaly_id)
     ]
     if not ready:
         return retries
     counts = _apply_judgments(ctx, _run_judgments(ctx, ready), retries)
+    surplus = f"  surplus={counts['surplus']}" if counts["surplus"] else ""
     ctx.log(
-        f"Judge round: accept={counts[0]}  retry={counts[1]}  reject={counts[2]}  "
-        f"accepted_total={len(ctx.result.accepted)}",
+        f"Judge round: accept={counts['accept']}  retry={counts['retry']}  "
+        f"reject={counts['reject']}{surplus}  accepted_total={len(ctx.result.accepted)}",
     )
     return retries
+
+
+def _refill_items(ctx: _BatchContext, pending: list[PendingItem]) -> list[PendingItem]:
+    """Queue seed-pool revisits for classes still below target (budget permitting).
+
+    Sized from the observed acceptance rate so a round rarely overshoots; the
+    per-class attempt budget bounds the total, so the loop always terminates.
+    """
+    if not ctx.target_accepts or not ctx.max_attempts:
+        return []
+    new_items: list[PendingItem] = []
+    for anomaly_id, pool in ctx.seed_pool.items():
+        left = _attempts_left(ctx, anomaly_id)
+        if not pool or left is None or _target_met(ctx, anomaly_id):
+            continue
+        in_flight = sum(1 for p in pending if p.anomaly_id == anomaly_id)
+        left -= in_flight
+        if left <= 0:
+            continue
+        st = ctx.result.stats[anomaly_id]
+        rate = st.accepts / st.attempts if st.attempts else 0.5
+        deficit = int(ctx.target_accepts[anomaly_id]) - ctx.accepted_counts[anomaly_id]
+        expected = in_flight * rate
+        n_new = math.ceil(max(0.0, deficit - expected) / max(rate, _MIN_REFILL_RATE))
+        n_new = min(n_new, left, len(pool))
+        for _ in range(n_new):
+            cursor = ctx.seed_cursors.get(anomaly_id, len(pool))
+            ctx.seed_cursors[anomaly_id] = cursor + 1
+            path = pool[cursor % len(pool)]
+            item = PendingItem(
+                anomaly_id=anomaly_id,
+                method=ctx.method_map[anomaly_id],
+                source_path=path,
+                source_image=Image.open(path).convert("RGB"),
+                source_stem=path.stem,
+                pass_index=cursor // len(pool),
+            )
+            if item.key in ctx.done_keys:
+                continue
+            new_items.append(item)
+    if new_items:
+        per_class = {
+            aid: sum(1 for i in new_items if i.anomaly_id == aid)
+            for aid in ctx.seed_pool
+        }
+        ctx.log(
+            f"Refill (below target, revisiting seeds with new variations): {per_class}"
+        )
+    return new_items
 
 
 def _restore_batch_checkpoint(
@@ -824,21 +995,27 @@ def _restore_batch_checkpoint(
     *,
     accepted_counts: dict[str, int],
     variation_counters: dict[str, int],
+    seed_cursors: dict[str, int],
     anomaly_ids: list[str],
     log: Callable[[str], None],
 ) -> set[str]:
-    """Restore accepted, rejected, statistics, and variation counters."""
+    """Restore accepted, rejected, statistics, variation counters, and seed cursors."""
     checkpoint = load_checkpoint(root_dir)
     result.accepted = list(checkpoint["accepted"])
     result.rejected = list(checkpoint["rejected"])
+    result.judged = list(checkpoint.get("judged") or [])
     done_keys = set(checkpoint["accepted_keys"]) | set(checkpoint["rejected_keys"])
     for sample in result.accepted:
         accepted_counts[sample.anomaly_id] = (
             accepted_counts.get(sample.anomaly_id, 0) + 1
         )
-    saved_vars = (checkpoint.get("state") or {}).get("variation_counters") or {}
-    for anomaly_id, value in saved_vars.items():
+    state = checkpoint.get("state") or {}
+    for anomaly_id, value in (state.get("variation_counters") or {}).items():
         variation_counters[str(anomaly_id)] = int(value)
+    for anomaly_id, value in (state.get("seed_cursors") or {}).items():
+        seed_cursors[str(anomaly_id)] = int(value)
+    for anomaly_id, value in (state.get("surplus") or {}).items():
+        result.surplus[str(anomaly_id)] = int(value)
     result.stats = rebuild_stats(
         anomaly_ids,
         accepted=result.accepted,
@@ -891,6 +1068,7 @@ def _prepare_batch_context(
     synth_dir: Path,
     max_retries: int,
     target_accepts: dict[str, int] | None,
+    max_attempts: dict[str, int] | None,
     require_target_boxes: bool,
     progress: Any,
     verbose: bool,
@@ -909,16 +1087,20 @@ def _prepare_batch_context(
     root_dir = Path(nb2_dir) if nb2_dir is not None else synth_dir.parent
     root_dir.mkdir(parents=True, exist_ok=True)
     result = BatchResult(
-        stats={aid: ClassRunStats(anomaly_id=aid) for aid in seeds_by_anomaly}
+        stats={aid: ClassRunStats(anomaly_id=aid) for aid in seeds_by_anomaly},
+        targets=dict(target_accepts or {}),
+        max_attempts=dict(max_attempts or {}),
     )
     accepted_counts = dict.fromkeys(seeds_by_anomaly, 0)
     variation_counters: dict[str, int] = dict.fromkeys(seeds_by_anomaly, 0)
+    seed_cursors: dict[str, int] = {}
     done_keys = (
         _restore_batch_checkpoint(
             root_dir,
             result,
             accepted_counts=accepted_counts,
             variation_counters=variation_counters,
+            seed_cursors=seed_cursors,
             anomaly_ids=list(seeds_by_anomaly),
             log=log,
         )
@@ -928,10 +1110,16 @@ def _prepare_batch_context(
     queue = _queue_batch_items(
         seeds_by_anomaly, method_map, done_keys, accepted_counts, target_accepts
     )
-    methods = {item.method for item in queue}
+    will_refill = bool(target_accepts and max_attempts) and any(
+        accepted_counts.get(aid, 0) < int(want)
+        for aid, want in (target_accepts or {}).items()
+    )
+    methods = {item.method for item in queue} or (
+        {method_map[aid] for aid in seeds_by_anomaly} if will_refill else set()
+    )
     need_depth, need_seg = _methods_need_conditioning(methods)
     n_edit, n_judge = 1, 1
-    if queue:
+    if queue or will_refill:
         n_edit = _edit_workers(cfg, log=log)
         n_judge = _judge_workers(cfg)
         instruct_id = str(cfg.generation.get("instruct_model_id") or "")
@@ -964,8 +1152,12 @@ def _prepare_batch_context(
         log=log,
         log_item=log_item,
         use_tqdm=use_tqdm,
+        max_attempts=dict(max_attempts) if max_attempts else None,
+        seed_pool={aid: list(paths) for aid, paths in seeds_by_anomaly.items()},
+        method_map=dict(method_map),
+        seed_cursors=seed_cursors,
     )
-    if queue:
+    if queue or will_refill:
         context.log(
             f"Batch parallelism: edit_workers={context.n_edit}  judge_workers={context.n_judge}  "
             f"depth={need_depth}  seg={need_seg}",
@@ -982,6 +1174,7 @@ def run_batch_synthesis(
     synth_dir: Path,
     max_retries: int = 2,
     target_accepts: dict[str, int] | None = None,
+    max_attempts: dict[str, int] | int | None = None,
     require_target_boxes: bool = True,
     progress: Any = "tqdm",
     verbose: bool = False,
@@ -994,6 +1187,15 @@ def run_batch_synthesis(
       1. Load edit stack(s) → synthesize + annotate (optionally 1 stack per GPU)
       2. Unload edit stack → load judge → concurrent API decisions
       3. On retries: reload edit stack(s), re-edit, re-judge
+      4. Classes still below ``target_accepts`` revisit their seed pool with new
+         variations (only when ``max_attempts`` is set)
+
+    ``target_accepts`` is the number of *accepted* images wanted per class; a
+    class stops as soon as it gets there. ``max_attempts`` (int = same for every
+    class) caps edits per class, counting first edits, retries, and revisits.
+    When the budget runs out first the run ends normally and
+    ``BatchResult.target_reached()`` reports which classes fell short. With
+    ``max_attempts=None`` each seed is tried at most ``1 + max_retries`` times.
 
     When ``require_target_boxes`` is True (default), an item cannot be accepted
     without at least one target-class box (YOLO-World or edit-mask fallback).
@@ -1004,6 +1206,9 @@ def run_batch_synthesis(
     ``progress``: ``\"tqdm\"`` (default), ``\"print\"``, ``\"silent\"``, or a callable.
     Per-item lines are off unless ``verbose=True``.
     """
+    started = time.perf_counter()
+    if isinstance(max_attempts, int):
+        max_attempts = dict.fromkeys(seeds_by_anomaly, max_attempts)
     ctx, queue, previous_progress = _prepare_batch_context(
         seeds_by_anomaly,
         method_map,
@@ -1012,6 +1217,7 @@ def run_batch_synthesis(
         synth_dir=synth_dir,
         max_retries=max_retries,
         target_accepts=target_accepts,
+        max_attempts=max_attempts,
         require_target_boxes=require_target_boxes,
         progress=progress,
         verbose=verbose,
@@ -1021,37 +1227,28 @@ def run_batch_synthesis(
     log = ctx.log
     result = ctx.result
 
-    if not queue:
+    active = queue or _refill_items(ctx, [])
+    if active:
+        log(f"Loading edit stack once ({len(active)} jobs)…")
+        _load_edit_stacks(ctx)
+        active = _synthesize_queue(ctx, active)
+        _persist_batch_state(ctx, active)
+    else:
         log("No seeds queued — nothing to synthesize (targets met or all done).")
-        return result
-
-    log(f"Loading edit stack once ({len(queue)} jobs)…")
-    _load_edit_stacks(ctx)
-    active = list(queue)
-    _synthesize_queue(ctx, active)
-    _persist_batch_state(ctx, active)
 
     while active:
         log("Switching to judge…")
         _load_batch_judge(ctx)
         retries = _judge_queue(ctx, active)
+        retries = [r for r in retries if not _target_met(ctx, r.anomaly_id)]
+        retries += _refill_items(ctx, retries)
         _persist_batch_state(ctx, retries)
         if not retries:
             break
-        if target_accepts:
-            retries = [
-                r
-                for r in retries
-                if ctx.accepted_counts[r.anomaly_id]
-                < int(target_accepts.get(r.anomaly_id, 10**9))
-            ]
-        if not retries:
-            break
-        log(f"Retrying {len(retries)} item(s)…")
+        log(f"Re-editing {len(retries)} item(s)…")
         _load_edit_stacks(ctx)
-        _synthesize_queue(ctx, retries)
-        _persist_batch_state(ctx, retries)
-        active = retries
+        active = _synthesize_queue(ctx, retries)
+        _persist_batch_state(ctx, active)
 
     _unload_edit_stacks(ctx)
     _unload(ctx.judge)
@@ -1060,7 +1257,71 @@ def run_batch_synthesis(
     else:
         os.environ["EDGECASE_DISABLE_PIPE_PROGRESS"] = previous_progress
     _persist_batch_state(ctx, [])
+    result.elapsed_s = time.perf_counter() - started
     log(
         f"Done. Accepted {len(result.accepted)} / {sum(s.attempts for s in result.stats.values())} attempts."
     )
+    for aid, reached in result.target_reached().items():
+        if not reached:
+            log(
+                f"  {aid}: target NOT reached ({result.accepted_counts().get(aid, 0)}"
+                f"/{result.targets[aid]} accepted; attempt budget or seed pool exhausted)."
+            )
     return result
+
+
+def batch_summary_rows(result: BatchResult) -> list[dict[str, Any]]:
+    """Per-class run summary (target, accepted, attempts, retries, rejections, rate)."""
+    counts = result.accepted_counts()
+    rows: list[dict[str, Any]] = []
+    for aid, st in result.stats.items():
+        target = result.targets.get(aid)
+        rows.append(
+            {
+                "anomaly_id": aid,
+                "target": target,
+                "accepted": counts.get(aid, 0),
+                "target_reached": None
+                if target is None
+                else counts.get(aid, 0) >= target,
+                "attempts": st.attempts,
+                "max_attempts": result.max_attempts.get(aid),
+                "retries": st.retries,
+                "rejects": st.rejects,
+                "surplus": result.surplus.get(aid, 0),
+                "acceptance_rate": st.acceptance_rate,
+            },
+        )
+    return rows
+
+
+def format_batch_summary(result: BatchResult) -> str:
+    """Human-readable batch summary; flags classes that missed their target."""
+    lines = [
+        f"{'class':16s} {'target':>6s} {'accepted':>8s} {'attempts':>13s} "
+        f"{'retries':>7s} {'rejects':>7s} {'accept rate':>11s}  status",
+    ]
+    for row in batch_summary_rows(result):
+        budget = f"/{row['max_attempts']}" if row["max_attempts"] is not None else ""
+        target = "-" if row["target"] is None else str(row["target"])
+        if row["target_reached"] is None:
+            status = ""
+        elif row["target_reached"]:
+            status = "target reached"
+        else:
+            status = "TARGET NOT REACHED"
+        if row["surplus"]:
+            status += f"  (+{row['surplus']} surplus passes not exported)"
+        lines.append(
+            f"{row['anomaly_id']:16s} {target:>6s} {row['accepted']:>8d} "
+            f"{str(row['attempts']) + budget:>13s} {row['retries']:>7d} {row['rejects']:>7d} "
+            f"{100 * row['acceptance_rate']:>10.1f}%  {status}",
+        )
+    total_acc = len(result.accepted)
+    total_att = sum(s.attempts for s in result.stats.values())
+    lines.append(
+        f"Total: {total_acc} accepted / {total_att} edit attempts"
+        + (f" ({100 * total_acc / total_att:.1f}%)" if total_att else "")
+        + (f"  ·  elapsed {result.elapsed_s / 60:.1f} min" if result.elapsed_s else ""),
+    )
+    return "\n".join(lines)

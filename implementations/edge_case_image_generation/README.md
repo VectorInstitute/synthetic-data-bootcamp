@@ -4,9 +4,31 @@ Synthetic long-tail / edge-case scene synthesis for perception models.
 
 Part of the [Vector Institute synthetic-data-bootcamp](https://github.com/VectorInstitute/synthetic-data-bootcamp).
 
-## Pipeline
+## Overview
 
-`real image → depth → segmentation → anomaly edit → open-vocab annotation → VLM judge`
+Rare road conditions (a traffic cone in the lane, a trash bin at the curb) are exactly where perception models fail, and exactly what real datasets have few labeled examples of. This reference implementation edits **real** street photos to add those rare objects, keeps only the edits that pass a quality filter, and then tests whether they help a detector.
+
+```text
+ real scene → EDIT (insert rare object) → ANNOTATE (boxes) → JUDGE (multi-signal filter)
+                                                              ├─ accept → training set
+                                                              ├─ retry  → re-edit with next variation
+                                                              └─ reject
+ real-only vs real + accepted synth → train detector → evaluate on the SAME held-out real test
+```
+
+- **Why start from real scenes?** Real photos already have the right camera, lighting, and clutter, so the edit only has to add the rare object. Generating whole scenes from text is more likely to drift from the real domain.
+- **What makes a synthetic sample good?**
+  - **Fidelity:** stays faithful to the real data distribution and the intended edit.
+  - **Novelty:** adds useful variation rather than repeating existing data.
+  - **Usability:** usable for the downstream task; for detection that means a correct, well-placed box.
+- **Multi-signal quality filtering with a VLM in the loop.** The VLM judge is one signal, not the whole filter. An edit is accepted only if it also passes:
+  - real reference-image fidelity checks,
+  - a CLIP embedding "safe zone" (close enough to real, not a near-duplicate),
+  - annotation boxes,
+  - placement gates.
+- **The final test is on real data.** Notebook 3 trains on real-only, real + 50%, and real + 100% of the accepted synthetic images, then evaluates all three on the same held-out **real** test set. A pretty edit that does not move that number is a demo, not data.
+
+## Configuration
 
 Configuration is **dataset-first** under `configs/datasets/<name>/`, with shared defaults in `configs/default/` and hardware profiles in `configs/hardware/`.
 
@@ -18,7 +40,10 @@ Workshop anomalies (see `configs/datasets/mapillary_vistas/dataset.yaml`):
 
 - **road_debris** (cardboard box on the lane)
 - **traffic_cone**
+- **trash_bin**
 - **fog** (global; shows why local inpaint alone is not enough)
+
+Notebooks 2–3 use **traffic_cone** and **trash_bin**.
 
 We do **not** download the full ~29 GB HF zip. Toy images land in `data/mapillary_vistas/samples/`.
 
@@ -91,8 +116,8 @@ This folder keeps **configs**, **data**, **notebooks**, and **scripts** only.
 
 - `notebooks/00_flight_precheck.ipynb` — env / API / GPU / **data download** / model cache check
 - `notebooks/00.5_method_comparison.ipynb` — educational bake-off of edit methods; pick `instruct` for NB1
-- `notebooks/01_sample_data_generation.ipynb` — synthesis loop + fidelity / novelty / usability (VLM + gates)
-- `notebooks/02_batch_dataset_generation.ipynb` — stratified split, batch synth + judge, export for NB3
+- `notebooks/01_sample_data_generation.ipynb` — synthesis loop + fidelity / novelty / usability (multi-signal judge)
+- `notebooks/02_batch_dataset_generation.ipynb` — stratified split, batch synth + judge until a target number of **accepted** images per class (with an attempt budget), fidelity-vs-novelty plot, export for NB3
 - `notebooks/03_training_and_evaluation.ipynb` — YOLOv8n real-only vs real+synth on held-out real test
 
 Supporting docs: `docs/citations.md`, `docs/figures.md`, `docs/anomaly_authoring.md`.
