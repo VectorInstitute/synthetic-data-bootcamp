@@ -7,7 +7,9 @@ from typing import Any
 
 from aieng.syn_data.synbench.agents.prompts import user_sim_system_prompt
 from aieng.syn_data.synbench.agents.session import AgentSession
-from aieng.syn_data.synbench.llm.client import LLMClient, get_client
+from aieng.syn_data.synbench.llm.client import LLMClient
+from aieng.syn_data.synbench.llm import get_client
+from aieng.syn_data.synbench.llm.config import get_user_simulator_model
 
 
 # Shown to the simulator when the executor produced no text reply, so the
@@ -19,7 +21,7 @@ class UserSimulator:
     """LLM-backed customer for multi-turn evaluation dialogues."""
 
     def __init__(self, client: LLMClient | None = None):
-        self.client = client or get_client()
+        self.client = client or get_client(get_user_simulator_model())
 
     def respond(self, session: AgentSession, last_agent_reply: str = "") -> str:
         """Produce the next customer utterance given the live session history.

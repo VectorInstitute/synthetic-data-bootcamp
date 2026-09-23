@@ -58,6 +58,7 @@ def run_user_dialogue(
                 break
 
         session.messages.append({"role": "user", "content": user_message})
+        session.dialogue_turns += 1
 
         # Optional planner → executor (+ optional critic retry).
         plan = ""

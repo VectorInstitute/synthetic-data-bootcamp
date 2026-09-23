@@ -13,7 +13,8 @@ __all__ = ["get_model", "call_llm_json"]
 
 def call_llm_json(prompt: str, model: str | None = None) -> dict[str, Any]:
     """Ask the LLM for a JSON task draft."""
-    client = get_client(model=model or get_generator_model())
+    generator_model = get_generator_model()
+    client = get_client(model=generator_model)
     messages: list[dict[str, Any]] = [
         {
             "role": "system",

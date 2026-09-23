@@ -8,11 +8,21 @@ from __future__ import annotations
 import contextlib
 import html
 import json
+from collections.abc import Sequence
 from typing import Any
 
 from aieng.syn_data.synbench.agents.session import AgentSession
+from aieng.syn_data.synbench.evaluation.metrics import MetricsCollector
 from aieng.syn_data.synbench.schemas.actions import Action
 from aieng.syn_data.synbench.schemas.tasks import Task
+
+_PERSONALITY_ORDER = (
+    "rushed",
+    "anxious",
+    "rule_breaker",
+    "inconsistent",
+    "domain_expert",
+)
 
 
 def _emit(markdown: str) -> None:
@@ -283,3 +293,84 @@ def show_session(
         _emit("### Agent replies\n\n" + "\n\n".join(quoted))
     if show_chat and session.messages:
         show_messages(session.messages, title="Chat transcript")
+
+
+# ---------------------------------------------------------------------------
+# Benchmark summary
+# ---------------------------------------------------------------------------
+
+
+def _ordered_personalities(seen: Sequence[str]) -> list[str]:
+    preferred = [p for p in _PERSONALITY_ORDER if p in seen]
+    extras = [p for p in seen if p not in preferred]
+    return preferred + extras
+
+
+def show_benchmark_by_task_type(
+    metrics: MetricsCollector,
+    tasks: Sequence[Task],
+    *,
+    agent_model: str,
+    task_types: Sequence[str] | None = None,
+) -> None:
+    """Render 0/1 reward by task type and personality, plus mean dialogue turns.
+
+    One row per task type. Personality columns are full-reward (1) vs fail (0).
+    ``avg_turns`` is the mean ``dialogue_turns`` across runs of that type.
+    """
+    tasks_by_id = {task.id: task for task in tasks}
+    rewards: dict[str, dict[str, int]] = {}
+    turns: dict[str, list[int]] = {}
+    seen_types: list[str] = []
+    seen_personalities: list[str] = []
+
+    for run in metrics.runs:
+        task = tasks_by_id.get(run.task_id)
+        if task is None:
+            continue
+        task_type = task.task_type or "—"
+        personality = task.user_scenario.personality_style or "—"
+        if task_type not in rewards:
+            rewards[task_type] = {}
+            turns[task_type] = []
+            seen_types.append(task_type)
+        if personality not in seen_personalities:
+            seen_personalities.append(personality)
+        rewards[task_type][personality] = int(run.reward >= 1.0)
+        turns[task_type].append(run.dialogue_turns)
+
+    type_order = list(task_types) if task_types is not None else seen_types
+    personalities = _ordered_personalities(seen_personalities)
+
+    header = ["task_type", *personalities, "n_pass", "n", "pass_rate", "avg_turns"]
+    lines = [
+        f"**Agent LLM:** `{agent_model}`",
+        "",
+        "| " + " | ".join(header) + " |",
+        "| " + " | ".join("---" for _ in header) + " |",
+    ]
+
+    for task_type in type_order:
+        type_turns = turns.get(task_type, [])
+        type_rewards = rewards.get(task_type, {})
+        n = len(type_turns)
+        n_pass = sum(type_rewards.values())
+        if n:
+            pass_rate = f"{n_pass / n:.2f}"
+            avg_turns = f"{sum(type_turns) / n:.2f}"
+        else:
+            n_pass = 0
+            pass_rate = "—"
+            avg_turns = "—"
+        cells = [f"`{task_type}`"]
+        for personality in personalities:
+            cells.append(
+                str(type_rewards[personality]) if personality in type_rewards else "—"
+            )
+        cells.extend([str(n_pass), str(n), pass_rate, avg_turns])
+        lines.append("| " + " | ".join(cells) + " |")
+
+    if not type_order:
+        lines.append("| *(no runs)* |" + " |" * (len(header) - 1))
+
+    _emit("\n".join(lines))

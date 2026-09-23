@@ -20,7 +20,7 @@ def agent_system_prompt(domain: DomainBundle, task: Task, extra: str = "") -> st
         f"task_id: {task.id}",
         "",
         "## Policy",
-        domain.policy[:4000],
+        domain.policy,
         "",
         "Resolve the customer's messages using the provided tools and policy.",
         "Do not invent goals beyond what the customer says.",
