@@ -6,6 +6,7 @@ import json
 import random
 from datetime import date, timedelta
 from pathlib import Path
+from typing import Any
 
 
 SEED_ACCOUNTS = [
@@ -39,7 +40,7 @@ def _slug(value: str) -> str:
     return value.lower().replace(" ", ".")
 
 
-def build_database(seed: int = 42) -> dict:
+def build_database(seed: int = 42) -> dict[str, dict[str, dict[str, Any]]]:
     """Return 48 accounts, 96 subscriptions, and 192 invoices."""
     rng = random.Random(seed)
     generated = [
@@ -50,9 +51,9 @@ def build_database(seed: int = 42) -> dict:
         )
     ]
     account_rows = SEED_ACCOUNTS + generated
-    accounts: dict[str, dict] = {}
-    subscriptions: dict[str, dict] = {}
-    invoices: dict[str, dict] = {}
+    accounts: dict[str, dict[str, Any]] = {}
+    subscriptions: dict[str, dict[str, Any]] = {}
+    invoices: dict[str, dict[str, Any]] = {}
     base_date = date(2026, 1, 15)
 
     for account_index, (account_id, name, company) in enumerate(account_rows):

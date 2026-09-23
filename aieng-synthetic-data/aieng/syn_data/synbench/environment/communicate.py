@@ -15,7 +15,6 @@ class CommunicateChecker:
         combined = " ".join(agent_messages).replace(".", "").lower()
         # Also remove dots from required items for robust matching
         missing = [s for s in required if s.replace(".", "").lower() not in combined]
-        # 
         if missing:
             return 0.0, missing
         return 1.0, []

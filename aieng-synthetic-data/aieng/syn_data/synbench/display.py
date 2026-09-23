@@ -16,6 +16,7 @@ from aieng.syn_data.synbench.evaluation.metrics import MetricsCollector
 from aieng.syn_data.synbench.schemas.actions import Action
 from aieng.syn_data.synbench.schemas.tasks import Task
 
+
 _PERSONALITY_ORDER = (
     "rushed",
     "anxious",

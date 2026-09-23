@@ -28,9 +28,7 @@ def _task(task_id: str, task_type: str, personality: str) -> Task:
 
 def test_show_benchmark_by_task_type_includes_model_and_avg_turns(monkeypatch):
     captured: list[str] = []
-    monkeypatch.setattr(
-        "aieng.syn_data.synbench.display._emit", captured.append
-    )
+    monkeypatch.setattr("aieng.syn_data.synbench.display._emit", captured.append)
     metrics = MetricsCollector()
     metrics.add("a", _score(reward=1.0, turns=2))
     metrics.add("b", _score(reward=0.0, turns=4))

@@ -10,7 +10,7 @@ A **billing support** domain used to scale SynBench beyond the tiny retail examp
 | Writes | Cancel order, update shipping | Void invoice, update billing email, update seats |
 | Notebooks | `2`–`4` | `5-saas-billing-scale.ipynb` |
 
-Mechanics (roles, task JSON, scoring) are the same as [mock retail](../mock_retail/README.md). 
+Mechanics (roles, task JSON, scoring) are the same as [mock retail](../mock_retail/README.md).
 
 
 ---
@@ -27,7 +27,7 @@ Mechanics (roles, task JSON, scoring) are the same as [mock retail](../mock_reta
 6. Run the **multi-agent pipeline** (user sim → planner → executor → critic) and inspect a few examples.
 7. Run the full generated benchmark on two agentic pipelines backed by different LLMs.
 
-Run notebooks **1–4 on retail first**, then this one. 
+Run notebooks **1–4 on retail first**, then this one.
 
 ---
 

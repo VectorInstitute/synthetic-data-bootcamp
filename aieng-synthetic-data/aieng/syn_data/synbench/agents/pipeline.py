@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import logging
+
 from aieng.syn_data.synbench.agents.critic import Critic
 from aieng.syn_data.synbench.agents.dialogue import run_user_dialogue
 from aieng.syn_data.synbench.agents.loop import ToolCallingLoop
@@ -17,7 +19,6 @@ from aieng.syn_data.synbench.llm.client import LLMClient, get_client
 from aieng.syn_data.synbench.schemas.domain import DomainBundle
 from aieng.syn_data.synbench.schemas.tasks import Task
 
-import logging
 
 logger = logging.getLogger(__name__)
 

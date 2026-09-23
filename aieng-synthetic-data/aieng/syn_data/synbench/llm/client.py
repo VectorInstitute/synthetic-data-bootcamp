@@ -37,7 +37,8 @@ class LLMClient(Protocol):
 
 
 def get_client(model: str | None = None) -> LLMClient:
-    """Build the remote OpenAI-compatible chat client. 
+    """Build the remote OpenAI-compatible chat client.
+
     Args:
         model: The model to use for the chat client. Can be either the agent model
             or the generator model. If None, defaults to the agent model.

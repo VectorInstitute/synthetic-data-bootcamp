@@ -27,6 +27,7 @@ def get_generator_model() -> str:
     """Model name from ``GENERATOR_MODEL``, falling back to ``DEFAULT_MODEL``."""
     return os.environ.get("GENERATOR_MODEL", DEFAULT_MODEL)
 
+
 def get_user_simulator_model() -> str:
     """Model name from ``USER_SIMULATOR_MODEL``, falling back to ``DEFAULT_MODEL``."""
     return os.environ.get("USER_SIMULATOR_MODEL", DEFAULT_MODEL)

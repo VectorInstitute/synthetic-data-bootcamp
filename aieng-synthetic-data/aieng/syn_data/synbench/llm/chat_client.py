@@ -24,12 +24,13 @@ class ChatClient:
 
     def __init__(self, model: str):
         """Initialize the chat client with the given model.
+
         Args:
             model: The model to use for the chat client. Can be either the agent model
                 or the generator model.
-                  
+
         """
-        self.model = model 
+        self.model = model
         self._api = OpenAI(
             base_url=get_base_url(),
             api_key=get_api_key(),

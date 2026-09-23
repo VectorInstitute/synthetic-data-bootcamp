@@ -24,7 +24,6 @@ def _spec(
             "required": required,
         },
         tool_type=tool_type,
-        fsm_tag="lookup" if tool_type == ToolType.READ else "mutate",
     )
 
 
@@ -134,7 +133,7 @@ class ToolKit:
         return {"subscription_id": subscription_id, "seats": seats}
 
     def _require_account(self, account_id: str) -> dict[str, Any]:
-        account = self.db["accounts"].get(account_id)
+        account: dict[str, Any] | None = self.db["accounts"].get(account_id)
         if account is None:
             raise ValueError(f"Account not found: {account_id}")
         return account
