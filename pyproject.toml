@@ -85,6 +85,13 @@ synbench = [
     "python-dotenv>=1.2.2",
 ]
 
+
+tabular-data = [
+    "gdown>=6.1.0",
+    "midst-toolkit",
+    "pandas>=2.3.3",
+]
+
 [tool.uv]
 default-groups = ["dev"]
 # aieng-platform-onboard pins filelock and virtualenv to older exact versions;
@@ -102,7 +109,7 @@ members = [
 [tool.uv.sources]
 aieng-synthetic-data = { workspace = true }
 clip = { git = "https://github.com/ultralytics/CLIP.git", rev = "68dce32140994dfcb645a1320c4ebdc034fc19fd" }
-
+midst-toolkit = { git = "https://github.com/VectorInstitute/midst-toolkit.git", rev = "52e4500a03afc7f36d93abd7591413ff6393f27c" }
 
 [tool.mypy]
 mypy_path = ["aieng-synthetic-data"]
@@ -132,6 +139,31 @@ extra_checks = true
 # are thin wrappers around them and cannot satisfy disallow_untyped_calls.
 module = "aieng.syn_data.synbench.display"
 disallow_untyped_calls = false
+
+[[tool.mypy.overrides]]
+# Image helpers pass numpy arrays whose dtype and shape vary at runtime
+# (uint8 RGB, float weights, bool masks), so annotations stay bare np.ndarray.
+module = "aieng.syn_data.image.*"
+allow_any_generics = true
+
+[[tool.mypy.overrides]]
+# Shapes come back from numpy as tuple[int, ...] and boolean reductions widen
+# to np.bool_; both are narrower in practice than mypy can prove.
+module = [
+    "aieng.syn_data.image.generate.annotation",
+    "aieng.syn_data.image.generate.conditioning",
+    "aieng.syn_data.image.judge.embedding_gate",
+]
+disable_error_code = ["arg-type", "assignment"]
+
+[[tool.mypy.overrides]]
+# transformers and scipy stubs vary by version, so the ignores in these modules
+# are needed in some environments and redundant in others.
+module = [
+    "aieng.syn_data.image.generate.conditioning",
+    "aieng.syn_data.image.judge.vlm_judge",
+]
+warn_unused_ignores = false
 
 [[tool.mypy.overrides]]
 # Pytest test functions and their fixture parameters are conventionally left

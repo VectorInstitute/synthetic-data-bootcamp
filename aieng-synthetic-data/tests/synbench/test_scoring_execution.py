@@ -101,7 +101,7 @@ def test_single_agent_run_and_score_aborted_task(mock_retail_path):
     def boom(_task: Task):
         raise RuntimeError("dialogue failed")
 
-    agent.run_task = boom  # type: ignore[method-assign]
+    agent.run_task = boom  # type: ignore
     result = agent.run_and_score_task(task)
     assert result.reward == 0.0
     assert result.execution_ok is False

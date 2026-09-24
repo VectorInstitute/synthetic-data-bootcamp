@@ -57,3 +57,20 @@ runs/detect/
 *.onnx
 *.safetensors
 *.engine
+
+
+# ignore experiment artifacts and datasets
+**.pkl
+**.csv
+
+# Tabular data gitignore
+implementations/tabular_data/**.csv
+implementations/tabular_data/**/preprocess_meta.json
+
+# ignore result artifacts, keep directory structure via .gitkeep
+implementations/tabular_data/single_table/results/**
+!implementations/tabular_data/single_table/results/**/
+!implementations/tabular_data/single_table/results/**/.gitkeep
+implementations/tabular_data/multi_table/results/**
+!implementations/tabular_data/multi_table/results/**/
+!implementations/tabular_data/multi_table/results/**/.gitkeep

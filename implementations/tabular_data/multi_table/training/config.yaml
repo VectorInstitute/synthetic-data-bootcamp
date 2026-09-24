@@ -1,0 +1,29 @@
+# Multi-table training example configuration
+diffusion_config:
+  d_layers: [512, 1024, 1024, 1024, 1024, 512]
+  dropout: 0.0
+  num_timesteps: 500
+  model_type: mlp
+  iterations: 5000
+  batch_size: 256
+  lr: 0.0006
+  gaussian_loss_type: mse
+  weight_decay: 1e-05
+  scheduler: cosine
+  data_split_ratios: [0.99, 0.005, 0.005] # Train, Val, Test splits.
+  # Note: only train set is used for training, and val loss and test accuracy results are reported in `train_classifier`.
+  merge_categoricals_into_numerical: true # Set to true for the ClavaDDPM model.
+
+random_seed: 42
+
+clustering_config:
+  parent_scale: 1.0
+  num_clusters: 50
+  clustering_method: kmeans_and_gmm
+
+classifier_config:
+    d_layers: [128, 256, 512, 1024, 512, 256, 128]
+    lr: 0.0001
+    dim_t: 128
+    batch_size: 256
+    iterations: 5000
