@@ -151,6 +151,19 @@ def load_config(
     return cast(DictConfig, _prune_nulls(cfg))
 
 
+def scaled(value: Any, cfg: Any) -> Any:
+    """Multiply an int (or a dict of ints) by ``cfg.scale``, keeping each ≥ 1.
+
+    ``None`` and ``0`` pass through unchanged (they mean "no limit" / "off").
+    """
+    factor = float(cfg.get("scale", 1.0) or 1.0)
+    if isinstance(value, dict):
+        return {k: scaled(v, cfg) for k, v in value.items()}
+    if not value:
+        return value
+    return max(1, round(int(value) * factor))
+
+
 def _prune_nulls(cfg: Any) -> Any:
     """Remove keys whose value is None so str(cfg.x) never sees explicit nulls."""
     if not OmegaConf.is_config(cfg):

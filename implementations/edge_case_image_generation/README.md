@@ -32,6 +32,15 @@ Rare road conditions (a traffic cone in the lane, a trash bin at the curb) are e
 
 Configuration is **dataset-first** under `configs/datasets/<name>/`, with shared defaults in `configs/default/` and hardware profiles in `configs/hardware/`.
 
+| Want to change… | Where |
+|-----------------|-------|
+| Workshop size (download + NB2/NB3 counts) | `configs/config.yaml` → `scale` (`1.0` full run; `0.2` bootcamp small mode) |
+| Dataset / your own local images | Copy `configs/datasets/_template/`; `data.yaml` → `kind: local`, images in `data/<id>/samples/` ([Notebook 0](notebooks/00_flight_precheck.ipynb) §1) |
+| Anomalies (prompts, variations, masks, gates) | `configs/datasets/<id>/generation/anomalies/*.yaml` — [docs/anomaly_authoring.md](docs/anomaly_authoring.md) |
+| Editor / depth / seg / detector models | `configs/default/*.yaml`, overridden per GPU in `configs/hardware/*.yaml` |
+| Judge model, API provider, thresholds | `configs/default/judge.yaml` |
+| Batch sizes, detector fine-tune | Knobs at the top of Notebooks 2 and 3 |
+
 ## Default dataset: Mapillary Vistas v2 (toy subset)
 
 Open **street-level** scenes ([Mapillary Vistas](https://www.mapillary.com/dataset/vistas), CC BY-NC-SA).
@@ -117,7 +126,7 @@ This folder keeps **configs**, **data**, **notebooks**, and **scripts** only.
 - `notebooks/00_flight_precheck.ipynb` — env / API / GPU / **data download** / model cache check
 - `notebooks/00.5_method_comparison.ipynb` — educational bake-off of edit methods; pick `instruct` for NB1
 - `notebooks/01_sample_data_generation.ipynb` — synthesis loop + fidelity / novelty / usability (multi-signal judge)
-- `notebooks/02_batch_dataset_generation.ipynb` — stratified split, batch synth + judge until a target number of **accepted** images per class (with an attempt budget), fidelity-vs-novelty plot, export for NB3
+- `notebooks/02_batch_dataset_generation.ipynb` — stratified split, batch synth + judge until a target number of **accepted** images per class (with an attempt budget), export for NB3
 - `notebooks/03_training_and_evaluation.ipynb` — YOLOv8n real-only vs real+synth on held-out real test
 
 Supporting docs: `docs/citations.md`, `docs/figures.md`, `docs/anomaly_authoring.md`.

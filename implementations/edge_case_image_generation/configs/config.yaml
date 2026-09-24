@@ -11,5 +11,12 @@ defaults:
 # Which package under configs/datasets/<name>/ to load.
 dataset_name: mapillary_vistas
 
+# Workshop size multiplier. Shrinks the NB0 download (extract_max_* in the dataset
+# data.yaml) and the NB2/NB3 counts (holdout, seed pools, accepted target, attempt
+# budget, scene backgrounds) together.
+#   1.0 = full run (~1110 Mapillary images, ~17 min download, NB2 ~2.5 h)
+#   0.2 = bootcamp small mode (~220 images, roughly a fifth of the time)
+scale: 1.0
+
 output:
   format: coco

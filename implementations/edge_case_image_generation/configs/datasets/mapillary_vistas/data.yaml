@@ -17,6 +17,8 @@ stem_prefixes:
 extract_label_map:
   object--traffic-cone: traffic_cone
   object--trash-can: trash_bin
+# Both extract_max_* counts are multiplied by ``scale`` in configs/config.yaml
+# (0.2 → 11 per rare class + 200 scenes).
 extract_max_per_class: 55
 # Scenes double as NB2 synth seed pools (300 per class by default) + holdout;
 # NB3 caps train backgrounds via MAX_SCENE_TRAIN (default 150) so OD isn't

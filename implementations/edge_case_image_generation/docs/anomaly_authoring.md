@@ -12,7 +12,9 @@ configs/datasets/<dataset>/
   generation/anomalies/<id>.yaml
 ```
 
-Add your id to `workshop_anomalies` (and NB1 `METHOD_BY_ANOMALY` / NB2 maps).
+Add your id to `workshop_anomalies` (and NB1 `METHOD_BY_ANOMALY` / NB2 maps / NB3
+`CLASS_NAMES`). NB2/NB3 also need real positives named `<id>_*.jpg` in the samples
+folder; for Mapillary, map the panoptic label in `data.yaml` → `extract_label_map`.
 
 ## Keys that matter
 

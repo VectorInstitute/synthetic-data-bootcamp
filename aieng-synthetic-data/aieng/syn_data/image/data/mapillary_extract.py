@@ -29,7 +29,7 @@ from huggingface_hub import get_token, hf_hub_url
 from PIL import Image
 from tqdm.auto import tqdm
 
-from aieng.syn_data.image.config import load_config
+from aieng.syn_data.image.config import load_config, scaled
 from aieng.syn_data.image.data.loader import list_sample_images, project_root
 
 
@@ -86,8 +86,8 @@ def _load_extract_paths(start: Path | None = None) -> _ExtractPaths:
         index=cache / "_zip_index.jsonl",
         target=target,
         label_aliases=aliases,
-        max_per=int(data.get("extract_max_per_class") or 6),
-        max_generic=int(data.get("extract_max_generic") or 10),
+        max_per=scaled(int(data.get("extract_max_per_class") or 6), cfg),
+        max_generic=scaled(int(data.get("extract_max_generic") or 10), cfg),
         thumb=int(data.get("extract_thumb_max_side") or 1280),
     )
 
