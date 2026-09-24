@@ -35,11 +35,14 @@ from aieng.syn_data.image.batch.checkpoint import (
     accepted_path,
     accepted_sample_to_row,
     append_jsonl,
+    embeddings_path,
     judged_path,
     load_checkpoint,
+    load_embedding_artifacts,
     rebuild_stats,
     rejected_path,
     sample_key,
+    save_real_embeddings,
     save_state,
 )
 from aieng.syn_data.image.batch.export import (
@@ -107,6 +110,8 @@ class BatchResult:
 
     ``judged`` holds one row per judged edit (accepted, retried, rejected, or
     surplus) with the judge scores and embedding sims, for plots/diagnostics.
+    ``embeddings`` holds the matching CLIP vectors and ``real_embeddings`` the
+    real same-class bank they were compared to (per class).
     ``surplus`` counts edits that passed every gate after their class had
     already reached its target (not exported).
     """
@@ -115,6 +120,8 @@ class BatchResult:
     stats: dict[str, ClassRunStats] = field(default_factory=dict)
     rejected: list[dict[str, Any]] = field(default_factory=list)
     judged: list[dict[str, Any]] = field(default_factory=list)
+    embeddings: list[dict[str, Any]] = field(default_factory=list)
+    real_embeddings: dict[str, Any] = field(default_factory=dict)
     surplus: dict[str, int] = field(default_factory=dict)
     targets: dict[str, int] = field(default_factory=dict)
     max_attempts: dict[str, int] = field(default_factory=dict)
@@ -874,6 +881,14 @@ def _record_judged(
     }
     ctx.result.judged.append(row)
     append_jsonl(judged_path(ctx.root_dir), row)
+    if judgment.embedding is not None:
+        vec_row = {
+            key: row[key]
+            for key in ("anomaly_id", "source_stem", "pass_index", "attempt", "outcome")
+        }
+        vec_row["vector"] = [round(float(v), 5) for v in judgment.embedding]
+        ctx.result.embeddings.append(vec_row)
+        append_jsonl(embeddings_path(ctx.root_dir), vec_row)
 
 
 def _apply_judgments(
@@ -934,6 +949,11 @@ def _judge_queue(ctx: _BatchContext, items: list[PendingItem]) -> list[PendingIt
     if not ready:
         return retries
     counts = _apply_judgments(ctx, _run_judgments(ctx, ready), retries)
+    if not ctx.result.real_embeddings:
+        banks = ctx.judge.real_embedding_bank(list(ctx.seed_pool))
+        if banks:
+            ctx.result.real_embeddings = banks
+            save_real_embeddings(ctx.root_dir, banks)
     surplus = f"  surplus={counts['surplus']}" if counts["surplus"] else ""
     ctx.log(
         f"Judge round: accept={counts['accept']}  retry={counts['retry']}  "
@@ -1076,6 +1096,7 @@ def _restore_batch_checkpoint(
     result.accepted = list(checkpoint["accepted"])
     result.rejected = list(checkpoint["rejected"])
     result.judged = list(checkpoint.get("judged") or [])
+    result.real_embeddings, result.embeddings = load_embedding_artifacts(root_dir)
     done_keys = set(checkpoint["accepted_keys"]) | set(checkpoint["rejected_keys"])
     for sample in result.accepted:
         accepted_counts[sample.anomaly_id] = (

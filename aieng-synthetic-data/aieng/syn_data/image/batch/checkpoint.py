@@ -11,6 +11,8 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any, Iterable, cast
 
+import numpy as np
+
 from aieng.syn_data.image.batch.export import AcceptedSample, ClassRunStats
 
 
@@ -34,6 +36,35 @@ def rejected_path(nb2_dir: Path | str) -> Path:
 def judged_path(nb2_dir: Path | str) -> Path:
     """Return the per-judgment record path (every judged edit, any outcome)."""
     return checkpoint_dir(nb2_dir) / "judged.jsonl"
+
+
+def embeddings_path(nb2_dir: Path | str) -> Path:
+    """Return the per-judgment CLIP vector path (one JSON row per judged edit)."""
+    return checkpoint_dir(nb2_dir) / "embeddings.jsonl"
+
+
+def real_embeddings_path(nb2_dir: Path | str) -> Path:
+    """Return the real same-class CLIP bank path (one array per class)."""
+    return checkpoint_dir(nb2_dir) / "real_embeddings.npz"
+
+
+def save_real_embeddings(nb2_dir: Path | str, banks: dict[str, np.ndarray]) -> None:
+    """Persist the real CLIP bank vectors used by the embedding gate."""
+    if banks:
+        arrays: dict[str, Any] = dict(banks)
+        np.savez_compressed(real_embeddings_path(nb2_dir), **arrays)
+
+
+def load_embedding_artifacts(
+    nb2_dir: Path | str,
+) -> tuple[dict[str, np.ndarray], list[dict[str, Any]]]:
+    """Load ``(real vectors per class, judged-edit vector rows)`` for plotting."""
+    path = real_embeddings_path(nb2_dir)
+    real: dict[str, np.ndarray] = {}
+    if path.exists():
+        with np.load(path) as data:
+            real = {k: np.asarray(data[k]) for k in data.files}
+    return real, read_jsonl(embeddings_path(nb2_dir))
 
 
 def state_path(nb2_dir: Path | str) -> Path:

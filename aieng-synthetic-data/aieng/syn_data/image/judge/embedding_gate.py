@@ -62,6 +62,7 @@ class EmbeddingGateMetrics:
     failed_fidelity: bool = False
     failed_novelty: bool = False
     reason: str = ""
+    embedding: np.ndarray | None = field(default=None, repr=False)
 
     def to_dict(self) -> dict[str, Any]:
         """Convert the value to to dict."""
@@ -320,6 +321,15 @@ class EmbeddingGate:
                     continue
         return banks
 
+    def real_vectors(self, class_id: str) -> tuple[np.ndarray, list[str]]:
+        """Real same-class bank as an ``(n, d)`` array plus source paths."""
+        with self._lock:
+            banks = self._ensure_real_bank(str(class_id))
+            entries = list(banks.real_full)
+        if not entries:
+            return np.zeros((0, 0), dtype=np.float32), []
+        return np.stack([e.vector for e in entries]), [e.path for e in entries]
+
     def register_accepted(
         self,
         class_id: str,
@@ -385,6 +395,7 @@ class EmbeddingGate:
                 metrics.reason = f"encode-failed: {exc}"
                 return metrics
 
+            metrics.embedding = full_vec
             real_full = _filter(banks.real_full)
             neighbor_full = _filter(banks.neighbor_full)
             sim_g, path_g = nearest_neighbor(full_vec, real_full)

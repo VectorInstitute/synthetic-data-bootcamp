@@ -15,10 +15,11 @@ from __future__ import annotations
 
 import json
 import re
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 import torch
 from PIL import Image
 from PIL import Image as _Image
@@ -69,10 +70,14 @@ class JudgeResult:
     embed_nearest_real: str | None = None
     embed_nearest_neighbor: str | None = None
     embed_gate_reason: str | None = None
+    # CLIP vector of the candidate (kept in memory, not serialized).
+    embedding: Any | None = field(default=None, repr=False)
 
     def to_dict(self) -> dict[str, Any]:
         """Convert the value to to dict."""
-        return asdict(self)
+        payload = asdict(self)
+        payload.pop("embedding", None)
+        return payload
 
 
 _DEFAULT_SCHEMA_HINT = """
@@ -203,6 +208,18 @@ class VLMJudge:
         if crop is not None:
             crop_pil = crop if isinstance(crop, _Image.Image) else _to_pil(crop)
         gate.register_accepted(str(anomaly_id), pil, path=path, crop=crop_pil)
+
+    def real_embedding_bank(self, class_ids: list[str]) -> dict[str, np.ndarray]:
+        """CLIP vectors of the real same-class images the embedding gate compares to."""
+        gate = self._get_embedding_gate()
+        if gate is None or not gate.config.enabled:
+            return {}
+        out: dict[str, np.ndarray] = {}
+        for class_id in class_ids:
+            vectors, _paths = gate.real_vectors(str(class_id))
+            if len(vectors):
+                out[str(class_id)] = vectors
+        return out
 
     def _ensure_qwen(self) -> None:
         if self._model is not None:
@@ -384,6 +401,7 @@ class VLMJudge:
         result.embed_nearest_real = metrics.nearest_real
         result.embed_nearest_neighbor = metrics.nearest_neighbor
         result.embed_gate_reason = metrics.reason or None
+        result.embedding = metrics.embedding
 
         if not (metrics.failed_fidelity or metrics.failed_novelty):
             return result
