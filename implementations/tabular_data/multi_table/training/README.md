@@ -25,6 +25,11 @@ ClavaDDPM does not train one model on a joined mega-table. It trains a **small f
 
 This README outlines the training process for the ClavaDDPM model. The diagram above, taken from the original paper, illustrates the main steps:
 
+<div align="center">
+  <img src="../images/clavaddpm_figure.png" alt="ClavaDDPM" width="730" height="250">
+</div>
+
+
 **(a) Latent learning and table augmentation (steps 1-2)**: This step crossponds to clustering section, where we aim to augmente each table with associated clustering labels that used to capture inter-table relationships.
 
 **(b) Training (steps 3-5)**: This step corresponds to the model training section, where we train separate conditional diffusion models and the cluster classifier models on each augmented table.
