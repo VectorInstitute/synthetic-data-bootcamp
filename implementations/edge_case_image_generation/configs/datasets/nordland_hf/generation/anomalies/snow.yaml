@@ -1,0 +1,24 @@
+id: snow
+display_name: Light snow cover
+annotation_classes:
+  - snow
+edit_mask:
+  mode: full
+prompt: >-
+  the same railway corridor photo with light fresh snow on the ground and tracks,
+  cold overcast air, photorealistic
+negative_prompt: >-
+  cartoon, sticker, watermark, text, different season trees removed, night
+strength: 0.45
+controlnet_strength: 0.50
+methods:
+  inpaint:
+    prompt: null
+  controlnet_dual:
+    prompt: >-
+      the exact same Nordland photo with only light snow added on the ground,
+      same tracks and trees, photorealistic
+  instruct:
+    prompt: >-
+      Add light realistic snow on the ground and tracks only,
+      keep the camera view and trees unchanged
