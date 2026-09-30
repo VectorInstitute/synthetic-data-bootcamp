@@ -52,7 +52,7 @@ jobs:
           python-version-file: ".python-version"
 
       - name: Detect sub-package changes
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@v4
         id: filter
         with:
           filters: |
