@@ -32,7 +32,7 @@ a real-data benchmark.
 ### Phase 1: Parse filings into sections (step 3)
 
 - Input: `10k.txt`. Output: `data/parsed/{ticker}/{fy}/item_1.txt`, `item_1a.txt`, `item_1c.txt`,
-  `item_7.txt`, `item_8.txt`.
+  `item_7.txt`, `item_8.txt`. See `SECTIONS.md` for which items are included and why.
 - The table of contents repeats every Item heading. Pick the body occurrence, meaning the heading
   followed by the most text. Body headings are uppercase, for example `ITEM 1A – RISK FACTORS`.
 - When Item 7 or 8 is only a cross-reference to EX-13, take the text from the matching `ex13_*.htm`.

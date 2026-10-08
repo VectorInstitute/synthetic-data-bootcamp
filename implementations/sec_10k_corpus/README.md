@@ -78,4 +78,5 @@ python -m src.download_10k
 - Git tracks `metadata.json` files and `data/download_status.csv`. The filing text
   (`10k.htm`, `10k.txt`, `ex13_*`) and `data/parsed/`, `data/index.csv`, and `logs/` are
   git-ignored. Re-running `python -m src.download_10k` recreates the filing text.
-- See `PLAN.md` for the full plan and open questions.
+- See `PLAN.md` for the full plan and open questions, and `SECTIONS.md` for which 10-K items
+  are parsed and why.
