@@ -13,7 +13,7 @@ listings of the same company (by CIK, e.g. GOOGL/GOOG) are excluded so every
 sampled ticker maps to one distinct, EDGAR-friendly company.
 
 Run from the project directory:
-    python -m src.sample_companies
+    python -m src.step00_sample_companies
 """
 
 import csv

@@ -1,8 +1,8 @@
 """Build data/calibration.json: percentile distributions of real financial metrics.
 
-Input: data/companyfacts/{ticker}.json (run src.fetch_companyfacts first). Output:
-data/calibration.json, with one record per company-fiscal_year and, per metric, the
-count and percentile distribution across every company-year that reports it.
+Input: data/companyfacts/{ticker}.json (run src.step04_fetch_companyfacts first).
+Output: data/calibration.json, with one record per company-fiscal_year and, per
+metric, the count and percentile distribution across every company-year reporting it.
 
 Calibration is generic across sectors (see PLAN.md Phase 3 and open question 4): the
 company list is a random S&P 500 sample, not a bank list, so the metrics below are
@@ -13,7 +13,7 @@ since independent sampling can't be trusted to keep accounting identities (asset
 liabilities + equity) intact.
 
 Run from the project directory:
-    python -m src.make_calibration
+    python -m src.step05_make_calibration
 """
 
 import json
@@ -134,7 +134,7 @@ def main() -> None:
     for ticker in tickers:
         facts_path = COMPANYFACTS_DIR / f"{ticker}.json"
         if not facts_path.exists():
-            logger.warning("%s: no companyfacts.json (run src.fetch_companyfacts first); skipping", ticker)
+            logger.warning("%s: no companyfacts.json (run src.step04_fetch_companyfacts first); skipping", ticker)
             continue
         companyfacts = json.loads(facts_path.read_text(encoding="utf-8"))
         for fy in fiscal_years:

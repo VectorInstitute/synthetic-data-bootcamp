@@ -21,7 +21,7 @@ anyway and flagged in parse_status.csv for manual review, rather than guessed at
 further.
 
 Run from the project directory:
-    python -m src.parse_sections
+    python -m src.step02_parse_sections
 """
 
 import csv

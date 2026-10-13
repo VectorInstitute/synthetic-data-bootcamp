@@ -16,7 +16,7 @@ companies:
     - FITB
     - KEY
     - ZION
-  # Full list: 50 S&P 500 companies drawn at random (python -m src.sample_companies,
+  # Full list: 50 S&P 500 companies drawn at random (python -m src.step00_sample_companies,
   # random.Random(42).sample over data/sp500_constituents.csv). Citigroup is excluded
   # by name (no plain-text Item headings in its 10-K body, see SECTIONS.md), along with
   # dotted share-class tickers and duplicate listings of the same company by CIK.

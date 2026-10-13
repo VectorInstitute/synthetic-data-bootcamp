@@ -22,7 +22,7 @@ a real-data benchmark.
 
 - Location: `data/raw/{ticker}/{fy}/`, with `10k.htm` (the 10-K as filed), `10k.txt` (readable text),
   `ex13_*.htm` (annual report exhibit, when present), and `metadata.json`.
-- Companies: 50 S&P 500 companies sampled at random (`python -m src.sample_companies`,
+- Companies: 50 S&P 500 companies sampled at random (`python -m src.step00_sample_companies`,
   `random.Random(42).sample` over `data/sp500_constituents.csv`, a frozen snapshot). Citigroup is
   excluded from the sampling pool by name: its 10-K body has no plain-text Item headings at all
   (see "Parsed sections"), so this pipeline can't parse it. This replaced an earlier list of 15
@@ -35,7 +35,7 @@ a real-data benchmark.
   edge case in `find_10k`, not a missing filing).
 - EX-13 annual reports are present for PGR, USB, and WFC (all three years each). Most other filings
   keep MD&A and financials in the 10-K body.
-- Reproduce: `python -m src.download_10k` (skips anything already downloaded).
+- Reproduce: `python -m src.step01_download_10k` (skips anything already downloaded).
 
 ### Parsed sections
 
@@ -45,19 +45,19 @@ a real-data benchmark.
   have no file to parse): 724 ok, 5 short, 6 missing. Every row's status, character count, and
   extraction method are in `data/parse_status.csv`. See `SECTIONS.md` for what each remaining
   short/missing row is and why it's not worth chasing further.
-- Reproduce: `python -m src.parse_sections` (always reparses; it's local and fast, no need to skip).
+- Reproduce: `python -m src.step02_parse_sections` (always reparses; it's local and fast, no need to skip).
 
 ### Calibration profile
 
 - `data/companyfacts/{ticker}.json`: the raw SEC XBRL companyfacts response per company (about
-  180 MB total; git-ignored, reproduce with `python -m src.fetch_companyfacts`).
+  180 MB total; git-ignored, reproduce with `python -m src.step04_fetch_companyfacts`).
 - `data/calibration.json`: 147 company-years (every downloaded filing), 6 generic cross-sector
   metrics (total assets, total liabilities, stockholders' equity, revenues, net income, operating
   income) plus 6 derived ratios (net/operating margin, return on equity/assets, equity/liabilities
   to assets), each with its percentile distribution and the per-company-year values it's drawn
   from. Not every company reports every tag (e.g. 111/147 report a total `Liabilities` figure,
   107/147 report `OperatingIncomeLoss`); `data/calibration.json`'s `missing` field says which
-  company-years lack which metric. Reproduce with `python -m src.make_calibration`.
+  company-years lack which metric. Reproduce with `python -m src.step05_make_calibration`.
 - Resolves open question 4 (below): calibration is generic across sectors, not bank-specific, to
   match the random S&P 500 company list.
 
@@ -84,18 +84,18 @@ a real-data benchmark.
 ### Phase 2: Index and XBRL facts (steps 4 and 5) — done
 
 - `data/index.csv`: one row per section, with ticker, company name, CIK, fiscal year, filing date,
-  accession number, item, path, character count, and word count. `python -m src.build_index`.
+  accession number, item, path, character count, and word count. `python -m src.step03_build_index`.
 - XBRL companyfacts: `https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json`, one file per
   company, fetched through edgartools' `get_with_retry` so it uses the same identity and rate
-  limit. `python -m src.fetch_companyfacts`.
+  limit. `python -m src.step04_fetch_companyfacts`.
 
 ### Phase 3: Calibration profile — done, generic (resolves open question 4)
 
 - Decided: calibration is generic across sectors, not bank-specific — the company list is now a
   random S&P 500 sample (only KEY, PGR, and USB are incidentally banks), so fictional companies
   are generic companies from here on, not fictional banks. See "Calibration profile" above for
-  what was actually built: `python -m src.make_calibration`, from the metrics and ratios in
-  `src/make_calibration.py`'s `METRIC_TAGS` and `DERIVED_RATIOS` rather than bank-specific ones
+  what was actually built: `python -m src.step05_make_calibration`, from the metrics and ratios in
+  `src/step05_make_calibration.py`'s `METRIC_TAGS` and `DERIVED_RATIOS` rather than bank-specific ones
   like CET1 or net interest margin.
 - `data/calibration.json` keeps the full per-company-year records, not just percentile summaries,
   specifically so Phase 4 can sample a real company-year as a template and perturb it. Independent
@@ -105,7 +105,7 @@ a real-data benchmark.
 ### Phase 4: Company spec generator — done
 
 - 20 fictional companies (resolves open question 1), one fiscal year each, sampled without
-  replacement from `calibration.json`'s 147 company-years as templates. `python -m src.make_specs`;
+  replacement from `calibration.json`'s 147 company-years as templates. `python -m src.step06_make_specs`;
   output at `data/synthetic/{fictional_id}/{fy}/spec.json` (committed, 80 KB total).
 - Each spec's sector, sub-industry, and HQ state carry over directly from its template's real
   company (via `data/sp500_constituents.csv`), so the financial profile and the business
@@ -176,12 +176,12 @@ a real-data benchmark.
 ### Command sequence (once built)
 
 ```
-python -m src.download_10k          # done
-python -m src.parse_sections        # done (Phase 1 / step 3)
-python -m src.build_index           # done (Phase 2 / step 4)
-python -m src.fetch_companyfacts    # done (Phase 2 / step 5)
-python -m src.make_calibration      # done (Phase 3)
-python -m src.make_specs            # done (Phase 4)
+python -m src.step01_download_10k          # done
+python -m src.step02_parse_sections        # done (Phase 1 / step 3)
+python -m src.step03_build_index           # done (Phase 2 / step 4)
+python -m src.step04_fetch_companyfacts    # done (Phase 2 / step 5)
+python -m src.step05_make_calibration      # done (Phase 3)
+python -m src.step06_make_specs            # done (Phase 4)
 python -m src.generate_filings      # Phases 5 and 6
 python -m src.validate_filings      # Phase 7
 python -m src.make_qa               # Phase 9
@@ -195,7 +195,7 @@ python -m src.evaluate_retrievers   # Phase 9
 - **Uniform prose:** generated text is usually more regular than real filings. The gap report
   should say so.
 - **XBRL gaps:** not every company reports every tag (111/147 report total `Liabilities`,
-  107/147 report `OperatingIncomeLoss`; see "Calibration profile"). `make_calibration.py` tries
+  107/147 report `OperatingIncomeLoss`; see "Calibration profile"). `step05_make_calibration.py` tries
   fallback tags per metric and records what's still missing rather than guessing.
 - **Name impersonation:** fictional companies must not use real names or tickers.
 

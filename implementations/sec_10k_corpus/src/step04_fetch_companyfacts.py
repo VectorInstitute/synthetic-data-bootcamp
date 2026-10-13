@@ -2,14 +2,14 @@
 
 Output: data/companyfacts/{ticker}.json, the raw response from
 https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json for that company's CIK.
-This is the source data for src.make_calibration (Phase 3).
+This is the source data for src.step05_make_calibration (Phase 3).
 
 The CIK comes from an already-downloaded data/raw/{ticker}/{fy}/metadata.json, so
-run src.download_10k first. A status row per company goes to
+run src.step01_download_10k first. A status row per company goes to
 data/companyfacts_status.csv.
 
 Run from the project directory:
-    python -m src.fetch_companyfacts
+    python -m src.step04_fetch_companyfacts
 """
 
 import csv
@@ -60,7 +60,7 @@ def process_company(ticker: str, fiscal_years: list[int]) -> dict:
     cik = company_cik(ticker, fiscal_years)
     if cik is None:
         logger.warning("%s: no downloaded metadata.json to read a CIK from; skipping", ticker)
-        row.update(status="no_cik", message="run src.download_10k first")
+        row.update(status="no_cik", message="run src.step01_download_10k first")
         return row
     row["cik"] = cik
 

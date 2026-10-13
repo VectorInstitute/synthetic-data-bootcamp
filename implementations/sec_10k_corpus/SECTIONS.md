@@ -48,9 +48,9 @@ question types without pulling in sections that add parsing risk for little bene
 Ship Phase 1 with the five included items above. Revisit Item 7A (banks only) after the retrieval
 evaluation if the question set feels too narrow.
 
-## Implementation (Phase 1, `src/parse_sections.py`)
+## Implementation (Phase 1, `src/step02_parse_sections.py`)
 
-Run with `python -m src.parse_sections`; see the README for usage. Result over the current corpus
+Run with `python -m src.step02_parse_sections`; see the README for usage. Result over the current corpus
 (147 downloaded filings x 5 items = 735 sections): 724 ok, 5 short, 6 missing. Every row's outcome
 is in `data/parse_status.csv`.
 
@@ -70,6 +70,6 @@ these:
   case the affected fiscal year's period of report predates the Item 1C effective date (fiscal
   years ending on or after December 15, 2023). Expected, not a parsing gap.
 - **PulteGroup's (PHM) Item 1 — fixed.** Its 10-K body heads the section "ITEM I. BUSINESS" — a
-  capital letter I instead of the digit 1 — in every year downloaded. `parse_sections.py` special-
+  capital letter I instead of the digit 1 — in every year downloaded. `step02_parse_sections.py` special-
   cases this one pattern (`ITEM_ONE_TYPO_RE`) rather than generalizing Roman-numeral headings, since
   it's the only filer observed doing this.

@@ -11,7 +11,7 @@ Missing company-years are logged and skipped. A status row is written for every
 company-year to data/download_status.csv.
 
 Run from the project directory:
-    python -m src.download_10k
+    python -m src.step01_download_10k
 """
 
 import csv

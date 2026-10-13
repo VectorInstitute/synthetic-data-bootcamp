@@ -15,18 +15,19 @@ config.yaml              SEC identity placeholders, company lists, fiscal years 
 config.local.yaml        your real SEC identity (git-ignored, create it yourself)
 requirements.txt         edgartools, PyYAML, BeautifulSoup, lxml (pinned)
 src/
-  config.py              config loading, shared paths, identity check
-  utils.py               logging setup, retry with backoff, atomic file writes
-  sample_companies.py    reproducibly sample config.yaml's 50-ticker company list
-  download_10k.py        step 2: download 10-K filings
-  parse_sections.py      step 3: split 10-K text into Items 1, 1A, 1C, 7, 8
-  html_to_text.py        convert 10-K HTML to readable plain text
-  build_index.py         step 4: data/index.csv, one row per parsed section
-  fetch_companyfacts.py  step 5: download XBRL companyfacts per company
-  make_calibration.py    Phase 3: data/calibration.json from companyfacts
-  make_specs.py          Phase 4: fictional-company specs from calibration.json
+  config.py                   config loading, shared paths, identity check
+  utils.py                    logging setup, retry with backoff, atomic file writes
+  html_to_text.py             convert 10-K HTML to readable plain text
+  # Pipeline scripts, numbered in run order (see "Command sequence" in PLAN.md):
+  step00_sample_companies.py  reproducibly sample config.yaml's 50-ticker company list
+  step01_download_10k.py      download 10-K filings
+  step02_parse_sections.py    split 10-K text into Items 1, 1A, 1C, 7, 8
+  step03_build_index.py       data/index.csv, one row per parsed section
+  step04_fetch_companyfacts.py  download XBRL companyfacts per company
+  step05_make_calibration.py  data/calibration.json from companyfacts (Phase 3)
+  step06_make_specs.py        fictional-company specs from calibration.json (Phase 4)
 data/
-  sp500_constituents.csv frozen S&P 500 snapshot src.sample_companies samples from (committed)
+  sp500_constituents.csv frozen S&P 500 snapshot src.step00_sample_companies samples from (committed)
   raw/{ticker}/{fy}/     10k.htm, 10k.txt, ex13_*.htm (if any), metadata.json
   parsed/{ticker}/{fy}/  item_1.txt, item_1a.txt, item_1c.txt, item_7.txt, item_8.txt
   companyfacts/{ticker}.json   raw XBRL companyfacts per company (git-ignored, ~180 MB)
@@ -65,11 +66,11 @@ placeholder.
 ## Download 10-K filings
 
 ```bash
-python -m src.download_10k
+python -m src.step01_download_10k
 ```
 
 - `run_profile` in `config.yaml` selects the company list: `test` (JPM, PNC, FITB, KEY, ZION, a
-  small sanity-check set) or `full` (50 S&P 500 companies sampled with `src.sample_companies`;
+  small sanity-check set) or `full` (50 S&P 500 companies sampled with `src.step00_sample_companies`;
   see its docstring for how and why). Set `fiscal_years` to change the years.
 - Re-running skips any company-year whose folder is already complete.
 - Missing company-years (no 10-K for that fiscal year, or ticker not found) are logged and
@@ -81,7 +82,7 @@ python -m src.download_10k
 ## Parse 10-K sections
 
 ```bash
-python -m src.parse_sections
+python -m src.step02_parse_sections
 ```
 
 - Splits each `10k.txt` into Items 1, 1A, 1C, 7, and 8 (see `SECTIONS.md` for why these five).
@@ -101,21 +102,21 @@ python -m src.parse_sections
 ## Build the index and fetch XBRL companyfacts
 
 ```bash
-python -m src.build_index
-python -m src.fetch_companyfacts
+python -m src.step03_build_index
+python -m src.step04_fetch_companyfacts
 ```
 
-- `build_index.py` writes `data/index.csv`, one row per parsed section (ticker, company name,
+- `step03_build_index.py` writes `data/index.csv`, one row per parsed section (ticker, company name,
   CIK, fiscal year, filing date, accession number, item, path, character count, word count).
   Local and fast; always rewrites the whole file.
-- `fetch_companyfacts.py` downloads each company's XBRL companyfacts JSON from
+- `step04_fetch_companyfacts.py` downloads each company's XBRL companyfacts JSON from
   `data.sec.gov/api/xbrl/companyfacts/`, using the CIK from its already-downloaded
   `metadata.json`. Re-running skips any ticker whose file already exists.
 
 ## Build the calibration profile
 
 ```bash
-python -m src.make_calibration
+python -m src.step05_make_calibration
 ```
 
 - Reads every `data/companyfacts/{ticker}.json`, pulls total assets, total liabilities,
@@ -131,7 +132,7 @@ python -m src.make_calibration
 ## Build fictional company specs
 
 ```bash
-python -m src.make_specs
+python -m src.step06_make_specs
 ```
 
 - Samples 20 real company-years from `calibration.json` as templates (no two fictional companies
@@ -145,7 +146,7 @@ python -m src.make_specs
   same kind of company as its template, and keeps every table reconciling for Phase 5).
 - Every fictional name and ticker is checked against all 503 real S&P 500 names and tickers, not
   just the 50 downloaded, and against every other fictional company already generated.
-- Deterministic: re-running regenerates the same 20 specs (fixed seed in `src/make_specs.py`).
+- Deterministic: re-running regenerates the same 20 specs (fixed seed in `src/step06_make_specs.py`).
 
 ## Notes
 

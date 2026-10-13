@@ -1,6 +1,6 @@
 """Build Phase 4 fictional-company specs from the calibration profile.
 
-Input: data/calibration.json (run src.make_calibration first) and
+Input: data/calibration.json (run src.step05_make_calibration first) and
 data/sp500_constituents.csv (sector, sub-industry, and HQ state per real ticker).
 Output: data/synthetic/{fictional_id}/{fy}/spec.json, one fictional company per file,
 one fiscal year each (see PLAN.md open question 1).
@@ -16,7 +16,7 @@ and ticker, not just the 50 downloaded, so no fictional company can be mistaken 
 real one.
 
 Run from the project directory:
-    python -m src.make_specs
+    python -m src.step06_make_specs
 """
 
 import csv

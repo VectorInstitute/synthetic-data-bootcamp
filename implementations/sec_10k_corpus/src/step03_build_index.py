@@ -1,18 +1,18 @@
 """Build data/index.csv: one row per parsed section.
 
 Input: data/raw/{ticker}/{fy}/metadata.json and data/parsed/{ticker}/{fy}/item_*.txt
-(run src.download_10k and src.parse_sections first). Only sections that have a parsed
-file get a row; data/parse_status.csv already covers what's missing and why.
+(run src.step01_download_10k, then src.step02_parse_sections). Only sections with a
+parsed file get a row; data/parse_status.csv already covers what's missing and why.
 
 Run from the project directory:
-    python -m src.build_index
+    python -m src.step03_build_index
 """
 
 import csv
 import json
 
 from src.config import PARSED_DIR, RAW_DIR, get_companies, load_config
-from src.parse_sections import TARGET_ITEMS
+from src.step02_parse_sections import TARGET_ITEMS
 from src.utils import setup_logging
 
 
