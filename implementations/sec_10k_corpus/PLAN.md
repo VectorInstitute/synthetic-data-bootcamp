@@ -10,7 +10,7 @@ a real-data benchmark.
 |---|---|---|
 | 1 | Project setup, config, identity handling | Done |
 | 2 | Download 10-K filings from EDGAR | Done: 50 companies x FY2023-2025 (150 company-years, 147 filings, 3 not found) |
-| 3 | Parse filings into sections (Items 1, 1A, 1C, 7, 8) | Done: 721/735 sections ok, 5 short, 9 missing; see `data/parse_status.csv` |
+| 3 | Parse filings into sections (Items 1, 1A, 1C, 7, 8) | Done: 724/735 sections ok, 5 short, 6 missing; see `data/parse_status.csv` |
 | 4 | Metadata index (`data/index.csv`) | Not started |
 | 5 | XBRL companyfacts JSON per company | Not started |
 | 6 | Summary script | Not started |
@@ -40,7 +40,7 @@ a real-data benchmark.
 - Location: `data/parsed/{ticker}/{fy}/item_1.txt`, `item_1a.txt`, `item_1c.txt`, `item_7.txt`,
   `item_8.txt`. See `SECTIONS.md` for which items these are and why.
 - Result over the 147 downloaded filings x 5 items (735 sections; the 3 not-found company-years
-  have no file to parse): 721 ok, 5 short, 9 missing. Every row's status, character count, and
+  have no file to parse): 724 ok, 5 short, 6 missing. Every row's status, character count, and
   extraction method are in `data/parse_status.csv`. See `SECTIONS.md` for what each remaining
   short/missing row is and why it's not worth chasing further.
 - Reproduce: `python -m src.parse_sections` (always reparses; it's local and fast, no need to skip).
@@ -195,7 +195,7 @@ python -m src.evaluate_retrievers   # Phase 9
 ## Milestones
 
 - **M1 — done:** parser runs on all 50 companies x 3 years; exceptions are in
-  `data/parse_status.csv` (5 short, 9 missing out of 735 sections, all explained above).
+  `data/parse_status.csv` (5 short, 6 missing out of 735 sections, all explained above).
 - **M2:** index, companyfacts, and `calibration.json`.
 - **M3:** spec generator and financial-statement computation, with reconciliation tests.
 - **M4:** narrative pilot on 2 fictional banks, validators, and review.

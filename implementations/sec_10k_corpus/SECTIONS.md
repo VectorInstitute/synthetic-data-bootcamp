@@ -51,7 +51,7 @@ evaluation if the question set feels too narrow.
 ## Implementation (Phase 1, `src/parse_sections.py`)
 
 Run with `python -m src.parse_sections`; see the README for usage. Result over the current corpus
-(147 downloaded filings x 5 items = 735 sections): 721 ok, 5 short, 9 missing. Every row's outcome
+(147 downloaded filings x 5 items = 735 sections): 724 ok, 5 short, 6 missing. Every row's outcome
 is in `data/parse_status.csv`.
 
 Any item that's only "incorporated by reference" instead of written out — whichever of the five,
@@ -69,6 +69,7 @@ these:
   Item 1C (`missing`, one year each):** all 7 have a non-December fiscal year-end, and in each
   case the affected fiscal year's period of report predates the Item 1C effective date (fiscal
   years ending on or after December 15, 2023). Expected, not a parsing gap.
-- **PulteGroup's (PHM) Item 1 (`missing`, all 3 years):** its 10-K body heads the section "ITEM
-  I. BUSINESS" — a capital letter I instead of the digit 1 — in every year downloaded. A filer-side
-  typo, not worth a special-cased heading pattern for one company.
+- **PulteGroup's (PHM) Item 1 — fixed.** Its 10-K body heads the section "ITEM I. BUSINESS" — a
+  capital letter I instead of the digit 1 — in every year downloaded. `parse_sections.py` special-
+  cases this one pattern (`ITEM_ONE_TYPO_RE`) rather than generalizing Roman-numeral headings, since
+  it's the only filer observed doing this.

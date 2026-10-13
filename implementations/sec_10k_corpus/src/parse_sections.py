@@ -47,6 +47,8 @@ HEADING_RE = re.compile(
     re.IGNORECASE,
 )
 ITEM_CODE_RE = re.compile(r"\d{1,2}[A-C]?", re.IGNORECASE)
+# PulteGroup headers Item 1 as "ITEM I." (a capital letter, not the digit) every year.
+ITEM_ONE_TYPO_RE = re.compile(r"^\s*ITEM\s+I\b[\s.\-–—:|]*(.*)$", re.IGNORECASE)
 
 # Phrase extraction for an "incorporated by reference" sentence, in priority order.
 QUOTE_RE = re.compile(r"[“”\"]([^“”\"]{3,200})[“”\"]")
@@ -99,6 +101,8 @@ def find_headings(lines: list[str]) -> list[tuple[int, str]]:
         if match:
             for code in ITEM_CODE_RE.findall(match.group(1)):
                 headings.append((idx, code.upper()))
+        elif ITEM_ONE_TYPO_RE.match(line):
+            headings.append((idx, "1"))
     return headings
 
 
