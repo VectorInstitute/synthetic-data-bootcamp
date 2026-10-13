@@ -16,61 +16,61 @@ companies:
     - FITB
     - KEY
     - ZION
-  # Full list
+  # Full list: 50 S&P 500 companies drawn at random (python -m src.sample_companies,
+  # random.Random(42).sample over data/sp500_constituents.csv). Citigroup is excluded
+  # by name (no plain-text Item headings in its 10-K body, see SECTIONS.md), along with
+  # dotted share-class tickers and duplicate listings of the same company by CIK.
   full:
-    - JPM
-    - BAC
-    - WFC
-    - C
-    - USB
-    - PNC
-    - TFC
-    - COF
-    - MTB
-    - FITB
-    - KEY
-    - RF
-    - HBAN
-    - CFG
-    - ZION
-    # 35 S&P 500 companies drawn at random (random.Random(42).sample over the S&P 500 list,
-    # excluding the banks above and dotted/duplicate tickers). Any not found on EDGAR are
-    # logged as company_not_found.
-    - NRG
-    - BDX
-    - AKAM
-    - RVTY
-    - FANG
+    - ABNB
+    - AEE
+    - AEP
+    - AFL
+    - AIG
+    - AVGO
+    - AXON
+    - AZO
+    - BALL
+    - BEN
+    - CARR
+    - CDNS
+    - CEG
+    - COIN
+    - CRL
+    - CRM
     - CRWD
-    - ED
-    - BR
-    - RSG
-    - AVY
-    - PAYX
-    - V
-    - LMT
-    - ANET
-    - MU
+    - CSGP
+    - CVS
+    - DDOG
+    - DRI
+    - DUK
+    - F
+    - FAST
+    - FIS
+    - GDDY
+    - HCA
     - HIG
-    - ALLE
-    - ALGN
-    - T
-    - CMCSA
-    - GLW
-    - JCI
-    - MNST
-    - ALB
-    - MRSH
-    - CTAS
-    - PWR
-    - ORLY
+    - HUM
+    - KEY
+    - LNT
+    - MA
+    - MLM
+    - MMM
+    - MRK
+    - NOC
+    - NTRS
+    - OXY
     - PGR
-    - GS
-    - FIX
-    - HWM
-    - MCHP
-    - DG
-    - TROW
+    - PHM
+    - PNW
+    - QCOM
+    - RDDT
+    - ROP
+    - RSG
+    - STX
+    - SW
+    - TXT
+    - USB
+    - XOM
 
 # Which profile above to process: "test" or "full"
 run_profile: full

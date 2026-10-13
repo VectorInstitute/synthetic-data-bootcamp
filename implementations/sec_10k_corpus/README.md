@@ -1,7 +1,8 @@
 # Real 10-K Corpus (SEC EDGAR)
 
-Downloads and parses real US bank 10-K filings. This corpus is the real-data side of a
-synthetic-10-K benchmark: it provides style templates, a comparison set, and XBRL facts.
+Downloads and parses real 10-K filings for 50 randomly sampled S&P 500 companies. This corpus
+is the real-data side of a synthetic-10-K benchmark: it provides style templates, a comparison
+set, and XBRL facts.
 
 **Status:** Steps 1-3 (project setup, 10-K download, section parsing) are implemented. The
 metadata index, XBRL companyfacts, and the summary script come next.
@@ -15,10 +16,12 @@ requirements.txt         edgartools, PyYAML, BeautifulSoup, lxml (pinned)
 src/
   config.py              config loading, shared paths, identity check
   utils.py               logging setup, retry with backoff, atomic file writes
+  sample_companies.py    reproducibly sample config.yaml's 50-ticker company list
   download_10k.py        step 2: download 10-K filings
   parse_sections.py      step 3: split 10-K text into Items 1, 1A, 1C, 7, 8
   html_to_text.py        convert 10-K HTML to readable plain text
 data/
+  sp500_constituents.csv frozen S&P 500 snapshot src.sample_companies samples from (committed)
   raw/{ticker}/{fy}/     10k.htm, 10k.txt, ex13_*.htm (if any), metadata.json
   parsed/{ticker}/{fy}/  item_1.txt, item_1a.txt, item_1c.txt, item_7.txt, item_8.txt
   download_status.csv    one row per company-year from the last download run
@@ -55,8 +58,9 @@ placeholder.
 python -m src.download_10k
 ```
 
-- `run_profile` in `config.yaml` selects the company list: `test` (JPM, PNC, FITB, KEY, ZION)
-  or `full` (50 US bank holding companies). Set `fiscal_years` to change the years.
+- `run_profile` in `config.yaml` selects the company list: `test` (JPM, PNC, FITB, KEY, ZION, a
+  small sanity-check set) or `full` (50 S&P 500 companies sampled with `src.sample_companies`;
+  see its docstring for how and why). Set `fiscal_years` to change the years.
 - Re-running skips any company-year whose folder is already complete.
 - Missing company-years (no 10-K for that fiscal year, or ticker not found) are logged and
   recorded in `download_status.csv`. The run continues.
@@ -73,9 +77,11 @@ python -m src.parse_sections
 - Splits each `10k.txt` into Items 1, 1A, 1C, 7, and 8 (see `SECTIONS.md` for why these five).
   The table of contents repeats every Item heading; the occurrence with the most text before
   the next heading is taken as the body.
-- For PGR, USB, and WFC, Item 7 and/or Item 8 are only "incorporated by reference" to an EX-13
-  annual report exhibit. The heading named in that cross-reference sentence is located inside
-  the matching `ex13_*.htm` instead, and used in place of the cross-reference text.
+- When an item is only "incorporated by reference" instead of written out, the heading named in
+  that cross-reference sentence is located inside the filing's EX-13 annual report exhibit
+  (PGR, USB, WFC in this corpus), if it has one, or elsewhere in the 10-K body otherwise.
+- A heading reprinted as a running header on every page (seen in a few large banks and insurers)
+  is detected by an unusually high occurrence count, so the result isn't just one page of it.
 - Always reparses everything in `config.yaml`'s company list and fiscal years; it's local and
   fast, so there's no skip-if-done logic to go stale.
 - Every section, found or not, gets a row in `parse_status.csv` (`ok`, `short`, or `missing`,
@@ -84,14 +90,14 @@ python -m src.parse_sections
 
 ## Notes
 
-- Fiscal year is the year of the filing's period of report. Non-December year-ends (Visa,
-  Paychex, and a few others) are labeled by the year their fiscal year ends.
+- Fiscal year is the year of the filing's period of report. Non-December year-ends (several
+  companies in the list) are labeled by the year their fiscal year ends.
 - Per filing, the raw files are:
   - `10k.htm`: the 10-K exactly as filed, with inline XBRL tags. Opens in a browser.
   - `10k.txt`: readable plain text. Tables become `cell | cell` lines, and the hidden XBRL
     header is removed. This is the input for section splitting.
-  - `ex13_*.htm`: Exhibit 13 (annual report), saved only when the filing includes one. Many
-    regional banks put MD&A and financial statements there instead of in the 10-K body.
+  - `ex13_*.htm`: Exhibit 13 (annual report), saved only when the filing includes one. Some
+    banks put MD&A and financial statements there instead of in the 10-K body.
 - `metadata.json` is written last. A folder counts as complete only when it exists.
 - The full SEC submission (`.txt` with all exhibits and images) is no longer saved. It was
   45-75 MB per filing, mostly images and XBRL data files.

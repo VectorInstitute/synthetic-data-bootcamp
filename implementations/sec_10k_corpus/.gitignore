@@ -8,9 +8,11 @@ data/raw/**/*.tmp
 data/parsed/*
 !data/parsed/.gitkeep
 data/index.csv
-# The root .gitignore ignores all CSVs, so re-include the small status files
+# The root .gitignore ignores all CSVs, so re-include the small status files and
+# the frozen S&P 500 constituent snapshot used by src.sample_companies
 !data/download_status.csv
 !data/parse_status.csv
+!data/sp500_constituents.csv
 
 # Your real SEC identity (name and email) lives here, never in config.yaml
 config.local.yaml

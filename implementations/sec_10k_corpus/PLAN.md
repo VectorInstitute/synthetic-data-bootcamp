@@ -9,8 +9,8 @@ a real-data benchmark.
 | Step | What | Status |
 |---|---|---|
 | 1 | Project setup, config, identity handling | Done |
-| 2 | Download 10-K filings from EDGAR | Done: 50 companies x FY2023-2025 (150 company-years, 0 errors) |
-| 3 | Parse filings into sections (Items 1, 1A, 1C, 7, 8) | Done: 723/750 sections ok, 36 short, 27 missing; see `data/parse_status.csv` |
+| 2 | Download 10-K filings from EDGAR | Done: 50 companies x FY2023-2025 (150 company-years, 147 filings, 3 not found) |
+| 3 | Parse filings into sections (Items 1, 1A, 1C, 7, 8) | Done: 721/735 sections ok, 5 short, 9 missing; see `data/parse_status.csv` |
 | 4 | Metadata index (`data/index.csv`) | Not started |
 | 5 | XBRL companyfacts JSON per company | Not started |
 | 6 | Summary script | Not started |
@@ -20,24 +20,29 @@ a real-data benchmark.
 
 - Location: `data/raw/{ticker}/{fy}/`, with `10k.htm` (the 10-K as filed), `10k.txt` (readable text),
   `ex13_*.htm` (annual report exhibit, when present), and `metadata.json`.
-- Companies: 15 US banks (JPM, BAC, WFC, C, USB, PNC, TFC, COF, MTB, FITB, KEY, RF, HBAN, CFG, ZION)
-  plus 35 S&P 500 companies drawn at random with seed 42.
+- Companies: 50 S&P 500 companies sampled at random (`python -m src.sample_companies`,
+  `random.Random(42).sample` over `data/sp500_constituents.csv`, a frozen snapshot). Citigroup is
+  excluded from the sampling pool by name: its 10-K body has no plain-text Item headings at all
+  (see "Parsed sections"), so this pipeline can't parse it. This replaced an earlier list of 15
+  hand-picked US banks plus 35 random companies; see "Leftover folders" below for what that left
+  behind in `data/raw/`.
+- 3 company-years have no 10-K on EDGAR and are skipped (logged `not_found` in
+  `download_status.csv`): RDDT FY2023 (IPO'd 2024), SW FY2023 (formed by a 2024 merger), and
+  TXT FY2025 (its FY2025 10-K's period of report is dated just after New Year's Day, in the next
+  calendar year, so it doesn't match fiscal_year's "starts with this year" check — a labeling
+  edge case in `find_10k`, not a missing filing).
 - EX-13 annual reports are present for PGR, USB, and WFC (all three years each). Most other filings
   keep MD&A and financials in the 10-K body.
-- Size: about 1.3 GB of filing text, plus about 135 KB of metadata and the status file.
 - Reproduce: `python -m src.download_10k` (skips anything already downloaded).
 
 ### Parsed sections
 
 - Location: `data/parsed/{ticker}/{fy}/item_1.txt`, `item_1a.txt`, `item_1c.txt`, `item_7.txt`,
   `item_8.txt`. See `SECTIONS.md` for which items these are and why.
-- Result over the full corpus (750 = 150 company-years x 5 items): 687 ok, 36 short, 27 missing.
-  Every row's status, character count, and extraction method are in `data/parse_status.csv`.
-- Known gaps, all logged rather than guessed at further: Citigroup's 10-K body has no plain-text
-  Item headings at all (all 5 items missing); The Hartford's Item 8 has no plain-text "Item 8"
-  heading either (missing, 3 years); 9 non-December-year-end companies' earliest fiscal year
-  predates the Item 1C requirement (missing, expected); and a handful of "Item 1A"/"Item 1C"
-  cross-references to an annual report with no matching heading to resolve against (short).
+- Result over the 147 downloaded filings x 5 items (735 sections; the 3 not-found company-years
+  have no file to parse): 721 ok, 5 short, 9 missing. Every row's status, character count, and
+  extraction method are in `data/parse_status.csv`. See `SECTIONS.md` for what each remaining
+  short/missing row is and why it's not worth chasing further.
 - Reproduce: `python -m src.parse_sections` (always reparses; it's local and fast, no need to skip).
 
 ## Plan
@@ -48,11 +53,15 @@ a real-data benchmark.
 - The table of contents repeats every Item heading. The body occurrence is the heading followed
   by the most text before the next heading, which also makes combined headings like
   `Items 1 and 2. Business and Properties` resolve to Item 1.
-- When Item 7 or 8 is only a cross-reference to EX-13 (PGR, USB, WFC), the heading named in the
-  cross-reference sentence (e.g. "under 'Financial Review'") is located inside the matching
-  `ex13_*.htm` instead, and that section is used.
+- When any item is only a cross-reference instead of written out, the heading named in the
+  cross-reference sentence (e.g. "under 'Financial Review'") is located in the filing's EX-13
+  exhibit if it has one (PGR, USB, WFC), or else elsewhere in the 10-K body itself — large banks
+  and insurers often write Item 7's real content under an unnumbered heading instead of the
+  numbered one, sometimes repeated as a running header on every page.
+- A heading repeated as a running header (same detection as above, just without a cross-reference
+  to trigger it) is unioned across every page it owns instead of returning just one page of it.
 - Item 1C exists only from FY2023 onward (and only for December fiscal year-ends at that; see
-  the known gaps above).
+  `SECTIONS.md` for the known gaps this leaves).
 - Missing or suspiciously short sections are still written and flagged with their status in
   `data/parse_status.csv` for manual review, rather than guessed at further.
 
@@ -65,6 +74,12 @@ a real-data benchmark.
 
 ### Phase 3: Calibration profile
 
+- **Stale assumption, needs a decision (see open question 4):** this phase was designed around a
+  stable set of 15 hand-picked banks for bank-specific calibration. The company list is now a
+  random S&P 500 sample instead (see "Downloaded data"), which only incidentally includes KEY,
+  PGR, and USB as banks. Calibrating fictional *banks* from 3 real ones isn't enough; calibrating
+  fictional companies generally, across sectors, is a different and larger design than what's
+  written below.
 - From the companyfacts data, extract per bank-year: total assets, loans, deposits, equity, net
   income, CET1 ratio, net interest margin, and return on equity.
 - Compute percentile distributions and save them as `calibration.json`.
@@ -153,28 +168,34 @@ python -m src.evaluate_retrievers   # Phase 9
 
 ## Open questions
 
-1. **Synthetic corpus size:** how many synthetic banks, and which fiscal years? For example,
-   20 banks for FY2023 and FY2024.
+1. **Synthetic corpus size:** how many synthetic companies, and which fiscal years? For example,
+   20 companies for FY2023 and FY2024.
 2. **Sections:** only Items 1, 1A, 1C, 7, and 8 as specified, or full 10-Ks?
 3. **Model and budget:** which model, and what budget? Narrative cost scales with
-   banks x sections.
-4. **Calibration:** confirm that calibration uses only the 15 banks (recommended).
+   companies x sections.
+4. **Calibration scope — now open again:** the company list is a random S&P 500 sample, not a
+   bank list (see Phase 3). Options: calibrate per sector instead of banks-only; pick a fixed
+   sub-list of real banks for calibration regardless of what's in the random sample; or make
+   every fictional company a generic company instead of a fictional bank. Which do you want?
 5. **Embedding model:** which model for the dense retriever?
 6. **Sharing the raw data — resolved:** published as a public GitHub Release asset
    (`data-v1`, `sec10k_raw_fy2023-2025.tar.gz` + a SHA-256 manifest).
 7. **Repository visibility — resolved:** the GitHub repo is public; confirmed intended.
-8. **Leftover folders:** 15 companies from the earlier, stopped regional-bank run still have
-   FY2022-2024 folders in `data/raw/`. Deliberately left alone for now (not deleted, not
-   reparsed). Delete them, or keep them?
-9. **EX-13 handling — resolved:** built. Item 7 and 8 for PGR, USB, and WFC are extracted from
-   their `ex13_*.htm` via the heading named in the 10-K's cross-reference sentence. See
-   "Parsed sections" above for what's still unresolved (mostly Item 1C/1A cross-references with
-   no matching EX-13 route, which PLAN.md never scoped EX-13 fallback to cover).
+8. **Leftover folders:** `data/raw/` now has two generations of superseded company-years that are
+   deliberately left alone (not deleted, not reparsed, not in `config.yaml`'s company list):
+   15 companies from the original stopped regional-bank run (FY2022-2024), and 44 companies from
+   the first 50-company list this project used before it was replaced by a fully random sample
+   (FY2023-2025; see "Downloaded data"). Citigroup's data was deleted outright rather than left
+   over, since it's now excluded from sampling entirely. Delete the other leftovers, or keep them?
+9. **EX-13 handling — resolved:** built, and now covers every item (not just 7 and 8): whichever
+   of Items 1, 1A, 1C, 7, or 8 is a cross-reference gets the heading named in its cross-reference
+   sentence located inside `ex13_*.htm` (PGR, USB, WFC) or the 10-K body itself. See "Parsed
+   sections" above and `SECTIONS.md` for what's still short or missing and why.
 
 ## Milestones
 
 - **M1 — done:** parser runs on all 50 companies x 3 years; exceptions are in
-  `data/parse_status.csv` (36 short, 27 missing out of 750 sections, all explained above).
+  `data/parse_status.csv` (5 short, 9 missing out of 735 sections, all explained above).
 - **M2:** index, companyfacts, and `calibration.json`.
 - **M3:** spec generator and financial-statement computation, with reconciliation tests.
 - **M4:** narrative pilot on 2 fictional banks, validators, and review.

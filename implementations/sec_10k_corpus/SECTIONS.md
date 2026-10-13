@@ -35,9 +35,10 @@ question types without pulling in sections that add parsing risk for little bene
 - **7A — Quantitative and Qualitative Disclosures about Market Risk.** For banks specifically, this
   is where interest-rate sensitivity tables live — a real equity-analysis topic (NIM sensitivity to
   rate moves). Quantitative and bank-specific, so it fits the project's theme. Not added yet because
-  the 35 non-bank S&P 500 companies in the corpus either lack this section or treat it as boilerplate,
-  which would make it inconsistent across the corpus. Revisit for the 15 banks only if the retrieval
-  evaluation turns out too financial-statement-heavy.
+  most non-bank companies in the corpus either lack this section or treat it as boilerplate, which
+  would make it inconsistent across the corpus. Revisit for banks only if the retrieval evaluation
+  turns out too financial-statement-heavy (the corpus is now a random S&P 500 sample rather than a
+  bank-heavy list, so there may be few banks to revisit this for; see PLAN.md open question 4).
 - **3 — Legal Proceedings.** Analysts do ask about material litigation, but this section is
   frequently just "see Note X," pointing back into the Item 8 notes. Including it risks a lot of
   near-empty parses for low signal. Not recommended unless a specific litigation-QA use case comes up.
@@ -49,16 +50,25 @@ evaluation if the question set feels too narrow.
 
 ## Implementation (Phase 1, `src/parse_sections.py`)
 
-Run with `python -m src.parse_sections`; see the README for usage. Result over the full corpus
-(50 companies x 3 fiscal years x 5 items = 750 sections): 687 ok, 36 short, 27 missing. Every
-row's outcome is in `data/parse_status.csv`.
+Run with `python -m src.parse_sections`; see the README for usage. Result over the current corpus
+(147 downloaded filings x 5 items = 735 sections): 721 ok, 5 short, 9 missing. Every row's outcome
+is in `data/parse_status.csv`.
 
-- Several companies (BAC, GS, JPM, TFC, and WFC among them) "incorporate by reference" Item 1C
-  or 1A to their annual report instead of writing the content directly. Only Item 7 and 8 have
-  an EX-13 fallback (see PLAN.md Phase 1), so these are left as `short` rows for manual review.
-- Citigroup's 10-K body doesn't use plain-text "Item N" headings at all (it's a page-number
-  cross-reference index into a combined annual report); all 5 items are `missing`. The Hartford's
-  Item 8 heading is similarly absent from the plain text, likely lost in HTML-to-text conversion
-  of a table-based heading. Neither has an EX-13 exhibit to fall back to.
-- 9 non-December fiscal-year-end companies have Item 1C `missing` for their earliest fiscal year,
-  because that year's period of report predates the item's effective date.
+Any item that's only "incorporated by reference" instead of written out — whichever of the five,
+not just Item 7 and 8 — is resolved by finding the heading named in its cross-reference sentence
+inside the filing's EX-13 exhibit (PGR, USB, WFC) if it has one, or the 10-K body itself otherwise.
+A heading reprinted as a running header on every page (seen in a few large banks and insurers,
+e.g. AIG and AFL's Item 8) is detected separately, by an unusually high occurrence count, and every
+page it owns is combined rather than returning just one page of it. What's left after both of
+these:
+
+- **AEP's Item 7 (3 years, `short`):** its cross-reference points at *a different filing* — its
+  own prior-year Form 10-K — for the year-over-year commentary. That filing isn't part of this
+  corpus, so there's nothing to resolve it against.
+- **AVGO and QCOM's Item 1C (`short`, one year each) and AZO, BEN, CRM, CRWD, DRI, and STX's
+  Item 1C (`missing`, one year each):** all 7 have a non-December fiscal year-end, and in each
+  case the affected fiscal year's period of report predates the Item 1C effective date (fiscal
+  years ending on or after December 15, 2023). Expected, not a parsing gap.
+- **PulteGroup's (PHM) Item 1 (`missing`, all 3 years):** its 10-K body heads the section "ITEM
+  I. BUSINESS" — a capital letter I instead of the digit 1 — in every year downloaded. A filer-side
+  typo, not worth a special-cased heading pattern for one company.
