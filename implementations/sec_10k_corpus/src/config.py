@@ -10,6 +10,7 @@ CONFIG_PATH = PROJECT_DIR / "config.yaml"
 CONFIG_LOCAL_PATH = PROJECT_DIR / "config.local.yaml"  # git-ignored overrides (your SEC identity)
 RAW_DIR = PROJECT_DIR / "data" / "raw"
 PARSED_DIR = PROJECT_DIR / "data" / "parsed"
+COMPANYFACTS_DIR = PROJECT_DIR / "data" / "companyfacts"
 LOG_DIR = PROJECT_DIR / "logs"
 
 PLACEHOLDER = "FILL_IN"

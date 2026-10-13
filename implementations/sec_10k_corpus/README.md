@@ -4,8 +4,9 @@ Downloads and parses real 10-K filings for 50 randomly sampled S&P 500 companies
 is the real-data side of a synthetic-10-K benchmark: it provides style templates, a comparison
 set, and XBRL facts.
 
-**Status:** Steps 1-3 (project setup, 10-K download, section parsing) are implemented. The
-metadata index, XBRL companyfacts, and the summary script come next.
+**Status:** Steps 1-5 (project setup, 10-K download, section parsing, metadata index, XBRL
+companyfacts) and the Phase 3 calibration profile are implemented. The summary script and
+synthetic generation (Phase 4 onward) come next; see `PLAN.md`.
 
 ## Layout
 
@@ -20,12 +21,19 @@ src/
   download_10k.py        step 2: download 10-K filings
   parse_sections.py      step 3: split 10-K text into Items 1, 1A, 1C, 7, 8
   html_to_text.py        convert 10-K HTML to readable plain text
+  build_index.py         step 4: data/index.csv, one row per parsed section
+  fetch_companyfacts.py  step 5: download XBRL companyfacts per company
+  make_calibration.py    Phase 3: data/calibration.json from companyfacts
 data/
   sp500_constituents.csv frozen S&P 500 snapshot src.sample_companies samples from (committed)
   raw/{ticker}/{fy}/     10k.htm, 10k.txt, ex13_*.htm (if any), metadata.json
   parsed/{ticker}/{fy}/  item_1.txt, item_1a.txt, item_1c.txt, item_7.txt, item_8.txt
+  companyfacts/{ticker}.json   raw XBRL companyfacts per company (git-ignored, ~180 MB)
+  calibration.json       percentile distributions and per-company-year records (committed)
+  index.csv              one row per parsed section (git-ignored, reproduce when needed)
   download_status.csv    one row per company-year from the last download run
   parse_status.csv       one row per company-year-item from the last parse run
+  companyfacts_status.csv one row per company from the last companyfacts fetch
 logs/                    per-script log files
 ```
 
@@ -88,6 +96,36 @@ python -m src.parse_sections
   plus character count and extraction method). Review `short` and `missing` rows before relying
   on a given section.
 
+## Build the index and fetch XBRL companyfacts
+
+```bash
+python -m src.build_index
+python -m src.fetch_companyfacts
+```
+
+- `build_index.py` writes `data/index.csv`, one row per parsed section (ticker, company name,
+  CIK, fiscal year, filing date, accession number, item, path, character count, word count).
+  Local and fast; always rewrites the whole file.
+- `fetch_companyfacts.py` downloads each company's XBRL companyfacts JSON from
+  `data.sec.gov/api/xbrl/companyfacts/`, using the CIK from its already-downloaded
+  `metadata.json`. Re-running skips any ticker whose file already exists.
+
+## Build the calibration profile
+
+```bash
+python -m src.make_calibration
+```
+
+- Reads every `data/companyfacts/{ticker}.json`, pulls total assets, total liabilities,
+  stockholders' equity, revenues, net income, and operating income for each fiscal year in
+  `config.yaml` (trying a short list of fallback XBRL tags per metric, since the same line item
+  is tagged differently across filers), adds six derived ratios, and writes `data/calibration.json`
+  with the full per-company-year records plus each metric's percentile distribution.
+- Calibration is generic across sectors, not bank-specific — the company list is a random S&P 500
+  sample now, not a bank list. See `PLAN.md` Phase 3.
+- Not every company reports every tag; `calibration.json`'s `missing` field says which
+  company-year is missing which metric, rather than silently dropping or guessing it.
+
 ## Notes
 
 - Fiscal year is the year of the filing's period of report. Non-December year-ends (several
@@ -101,9 +139,9 @@ python -m src.parse_sections
 - `metadata.json` is written last. A folder counts as complete only when it exists.
 - The full SEC submission (`.txt` with all exhibits and images) is no longer saved. It was
   45-75 MB per filing, mostly images and XBRL data files.
-- Git tracks `metadata.json` files, `data/download_status.csv`, and `data/parse_status.csv`.
-  The filing and section text (`10k.htm`, `10k.txt`, `ex13_*`, `data/parsed/`) and `logs/` are
-  git-ignored. Re-running `python -m src.download_10k` and `python -m src.parse_sections`
-  recreates them.
+- Git tracks `metadata.json` files, `data/download_status.csv`, `data/parse_status.csv`,
+  `data/companyfacts_status.csv`, and `data/calibration.json`. The filing and section text
+  (`10k.htm`, `10k.txt`, `ex13_*`, `data/parsed/`), `data/companyfacts/*.json`, `data/index.csv`,
+  and `logs/` are git-ignored, and are all reproducible by re-running the matching script.
 - See `PLAN.md` for the full plan and open questions, and `SECTIONS.md` for which 10-K items
   are parsed and why.

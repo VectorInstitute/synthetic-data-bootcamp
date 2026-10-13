@@ -11,10 +11,11 @@ a real-data benchmark.
 | 1 | Project setup, config, identity handling | Done |
 | 2 | Download 10-K filings from EDGAR | Done: 50 companies x FY2023-2025 (150 company-years, 147 filings, 3 not found) |
 | 3 | Parse filings into sections (Items 1, 1A, 1C, 7, 8) | Done: 724/735 sections ok, 5 short, 6 missing; see `data/parse_status.csv` |
-| 4 | Metadata index (`data/index.csv`) | Not started |
-| 5 | XBRL companyfacts JSON per company | Not started |
+| 4 | Metadata index (`data/index.csv`) | Done: 729 rows |
+| 5 | XBRL companyfacts JSON per company | Done: 50/50 companies |
 | 6 | Summary script | Not started |
-| - | Calibration, company specs, filing generation, QA, retrieval evaluation | Not started |
+| - | Calibration (`data/calibration.json`) | Done: 147 company-years, 12 metrics; see "Calibration profile" |
+| - | Company specs, filing generation, QA, retrieval evaluation | Not started |
 
 ### Downloaded data
 
@@ -45,6 +46,20 @@ a real-data benchmark.
   short/missing row is and why it's not worth chasing further.
 - Reproduce: `python -m src.parse_sections` (always reparses; it's local and fast, no need to skip).
 
+### Calibration profile
+
+- `data/companyfacts/{ticker}.json`: the raw SEC XBRL companyfacts response per company (about
+  180 MB total; git-ignored, reproduce with `python -m src.fetch_companyfacts`).
+- `data/calibration.json`: 147 company-years (every downloaded filing), 6 generic cross-sector
+  metrics (total assets, total liabilities, stockholders' equity, revenues, net income, operating
+  income) plus 6 derived ratios (net/operating margin, return on equity/assets, equity/liabilities
+  to assets), each with its percentile distribution and the per-company-year values it's drawn
+  from. Not every company reports every tag (e.g. 111/147 report a total `Liabilities` figure,
+  107/147 report `OperatingIncomeLoss`); `data/calibration.json`'s `missing` field says which
+  company-years lack which metric. Reproduce with `python -m src.make_calibration`.
+- Resolves open question 4 (below): calibration is generic across sectors, not bank-specific, to
+  match the random S&P 500 company list.
+
 ## Plan
 
 ### Phase 1: Parse filings into sections (step 3) — done
@@ -65,36 +80,35 @@ a real-data benchmark.
 - Missing or suspiciously short sections are still written and flagged with their status in
   `data/parse_status.csv` for manual review, rather than guessed at further.
 
-### Phase 2: Index and XBRL facts (steps 4 and 5)
+### Phase 2: Index and XBRL facts (steps 4 and 5) — done
 
 - `data/index.csv`: one row per section, with ticker, company name, CIK, fiscal year, filing date,
-  accession number, item, path, character count, and word count.
+  accession number, item, path, character count, and word count. `python -m src.build_index`.
 - XBRL companyfacts: `https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json`, one file per
-  company, fetched through edgartools' `get_with_retry` so it uses the same identity and rate limit.
+  company, fetched through edgartools' `get_with_retry` so it uses the same identity and rate
+  limit. `python -m src.fetch_companyfacts`.
 
-### Phase 3: Calibration profile
+### Phase 3: Calibration profile — done, generic (resolves open question 4)
 
-- **Stale assumption, needs a decision (see open question 4):** this phase was designed around a
-  stable set of 15 hand-picked banks for bank-specific calibration. The company list is now a
-  random S&P 500 sample instead (see "Downloaded data"), which only incidentally includes KEY,
-  PGR, and USB as banks. Calibrating fictional *banks* from 3 real ones isn't enough; calibrating
-  fictional companies generally, across sectors, is a different and larger design than what's
-  written below.
-- From the companyfacts data, extract per bank-year: total assets, loans, deposits, equity, net
-  income, CET1 ratio, net interest margin, and return on equity.
-- Compute percentile distributions and save them as `calibration.json`.
-- Calibration uses only the 15 banks. The 35 S&P 500 companies are not banks, so they don't
-  calibrate bank specs. They are still useful as real filings for the benchmark.
+- Decided: calibration is generic across sectors, not bank-specific — the company list is now a
+  random S&P 500 sample (only KEY, PGR, and USB are incidentally banks), so fictional companies
+  are generic companies from here on, not fictional banks. See "Calibration profile" above for
+  what was actually built: `python -m src.make_calibration`, from the metrics and ratios in
+  `src/make_calibration.py`'s `METRIC_TAGS` and `DERIVED_RATIOS` rather than bank-specific ones
+  like CET1 or net interest margin.
+- `data/calibration.json` keeps the full per-company-year records, not just percentile summaries,
+  specifically so Phase 4 can sample a real company-year as a template and perturb it. Independent
+  per-metric percentile sampling can't be trusted to keep accounting identities (assets =
+  liabilities + equity) intact; starting from one real, internally-consistent company-year can.
 
 ### Phase 4: Company spec generator
 
-- Each fictional bank is a JSON spec: fictional name, HQ state, fiscal year, size sampled from the
-  calibration distributions, balance-sheet mix, capital ratios, loan concentrations (for example,
-  commercial real estate share), footprint, employees and branches, and the cybersecurity facts
-  that Item 1C needs.
-- Reject specs that break accounting identities: assets equal liabilities plus equity, and loans do
-  not exceed assets.
-- Check every fictional name against the real company list, so no fictional bank carries a real
+- Each fictional company is a JSON spec: fictional name, HQ state, fiscal year, size sampled from
+  the calibration distributions, balance-sheet mix, margins and returns, and the cybersecurity
+  facts that Item 1C needs. Start from a real company-year in `calibration.json` as a template
+  (see Phase 3) rather than sampling every field's percentile independently.
+- Reject specs that break accounting identities: assets equal liabilities plus equity.
+- Check every fictional name against the real company list, so no fictional company carries a real
   name or ticker.
 
 ### Phase 5: Compute financial statements, don't write them
@@ -147,9 +161,9 @@ a real-data benchmark.
 ```
 python -m src.download_10k          # done
 python -m src.parse_sections        # done (Phase 1 / step 3)
-python -m src.build_index           # Phase 2 (step 4)
-python -m src.fetch_companyfacts    # Phase 2 (step 5)
-python -m src.make_calibration      # Phase 3
+python -m src.build_index           # done (Phase 2 / step 4)
+python -m src.fetch_companyfacts    # done (Phase 2 / step 5)
+python -m src.make_calibration      # done (Phase 3)
 python -m src.make_specs            # Phase 4
 python -m src.generate_filings      # Phases 5 and 6
 python -m src.validate_filings      # Phase 7
@@ -163,8 +177,10 @@ python -m src.evaluate_retrievers   # Phase 9
   short and flag long n-gram overlaps with the source.
 - **Uniform prose:** generated text is usually more regular than real filings. The gap report
   should say so.
-- **XBRL gaps:** some banks do not report every tag, so calibration needs fallbacks.
-- **Name impersonation:** fictional banks must not use real names or tickers.
+- **XBRL gaps:** not every company reports every tag (111/147 report total `Liabilities`,
+  107/147 report `OperatingIncomeLoss`; see "Calibration profile"). `make_calibration.py` tries
+  fallback tags per metric and records what's still missing rather than guessing.
+- **Name impersonation:** fictional companies must not use real names or tickers.
 
 ## Open questions
 
@@ -173,10 +189,8 @@ python -m src.evaluate_retrievers   # Phase 9
 2. **Sections:** only Items 1, 1A, 1C, 7, and 8 as specified, or full 10-Ks?
 3. **Model and budget:** which model, and what budget? Narrative cost scales with
    companies x sections.
-4. **Calibration scope — now open again:** the company list is a random S&P 500 sample, not a
-   bank list (see Phase 3). Options: calibrate per sector instead of banks-only; pick a fixed
-   sub-list of real banks for calibration regardless of what's in the random sample; or make
-   every fictional company a generic company instead of a fictional bank. Which do you want?
+4. **Calibration scope — resolved:** generic calibration, generic fictional companies (not
+   fictional banks). See Phase 3 and "Calibration profile" above.
 5. **Embedding model:** which model for the dense retriever?
 6. **Sharing the raw data — resolved:** published as a public GitHub Release asset
    (`data-v1`, `sec10k_raw_fy2023-2025.tar.gz` + a SHA-256 manifest).
@@ -196,8 +210,9 @@ python -m src.evaluate_retrievers   # Phase 9
 
 - **M1 — done:** parser runs on all 50 companies x 3 years; exceptions are in
   `data/parse_status.csv` (5 short, 6 missing out of 735 sections, all explained above).
-- **M2:** index, companyfacts, and `calibration.json`.
+- **M2 — done:** index (729 rows), companyfacts (50/50 companies), and `calibration.json`
+  (147 company-years, 12 metrics).
 - **M3:** spec generator and financial-statement computation, with reconciliation tests.
-- **M4:** narrative pilot on 2 fictional banks, validators, and review.
+- **M4:** narrative pilot on 2 fictional companies, validators, and review.
 - **M5:** full synthetic corpus.
 - **M6:** QA, retrieval evaluation, and gap report.
