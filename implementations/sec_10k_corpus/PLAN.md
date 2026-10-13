@@ -15,7 +15,8 @@ a real-data benchmark.
 | 5 | XBRL companyfacts JSON per company | Done: 50/50 companies |
 | 6 | Summary script | Not started |
 | - | Calibration (`data/calibration.json`) | Done: 147 company-years, 12 metrics; see "Calibration profile" |
-| - | Company specs, filing generation, QA, retrieval evaluation | Not started |
+| - | Company specs (Phase 4) | Done: 20 fictional companies; see `data/synthetic/` |
+| - | Filing generation, QA, retrieval evaluation | Not started |
 
 ### Downloaded data
 
@@ -101,15 +102,31 @@ a real-data benchmark.
   per-metric percentile sampling can't be trusted to keep accounting identities (assets =
   liabilities + equity) intact; starting from one real, internally-consistent company-year can.
 
-### Phase 4: Company spec generator
+### Phase 4: Company spec generator — done
 
-- Each fictional company is a JSON spec: fictional name, HQ state, fiscal year, size sampled from
-  the calibration distributions, balance-sheet mix, margins and returns, and the cybersecurity
-  facts that Item 1C needs. Start from a real company-year in `calibration.json` as a template
-  (see Phase 3) rather than sampling every field's percentile independently.
-- Reject specs that break accounting identities: assets equal liabilities plus equity.
-- Check every fictional name against the real company list, so no fictional company carries a real
-  name or ticker.
+- 20 fictional companies (resolves open question 1), one fiscal year each, sampled without
+  replacement from `calibration.json`'s 147 company-years as templates. `python -m src.make_specs`;
+  output at `data/synthetic/{fictional_id}/{fy}/spec.json` (committed, 80 KB total).
+- Each spec's sector, sub-industry, and HQ state carry over directly from its template's real
+  company (via `data/sp500_constituents.csv`), so the financial profile and the business
+  description Phase 6 will write stay consistent with each other.
+- Financials are scaled from the template by a random size factor, then rebuilt from the
+  template's own ratios (equity/assets, revenue/assets, margins) jittered within a tight band,
+  rather than sampled independently per calibration percentile — keeps the fictional company
+  recognizably the same *kind* of company as its template without being identical to it.
+- Assets = liabilities + equity by construction (equity and liabilities are rounded first, then
+  liabilities is set to assets minus that rounded equity, so independent rounding can't break the
+  identity) and then checked (`check_accounting_identity`), with up to 5 retries if it ever fails.
+- Every fictional name and ticker is checked against all 503 real S&P 500 names and tickers (not
+  just the 50 downloaded) and against every other fictional company already generated, so none
+  collides. Verified on the current run: all 20 pass the identity check, and there are zero
+  name/ticker collisions, real or duplicate.
+- Cybersecurity facts for Item 1C: a security framework, a board-oversight line, and (15% of the
+  time, matching how rarely real filings report one) a generic disclosed-incident summary.
+- Not yet done: Item 1A risk-factor themes and Item 1/7 narrative-supporting facts beyond sector
+  and size aren't in the spec; PLAN.md's original Phase 4 wording didn't call for them beyond what
+  Item 1C needs, and Phase 6's prompts can likely derive them from sector + financials + a real
+  exemplar. Revisit if Phase 6's narrative pilot needs more structure than that.
 
 ### Phase 5: Compute financial statements, don't write them
 
@@ -164,7 +181,7 @@ python -m src.parse_sections        # done (Phase 1 / step 3)
 python -m src.build_index           # done (Phase 2 / step 4)
 python -m src.fetch_companyfacts    # done (Phase 2 / step 5)
 python -m src.make_calibration      # done (Phase 3)
-python -m src.make_specs            # Phase 4
+python -m src.make_specs            # done (Phase 4)
 python -m src.generate_filings      # Phases 5 and 6
 python -m src.validate_filings      # Phase 7
 python -m src.make_qa               # Phase 9
@@ -184,8 +201,8 @@ python -m src.evaluate_retrievers   # Phase 9
 
 ## Open questions
 
-1. **Synthetic corpus size:** how many synthetic companies, and which fiscal years? For example,
-   20 companies for FY2023 and FY2024.
+1. **Synthetic corpus size — resolved:** 20 fictional companies, one fiscal year each (not a
+   multi-year trajectory). See Phase 4.
 2. **Sections:** only Items 1, 1A, 1C, 7, and 8 as specified, or full 10-Ks?
 3. **Model and budget:** which model, and what budget? Narrative cost scales with
    companies x sections.
@@ -212,7 +229,9 @@ python -m src.evaluate_retrievers   # Phase 9
   `data/parse_status.csv` (5 short, 6 missing out of 735 sections, all explained above).
 - **M2 — done:** index (729 rows), companyfacts (50/50 companies), and `calibration.json`
   (147 company-years, 12 metrics).
-- **M3:** spec generator and financial-statement computation, with reconciliation tests.
+- **M3 — spec generator half done:** 20 fictional company specs are built and pass the accounting-
+  identity check (Phase 4). Financial-statement computation (Phase 5: actual balance sheet, income
+  statement, and cash-flow tables, not just the summary figures in `spec.json`) isn't started yet.
 - **M4:** narrative pilot on 2 fictional companies, validators, and review.
 - **M5:** full synthetic corpus.
 - **M6:** QA, retrieval evaluation, and gap report.

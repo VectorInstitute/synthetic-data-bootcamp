@@ -5,8 +5,8 @@ is the real-data side of a synthetic-10-K benchmark: it provides style templates
 set, and XBRL facts.
 
 **Status:** Steps 1-5 (project setup, 10-K download, section parsing, metadata index, XBRL
-companyfacts) and the Phase 3 calibration profile are implemented. The summary script and
-synthetic generation (Phase 4 onward) come next; see `PLAN.md`.
+companyfacts) and Phases 3-4 (calibration profile, fictional-company specs) are implemented. The
+summary script and synthetic filing generation (Phase 5 onward) come next; see `PLAN.md`.
 
 ## Layout
 
@@ -24,6 +24,7 @@ src/
   build_index.py         step 4: data/index.csv, one row per parsed section
   fetch_companyfacts.py  step 5: download XBRL companyfacts per company
   make_calibration.py    Phase 3: data/calibration.json from companyfacts
+  make_specs.py          Phase 4: fictional-company specs from calibration.json
 data/
   sp500_constituents.csv frozen S&P 500 snapshot src.sample_companies samples from (committed)
   raw/{ticker}/{fy}/     10k.htm, 10k.txt, ex13_*.htm (if any), metadata.json
@@ -34,6 +35,7 @@ data/
   download_status.csv    one row per company-year from the last download run
   parse_status.csv       one row per company-year-item from the last parse run
   companyfacts_status.csv one row per company from the last companyfacts fetch
+  synthetic/{fictional_id}/{fy}/spec.json   fictional-company specs (committed)
 logs/                    per-script log files
 ```
 
@@ -126,6 +128,25 @@ python -m src.make_calibration
 - Not every company reports every tag; `calibration.json`'s `missing` field says which
   company-year is missing which metric, rather than silently dropping or guessing it.
 
+## Build fictional company specs
+
+```bash
+python -m src.make_specs
+```
+
+- Samples 20 real company-years from `calibration.json` as templates (no two fictional companies
+  share one) and writes `data/synthetic/{fictional_id}/{fy}/spec.json` for each: a fictional name,
+  ticker, HQ state, sector and sub-industry (carried over from the template's real company),
+  financials, and the Item 1C cybersecurity facts a filing needs.
+- Financials are the template's scaled by a random size factor and rebuilt from its own ratios
+  (jittered), not resampled independently, so assets = liabilities + equity holds by construction
+  and is then checked; a spec that somehow failed the check would be retried (up to 5 times) with
+  a new random draw. See `PLAN.md` Phase 4 for why (keeps the fictional company recognizably the
+  same kind of company as its template, and keeps every table reconciling for Phase 5).
+- Every fictional name and ticker is checked against all 503 real S&P 500 names and tickers, not
+  just the 50 downloaded, and against every other fictional company already generated.
+- Deterministic: re-running regenerates the same 20 specs (fixed seed in `src/make_specs.py`).
+
 ## Notes
 
 - Fiscal year is the year of the filing's period of report. Non-December year-ends (several
@@ -140,8 +161,9 @@ python -m src.make_calibration
 - The full SEC submission (`.txt` with all exhibits and images) is no longer saved. It was
   45-75 MB per filing, mostly images and XBRL data files.
 - Git tracks `metadata.json` files, `data/download_status.csv`, `data/parse_status.csv`,
-  `data/companyfacts_status.csv`, and `data/calibration.json`. The filing and section text
-  (`10k.htm`, `10k.txt`, `ex13_*`, `data/parsed/`), `data/companyfacts/*.json`, `data/index.csv`,
-  and `logs/` are git-ignored, and are all reproducible by re-running the matching script.
+  `data/companyfacts_status.csv`, `data/calibration.json`, and `data/synthetic/`. The filing and
+  section text (`10k.htm`, `10k.txt`, `ex13_*`, `data/parsed/`), `data/companyfacts/*.json`, and
+  `data/index.csv` and `logs/` are git-ignored, and are all reproducible by re-running the
+  matching script.
 - See `PLAN.md` for the full plan and open questions, and `SECTIONS.md` for which 10-K items
   are parsed and why.
