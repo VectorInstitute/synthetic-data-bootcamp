@@ -25,7 +25,7 @@ from edgar.httprequests import get_with_retry
 
 from src.config import RAW_DIR, get_companies, get_sec_identity, load_config
 from src.html_to_text import html_to_text
-from src.utils import setup_logging, with_retries
+from src.utils import setup_logging, with_retries, write_atomic
 
 
 logger = setup_logging("download_10k")
@@ -46,16 +46,6 @@ def find_10k(company: Company, fiscal_year: int):
         return None
     # If several match (rare), keep the most recently filed one
     return max(matches, key=lambda f: str(f.filing_date))
-
-
-def write_atomic(path: Path, content: str | bytes) -> None:
-    """Write a file via a temp file so a crash never leaves a partial file."""
-    tmp = path.with_name(path.name + ".tmp")
-    if isinstance(content, bytes):
-        tmp.write_bytes(content)
-    else:
-        tmp.write_text(content, encoding="utf-8")
-    tmp.replace(path)
 
 
 def fetch_bytes(url: str, description: str) -> bytes:

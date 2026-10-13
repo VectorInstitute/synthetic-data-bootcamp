@@ -8,8 +8,9 @@ data/raw/**/*.tmp
 data/parsed/*
 !data/parsed/.gitkeep
 data/index.csv
-# The root .gitignore ignores all CSVs, so re-include the small status file
+# The root .gitignore ignores all CSVs, so re-include the small status files
 !data/download_status.csv
+!data/parse_status.csv
 
 # Your real SEC identity (name and email) lives here, never in config.yaml
 config.local.yaml

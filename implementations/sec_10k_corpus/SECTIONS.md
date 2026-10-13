@@ -46,3 +46,19 @@ question types without pulling in sections that add parsing risk for little bene
 
 Ship Phase 1 with the five included items above. Revisit Item 7A (banks only) after the retrieval
 evaluation if the question set feels too narrow.
+
+## Implementation (Phase 1, `src/parse_sections.py`)
+
+Run with `python -m src.parse_sections`; see the README for usage. Result over the full corpus
+(50 companies x 3 fiscal years x 5 items = 750 sections): 687 ok, 36 short, 27 missing. Every
+row's outcome is in `data/parse_status.csv`.
+
+- Several companies (BAC, GS, JPM, TFC, and WFC among them) "incorporate by reference" Item 1C
+  or 1A to their annual report instead of writing the content directly. Only Item 7 and 8 have
+  an EX-13 fallback (see PLAN.md Phase 1), so these are left as `short` rows for manual review.
+- Citigroup's 10-K body doesn't use plain-text "Item N" headings at all (it's a page-number
+  cross-reference index into a combined annual report); all 5 items are `missing`. The Hartford's
+  Item 8 heading is similarly absent from the plain text, likely lost in HTML-to-text conversion
+  of a table-based heading. Neither has an EX-13 exhibit to fall back to.
+- 9 non-December fiscal-year-end companies have Item 1C `missing` for their earliest fiscal year,
+  because that year's period of report predates the item's effective date.

@@ -9,8 +9,8 @@ a real-data benchmark.
 | Step | What | Status |
 |---|---|---|
 | 1 | Project setup, config, identity handling | Done |
-| 2 | Download 10-K filings from EDGAR | Done: 50 companies x FY2022-2024 (150 company-years, 0 errors) |
-| 3 | Parse filings into sections (Items 1, 1A, 1C, 7, 8) | Not started |
+| 2 | Download 10-K filings from EDGAR | Done: 50 companies x FY2023-2025 (150 company-years, 0 errors) |
+| 3 | Parse filings into sections (Items 1, 1A, 1C, 7, 8) | Done: 723/750 sections ok, 36 short, 27 missing; see `data/parse_status.csv` |
 | 4 | Metadata index (`data/index.csv`) | Not started |
 | 5 | XBRL companyfacts JSON per company | Not started |
 | 6 | Summary script | Not started |
@@ -27,17 +27,34 @@ a real-data benchmark.
 - Size: about 1.3 GB of filing text, plus about 135 KB of metadata and the status file.
 - Reproduce: `python -m src.download_10k` (skips anything already downloaded).
 
+### Parsed sections
+
+- Location: `data/parsed/{ticker}/{fy}/item_1.txt`, `item_1a.txt`, `item_1c.txt`, `item_7.txt`,
+  `item_8.txt`. See `SECTIONS.md` for which items these are and why.
+- Result over the full corpus (750 = 150 company-years x 5 items): 687 ok, 36 short, 27 missing.
+  Every row's status, character count, and extraction method are in `data/parse_status.csv`.
+- Known gaps, all logged rather than guessed at further: Citigroup's 10-K body has no plain-text
+  Item headings at all (all 5 items missing); The Hartford's Item 8 has no plain-text "Item 8"
+  heading either (missing, 3 years); 9 non-December-year-end companies' earliest fiscal year
+  predates the Item 1C requirement (missing, expected); and a handful of "Item 1A"/"Item 1C"
+  cross-references to an annual report with no matching heading to resolve against (short).
+- Reproduce: `python -m src.parse_sections` (always reparses; it's local and fast, no need to skip).
+
 ## Plan
 
-### Phase 1: Parse filings into sections (step 3)
+### Phase 1: Parse filings into sections (step 3) — done
 
-- Input: `10k.txt`. Output: `data/parsed/{ticker}/{fy}/item_1.txt`, `item_1a.txt`, `item_1c.txt`,
-  `item_7.txt`, `item_8.txt`. See `SECTIONS.md` for which items are included and why.
-- The table of contents repeats every Item heading. Pick the body occurrence, meaning the heading
-  followed by the most text. Body headings are uppercase, for example `ITEM 1A – RISK FACTORS`.
-- When Item 7 or 8 is only a cross-reference to EX-13, take the text from the matching `ex13_*.htm`.
-- Item 1C exists only from FY2023 onward.
-- Missing or suspiciously short sections go into an exceptions CSV for manual review.
+- Input: `10k.txt`. Output as above.
+- The table of contents repeats every Item heading. The body occurrence is the heading followed
+  by the most text before the next heading, which also makes combined headings like
+  `Items 1 and 2. Business and Properties` resolve to Item 1.
+- When Item 7 or 8 is only a cross-reference to EX-13 (PGR, USB, WFC), the heading named in the
+  cross-reference sentence (e.g. "under 'Financial Review'") is located inside the matching
+  `ex13_*.htm` instead, and that section is used.
+- Item 1C exists only from FY2023 onward (and only for December fiscal year-ends at that; see
+  the known gaps above).
+- Missing or suspiciously short sections are still written and flagged with their status in
+  `data/parse_status.csv` for manual review, rather than guessed at further.
 
 ### Phase 2: Index and XBRL facts (steps 4 and 5)
 
@@ -114,7 +131,7 @@ a real-data benchmark.
 
 ```
 python -m src.download_10k          # done
-python -m src.parse_sections        # Phase 1 (step 3)
+python -m src.parse_sections        # done (Phase 1 / step 3)
 python -m src.build_index           # Phase 2 (step 4)
 python -m src.fetch_companyfacts    # Phase 2 (step 5)
 python -m src.make_calibration      # Phase 3
@@ -143,20 +160,21 @@ python -m src.evaluate_retrievers   # Phase 9
    banks x sections.
 4. **Calibration:** confirm that calibration uses only the 15 banks (recommended).
 5. **Embedding model:** which model for the dense retriever?
-6. **Sharing the raw data:** the 1.3 GB of filing text should not go into git. Options:
-   - a GitHub Release asset (zip, up to 2 GB per file, no repo bloat), or
-   - a shared drive or Hugging Face dataset, or
-   - team members re-run `python -m src.download_10k` with the same config (it is deterministic).
-   Which do you want?
-7. **Repository visibility:** the GitHub repo is public. Is that intended for this project?
+6. **Sharing the raw data — resolved:** published as a public GitHub Release asset
+   (`data-v1`, `sec10k_raw_fy2023-2025.tar.gz` + a SHA-256 manifest).
+7. **Repository visibility — resolved:** the GitHub repo is public; confirmed intended.
 8. **Leftover folders:** 15 companies from the earlier, stopped regional-bank run still have
-   folders in `data/raw/`. Delete them, or keep them?
-9. **EX-13 handling:** the parser needs a special path for PGR, USB, and WFC. Is it OK to start
-   with the 47 filings that have no EX-13 and add those three later?
+   FY2022-2024 folders in `data/raw/`. Deliberately left alone for now (not deleted, not
+   reparsed). Delete them, or keep them?
+9. **EX-13 handling — resolved:** built. Item 7 and 8 for PGR, USB, and WFC are extracted from
+   their `ex13_*.htm` via the heading named in the 10-K's cross-reference sentence. See
+   "Parsed sections" above for what's still unresolved (mostly Item 1C/1A cross-references with
+   no matching EX-13 route, which PLAN.md never scoped EX-13 fallback to cover).
 
 ## Milestones
 
-- **M1:** parser runs on all 50 companies x 3 years, with an exceptions list.
+- **M1 — done:** parser runs on all 50 companies x 3 years; exceptions are in
+  `data/parse_status.csv` (36 short, 27 missing out of 750 sections, all explained above).
 - **M2:** index, companyfacts, and `calibration.json`.
 - **M3:** spec generator and financial-statement computation, with reconciliation tests.
 - **M4:** narrative pilot on 2 fictional banks, validators, and review.

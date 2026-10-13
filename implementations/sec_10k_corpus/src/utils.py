@@ -3,6 +3,7 @@
 import logging
 import time
 from collections.abc import Callable
+from pathlib import Path
 from typing import TypeVar
 
 from edgar.exceptions import NotFoundError
@@ -11,6 +12,16 @@ from src.config import LOG_DIR
 
 
 T = TypeVar("T")
+
+
+def write_atomic(path: Path, content: str | bytes) -> None:
+    """Write a file via a temp file so a crash never leaves a partial file."""
+    tmp = path.with_name(path.name + ".tmp")
+    if isinstance(content, bytes):
+        tmp.write_bytes(content)
+    else:
+        tmp.write_text(content, encoding="utf-8")
+    tmp.replace(path)
 
 
 def setup_logging(name: str) -> logging.Logger:
