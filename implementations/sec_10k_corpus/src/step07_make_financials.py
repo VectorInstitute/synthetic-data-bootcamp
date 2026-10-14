@@ -35,6 +35,12 @@ SYNTHETIC_DIR = RAW_DIR.parent / "synthetic"
 CALIBRATION_PATH = RAW_DIR.parent / "calibration.json"
 SEED = 42
 RATIO_JITTER_RANGE = (0.85, 1.15)
+# Used only when a template has no operating-income anchor at all (see
+# build_income_statement): the U.S. federal statutory rate, and the band an
+# expense-based pretax estimate's implied tax rate must fall in to be trusted
+# instead of that statutory assumption.
+STATUTORY_TAX_RATE = 0.21
+SANE_TAX_RATE_RANGE = (-0.3, 0.5)
 
 # name -> candidate XBRL tags, tried in order (the same line item is tagged
 # differently across filers; see src.step05_make_calibration).
@@ -228,8 +234,24 @@ def build_income_statement(rng: random.Random, companyfacts: dict, template: dic
             interest_expense = round(
                 revenue * (template_interest / template_revenue) * rng.uniform(*RATIO_JITTER_RANGE),
             )
+            # A bank's "interest expense" tag isn't on the same basis as the generic
+            # revenue metric calibration uses, and can come out larger than revenue
+            # itself; cap it so it can't single-handedly make pretax income nonsensical.
+            interest_expense = min(interest_expense, round(revenue * 0.6))
 
     pretax_income = pretax_base - interest_expense
+    if operating_income is None:
+        implied_rate = (pretax_income - net_income) / pretax_income if pretax_income else None
+        if implied_rate is None or not SANE_TAX_RATE_RANGE[0] <= implied_rate <= SANE_TAX_RATE_RANGE[1]:
+            # No operating-income anchor from the template, and few or no expense
+            # tags were captured either (common for banks, whose "cost of revenue"
+            # isn't tagged the way an industrial company's is): the expense-based
+            # estimate above left pretax wildly over- or under-stated, which would
+            # otherwise force an unreasonable "tax expense" to make net income
+            # reconcile. Assume the U.S. federal statutory rate instead.
+            pretax_income = round(net_income / (1 - STATUTORY_TAX_RATE))
+            expenses = with_plug(expenses, revenue - interest_expense - pretax_income, "other_operating_expenses")
+
     income_tax_expense = pretax_income - net_income
 
     statement = {"revenues": revenue, "operating_expenses": expenses}

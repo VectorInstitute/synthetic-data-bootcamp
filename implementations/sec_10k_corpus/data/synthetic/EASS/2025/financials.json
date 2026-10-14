@@ -25,11 +25,12 @@
   "income_statement": {
     "revenues": 16028315487,
     "operating_expenses": {
-      "selling_general_administrative": 719924083
+      "selling_general_administrative": 719924083,
+      "other_operating_expenses": 13996499198
     },
     "interest_expense": 0,
-    "pretax_income": 15308391404,
-    "income_tax_expense": 14271996561,
+    "pretax_income": 1311892206,
+    "income_tax_expense": 275497363,
     "net_income": 1036394843
   },
   "cash_flow_statement": {
@@ -52,5 +53,5 @@
     },
     "net_change_in_cash": 131247490
   },
-  "generated_at": "2026-10-14T14:37:15+00:00"
+  "generated_at": "2026-10-14T19:28:52+00:00"
 }

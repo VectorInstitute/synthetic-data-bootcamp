@@ -21,10 +21,12 @@
   },
   "income_statement": {
     "revenues": 25195097941,
-    "operating_expenses": {},
+    "operating_expenses": {
+      "other_operating_expenses": 16605249528
+    },
     "interest_expense": 0,
-    "pretax_income": 25195097941,
-    "income_tax_expense": 18409117695,
+    "pretax_income": 8589848413,
+    "income_tax_expense": 1803868167,
     "net_income": 6785980246
   },
   "cash_flow_statement": {
@@ -47,5 +49,5 @@
     },
     "net_change_in_cash": -5535982408
   },
-  "generated_at": "2026-10-14T14:37:16+00:00"
+  "generated_at": "2026-10-14T19:28:52+00:00"
 }

@@ -146,6 +146,15 @@ a real-data benchmark.
   to its total, pretax income minus tax equals net income, and the three cash-flow subtotals sum
   to the net change in cash.
 - The language model writes only narrative text (Phase 6); every number here is already fixed.
+- **Fixed:** when a template has neither an operating-income anchor (missing `operating_margin` in
+  calibration) nor its expenses tagged in a way `OPERATING_EXPENSE_TAGS` catches (both true for a
+  few banks and industrials), the original expense-based pretax estimate could be wildly off and
+  forced the income-tax-expense plug to absorb the gap — 93%+ "effective tax rates" for EASS
+  (BALL), GKRH (USB), SKR (NTRS), and TOUN (TXT). Now checked against a sane range and, when it
+  fails, replaced with a U.S. statutory-rate (21%) estimate instead; `interest_expense` is also
+  capped at 60% of revenue, since a bank's real tag isn't on the same basis as the generic revenue
+  metric and could otherwise exceed revenue outright (SKR). All 4 now show a plausible rate (21%,
+  21%, 36%, 21%); the other 16 companies are byte-identical to before the fix.
 - Not every template reports every line item (financial and utility companies especially: no
   inventory, no traditional "cost of revenue," etc.), so some fictional companies show more of
   their statement in an "other" line than others. Accepted as consistent with Phase 3's "generic
