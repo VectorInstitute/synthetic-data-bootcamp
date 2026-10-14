@@ -29,6 +29,7 @@ src/
   step05_make_calibration.py  data/calibration.json from companyfacts (Phase 3)
   step06_make_specs.py        fictional-company specs from calibration.json (Phase 4)
   step07_make_financials.py   balance sheet, income statement, cash flow (Phase 5)
+  step08_generate_filings.py  Claude API narrative generation (Phase 6, built but not run)
 data/
   sp500_constituents.csv frozen S&P 500 snapshot src.step00_sample_companies samples from (committed)
   raw/{ticker}/{fy}/     10k.htm, 10k.txt, ex13_*.htm (if any), metadata.json
@@ -171,6 +172,23 @@ python -m src.step07_make_financials
   figure to tie to as well.
 - Deterministic and local: no network calls, reproducible from `spec.json` and the already-cached
   companyfacts, fixed seed in `src/step07_make_financials.py`.
+
+## Generate fictional company narrative text (placeholder, not run)
+
+```bash
+python -m src.step08_generate_filings
+```
+
+- **Not currently used.** The `item_*.txt` files under `data/synthetic/` were written directly in
+  a Claude Code session instead, so this script has never been run against the real API and has
+  cost nothing. See `PLAN.md` Phase 6 and open question 3.
+- Requires the `anthropic` package (in `requirements.txt`) and `ANTHROPIC_API_KEY` set in the
+  environment; exits immediately with an explanation if the key isn't set.
+- Per item, builds a prompt from the spec's facts, the relevant computed figures from
+  `financials.json`, a real exemplar from the template company's own `data/parsed/` (style and
+  structure only, not to be copied), a length target (the real corpus's median for that item, from
+  `parse_status.csv`), and whatever's already been generated for that company, then calls the
+  Claude API and writes the result.
 
 ## Notes
 

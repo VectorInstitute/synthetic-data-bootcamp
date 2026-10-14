@@ -172,11 +172,12 @@ a real-data benchmark.
   names) is either omitted or described qualitatively rather than invented as a specific fact, to
   avoid presenting an ungrounded number as if it were computed; Item 8 omits a signed audit
   opinion, since that would require inventing a fictional accounting firm and partner.
-- **Not yet decided (open question 3 — model and budget):** the pilot didn't need an API call or a
-  budget, since it was written directly in this session. Scaling to all 20 companies at full
-  length is a different proposition — it needs either continuing to write them this way (slow, no
-  added cost) or building `src/generate_filings.py` against a chosen model and budget (fast,
-  repeatable, costs money). Which do you want, and if the latter, which model?
+- **Open question 3 (model and budget) — resolved for now:** `src.step08_generate_filings` is
+  built (Claude API, `anthropic` package, configurable per-item model) but deliberately left as a
+  placeholder — never run against the real API, no cost incurred. All 20 companies continue to be
+  written directly in this session instead, the same way as the 2-company pilot, for as long as
+  that's the chosen approach. Revisit if that changes: the script is ready to use once there's a
+  real `ANTHROPIC_API_KEY` and a budget decision.
 - Original design, still the target for a full build: generation order Item 1, then 1A, then 7
   (which quotes the Item 8 numbers), then 1C, then the Item 8 notes, with earlier output passed in
   as context; each prompt containing spec facts, computed numbers, one real exemplar, a length
@@ -222,10 +223,10 @@ python -m src.step04_fetch_companyfacts    # done (Phase 2 / step 5)
 python -m src.step05_make_calibration      # done (Phase 3)
 python -m src.step06_make_specs            # done (Phase 4)
 python -m src.step07_make_financials       # done (Phase 5)
-python -m src.generate_filings      # Phase 6
-python -m src.validate_filings      # Phase 7
-python -m src.make_qa               # Phase 9
-python -m src.evaluate_retrievers   # Phase 9
+python -m src.step08_generate_filings  # built, placeholder (Phase 6; see above)
+python -m src.step09_validate_filings  # not built yet (Phase 7)
+python -m src.step10_make_qa           # not built yet (Phase 9)
+python -m src.step11_evaluate_retrievers  # not built yet (Phase 9)
 ```
 
 ### Risks

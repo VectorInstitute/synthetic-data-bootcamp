@@ -22,6 +22,7 @@ Run from the project directory:
 import csv
 import json
 import random
+import re
 import string
 
 from src.config import PROJECT_DIR, RAW_DIR
@@ -119,7 +120,7 @@ def load_real_companies() -> dict[str, dict]:
     companies = {}
     with open(CONSTITUENTS_PATH, encoding="utf-8") as f:
         for row in csv.DictReader(f):
-            hq = row["Headquarters Location"]
+            hq = re.sub(r"\[\d+\]$", "", row["Headquarters Location"]).strip()
             hq_state = hq.rsplit(",", 1)[-1].strip() if "," in hq else hq
             companies[row["Symbol"].strip().upper()] = {
                 "name": row["Security"].strip(),
