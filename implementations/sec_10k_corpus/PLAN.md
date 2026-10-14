@@ -16,7 +16,8 @@ a real-data benchmark.
 | 6 | Summary script | Not started |
 | - | Calibration (`data/calibration.json`) | Done: 147 company-years, 12 metrics; see "Calibration profile" |
 | - | Company specs (Phase 4) | Done: 20 fictional companies; see `data/synthetic/` |
-| - | Filing generation, QA, retrieval evaluation | Not started |
+| - | Financial statements (Phase 5) | Done: balance sheet, income statement, cash flow per company, all reconciling |
+| - | Narrative generation, QA, retrieval evaluation | Not started |
 
 ### Downloaded data
 
@@ -128,11 +129,26 @@ a real-data benchmark.
   Item 1C needs, and Phase 6's prompts can likely derive them from sector + financials + a real
   exemplar. Revisit if Phase 6's narrative pilot needs more structure than that.
 
-### Phase 5: Compute financial statements, don't write them
+### Phase 5: Compute financial statements, don't write them — done
 
-- Code builds the balance sheet, income statement, and cash-flow tables from the spec. Every table
-  reconciles.
-- The language model writes only narrative text. All numbers are fixed before any prompt.
+- `python -m src.step07_make_financials`; output at
+  `data/synthetic/{fictional_id}/{fy}/financials.json` (committed, 160 KB total): a balance sheet,
+  income statement, and cash-flow statement per fictional company, built from `spec.json`'s totals
+  plus the line-item mix pulled from the template company's own `data/companyfacts/{ticker}.json`
+  (the same source Phase 3 uses). Every line item is the template's own ratio (that line divided
+  by its own total) applied to the fictional company's total, so the mix, expense structure, and
+  cash-flow shape stay the kind of company the spec is grounded in, not an arbitrary combination.
+- Every table reconciles exactly, not approximately: whatever a ratio basis can't explain (a tag
+  the template doesn't report, or simply what's left) becomes one named "other" line per statement,
+  sized so the explicit lines plus it hit the control total on the nose. Verified independently
+  (outside the script's own check) on all 20: assets = liabilities + equity, every subtotal sums
+  to its total, pretax income minus tax equals net income, and the three cash-flow subtotals sum
+  to the net change in cash.
+- The language model writes only narrative text (Phase 6); every number here is already fixed.
+- Not every template reports every line item (financial and utility companies especially: no
+  inventory, no traditional "cost of revenue," etc.), so some fictional companies show more of
+  their statement in an "other" line than others. Accepted as consistent with Phase 3's "generic
+  calibration" decision (open question 4) rather than modeled per sector.
 
 ### Phase 6: Narrative generation per Item
 
@@ -182,7 +198,8 @@ python -m src.step03_build_index           # done (Phase 2 / step 4)
 python -m src.step04_fetch_companyfacts    # done (Phase 2 / step 5)
 python -m src.step05_make_calibration      # done (Phase 3)
 python -m src.step06_make_specs            # done (Phase 4)
-python -m src.generate_filings      # Phases 5 and 6
+python -m src.step07_make_financials       # done (Phase 5)
+python -m src.generate_filings      # Phase 6
 python -m src.validate_filings      # Phase 7
 python -m src.make_qa               # Phase 9
 python -m src.evaluate_retrievers   # Phase 9
@@ -229,9 +246,8 @@ python -m src.evaluate_retrievers   # Phase 9
   `data/parse_status.csv` (5 short, 6 missing out of 735 sections, all explained above).
 - **M2 — done:** index (729 rows), companyfacts (50/50 companies), and `calibration.json`
   (147 company-years, 12 metrics).
-- **M3 — spec generator half done:** 20 fictional company specs are built and pass the accounting-
-  identity check (Phase 4). Financial-statement computation (Phase 5: actual balance sheet, income
-  statement, and cash-flow tables, not just the summary figures in `spec.json`) isn't started yet.
+- **M3 — done:** 20 fictional company specs (Phase 4) and their full balance sheet, income
+  statement, and cash-flow tables (Phase 5) are built, with every subtotal and identity checked.
 - **M4:** narrative pilot on 2 fictional companies, validators, and review.
 - **M5:** full synthetic corpus.
 - **M6:** QA, retrieval evaluation, and gap report.

@@ -5,8 +5,9 @@ is the real-data side of a synthetic-10-K benchmark: it provides style templates
 set, and XBRL facts.
 
 **Status:** Steps 1-5 (project setup, 10-K download, section parsing, metadata index, XBRL
-companyfacts) and Phases 3-4 (calibration profile, fictional-company specs) are implemented. The
-summary script and synthetic filing generation (Phase 5 onward) come next; see `PLAN.md`.
+companyfacts) and Phases 3-5 (calibration profile, fictional-company specs, financial statements)
+are implemented. The summary script and narrative generation (Phase 6 onward) come next; see
+`PLAN.md`.
 
 ## Layout
 
@@ -26,6 +27,7 @@ src/
   step04_fetch_companyfacts.py  download XBRL companyfacts per company
   step05_make_calibration.py  data/calibration.json from companyfacts (Phase 3)
   step06_make_specs.py        fictional-company specs from calibration.json (Phase 4)
+  step07_make_financials.py   balance sheet, income statement, cash flow (Phase 5)
 data/
   sp500_constituents.csv frozen S&P 500 snapshot src.step00_sample_companies samples from (committed)
   raw/{ticker}/{fy}/     10k.htm, 10k.txt, ex13_*.htm (if any), metadata.json
@@ -36,7 +38,8 @@ data/
   download_status.csv    one row per company-year from the last download run
   parse_status.csv       one row per company-year-item from the last parse run
   companyfacts_status.csv one row per company from the last companyfacts fetch
-  synthetic/{fictional_id}/{fy}/spec.json   fictional-company specs (committed)
+  synthetic/{fictional_id}/{fy}/spec.json        fictional-company specs (committed)
+  synthetic/{fictional_id}/{fy}/financials.json  its 3 financial statements (committed)
 logs/                    per-script log files
 ```
 
@@ -147,6 +150,26 @@ python -m src.step06_make_specs
 - Every fictional name and ticker is checked against all 503 real S&P 500 names and tickers, not
   just the 50 downloaded, and against every other fictional company already generated.
 - Deterministic: re-running regenerates the same 20 specs (fixed seed in `src/step06_make_specs.py`).
+
+## Build fictional company financial statements
+
+```bash
+python -m src.step07_make_financials
+```
+
+- Writes `data/synthetic/{fictional_id}/{fy}/financials.json` for every spec: a balance sheet,
+  income statement, and cash-flow statement, each reconciling exactly to `spec.json`'s totals.
+- Every line item is the template company's own ratio (that line divided by its own total, pulled
+  from `data/companyfacts/{ticker}.json`) applied to the fictional company's total — the same
+  "scale the template's own shape" approach `step06_make_specs.py` uses, one level more detailed.
+  Whatever a ratio basis can't explain (a tag the template doesn't report, or simply what's left)
+  becomes one named "other" line per statement/section, which is also what forces each one to
+  reconcile exactly rather than approximately.
+- Income tax expense is always the residual between pretax income and net income (never ratio-
+  based), so net income ties out exactly whether or not the template reported an operating income
+  figure to tie to as well.
+- Deterministic and local: no network calls, reproducible from `spec.json` and the already-cached
+  companyfacts, fixed seed in `src/step07_make_financials.py`.
 
 ## Notes
 
