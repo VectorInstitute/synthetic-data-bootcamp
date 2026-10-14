@@ -6,8 +6,9 @@ set, and XBRL facts.
 
 **Status:** Steps 1-5 (project setup, 10-K download, section parsing, metadata index, XBRL
 companyfacts) and Phases 3-5 (calibration profile, fictional-company specs, financial statements)
-are implemented. The summary script and narrative generation (Phase 6 onward) come next; see
-`PLAN.md`.
+are implemented. Phase 6 (narrative generation) has a 2-company pilot written and hand-validated
+(`data/synthetic/{PRG,NDE}/`); scaling to all 20 companies is pending a model/budget decision. See
+`PLAN.md` for detail and the summary script, which comes next.
 
 ## Layout
 

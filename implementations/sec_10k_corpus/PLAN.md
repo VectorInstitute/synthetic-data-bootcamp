@@ -17,7 +17,8 @@ a real-data benchmark.
 | - | Calibration (`data/calibration.json`) | Done: 147 company-years, 12 metrics; see "Calibration profile" |
 | - | Company specs (Phase 4) | Done: 20 fictional companies; see `data/synthetic/` |
 | - | Financial statements (Phase 5) | Done: balance sheet, income statement, cash flow per company, all reconciling |
-| - | Narrative generation, QA, retrieval evaluation | Not started |
+| - | Narrative generation (Phase 6) | M4 pilot done: 2/20 companies; see "Phase 6" |
+| - | QA, retrieval evaluation | Not started |
 
 ### Downloaded data
 
@@ -150,14 +151,36 @@ a real-data benchmark.
   their statement in an "other" line than others. Accepted as consistent with Phase 3's "generic
   calibration" decision (open question 4) rather than modeled per sector.
 
-### Phase 6: Narrative generation per Item
+### Phase 6: Narrative generation per Item — M4 pilot done, scale-up not started
 
-- Generation order: Item 1, then 1A, then 7 (which quotes the Item 8 numbers), then 1C, then the
-  Item 8 notes. Earlier output is passed in as context so sections stay consistent.
-- Each prompt contains: spec facts, computed numbers, one real section of the same Item as a style
-  exemplar (not to be copied), a length target from the real distribution, and the real heading
-  outline.
-- Choose the model after a small pilot: a stronger model for MD&A, a cheaper one for volume.
+- **Pilot:** 2 fictional companies written end to end — PRG (Amberwood Technologies Corp.,
+  templated on ROP) and NDE (Harborview Logistics Corp., templated on AZO) — all 5 items each, at
+  `data/synthetic/{PRG,NDE}/{fy}/item_*.txt` (committed). Written directly in this session rather
+  than through an API script, using each real template's own Item as a structural/style guide
+  (not copied), grounded strictly in that company's `spec.json` and `financials.json` figures.
+- **Verified (Phase 7's automatic gates, run by hand on the pilot):** every ratio and dollar figure
+  quoted in Item 7 and Item 8 matches `financials.json` exactly (operating/net/gross margin,
+  effective tax rate, equity/assets, goodwill+intangibles/assets, inventory/assets, total debt —
+  independently recomputed from the JSON and compared); no real company name or the template's own
+  ticker appears in either company's text (one false-positive substring, "interoperate" containing
+  "roper", checked and dismissed); Item 1, 1A, 7, 1C, and 8 all have the heading structure real
+  filings use for that item.
+- **Known gaps against the original design, by choice, for the pilot:** sections are condensed
+  (300-700 words each) rather than matched to the real length distribution, since writing full
+  length (thousands of words per item) for a 2-company pilot wasn't a good use of a pilot's
+  purpose; operational color not in the spec (store counts, employee counts, segment sub-brand
+  names) is either omitted or described qualitatively rather than invented as a specific fact, to
+  avoid presenting an ungrounded number as if it were computed; Item 8 omits a signed audit
+  opinion, since that would require inventing a fictional accounting firm and partner.
+- **Not yet decided (open question 3 — model and budget):** the pilot didn't need an API call or a
+  budget, since it was written directly in this session. Scaling to all 20 companies at full
+  length is a different proposition — it needs either continuing to write them this way (slow, no
+  added cost) or building `src/generate_filings.py` against a chosen model and budget (fast,
+  repeatable, costs money). Which do you want, and if the latter, which model?
+- Original design, still the target for a full build: generation order Item 1, then 1A, then 7
+  (which quotes the Item 8 numbers), then 1C, then the Item 8 notes, with earlier output passed in
+  as context; each prompt containing spec facts, computed numbers, one real exemplar, a length
+  target from the real distribution, and the real heading outline.
 
 ### Phase 7: Validation gates
 
@@ -248,6 +271,8 @@ python -m src.evaluate_retrievers   # Phase 9
   (147 company-years, 12 metrics).
 - **M3 — done:** 20 fictional company specs (Phase 4) and their full balance sheet, income
   statement, and cash-flow tables (Phase 5) are built, with every subtotal and identity checked.
-- **M4:** narrative pilot on 2 fictional companies, validators, and review.
+- **M4 — pilot done, review pending:** narrative pilot on 2 fictional companies (PRG, NDE) written
+  and hand-validated against Phase 7's automatic gates (see Phase 6). Human review of the pilot,
+  and the model/budget decision for scaling to all 20 companies, are still open.
 - **M5:** full synthetic corpus.
 - **M6:** QA, retrieval evaluation, and gap report.
