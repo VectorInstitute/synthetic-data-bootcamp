@@ -30,6 +30,21 @@ Section status: `ok`; `fallback` (Item 8 only points elsewhere, so the statement
 - Headline metrics: revenue for 295 filings, net income for 299, total assets for 300.
 - Known gaps: GE, Honeywell, Intel, Illumina, McDonald's, Citigroup, Morgan Stanley and Cardinal Health organise the body by their own headings with a cross-reference index, so Items can't be cut by heading. U.S. Bancorp, Wells Fargo, BNY and IBM put MD&A and the financial statements in an EX-13 exhibit that isn't in the download.
 
+## Step 2: calibrate fictional companies
+
+```bash
+uv run python -m aieng.syn_data.sec10k.calibrate --data data/sec10k
+```
+
+Writes `data/sec10k/calibration.json`. It holds, per GICS sector (from the bundled `sectors.csv`), the 10th/25th/50th/75th/90th percentiles of:
+- size (`log10_revenue`)
+- the ratios that shape a set of statements: margins, R&D/SG&A/D&A/capex intensity, tax rate, asset turnover, equity, cash, PP&E, goodwill and debt shares of assets, working-capital ratios and dividend payout
+- section lengths in words for each Item
+
+Financial companies are excluded, since their statements use a different layout. A ratio that fewer than 8 companies in a sector report falls back to the pooled distribution and is marked `"pooled": true`. Utilities' gross margin is one example, because utilities don't report gross profit.
+
+On the 305-filing corpus this covers 254 non-financial companies in 10 sectors. Pooled medians: revenue about $21B (these are S&P 500 companies), gross margin 49%, operating margin 17%, net margin 12%, tax rate 19.5%.
+
 ## Next steps
 
-See the project plan: calibrate per-sector distributions from `financials.csv`, sample fictional company specs, compute reconciling statements in code, then have an LLM write the narrative sections around those numbers, validate, and evaluate retrieval on synthetic vs real filings.
+Sample fictional company specs from `calibration.json`, compute reconciling statements in code, then have an LLM write the narrative sections around those numbers, validate, and evaluate retrieval on synthetic vs real filings.
