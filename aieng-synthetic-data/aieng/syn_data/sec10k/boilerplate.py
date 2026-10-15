@@ -12,6 +12,7 @@ import random
 from datetime import date
 from typing import Any
 
+from aieng.syn_data.sec10k.places import CITIES, STATE_NAMES
 from aieng.syn_data.sec10k.render import money
 
 
@@ -71,42 +72,6 @@ OUTLINE = [
 ]
 HEADINGS = {item: f"Item {item}. {title}" for _, item, title in OUTLINE}
 
-STATE_NAMES = {
-    "DE": "Delaware",
-    "CA": "California",
-    "TX": "Texas",
-    "NY": "New York",
-    "IL": "Illinois",
-    "OH": "Ohio",
-    "GA": "Georgia",
-    "NC": "North Carolina",
-    "MA": "Massachusetts",
-    "WA": "Washington",
-    "CO": "Colorado",
-    "MN": "Minnesota",
-    "PA": "Pennsylvania",
-    "NJ": "New Jersey",
-    "VA": "Virginia",
-    "AZ": "Arizona",
-}
-CITIES = {
-    "CA": ("San Jose", "951"),
-    "TX": ("Austin", "787"),
-    "NY": ("New York", "100"),
-    "IL": ("Chicago", "606"),
-    "OH": ("Columbus", "432"),
-    "GA": ("Atlanta", "303"),
-    "NC": ("Charlotte", "282"),
-    "MA": ("Boston", "021"),
-    "WA": ("Seattle", "981"),
-    "CO": ("Denver", "802"),
-    "MN": ("Minneapolis", "554"),
-    "PA": ("Pittsburgh", "152"),
-    "NJ": ("Princeton", "085"),
-    "VA": ("Reston", "201"),
-    "AZ": ("Phoenix", "850"),
-    "DE": ("Wilmington", "198"),
-}
 _STREETS = ["Corporate Drive", "Innovation Way", "Commerce Parkway", "Market Plaza"]
 
 
@@ -126,7 +91,7 @@ def cover_facts(spec: dict[str, Any]) -> dict[str, str]:
     price = rng.uniform(35, 260)
     shares = market_cap * 1e6 / price
     hq = spec["headquarters_state"]
-    city, zip3 = CITIES.get(hq, ("Wilmington", "198"))
+    city, zip3 = CITIES.get(hq, CITIES["DE"])
     fy = int(spec["fiscal_year"])
     return {
         "file_number": f"001-{rng.randint(10000, 42999)}",
@@ -149,12 +114,16 @@ def cover_facts(spec: dict[str, Any]) -> dict[str, str]:
     }
 
 
+def _the(exchange: str) -> str:
+    return exchange if exchange.startswith("The ") else f"the {exchange}"
+
+
 def _item_5(spec: dict[str, Any], facts: dict[str, str]) -> str:
     cash = spec["statements"]["cash_flow_statement"][str(spec["fiscal_year"])]
     dividends, buybacks = -cash["dividends_paid"], -cash["share_repurchases_net"]
     lines = [
         "Market Information",
-        f"Our common stock is traded on {facts['exchange']} under the symbol "
+        f"Our common stock is traded on {_the(facts['exchange'])} under the symbol "
         f'"{spec["ticker"]}".',
         "Dividends",
     ]

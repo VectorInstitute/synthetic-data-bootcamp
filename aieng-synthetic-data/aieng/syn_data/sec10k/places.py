@@ -1,0 +1,38 @@
+"""US state names and a headquarters city for each, used by the cover and prompts."""
+
+STATE_NAMES = {
+    "DE": "Delaware",
+    "CA": "California",
+    "TX": "Texas",
+    "NY": "New York",
+    "IL": "Illinois",
+    "OH": "Ohio",
+    "GA": "Georgia",
+    "NC": "North Carolina",
+    "MA": "Massachusetts",
+    "WA": "Washington",
+    "CO": "Colorado",
+    "MN": "Minnesota",
+    "PA": "Pennsylvania",
+    "NJ": "New Jersey",
+    "VA": "Virginia",
+    "AZ": "Arizona",
+}
+CITIES = {
+    "CA": ("San Jose", "951"),
+    "TX": ("Austin", "787"),
+    "NY": ("New York", "100"),
+    "IL": ("Chicago", "606"),
+    "OH": ("Columbus", "432"),
+    "GA": ("Atlanta", "303"),
+    "NC": ("Charlotte", "282"),
+    "MA": ("Boston", "021"),
+    "WA": ("Seattle", "981"),
+    "CO": ("Denver", "802"),
+    "MN": ("Minneapolis", "554"),
+    "PA": ("Pittsburgh", "152"),
+    "NJ": ("Princeton", "085"),
+    "VA": ("Reston", "201"),
+    "AZ": ("Phoenix", "850"),
+    "DE": ("Wilmington", "198"),
+}
