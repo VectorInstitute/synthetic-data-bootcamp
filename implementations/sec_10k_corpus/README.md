@@ -5,10 +5,10 @@ is the real-data side of a synthetic-10-K benchmark: it provides style templates
 set, and XBRL facts.
 
 **Status:** Steps 1-5 (project setup, 10-K download, section parsing, metadata index, XBRL
-companyfacts) and Phases 3-5 (calibration profile, fictional-company specs, financial statements)
-are implemented. Phase 6 (narrative generation) has a 2-company pilot written and hand-validated
-(`data/synthetic/{PRG,NDE}/`); scaling to all 20 companies is pending a model/budget decision. See
-`PLAN.md` for detail and the summary script, which comes next.
+companyfacts) and Phases 3-6 (calibration profile, fictional-company specs, financial statements,
+narrative generation) are implemented. All 20 fictional companies' `item_*.txt` files are written
+and hand-validated (`data/synthetic/`). See `PLAN.md` for detail; the summary script and Phase 7
+(validation gates beyond the automatic ones already run) come next.
 
 ## Layout
 

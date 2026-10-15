@@ -17,7 +17,7 @@ a real-data benchmark.
 | - | Calibration (`data/calibration.json`) | Done: 147 company-years, 12 metrics; see "Calibration profile" |
 | - | Company specs (Phase 4) | Done: 20 fictional companies; see `data/synthetic/` |
 | - | Financial statements (Phase 5) | Done: balance sheet, income statement, cash flow per company, all reconciling |
-| - | Narrative generation (Phase 6) | M4 pilot done: 2/20 companies; see "Phase 6" |
+| - | Narrative generation (Phase 6) | Done: 20/20 companies, 100 files; see "Phase 6" |
 | - | QA, retrieval evaluation | Not started |
 
 ### Downloaded data
@@ -160,33 +160,48 @@ a real-data benchmark.
   their statement in an "other" line than others. Accepted as consistent with Phase 3's "generic
   calibration" decision (open question 4) rather than modeled per sector.
 
-### Phase 6: Narrative generation per Item — M4 pilot done, scale-up not started
+### Phase 6: Narrative generation per Item — done, all 20 companies
 
-- **Pilot:** 2 fictional companies written end to end — PRG (Amberwood Technologies Corp.,
-  templated on ROP) and NDE (Harborview Logistics Corp., templated on AZO) — all 5 items each, at
-  `data/synthetic/{PRG,NDE}/{fy}/item_*.txt` (committed). Written directly in this session rather
-  than through an API script, using each real template's own Item as a structural/style guide
-  (not copied), grounded strictly in that company's `spec.json` and `financials.json` figures.
-- **Verified (Phase 7's automatic gates, run by hand on the pilot):** every ratio and dollar figure
-  quoted in Item 7 and Item 8 matches `financials.json` exactly (operating/net/gross margin,
-  effective tax rate, equity/assets, goodwill+intangibles/assets, inventory/assets, total debt —
-  independently recomputed from the JSON and compared); no real company name or the template's own
-  ticker appears in either company's text (one false-positive substring, "interoperate" containing
-  "roper", checked and dismissed); Item 1, 1A, 7, 1C, and 8 all have the heading structure real
-  filings use for that item.
-- **Known gaps against the original design, by choice, for the pilot:** sections are condensed
-  (300-700 words each) rather than matched to the real length distribution, since writing full
-  length (thousands of words per item) for a 2-company pilot wasn't a good use of a pilot's
-  purpose; operational color not in the spec (store counts, employee counts, segment sub-brand
-  names) is either omitted or described qualitatively rather than invented as a specific fact, to
-  avoid presenting an ungrounded number as if it were computed; Item 8 omits a signed audit
-  opinion, since that would require inventing a fictional accounting firm and partner.
-- **Open question 3 (model and budget) — resolved for now:** `src.step08_generate_filings` is
-  built (Claude API, `anthropic` package, configurable per-item model) but deliberately left as a
-  placeholder — never run against the real API, no cost incurred. All 20 companies continue to be
-  written directly in this session instead, the same way as the 2-company pilot, for as long as
-  that's the chosen approach. Revisit if that changes: the script is ready to use once there's a
-  real `ANTHROPIC_API_KEY` and a budget decision.
+- All 20 fictional companies written end to end: all 5 items each, at
+  `data/synthetic/{fictional_id}/{fy}/item_*.txt` (committed, 100 files). Written directly in
+  Claude Code sessions rather than through an API script — the first 2 (PRG, NDE) as a pilot, the
+  remaining 18 via 5 parallel sub-agents grouped by sector (Utilities; Financials; Health Care and
+  Materials; Information Technology; Industrials and Consumer Discretionary), each given the exact
+  pre-computed figures for its companies so no sub-agent had to do its own arithmetic. Every
+  company uses its real template's own Item as a structural/style guide (not copied), grounded
+  strictly in that company's `spec.json` and `financials.json` figures.
+- **Verified (Phase 7's automatic gates, run by hand on all 20 after every sub-agent reported its
+  own pass):** every ratio and dollar figure quoted in Item 7 and Item 8 matches `financials.json`
+  exactly (net margin, equity/assets, and others, independently recomputed and compared to what
+  each item_7.txt states); every balance sheet, income statement, and cash-flow statement
+  reconciles; all 100 files are substantive (none under 150 words); no real template company's
+  full name appears anywhere across all 100 files, and no bare ticker appears as a standalone
+  word (checked separately from the expected substring false positives — "ben" inside "benefit",
+  "rop" inside "appropriate"/"property", "dri" inside "driven", "fast" inside "breakfast" — which
+  are not real leaks). TOUN's disclosed cybersecurity incident is threaded consistently through
+  Item 1A, 1C, and 8.
+- A handful of companies have figures that don't fit the standard narrative cleanly, each handled
+  explicitly rather than left to look broken: FTC, GOG, HZP, and WJE have a net tax *benefit*
+  (negative tax expense) at a small or negative pretax base, which would produce a meaningless
+  "percentage" (e.g. -80.8%, 208.6%) if stated literally — these are described in dollars and
+  qualitatively instead, never as a literal rate. GKRH, SKR, and EASS have no separate operating-
+  income line (see Phase 5's fix), so their Item 7/8 go straight from revenue and expenses to
+  pretax income. GKRH, SKR, BAI, CRJ, and VQWP (banks and utilities) have 90%+ of assets in one
+  "other_assets" line; described qualitatively as consistent with that kind of balance sheet
+  (loans/securities for banks, utility plant for electric utilities) rather than invented detail.
+- **Known gaps against the original design, by choice:** sections are condensed (roughly
+  400-900 words each) rather than matched to the real length distribution, since matching it
+  (thousands of words per item, times 100 files) wasn't a good use of hand-written effort over an
+  API-driven approach; operational color not in the spec (store counts, employee counts, segment
+  sub-brand names) is either omitted or described qualitatively rather than invented as a specific
+  fact, to avoid presenting an ungrounded number as if it were computed; Item 8 omits a signed
+  audit opinion, since that would require inventing a fictional accounting firm and partner.
+- **Open question 3 (model and budget) — resolved:** `src.step08_generate_filings` is built
+  (Claude API, `anthropic` package, configurable per-item model) but deliberately left as a
+  placeholder — never run against the real API, no cost incurred. All 20 companies were written
+  directly in Claude Code sessions instead. Revisit if a future expansion (more companies, a
+  multi-year trajectory, full-length sections) makes hand-writing impractical: the script is ready
+  to use once there's a real `ANTHROPIC_API_KEY` and a budget decision.
 - Original design, still the target for a full build: generation order Item 1, then 1A, then 7
   (which quotes the Item 8 numbers), then 1C, then the Item 8 notes, with earlier output passed in
   as context; each prompt containing spec facts, computed numbers, one real exemplar, a length
@@ -281,8 +296,8 @@ python -m src.step11_evaluate_retrievers  # not built yet (Phase 9)
   (147 company-years, 12 metrics).
 - **M3 — done:** 20 fictional company specs (Phase 4) and their full balance sheet, income
   statement, and cash-flow tables (Phase 5) are built, with every subtotal and identity checked.
-- **M4 — pilot done, review pending:** narrative pilot on 2 fictional companies (PRG, NDE) written
-  and hand-validated against Phase 7's automatic gates (see Phase 6). Human review of the pilot,
-  and the model/budget decision for scaling to all 20 companies, are still open.
-- **M5:** full synthetic corpus.
+- **M4/M5 — done:** all 20 fictional companies' narrative written and hand-validated against
+  Phase 7's automatic gates (see Phase 6). Human (not just automatic) review of a sample is still
+  open — Phase 7 also calls for a model-judged realism rubric and human review of about 10 filings,
+  neither of which has been done yet.
 - **M6:** QA, retrieval evaluation, and gap report.
