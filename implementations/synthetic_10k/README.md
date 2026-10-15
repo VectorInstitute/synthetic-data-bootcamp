@@ -77,7 +77,7 @@ uv run python -m aieng.syn_data.sec10k.narrative --data data/sec10k --limit 2 --
 uv run python -m aieng.syn_data.sec10k.narrative --data data/sec10k --limit 2
 ```
 
-The API comes from `OPENAI_BASE_URL` and `OPENAI_API_KEY`, which are already set in the Vector Coder workspaces. The default model is `gemini-2.5-flash`; pass `--model` if the endpoint names it differently.
+The Vector proxy is called the way [`agent_benchmark_generation/1-check_access_to_model.ipynb`](../agent_benchmark_generation/1-check_access_to_model.ipynb) does it: the `openai` SDK with `base_url` from `SYNBENCH_BASE_URL` (default `https://proxy.vectorinstitute.ai/v1`) and the key from `OPENAI_API_KEY`, both also read from a `.env` file. The default model is `gemini-3-flash-preview`; pass `--model` to use another one, for example `gemini-3.1-flash-lite-preview`.
 
 For each spec the model writes Items 1, 1A, 7 and 1C in that order. Each prompt holds:
 - the facts sheet: the company profile, the three statements and derived percentages (margins, growth, tax rate), so the model never does arithmetic

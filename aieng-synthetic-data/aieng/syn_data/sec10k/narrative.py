@@ -5,7 +5,7 @@ Usage::
     # Write the prompts only (no API calls), to inspect them and their size
     python -m aieng.syn_data.sec10k.narrative --data data/sec10k --limit 2 --dry-run
 
-    # Generate two filings with Gemini Flash through an OpenAI-compatible API
+    # Generate two filings with Gemini Flash through the Vector proxy
     python -m aieng.syn_data.sec10k.narrative --data data/sec10k --limit 2
 
 For each spec in ``data/sec10k/synthetic/specs/`` the model writes Items 1, 1A,
@@ -20,8 +20,11 @@ Writes ``data/sec10k/synthetic/filings/{company_id}/``: ``item_*.txt``,
 (time, tokens, attempts and issues per call). Every run also writes
 ``synthetic/runs/{run_id}.json`` and appends its totals to ``runs.jsonl``.
 
-The API is read from ``OPENAI_BASE_URL`` and ``OPENAI_API_KEY``; ``--model``
-picks the model (``--list-models`` prints the ids the endpoint serves).
+The Vector proxy is reached with the ``openai`` SDK at ``SYNBENCH_BASE_URL``
+(default ``https://proxy.vectorinstitute.ai/v1``) with ``OPENAI_API_KEY``, as in
+``implementations/agent_benchmark_generation/1-check_access_to_model.ipynb``.
+``--model`` picks the model (default ``gemini-3-flash-preview``) and
+``--list-models`` prints the ids the proxy serves.
 """
 
 from __future__ import annotations
@@ -40,7 +43,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Protocol
 
-import requests
+from openai import OpenAI
 
 from aieng.syn_data.sec10k.calibrate import load_sectors
 from aieng.syn_data.sec10k.render import facts_sheet, item_8
@@ -52,12 +55,16 @@ from aieng.syn_data.sec10k.validate import (
     validate_section,
     word_count,
 )
-from aieng.syn_data.text.clients import LLMSettings
+from aieng.syn_data.synbench.llm.config import (
+    get_api_key,
+    get_base_url,
+    get_reasoning_effort,
+)
 
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_MODEL = "gemini-2.5-flash"
+DEFAULT_MODEL = "gemini-3-flash-preview"
 GENERATION_ORDER = ["1", "1A", "7", "1C"]
 FILING_ORDER = ["1", "1A", "1C", "7", "8"]
 # Real sections run long (median Item 1A is ~11,000 words); targets are sampled
@@ -65,7 +72,6 @@ FILING_ORDER = ["1", "1A", "1C", "7", "8"]
 WORD_CAPS = {"1": 3000, "1A": 3500, "7": 3000, "1C": 900}
 EXEMPLAR_WORDS = 1200
 CONTEXT_WORDS = 1500  # of each earlier Item, shown for consistency
-RETRYABLE = {429, 500, 502, 503, 504}
 
 SYSTEM = """\
 You write sections of annual reports on Form 10-K for a fictional US public \
@@ -141,57 +147,56 @@ class ChatClient(Protocol):
         ...
 
 
-@dataclass
 class UsageClient:
-    """OpenAI-compatible chat client that also returns token usage and latency.
+    """Chat client for the Vector proxy that also returns token usage and latency.
 
-    The bootcamp's ``OpenAICompatibleClient`` returns text only, so this posts
-    to the same ``/chat/completions`` endpoint and keeps the ``usage`` block.
+    Connects as in ``implementations/agent_benchmark_generation/
+    1-check_access_to_model.ipynb``: the ``openai`` SDK with ``base_url`` from
+    ``SYNBENCH_BASE_URL`` (default ``https://proxy.vectorinstitute.ai/v1``) and
+    the key from ``OPENAI_API_KEY``, both also read from a ``.env`` file. The SDK
+    retries rate limits and server errors itself.
     """
 
-    settings: LLMSettings
-    temperature: float = 0.7
-    reasoning_effort: str | None = None
-    max_attempts: int = 5
+    def __init__(
+        self,
+        model: str,
+        *,
+        temperature: float = 0.7,
+        reasoning_effort: str | None = None,
+        max_retries: int = 5,
+        timeout: float = 600.0,
+    ) -> None:
+        self.model = model
+        self.temperature = temperature
+        self.reasoning_effort = reasoning_effort or get_reasoning_effort(model)
+        self.client = OpenAI(
+            base_url=get_base_url(),
+            api_key=get_api_key(),
+            max_retries=max_retries,
+            timeout=timeout,
+        )
 
     def chat(self, system: str, prompt: str, *, max_tokens: int) -> Completion:
-        """Call the API, retrying on rate limits and server errors."""
-        body: dict[str, Any] = {
-            "model": self.settings.model,
-            "messages": [
+        """Call the chat completions API once (with the SDK's retries)."""
+        extra: dict[str, Any] = {}
+        if self.reasoning_effort:
+            extra["reasoning_effort"] = self.reasoning_effort
+        start = time.perf_counter()
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
                 {"role": "system", "content": system},
                 {"role": "user", "content": prompt},
             ],
-            "temperature": self.temperature,
-            "max_tokens": max_tokens,
-        }
-        if self.reasoning_effort:
-            body["reasoning_effort"] = self.reasoning_effort
-        start = time.perf_counter()
-        for attempt in range(1, self.max_attempts + 1):
-            try:
-                response = requests.post(
-                    f"{self.settings.base_url}/chat/completions",
-                    headers={"Authorization": f"Bearer {self.settings.api_key}"},
-                    json=body,
-                    timeout=self.settings.timeout_seconds * 3,
-                )
-                response.raise_for_status()
-                return _completion(response.json(), self.settings.model, start)
-            except (
-                requests.ConnectionError,
-                requests.Timeout,
-                requests.HTTPError,
-            ) as e:
-                status = getattr(getattr(e, "response", None), "status_code", None)
-                if attempt == self.max_attempts or (
-                    isinstance(e, requests.HTTPError) and status not in RETRYABLE
-                ):
-                    raise
-                wait = min(2**attempt, 60)
-                logger.warning("API error (%s); retrying in %ds", status or e, wait)
-                time.sleep(wait)
-        raise RuntimeError("unreachable")
+            temperature=self.temperature,
+            max_tokens=max_tokens,
+            **extra,
+        )
+        return _completion(response.model_dump(), self.model, start)
+
+    def list_models(self) -> list[str]:
+        """Return the model ids served by the endpoint."""
+        return sorted(m.id for m in self.client.models.list())
 
 
 def _completion(payload: dict[str, Any], model: str, start: float) -> Completion:
@@ -200,25 +205,14 @@ def _completion(payload: dict[str, Any], model: str, start: float) -> Completion
     details = usage.get("completion_tokens_details") or {}
     return Completion(
         text=choice["message"].get("content") or "",
-        model=payload.get("model", model),
+        model=payload.get("model") or model,
         seconds=round(time.perf_counter() - start, 2),
-        prompt_tokens=usage.get("prompt_tokens", 0),
-        completion_tokens=usage.get("completion_tokens", 0),
-        total_tokens=usage.get("total_tokens", 0),
+        prompt_tokens=usage.get("prompt_tokens") or 0,
+        completion_tokens=usage.get("completion_tokens") or 0,
+        total_tokens=usage.get("total_tokens") or 0,
         reasoning_tokens=details.get("reasoning_tokens") or 0,
         finish_reason=choice.get("finish_reason"),
     )
-
-
-def list_models(settings: LLMSettings) -> list[str]:
-    """Return the model ids served by the endpoint."""
-    response = requests.get(
-        f"{settings.base_url}/models",
-        headers={"Authorization": f"Bearer {settings.api_key}"},
-        timeout=settings.timeout_seconds,
-    )
-    response.raise_for_status()
-    return sorted(m["id"] for m in response.json().get("data", []))
 
 
 @dataclass
@@ -549,13 +543,17 @@ def main() -> None:
     logging.basicConfig(
         level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s"
     )
+    logging.getLogger("httpx").setLevel(logging.WARNING)  # one line per request
 
-    settings = None
+    client = None
     if not args.dry_run or args.list_models:
-        settings = LLMSettings.from_env(default_model=args.model)
-        settings.model = args.model
-    if args.list_models:
-        print("\n".join(list_models(settings)))  # type: ignore[arg-type]
+        client = UsageClient(
+            args.model,
+            temperature=args.temperature,
+            reasoning_effort=args.reasoning_effort,
+        )
+    if args.list_models and client is not None:
+        print("\n".join(client.list_models()))
         return
 
     synthetic = args.data / "synthetic"
@@ -568,11 +566,6 @@ def main() -> None:
             s for s in specs if not (out_root / s["company_id"] / "filing.txt").exists()
         ]
     specs = specs[: args.limit]
-    client = (
-        None
-        if args.dry_run
-        else UsageClient(settings, args.temperature, args.reasoning_effort)  # type: ignore[arg-type]
-    )
 
     run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     started = time.perf_counter()
