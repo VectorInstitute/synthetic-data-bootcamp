@@ -1,0 +1,158 @@
+"""Tests for narrative generation, its validators and its run metrics."""
+
+import json
+from pathlib import Path
+from typing import Any
+
+from aieng.syn_data.sec10k.narrative import (
+    Completion,
+    Corpus,
+    clean_output,
+    run,
+    summarize,
+)
+from aieng.syn_data.sec10k.render import derived_metrics, item_8, money
+from aieng.syn_data.sec10k.specs import generate
+from aieng.syn_data.sec10k.validate import (
+    HEADINGS,
+    check_numbers,
+    check_overlap,
+    check_real_names,
+    real_name_patterns,
+    validate_section,
+)
+
+from .test_sec10k_specs import CALIBRATION
+
+
+SPEC = generate(CALIBRATION, n=1, seed=5, real_names=set())[0]
+INCOME = SPEC["statements"]["income_statement"]["2024"]
+
+
+def _section(item: str, words: int, extra: str = "") -> str:
+    revenue = f"Revenue was ${money(INCOME['revenue'])} million. "
+    pct = f"Gross margin was {derived_metrics(SPEC)['gross_margin_pct_current']}%. "
+    filler = " ".join(f"word{i}" for i in range(words))
+    return f"{HEADINGS[item]}\n\n{SPEC['name']} {revenue}{pct}{extra}{filler}"
+
+
+def test_item_8_renders_the_statement_numbers() -> None:
+    """Item 8 quotes the statements exactly, with negatives in parentheses."""
+    text = item_8(SPEC)
+    assert text.startswith("Item 8.")
+    assert money(INCOME["revenue"]) in text
+    assert money(-1234) == "(1,234)"
+
+
+def test_numbers_must_come_from_the_statements() -> None:
+    """Statement amounts and derived percentages pass; invented ones do not."""
+    billions = f"${INCOME['revenue'] / 1000:.1f} billion"
+    good = _section("7", 10, f"Sales reached {billions}. ")
+    assert check_numbers(good, SPEC, strict=True) == []
+    bad = good + " Backlog was $987,654 million, up 77.7%."
+    issues = check_numbers(bad, SPEC, strict=True)
+    assert "$987,654 million" in issues[0]
+    assert "77.7%" in issues[1]
+    assert len(check_numbers(bad, SPEC, strict=False)) == 1
+
+
+def test_real_names_and_copying_are_caught() -> None:
+    """Real filer names and text copied from the exemplar are reported."""
+    patterns = real_name_patterns(["ADOBE INC.", "THE HOME DEPOT, INC.", "3M CO"])
+    assert check_real_names("We compete with Home Depot.", patterns)
+    assert check_real_names("We compete with large retailers.", patterns) == []
+    exemplar = " ".join(f"w{i}" for i in range(200))
+    assert check_overlap(exemplar, exemplar)
+    assert check_overlap(_section("1", 200), exemplar) == []
+
+
+def test_validate_section_checks_length_and_heading() -> None:
+    """A short section without a heading fails both checks."""
+    issues = validate_section("Too short.", item="1A", spec=SPEC, target_words=500)
+    assert any("heading" in i for i in issues)
+    assert any("at least" in i for i in issues)
+    assert (
+        validate_section(_section("1A", 500), item="1A", spec=SPEC, target_words=500)
+        == []
+    )
+
+
+def test_clean_output_strips_markdown_and_adds_heading() -> None:
+    """Markdown headings and bold are removed and a missing heading is added."""
+    text = clean_output("## Overview\n**Bold** text\n* point", "1C")
+    assert text.startswith("Item 1C. Cybersecurity\n")
+    assert "#" not in text and "**" not in text and "- point" in text
+
+
+class FakeClient:
+    """Return a bad draft for the first call of each Item, then good ones."""
+
+    def __init__(self) -> None:
+        self.calls: list[str] = []
+
+    def chat(self, system: str, prompt: str, *, max_tokens: int) -> Completion:
+        """Answer from the heading and word target found in the prompt."""
+        item = next(i for i, h in HEADINGS.items() if f'line "{h}"' in prompt)
+        target = int(prompt.rsplit("about ", maxsplit=1)[-1].split(" words", maxsplit=1)[0])
+        first = not any(f'line "{HEADINGS[item]}"' in p for p in self.calls)
+        self.calls.append(prompt)
+        extra = "Backlog was $987,654 million. " if first and item == "7" else ""
+        return Completion(
+            text=_section(item, target, extra),
+            model="fake",
+            seconds=0.5,
+            prompt_tokens=100,
+            completion_tokens=50,
+            total_tokens=150,
+        )
+
+
+def _data(tmp_path: Path) -> Path:
+    calibration: dict[str, Any] = {
+        **CALIBRATION,
+        "section_words": {
+            i: {"p10": 300, "p25": 300, "p50": 300, "p75": 300, "p90": 300}
+            for i in HEADINGS
+        },
+    }
+    (tmp_path / "calibration.json").write_text(json.dumps(calibration))
+    return tmp_path
+
+
+def test_run_regenerates_failures_and_records_usage(tmp_path: Path) -> None:
+    """A failed Item is retried once and every call's time and tokens add up."""
+    data = _data(tmp_path)
+    out = data / "synthetic" / "filings"
+    client = FakeClient()
+    results = run([SPEC], Corpus.load(data), client, out_root=out)
+    metrics = results[0]
+    assert metrics["passed"]
+    assert metrics["sections"]["7"]["attempts"] == 2
+    assert metrics["sections"]["1"]["attempts"] == 1
+    assert len(client.calls) == 5
+    assert metrics["totals"]["total_tokens"] == 5 * 150
+    assert metrics["totals"]["seconds"] == 2.5
+    assert "$987,654 million" in client.calls[-2]  # the retry carries the feedback
+    filing = (out / SPEC["company_id"] / "filing.txt").read_text()
+    assert filing.index("Item 1C.") < filing.index("Item 7.") < filing.index("Item 8.")
+    saved = json.loads((out / SPEC["company_id"] / "metrics.json").read_text())
+    assert saved["calls"][0]["prompt_tokens"] == 100
+
+    summary = summarize(results, run_id="r1", config={"model": "fake"})
+    assert summary["passed_validation"] == 1
+    assert summary["totals"]["calls"] == 5
+    assert summary["by_company"][0]["total_tokens"] == 750
+
+
+def test_dry_run_writes_prompts_only(tmp_path: Path) -> None:
+    """Without a client, prompts and Item 8 are written but no filing."""
+    data = _data(tmp_path)
+    out = data / "synthetic" / "filings"
+    metrics = run([SPEC], Corpus.load(data), None, out_root=out)[0]
+    folder = out / SPEC["company_id"]
+    assert not (folder / "filing.txt").exists()
+    assert (folder / "item_8.txt").exists()
+    prompt = (folder / "prompts" / "item_7.txt").read_text()
+    assert "[Item 1 as generated]" in prompt and SPEC["name"] in prompt
+    assert metrics["sections"]["7"]["target_words"] == 300
+    assert metrics["totals"]["calls"] == 0
