@@ -66,6 +66,40 @@ All numbers are computed in code, so the language model only ever writes narrati
 - equity rolls forward by net income less dividends and buybacks
 - no negative cost or balance-sheet lines
 
+## Step 4: write the narrative with an LLM
+
+```bash
+# Check which model ids the endpoint serves, then preview the prompts (no API calls)
+uv run python -m aieng.syn_data.sec10k.narrative --data data/sec10k --list-models
+uv run python -m aieng.syn_data.sec10k.narrative --data data/sec10k --limit 2 --dry-run
+
+# Pilot: two companies with Gemini Flash
+uv run python -m aieng.syn_data.sec10k.narrative --data data/sec10k --limit 2
+```
+
+The Vector proxy is called the way [`agent_benchmark_generation/1-check_access_to_model.ipynb`](../agent_benchmark_generation/1-check_access_to_model.ipynb) does it: the `openai` SDK with `base_url` from `SYNBENCH_BASE_URL` (default `https://proxy.vectorinstitute.ai/v1`) and the key from `OPENAI_API_KEY`, both also read from a `.env` file. The default model is `gemini-3-flash-preview`; pass `--model` to use another one, for example `gemini-3.1-flash-lite-preview`.
+
+For each spec the model writes Items 1, 1A, 7 and 1C in that order. Each prompt holds:
+- the facts sheet: the company profile, the three statements and derived percentages (margins, growth, tax rate), so the model never does arithmetic
+- the Items already written, so later sections stay consistent
+- an excerpt of the same Item from a real company in the same sector, as a style example (read from `parsed/`)
+- a length target sampled from the real section lengths in `calibration.json`, capped at 3,000 to 3,500 words (900 for Item 1C) to keep a pilot cheap; `--length-scale` scales it
+
+Item 8 is rendered from the statements by code. Each section is then validated, and regenerated once with the problems as feedback if it fails. The checks are:
+- the Item heading is there and the length is 60% to 150% of the target
+- every dollar amount matches a statement line or a year-over-year change, and in Item 7 every percentage matches a derived metric
+- no real filer is named (names come from `index.csv`)
+- less than 5% of the text's 8-word sequences are copied from the style example
+- the fictional company is named in Items 1 and 7
+
+Output goes to `data/sec10k/synthetic/filings/{company_id}/`: `item_*.txt`, `filing.txt` (all Items under a cover page), the exact `prompts/` sent, and `metrics.json`. Finished companies are skipped on the next run unless you pass `--overwrite`.
+
+### Metrics
+
+Every call records its wall-clock time, prompt, completion, reasoning and total tokens, model, finish reason, word count, attempt number and validation issues. `metrics.json` holds these per call, per section and as company totals. Each run also writes `synthetic/runs/{run_id}.json` (config, per-company totals, grand totals and errors) and appends one line of totals to `synthetic/runs.jsonl`, so runs can be compared over time.
+
 ## Next steps
 
-Narrative generation: for each company, an LLM writes Items 1, 1A, 7 (quoting the computed numbers) and 1C. Each prompt includes a real same-sector section as a style exemplar and a length target from `calibration.json`. Validators then check that MD&A figures match the statements, that the text doesn't copy the exemplar and that no real company names appear.
+- Run the two-company pilot, read the filings and tune the prompts and checks.
+- Scale to the 20 specs, then to a few hundred.
+- Downstream evaluation: retrieval over synthetic versus real filings.
