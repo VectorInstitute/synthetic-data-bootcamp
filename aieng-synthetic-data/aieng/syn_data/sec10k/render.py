@@ -9,6 +9,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from aieng.syn_data.sec10k.places import CITIES, STATE_NAMES
+
 
 LABELS = {
     "revenue": "Revenue",
@@ -152,16 +154,42 @@ def derived_metrics(spec: dict[str, Any]) -> dict[str, float]:
     return out
 
 
+def metric_label(key: str, fiscal_year: int) -> str:
+    """Turn ``gross_margin_pct_current`` into ``Gross margin, fiscal 2024``."""
+    period = ""
+    if key.endswith("_current"):
+        key, period = key.removesuffix("_current"), f", fiscal {fiscal_year}"
+    elif key.endswith("_prior"):
+        key, period = key.removesuffix("_prior"), f", fiscal {fiscal_year - 1}"
+    elif key.endswith("_growth_pct"):
+        period = f", fiscal {fiscal_year} versus {fiscal_year - 1}"
+    text = (
+        key.replace("_pct_of_revenue", " as a share of revenue")
+        .replace("_pct", "")
+        .replace(
+            "selling_general_and_administrative", "selling, general and administrative"
+        )
+        .replace("_", " ")
+    )
+    return text[0].upper() + text[1:] + period
+
+
 def facts_sheet(spec: dict[str, Any]) -> str:
     """Return the profile, statements and derived percentages, for prompts."""
+    hq = spec["headquarters_state"]
+    city = CITIES.get(hq, CITIES["DE"])[0]
     profile = [
         f"Company name: {spec['name']} (ticker {spec['ticker']})",
         f"Sector: {spec['sector']}",
-        f"Incorporated in: {spec['state_of_incorporation']}; headquarters state: {spec['headquarters_state']}",
+        f"Incorporated in: {STATE_NAMES.get(spec['state_of_incorporation'], 'Delaware')}",
+        f"Headquarters: {city}, {STATE_NAMES.get(hq, hq)}",
         f"Fiscal year: {spec['fiscal_year']} (ended {spec['fiscal_year_end']})",
         f"Employees: about {spec['employees']:,}",
     ]
-    derived = "\n".join(f"{k}: {v}%" for k, v in derived_metrics(spec).items())
+    fy = int(spec["fiscal_year"])
+    derived = "\n".join(
+        f"{metric_label(k, fy)}: {v}%" for k, v in derived_metrics(spec).items()
+    )
     return (
         "\n".join(profile)
         + "\n\n"

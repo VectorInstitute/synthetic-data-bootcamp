@@ -126,8 +126,8 @@ GUIDANCE = {
         "percentages; describe exposures in words, as real risk factors do."
     ),
     "2": (
-        "Describe the principal properties: corporate headquarters (a city in "
-        "the headquarters state), the main facilities used by each segment, "
+        "Describe the principal properties: corporate headquarters (in the "
+        "headquarters city given in the facts), the main facilities used by each segment, "
         "whether they are owned or leased, and whether they are adequate for "
         "current needs. Use words for sizes rather than dollar amounts."
     ),

@@ -11,10 +11,11 @@ from aieng.syn_data.sec10k.narrative import (
     run,
     summarize,
 )
-from aieng.syn_data.sec10k.render import derived_metrics, item_8, money
+from aieng.syn_data.sec10k.render import derived_metrics, item_8, metric_label, money
 from aieng.syn_data.sec10k.specs import generate
 from aieng.syn_data.sec10k.validate import (
     HEADINGS,
+    check_identifiers,
     check_numbers,
     check_overlap,
     check_real_names,
@@ -167,3 +168,17 @@ def test_dry_run_writes_prompts_only(tmp_path: Path) -> None:
     assert "[Item 1 as generated]" in prompt and SPEC["name"] in prompt
     assert metrics["sections"]["7"]["target_words"] == 300
     assert metrics["totals"]["calls"] == 0
+
+
+def test_identifiers_are_flagged_and_labels_are_readable():
+    """Metric keys from the prompt must not leak into the prose."""
+    assert check_identifiers("Our gross_margin_pct_current was 37.9%.")
+    assert not check_identifiers("Our gross margin was 37.9%.")
+    assert metric_label("gross_margin_pct_current", 2024) == "Gross margin, fiscal 2024"
+    assert (
+        metric_label("selling_general_and_administrative_pct_of_revenue_prior", 2024)
+        == "Selling, general and administrative as a share of revenue, fiscal 2023"
+    )
+    assert metric_label("revenue_growth_pct", 2024) == (
+        "Revenue growth, fiscal 2024 versus 2023"
+    )

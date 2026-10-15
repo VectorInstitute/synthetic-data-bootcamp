@@ -271,6 +271,20 @@ def check_numbers(text: str, spec: dict[str, Any], *, strict: bool) -> list[str]
     return issues
 
 
+IDENTIFIER = re.compile(r"\b[a-z]+(?:_[a-z0-9]+)+\b")
+
+
+def check_identifiers(text: str) -> list[str]:
+    """Flag variable names such as ``gross_margin_pct`` copied from the prompt."""
+    found = sorted(set(IDENTIFIER.findall(text)))
+    if not found:
+        return []
+    return [
+        "Write metric names in plain English; the text contains identifiers: "
+        + ", ".join(found[:5])
+    ]
+
+
 def validate_section(
     text: str,
     *,
@@ -287,5 +301,6 @@ def validate_section(
     issues += check_real_names(text, real_names or [])
     issues += check_overlap(text, exemplar)
     issues += check_number_density(text, item)
+    issues += check_identifiers(text)
     issues += check_numbers(text, spec, strict=item == "7")
     return issues
