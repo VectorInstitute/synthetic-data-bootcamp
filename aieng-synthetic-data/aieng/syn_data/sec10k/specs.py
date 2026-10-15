@@ -20,7 +20,11 @@ from pathlib import Path
 from typing import Any
 
 from aieng.syn_data.sec10k.calibrate import load_sectors
-from aieng.syn_data.sec10k.statements import build_statements, check_statements
+from aieng.syn_data.sec10k.statements import (
+    build_statements,
+    check_plausibility,
+    check_statements,
+)
 
 
 logger = logging.getLogger(__name__)
@@ -48,7 +52,7 @@ OPTIONAL = ["rd_ratio", "inventory_ratio", "goodwill_ratio", "dividend_payout"]
 BOUNDS = {
     "gross_margin": (0.05, 0.95),
     "operating_margin": (-0.2, 0.6),
-    "tax_rate": (0.0, 0.35),
+    "tax_rate": (0.05, 0.35),
     "asset_turnover": (0.1, 4.0),
     "equity_ratio": (0.05, 0.8),
     "current_ratio": (0.4, 5.0),
@@ -147,6 +151,8 @@ def sample_ratios(metrics: dict[str, Any], rng: random.Random) -> dict[str, floa
         q = metrics.get(name)
         if not q or "p50" not in q:
             continue
+        if name in OPTIONAL and q.get("pooled"):
+            continue  # too few filers in the sector report it (e.g. R&D in Energy)
         value = sample_quantile(q, rng)
         lo, hi = BOUNDS.get(name, (0.0, float("inf")))
         r[name] = min(max(value, lo), hi)
@@ -215,12 +221,14 @@ def generate(
     attempts = 0
     while len(specs) < n:
         attempts += 1
-        if attempts > n * 20:
+        if attempts > n * 100:
             raise RuntimeError(
                 "Too many specs failed reconciliation; check calibration.json"
             )
         spec = sample_spec(calibration, rng, taken=taken, index=len(specs) + 1)
-        errors = check_statements(spec["statements"])
+        errors = check_statements(spec["statements"]) + check_plausibility(
+            spec["statements"]
+        )
         if errors:
             logger.debug("Resampling %s: %s", spec["company_id"], errors)
             continue
