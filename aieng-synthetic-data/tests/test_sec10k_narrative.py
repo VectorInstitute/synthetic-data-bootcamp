@@ -30,10 +30,13 @@ INCOME = SPEC["statements"]["income_statement"]["2024"]
 
 
 def _section(item: str, words: int, extra: str = "") -> str:
-    revenue = f"Revenue was ${money(INCOME['revenue'])} million. "
-    pct = f"Gross margin was {derived_metrics(SPEC)['gross_margin_pct_current']}%. "
+    facts = ""
+    if item in ("1", "7"):
+        revenue = f"Revenue was ${money(INCOME['revenue'])} million. "
+        gross = derived_metrics(SPEC)["gross_margin_pct_current"]
+        facts = f"{revenue}Gross margin was {gross}%. "
     filler = " ".join(f"word{i}" for i in range(words))
-    return f"{HEADINGS[item]}\n\n{SPEC['name']} {revenue}{pct}{extra}{filler}"
+    return f"{HEADINGS[item]}\n\n{SPEC['name']} {facts}{extra}{filler}"
 
 
 def test_item_8_renders_the_statement_numbers() -> None:
@@ -93,7 +96,9 @@ class FakeClient:
     def chat(self, system: str, prompt: str, *, max_tokens: int) -> Completion:
         """Answer from the heading and word target found in the prompt."""
         item = next(i for i, h in HEADINGS.items() if f'line "{h}"' in prompt)
-        target = int(prompt.rsplit("about ", maxsplit=1)[-1].split(" words", maxsplit=1)[0])
+        target = int(
+            prompt.rsplit("about ", maxsplit=1)[-1].split(" words", maxsplit=1)[0]
+        )
         first = not any(f'line "{HEADINGS[item]}"' in p for p in self.calls)
         self.calls.append(prompt)
         extra = "Backlog was $987,654 million. " if first and item == "7" else ""
@@ -129,19 +134,25 @@ def test_run_regenerates_failures_and_records_usage(tmp_path: Path) -> None:
     assert metrics["passed"]
     assert metrics["sections"]["7"]["attempts"] == 2
     assert metrics["sections"]["1"]["attempts"] == 1
-    assert len(client.calls) == 5
-    assert metrics["totals"]["total_tokens"] == 5 * 150
-    assert metrics["totals"]["seconds"] == 2.5
-    assert "$987,654 million" in client.calls[-2]  # the retry carries the feedback
-    filing = (out / SPEC["company_id"] / "filing.txt").read_text()
-    assert filing.index("Item 1C.") < filing.index("Item 7.") < filing.index("Item 8.")
+    assert len(client.calls) == 8  # seven Items, one retried
+    assert metrics["totals"]["total_tokens"] == 8 * 150
+    assert metrics["totals"]["seconds"] == 4.0
+    retry = [p for p in client.calls if "previous draft" in p]
+    assert len(retry) == 1 and "$987,654 million" in retry[0]  # carries feedback
+    folder = out / SPEC["company_id"]
+    filing = (folder / "filing.txt").read_text()
+    order = ["Item 1C.", "Item 2.", "Item 7.", "Item 7A.", "Item 8.", "Item 9A."]
+    positions = [filing.index(h) for h in order]
+    assert positions == sorted(positions)
+    page = (folder / "filing.html").read_text()
+    assert "Consolidated Balance Sheets" in page and "SYNTHETIC DOCUMENT" in page
     saved = json.loads((out / SPEC["company_id"] / "metrics.json").read_text())
     assert saved["calls"][0]["prompt_tokens"] == 100
 
     summary = summarize(results, run_id="r1", config={"model": "fake"})
     assert summary["passed_validation"] == 1
-    assert summary["totals"]["calls"] == 5
-    assert summary["by_company"][0]["total_tokens"] == 750
+    assert summary["totals"]["calls"] == 8
+    assert summary["by_company"][0]["total_tokens"] == 1200
 
 
 def test_dry_run_writes_prompts_only(tmp_path: Path) -> None:

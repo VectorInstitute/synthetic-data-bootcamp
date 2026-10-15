@@ -1,4 +1,4 @@
-"""Write the narrative Items of each fictional company's 10-K with an LLM.
+r"""Write the narrative Items of each fictional company's 10-K with an LLM.
 
 Usage::
 
@@ -8,17 +8,24 @@ Usage::
     # Generate two filings with Gemini Flash through the Vector proxy
     python -m aieng.syn_data.sec10k.narrative --data data/sec10k --limit 2
 
+    # Use a stronger model for MD&A only
+    python -m aieng.syn_data.sec10k.narrative --data data/sec10k --limit 2 \
+        --item-model 7=gemini-3.1-pro-preview
+
 For each spec in ``data/sec10k/synthetic/specs/`` the model writes Items 1, 1A,
-7 and 1C, in that order, each prompt holding the company's facts sheet, the
-items already written, a length target from ``calibration.json`` and an excerpt
-of the same Item from a real company in the same sector as a style example.
-Item 8 is rendered from the statements by code. Each section is validated
-(``validate.py``) and regenerated once with the issues as feedback if it fails.
+2, 3, 7, 7A and 1C, in that order, each prompt holding the company's facts
+sheet, the Items already written, a length target from ``calibration.json`` and
+an excerpt of the same Item from a real company in the same sector as a style
+example. Item 8 is rendered from the statements by code and the formulaic Items
+(1B, 4, 5, 6, 9 to 16) come from templates (``boilerplate.py``). Each section is
+validated (``validate.py``) and regenerated with the issues as feedback, up to
+``MAX_ATTEMPTS`` drafts.
 
 Writes ``data/sec10k/synthetic/filings/{company_id}/``: ``item_*.txt``,
-``filing.txt`` (all Items with a cover), ``prompts/`` and ``metrics.json``
-(time, tokens, attempts and issues per call). Every run also writes
-``synthetic/runs/{run_id}.json`` and appends its totals to ``runs.jsonl``.
+``filing.txt`` and ``filing.html`` (the whole 10-K, see ``export.py``),
+``prompts/`` and ``metrics.json`` (time, tokens, model, attempts and issues per
+call). Every run also writes ``synthetic/runs/{run_id}.json`` and appends its
+totals to ``runs.jsonl``.
 
 The Vector proxy is reached with the ``openai`` SDK at ``SYNBENCH_BASE_URL``
 (default ``https://proxy.vectorinstitute.ai/v1``) with ``OPENAI_API_KEY``, as in
@@ -46,6 +53,7 @@ from typing import Any, Protocol
 from openai import OpenAI
 
 from aieng.syn_data.sec10k.calibrate import load_sectors
+from aieng.syn_data.sec10k.export import write_filing
 from aieng.syn_data.sec10k.render import facts_sheet, item_8
 from aieng.syn_data.sec10k.specs import sample_quantile
 from aieng.syn_data.sec10k.validate import (
@@ -65,11 +73,19 @@ from aieng.syn_data.synbench.llm.config import (
 logger = logging.getLogger(__name__)
 
 DEFAULT_MODEL = "gemini-3-flash-preview"
-GENERATION_ORDER = ["1", "1A", "7", "1C"]
-FILING_ORDER = ["1", "1A", "1C", "7", "8"]
+GENERATION_ORDER = ["1", "1A", "2", "3", "7", "7A", "1C"]
 # Real sections run long (median Item 1A is ~11,000 words); targets are sampled
 # from calibration.json and capped here to keep a pilot cheap.
-WORD_CAPS = {"1": 3000, "1A": 3500, "7": 3000, "1C": 900}
+WORD_CAPS = {
+    "1": 3000,
+    "1A": 3500,
+    "2": 500,
+    "3": 350,
+    "7": 3000,
+    "7A": 700,
+    "1C": 900,
+}
+MAX_ATTEMPTS = 3  # first draft plus up to two regenerations with feedback
 EXEMPLAR_WORDS = 1200
 CONTEXT_WORDS = 1500  # of each earlier Item, shown for consistency
 
@@ -86,8 +102,10 @@ sheet (amounts in millions as "$1,234 million", or billions with one decimal \
 as "$1.2 billion").
 - Never name a real company, including the one in the style example. Describe \
 competitors, customers and suppliers generically.
-- Do not copy sentences from the style example; follow its structure and tone \
-only."""
+- Do not copy sentences from the style example, not even its opening \
+boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never \
+with a minus sign."""
 
 GUIDANCE = {
     "1": (
@@ -104,7 +122,29 @@ GUIDANCE = {
         "capital structure, to legal and regulatory matters, and general risks). "
         "Each risk starts with a one-sentence heading line, followed by one or two "
         "paragraphs. Make the risks specific to this company's sector, cost "
-        "structure and balance sheet. Avoid numbers."
+        "structure and balance sheet. Do not quote dollar amounts or "
+        "percentages; describe exposures in words, as real risk factors do."
+    ),
+    "2": (
+        "Describe the principal properties: corporate headquarters (a city in "
+        "the headquarters state), the main facilities used by each segment, "
+        "whether they are owned or leased, and whether they are adequate for "
+        "current needs. Use words for sizes rather than dollar amounts."
+    ),
+    "3": (
+        "Describe legal proceedings in the usual form: the company is party to "
+        "claims arising in the ordinary course of business (for example "
+        "commercial, intellectual property, employment or product matters), "
+        "management does not expect them to have a material adverse effect, and "
+        "litigation is inherently uncertain. Do not name real parties or courts "
+        "cases; do not quote amounts."
+    ),
+    "7A": (
+        "Describe exposure to market risk: interest rate risk (on debt and cash "
+        "investments), foreign currency risk, and commodity or equity price "
+        "risk where relevant to the sector, and how the company manages them. "
+        "You may cite long-term debt, cash and interest expense from the facts "
+        "sheet; express sensitivities qualitatively (no invented amounts)."
     ),
     "7": (
         "Write MD&A with these parts: overview; results of operations comparing "
@@ -114,7 +154,8 @@ GUIDANCE = {
         "qualitative drivers; liquidity and capital resources (cash, operating, "
         "investing and financing cash flows, capital expenditures, debt, "
         "dividends and share repurchases); and critical accounting estimates. "
-        "Quote amounts and percentages exactly as they appear in the facts sheet."
+        "Quote amounts and percentages exactly as they appear in the facts sheet. "
+        "Do not include market risk disclosures; Item 7A covers them."
     ),
     "1C": (
         "Describe cybersecurity risk management and strategy (processes, third "
@@ -299,9 +340,10 @@ def clean_output(text: str, item: str) -> str:
     text = text.replace("**", "").replace("__", "")
     text = re.sub(r"^\s*[*•]\s+", "- ", text, flags=re.MULTILINE).strip()
     text = re.sub(r"^```\w*\s*|\s*```$", "", text).strip()
-    if not re.match(rf"item\s+{re.escape(item)}\.", text, re.IGNORECASE):
-        text = f"{HEADINGS[item]}\n\n{text}"
-    return text + "\n"
+    first, _, rest = text.partition("\n")
+    if re.match(rf"item\s+{re.escape(item)}\.", first, re.IGNORECASE):
+        text = rest.strip()  # replaced by the canonical heading below
+    return f"{HEADINGS[item]}\n\n{text}\n"
 
 
 def _max_tokens(target: int) -> int:
@@ -318,11 +360,11 @@ def generate_item(
     target: int,
     check: Callable[[str], list[str]],
 ) -> tuple[str, list[dict[str, Any]]]:
-    """Generate one Item, regenerating once with feedback if validation fails."""
+    """Generate one Item, regenerating with feedback while validation fails."""
     calls: list[dict[str, Any]] = []
     text = ""
     issues: list[str] = []
-    for attempt in (1, 2):
+    for attempt in range(1, MAX_ATTEMPTS + 1):
         user = prompt
         if issues:
             user += (
@@ -358,22 +400,6 @@ def generate_item(
     return text, calls
 
 
-def assemble_filing(spec: dict[str, Any], items: dict[str, str]) -> str:
-    """Join the Items under a cover page in 10-K order."""
-    cover = (
-        "UNITED STATES SECURITIES AND EXCHANGE COMMISSION\nFORM 10-K\n"
-        "ANNUAL REPORT PURSUANT TO SECTION 13 OR 15(d) OF THE SECURITIES "
-        "EXCHANGE ACT OF 1934\n"
-        f"For the fiscal year ended {spec['fiscal_year_end']}\n\n"
-        f"{spec['name']}\n(Ticker: {spec['ticker']})\n"
-        f"State of incorporation: {spec['state_of_incorporation']}\n"
-        "This is a synthetic filing for a fictional company.\n"
-    )
-    part_1 = [items[i] for i in ("1", "1A", "1C") if i in items]
-    part_2 = [items[i] for i in ("7", "8") if i in items]
-    return "\n\n".join([cover, "PART I", *part_1, "PART II", *part_2])
-
-
 def _totals(calls: list[dict[str, Any]]) -> dict[str, Any]:
     keys = ("seconds", "prompt_tokens", "completion_tokens", "total_tokens")
     out: dict[str, Any] = {k: sum(c.get(k, 0) for c in calls) for k in keys}
@@ -390,8 +416,13 @@ def write_company(
     *,
     out_root: Path,
     length_scale: float = 1.0,
+    item_clients: dict[str, ChatClient] | None = None,
 ) -> dict[str, Any]:
-    """Generate (or, without a client, only prompt) one company's filing."""
+    """Generate (or, without a client, only prompt) one company's filing.
+
+    ``item_clients`` overrides ``client`` for the Items it names, so each Item
+    can use a different model.
+    """
     cid = spec["company_id"]
     out = out_root / cid
     (out / "prompts").mkdir(parents=True, exist_ok=True)
@@ -420,7 +451,8 @@ def write_company(
             "exemplar_words": word_count(exemplar),
             "prompt_chars": len(SYSTEM) + len(prompt),
         }
-        if client is None:
+        item_client = (item_clients or {}).get(item, client)
+        if item_client is None:
             continue
 
         def check(
@@ -436,7 +468,7 @@ def write_company(
             )
 
         text, item_calls = generate_item(
-            client, spec, item, prompt=prompt, target=target, check=check
+            item_client, spec, item, prompt=prompt, target=target, check=check
         )
         items[item] = text
         calls += item_calls
@@ -451,7 +483,7 @@ def write_company(
     (out / "item_8.txt").write_text(items["8"])
     dry_run = client is None
     if not dry_run:
-        (out / "filing.txt").write_text(assemble_filing(spec, items))
+        write_filing(spec, out)
     metrics = {
         "company_id": cid,
         "name": spec["name"],
@@ -475,13 +507,19 @@ def run(
     out_root: Path,
     workers: int = 1,
     length_scale: float = 1.0,
+    item_clients: dict[str, ChatClient] | None = None,
 ) -> list[dict[str, Any]]:
     """Generate filings for ``specs``, ``workers`` companies at a time."""
 
     def one(spec: dict[str, Any]) -> dict[str, Any]:
         try:
             return write_company(
-                spec, corpus, client, out_root=out_root, length_scale=length_scale
+                spec,
+                corpus,
+                client,
+                out_root=out_root,
+                length_scale=length_scale,
+                item_clients=item_clients,
             )
         except Exception as exc:  # keep going; the run summary records it
             logger.exception("Failed on %s", spec["company_id"])
@@ -530,6 +568,13 @@ def main() -> None:
     )
     parser.add_argument("--data", type=Path, default=Path("data/sec10k"))
     parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument(
+        "--item-model",
+        action="append",
+        default=[],
+        metavar="ITEM=MODEL",
+        help="model for one Item, e.g. 7=gemini-3.1-pro-preview (repeatable)",
+    )
     parser.add_argument("--companies", nargs="*", help="company ids, e.g. syn0001")
     parser.add_argument("--limit", type=int, help="first N specs only")
     parser.add_argument("--workers", type=int, default=2)
@@ -555,6 +600,17 @@ def main() -> None:
     if args.list_models and client is not None:
         print("\n".join(client.list_models()))
         return
+    item_models = dict(pair.split("=", 1) for pair in args.item_model)
+    item_clients: dict[str, ChatClient] = {}
+    if not args.dry_run:
+        item_clients = {
+            item: UsageClient(
+                model,
+                temperature=args.temperature,
+                reasoning_effort=args.reasoning_effort,
+            )
+            for item, model in item_models.items()
+        }
 
     synthetic = args.data / "synthetic"
     specs = [json.loads(p.read_text()) for p in sorted(synthetic.glob("specs/*.json"))]
@@ -576,9 +632,11 @@ def main() -> None:
         out_root=out_root,
         workers=args.workers,
         length_scale=args.length_scale,
+        item_clients=item_clients,
     )
     config = {
         "model": args.model,
+        "item_models": item_models,
         "dry_run": args.dry_run,
         "temperature": args.temperature,
         "length_scale": args.length_scale,

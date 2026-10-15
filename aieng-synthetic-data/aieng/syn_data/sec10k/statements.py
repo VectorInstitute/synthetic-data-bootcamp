@@ -12,10 +12,24 @@ recomputed from the rounded lines so the identities hold exactly.
 
 from __future__ import annotations
 
+import random
 from typing import Any
 
 
 INTEREST_RATE = 0.045  # on average long-term debt
+MAX_OTHER_OPEX = 0.06  # of revenue; unexplained costs above this move into COGS
+MAX_OTHER_CURRENT = 0.3  # of current assets
+MAX_CAPEX_TO_PPE = 0.4  # capex and D&A are capped at these shares of net PP&E
+MAX_DA_TO_PPE = 0.35
+# Prior-year ratios move by up to this much (absolute for margins, else relative).
+PRIOR_MARGIN_NOISE = {
+    "gross_margin": 0.012,
+    "operating_margin": 0.012,
+    "sga_ratio": 0.004,
+    "rd_ratio": 0.003,
+    "tax_rate": 0.015,
+}
+PRIOR_RELATIVE_NOISE = 0.04
 
 INCOME_LINES = [
     "revenue",
@@ -64,6 +78,11 @@ def income_statement(revenue: float, r: dict[str, float]) -> dict[str, int]:
     ):  # margins sampled independently can over-explain costs; cut SG&A to fit
         lines["selling_general_and_administrative"] += other
         other = 0
+    excess = other - round(revenue * MAX_OTHER_OPEX)
+    if excess > 0:  # a large unexplained cost reads as cost of revenue instead
+        lines["cost_of_revenue"] += excess
+        lines["gross_profit"] -= excess
+        other -= excess
     lines["other_operating_expense"] = other
     lines["pretax_income"] = lines["operating_income"] - lines["interest_expense"]
     lines["income_tax"] = round(max(lines["pretax_income"], 0) * r["tax_rate"])
@@ -87,8 +106,15 @@ def balance_sheet(revenue: float, r: dict[str, float]) -> dict[str, int]:
             receivables * scale,
             inventory * scale,
         )
+    # Keep "other current assets" a minority of current assets.
+    named = cash + receivables + inventory
+    current_assets = min(current_assets, named / (1 - MAX_OTHER_CURRENT))
     noncurrent = total_assets - current_assets
-    ppe = min(total_assets * r["ppe_ratio"], noncurrent * 0.9)
+    # Enough PP&E to carry the capital spending and depreciation.
+    ppe_floor = revenue * max(
+        r["capex_ratio"] / MAX_CAPEX_TO_PPE, r["da_ratio"] / MAX_DA_TO_PPE
+    )
+    ppe = min(max(total_assets * r["ppe_ratio"], ppe_floor), noncurrent * 0.9)
     goodwill = min(
         total_assets * r.get("goodwill_ratio", 0.0), (noncurrent - ppe) * 0.9
     )
@@ -153,17 +179,19 @@ def build_statements(spec: dict[str, Any]) -> dict[str, Any]:
         fy: spec["revenue"],
         fy - 1: spec["revenue"] / (1 + spec["revenue_growth"]),
     }
+    ratios = {fy: r, fy - 1: prior_year_ratios(r, random.Random(spec["company_id"]))}
 
     balances, incomes = {}, {}
     for year, revenue in years.items():
-        balances[year] = balance_sheet(revenue, r)
-        r["_debt"] = balances[year]["long_term_debt"]
-        incomes[year] = income_statement(revenue, r)
+        balances[year] = balance_sheet(revenue, ratios[year])
+        ratios[year]["_debt"] = balances[year]["long_term_debt"]
+        incomes[year] = income_statement(revenue, ratios[year])
 
     cur, prev = balances[fy], balances[fy - 1]
     inc = incomes[fy]
-    depreciation = round(years[fy] * r["da_ratio"])
-    capex = round(years[fy] * r["capex_ratio"])
+    ppe = cur["property_plant_and_equipment"]
+    depreciation = min(round(years[fy] * r["da_ratio"]), round(ppe * MAX_DA_TO_PPE))
+    capex = min(round(years[fy] * r["capex_ratio"]), round(ppe * MAX_CAPEX_TO_PPE))
     # Operating cash = net income + depreciation + working capital and other.
     operating_cash_flow = (
         inc["net_income"]
@@ -205,6 +233,39 @@ def build_statements(spec: dict[str, Any]) -> dict[str, Any]:
         "balance_sheet": {str(y): balances[y] for y in (fy, fy - 1)},
         "cash_flow_statement": {str(fy): cash_flow},
     }
+
+
+def prior_year_ratios(r: dict[str, float], rng: random.Random) -> dict[str, float]:
+    """Perturb the current-year ratios so the prior year is not a scaled copy."""
+    prior = {}
+    for name, value in r.items():
+        if name in PRIOR_MARGIN_NOISE:
+            prior[name] = value + rng.uniform(-1, 1) * PRIOR_MARGIN_NOISE[name]
+        elif name.startswith("_") or name == "other_operating_cash_ratio":
+            prior[name] = value
+        else:
+            prior[name] = value * (1 + rng.uniform(-1, 1) * PRIOR_RELATIVE_NOISE)
+    prior["tax_rate"] = min(max(prior["tax_rate"], 0.0), 0.35)
+    room = prior["gross_margin"] - prior.get("rd_ratio", 0.0)
+    prior["operating_margin"] = min(prior["operating_margin"], room - 0.03)
+    prior["sga_ratio"] = min(prior["sga_ratio"], room - prior["operating_margin"])
+    return prior
+
+
+def check_plausibility(st: dict[str, Any]) -> list[str]:
+    """Return economic red flags that reconciling statements can still have."""
+    errors = []
+    years = [str(y) for y in st["fiscal_years"]]
+    cur, prev = years[0], years[1]
+    i, b = st["income_statement"][cur], st["balance_sheet"][cur]
+    equity = (b["total_equity"] + st["balance_sheet"][prev]["total_equity"]) / 2
+    if equity > 0 and not -0.5 <= i["net_income"] / equity <= 0.6:
+        errors.append(f"{cur}: return on equity outside -50%..60%")
+    if i["net_income"] > 0.35 * i["revenue"]:
+        errors.append(f"{cur}: net margin above 35%")
+    if b["cash"] < 0.01 * b["total_assets"]:
+        errors.append(f"{cur}: cash below 1% of assets")
+    return errors
 
 
 def _check_balance_sheets(st: dict[str, Any]) -> list[str]:

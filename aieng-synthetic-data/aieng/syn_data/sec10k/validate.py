@@ -10,22 +10,17 @@ from __future__ import annotations
 import re
 from typing import Any
 
+from aieng.syn_data.sec10k.boilerplate import HEADINGS
 from aieng.syn_data.sec10k.render import derived_metrics
 
 
-HEADINGS = {
-    "1": "Item 1. Business",
-    "1A": "Item 1A. Risk Factors",
-    "1C": "Item 1C. Cybersecurity",
-    "7": (
-        "Item 7. Management's Discussion and Analysis of Financial Condition "
-        "and Results of Operations"
-    ),
-}
+__all__ = ["HEADINGS", "validate_section"]
 # Accepted word count, as a fraction of the target.
 WORD_RANGE = (0.6, 1.5)
 MAX_EXEMPLAR_OVERLAP = 0.05  # share of 8-word shingles also in the exemplar
 SHINGLE = 8
+# Most dollar amounts a narrative Item may cite; Items 7 and 7A are unlimited.
+MAX_AMOUNTS = {"1": 3, "1A": 4, "1C": 0, "2": 0, "3": 2}
 # Percentages any MD&A may cite without them being in the statements.
 STANDARD_PERCENTAGES = {21.0, 100.0}
 
@@ -157,13 +152,37 @@ def exemplar_overlap(text: str, exemplar: str) -> float:
     return len(ours & _shingles(exemplar)) / len(ours)
 
 
+def copied_sentences(text: str, exemplar: str, limit: int = 4) -> list[str]:
+    """Sentences of ``text`` that mostly repeat the exemplar word for word."""
+    theirs = _shingles(exemplar)
+    found = []
+    for sentence in re.split(r"(?<=[.!?])\s+", text):
+        ours = _shingles(sentence)
+        if ours and len(ours & theirs) / len(ours) >= 0.5:
+            found.append(sentence.strip()[:120])
+    return found[:limit]
+
+
 def check_overlap(text: str, exemplar: str) -> list[str]:
     """Check that the text does not copy the style exemplar."""
     overlap = exemplar_overlap(text, exemplar)
     if overlap > MAX_EXEMPLAR_OVERLAP:
+        quoted = "; ".join(f'"{s}..."' for s in copied_sentences(text, exemplar))
         return [
             f"{overlap:.0%} of the text repeats the style example word for word; "
-            "rewrite it in your own words."
+            "rewrite it in your own words. Copied sentences include: " + quoted
+        ]
+    return []
+
+
+def check_number_density(text: str, item: str) -> list[str]:
+    """Narrative Items other than MD&A should rarely quote dollar amounts."""
+    limit = MAX_AMOUNTS.get(item)
+    found = len(_DOLLARS.findall(text))
+    if limit is not None and found > limit:
+        return [
+            f"Item {item} cites {found} dollar amounts; real filings cite few in "
+            f"this Item. Keep at most {limit} and describe exposure in words."
         ]
     return []
 
@@ -267,5 +286,6 @@ def validate_section(
         issues += check_company_name(text, spec)
     issues += check_real_names(text, real_names or [])
     issues += check_overlap(text, exemplar)
+    issues += check_number_density(text, item)
     issues += check_numbers(text, spec, strict=item == "7")
     return issues

@@ -5,7 +5,11 @@ import random
 import pytest
 
 from aieng.syn_data.sec10k.specs import generate, sample_quantile, sample_ratios
-from aieng.syn_data.sec10k.statements import build_statements, check_statements
+from aieng.syn_data.sec10k.statements import (
+    build_statements,
+    check_plausibility,
+    check_statements,
+)
 
 
 def _q(p50: float, spread: float) -> dict[str, float]:
@@ -82,3 +86,23 @@ def test_check_statements_catches_a_broken_balance_sheet() -> None:
     errors = check_statements(statements)
     assert any("current assets" in e for e in errors)
     assert any("cash differs from the balance sheet" in e for e in errors)
+
+
+def test_statements_are_plausible_and_years_differ() -> None:
+    """Generated companies pass the plausibility checks; FY-1 is not a copy."""
+    specs = generate(CALIBRATION, n=20, seed=6, real_names=set())
+    margins = []
+    for spec in specs:
+        st = spec["statements"]
+        assert check_plausibility(st) == []
+        balance = st["balance_sheet"]["2024"]
+        assert balance["other_current_assets"] <= 0.31 * balance["total_current_assets"]
+        cash = st["cash_flow_statement"]["2024"]
+        ppe = balance["property_plant_and_equipment"]
+        assert -cash["capital_expenditures"] <= 0.41 * ppe
+        cur, prev = (st["income_statement"][y] for y in ("2024", "2023"))
+        margins.append(
+            cur["gross_profit"] / cur["revenue"]
+            - prev["gross_profit"] / prev["revenue"]
+        )
+    assert any(abs(m) > 0.002 for m in margins)

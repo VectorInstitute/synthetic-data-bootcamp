@@ -126,7 +126,7 @@ def derived_metrics(spec: dict[str, Any]) -> dict[str, float]:
     cur, prev = (st["income_statement"][str(y)] for y in st["fiscal_years"])
 
     def pct(a: float, b: float) -> float:
-        return round(100 * a / b, 1) if b else 0.0
+        return round(100 * a / b, 1) + 0.0 if b else 0.0  # + 0.0 drops -0.0
 
     out = {
         "revenue_growth_pct": pct(cur["revenue"] - prev["revenue"], prev["revenue"]),

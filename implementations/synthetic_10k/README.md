@@ -66,6 +66,8 @@ All numbers are computed in code, so the language model only ever writes narrati
 - equity rolls forward by net income less dividends and buybacks
 - no negative cost or balance-sheet lines
 
+It must also pass `check_plausibility`: return on average equity between -50% and 60%, net margin at most 35%, and cash at least 1% of assets. A few caps keep the unmodelled lines small: other operating expense is at most 6% of revenue, other current assets at most 30% of current assets, and depreciation and capex at most 35% and 40% of PP&E. The prior year is not a scaled copy of the current year: its margins and balance-sheet ratios are jittered slightly, seeded by the company id. Optional ratios that a sector rarely reports (marked `pooled`, such as R&D in Energy) are left at zero rather than borrowed from other sectors.
+
 ## Step 4: write the narrative with an LLM
 
 ```bash
@@ -79,20 +81,36 @@ uv run python -m aieng.syn_data.sec10k.narrative --data data/sec10k --limit 2
 
 The Vector proxy is called the way [`agent_benchmark_generation/1-check_access_to_model.ipynb`](../agent_benchmark_generation/1-check_access_to_model.ipynb) does it: the `openai` SDK with `base_url` from `SYNBENCH_BASE_URL` (default `https://proxy.vectorinstitute.ai/v1`) and the key from `OPENAI_API_KEY`, both also read from a `.env` file. The default model is `gemini-3-flash-preview`; pass `--model` to use another one, for example `gemini-3.1-flash-lite-preview`.
 
-For each spec the model writes Items 1, 1A, 7 and 1C in that order. Each prompt holds:
+For each spec the model writes Items 1, 1A, 2, 3, 7, 7A and 1C in that order. The formulaic Items (1B, 4, 5, 6, 9, 9A to 9C, 10 to 16) come from templates in `boilerplate.py`; Items 10 to 14 are incorporated by reference to the proxy statement, as most real filings do. Each prompt holds:
 - the facts sheet: the company profile, the three statements and derived percentages (margins, growth, tax rate), so the model never does arithmetic
 - the Items already written, so later sections stay consistent
 - an excerpt of the same Item from a real company in the same sector, as a style example (read from `parsed/`)
 - a length target sampled from the real section lengths in `calibration.json`, capped at 3,000 to 3,500 words (900 for Item 1C) to keep a pilot cheap; `--length-scale` scales it
 
-Item 8 is rendered from the statements by code. Each section is then validated, and regenerated once with the problems as feedback if it fails. The checks are:
+Item 8 is rendered from the statements by code. Each section is then validated, and regenerated with the problems as feedback if it fails, up to 3 attempts in total. The checks are:
 - the Item heading is there and the length is 60% to 150% of the target
 - every dollar amount matches a statement line or a year-over-year change, and in Item 7 every percentage matches a derived metric
 - no real filer is named (names come from `index.csv`)
-- less than 5% of the text's 8-word sequences are copied from the style example
+- less than 5% of the text's 8-word sequences are copied from the style example; the feedback quotes the copied sentences
+- Items 1, 1A, 1C, 2 and 3 quote only a few dollar amounts (none in 1C and 2), so the figures stay in Items 7 and 8
 - the fictional company is named in Items 1 and 7
 
-Output goes to `data/sec10k/synthetic/filings/{company_id}/`: `item_*.txt`, `filing.txt` (all Items under a cover page), the exact `prompts/` sent, and `metrics.json`. Finished companies are skipped on the next run unless you pass `--overwrite`.
+Output goes to `data/sec10k/synthetic/filings/{company_id}/`: `item_*.txt`, the exact `prompts/` sent, `metrics.json`, and the assembled filing as `filing.txt` and `filing.html`. Finished companies are skipped on the next run unless you pass `--overwrite`.
+
+Each Item can use its own model with `--item-model ITEM=MODEL`, repeatable. For example, to give the MD&A a stronger model:
+
+```bash
+uv run python -m aieng.syn_data.sec10k.narrative --data data/sec10k --companies syn0008 syn0018 \
+  --overwrite --item-model 7=gemini-3.1-pro-preview
+```
+
+### Shareable filing
+
+`filing.html` is laid out like an EDGAR filing: a cover page with invented file number, EIN, address and market value; a table of contents; Parts I to IV; and Item 8 as formatted statement tables. A banner at the top marks it as a synthetic document. Open it in a browser and print to PDF to share it. To rebuild the filings after editing an Item by hand, without calling the model:
+
+```bash
+uv run python -m aieng.syn_data.sec10k.export --data data/sec10k --companies syn0008 syn0018
+```
 
 ### Metrics
 
@@ -100,6 +118,6 @@ Every call records its wall-clock time, prompt, completion, reasoning and total 
 
 ## Next steps
 
-- Run the two-company pilot, read the filings and tune the prompts and checks.
-- Scale to the 20 specs, then to a few hundred.
+- Generate the two showcase filings, then scale to the 20 specs and to a few hundred.
+- Some sectors still put most assets in "other non-current assets" (Utilities, for example, should be mostly PP&E); calibrate intangibles and PP&E per sector before scaling.
 - Downstream evaluation: retrieval over synthetic versus real filings.
