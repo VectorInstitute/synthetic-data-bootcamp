@@ -45,6 +45,27 @@ Financial companies are excluded, since their statements use a different layout.
 
 On the 305-filing corpus this covers 254 non-financial companies in 10 sectors. Pooled medians: revenue about $21B (these are S&P 500 companies), gross margin 49%, operating margin 17%, net margin 12%, tax rate 19.5%.
 
+## Step 3: fictional companies and their statements
+
+```bash
+uv run python -m aieng.syn_data.sec10k.specs --data data/sec10k --n 20 --seed 0
+```
+
+Writes `data/sec10k/synthetic/specs/syn0001.json` and so on. Each file holds one fictional non-financial company:
+- an invented name and ticker, checked against real tickers and real company-name words
+- its sector, size, employees and growth
+- the ratios sampled from `calibration.json`
+- two years of statements in USD millions: income statement, balance sheet, and cash flow statement
+
+All numbers are computed in code, so the language model only ever writes narrative around fixed figures. Sampled ratios are made consistent with each other: operating costs fit inside gross profit, and the parts of assets fit inside the totals. Lines that aren't modelled ("other") absorb the rounding residuals. Every company must pass `check_statements` or it is resampled. The checks are:
+- assets = liabilities + equity
+- the current assets add up
+- gross profit and operating income tie
+- cash rolls forward and matches the balance sheet
+- net income flows into the cash flow statement
+- equity rolls forward by net income less dividends and buybacks
+- no negative cost or balance-sheet lines
+
 ## Next steps
 
-Sample fictional company specs from `calibration.json`, compute reconciling statements in code, then have an LLM write the narrative sections around those numbers, validate, and evaluate retrieval on synthetic vs real filings.
+Narrative generation: for each company, an LLM writes Items 1, 1A, 7 (quoting the computed numbers) and 1C. Each prompt includes a real same-sector section as a style exemplar and a length target from `calibration.json`. Validators then check that MD&A figures match the statements, that the text doesn't copy the exemplar and that no real company names appear.
