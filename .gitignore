@@ -74,3 +74,6 @@ implementations/tabular_data/single_table/results/**
 implementations/tabular_data/multi_table/results/**
 !implementations/tabular_data/multi_table/results/**/
 !implementations/tabular_data/multi_table/results/**/.gitkeep
+
+# Parsed SEC 10-K filings (large, regenerated from the raw .htm files)
+data/sec10k/
