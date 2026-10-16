@@ -5,10 +5,11 @@ is the real-data side of a synthetic-10-K benchmark: it provides style templates
 set, and XBRL facts.
 
 **Status:** Steps 1-5 (project setup, 10-K download, section parsing, metadata index, XBRL
-companyfacts) and Phases 3-6 (calibration profile, fictional-company specs, financial statements,
-narrative generation) are implemented. All 20 fictional companies' `item_*.txt` files are written
-and hand-validated (`data/synthetic/`). See `PLAN.md` for detail; the summary script and Phase 7
-(validation gates beyond the automatic ones already run) come next.
+companyfacts) and Phases 3-7 (calibration profile, fictional-company specs, financial statements,
+narrative generation, validation) are implemented. All 20 fictional companies' `item_*.txt` files
+are written and pass every automatic validation gate (`data/synthetic/`, `data/validation_report.csv`).
+See `PLAN.md` for detail; the summary script and Phase 7's human review (the one validation gate
+that isn't automatable) come next.
 
 ## Layout
 
@@ -30,6 +31,7 @@ src/
   step06_make_specs.py        fictional-company specs from calibration.json (Phase 4)
   step07_make_financials.py   balance sheet, income statement, cash flow (Phase 5)
   step08_generate_filings.py  Claude API narrative generation (Phase 6, built but not run)
+  step09_validate_filings.py  automatic validation gates: numeric, leaks, headings (Phase 7)
 data/
   sp500_constituents.csv frozen S&P 500 snapshot src.step00_sample_companies samples from (committed)
   raw/{ticker}/{fy}/     10k.htm, 10k.txt, ex13_*.htm (if any), metadata.json
@@ -42,6 +44,7 @@ data/
   companyfacts_status.csv one row per company from the last companyfacts fetch
   synthetic/{fictional_id}/{fy}/spec.json        fictional-company specs (committed)
   synthetic/{fictional_id}/{fy}/financials.json  its 3 financial statements (committed)
+  validation_report.csv  one row per fictional company x check from the last validation run
 logs/                    per-script log files
 ```
 
@@ -190,6 +193,23 @@ python -m src.step08_generate_filings
   `parse_status.csv`), and whatever's already been generated for that company, then calls the
   Claude API and writes the result.
 
+## Validate fictional company narrative text
+
+```bash
+python -m src.step09_validate_filings
+```
+
+- Writes `data/validation_report.csv` (committed): one row per fictional company per check. Current
+  result: 0 failures across 360 checks on all 20 companies.
+- Checks every dollar figure and percentage quoted in Item 7 and Item 8 against `financials.json`
+  (a leaf value, a handful of named combinations such as "total debt," or a standard ratio like net
+  margin), that no real template company's name or ticker appears, that Item 8 has all three
+  statement headings, and that every item file is substantive. Section length against the real
+  corpus's distribution is reported but not gated, since Phase 6 condensed every section by a
+  deliberate choice (see `PLAN.md` Phase 6).
+- Covers Phase 7's two automatic/model-judged gates; human review of about 10 filings is the one
+  gate this script can't do. See `PLAN.md` Phase 7.
+
 ## Notes
 
 - Fiscal year is the year of the filing's period of report. Non-December year-ends (several
@@ -204,7 +224,8 @@ python -m src.step08_generate_filings
 - The full SEC submission (`.txt` with all exhibits and images) is no longer saved. It was
   45-75 MB per filing, mostly images and XBRL data files.
 - Git tracks `metadata.json` files, `data/download_status.csv`, `data/parse_status.csv`,
-  `data/companyfacts_status.csv`, `data/calibration.json`, and `data/synthetic/`. The filing and
+  `data/companyfacts_status.csv`, `data/calibration.json`, `data/synthetic/`, and
+  `data/validation_report.csv`. The filing and
   section text (`10k.htm`, `10k.txt`, `ex13_*`, `data/parsed/`), `data/companyfacts/*.json`, and
   `data/index.csv` and `logs/` are git-ignored, and are all reproducible by re-running the
   matching script.

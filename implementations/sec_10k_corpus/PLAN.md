@@ -18,6 +18,7 @@ a real-data benchmark.
 | - | Company specs (Phase 4) | Done: 20 fictional companies; see `data/synthetic/` |
 | - | Financial statements (Phase 5) | Done: balance sheet, income statement, cash flow per company, all reconciling |
 | - | Narrative generation (Phase 6) | Done: 20/20 companies, 100 files; see "Phase 6" |
+| - | Validation gates (Phase 7) | Automatic and model-judged done, 0 failures; human review open |
 | - | QA, retrieval evaluation | Not started |
 
 ### Downloaded data
@@ -207,14 +208,65 @@ a real-data benchmark.
   as context; each prompt containing spec facts, computed numbers, one real exemplar, a length
   target from the real distribution, and the real heading outline.
 
-### Phase 7: Validation gates
+### Phase 7: Validation gates — automatic and model-judged done; human review open
 
-- Automatic: MD&A figures match the Item 8 tables, ratios match computed values, section lengths
-  fall within the real distribution, required headings are present, and no real company names
-  appear.
-- Model-judged: realism rubric on a sample.
-- Human: review about 10 random filings.
-- A failing filing gets one regeneration. If it still fails, it is dropped and logged.
+- **Automatic — done.** `python -m src.step09_validate_filings`; output at
+  `data/validation_report.csv` (committed, 360 rows: 20 companies x 18 checks). Result on the
+  current corpus: 0 failures. Checks:
+  - **Numeric consistency (Item 7 and Item 8):** every dollar figure and percentage extracted from
+    the narrative must be within tolerance (1% relative for dollars, 0.25 points for percentages)
+    of a value derived from that company's own `financials.json` — either a leaf figure, a specific
+    named combination seen in the narrative (total debt, goodwill + intangibles, SG&A + R&D,
+    cost of revenue + R&D, gross profit), or one of six standard ratios (net/operating margin, ROE,
+    ROA, equity/assets, effective tax rate). Dollar figures are compared by magnitude, not sign,
+    since cash-flow figures are stored with an accounting sign but routinely restated as a positive
+    amount in prose ("we used $X million of cash in investing activities").
+  - **Real-company leak:** scoped to each fictional company's own real template (not all 503 S&P 500
+    companies), since that's the one real company whose exemplar text ever entered its generation.
+    Ticker matching is case-sensitive and whole-word, since several templates used here (BEN, ROP,
+    DRI, FAST, BALL, USB) are also ordinary English words or acronyms in lowercase or mixed case.
+  - **Required headings:** Item 8 contains a consolidated balance sheet, income/operations
+    statement, and cash-flow statement heading.
+  - **Substantive:** every item file is at least 150 words (Phase 6's own floor).
+  - **Length vs. real distribution:** reported, not gated — Phase 6 condensed every section by a
+    documented, deliberate choice, so gating on length would flag all 20 companies for something
+    that isn't a defect.
+  - **Calibration note:** a first version of the numeric check used blind all-pairs sums of each
+    statement section's own leaves (to catch combination figures like "total debt") instead of the
+    named combinations above. Dropped after a deliberately-wrong injected figure ($9,999.9 million
+    in place of PRG's real revenue) was accepted as a false match — with 5-7 leaves per section, the
+    combinatorics produced ~99 candidate values per company, enough that a wrong number could land
+    within tolerance of one by coincidence. Re-verified after the fix with the same injected-error
+    test (caught) and an injected real-company-name/ticker leak (caught), confirming the gate
+    actually discriminates rather than rubber-stamping.
+- **Model-judged — done, 6/20 companies (one from each Phase 6 sector batch, including both
+  special cases).** Read in full and scored against a realism rubric (register, sector-appropriate
+  risk framing, cross-item consistency, absence of invented detail): BAI (Utilities/AEP), FTC
+  (Financials/BEN, tax-benefit case), GKRH (Financials/USB, bank with no operating-income line), KMW
+  (Health Care/CVS), XTE (Industrials/NOC), WJE (Information Technology/CRWD, net-loss tax-benefit
+  case).
+  - **Strengths:** sector-appropriate risk framing throughout (GKRH's bank-specific credit/interest-
+    rate risk and explicit note that its costs aren't broken into industrial cost-of-revenue/SG&A
+    categories; XTE's government-contract termination-for-convenience and security-clearance
+    language; WJE's subscription-billed-in-advance explanation for why operating cash flow is
+    strongly positive despite a net loss); correct hedged 10-K register throughout; every
+    cross-reference ("See Item 1A," "As described in Item 1C") lands on content that's actually
+    there; the tax-benefit and no-operating-income special cases read naturally, not as a workaround.
+  - **Weakness, consistent with the "Uniform prose" risk below:** the Item 7 "Liquidity and Capital
+    Resources" paragraph follows an almost identical sentence template in every company regardless
+    of sector ("We generated $X of cash from operating activities... We used $Y in investing
+    activities... Financing activities provided/used $Z... cash increased/decreased by $W"), and the
+    Item 8 commitments-and-contingencies sentence is word-for-word identical across all 20 companies.
+    Both are authentic 10-K boilerplate individually, but their exact, invariant repetition across a
+    bank, a utility, a defense contractor, and a cybersecurity company in the same corpus is a
+    detectable synthetic fingerprint — the single most "generated" feature found across the sample.
+    Not a correctness defect; noted for Phase 10's gap report.
+  - No real template name or ticker found in the 6-company close read (consistent with the
+    automatic gate's result across all 20).
+- **Human — open.** Needs about 10 filings read by a person, not a model. Not started; this is the
+  one remaining Phase 7 item.
+- A failing filing gets one regeneration. If it still fails, it is dropped and logged. Hasn't come
+  up yet: nothing has failed.
 
 ### Phase 8: Same layout as the real corpus
 
@@ -248,7 +300,7 @@ python -m src.step05_make_calibration      # done (Phase 3)
 python -m src.step06_make_specs            # done (Phase 4)
 python -m src.step07_make_financials       # done (Phase 5)
 python -m src.step08_generate_filings  # built, placeholder (Phase 6; see above)
-python -m src.step09_validate_filings  # not built yet (Phase 7)
+python -m src.step09_validate_filings  # done: 0 failures, 20 companies (Phase 7)
 python -m src.step10_make_qa           # not built yet (Phase 9)
 python -m src.step11_evaluate_retrievers  # not built yet (Phase 9)
 ```
@@ -258,7 +310,10 @@ python -m src.step11_evaluate_retrievers  # not built yet (Phase 9)
 - **Verbatim leakage:** narrative built from real exemplars can echo real phrasing. Keep exemplars
   short and flag long n-gram overlaps with the source.
 - **Uniform prose:** generated text is usually more regular than real filings. The gap report
-  should say so.
+  should say so. **Observed, not just anticipated:** Phase 7's model-judged pass found the Item 7
+  "Liquidity and Capital Resources" paragraph and the Item 8 commitments-and-contingencies sentence
+  repeat in an almost invariant template across all 20 companies regardless of sector — the clearest
+  synthetic fingerprint found in the corpus. See Phase 7.
 - **XBRL gaps:** not every company reports every tag (111/147 report total `Liabilities`,
   107/147 report `OperatingIncomeLoss`; see "Calibration profile"). `step05_make_calibration.py` tries
   fallback tags per metric and records what's still missing rather than guessing.
@@ -296,8 +351,8 @@ python -m src.step11_evaluate_retrievers  # not built yet (Phase 9)
   (147 company-years, 12 metrics).
 - **M3 — done:** 20 fictional company specs (Phase 4) and their full balance sheet, income
   statement, and cash-flow tables (Phase 5) are built, with every subtotal and identity checked.
-- **M4/M5 — done:** all 20 fictional companies' narrative written and hand-validated against
-  Phase 7's automatic gates (see Phase 6). Human (not just automatic) review of a sample is still
-  open — Phase 7 also calls for a model-judged realism rubric and human review of about 10 filings,
-  neither of which has been done yet.
+- **M4/M5 — done:** all 20 fictional companies' narrative written and validated against Phase 7's
+  automatic gates (`src.step09_validate_filings`, 0 failures) and a model-judged realism pass on a
+  6-company sample (see Phase 7). Human review of about 10 filings is the one Phase 7 item still
+  open.
 - **M6:** QA, retrieval evaluation, and gap report.
