@@ -120,18 +120,22 @@ def explain(text: str, financials: dict[str, Any], issues: list[str]) -> str:
     if expected is None:
         return ""
     dollars, percents = expected
-    figures = [m.group(0).strip() for m in _DOLLARS.finditer(text)] + [
-        m.group(0).strip() for m in _PERCENT.finditer(text)
-    ]
-    flagged = [f for f in dict.fromkeys(figures) if any(f in issue for issue in issues)]
+    # Each figure maps to (number, unit), read from the regex groups so "$ 12.3 million"
+    # and "$1,200" parse the same way.
+    figures: dict[str, tuple[float, str]] = {}
+    for m in _DOLLARS.finditer(text):
+        figures.setdefault(m.group(0).strip(), (float(m.group(1).replace(",", "")), (m.group(2) or "million").lower()))
+    for m in _PERCENT.finditer(text):
+        figures.setdefault(m.group(0).strip(), (float(m.group(1)), "%"))
+    flagged = [f for f in figures if any(f in issue for issue in issues)]
     scale = {"billion": 1e9, "million": 1e6, "thousand": 1e3}
     accepted = 0
     for figure in flagged:
-        number = float("".join(c for c in figure.split()[0] if c.isdigit() or c == "."))
-        if figure.endswith("%") or figure.endswith("percent"):
+        number, unit = figures[figure]
+        if unit == "%":
             accepted += any(abs(number - p) <= 0.25 for p in percents)
         else:
-            value = number * scale.get(figure.split()[-1].lower(), 1e6)
+            value = number * scale[unit]
             accepted += any(abs(value - abs(d)) <= max(1e5, 0.01 * abs(d)) for d in dollars)
     return f"{accepted} of {len(flagged)} flagged figures are accepted by Dylan's step09 check"
 

@@ -12,6 +12,8 @@
 #   SEED       spec sampling seed                             (default 7)
 #   MODEL      model on Vector's proxy                        (default gemini-3-flash-preview)
 #   WORKERS    companies generated in parallel                (default 4)
+# Dylan's step08 gets --max-tokens 16384: on Gemini the limit also covers hidden reasoning
+# tokens, and the default 4096 cuts sections off mid-sentence.
 #   AMIN_DATA  Amin's parsed corpus with calibration.json      (default data/sec10k)
 #
 # Outputs:
@@ -61,7 +63,7 @@ dylan() {
   export SYNTHETIC_DIR="$DYLAN_RUN/synthetic"
   .venv/bin/python -m src.step06_make_specs --n "$N" --seed "$SEED"
   .venv/bin/python -m src.step07_make_financials
-  .venv/bin/python -m src.step08_generate_filings --backend openai --model "$MODEL" --workers "$WORKERS"
+  .venv/bin/python -m src.step08_generate_filings --backend openai --model "$MODEL" --workers "$WORKERS" --max-tokens 16384
   .venv/bin/python -m src.step09_validate_filings
   unset SYNTHETIC_DIR
   cd "$REPO"
