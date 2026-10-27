@@ -4,16 +4,16 @@ import json
 from pathlib import Path
 from typing import Any
 
-from aieng.syn_data.sec10k.narrative import (
+from sec10k.narrative import (
     Completion,
     Corpus,
     clean_output,
     run,
     summarize,
 )
-from aieng.syn_data.sec10k.render import derived_metrics, item_8, metric_label, money
-from aieng.syn_data.sec10k.specs import generate
-from aieng.syn_data.sec10k.validate import (
+from sec10k.render import derived_metrics, item_8, metric_label, money
+from sec10k.specs import generate
+from sec10k.validate import (
     HEADINGS,
     check_identifiers,
     check_numbers,

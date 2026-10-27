@@ -2,7 +2,7 @@
 
 Usage::
 
-    python -m aieng.syn_data.sec10k.specs --data data/sec10k --n 20 --seed 0
+    python -m sec10k.specs --data data/sec10k --n 20 --seed 0
 
 Writes ``data/sec10k/synthetic/specs/{company_id}.json``, one file per company,
 holding the spec (name, ticker, sector, size, ratios) and its reconciled
@@ -19,8 +19,8 @@ import random
 from pathlib import Path
 from typing import Any
 
-from aieng.syn_data.sec10k.calibrate import load_sectors
-from aieng.syn_data.sec10k.statements import (
+from sec10k.calibrate import load_sectors
+from sec10k.statements import (
     build_statements,
     check_plausibility,
     check_statements,

@@ -4,8 +4,8 @@ import random
 
 import pytest
 
-from aieng.syn_data.sec10k.specs import generate, sample_quantile, sample_ratios
-from aieng.syn_data.sec10k.statements import (
+from sec10k.specs import generate, sample_quantile, sample_ratios
+from sec10k.statements import (
     build_statements,
     check_plausibility,
     check_statements,

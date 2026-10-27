@@ -2,7 +2,7 @@
 
 Dylan's gates live in ../dylan_pipeline/src/step09_validate_filings.py and read his
 folder layout. This script converts each EDGAR-style filing.html written by Amin's
-pipeline (aieng-synthetic-data/aieng/syn_data/sec10k/export.py) into that layout and
+pipeline (../amin_pipeline/sec10k/export.py) into that layout and
 runs his checks on it without changing them.
 
 Output, under --out-dir (default results/phase7_on_amin_showcase/):

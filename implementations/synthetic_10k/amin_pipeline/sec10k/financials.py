@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from datetime import date
 
-from aieng.syn_data.sec10k.reader import ParsedFiling
+from sec10k.reader import ParsedFiling
 
 
 # Flow metrics: reported over the fiscal year (a duration context).

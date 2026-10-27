@@ -2,7 +2,7 @@
 
 Usage::
 
-    python -m aieng.syn_data.sec10k.build --input path/to/10K_Reports --output data
+    python -m sec10k.build --input path/to/10K_Reports --output data
 
 Input files are named ``{filing-date}_{ticker}_{company}_{accession}.htm``. Output::
 
@@ -25,14 +25,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from aieng.syn_data.sec10k.financials import (
+from sec10k.financials import (
     DURATION_METRICS,
     INSTANT_METRICS,
     fiscal_period_end,
     key_financials,
 )
-from aieng.syn_data.sec10k.reader import read_filing
-from aieng.syn_data.sec10k.sections import DEFAULT_ITEMS, split_sections
+from sec10k.reader import read_filing
+from sec10k.sections import DEFAULT_ITEMS, split_sections
 
 
 logger = logging.getLogger(__name__)

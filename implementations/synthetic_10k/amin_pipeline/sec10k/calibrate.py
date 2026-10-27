@@ -2,7 +2,7 @@
 
 Usage::
 
-    python -m aieng.syn_data.sec10k.calibrate --data data/sec10k
+    python -m sec10k.calibrate --data data/sec10k
 
 Reads ``financials.csv`` and ``index.csv`` written by ``build`` and writes
 ``calibration.json``: for each sector, quantiles of company size and of the

@@ -1,15 +1,22 @@
-# Amin's pipeline: synthetic 10-K reports with the `aieng` package
-
-The code is library code in [`aieng-synthetic-data/aieng/syn_data/sec10k/`](../../../aieng-synthetic-data/aieng/syn_data/sec10k/), with tests in `aieng-synthetic-data/tests/test_sec10k*.py`, following the bootcamp's convention of library code in `aieng` and runnable instructions under `implementations/`. See [the folder overview](../README.md) for how it compares with Dylan's pipeline.
+# Amin's pipeline: synthetic 10-K reports
 
 Goal: generate fictional companies' 10-K filings (business, risk factors, cybersecurity, MD&A and financial statements) whose numbers reconcile, and use them to benchmark retrieval and Q&A on equity-analysis questions against real filings.
+
+The `sec10k` package in this folder parses real 10-Ks, calibrates fictional companies by sector, builds statements that reconcile, writes the narrative with an LLM, and exports EDGAR-style filings. Tests are in `tests/`. See [the folder overview](../README.md) for how it compares with Dylan's pipeline.
+
+Run every command below from this folder (`implementations/synthetic_10k/amin_pipeline/`) so Python finds the package. `data/` here is git-ignored. The LLM step still uses the shared client settings in `aieng-synthetic-data` (`aieng.syn_data.synbench.llm.config`), which the repo's `uv` environment installs.
+
+```bash
+cd implementations/synthetic_10k/amin_pipeline
+uv run pytest tests    # 24 tests, no network
+```
 
 ## Step 1: parse the real filings
 
 Input is a folder of 10-K main documents downloaded from EDGAR as `.htm` (inline XBRL), named `{filing-date}_{ticker}_{company}_{accession}.htm`.
 
 ```bash
-uv run python -m aieng.syn_data.sec10k.build --input path/to/10K_Reports --output data/sec10k --workers 4
+uv run python -m sec10k.build --input path/to/10K_Reports --output data/sec10k --workers 4
 ```
 
 The parser uses only the Python standard library and takes about a minute for 305 filings (1.3 GB) on 4 CPUs. For each filing it writes:
@@ -35,7 +42,7 @@ Section status: `ok`; `fallback` (Item 8 only points elsewhere, so the statement
 ## Step 2: calibrate fictional companies
 
 ```bash
-uv run python -m aieng.syn_data.sec10k.calibrate --data data/sec10k
+uv run python -m sec10k.calibrate --data data/sec10k
 ```
 
 Writes `data/sec10k/calibration.json`. It holds, per GICS sector (from the bundled `sectors.csv`), the 10th/25th/50th/75th/90th percentiles of:
@@ -50,7 +57,7 @@ On the 305-filing corpus this covers 254 non-financial companies in 10 sectors. 
 ## Step 3: fictional companies and their statements
 
 ```bash
-uv run python -m aieng.syn_data.sec10k.specs --data data/sec10k --n 20 --seed 0
+uv run python -m sec10k.specs --data data/sec10k --n 20 --seed 0
 ```
 
 Writes `data/sec10k/synthetic/specs/syn0001.json` and so on. Each file holds one fictional non-financial company:
@@ -74,11 +81,11 @@ It must also pass `check_plausibility`: return on average equity between -50% an
 
 ```bash
 # Check which model ids the endpoint serves, then preview the prompts (no API calls)
-uv run python -m aieng.syn_data.sec10k.narrative --data data/sec10k --list-models
-uv run python -m aieng.syn_data.sec10k.narrative --data data/sec10k --limit 2 --dry-run
+uv run python -m sec10k.narrative --data data/sec10k --list-models
+uv run python -m sec10k.narrative --data data/sec10k --limit 2 --dry-run
 
 # Pilot: two companies with Gemini Flash
-uv run python -m aieng.syn_data.sec10k.narrative --data data/sec10k --limit 2
+uv run python -m sec10k.narrative --data data/sec10k --limit 2
 ```
 
 The Vector proxy is called the way [`agent_benchmark_generation/1-check_access_to_model.ipynb`](../agent_benchmark_generation/1-check_access_to_model.ipynb) does it: the `openai` SDK with `base_url` from `SYNBENCH_BASE_URL` (default `https://proxy.vectorinstitute.ai/v1`) and the key from `OPENAI_API_KEY`, both also read from a `.env` file. The default model is `gemini-3-flash-preview`; pass `--model` to use another one, for example `gemini-3.1-flash-lite-preview`.
@@ -102,7 +109,7 @@ Output goes to `data/sec10k/synthetic/filings/{company_id}/`: `item_*.txt`, the 
 Each Item can use its own model with `--item-model ITEM=MODEL`, repeatable. For example, to give the MD&A a stronger model:
 
 ```bash
-uv run python -m aieng.syn_data.sec10k.narrative --data data/sec10k --companies syn0008 syn0018 \
+uv run python -m sec10k.narrative --data data/sec10k --companies syn0008 syn0018 \
   --overwrite --item-model 7=gemini-3.1-pro-preview
 ```
 
@@ -111,7 +118,7 @@ uv run python -m aieng.syn_data.sec10k.narrative --data data/sec10k --companies 
 `filing.html` is laid out like an EDGAR filing: a cover page with invented file number, EIN, address and market value; a table of contents; Parts I to IV; and Item 8 as formatted statement tables. A banner at the top marks it as a synthetic document. Open it in a browser and print to PDF to share it. To rebuild the filings after editing an Item by hand, without calling the model:
 
 ```bash
-uv run python -m aieng.syn_data.sec10k.export --data data/sec10k --companies syn0008 syn0018
+uv run python -m sec10k.export --data data/sec10k --companies syn0008 syn0018
 ```
 
 ### Metrics

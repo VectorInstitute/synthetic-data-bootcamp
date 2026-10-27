@@ -2,7 +2,7 @@
 
 import pytest
 
-from aieng.syn_data.sec10k.calibrate import (
+from sec10k.calibrate import (
     build_calibration,
     company_ratios,
     load_sectors,
