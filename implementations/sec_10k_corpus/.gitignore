@@ -18,6 +18,7 @@ data/companyfacts/*.json
 !data/companyfacts_status.csv
 !data/sp500_constituents.csv
 !data/validation_report.csv
+!data/external/validation_report.csv
 
 # Your real SEC identity (name and email) lives here, never in config.yaml
 config.local.yaml
