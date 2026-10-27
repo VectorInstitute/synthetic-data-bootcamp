@@ -21,5 +21,15 @@
     "framework": "an internal enterprise risk management framework aligned to NIST",
     "oversight": "a dedicated Technology and Cybersecurity Committee of the Board",
     "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "product_launch",
+    "summary": "Riverton Partners launched SentinelFlow, a fictional new module extending its observability platform into automated anomaly detection, during fiscal 2023. The associated research and development investment is reflected in the year's operating loss.",
+    "facts": {
+      "product_name": "SentinelFlow",
+      "launch_timing": "introduced during fiscal 2023",
+      "target_use_case": "automated anomaly detection across customers' multi-cloud infrastructure",
+      "rationale": "extend the platform beyond metrics and log monitoring into automated, real-time anomaly detection"
+    }
   }
 }

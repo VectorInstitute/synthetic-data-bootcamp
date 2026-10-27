@@ -6,6 +6,8 @@ Each script runs one pipeline's validator on the other pipeline's filings withou
 |---|---|---|---|
 | `phase7_gates.py` | Dylan's Phase 7 gates (`dylan_pipeline/src/step09_validate_filings.py`) | `filing.html` files from Amin's pipeline; the two showcase filings are in `samples/amin_showcase/` | `results/phase7_on_amin_showcase/`: each filing converted into Dylan's layout, plus `validation_report.csv` |
 | `amin_checks.py` | Amin's narrative checks (`amin_pipeline/sec10k/validate.py`) | Dylan's 20 fictional companies in `dylan_pipeline/data/synthetic/` | `results/amin_checks_on_dylan20/validation_report.csv` |
+| `step13_gap_report.py` | Dylan's synthetic-vs-real gap report (Phase 10): length, vocabulary, numbers, retriever ranking | Dylan's synthetic and real corpora | `dylan_pipeline/data/gap_report.csv` |
+| `step14_privacy_check.py` | Dylan's privacy check (Phase 11): each fictional company's financials vs its real template | Dylan's fictional companies | `dylan_pipeline/data/privacy_report.csv` |
 
 Dylan's own run of his gates on his filings is in `dylan_pipeline/data/validation_report.csv`. The [folder overview](../README.md#evals) summarises all three results.
 
@@ -19,6 +21,13 @@ python amin_checks.py
 ```
 
 To check new filings from Amin's pipeline, pass their `filing.html` paths (written to `data/sec10k/synthetic/filings/{company_id}/`) to `phase7_gates.py`, with `--out-dir` set to a new folder under `results/`. `amin_checks.py` always checks every company under `dylan_pipeline/data/synthetic/`.
+
+`step13_gap_report.py` and `step14_privacy_check.py` import Dylan's `src` package and `../RAG/`, so run them from `implementations/synthetic_10k`:
+
+```bash
+PYTHONPATH=dylan_pipeline:. python evals/step13_gap_report.py
+PYTHONPATH=dylan_pipeline:. python evals/step14_privacy_check.py
+```
 
 ## What each script adapts
 

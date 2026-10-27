@@ -21,5 +21,13 @@
     "framework": "the NIST Cybersecurity Framework and ISO/IEC 27001",
     "oversight": "the Audit Committee of the Board of Directors",
     "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "competitive_displacement",
+    "summary": "Stonegate Sciences experienced reduced usage from a significant customer during fiscal 2025 after that customer migrated a portion of its workloads to a competing observability vendor, contributing to the year's thin operating margin.",
+    "facts": {
+      "driver": "a significant customer migrated a portion of its workloads to a competing observability platform",
+      "response": "continued investment in platform capabilities and customer success to limit further displacement"
+    }
   }
 }

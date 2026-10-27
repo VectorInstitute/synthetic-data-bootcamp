@@ -21,5 +21,14 @@
     "framework": "the NIST Cybersecurity Framework",
     "oversight": "a dedicated Technology and Cybersecurity Committee of the Board",
     "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "capital_structure",
+    "summary": "Harborview Logistics maintains a deliberately thin equity base (approximately 2.0% of total assets) funded by an ongoing debt-financed share repurchase program, a capital allocation strategy rather than a sign of distress, though it leaves the company with elevated financial leverage.",
+    "facts": {
+      "driver": "an ongoing share repurchase program funded substantially through debt issuance",
+      "framing": "a deliberate capital allocation choice reflecting confidence in cash flow generation, not financial distress",
+      "risk_noted": "the resulting leverage increases vulnerability to adverse changes in interest rates or operating performance"
+    }
   }
 }

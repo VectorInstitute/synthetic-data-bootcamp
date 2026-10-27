@@ -1,6 +1,7 @@
 """Logging setup and retry helper shared by the pipeline scripts."""
 
 import logging
+import os
 import time
 from collections.abc import Callable
 from pathlib import Path
@@ -12,6 +13,23 @@ from src.config import LOG_DIR
 
 
 T = TypeVar("T")
+
+
+def load_dotenv(path: Path) -> None:
+    """Minimal `KEY=VALUE`-per-line .env loader (no quoting/interpolation support --
+    none of this project's secrets need it). Mirrors config.local.yaml's role for
+    SEC identity: a gitignored local file for secrets that never touches git,
+    consumed by RAG.chatbot / RAG.chatbot_server for DEEPSEEK_API_KEY /
+    ANTHROPIC_API_KEY. An already-exported shell variable always wins.
+    """
+    if not path.exists():
+        return
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        os.environ.setdefault(key.strip(), value.strip())
 
 
 def write_atomic(path: Path, content: str | bytes) -> None:

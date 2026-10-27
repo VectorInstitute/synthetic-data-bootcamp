@@ -21,5 +21,13 @@
     "framework": "an internal enterprise risk management framework aligned to NIST",
     "oversight": "the full Board of Directors, with support from the Audit Committee",
     "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "margin_crisis",
+    "summary": "Clearwater Technologies Group's fiscal 2025 results reflect severe and sustained reimbursement-rate pressure across its pharmacy, benefits, and care-delivery businesses, producing the thinnest margins in its reporting history (net margin of 0.4%).",
+    "facts": {
+      "driver": "continued reimbursement-rate reductions from government and commercial payors",
+      "severity": "net margin of 0.4% and operating margin of 1.1%, both compressed to levels management considers unsustainable without corrective action"
+    }
   }
 }

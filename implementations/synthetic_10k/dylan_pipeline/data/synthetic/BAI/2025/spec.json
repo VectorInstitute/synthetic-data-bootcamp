@@ -21,5 +21,13 @@
     "framework": "the NIST Cybersecurity Framework and ISO/IEC 27001",
     "oversight": "the full Board of Directors, with support from the Audit Committee",
     "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "regulatory_rate_case",
+    "summary": "Northbridge Technologies' fiscal 2025 results reflect the outcome of a rate case in which state utility regulators approved a rate increase below the full amount the company requested, limiting full recovery of certain operating and capital costs.",
+    "facts": {
+      "driver": "state utility regulators approved a rate increase below the full amount requested",
+      "effect": "limited full recovery of certain operating and capital costs during the fiscal year"
+    }
   }
 }

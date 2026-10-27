@@ -20,5 +20,13 @@
     "framework": "the NIST Cybersecurity Framework",
     "oversight": "the Audit Committee of the Board of Directors",
     "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "regulatory_consent_order",
+    "summary": "Cedarfield Materials Corp. entered into a consent order with a federal banking regulator during fiscal 2025 requiring enhancements to its risk management and compliance programs, increasing its compliance-related operating costs.",
+    "facts": {
+      "driver": "a consent order with a federal banking regulator requiring risk management and compliance enhancements",
+      "effect": "increased compliance-related operating costs reflected within other operating expenses"
+    }
   }
 }

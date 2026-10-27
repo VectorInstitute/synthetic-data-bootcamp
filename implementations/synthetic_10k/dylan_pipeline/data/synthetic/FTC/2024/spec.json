@@ -21,5 +21,15 @@
     "framework": "the NIST Cybersecurity Framework and ISO/IEC 27001",
     "oversight": "a dedicated Technology and Cybersecurity Committee of the Board",
     "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "mergers_and_acquisitions",
+    "summary": "Oakridge Capital Holdings completed the acquisition of Carrowgate Capital Partners, a fictional investment management firm, during fiscal 2024, continuing its history of growth through acquiring complementary investment management and distribution businesses.",
+    "facts": {
+      "acquired_name": "Carrowgate Capital Partners, Inc.",
+      "purchase_price": 2211153641,
+      "rationale": "add complementary investment strategies and expand third-party distribution reach",
+      "integration_status": "being integrated into existing investment management and distribution operations"
+    }
   }
 }

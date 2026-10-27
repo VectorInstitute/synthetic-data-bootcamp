@@ -11,15 +11,64 @@ a real-data benchmark.
 | 1 | Project setup, config, identity handling | Done |
 | 2 | Download 10-K filings from EDGAR | Done: 50 companies x FY2023-2025 (150 company-years, 147 filings, 3 not found) |
 | 3 | Parse filings into sections (Items 1, 1A, 1C, 7, 8) | Done: 724/735 sections ok, 5 short, 6 missing; see `data/parse_status.csv` |
-| 4 | Metadata index (`data/index.csv`) | Done: 729 rows |
+| 4 | Metadata index (`data/index.csv`) | Done: 829 rows (729 real + 100 synthetic, Phase 8) |
 | 5 | XBRL companyfacts JSON per company | Done: 50/50 companies |
 | 6 | Summary script | Not started |
 | - | Calibration (`data/calibration.json`) | Done: 147 company-years, 12 metrics; see "Calibration profile" |
 | - | Company specs (Phase 4) | Done: 20 fictional companies; see `data/synthetic/` |
+| - | Scenario retrofit (Phase 4.5) | Done: 13/20 companies have a scenario, 7/20 baseline |
 | - | Financial statements (Phase 5) | Done: balance sheet, income statement, cash flow per company, all reconciling |
 | - | Narrative generation (Phase 6) | Done: 20/20 companies, 100 files; see "Phase 6" |
 | - | Validation gates (Phase 7) | Automatic and model-judged done, 0 failures; human review open |
-| - | QA, retrieval evaluation | Not started |
+| - | Same-layout index (Phase 8) | Done: one `data/index.csv`, `source` column distinguishes real/synthetic |
+| - | QA, retrieval evaluation (Phase 9) | Done: 130 QA pairs (115 factual, 15 analytical), BM25/semantic/hybrid x 3 experiments |
+| - | Synthetic-vs-real gap report (Phase 10) | Done: full retriever ranking agrees; length/vocab/numbers differ |
+| - | Privacy: distance from real template (Phase 11) | Done: no company's financials sit within 5% of its template on every field |
+
+## Evaluation framework: fidelity, utility, privacy
+
+A synthetic corpus built to stand in for real 10-Ks has to answer three separate questions, and
+the dashboard (`dashboard/index.html`) is organized around them rather than around the phases that
+produced the numbers (phases map onto these three unevenly — Phase 7 alone spans two of them):
+
+- **Fidelity** — does it look and compute like a real 10-K? Structural fidelity (required
+  statement headings, substantive section length, internal numeric consistency between narrative
+  and financials — Phase 7's `required_headings`/`substantive`/`numeric_consistency`/
+  `scenario_grounding` checks) and distributional fidelity (section length, vocabulary overlap,
+  numeric density vs. the real corpus — Phase 10's gap report).
+- **Utility** — is it actually useful for the task it exists to support (building and evaluating a
+  retrieval benchmark)? Phase 9's QA pairs and recall@5/@10/MRR/nDCG@10 scores are the benchmark
+  itself; Phase 10's retriever-ranking-agreement check is the validation that conclusions drawn from
+  the synthetic corpus (e.g. "BM25 beats this embedding model here") transfer to the real one.
+- **Privacy** — since every fictional company is templated on one real company, does the corpus
+  avoid exposing that real company? Two checks, both from Phase 7 and the new Phase 11: no real
+  company name or ticker ever appears in the narrative (`real_company_leak`, 0 found across 373
+  checks), and no fictional company's financials are close enough to its real template's to make the
+  disguise pointless (`step14_privacy_check.py` — median 20.0% absolute difference per field across
+  all 20 companies; closest single company, BIDZ, still differs by a 4.1% median and an 8.2% max
+  across its 6 fields; no company is within 5% on every field).
+
+### Phase 11: Privacy — distance from each fictional company's real template
+
+`src/step14_privacy_check.py` writes `data/privacy_report.csv`, 112 rows (one per fictional company
+per financial field: total assets, total liabilities, stockholders' equity, revenues, net income,
+operating income where present). For each row it looks up the real template's actual same-year
+value directly from `data/calibration.json`'s `company_years` (written by `step05_make_calibration`
+from XBRL, before any fictional company existed) and computes the percent difference from the
+fictional value.
+
+- **Why this check and not just the leak check:** Phase 7's `real_company_leak` check already
+  confirms no real company's *name* or *ticker* appears in the narrative, but that alone doesn't
+  rule out the fictional numbers simply being the real company's own numbers relabeled — which would
+  make the fictional company a disguise, not a synthetic one. This check answers that directly.
+- **Result:** median absolute difference per field, across all 112 rows, is 20.0%. Every company has
+  at least one field that differs substantially (max per-company difference ranges from 8.2%, BIDZ,
+  to 113.1%, NDE — the latter because NDE's scenario deliberately gives it a small *positive* equity
+  cushion where its real template, AutoZone, actually carries deeply negative equity). The closest
+  individual field found anywhere is NDE's revenue, 0.5% from AutoZone's actual FY2025 revenue — a
+  coincidence of where the calibration sampling landed on that one field, not a pattern: NDE's other
+  four fields differ by 7.4%-113.1%, and no company is close on every field. Reported honestly rather
+  than smoothed over, since a single close field is a legitimate thing a privacy audit should surface.
 
 ### Downloaded data
 
@@ -130,6 +179,78 @@ a real-data benchmark.
   and size aren't in the spec; PLAN.md's original Phase 4 wording didn't call for them beyond what
   Item 1C needs, and Phase 6's prompts can likely derive them from sector + financials + a real
   exemplar. Revisit if Phase 6's narrative pilot needs more structure than that.
+
+### Phase 4.5: Scenario retrofit — done, all 20 companies
+
+- Raised after Phase 6/7 were both already complete: spec.json only held size/sector/margin facts
+  plus one cybersecurity flag, so the narrative had nothing distinguishing to ground beyond generic
+  sector-template boilerplate — which is also the root cause of Phase 7's "uniform prose" finding
+  (the same Liquidity paragraph and commitments sentence verbatim across all 20 companies). It also
+  meant there was no structured ground truth for *qualitative* claims (an acquisition, a product
+  launch, a regulatory event) the way there already was for numbers, which matters for Phase 9: a
+  synthetic company's QA pairs are only as good as what's actually grounded in its spec.
+- `python -m src.step06b_add_scenarios`; adds a `scenario` field (`type`, `summary`, `facts`) to
+  each `spec.json`. Scenario types, hand-assigned per company based on fit with its existing
+  profile (see the script's `SCENARIOS` dict for the full rationale and exact source of every
+  figure):
+  - **Mergers & acquisitions** — EASS, FTC, PRG. Each "acquired" a fictional target company this
+    fiscal year; the purchase price is the exact pre-existing `other_investing_activities` dollar
+    figure from that company's own `financials.json` (EASS $249.7M, FTC $2,211.2M, PRG $2,943.0M —
+    PRG's generic "acquisitions of businesses" phrasing already matched this almost exactly). Item 7's
+    Liquidity paragraph was reworded in place to attribute the existing cash outflow to the named
+    acquisition instead of a generic cause; Item 8 gained one new numbered note per company.
+  - **Product launch** — GOG ("SentinelFlow," an anomaly-detection module), grounding the existing
+    R&D-heavy operating loss in a specific, named cause instead of a generic one.
+  - **Competitive displacement** — HZP (a customer migrated workloads to a competitor).
+  - **Margin crisis** — BIDZ, whose 0.4% net margin was already the thinnest of the 20; reframed
+    explicitly as historically compressed and unsustainable without correction, not just reported
+    neutrally.
+  - **Capital structure** — NDE and TVZ (same AutoZone-style template, ~2% equity/assets each):
+    framed, matching how AutoZone itself frames it in real filings, as a deliberate debt-funded
+    share-repurchase strategy reflecting management confidence, explicitly **not** distress — worded
+    independently for each company despite sharing a template and a scenario type.
+  - **Cash burn** — WJE (existing operating/net loss reframed as deliberate pre-profitability
+    investment, consistent with its growth stage).
+  - **Regulatory rate case** — BAI (an unfavorable rate case outcome limited cost recovery).
+  - **Weather event** — VQWP (storm restoration layered onto, not replacing, the existing capital
+    program — explicitly not claimed as the entire investing outflow, since that would be
+    financially implausible for a single utility in one year).
+  - **Regulatory pricing pressure** — KMW (named pharmacy-benefit-management and drug-pricing
+    measures as the driver of its already-thin margin and high effective tax rate).
+  - **Regulatory consent order** — GKRH (a consent order with a federal banking regulator, tied to
+    its existing "other operating expenses" figure).
+  - **Baseline** — CRJ, FAI, JFG, PKPM, SKR, TOUN, XTE (7/20): explicitly "ordinary course of
+    business, no material scenario event." Real 10-Ks are mostly like this, so a benchmark where
+    every company has a dramatic event would itself be unrealistic.
+- **Deliberately out of scope:** true bankruptcy / going-concern distress. None of the 20 companies
+  has a distressed balance sheet, and forcing one would mean actually lowering a company's equity or
+  raising its leverage — real financial-statement changes that risk breaking Phase 5's already-
+  validated reconciliation, not just a narrative reframe. "Elevated financial risk" was folded into
+  BIDZ's margin crisis and NDE/TVZ's capital structure instead, both grounded in figures that were
+  already there.
+- **financials.json is untouched for all 20 companies** (verified: `git diff --stat` on every
+  `financials.json` shows no changes) — every scenario fact is copied from a number already
+  computed in Phase 5, so Phase 7's numeric-consistency gate needed no changes to keep passing.
+- Narrative was retrofitted into the 13 non-baseline companies' `item_1.txt`/`item_1a.txt`/
+  `item_7.txt`/`item_8.txt` (not all 4 files for every company — several were left untouched where
+  the existing content already covered the scenario well enough that forcing an edit would have
+  been redundant), via 4 parallel sub-agents grouped by scenario similarity (M&A trio; tech-sector
+  trio; regulated-industry quartet; balance-sheet-story trio), the same fork-based process Phase 6
+  used. Every edit was a pure insertion or an in-place reattribution of an *existing* number's
+  stated cause — no dollar figure or percentage was changed anywhere.
+- **Verified independently** (not just trusting each sub-agent's self-report, per the same
+  discipline as Phase 6): re-ran `src.step09_validate_filings` after all 4 sub-agents finished —
+  373 checks, 0 failures, across all 20 companies. Spot-checked several of the trickiest edits by
+  hand (PRG and FTC's Liquidity-paragraph reattribution, GKRH's new risk paragraph, NDE/TVZ's
+  capital-structure framing) and confirmed they read naturally and match their intended tone.
+  Checked the 4 new fictional entities (3 acquired companies, 1 product name) against all 503 real
+  S&P 500 names for collisions: none found.
+- **New automatic gate added to Phase 7** (`src/step09_validate_filings.py`'s
+  `scenario_grounding` check): for every non-baseline company, confirms its scenario is actually
+  grounded somewhere in Items 1/1A/7/8, not just recorded in `spec.json`. M&A and product-launch
+  scenarios are checked by exact string match on the acquired company's or product's name; the rest
+  are checked by keyword (e.g. "consent order," "rate case," "repurchase"), since there's no single
+  proper noun to anchor on for something like a regulatory pricing change. All 13 pass.
 
 ### Phase 5: Compute financial statements, don't write them — done
 
@@ -268,41 +389,218 @@ a real-data benchmark.
 - A failing filing gets one regeneration. If it still fails, it is dropped and logged. Hasn't come
   up yet: nothing has failed.
 
-### Phase 8: Same layout as the real corpus
+### Phase 8: Same layout as the real corpus — done
 
-- `data/synthetic/{fictional_id}/{fy}/item_*.txt`, with index rows marked `source = synthetic`.
-  The same index and retrieval code then works on both corpora.
+- `src.step03_build_index` now appends `data/synthetic/{fictional_id}/{fy}/item_*.txt` to the same
+  `data/index.csv` it already built from the real corpus, instead of a separate file. A new
+  `source` column (`real` or `synthetic`) is the only schema change; `cik`, `filing_date`, and
+  `accession_number` are blank on synthetic rows since there's no real-world equivalent. Result:
+  829 rows (729 real + 100 synthetic — 20 companies x 5 items). Retrieval code (Phase 9) can
+  select, mix, or compare the two corpora by filtering on `source` rather than needing two
+  indexes or two code paths.
+- Re-run `step03_build_index` after the synthetic corpus changes, not just after the real one —
+  it's not implicitly triggered by `step06`-`step09`.
 
-### Phase 9: QA and retrieval evaluation
+### Phase 9: QA and retrieval evaluation — done
 
-- Synthetic filings: the spec holds the true values, so QA pairs can have exact answers and gold
-  passage locations.
-- Real filings: generate questions with a model, then check that each answer span appears in the
-  text.
-- Retrievers: BM25, dense embeddings, and hybrid (reciprocal rank fusion).
-- Metrics: recall@k, MRR, nDCG@10.
-- Experiments: synthetic only, real only, and mixed.
+- **Chunking (`src/chunks.py`), shared by QA generation and retrieval.** A chunk is one
+  blank-line-separated block of an item file — the same unit `step10_build_pdfs.tableize()`
+  operates on, so a financial-statement table (heading + rows, no blank lines between them) falls
+  out as one chunk rather than being split mid-table. `load_chunks()` filters at the index-row
+  level (`sources`/`tickers`) before reading any file, not after — the real corpus alone is ~730
+  rows including items over 100,000 words, so filtering after reading cost minutes the first time
+  this was built the naive way.
+- **QA generation (`src/step11_make_qa.py`) — `data/qa_pairs.csv`, 130 rows (118 synthetic, 12
+  real).** Every row has a `style`: `factual` (a single figure or named entity — 115 rows) or
+  `analytical` (why something happened, or what it implies — 15 rows). Analytical questions are
+  grounded exactly the same way as factual ones (a chunk search, verified at generation time,
+  never a paraphrase); the difference is the question requires reading a passage that connects a
+  cause to an effect, not locating a labeled figure.
+  - *Synthetic, fully deterministic, no model call.* Every answer is a value already in that
+    company's `financials.json` or `spec.json` scenario (Phase 4.5). The gold chunk and exact
+    answer span are found by scanning the company's own chunks with `step09_validate_filings`'s
+    own figure-extraction and tolerance-matching logic (`extract_figures`, `closest_match`) — so a
+    financial-fact answer is guaranteed to be a verbatim substring of its gold chunk by
+    construction, not by a separate check. Four **factual** question types: revenue, net income,
+    total assets, net margin (+ operating margin where `operating_income` exists — 16/20
+    companies); plus, for the 13 non-baseline companies, a factual scenario question (the
+    acquired company's name, the purchase price, or the launched product's name).
+  - **Analytical questions, added after the first pass read as pure factoid lookups** (revenue,
+    margin, "what company did X acquire") with no question requiring synthesis. Three kinds, all
+    grounded by verifying the exact phrase or keyword is actually present at generation time, same
+    rigor as every other question in this file:
+    - *Rephrased scenario questions* (9 keyword-grounded types, e.g. "Why did {company}'s margins
+      compress to historically thin levels in fiscal {fy}?" instead of "What type of rate pressure
+      did {company} cite…"). Same grounding and answer as before, reframed as a cause, not a
+      category label.
+    - *Risk-implication questions*, newly grounded in each company's Item 1A risk factors (not
+      reused from an existing chunk): the 3 M&A companies and the 1 product-launch company each
+      have a risk paragraph reading "We may not realize the anticipated/expected benefits of our
+      acquisition/launch of X…" — verified present in all 4 before use, not assumed from the
+      M&A/product-launch narrative pattern elsewhere.
+    - *Severity-synthesis questions*, for the 2 scenario types (`margin_crisis` — BIDZ,
+      `cash_burn` — WJE) where the narrative happens to state the scenario's driver and its
+      financial-statement outcome in the *same* paragraph — checked per company, not assumed from
+      the scenario type; no other scenario type had this co-location. The answer is the
+      qualitative severity phrase the narrative itself uses ("thinnest margins",
+      "ahead of sustained profitability"), not a bare percentage, so answering requires reading
+      past the figures to the sentence that characterizes them.
+  - Hit rate: every one of these generates deterministically from facts already verified present;
+    0 silent failures.
+  - *Real, hand-authored, not model-generated.* "Generate questions with a model" above originally
+    meant calling the Claude API; there's no `ANTHROPIC_API_KEY` configured (same gap as Phase 6 —
+    `step08_generate_filings.py` is a placeholder for that reason), and reading whole real filings
+    to write questions would mean ingesting 100,000+ words for the larger ones. Instead: grep-based
+    short excerpts (a paragraph or two, not the whole item) from the same 6-company template sample
+    Phase 7's model-judged review already used (AEP/FY2025, BEN/FY2024, USB/FY2025, CVS/FY2024,
+    NOC/FY2025, CRWD/FY2025), 2 hand-written questions each. Every answer is checked against the
+    actual chunked text at generation time — the script hard-fails (`SystemExit`) if one isn't
+    found verbatim — which is what "check that each answer span appears in the text" means here.
+  - *Known simplification:* each question records exactly one `gold_chunk_id`, even if the same
+    figure happens to be restated in a second chunk (a prose sentence and a table row, say).
+    Retrieval of that second, unrecorded chunk would be scored as a miss. Not corrected for; the
+    effect is to slightly understate recall, not overstate it.
+- **Retrieval (`src/retrieval.py`) and evaluation (`src/step12_evaluate_retrievers.py`) —
+  `data/retrieval_eval.csv`.**
+  - **BM25** via `rank-bm25`. **Semantic**: real sentence embeddings via `fastembed` (ONNX Runtime,
+    no torch) with `minishlab/potion-retrieval-32M`, a *static* embedding model distilled from a
+    larger transformer (Model2Vec) — embedding is a token lookup plus pooling, not a transformer
+    forward pass, so it's genuinely semantic without per-query transformer inference cost. Cosine
+    similarity over L2-normalized vectors, plain numpy. **Hybrid**: reciprocal rank fusion of the
+    two (`k=60`).
+  - **Calibration note, round 1 (vocabulary determinism):** an early version used a TF-IDF "dense"
+    retriever instead (log-scaled term frequency x log IDF, capped at an 8,000-term vocabulary) —
+    not a neural embedding, since `sentence-transformers` (pulls in `torch`) was tried first and
+    timed out after 3 minutes in this sandboxed environment with no prior download cache. That
+    TF-IDF version picked its vocabulary via `Counter.most_common()`, which breaks count ties by
+    first-insertion order into the counter — an order that depended on `set(tokens)`'s
+    hash-randomized iteration, so two runs over the *identical* corpus produced slightly different
+    vocabularies and therefore slightly different recall/MRR each run. Fixed at the time by sorting
+    candidates by `(-count, term)` explicitly; verified by diffing two full runs byte-for-byte.
+  - **Calibration note, round 2 (replacing TF-IDF with a real embedding model):** TF-IDF worked but
+    was lexical, not semantic, and it collapsed badly on the real corpus (recall@5 0.08 — see the
+    superseded numbers this replaced, in git history). Revisited after torch was ruled out:
+    `fastembed` needs only ONNX Runtime (~20MB) and was tried with its default transformer model,
+    `BAAI/bge-small-en-v1.5` — installs fine, but measured at ~9 texts/second on this machine's 16
+    cores. The real 6-company sample alone chunks into ~60,000 paragraphs (`real_only` and `mixed`
+    both embed it), which would take roughly two hours at that rate. Switched to
+    `minishlab/potion-retrieval-32M` (a static, non-transformer embedding model): ~1,900
+    texts/second on the same corpus, under a minute end to end, with comparable semantic
+    separation in a spot check (query-answer cosine 0.62 vs. query-unrelated-text cosine 0.03). Hit
+    one more snag along the way: `fastembed==0.9.0` declares `huggingface-hub<2.0` but imports an
+    internal module (`_snapshot_download`) that huggingface-hub removed in its 1.x release, so a
+    plain `pip install fastembed` resolved huggingface-hub 1.33.0 and broke on import; fixed by
+    pinning `huggingface-hub==0.36.2` in `requirements.txt`.
+  - **Metrics:** recall@5, recall@10, MRR, nDCG@10 (binary relevance, one gold chunk per question).
+  - **Experiments.** `synthetic_only` (118 Qs against the 20 synthetic companies' chunks),
+    `real_only` (12 Qs against the same 6 real sample companies' chunks — not all 50 real
+    companies/150 filings, which would mean embedding on the order of 500,000 paragraphs), `mixed`
+    (all 130 Qs against the union of both).
+  - **Result** (`data/retrieval_eval.csv`):
 
-### Phase 10: Synthetic-vs-real gap report
+    | experiment | retriever | n | recall@5 | recall@10 | MRR | nDCG@10 |
+    |---|---|---|---|---|---|---|
+    | synthetic_only | bm25 | 118 | 0.49 | 0.57 | 0.44 | 0.46 |
+    | synthetic_only | semantic | 118 | 0.50 | 0.54 | 0.40 | 0.43 |
+    | synthetic_only | hybrid_rrf | 118 | 0.48 | 0.56 | 0.44 | 0.46 |
+    | real_only | bm25 | 12 | 0.50 | 0.58 | 0.29 | 0.36 |
+    | real_only | semantic | 12 | 0.33 | 0.33 | 0.21 | 0.23 |
+    | real_only | hybrid_rrf | 12 | 0.33 | 0.42 | 0.23 | 0.27 |
+    | mixed | bm25 | 130 | 0.48 | 0.49 | 0.40 | 0.42 |
+    | mixed | semantic | 130 | 0.45 | 0.45 | 0.35 | 0.38 |
+    | mixed | hybrid_rrf | 130 | 0.46 | 0.48 | 0.40 | 0.42 |
 
-- Compare section lengths, vocabulary overlap, number distributions, and BM25 score distributions.
-- Check whether the retriever ranking on synthetic matches the ranking on real. If it does,
-  synthetic data is a valid proxy for the real benchmark. If not, the report says so.
+    (Adding the 6 analytical questions in the "diversity" revision below shifted these by a point
+    or two — e.g. synthetic_only's recall@5 ordering between bm25 and semantic flips — but not the
+    qualitative story: BM25 still edges out the semantic retriever on `real_only`, and the full
+    ranking agreement in Phase 10 below is unaffected.)
+
+    BM25 beats the semantic retriever on all three experiments, but nowhere near as dramatically as
+    TF-IDF's collapse on `real_only` (0.50 vs. 0.33 recall@5, not 0.50 vs. 0.08) — a real embedding
+    model generalizes far better to the real corpus's longer, more varied documents than a
+    fixed-vocabulary lexical vector did, even though it's still a lighter, distilled model rather
+    than a full transformer encoder. BM25's edge makes sense for this task specifically: the QA
+    pairs are precise fact lookups (a dollar figure, a company name, a date), where exact lexical
+    matching is a strong baseline, and a static embedding model trades some of a full encoder's
+    nuance for its ~200x speed advantage. Hybrid RRF again sits at or slightly below BM25 alone —
+    equal-weight fusion with a second ranking that's consistently weaker pulls the combined result
+    down, not up. Take the `real_only` numbers directionally, not precisely: n=12 means one
+    question's outcome moves recall@5 by ~8 points. None of this is Phase 10's synthetic-vs-real
+    comparison (which asks whether a *ranking* agrees across corpora, a different question) — that's
+    still open.
+
+### Phase 10: Synthetic-vs-real gap report — done
+
+`src/step13_gap_report.py` writes `data/gap_report.csv`, 12 rows across the four comparisons below.
+Comparisons 2 and 3 scan the *full* real corpus (729 rows, ~10.8M words), not the 6-company
+sample everywhere else in Phase 9/10 — a streaming word/figure count needs no matrix, unlike the
+dense-vector corpus, so there was no reason to bound it. Comparisons 1 and 4 reuse data Phase 8/9
+already produced (`data/index.csv`, `data/retrieval_eval.csv`) rather than recomputing anything.
+
+1. **Section length** (`data/index.csv`'s own `words` column, median per item): synthetic is
+   3.6%-31.2% of real's median length per item (Item 1C, the shortest and most boilerplate section
+   in both corpora, is closest at 31.2%; Item 8, where real filings carry pages of footnotes
+   synthetic never generates, is furthest at 1.6%). Not a new finding — this is the condensation
+   Phase 6 already documented as a deliberate choice, just quantified precisely for the first time
+   here, per-item rather than as one qualitative note.
+2. **Vocabulary overlap** (Jaccard over each corpus's 3,000 most frequent tokens): 0.404 symmetric
+   Jaccard; 67.1% of synthetic's top-3,000 terms also appear in real's top-3,000. The asymmetry
+   makes sense — synthetic's narrative was written from real exemplars as templates, so its
+   (much smaller) vocabulary is largely a subset of real's; real's top terms include large amounts
+   of real-filing-specific and numeric vocabulary (subsidiary names, exhibit cross-references,
+   boilerplate legal phrasing) that condensed synthetic narrative never needed.
+3. **Number distributions** (every dollar/percent figure found by `step09_validate_filings`'s own
+   `extract_figures`, across every file): synthetic states **more** numbers per 1,000 words than
+   real (4.02 vs. 1.48 dollar figures; 3.09 vs. 1.75 percent figures) — expected, since Phase 6's
+   narrative was deliberately written to state and restate the key statement figures the validation
+   gate checks, where real MD&A spends much more prose on qualitative discussion between numbers.
+   Median dollar magnitude differs sharply ($429M real vs. $2,126M synthetic) and median percent
+   value even more so (100.0% real vs. 23.8% synthetic) — read both with a caveat, not as a deep
+   semantic gap: real's figure *count* is dominated by small, incidental numbers across 10.8M words
+   (per-share amounts, headcounts, ownership-table rows), and real's 100.0% median percent in
+   particular looks like an artifact of how common exact "100%" entries are in real
+   percentage-of-total tables (the same reason `step09_validate_filings.UNIVERSAL_PERCENTS`
+   excludes 0%/100%/21% from its own matching), not a sign real filings "run near 100% margins."
+   Synthetic's narrower, curated set of figures (financial-statement totals, margins, tax rates)
+   skews toward company-scale totals and meaningful ratios instead.
+4. **BM25 score distribution and retriever ranking agreement** (reusing Phase 9's `Bm25Retriever`
+   and `data/retrieval_eval.csv`): median top-1 BM25 score is 23.97 (real sample, n=12) vs. 18.64
+   (synthetic, n=118) — not directly comparable in absolute terms, since BM25's IDF term depends on
+   each corpus's own size and term statistics, and the real sample's 6 companies chunk into far more
+   paragraphs than all 20 synthetic companies combined. The more decision-relevant question is
+   retriever **ranking**: by recall@10, both `synthetic_only` and `real_only` rank retrievers the
+   same way — `[bm25, hybrid_rrf, semantic]` — **the full three-way order agrees**, not just the top
+   choice. (With the superseded TF-IDF retriever, only the top choice agreed; the full order didn't
+   — see the Phase 9 "Calibration note, round 2" above. Swapping in a real embedding model changed
+   this result, not just the retriever's own numbers.)
+
+**Verdict:** synthetic is a reasonable proxy for *which retriever to pick* — here, the full ranking
+agrees, not just the top choice — and for exercising the retrieval/evaluation pipeline end to end.
+It is not a proxy for realistic document length, numeric density, or absolute retrieval-score
+magnitude — all three differ by a large, now-quantified margin. Anyone using this corpus for
+retriever benchmarking should treat synthetic results as directional for retriever choice, not as
+an estimate of real-world recall or score values.
 
 ### Command sequence (once built)
 
 ```
 python -m src.step01_download_10k          # done
 python -m src.step02_parse_sections        # done (Phase 1 / step 3)
-python -m src.step03_build_index           # done (Phase 2 / step 4)
+python -m src.step03_build_index           # done (Phase 2 / step 4; real rows only at this point)
 python -m src.step04_fetch_companyfacts    # done (Phase 2 / step 5)
 python -m src.step05_make_calibration      # done (Phase 3)
 python -m src.step06_make_specs            # done (Phase 4)
+python -m src.step06b_add_scenarios        # done (Phase 4.5)
 python -m src.step07_make_financials       # done (Phase 5)
 python -m src.step08_generate_filings  # built, placeholder (Phase 6; see above)
 python -m src.step09_validate_filings  # done: 0 failures, 20 companies (Phase 7)
-python -m src.step10_make_qa           # not built yet (Phase 9)
-python -m src.step11_evaluate_retrievers  # not built yet (Phase 9)
+python -m src.step03_build_index           # re-run: done (Phase 8; now adds the 100 synthetic rows)
+python -m src.step10_build_pdfs        # done (ad hoc; renders each filing to a standalone PDF)
+python -m src.step11_make_qa           # done: 130 QA pairs (Phase 9)
+python -m src.step12_evaluate_retrievers  # done: data/retrieval_eval.csv (Phase 9)
+python -m src.step13_gap_report        # done: data/gap_report.csv (Phase 10)
+python -m src.step14_privacy_check     # done: data/privacy_report.csv (Phase 11)
+python -m src.step15_build_dashboard   # done: dashboard/index.html (ad hoc; embeds the 5 result CSVs)
 ```
 
 ### Risks
@@ -328,9 +626,18 @@ python -m src.step11_evaluate_retrievers  # not built yet (Phase 9)
    companies x sections.
 4. **Calibration scope — resolved:** generic calibration, generic fictional companies (not
    fictional banks). See Phase 3 and "Calibration profile" above.
-5. **Embedding model:** which model for the dense retriever?
+5. **Embedding model — resolved:** `fastembed` (ONNX Runtime, no torch) with
+   `minishlab/potion-retrieval-32M`, a static embedding model distilled from a larger transformer —
+   `sentence-transformers` (pulls in `torch`) timed out installing, and fastembed's own default
+   transformer model was too slow at the real corpus's scale (~9 texts/second would mean ~2 hours
+   for the real sample alone). See Phase 9.
 6. **Sharing the raw data — resolved:** published as a public GitHub Release asset
-   (`data-v1`, `sec10k_raw_fy2023-2025.tar.gz` + a SHA-256 manifest).
+   (`data-v1`, `sec10k_raw_fy2023-2025.tar.gz` + a SHA-256 manifest). `data/companyfacts/*.json`
+   (184MB, git-ignored for the same reason) is shared the same way: `companyfacts-v1`,
+   `sec10k_companyfacts.tar.gz` (13MB gzipped) + `manifest.sha256` inside the tarball +
+   `SHA256SUMS.txt` of the tarball itself — `gh release download companyfacts-v1 -R
+   dylanwang2111/synthetic-data-bootcamp -p "sec10k_companyfacts.tar.gz"`, then
+   `tar -xzf sec10k_companyfacts.tar.gz -C data`.
 7. **Repository visibility — resolved:** the GitHub repo is public; confirmed intended.
 8. **Leftover folders:** `data/raw/` now has two generations of superseded company-years that are
    deliberately left alone (not deleted, not reparsed, not in `config.yaml`'s company list):
@@ -347,12 +654,14 @@ python -m src.step11_evaluate_retrievers  # not built yet (Phase 9)
 
 - **M1 — done:** parser runs on all 50 companies x 3 years; exceptions are in
   `data/parse_status.csv` (5 short, 6 missing out of 735 sections, all explained above).
-- **M2 — done:** index (729 rows), companyfacts (50/50 companies), and `calibration.json`
-  (147 company-years, 12 metrics).
+- **M2 — done:** index (729 real rows at the time; 829 after Phase 8 added the synthetic ones),
+  companyfacts (50/50 companies), and `calibration.json` (147 company-years, 12 metrics).
 - **M3 — done:** 20 fictional company specs (Phase 4) and their full balance sheet, income
   statement, and cash-flow tables (Phase 5) are built, with every subtotal and identity checked.
 - **M4/M5 — done:** all 20 fictional companies' narrative written and validated against Phase 7's
   automatic gates (`src.step09_validate_filings`, 0 failures) and a model-judged realism pass on a
   6-company sample (see Phase 7). Human review of about 10 filings is the one Phase 7 item still
   open.
-- **M6:** QA, retrieval evaluation, and gap report.
+- **M6 — done:** QA and retrieval evaluation (Phase 9, 130 QA pairs) and the synthetic-vs-real gap
+  report (Phase 10) are both complete. Every planned phase is now done except Phase 7's human
+  review of about 10 filings, which needs an actual person.

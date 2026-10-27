@@ -1,0 +1,131 @@
+qa_id,source,ticker,fiscal_year,item,style,question,answer,gold_chunk_id
+qa_0000,synthetic,BAI,2025,1,factual,What were Northbridge Technologies Inc.'s total revenues for fiscal 2025?,"$16,233.4 million",BAI_2025_1_2
+qa_0001,synthetic,BAI,2025,7,factual,What was Northbridge Technologies Inc.'s net income for fiscal 2025?,"$2,809.4 million",BAI_2025_7_1
+qa_0002,synthetic,BAI,2025,8,factual,What were Northbridge Technologies Inc.'s total assets as of the end of fiscal 2025?,"$99,984.7",BAI_2025_8_3
+qa_0003,synthetic,BAI,2025,7,factual,What was Northbridge Technologies Inc.'s net margin for fiscal 2025?,17.3%,BAI_2025_7_1
+qa_0004,synthetic,BAI,2025,7,factual,What was Northbridge Technologies Inc.'s operating margin for fiscal 2025?,25.2%,BAI_2025_7_1
+qa_0005,synthetic,BAI,2025,1,analytical,Why did Northbridge Technologies Inc. fall short of recovering its full requested costs in fiscal 2025?,rate increase,BAI_2025_1_4
+qa_0006,synthetic,BIDZ,2025,1,factual,"What were Clearwater Technologies Group, Inc.'s total revenues for fiscal 2025?","$417,964.5 million",BIDZ_2025_1_2
+qa_0007,synthetic,BIDZ,2025,7,factual,"What was Clearwater Technologies Group, Inc.'s net income for fiscal 2025?","$1,840.9 million",BIDZ_2025_7_1
+qa_0008,synthetic,BIDZ,2025,8,factual,"What were Clearwater Technologies Group, Inc.'s total assets as of the end of fiscal 2025?","$238,329.8",BIDZ_2025_8_3
+qa_0009,synthetic,BIDZ,2025,1A,factual,"What was Clearwater Technologies Group, Inc.'s net margin for fiscal 2025?",0.4%,BIDZ_2025_1A_1
+qa_0010,synthetic,BIDZ,2025,1A,factual,"What was Clearwater Technologies Group, Inc.'s operating margin for fiscal 2025?",1.1%,BIDZ_2025_1A_1
+qa_0011,synthetic,BIDZ,2025,1A,analytical,"Why did Clearwater Technologies Group, Inc.'s margins compress to historically thin levels in fiscal 2025?",reimbursement,BIDZ_2025_1A_1
+qa_0012,synthetic,BIDZ,2025,1A,analytical,"How severe does Clearwater Technologies Group, Inc. describe its fiscal 2025 margin compression?",thinnest margins,BIDZ_2025_1A_1
+qa_0013,synthetic,CRJ,2024,1,factual,"What were Meridian Sciences Group, Inc.'s total revenues for fiscal 2024?","$22,156.0 million",CRJ_2024_1_2
+qa_0014,synthetic,CRJ,2024,7,factual,"What was Meridian Sciences Group, Inc.'s net income for fiscal 2024?","$3,680.5 million",CRJ_2024_7_1
+qa_0015,synthetic,CRJ,2024,8,factual,"What were Meridian Sciences Group, Inc.'s total assets as of the end of fiscal 2024?","$107,179.5",CRJ_2024_8_3
+qa_0016,synthetic,CRJ,2024,7,factual,"What was Meridian Sciences Group, Inc.'s net margin for fiscal 2024?",16.6%,CRJ_2024_7_1
+qa_0017,synthetic,CRJ,2024,7,factual,"What was Meridian Sciences Group, Inc.'s operating margin for fiscal 2024?",22.0%,CRJ_2024_7_1
+qa_0018,synthetic,EASS,2025,1,factual,"What were Cedarfield Systems Holdings, Inc.'s total revenues for fiscal 2025?","$16,028.3 million",EASS_2025_1_2
+qa_0019,synthetic,EASS,2025,7,factual,"What was Cedarfield Systems Holdings, Inc.'s net income for fiscal 2025?","$1,036.4 million",EASS_2025_7_1
+qa_0020,synthetic,EASS,2025,8,factual,"What were Cedarfield Systems Holdings, Inc.'s total assets as of the end of fiscal 2025?","$23,516.8",EASS_2025_8_3
+qa_0021,synthetic,EASS,2025,7,factual,"What was Cedarfield Systems Holdings, Inc.'s net margin for fiscal 2025?",6.5%,EASS_2025_7_1
+qa_0022,synthetic,EASS,2025,1,factual,"What company did Cedarfield Systems Holdings, Inc. acquire during fiscal 2025?",Thornridge Packaging Corp.,EASS_2025_1_6
+qa_0023,synthetic,EASS,2025,7,factual,"How much did Cedarfield Systems Holdings, Inc. pay to acquire Thornridge Packaging Corp.?",$249.7 million,EASS_2025_7_7
+qa_0024,synthetic,EASS,2025,1A,analytical,"What integration risk does Cedarfield Systems Holdings, Inc. face following its acquisition of Thornridge Packaging Corp.?",may not realize the anticipated benefits,EASS_2025_1A_8
+qa_0025,synthetic,FAI,2025,1,factual,"What were Stonegate Logistics Holdings, Inc.'s total revenues for fiscal 2025?","$12,763.5 million",FAI_2025_1_1
+qa_0026,synthetic,FAI,2025,7,factual,"What was Stonegate Logistics Holdings, Inc.'s net income for fiscal 2025?","$1,096.7 million",FAI_2025_7_1
+qa_0027,synthetic,FAI,2025,8,factual,"What were Stonegate Logistics Holdings, Inc.'s total assets as of the end of fiscal 2025?","$14,405.6",FAI_2025_8_3
+qa_0028,synthetic,FAI,2025,7,factual,"What was Stonegate Logistics Holdings, Inc.'s net margin for fiscal 2025?",8.6%,FAI_2025_7_1
+qa_0029,synthetic,FAI,2025,7,factual,"What was Stonegate Logistics Holdings, Inc.'s operating margin for fiscal 2025?",10.5%,FAI_2025_7_1
+qa_0030,synthetic,FTC,2024,1,factual,"What were Oakridge Capital Holdings, Inc.'s total revenues for fiscal 2024?","$9,553.3 million",FTC_2024_1_1
+qa_0031,synthetic,FTC,2024,7,factual,"What was Oakridge Capital Holdings, Inc.'s net income for fiscal 2024?",$564.4 million,FTC_2024_7_1
+qa_0032,synthetic,FTC,2024,8,factual,"What were Oakridge Capital Holdings, Inc.'s total assets as of the end of fiscal 2024?","$32,933.5",FTC_2024_8_3
+qa_0033,synthetic,FTC,2024,7,factual,"What was Oakridge Capital Holdings, Inc.'s net margin for fiscal 2024?",5.9%,FTC_2024_7_1
+qa_0034,synthetic,FTC,2024,7,factual,"What was Oakridge Capital Holdings, Inc.'s operating margin for fiscal 2024?",4.3%,FTC_2024_7_1
+qa_0035,synthetic,FTC,2024,1,factual,"What company did Oakridge Capital Holdings, Inc. acquire during fiscal 2024?","Carrowgate Capital Partners, Inc.",FTC_2024_1_5
+qa_0036,synthetic,FTC,2024,7,factual,"How much did Oakridge Capital Holdings, Inc. pay to acquire Carrowgate Capital Partners, Inc.?","$2,211.2 million",FTC_2024_7_7
+qa_0037,synthetic,FTC,2024,1A,analytical,"What integration risk does Oakridge Capital Holdings, Inc. face following its acquisition of Carrowgate Capital Partners, Inc.?",may not realize the anticipated benefits,FTC_2024_1A_5
+qa_0038,synthetic,GKRH,2025,1,factual,What were Cedarfield Materials Corp.'s total revenues for fiscal 2025?,"$25,195.1 million",GKRH_2025_1_1
+qa_0039,synthetic,GKRH,2025,7,factual,What was Cedarfield Materials Corp.'s net income for fiscal 2025?,"$6,786.0 million",GKRH_2025_7_1
+qa_0040,synthetic,GKRH,2025,8,factual,What were Cedarfield Materials Corp.'s total assets as of the end of fiscal 2025?,"$503,902.0",GKRH_2025_8_3
+qa_0041,synthetic,GKRH,2025,7,factual,What was Cedarfield Materials Corp.'s net margin for fiscal 2025?,26.9%,GKRH_2025_7_1
+qa_0042,synthetic,GKRH,2025,1,analytical,Why did Cedarfield Materials Corp.'s compliance-related costs increase during fiscal 2025?,consent order,GKRH_2025_1_5
+qa_0043,synthetic,GOG,2023,1,factual,"What were Riverton Partners Holdings, Inc.'s total revenues for fiscal 2023?","$2,925.9 million",GOG_2023_1_2
+qa_0044,synthetic,GOG,2023,1A,factual,"What was Riverton Partners Holdings, Inc.'s net income for fiscal 2023?",$64.7 million,GOG_2023_1A_1
+qa_0045,synthetic,GOG,2023,8,factual,"What were Riverton Partners Holdings, Inc.'s total assets as of the end of fiscal 2023?","$5,169.9",GOG_2023_8_3
+qa_0046,synthetic,GOG,2023,7,factual,"What was Riverton Partners Holdings, Inc.'s net margin for fiscal 2023?",2.2%,GOG_2023_7_1
+qa_0047,synthetic,GOG,2023,1A,factual,"What was Riverton Partners Holdings, Inc.'s operating margin for fiscal 2023?",negative 1.8%,GOG_2023_1A_1
+qa_0048,synthetic,GOG,2023,1,factual,"What new product did Riverton Partners Holdings, Inc. launch during fiscal 2023?",SentinelFlow,GOG_2023_1_2
+qa_0049,synthetic,GOG,2023,1A,analytical,"What risk does Riverton Partners Holdings, Inc. face related to its launch of SentinelFlow?",may not realize the expected benefits,GOG_2023_1A_7
+qa_0050,synthetic,HZP,2025,1,factual,What were Stonegate Sciences Corp.'s total revenues for fiscal 2025?,"$2,711.8 million",HZP_2025_1_2
+qa_0051,synthetic,HZP,2025,1A,factual,What was Stonegate Sciences Corp.'s net income for fiscal 2025?,$92.5 million,HZP_2025_1A_1
+qa_0052,synthetic,HZP,2025,8,factual,What were Stonegate Sciences Corp.'s total assets as of the end of fiscal 2025?,"$4,660.7",HZP_2025_8_3
+qa_0053,synthetic,HZP,2025,7,factual,What was Stonegate Sciences Corp.'s net margin for fiscal 2025?,3.4%,HZP_2025_7_1
+qa_0054,synthetic,HZP,2025,1A,factual,What was Stonegate Sciences Corp.'s operating margin for fiscal 2025?,negative 1.2%,HZP_2025_1A_1
+qa_0055,synthetic,HZP,2025,1,analytical,Why did Stonegate Sciences Corp.'s operating margin come under pressure during fiscal 2025?,migrated,HZP_2025_1_8
+qa_0056,synthetic,JFG,2024,1,factual,"What were Fieldstone Resources Holdings, Inc.'s total revenues for fiscal 2024?","$5,668.4 million",JFG_2024_1_1
+qa_0057,synthetic,JFG,2024,7,factual,"What was Fieldstone Resources Holdings, Inc.'s net income for fiscal 2024?",$795.0 million,JFG_2024_7_1
+qa_0058,synthetic,JFG,2024,8,factual,"What were Fieldstone Resources Holdings, Inc.'s total assets as of the end of fiscal 2024?","$4,038.1",JFG_2024_8_3
+qa_0059,synthetic,JFG,2024,7,factual,"What was Fieldstone Resources Holdings, Inc.'s net margin for fiscal 2024?",14.0%,JFG_2024_7_1
+qa_0060,synthetic,JFG,2024,7,factual,"What was Fieldstone Resources Holdings, Inc.'s operating margin for fiscal 2024?",17.6%,JFG_2024_7_1
+qa_0061,synthetic,KMW,2024,1,factual,What were Northbridge Technologies Corp.'s total revenues for fiscal 2024?,"$414,916.9 million",KMW_2024_1_2
+qa_0062,synthetic,KMW,2024,7,factual,What was Northbridge Technologies Corp.'s net income for fiscal 2024?,"$5,369.5 million",KMW_2024_7_1
+qa_0063,synthetic,KMW,2024,8,factual,What were Northbridge Technologies Corp.'s total assets as of the end of fiscal 2024?,"$320,472.8",KMW_2024_8_3
+qa_0064,synthetic,KMW,2024,1A,factual,What was Northbridge Technologies Corp.'s net margin for fiscal 2024?,1.3%,KMW_2024_1A_1
+qa_0065,synthetic,KMW,2024,1A,factual,What was Northbridge Technologies Corp.'s operating margin for fiscal 2024?,2.3%,KMW_2024_1A_1
+qa_0066,synthetic,KMW,2024,1,analytical,Why did regulatory changes affect Northbridge Technologies Corp.'s margins during fiscal 2024?,pharmacy benefit,KMW_2024_1_1
+qa_0067,synthetic,NDE,2025,1,factual,What were Harborview Logistics Corp.'s total revenues for fiscal 2025?,"$19,030.6 million",NDE_2025_1_2
+qa_0068,synthetic,NDE,2025,7,factual,What was Harborview Logistics Corp.'s net income for fiscal 2025?,"$2,682.2 million",NDE_2025_7_1
+qa_0069,synthetic,NDE,2025,1A,factual,What were Harborview Logistics Corp.'s total assets as of the end of fiscal 2025?,"$22,402.2 million",NDE_2025_1A_5
+qa_0070,synthetic,NDE,2025,7,factual,What was Harborview Logistics Corp.'s net margin for fiscal 2025?,14.1%,NDE_2025_7_1
+qa_0071,synthetic,NDE,2025,7,factual,What was Harborview Logistics Corp.'s operating margin for fiscal 2025?,20.8%,NDE_2025_7_1
+qa_0072,synthetic,NDE,2025,1A,analytical,What is driving Harborview Logistics Corp.'s elevated financial leverage?,repurchase,NDE_2025_1A_5
+qa_0073,synthetic,PKPM,2025,1,factual,What were Harborview Partners Corp.'s total revenues for fiscal 2025?,"$4,533.8 million",PKPM_2025_1_2
+qa_0074,synthetic,PKPM,2025,7,factual,What was Harborview Partners Corp.'s net income for fiscal 2025?,$832.7 million,PKPM_2025_7_1
+qa_0075,synthetic,PKPM,2025,8,factual,What were Harborview Partners Corp.'s total assets as of the end of fiscal 2025?,"$8,666.0",PKPM_2025_8_3
+qa_0076,synthetic,PKPM,2025,7,factual,What was Harborview Partners Corp.'s net margin for fiscal 2025?,18.4%,PKPM_2025_7_1
+qa_0077,synthetic,PKPM,2025,7,factual,What was Harborview Partners Corp.'s operating margin for fiscal 2025?,24.3%,PKPM_2025_7_1
+qa_0078,synthetic,PRG,2024,1,factual,What were Amberwood Technologies Corp.'s total revenues for fiscal 2024?,"$5,825.6 million",PRG_2024_1_6
+qa_0079,synthetic,PRG,2024,7,factual,What was Amberwood Technologies Corp.'s net income for fiscal 2024?,"$1,294.2 million",PRG_2024_7_1
+qa_0080,synthetic,PRG,2024,8,factual,What were Amberwood Technologies Corp.'s total assets as of the end of fiscal 2024?,"$23,034.1",PRG_2024_8_3
+qa_0081,synthetic,PRG,2024,7,factual,What was Amberwood Technologies Corp.'s net margin for fiscal 2024?,22.2%,PRG_2024_7_1
+qa_0082,synthetic,PRG,2024,7,factual,What was Amberwood Technologies Corp.'s operating margin for fiscal 2024?,24.6%,PRG_2024_7_1
+qa_0083,synthetic,PRG,2024,1,factual,What company did Amberwood Technologies Corp. acquire during fiscal 2024?,"Dunmore Technologies, Inc.",PRG_2024_1_8
+qa_0084,synthetic,PRG,2024,7,factual,"How much did Amberwood Technologies Corp. pay to acquire Dunmore Technologies, Inc.?","$2,943.0 million",PRG_2024_7_7
+qa_0085,synthetic,PRG,2024,1A,analytical,"What integration risk does Amberwood Technologies Corp. face following its acquisition of Dunmore Technologies, Inc.?",may not realize the anticipated benefits,PRG_2024_1A_4
+qa_0086,synthetic,SKR,2023,1,factual,What were Lakeshore Instruments Corp.'s total revenues for fiscal 2023?,"$8,759.2 million",SKR_2023_1_1
+qa_0087,synthetic,SKR,2023,7,factual,What was Lakeshore Instruments Corp.'s net income for fiscal 2023?,"$2,242.1 million",SKR_2023_7_1
+qa_0088,synthetic,SKR,2023,8,factual,What were Lakeshore Instruments Corp.'s total assets as of the end of fiscal 2023?,"$175,183.7",SKR_2023_8_3
+qa_0089,synthetic,SKR,2023,7,factual,What was Lakeshore Instruments Corp.'s net margin for fiscal 2023?,25.6%,SKR_2023_7_1
+qa_0090,synthetic,TOUN,2023,1,factual,What were Lakeshore Solutions Corp.'s total revenues for fiscal 2023?,"$17,211.6 million",TOUN_2023_1_1
+qa_0091,synthetic,TOUN,2023,7,factual,What was Lakeshore Solutions Corp.'s net income for fiscal 2023?,"$1,206.8 million",TOUN_2023_7_1
+qa_0092,synthetic,TOUN,2023,8,factual,What were Lakeshore Solutions Corp.'s total assets as of the end of fiscal 2023?,"$22,567.5",TOUN_2023_8_3
+qa_0093,synthetic,TOUN,2023,7,factual,What was Lakeshore Solutions Corp.'s net margin for fiscal 2023?,7.0%,TOUN_2023_7_1
+qa_0094,synthetic,TVZ,2024,1,factual,What were Meridian Innovations Inc.'s total revenues for fiscal 2024?,"$16,486.4 million",TVZ_2024_1_2
+qa_0095,synthetic,TVZ,2024,7,factual,What was Meridian Innovations Inc.'s net income for fiscal 2024?,"$2,592.4 million",TVZ_2024_7_1
+qa_0096,synthetic,TVZ,2024,1A,factual,What were Meridian Innovations Inc.'s total assets as of the end of fiscal 2024?,"$13,368.6 million",TVZ_2024_1A_5
+qa_0097,synthetic,TVZ,2024,7,factual,What was Meridian Innovations Inc.'s net margin for fiscal 2024?,15.7%,TVZ_2024_7_1
+qa_0098,synthetic,TVZ,2024,7,factual,What was Meridian Innovations Inc.'s operating margin for fiscal 2024?,18.9%,TVZ_2024_7_1
+qa_0099,synthetic,TVZ,2024,1A,analytical,What is driving Meridian Innovations Inc.'s elevated financial leverage?,repurchase,TVZ_2024_1A_5
+qa_0100,synthetic,VQWP,2023,1,factual,What were Westgate Technologies Co.'s total revenues for fiscal 2023?,"$23,346.8 million",VQWP_2023_1_2
+qa_0101,synthetic,VQWP,2023,7,factual,What was Westgate Technologies Co.'s net income for fiscal 2023?,"$2,684.4 million",VQWP_2023_7_1
+qa_0102,synthetic,VQWP,2023,8,factual,What were Westgate Technologies Co.'s total assets as of the end of fiscal 2023?,"$108,538.3",VQWP_2023_8_3
+qa_0103,synthetic,VQWP,2023,7,factual,What was Westgate Technologies Co.'s net margin for fiscal 2023?,11.5%,VQWP_2023_7_1
+qa_0104,synthetic,VQWP,2023,7,factual,What was Westgate Technologies Co.'s operating margin for fiscal 2023?,20.9%,VQWP_2023_7_1
+qa_0105,synthetic,VQWP,2023,1,analytical,Why did Westgate Technologies Co.'s fiscal 2023 capital spending include incremental restoration costs?,storm,VQWP_2023_1_6
+qa_0106,synthetic,WJE,2025,1,factual,"What were Fieldstone Partners Holdings, Inc.'s total revenues for fiscal 2025?","$4,636.5 million",WJE_2025_1_2
+qa_0107,synthetic,WJE,2025,1A,factual,"What was Fieldstone Partners Holdings, Inc.'s net income for fiscal 2025?",$15.6 million,WJE_2025_1A_1
+qa_0108,synthetic,WJE,2025,8,factual,"What were Fieldstone Partners Holdings, Inc.'s total assets as of the end of fiscal 2025?","$8,882.6",WJE_2025_8_3
+qa_0109,synthetic,WJE,2025,1A,factual,"What was Fieldstone Partners Holdings, Inc.'s net margin for fiscal 2025?",negative 0.3%,WJE_2025_1A_1
+qa_0110,synthetic,WJE,2025,1A,factual,"What was Fieldstone Partners Holdings, Inc.'s operating margin for fiscal 2025?",negative 2.7%,WJE_2025_1A_1
+qa_0111,synthetic,WJE,2025,1A,analytical,"Why did Fieldstone Partners Holdings, Inc. record an operating loss in fiscal 2025 rather than sustained profitability?",profitability,WJE_2025_1A_1
+qa_0112,synthetic,WJE,2025,1A,analytical,"What does Fieldstone Partners Holdings, Inc.'s fiscal 2025 operating loss reflect about its stage of growth, per its MD&A?",ahead of sustained profitability,WJE_2025_1A_1
+qa_0113,synthetic,XTE,2025,1,factual,"What were Harborview Partners Holdings, Inc.'s total revenues for fiscal 2025?","$58,767.2 million",XTE_2025_1_1
+qa_0114,synthetic,XTE,2025,7,factual,"What was Harborview Partners Holdings, Inc.'s net income for fiscal 2025?","$6,153.0 million",XTE_2025_7_1
+qa_0115,synthetic,XTE,2025,8,factual,"What were Harborview Partners Holdings, Inc.'s total assets as of the end of fiscal 2025?","$71,347.1",XTE_2025_8_3
+qa_0116,synthetic,XTE,2025,7,factual,"What was Harborview Partners Holdings, Inc.'s net margin for fiscal 2025?",10.5%,XTE_2025_7_1
+qa_0117,synthetic,XTE,2025,7,factual,"What was Harborview Partners Holdings, Inc.'s operating margin for fiscal 2025?",10.9%,XTE_2025_7_1
+qa_0118,real,AEP,2025,1,factual,"How many employees did AEP's subsidiaries have as of December 31, 2025?","17,581 employees",AEP_2025_1_5
+qa_0119,real,AEP,2025,1,factual,"In what year was American Electric Power incorporated, and in which state?",incorporated under the laws of the State of New York in 1906,AEP_2025_1_2
+qa_0120,real,BEN,2024,7,factual,"What was Franklin Resources' total assets under management (AUM) at September 30, 2024?","$1,678.6 billion",BEN_2024_7_9
+qa_0121,real,BEN,2024,7,factual,How much did Franklin Resources' AUM growth reflect from the acquisition of Putnam Investments?,$148.3 billion from the acquisition of Putnam Investments,BEN_2024_7_9
+qa_0122,real,USB,2025,7,factual,How much net income did U.S. Bancorp earn in 2025 compared with 2024?,$7.6 billion in 2025 compared with $6.3 billion in 2024,USB_2025_7_2
+qa_0123,real,USB,2025,7,factual,"What was U.S. Bancorp's diluted earnings per common share in 2025, and how much did it increase from 2024?","$4.62 in 2025, representing a 21.9 percent increase",USB_2025_7_4
+qa_0124,real,CVS,2024,7,factual,"How many retail locations did CVS Health have as of December 31, 2024?","more than 9,000 retail locations",CVS_2024_7_2
+qa_0125,real,CVS,2024,7,factual,Approximately how many pharmacy benefits manager plan members did CVS Health serve?,approximately 90 million plan members,CVS_2024_7_2
+qa_0126,real,NOC,2025,7,factual,How much cash did Northrop Grumman receive for the sale of its Immersive Mission Solutions (IMS) operating unit?,$333 million in cash,NOC_2025_7_5
+qa_0127,real,NOC,2025,7,factual,When did Northrop Grumman complete the divestiture of its training services business?,"May 24, 2025",NOC_2025_7_3
+qa_0128,real,CRWD,2025,1,factual,In what year was CrowdStrike founded?,Founded in 2011,CRWD_2025_1_1
+qa_0129,real,CRWD,2025,7,factual,On what date does CrowdStrike's fiscal year end?,"fiscal years ended January 31, 2025",CRWD_2025_7_0

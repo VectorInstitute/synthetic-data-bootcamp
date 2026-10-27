@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEC 10-K Synthetic Corpus: Chatbot</title>
+<style>
+  /* ---- palette: matches dashboard/template.html, so both pages read as one app ---- */
+  :root {
+    color-scheme: light;
+    --surface-1: #fcfcfb;
+    --page: #f9f9f7;
+    --panel: #ffffff;
+    --ink-1: #0b0b0b;
+    --ink-2: #52514e;
+    --ink-muted: #898781;
+    --grid: #e1e0d9;
+    --axis: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --good: #0ca30c;
+    --warning: #fab219;
+    --critical: #d03b3b;
+    --series-1: #2a78d6;
+    --series-2: #eb6834;
+    --series-3: #1baf7a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --panel: #171716;
+      --ink-1: #f0efec;
+      --ink-2: #c3c2b7;
+      --ink-muted: #898781;
+      --grid: #2c2c2a;
+      --axis: #383835;
+      --border: rgba(255,255,255,0.10);
+      --good: #0ca30c;
+      --warning: #fab219;
+      --critical: #e66767;
+      --series-1: #3987e5;
+      --series-2: #d95926;
+      --series-3: #199e70;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--page);
+    color: var(--ink-1);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.45;
+  }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .92em; background: var(--surface-1); padding: .05em .35em; border-radius: .3em; }
+
+  .page { max-width: 76rem; margin-inline: auto; display: flex; flex-direction: column; gap: 1.75rem; padding: 1.75rem 1.25rem 4rem; }
+
+  .hdr { display: flex; flex-direction: column; gap: .6rem; }
+  .hdr h1 { font-size: 1.65rem; font-weight: 700; margin: 0; letter-spacing: -.01em; }
+  .hdr p { margin: 0; color: var(--ink-2); max-width: 58rem; }
+
+  .jump { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+  .jump a, .jump button { font: inherit; font-size: .8rem; color: var(--ink-2); text-decoration: none; border: 1px solid var(--border); border-radius: 999px; padding: .3rem .8rem; white-space: nowrap; background: none; cursor: pointer; }
+  .jump a:hover, .jump button:hover { color: var(--ink-1); border-color: var(--ink-muted); }
+  .jump button.active { color: var(--ink-1); background: var(--panel); border-color: var(--ink-muted); font-weight: 600; }
+  .jump .sep { width: 1px; height: 1.1rem; background: var(--border); margin: 0 .25rem; }
+
+  .pill { display: inline-flex; align-items: center; gap: .35rem; font-size: .78rem; padding: .15rem .55rem; border-radius: 999px; background: var(--surface-1); border: 1px solid var(--border); white-space: nowrap; }
+  .pill .dot { width: .45rem; height: .45rem; border-radius: 50%; flex: none; }
+  .pill.good .dot { background: var(--good); }
+  .pill.bad .dot { background: var(--critical); }
+  .pill.neutral .dot { background: var(--ink-muted); }
+
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: .75rem; padding: 1.2rem; display: flex; flex-direction: column; gap: .65rem; min-width: 0; }
+  .card h3 { font-size: 1rem; font-weight: 700; margin: 0; }
+  .card .note { font-size: .8rem; color: var(--ink-2); margin: 0; }
+
+  .view { display: none; flex-direction: column; gap: 1.1rem; }
+  .view.active { display: flex; }
+
+  /* ---- chat ---- */
+  .chat-shell { display: flex; flex-direction: column; gap: 0; height: 60vh; min-height: 26rem; }
+  .chat-window { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: .9rem; padding: .25rem .25rem 1rem; }
+  .msg { display: flex; flex-direction: column; gap: .3rem; max-width: 46rem; }
+  .msg.user { align-self: flex-end; align-items: flex-end; }
+  .msg.bot { align-self: flex-start; align-items: flex-start; }
+  .msg .bubble { border-radius: .7rem; padding: .65rem .9rem; font-size: .92rem; white-space: pre-wrap; }
+  .msg.user .bubble { background: var(--series-1); color: #fff; }
+  .msg.bot .bubble { background: var(--surface-1); border: 1px solid var(--border); color: var(--ink-1); }
+  .msg .who { font-size: .72rem; color: var(--ink-muted); }
+  .msg .sources { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .src-chip { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .72rem; color: var(--ink-2); background: var(--surface-1); border: 1px solid var(--border); border-radius: .4rem; padding: .15rem .45rem; cursor: help; }
+
+  .chat-input-row { display: flex; gap: .6rem; border-top: 1px solid var(--border); padding-top: .9rem; }
+  .chat-input-row input { flex: 1; font: inherit; font-size: .92rem; padding: .6rem .8rem; border-radius: .6rem; border: 1px solid var(--border); background: var(--surface-1); color: var(--ink-1); }
+  .chat-input-row input:focus { outline: 2px solid var(--series-1); outline-offset: -1px; }
+  .chat-input-row button { font: inherit; font-weight: 600; font-size: .88rem; padding: .6rem 1.1rem; border-radius: .6rem; border: none; background: var(--series-1); color: #fff; cursor: pointer; }
+  .chat-input-row button:disabled { opacity: .5; cursor: default; }
+
+  .suggestions { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .suggestions button { font: inherit; font-size: .78rem; color: var(--ink-2); background: var(--surface-1); border: 1px solid var(--border); border-radius: 999px; padding: .3rem .75rem; cursor: pointer; text-align: left; }
+  .suggestions button:hover { color: var(--ink-1); border-color: var(--ink-muted); }
+
+  /* ---- scenario demo ---- */
+  .demo-list { display: flex; flex-direction: column; gap: 1rem; }
+  .demo-card { border-left: 3px solid var(--ink-muted); }
+  .demo-card.hit { border-left-color: var(--good); }
+  .demo-card.miss { border-left-color: var(--critical); }
+  .demo-card .demo-hdr { display: flex; justify-content: space-between; align-items: baseline; gap: .75rem; flex-wrap: wrap; }
+  .demo-card .demo-hdr .co { font-weight: 700; }
+  .demo-card .scenario-type { font-size: .78rem; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .05em; }
+  .demo-card .summary { color: var(--ink-2); font-size: .88rem; margin: 0; }
+  .demo-card .q { font-weight: 600; margin: 0; }
+  .demo-card .a { background: var(--surface-1); border: 1px solid var(--border); border-radius: .5rem; padding: .7rem .9rem; font-size: .88rem; white-space: pre-wrap; margin: 0; }
+
+  .foot { color: var(--ink-muted); font-size: .8rem; line-height: 1.6; border-top: 1px solid var(--border); padding-top: 1rem; }
+  .foot code { background: none; padding: 0; }
+  .loading, .error { padding: 2rem 1rem; text-align: center; color: var(--ink-2); }
+  .error { color: var(--critical); }
+</style>
+</head>
+<body>
+
+<div class="page" id="app">
+
+  <div class="hdr">
+    <h1>SEC 10-K Synthetic Corpus: Chatbot</h1>
+    <p>Ask about any of the 20 fictional companies. Answers are grounded by retrieval (BM25 +
+    a real semantic embedding retriever, fused by reciprocal rank fusion &mdash; the same hybrid
+    pipeline <a href="index.html#utility">the dashboard</a> evaluates), not by an LLM's own
+    knowledge &mdash; it only sees the passages retrieval hands it.</p>
+    <nav class="jump">
+      <button id="tab-chat" class="active">Chat</button>
+      <button id="tab-demo">Scenario analysis demo</button>
+      <span class="sep"></span>
+      <a href="index.html">&larr; Results dashboard</a>
+      <span class="sep"></span>
+      <span class="pill neutral" id="status-pill"><span class="dot"></span><span id="status-text">connecting&hellip;</span></span>
+    </nav>
+  </div>
+
+  <div class="view active" id="view-chat">
+    <div class="card chat-shell">
+      <div class="chat-window" id="chat-window"></div>
+      <div class="suggestions" id="suggestions">
+        <button data-q="What were Northbridge Technologies Inc.'s total revenues for fiscal 2025?">Northbridge's fiscal 2025 revenue?</button>
+        <button data-q="Why did Clearwater Technologies Group, Inc.'s margins compress to historically thin levels in fiscal 2025?">Why did Clearwater's margins compress?</button>
+        <button data-q="What integration risk does Cedarfield Systems Holdings, Inc. face following its acquisition of Thornridge Packaging Corp.?">Cedarfield's acquisition risk?</button>
+        <button data-q="Why did Fieldstone Partners Holdings, Inc. record an operating loss in fiscal 2025 rather than sustained profitability?">Why did Fieldstone post a loss?</button>
+      </div>
+      <form class="chat-input-row" id="chat-form">
+        <input type="text" id="chat-input" placeholder="Ask about a fictional company&hellip;" autocomplete="off">
+        <button type="submit" id="chat-send">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="view" id="view-demo">
+    <div class="card">
+      <h3>Scenario analysis demo</h3>
+      <p class="note">20 synthetic companies: 13 carry a deliberate scenario (M&amp;A, margin crisis, cash
+      burn, regulatory pressure, weather event, capital structure, &hellip;); 7 are a baseline control group
+      (see <code>PLAN.md</code> Phase 4.5). Each card below asks one analytical question about a scenario
+      company and checks whether hybrid retrieval actually lands on the scenario-grounded gold passage
+      (from <code>data/qa_pairs.csv</code>), not just something keyword-similar.</p>
+    </div>
+    <div id="demo-list" class="demo-list"><div class="loading">Loading&hellip;</div></div>
+  </div>
+
+  <p class="foot">Backed by <code>src/chatbot.py</code> + <code>src/chatbot_server.py</code>: BM25 and a
+  real semantic retriever (fastembed / <code>minishlab/potion-retrieval-32M</code>) over the 20 synthetic
+  companies' chunks, fused by reciprocal rank fusion. Generation (if an API key is configured) is
+  DeepSeek first, then Claude, then retrieval-only &mdash; see the status pill above. Unlike
+  <code>index.html</code>, this page needs the server running (<code>python -m src.chatbot_server</code>):
+  retrieval and any LLM call happen in Python, not the browser.</p>
+
+</div>
+
+<script>
+(() => {
+  'use strict';
+
+  const chatWindow = document.getElementById('chat-window');
+  const chatForm = document.getElementById('chat-form');
+  const chatInput = document.getElementById('chat-input');
+  const chatSend = document.getElementById('chat-send');
+  const statusPill = document.getElementById('status-pill');
+  const statusText = document.getElementById('status-text');
+  const demoList = document.getElementById('demo-list');
+  const tabChat = document.getElementById('tab-chat');
+  const tabDemo = document.getElementById('tab-demo');
+  const viewChat = document.getElementById('view-chat');
+  const viewDemo = document.getElementById('view-demo');
+
+  const PROVIDER_LABEL = { deepseek: 'DeepSeek', claude: 'Claude', retrieval_only: 'Retrieval only' };
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  function sourceChips(sources) {
+    return sources.map((s, i) =>
+      `<span class="src-chip" title="${escapeHtml(s.text.slice(0, 220))}${s.text.length > 220 ? '…' : ''}">[${i + 1}] ${escapeHtml(s.ticker)} FY${s.fiscal_year} item ${escapeHtml(s.item)}</span>`,
+    ).join('');
+  }
+
+  function addMessage(role, text, sources) {
+    const msg = document.createElement('div');
+    msg.className = `msg ${role}`;
+    const who = document.createElement('div');
+    who.className = 'who';
+    who.textContent = role === 'user' ? 'You' : 'Bot';
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.textContent = text;
+    msg.appendChild(who);
+    msg.appendChild(bubble);
+    if (sources && sources.length) {
+      const src = document.createElement('div');
+      src.className = 'sources';
+      src.innerHTML = sourceChips(sources);
+      msg.appendChild(src);
+    }
+    chatWindow.appendChild(msg);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+    return msg;
+  }
+
+  async function sendQuestion(question) {
+    addMessage('user', question);
+    chatInput.value = '';
+    chatSend.disabled = true;
+    const pending = addMessage('bot', 'Thinking…');
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
+      });
+      const data = await res.json();
+      pending.remove();
+      if (!res.ok) {
+        addMessage('bot', `Error: ${data.error || res.statusText}`);
+        return;
+      }
+      addMessage('bot', data.answer, data.sources);
+    } catch (err) {
+      pending.remove();
+      addMessage('bot', `Error: ${err.message} (is the server running? python -m src.chatbot_server)`);
+    } finally {
+      chatSend.disabled = false;
+      chatInput.focus();
+    }
+  }
+
+  chatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const q = chatInput.value.trim();
+    if (q) sendQuestion(q);
+  });
+
+  document.getElementById('suggestions').addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-q]');
+    if (btn) sendQuestion(btn.dataset.q);
+  });
+
+  function setStatus(provider, ok) {
+    statusPill.className = `pill ${ok ? (provider === 'retrieval_only' ? 'neutral' : 'good') : 'bad'}`;
+    statusText.textContent = ok ? `Generation: ${PROVIDER_LABEL[provider] || provider}` : 'Server unreachable';
+  }
+
+  fetch('/api/info').then((r) => r.json()).then((d) => setStatus(d.provider, true)).catch(() => setStatus(null, false));
+
+  function renderDemoRows(rows) {
+    demoList.innerHTML = rows.map((row) => `
+      <div class="card demo-card ${row.hit ? 'hit' : 'miss'}">
+        <div class="demo-hdr">
+          <div><span class="co">${escapeHtml(row.company_name)}</span> (${escapeHtml(row.ticker)})
+            <div class="scenario-type">${escapeHtml(row.scenario_type.replace(/_/g, ' '))}</div>
+          </div>
+          <span class="pill ${row.hit ? 'good' : 'bad'}"><span class="dot"></span>${row.hit ? 'Retrieval HIT' : 'Retrieval MISS'}</span>
+        </div>
+        ${row.scenario_summary ? `<p class="summary">${escapeHtml(row.scenario_summary)}</p>` : ''}
+        <p class="q">Q: ${escapeHtml(row.question)}</p>
+        <p class="a">${escapeHtml(row.answer)}</p>
+        <div class="sources">${sourceChips(row.sources)}</div>
+      </div>
+    `).join('');
+  }
+
+  let demoLoaded = false;
+  function loadDemo() {
+    if (demoLoaded) return;
+    demoLoaded = true;
+    fetch('/api/demo')
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.error) { demoList.innerHTML = `<div class="error">${escapeHtml(d.error)}</div>`; return; }
+        renderDemoRows(d.rows);
+      })
+      .catch((err) => { demoList.innerHTML = `<div class="error">${escapeHtml(err.message)}</div>`; });
+  }
+
+  function showTab(name) {
+    const isChat = name === 'chat';
+    tabChat.classList.toggle('active', isChat);
+    tabDemo.classList.toggle('active', !isChat);
+    viewChat.classList.toggle('active', isChat);
+    viewDemo.classList.toggle('active', !isChat);
+    if (!isChat) loadDemo();
+  }
+  tabChat.addEventListener('click', () => showTab('chat'));
+  tabDemo.addEventListener('click', () => showTab('demo'));
+
+  addMessage('bot', "Ask me about any of the 20 fictional companies -- e.g. revenue, risk factors, or why a scenario company's numbers look the way they do. I only answer from retrieved passages, so I'll say so if I can't find the answer.");
+})();
+</script>
+</body>
+</html>

@@ -5,13 +5,22 @@ is the real-data side of a synthetic-10-K benchmark: it provides style templates
 set, and XBRL facts.
 
 **Status:** Steps 1-5 (project setup, 10-K download, section parsing, metadata index, XBRL
-companyfacts) and Phases 3-7 (calibration profile, fictional-company specs, financial statements,
-narrative generation, validation) are implemented. All 20 fictional companies' `item_*.txt` files
-are written and pass every automatic validation gate (`data/synthetic/`, `data/validation_report.csv`).
-See `PLAN.md` for detail; the summary script and Phase 7's human review (the one validation gate
-that isn't automatable) come next.
+companyfacts) and Phases 3-11 (calibration profile, fictional-company specs, a scenario per
+company, financial statements, narrative generation, validation, same-layout index, QA and
+retrieval evaluation, synthetic-vs-real gap report, privacy check) are all implemented — every
+planned phase except Phase 7's human review, which needs an actual person. The evaluation is
+organized around three questions (see "Evaluation framework" in `PLAN.md`): **fidelity** (does it
+look and compute like a real 10-K — `data/validation_report.csv`, `data/gap_report.csv`),
+**utility** (is it actually useful for building a retrieval benchmark —
+`data/qa_pairs.csv`/`data/retrieval_eval.csv`, and whether retriever ranking transfers to the real
+corpus), and **privacy** (no real company name/ticker leak, and no fictional company's financials
+sit close enough to its real template to make the disguise pointless —
+`data/privacy_report.csv`). See `PLAN.md` for detail, or `dashboard/index.html` for all of it laid
+out.
 
 ## Layout
+
+In this repository, Dylan's RAG modules (`chunks`, `retrieval`, `chatbot`, `chatbot_server`, steps 11-12) are in `../RAG/`, steps 13-14 are in `../evals/`, and step 15 plus `dashboard/` are in `../dashboard/` (as `build_dashboard.py`). They still import this folder's `src` package, so run them from `implementations/synthetic_10k` with `PYTHONPATH=dylan_pipeline`, as the commands below show. The tree below is the original single-folder layout.
 
 ```
 config.yaml              SEC identity placeholders, company lists, fiscal years (committed)
@@ -25,27 +34,50 @@ src/
   step00_sample_companies.py  reproducibly sample config.yaml's 50-ticker company list
   step01_download_10k.py      download 10-K filings
   step02_parse_sections.py    split 10-K text into Items 1, 1A, 1C, 7, 8
-  step03_build_index.py       data/index.csv, one row per parsed section
+  step03_build_index.py       data/index.csv, one row per parsed section, real + synthetic (Phase 8)
   step04_fetch_companyfacts.py  download XBRL companyfacts per company
   step05_make_calibration.py  data/calibration.json from companyfacts (Phase 3)
   step06_make_specs.py        fictional-company specs from calibration.json (Phase 4)
+  step06b_add_scenarios.py    adds a scenario (M&A, product launch, etc.) to each spec (Phase 4.5)
   step07_make_financials.py   balance sheet, income statement, cash flow (Phase 5)
   step08_generate_filings.py  Claude API narrative generation (Phase 6, built but not run)
   step09_validate_filings.py  automatic validation gates: numeric, leaks, headings (Phase 7)
+  step10_build_pdfs.py        renders each filing (real-style cover + Items 1/1A/1C/7/8) to a PDF
+  chunks.py                   shared paragraph-level chunking of index.csv's item files (Phase 9)
+  retrieval.py                BM25, a real semantic embedding retriever, reciprocal rank fusion, metrics (Phase 9)
+  step11_make_qa.py           data/qa_pairs.csv: synthetic (deterministic) + real (hand-authored) QA (Phase 9)
+  step12_evaluate_retrievers.py  data/retrieval_eval.csv: BM25/semantic/hybrid x 3 experiments (Phase 9)
+  step13_gap_report.py        data/gap_report.csv: length, vocab, numbers, retriever ranking (Phase 10)
+  step14_privacy_check.py     data/privacy_report.csv: distance from each company's real template (Phase 11)
+  step15_build_dashboard.py   embeds the five result CSVs + vendored d3 into dashboard/template.html -> dashboard/index.html
+  chatbot.py                  RAG chatbot over the synthetic corpus (ad hoc demo, CLI)
+  chatbot_server.py           browser UI for chatbot.py, served alongside dashboard/ (ad hoc demo)
 data/
   sp500_constituents.csv frozen S&P 500 snapshot src.step00_sample_companies samples from (committed)
   raw/{ticker}/{fy}/     10k.htm, 10k.txt, ex13_*.htm (if any), metadata.json
   parsed/{ticker}/{fy}/  item_1.txt, item_1a.txt, item_1c.txt, item_7.txt, item_8.txt
-  companyfacts/{ticker}.json   raw XBRL companyfacts per company (git-ignored, ~180 MB)
+  companyfacts/{ticker}.json   raw XBRL companyfacts per company (git-ignored, ~180 MB; prebuilt
+                               copy: `gh release download companyfacts-v1 -R
+                               dylanwang2111/synthetic-data-bootcamp -p "sec10k_companyfacts.tar.gz"`,
+                               then `tar -xzf sec10k_companyfacts.tar.gz -C data`)
   calibration.json       percentile distributions and per-company-year records (committed)
-  index.csv              one row per parsed section (git-ignored, reproduce when needed)
+  index.csv              one row per parsed section, real + synthetic (git-ignored, reproduce when needed)
   download_status.csv    one row per company-year from the last download run
   parse_status.csv       one row per company-year-item from the last parse run
   companyfacts_status.csv one row per company from the last companyfacts fetch
   synthetic/{fictional_id}/{fy}/spec.json        fictional-company specs (committed)
   synthetic/{fictional_id}/{fy}/financials.json  its 3 financial statements (committed)
   validation_report.csv  one row per fictional company x check from the last validation run
+  pdf_reports/{fictional_id}_{fy}.pdf  rendered filing, one PDF per company-year (git-ignored, derived)
+  qa_pairs.csv            130 QA pairs (118 synthetic, 12 real; 115 factual, 15 analytical), one row per question (committed)
+  retrieval_eval.csv      recall@5/@10, MRR, nDCG@10 per retriever x experiment (committed)
+  gap_report.csv          12 rows: section length, vocabulary, number density, retriever ranking (committed)
+  privacy_report.csv      112 rows: each company's financials vs. its real template's actual values (committed)
 logs/                    per-script log files
+dashboard/template.html  dashboard source: live-fetches the five data/*.csv above (for editing, via a server)
+dashboard/vendor/        vendored d3.v7.9.0.min.js, so the built dashboard needs no CDN
+dashboard/index.html    generated by step15_build_dashboard.py: template.html with the five CSVs + vendored d3 embedded
+dashboard/chatbot.html  chatbot UI, served by chatbot_server.py alongside index.html (ad hoc demo)
 ```
 
 ## Setup
@@ -115,8 +147,11 @@ python -m src.step04_fetch_companyfacts
 ```
 
 - `step03_build_index.py` writes `data/index.csv`, one row per parsed section (ticker, company name,
-  CIK, fiscal year, filing date, accession number, item, path, character count, word count).
-  Local and fast; always rewrites the whole file.
+  CIK, fiscal year, filing date, accession number, item, path, character count, word count,
+  source). Local and fast; always rewrites the whole file. Also indexes
+  `data/synthetic/{fictional_id}/{fy}/item_*.txt` (Phase 8) — `source` is `real` or `synthetic`,
+  and CIK/filing date/accession number are blank on synthetic rows since there's no real-world
+  equivalent. Re-run it after the synthetic corpus changes, not just after the real one.
 - `step04_fetch_companyfacts.py` downloads each company's XBRL companyfacts JSON from
   `data.sec.gov/api/xbrl/companyfacts/`, using the CIK from its already-downloaded
   `metadata.json`. Re-running skips any ticker whose file already exists.
@@ -155,6 +190,23 @@ python -m src.step06_make_specs
 - Every fictional name and ticker is checked against all 503 real S&P 500 names and tickers, not
   just the 50 downloaded, and against every other fictional company already generated.
 - Deterministic: re-running regenerates the same 20 specs (fixed seed in `src/step06_make_specs.py`).
+
+## Add a scenario to each fictional company spec
+
+```bash
+python -m src.step06b_add_scenarios
+```
+
+- Adds a `scenario` field to each `spec.json` (M&A, a product launch, a regulatory event, a
+  margin crisis, and so on, or `baseline` for ordinary-course companies) with structured facts the
+  narrative must ground its claims in. See `PLAN.md`'s Phase 4.5 for why: without this, the
+  narrative had nothing distinguishing to say beyond generic sector-template boilerplate, and there
+  was no structured ground truth for qualitative claims the way there is for numbers.
+- Every dollar figure a scenario cites is copied from that company's own, already-reconciled
+  `financials.json` (see the script's `SCENARIOS` dict for exactly which field each one came from),
+  so this never touches `financials.json` and Phase 7's numeric gate is unaffected.
+- Scenario assignments are hardcoded per company (editorial content, like Phase 6's narrative),
+  not randomly generated.
 
 ## Build fictional company financial statements
 
@@ -218,15 +270,162 @@ python -m src.step09_validate_filings
 ```
 
 - Writes `data/validation_report.csv` (committed): one row per fictional company per check. Current
-  result: 0 failures across 360 checks on all 20 companies.
+  result: 0 failures across 373 checks on all 20 companies.
 - Checks every dollar figure and percentage quoted in Item 7 and Item 8 against `financials.json`
   (a leaf value, a handful of named combinations such as "total debt," or a standard ratio like net
   margin), that no real template company's name or ticker appears, that Item 8 has all three
-  statement headings, and that every item file is substantive. Section length against the real
-  corpus's distribution is reported but not gated, since Phase 6 condensed every section by a
-  deliberate choice (see `PLAN.md` Phase 6).
+  statement headings, that every item file is substantive, and that every non-baseline company's
+  `spec.json` scenario (Phase 4.5) is actually grounded somewhere in its narrative. Section length
+  against the real corpus's distribution is reported but not gated, since Phase 6 condensed every
+  section by a deliberate choice (see `PLAN.md` Phase 6).
 - Covers Phase 7's two automatic/model-judged gates; human review of about 10 filings is the one
   gate this script can't do. See `PLAN.md` Phase 7.
+
+## Add the synthetic corpus to the index (Phase 8)
+
+```bash
+python -m src.step03_build_index
+```
+
+- Re-running `step03_build_index.py` after the synthetic corpus exists appends its rows to the
+  same `data/index.csv` used for the real corpus, each tagged `source = synthetic`; `cik`,
+  `filing_date`, and `accession_number` are blank on those rows. Current result: 829 rows (729
+  real, 100 synthetic — 20 companies x 5 items). Retrieval code (Phase 9) filters on `source`
+  rather than needing a second index. See `PLAN.md` Phase 8.
+
+## Build QA pairs and evaluate retrieval (Phase 9)
+
+```bash
+PYTHONPATH=dylan_pipeline python -m RAG.step11_make_qa
+PYTHONPATH=dylan_pipeline python -m RAG.step12_evaluate_retrievers
+```
+
+- `step11_make_qa.py` writes `data/qa_pairs.csv` (committed): 118 synthetic questions, generated
+  deterministically from each company's own `financials.json`/scenario facts with no model call,
+  and 12 real questions hand-authored from a 6-company sample (AEP, BEN, USB, CVS, NOC, CRWD — the
+  same sample Phase 7's model-judged review used). Every answer is verified as a verbatim substring
+  of its gold passage before being written; the script hard-fails if one isn't found. Every
+  question also carries a `style` — `factual` (115 rows: a figure or named entity) or `analytical`
+  (15 rows: why something happened, or what it implies — still one short exact answer, but finding
+  it means reading a passage that connects a cause to an effect). See `PLAN.md` Phase 9 for the
+  three ways analytical questions are grounded.
+- `step12_evaluate_retrievers.py` writes `data/retrieval_eval.csv` (committed): recall@5, recall@10,
+  MRR, and nDCG@10 for BM25, a real semantic embedding retriever (`fastembed` +
+  `minishlab/potion-retrieval-32M` — see `PLAN.md` Phase 9 for why that model specifically), and
+  their reciprocal-rank-fusion hybrid, across three experiments (`synthetic_only`, `real_only`,
+  `mixed`).
+- See `PLAN.md` Phase 9 for the full results table and what they mean (short version: BM25 edges
+  out the semantic retriever on all three experiments, but the gap is much smaller on the real
+  sample than an earlier TF-IDF version showed).
+
+## Quantify the synthetic-vs-real gap (Phase 10)
+
+```bash
+PYTHONPATH=dylan_pipeline:. python evals/step13_gap_report.py
+```
+
+- Writes `data/gap_report.csv` (committed): section length, vocabulary overlap, number-figure
+  density, BM25 score distribution, and whether the best-performing retriever agrees between the
+  `synthetic_only` and `real_only` experiments in `data/retrieval_eval.csv`. Scans the *full* real
+  corpus for the length/vocabulary/number comparisons (not just the 6-company sample used
+  elsewhere) since none of those need the dense-vector corpus's matrix.
+- Short version (see `PLAN.md` Phase 10 for the full table and caveats): synthetic sections run
+  3.6%-31.2% of real's median length per item; synthetic narrative states 2-3x more numbers per
+  1,000 words than real's more qualitative MD&A prose; the full three-way retriever ranking
+  (`bm25`, `hybrid_rrf`, `semantic`) agrees between real and synthetic.
+
+## Check privacy: distance from each company's real template (Phase 11)
+
+```bash
+PYTHONPATH=dylan_pipeline:. python evals/step14_privacy_check.py
+```
+
+- Writes `data/privacy_report.csv` (committed): for each fictional company and each financial
+  field, the percent difference between the fictional value and its real template's actual
+  same-year value (from `data/calibration.json`, written before any fictional company existed).
+  Answers a question Phase 7's name/ticker leak check doesn't: even with no literal leak, are the
+  fictional numbers just the real company's own numbers relabeled?
+- Short version (see `PLAN.md` Phase 11 for the full per-company breakdown): median absolute
+  difference per field is 20.0% across all 20 companies; no company is within 5% of its template on
+  every field.
+
+## View the results dashboard
+
+```bash
+PYTHONPATH=dylan_pipeline python dashboard/build_dashboard.py
+```
+
+Then just open `dashboard/index.html` directly — double-click it, or open it from a file manager.
+It's a self-contained page (vanilla JS + d3): the build step above embeds the current contents of
+`data/validation_report.csv`, `data/qa_pairs.csv`, `data/retrieval_eval.csv`, `data/gap_report.csv`,
+and `data/privacy_report.csv`, plus the vendored `dashboard/vendor/d3.v7.9.0.min.js`, directly into
+it — no CDN script tag, so no server and no network access of any kind is needed to view it. It's
+organized around the three questions a synthetic corpus has to answer (see "Evaluation framework"
+in `PLAN.md`): fidelity, utility, and privacy.
+
+Like every other output in this pipeline, the built file goes stale the moment those five CSVs
+change — re-run the build step above after re-running any of them, the same as you'd re-run
+`step12` after `step11`.
+
+`dashboard/template.html` is the editable source (markup, CSS, chart code); `dashboard/index.html`
+is generated from it and shouldn't be hand-edited. To iterate on the template itself, serve the
+directory instead — with no embedded data, the template falls back to a live, cache-busted fetch
+of the same five files:
+
+```bash
+cd implementations/synthetic_10k && python -m http.server
+```
+
+then open `http://localhost:8000/dashboard/template.html`.
+
+## Try the RAG chatbot demo (ad hoc)
+
+`src/chatbot.py` is a small demo app on top of Phase 9's retrievers: BM25 + the real
+semantic embedding retriever (`RAG.retrieval`, fastembed / `minishlab/potion-retrieval-32M`),
+fused via reciprocal rank fusion, over the 20 synthetic companies. It has a scripted mode
+that asks one analytical question per scenario company (13 of them — M&A, margin crisis,
+cash burn, regulatory pressure, ...), shows that company's scenario summary from its
+`spec.json`, and reports whether retrieval actually lands on the scenario-grounded passage
+(checked against `data/qa_pairs.csv`'s `gold_chunk_id`) rather than just a
+keyword-overlapping one.
+
+Retrieval works with no setup. Generation is optional and picked at startup from whichever
+key is set: `DEEPSEEK_API_KEY` first, then `ANTHROPIC_API_KEY`, then retrieval-only (falls
+back to showing the top-retrieved passage itself) — the same "retrieval needs no key,
+generation does" split as `step08_generate_filings.py`. Put a key in a gitignored `.env`
+file in this directory (`DEEPSEEK_API_KEY=sk-...`), or export it in your shell; either way,
+never commit it.
+
+**Command line:**
+
+```bash
+PYTHONPATH=dylan_pipeline python -m RAG.chatbot            # interactive chat
+PYTHONPATH=dylan_pipeline python -m RAG.chatbot --demo     # scripted scenario-analysis walkthrough
+```
+
+**Browser UI**, served alongside the results dashboard (this is the one part of the project
+that needs a running server — retrieval and any LLM call happen in Python, not the browser):
+
+```bash
+PYTHONPATH=dylan_pipeline python -m RAG.chatbot_server
+```
+
+then open `http://localhost:8001/chatbot.html` for the chat UI (with a "Scenario analysis
+demo" tab showing the same walkthrough as `--demo`, as 13 cards with HIT/MISS badges), or
+`http://localhost:8001/index.html` for the dashboard — `src/chatbot_server.py` serves
+`dashboard/` as static files plus `/api/chat`, `/api/demo`, and `/api/info`, and the two
+pages link to each other.
+
+## Render fictional filings as PDFs (optional)
+
+```bash
+python -m src.step10_build_pdfs
+```
+
+- Writes `data/pdf_reports/{fictional_id}_{fy}.pdf` (git-ignored, derived): a disclaimer cover
+  page plus Items 1/1A/1C/7/8, with the narrative's `label | value` lines rendered as real tables.
+  Not part of the Phase 1-9 pipeline; built for sharing individual filings outside the repo (e.g.
+  dragging them into a shared Google Drive folder). Requires `pandoc` and `xelatex` on `PATH`.
 
 ## Notes
 
@@ -242,10 +441,11 @@ python -m src.step09_validate_filings
 - The full SEC submission (`.txt` with all exhibits and images) is no longer saved. It was
   45-75 MB per filing, mostly images and XBRL data files.
 - Git tracks `metadata.json` files, `data/download_status.csv`, `data/parse_status.csv`,
-  `data/companyfacts_status.csv`, `data/calibration.json`, `data/synthetic/`, and
-  `data/validation_report.csv`. The filing and
-  section text (`10k.htm`, `10k.txt`, `ex13_*`, `data/parsed/`), `data/companyfacts/*.json`, and
-  `data/index.csv` and `logs/` are git-ignored, and are all reproducible by re-running the
-  matching script.
+  `data/companyfacts_status.csv`, `data/calibration.json`, `data/synthetic/`,
+  `data/validation_report.csv`, `data/qa_pairs.csv`, `data/retrieval_eval.csv`,
+  `data/gap_report.csv`, and `data/privacy_report.csv`. The filing and
+  section text (`10k.htm`, `10k.txt`, `ex13_*`, `data/parsed/`), `data/companyfacts/*.json`,
+  `data/index.csv`, `data/pdf_reports/`, and `logs/` are git-ignored, and are all reproducible by
+  re-running the matching script.
 - See `PLAN.md` for the full plan and open questions, and `SECTIONS.md` for which 10-K items
   are parsed and why.

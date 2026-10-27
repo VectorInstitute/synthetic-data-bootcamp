@@ -22,5 +22,15 @@
     "oversight": "the full Board of Directors, with support from the Audit Committee",
     "had_disclosed_incident": true,
     "incident_summary": "a ransomware attempt on internal IT systems that was detected and contained before data was exfiltrated"
+  },
+  "scenario": {
+    "type": "mergers_and_acquisitions",
+    "summary": "Amberwood Technologies completed the acquisition of Dunmore Technologies, a fictional technology-enabled instruments business, during fiscal 2024, consistent with its acquisitive growth strategy of acquiring and operating niche software and instrumentation businesses.",
+    "facts": {
+      "acquired_name": "Dunmore Technologies, Inc.",
+      "purchase_price": 2942974801,
+      "rationale": "add a durable, high-margin niche instrumentation business to the existing portfolio",
+      "integration_status": "operated as a standalone business within the existing decentralized operating model"
+    }
   }
 }
