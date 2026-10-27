@@ -1,0 +1,35 @@
+{
+  "fictional_id": "GOG",
+  "fictional_name": "Riverton Partners Holdings, Inc.",
+  "fiscal_year": 2023,
+  "sector": "Information Technology",
+  "sub_industry": "Application Software",
+  "hq_state": "New York",
+  "template": {
+    "ticker": "DDOG",
+    "fiscal_year": 2023
+  },
+  "financials": {
+    "total_assets": 5169862653,
+    "total_liabilities": 2657545643,
+    "stockholders_equity": 2512317010,
+    "revenues": 2925867792,
+    "net_income": 64676224,
+    "operating_income": -51724310
+  },
+  "cybersecurity": {
+    "framework": "an internal enterprise risk management framework aligned to NIST",
+    "oversight": "a dedicated Technology and Cybersecurity Committee of the Board",
+    "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "product_launch",
+    "summary": "Riverton Partners launched SentinelFlow, a fictional new module extending its observability platform into automated anomaly detection, during fiscal 2023. The associated research and development investment is reflected in the year's operating loss.",
+    "facts": {
+      "product_name": "SentinelFlow",
+      "launch_timing": "introduced during fiscal 2023",
+      "target_use_case": "automated anomaly detection across customers' multi-cloud infrastructure",
+      "rationale": "extend the platform beyond metrics and log monitoring into automated, real-time anomaly detection"
+    }
+  }
+}

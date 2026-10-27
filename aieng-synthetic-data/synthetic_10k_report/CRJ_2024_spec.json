@@ -1,0 +1,33 @@
+{
+  "fictional_id": "BAI",
+  "fictional_name": "Northbridge Technologies Inc.",
+  "fiscal_year": 2025,
+  "sector": "Utilities",
+  "sub_industry": "Electric Utilities",
+  "hq_state": "Ohio",
+  "template": {
+    "ticker": "AEP",
+    "fiscal_year": 2025
+  },
+  "financials": {
+    "total_assets": 99984693578,
+    "total_liabilities": 75522130703,
+    "stockholders_equity": 24462562875,
+    "revenues": 16233445013,
+    "net_income": 2809389963,
+    "operating_income": 4084260480
+  },
+  "cybersecurity": {
+    "framework": "the NIST Cybersecurity Framework and ISO/IEC 27001",
+    "oversight": "the full Board of Directors, with support from the Audit Committee",
+    "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "regulatory_rate_case",
+    "summary": "Northbridge Technologies' fiscal 2025 results reflect the outcome of a rate case in which state utility regulators approved a rate increase below the full amount the company requested, limiting full recovery of certain operating and capital costs.",
+    "facts": {
+      "driver": "state utility regulators approved a rate increase below the full amount requested",
+      "effect": "limited full recovery of certain operating and capital costs during the fiscal year"
+    }
+  }
+}

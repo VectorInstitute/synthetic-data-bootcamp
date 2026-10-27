@@ -1,0 +1,33 @@
+{
+  "fictional_id": "KMW",
+  "fictional_name": "Northbridge Technologies Corp.",
+  "fiscal_year": 2024,
+  "sector": "Health Care",
+  "sub_industry": "Health Care Services",
+  "hq_state": "Rhode Island",
+  "template": {
+    "ticker": "CVS",
+    "fiscal_year": 2024
+  },
+  "financials": {
+    "total_assets": 320472846890,
+    "total_liabilities": 214392478454,
+    "stockholders_equity": 106080368436,
+    "revenues": 414916911227,
+    "net_income": 5369526217,
+    "operating_income": 9593268502
+  },
+  "cybersecurity": {
+    "framework": "ISO/IEC 27001",
+    "oversight": "a dedicated Technology and Cybersecurity Committee of the Board",
+    "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "regulatory_pricing_pressure",
+    "summary": "Northbridge Technologies Corp.'s fiscal 2024 margins reflect recently enacted state and federal measures affecting pharmacy benefit management practices and prescription drug pricing across its integrated pharmacy, benefits, and care-delivery businesses.",
+    "facts": {
+      "driver": "recently enacted state and federal measures affecting pharmacy benefit management practices and prescription drug pricing",
+      "effect": "contributed to a high effective tax rate and thin margins relative to the company's scale"
+    }
+  }
+}
