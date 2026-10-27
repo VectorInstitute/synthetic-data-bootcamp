@@ -156,6 +156,21 @@ def test_run_regenerates_failures_and_records_usage(tmp_path: Path) -> None:
     assert summary["by_company"][0]["total_tokens"] == 1200
 
 
+def test_items_limits_the_filing_to_chosen_items(tmp_path: Path) -> None:
+    """``only`` generates just those Items and the filing holds nothing else."""
+    data = _data(tmp_path)
+    out = data / "synthetic" / "filings"
+    client = FakeClient()
+    only = ["1", "1A", "1C", "7", "8"]
+    metrics = run([SPEC], Corpus.load(data), client, out_root=out, only=only)[0]
+    assert sorted(metrics["sections"]) == ["1", "1A", "1C", "7"]
+    filing = (out / SPEC["company_id"] / "filing.txt").read_text()
+    for heading in ("Item 1.", "Item 1A.", "Item 1C.", "Item 7.", "Item 8."):
+        assert heading in filing
+    for heading in ("Item 1B.", "Item 2.", "Item 7A.", "Item 9A.", "Item 15."):
+        assert heading not in filing
+
+
 def test_dry_run_writes_prompts_only(tmp_path: Path) -> None:
     """Without a client, prompts and Item 8 are written but no filing."""
     data = _data(tmp_path)

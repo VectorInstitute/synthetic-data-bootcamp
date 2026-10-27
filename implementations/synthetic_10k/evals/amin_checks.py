@@ -3,7 +3,7 @@
 Amin's checks live in ../amin_pipeline/sec10k/validate.py and run
 inside his narrative step on each generated section. This script applies the ones
 that don't depend on his prompts to every filing under
-../dylan_pipeline/data/synthetic/{fictional_id}/{fy}/:
+../dylan_pipeline/data/synthetic/{fictional_id}/{fy}/ (or --synthetic-dir):
 
 - company_name: Items 1 and 7 name the fictional company.
 - real_names: no S&P 500 company name appears (Dylan's sp500_constituents.csv, matched
@@ -29,6 +29,7 @@ and the prior year: line changes are then zero and add no extra allowed figures.
 
 Run from this folder (in the repo's `uv` environment):
     python amin_checks.py
+    python amin_checks.py --synthetic-dir DIR --out results/NAME/report.csv
 """
 
 import argparse
@@ -189,11 +190,17 @@ def main() -> None:
     """Check every fictional company in Dylan's pipeline and write the report."""
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    parser.add_argument(
+        "--synthetic-dir",
+        type=Path,
+        default=DYLAN_DIR / "data" / "synthetic",
+        help="folder of {fictional_id}/{fy}/ companies in Dylan's layout",
+    )
     args = parser.parse_args()
 
     real_names = load_real_names()
     rows = []
-    for spec_path in sorted((DYLAN_DIR / "data" / "synthetic").glob("*/*/spec.json")):
+    for spec_path in sorted(args.synthetic_dir.glob("*/*/spec.json")):
         rows.extend(check_company(spec_path, real_names))
 
     buffer = io.StringIO()

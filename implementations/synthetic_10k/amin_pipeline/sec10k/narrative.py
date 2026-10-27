@@ -43,7 +43,7 @@ import logging
 import random
 import re
 import time
-from collections.abc import Callable
+from collections.abc import Callable, Collection
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
@@ -417,12 +417,15 @@ def write_company(
     out_root: Path,
     length_scale: float = 1.0,
     item_clients: dict[str, ChatClient] | None = None,
+    only: Collection[str] | None = None,
 ) -> dict[str, Any]:
     """Generate (or, without a client, only prompt) one company's filing.
 
     ``item_clients`` overrides ``client`` for the Items it names, so each Item
-    can use a different model.
+    can use a different model. ``only`` limits the filing to the Items it names
+    (Item 8 is always built from the statements).
     """
+    order = [i for i in GENERATION_ORDER if only is None or i in only]
     cid = spec["company_id"]
     out = out_root / cid
     (out / "prompts").mkdir(parents=True, exist_ok=True)
@@ -431,14 +434,13 @@ def write_company(
     items: dict[str, str] = {"8": item_8(spec)}
     calls: list[dict[str, Any]] = []
     sections: dict[str, Any] = {}
-    for item in GENERATION_ORDER:
+    for item in order:
         target = corpus.target_words(item, rng, length_scale)
         exemplar = corpus.exemplar(spec["sector"], item, rng)
-        earlier = {i: items[i] for i in GENERATION_ORDER if i in items}
+        earlier = {i: items[i] for i in order if i in items}
         if client is None:  # dry run: show where earlier Items will go
             earlier = {
-                i: f"[Item {i} as generated]"
-                for i in GENERATION_ORDER[: GENERATION_ORDER.index(item)]
+                i: f"[Item {i} as generated]" for i in order[: order.index(item)]
             }
         prompt = build_prompt(
             spec, item, target=target, exemplar=exemplar, earlier=earlier
@@ -483,7 +485,7 @@ def write_company(
     (out / "item_8.txt").write_text(items["8"])
     dry_run = client is None
     if not dry_run:
-        write_filing(spec, out)
+        write_filing(spec, out, None if only is None else {*only, "8"})
     metrics = {
         "company_id": cid,
         "name": spec["name"],
@@ -508,6 +510,7 @@ def run(
     workers: int = 1,
     length_scale: float = 1.0,
     item_clients: dict[str, ChatClient] | None = None,
+    only: Collection[str] | None = None,
 ) -> list[dict[str, Any]]:
     """Generate filings for ``specs``, ``workers`` companies at a time."""
 
@@ -520,6 +523,7 @@ def run(
                 out_root=out_root,
                 length_scale=length_scale,
                 item_clients=item_clients,
+                only=only,
             )
         except Exception as exc:  # keep going; the run summary records it
             logger.exception("Failed on %s", spec["company_id"])
@@ -584,6 +588,11 @@ def main() -> None:
     parser.add_argument("--overwrite", action="store_true", help="redo finished")
     parser.add_argument("--dry-run", action="store_true", help="prompts only")
     parser.add_argument("--list-models", action="store_true")
+    parser.add_argument(
+        "--items",
+        nargs="*",
+        help="only these Items, e.g. 1 1A 1C 7 8 (default: all; 8 is always built)",
+    )
     args = parser.parse_args()
     logging.basicConfig(
         level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s"
@@ -633,10 +642,12 @@ def main() -> None:
         workers=args.workers,
         length_scale=args.length_scale,
         item_clients=item_clients,
+        only=args.items,
     )
     config = {
         "model": args.model,
         "item_models": item_models,
+        "items": args.items,
         "dry_run": args.dry_run,
         "temperature": args.temperature,
         "length_scale": args.length_scale,

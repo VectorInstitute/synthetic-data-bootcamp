@@ -16,16 +16,17 @@ and ticker, not just the 50 downloaded, so no fictional company can be mistaken 
 real one.
 
 Run from the project directory:
-    python -m src.step06_make_specs
+    python -m src.step06_make_specs [--n 20] [--seed 42]
 """
 
+import argparse
 import csv
 import json
 import random
 import re
 import string
 
-from src.config import PROJECT_DIR, RAW_DIR
+from src.config import PROJECT_DIR, RAW_DIR, SYNTHETIC_DIR
 from src.utils import setup_logging, write_atomic
 
 
@@ -33,8 +34,6 @@ logger = setup_logging("make_specs")
 
 CALIBRATION_PATH = RAW_DIR.parent / "calibration.json"
 CONSTITUENTS_PATH = PROJECT_DIR / "data" / "sp500_constituents.csv"
-SYNTHETIC_DIR = RAW_DIR.parent / "synthetic"
-
 N_COMPANIES = 20
 SEED = 42
 
@@ -255,14 +254,18 @@ def build_spec(
 
 
 def main() -> None:
-    """Sample N_COMPANIES templates and write a spec.json for each."""
-    rng = random.Random(SEED)
+    """Sample --n templates (default N_COMPANIES) and write a spec.json for each."""
+    parser = argparse.ArgumentParser(description="Build fictional-company specs.")
+    parser.add_argument("--n", type=int, default=N_COMPANIES, help="number of fictional companies")
+    parser.add_argument("--seed", type=int, default=SEED)
+    args = parser.parse_args()
+    rng = random.Random(args.seed)
     company_years = load_company_years()
     real_companies = load_real_companies()
     real_names = {info["name"].lower() for info in real_companies.values()}
     real_tickers = set(real_companies)
 
-    templates = rng.sample(company_years, min(N_COMPANIES, len(company_years)))
+    templates = rng.sample(company_years, min(args.n, len(company_years)))
     used_names: set[str] = set()
     used_tickers: set[str] = set()
 

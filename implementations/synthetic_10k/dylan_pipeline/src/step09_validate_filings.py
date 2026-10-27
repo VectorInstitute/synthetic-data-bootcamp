@@ -28,16 +28,15 @@ import json
 import re
 from pathlib import Path
 
-from src.config import PROJECT_DIR, RAW_DIR
+from src.config import PROJECT_DIR, RAW_DIR, SYNTHETIC_DIR
 from src.utils import setup_logging, write_atomic
 
 
 logger = setup_logging("validate_filings")
 
-SYNTHETIC_DIR = RAW_DIR.parent / "synthetic"
 CONSTITUENTS_PATH = PROJECT_DIR / "data" / "sp500_constituents.csv"
 PARSE_STATUS_PATH = RAW_DIR.parent / "parse_status.csv"
-REPORT_PATH = RAW_DIR.parent / "validation_report.csv"
+REPORT_PATH = SYNTHETIC_DIR.parent / "validation_report.csv"
 
 ITEMS = ["1", "1a", "1c", "7", "8"]
 MIN_WORDS = 150  # Phase 6's own substantiveness floor, already verified by hand once

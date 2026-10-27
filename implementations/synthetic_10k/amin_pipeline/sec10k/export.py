@@ -19,6 +19,7 @@ import html
 import json
 import logging
 import re
+from collections.abc import Collection
 from pathlib import Path
 from typing import Any
 
@@ -252,14 +253,21 @@ def _toc_html(present: list[str]) -> str:
     return f'<div class="toc page"><h2 class="part">TABLE OF CONTENTS</h2><table>{"".join(rows)}</table></div>'
 
 
-def collect_items(spec: dict[str, Any], folder: Path) -> dict[str, str]:
-    """Return the generated Items in ``folder`` plus Item 8 and the templates."""
+def collect_items(
+    spec: dict[str, Any], folder: Path, only: Collection[str] | None = None
+) -> dict[str, str]:
+    """Return the generated Items in ``folder`` plus Item 8 and the templates.
+
+    ``only`` keeps just the Items it names, e.g. ``{"1", "1A", "1C", "7", "8"}``.
+    """
     items = template_items(spec)
     items["8"] = item_8(spec)
     for _, item, _title in OUTLINE:
         path = folder / f"item_{item.lower()}.txt"
         if item not in items and path.exists():
             items[item] = path.read_text()
+    if only is not None:
+        items = {k: v for k, v in items.items() if k in only}
     return items
 
 
@@ -312,9 +320,11 @@ def filing_html(spec: dict[str, Any], items: dict[str, str]) -> str:
     )
 
 
-def write_filing(spec: dict[str, Any], folder: Path) -> dict[str, str]:
+def write_filing(
+    spec: dict[str, Any], folder: Path, only: Collection[str] | None = None
+) -> dict[str, str]:
     """Write ``filing.txt`` and ``filing.html`` into ``folder``."""
-    items = collect_items(spec, folder)
+    items = collect_items(spec, folder, only)
     (folder / "filing.txt").write_text(filing_text(spec, items))
     (folder / "filing.html").write_text(filing_html(spec, items))
     return items
@@ -327,6 +337,9 @@ def main() -> None:
     )
     parser.add_argument("--data", type=Path, default=Path("data/sec10k"))
     parser.add_argument("--companies", nargs="*", help="company ids (default: all)")
+    parser.add_argument(
+        "--items", nargs="*", help="only these Items, e.g. 1 1A 1C 7 8 (default: all)"
+    )
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     synthetic = args.data / "synthetic"
@@ -336,7 +349,7 @@ def main() -> None:
             args.companies and folder.name not in args.companies
         ):
             continue
-        write_filing(json.loads(spec_path.read_text()), folder)
+        write_filing(json.loads(spec_path.read_text()), folder, args.items)
         logger.info("Wrote %s", folder / "filing.html")
 
 
