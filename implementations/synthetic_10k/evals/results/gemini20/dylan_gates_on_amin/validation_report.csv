@@ -1,0 +1,361 @@
+fictional_id,fiscal_year,check,item,status,detail,note
+TANL,2024,substantive,1,PASS,2130 words,
+TANL,2024,length_vs_real,1,INFO,15497 chars vs real median 61281 chars (25%),
+TANL,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+TANL,2024,substantive,1a,PASS,3506 words,
+TANL,2024,length_vs_real,1a,INFO,23672 chars vs real median 80672 chars (29%),
+TANL,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+TANL,2024,substantive,1c,PASS,1186 words,
+TANL,2024,length_vs_real,1c,INFO,8639 chars vs real median 6000 chars (144%),
+TANL,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+TANL,2024,substantive,7,PASS,1941 words,
+TANL,2024,length_vs_real,7,INFO,13026 chars vs real median 66970 chars (19%),
+TANL,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+TANL,2024,substantive,8,PASS,435 words,
+TANL,2024,length_vs_real,8,INFO,2865 chars vs real median 171195 chars (2%),
+TANL,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+TANL,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+TANL,2024,numeric_consistency,7,FAIL,"61/69 figures traced; unmatched: 3.1489e+10 in '$31,489 million'; 2.2726e+10 in '$22,726 million'; 12.2 in '12.2%'; 13.9 in '13.9%'; 9.9 in '9.9%'; 21.4 in '21.4%'; 1.2 in '1.2%'; 12.2 in '12.2%'","7 of 8 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect; not explained: 1.2 in '1.2%'"
+TANL,2024,numeric_consistency,8,PASS,66/66 figures traced,
+NOIX,2024,substantive,1,PASS,2024 words,
+NOIX,2024,length_vs_real,1,INFO,14907 chars vs real median 61281 chars (24%),
+NOIX,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NOIX,2024,substantive,1a,PASS,2948 words,
+NOIX,2024,length_vs_real,1a,INFO,20129 chars vs real median 80672 chars (25%),
+NOIX,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NOIX,2024,substantive,1c,PASS,1193 words,
+NOIX,2024,length_vs_real,1c,INFO,8714 chars vs real median 6000 chars (145%),
+NOIX,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NOIX,2024,substantive,7,PASS,2946 words,
+NOIX,2024,length_vs_real,7,INFO,19873 chars vs real median 66970 chars (30%),
+NOIX,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NOIX,2024,substantive,8,PASS,435 words,
+NOIX,2024,length_vs_real,8,INFO,2796 chars vs real median 171195 chars (2%),
+NOIX,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NOIX,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+NOIX,2024,numeric_consistency,7,FAIL,71/83 figures traced; unmatched: 8.66e+08 in '$866 million'; 7.5 in '7.5%'; 12.8 in '12.8%'; 8.9 in '8.9%'; 7.5 in '7.5%'; 30.1 in '30.1%'; 9 in '9.0%'; 12.7 in '12.7%'; 8.9 in '8.9%'; 12.7 in '12.7%'; 12.8 in '12.8%'; 12.8 in '12.8%',"12 of 12 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+NOIX,2024,numeric_consistency,8,PASS,66/66 figures traced,
+SOLV,2024,substantive,1,PASS,2097 words,
+SOLV,2024,length_vs_real,1,INFO,15373 chars vs real median 61281 chars (25%),
+SOLV,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+SOLV,2024,substantive,1a,PASS,3898 words,
+SOLV,2024,length_vs_real,1a,INFO,26848 chars vs real median 80672 chars (33%),
+SOLV,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+SOLV,2024,substantive,1c,PASS,1043 words,
+SOLV,2024,length_vs_real,1c,INFO,7614 chars vs real median 6000 chars (127%),
+SOLV,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+SOLV,2024,substantive,7,PASS,2535 words,
+SOLV,2024,length_vs_real,7,INFO,16908 chars vs real median 66970 chars (25%),
+SOLV,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+SOLV,2024,substantive,8,PASS,435 words,
+SOLV,2024,length_vs_real,8,INFO,2789 chars vs real median 171195 chars (2%),
+SOLV,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+SOLV,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+SOLV,2024,numeric_consistency,7,FAIL,73/88 figures traced; unmatched: 7.19e+08 in '$719 million'; 5.39e+08 in '$539 million'; 1.3e+07 in '$13 million'; 4.3e+07 in '$43 million'; 1.5e+08 in '$150 million'; 3.2e+07 in '$32 million'; 9.7e+07 in '$97 million'; 5.3 in '5.3%'; 14.4 in '14.4%'; 33.9 in '33.9%'; 16.5 in '16.5%'; 5.3 in '5.3%'; 16.5 in '16.5%'; 14.4 in '14.4%'; 33.9 in '33.9%',"15 of 15 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+SOLV,2024,numeric_consistency,8,PASS,66/66 figures traced,
+LNON,2024,substantive,1,PASS,2306 words,
+LNON,2024,length_vs_real,1,INFO,16733 chars vs real median 61281 chars (27%),
+LNON,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+LNON,2024,substantive,1a,PASS,3621 words,
+LNON,2024,length_vs_real,1a,INFO,24946 chars vs real median 80672 chars (31%),
+LNON,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+LNON,2024,substantive,1c,PASS,1055 words,
+LNON,2024,length_vs_real,1c,INFO,7732 chars vs real median 6000 chars (129%),
+LNON,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+LNON,2024,substantive,7,PASS,2447 words,
+LNON,2024,length_vs_real,7,INFO,16810 chars vs real median 66970 chars (25%),
+LNON,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+LNON,2024,substantive,8,PASS,435 words,
+LNON,2024,length_vs_real,8,INFO,2832 chars vs real median 171195 chars (2%),
+LNON,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+LNON,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+LNON,2024,numeric_consistency,7,FAIL,55/58 figures traced; unmatched: 36.1 in '36.1%'; 9.1 in '9.1%'; 19.4 in '19.4%',"3 of 3 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+LNON,2024,numeric_consistency,8,PASS,66/66 figures traced,
+MERQ,2024,substantive,1,PASS,2194 words,
+MERQ,2024,length_vs_real,1,INFO,15472 chars vs real median 61281 chars (25%),
+MERQ,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+MERQ,2024,substantive,1a,PASS,4794 words,
+MERQ,2024,length_vs_real,1a,INFO,31711 chars vs real median 80672 chars (39%),
+MERQ,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+MERQ,2024,substantive,1c,PASS,986 words,
+MERQ,2024,length_vs_real,1c,INFO,7163 chars vs real median 6000 chars (119%),
+MERQ,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+MERQ,2024,substantive,7,PASS,2531 words,
+MERQ,2024,length_vs_real,7,INFO,16776 chars vs real median 66970 chars (25%),
+MERQ,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+MERQ,2024,substantive,8,PASS,435 words,
+MERQ,2024,length_vs_real,8,INFO,2741 chars vs real median 171195 chars (2%),
+MERQ,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+MERQ,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+MERQ,2024,numeric_consistency,7,FAIL,63/75 figures traced; unmatched: 1.55e+08 in '$155 million'; 1.2e+07 in '$12 million'; 1.3e+07 in '$13 million'; 3.4e+07 in '$34 million'; 5e+06 in '$5 million'; 2.3e+07 in '$23 million'; 74.2 in '74.2%'; 15.4 in '15.4%'; 13.2 in '13.2%'; 2.7 in '2.7%'; 22.5 in '22.5%'; 74.2 in '74.2%',"10 of 12 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect; not explained: 74.2 in '74.2%'; 74.2 in '74.2%'"
+MERQ,2024,numeric_consistency,8,PASS,66/66 figures traced,
+SEQZ,2024,substantive,1,PASS,2298 words,
+SEQZ,2024,length_vs_real,1,INFO,16436 chars vs real median 61281 chars (27%),
+SEQZ,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+SEQZ,2024,substantive,1a,PASS,3578 words,
+SEQZ,2024,length_vs_real,1a,INFO,24203 chars vs real median 80672 chars (30%),
+SEQZ,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+SEQZ,2024,substantive,1c,PASS,1025 words,
+SEQZ,2024,length_vs_real,1c,INFO,7511 chars vs real median 6000 chars (125%),
+SEQZ,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+SEQZ,2024,substantive,7,PASS,2476 words,
+SEQZ,2024,length_vs_real,7,INFO,16525 chars vs real median 66970 chars (25%),
+SEQZ,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+SEQZ,2024,substantive,8,PASS,435 words,
+SEQZ,2024,length_vs_real,8,INFO,2813 chars vs real median 171195 chars (2%),
+SEQZ,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+SEQZ,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+SEQZ,2024,numeric_consistency,7,FAIL,62/71 figures traced; unmatched: 4.21e+08 in '$421 million'; 4.37e+08 in '$437 million'; 13.7 in '13.7%'; 37.3 in '37.3%'; 6.8 in '6.8%'; 13.7 in '13.7%'; 37.3 in '37.3%'; 6.8 in '6.8%'; 4.1 in '4.1%',"9 of 9 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+SEQZ,2024,numeric_consistency,8,PASS,66/66 figures traced,
+ORAL,2024,substantive,1,PASS,2605 words,
+ORAL,2024,length_vs_real,1,INFO,18682 chars vs real median 61281 chars (30%),
+ORAL,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ORAL,2024,substantive,1a,PASS,4180 words,
+ORAL,2024,length_vs_real,1a,INFO,27865 chars vs real median 80672 chars (35%),
+ORAL,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ORAL,2024,substantive,1c,PASS,674 words,
+ORAL,2024,length_vs_real,1c,INFO,4981 chars vs real median 6000 chars (83%),
+ORAL,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ORAL,2024,substantive,7,PASS,2613 words,
+ORAL,2024,length_vs_real,7,INFO,17785 chars vs real median 66970 chars (27%),
+ORAL,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ORAL,2024,substantive,8,PASS,435 words,
+ORAL,2024,length_vs_real,8,INFO,2854 chars vs real median 171195 chars (2%),
+ORAL,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ORAL,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+ORAL,2024,numeric_consistency,7,FAIL,54/62 figures traced; unmatched: 12.9 in '12.9%'; 33 in '33.0%'; 13 in '13.0%'; 11.6 in '11.6%'; 20 in '20.0%'; 23.1 in '23.1%'; 12.9 in '12.9%'; 13.3 in '13.3%',"7 of 8 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect; not explained: 11.6 in '11.6%'"
+ORAL,2024,numeric_consistency,8,PASS,66/66 figures traced,
+NQVU,2024,substantive,1,PASS,2107 words,
+NQVU,2024,length_vs_real,1,INFO,14933 chars vs real median 61281 chars (24%),
+NQVU,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NQVU,2024,substantive,1a,PASS,4784 words,
+NQVU,2024,length_vs_real,1a,INFO,31825 chars vs real median 80672 chars (39%),
+NQVU,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NQVU,2024,substantive,1c,PASS,1012 words,
+NQVU,2024,length_vs_real,1c,INFO,7368 chars vs real median 6000 chars (123%),
+NQVU,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NQVU,2024,substantive,7,PASS,2698 words,
+NQVU,2024,length_vs_real,7,INFO,18007 chars vs real median 66970 chars (27%),
+NQVU,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NQVU,2024,substantive,8,PASS,435 words,
+NQVU,2024,length_vs_real,8,INFO,2795 chars vs real median 171195 chars (2%),
+NQVU,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NQVU,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+NQVU,2024,numeric_consistency,7,FAIL,68/79 figures traced; unmatched: 7.38e+08 in '$738 million'; 3e+07 in '$30 million'; 4.5e+07 in '$45 million'; 5.04e+08 in '$504 million'; 7e+06 in '$7 million'; 12 in '12.0%'; 30.3 in '30.3%'; 30.3 in '30.3%'; 9 in '9.0%'; 12 in '12.0%'; 6.7 in '6.7%',"11 of 11 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+NQVU,2024,numeric_consistency,8,PASS,66/66 figures traced,
+TSOE,2024,substantive,1,PASS,2005 words,
+TSOE,2024,length_vs_real,1,INFO,14634 chars vs real median 61281 chars (24%),
+TSOE,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+TSOE,2024,substantive,1a,PASS,2884 words,
+TSOE,2024,length_vs_real,1a,INFO,19627 chars vs real median 80672 chars (24%),
+TSOE,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+TSOE,2024,substantive,1c,PASS,1071 words,
+TSOE,2024,length_vs_real,1c,INFO,7673 chars vs real median 6000 chars (128%),
+TSOE,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+TSOE,2024,substantive,7,PASS,2347 words,
+TSOE,2024,length_vs_real,7,INFO,15718 chars vs real median 66970 chars (23%),
+TSOE,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+TSOE,2024,substantive,8,PASS,435 words,
+TSOE,2024,length_vs_real,8,INFO,2800 chars vs real median 171195 chars (2%),
+TSOE,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+TSOE,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+TSOE,2024,numeric_consistency,7,FAIL,"66/81 figures traced; unmatched: 2.791e+09 in '$2,791 million'; 1.521e+09 in '$1,521 million'; 2.45e+08 in '$245 million'; 3.7e+08 in '$370 million'; 4.87e+08 in '$487 million'; 2.3e+07 in '$23 million'; 3.86e+08 in '$386 million'; 13 in '13.0%'; 12.4 in '12.4%'; 13 in '13.0%'; 13 in '13.0%'; 13.4 in '13.4%'; 10.5 in '10.5%'; 12.4 in '12.4%'; 13 in '13.0%'","15 of 15 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+TSOE,2024,numeric_consistency,8,PASS,66/66 figures traced,
+KOLR,2024,substantive,1,PASS,1946 words,
+KOLR,2024,length_vs_real,1,INFO,14246 chars vs real median 61281 chars (23%),
+KOLR,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KOLR,2024,substantive,1a,PASS,3141 words,
+KOLR,2024,length_vs_real,1a,INFO,21365 chars vs real median 80672 chars (26%),
+KOLR,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KOLR,2024,substantive,1c,PASS,967 words,
+KOLR,2024,length_vs_real,1c,INFO,6999 chars vs real median 6000 chars (117%),
+KOLR,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KOLR,2024,substantive,7,PASS,2443 words,
+KOLR,2024,length_vs_real,7,INFO,16671 chars vs real median 66970 chars (25%),
+KOLR,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KOLR,2024,substantive,8,PASS,435 words,
+KOLR,2024,length_vs_real,8,INFO,2828 chars vs real median 171195 chars (2%),
+KOLR,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KOLR,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+KOLR,2024,numeric_consistency,7,FAIL,"68/78 figures traced; unmatched: 1.408e+09 in '$1,408 million'; 1.059e+09 in '$1,059 million'; 6.7 in '6.7%'; 13.4 in '13.4%'; 28.9 in '28.9%'; 6.7 in '6.7%'; 28.9 in '28.9%'; 14.1 in '14.1%'; 20.4 in '20.4%'; 13.4 in '13.4%'","10 of 10 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+KOLR,2024,numeric_consistency,8,PASS,66/66 figures traced,
+NOMV,2024,substantive,1,PASS,2224 words,
+NOMV,2024,length_vs_real,1,INFO,16237 chars vs real median 61281 chars (26%),
+NOMV,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NOMV,2024,substantive,1a,PASS,4281 words,
+NOMV,2024,length_vs_real,1a,INFO,28818 chars vs real median 80672 chars (36%),
+NOMV,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NOMV,2024,substantive,1c,PASS,1064 words,
+NOMV,2024,length_vs_real,1c,INFO,7857 chars vs real median 6000 chars (131%),
+NOMV,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NOMV,2024,substantive,7,PASS,2650 words,
+NOMV,2024,length_vs_real,7,INFO,17796 chars vs real median 66970 chars (27%),
+NOMV,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NOMV,2024,substantive,8,PASS,435 words,
+NOMV,2024,length_vs_real,8,INFO,2789 chars vs real median 171195 chars (2%),
+NOMV,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+NOMV,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+NOMV,2024,numeric_consistency,7,FAIL,"57/72 figures traced; unmatched: 1.175e+09 in '$1,175 million'; 9.67e+08 in '$967 million'; 2.27e+08 in '$227 million'; 7e+07 in '$70 million'; 8.9e+07 in '$89 million'; 3.7e+07 in '$37 million'; 1.26e+08 in '$126 million'; 19.9 in '19.9%'; 61.8 in '61.8%'; 6.5 in '6.5%'; 13.8 in '13.8%'; 19.9 in '19.9%'; 2.3 in '2.3%'; 5.7 in '5.7%'; 61.8 in '61.8%'","13 of 15 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect; not explained: 19.9 in '19.9%'; 19.9 in '19.9%'"
+NOMV,2024,numeric_consistency,8,PASS,66/66 figures traced,
+VNNZ,2024,substantive,1,PASS,2234 words,
+VNNZ,2024,length_vs_real,1,INFO,16512 chars vs real median 61281 chars (27%),
+VNNZ,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+VNNZ,2024,substantive,1a,PASS,3451 words,
+VNNZ,2024,length_vs_real,1a,INFO,23410 chars vs real median 80672 chars (29%),
+VNNZ,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+VNNZ,2024,substantive,1c,PASS,1028 words,
+VNNZ,2024,length_vs_real,1c,INFO,7610 chars vs real median 6000 chars (127%),
+VNNZ,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+VNNZ,2024,substantive,7,PASS,3762 words,
+VNNZ,2024,length_vs_real,7,INFO,25529 chars vs real median 66970 chars (38%),
+VNNZ,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+VNNZ,2024,substantive,8,PASS,435 words,
+VNNZ,2024,length_vs_real,8,INFO,2831 chars vs real median 171195 chars (2%),
+VNNZ,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+VNNZ,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+VNNZ,2024,numeric_consistency,7,FAIL,"65/87 figures traced; unmatched: 3.57e+09 in '$3,570 million'; 2.183e+09 in '$2,183 million'; 1.24e+08 in '$124 million'; 4.8e+08 in '$480 million'; 2.14e+08 in '$214 million'; 5.69e+08 in '$569 million'; 5.3e+07 in '$53 million'; 5.16e+08 in '$516 million'; 4.72e+08 in '$472 million'; 9.4e+08 in '$940 million'; 6.96e+08 in '$696 million'; 2.168e+09 in '$2,168 million'; 8 in '8.0%'; 12 in '12.0%'; 35.5 in '35.5%'","22 of 22 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+VNNZ,2024,numeric_consistency,8,PASS,66/66 figures traced,
+DRAR,2024,substantive,1,PASS,2026 words,
+DRAR,2024,length_vs_real,1,INFO,14418 chars vs real median 61281 chars (24%),
+DRAR,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+DRAR,2024,substantive,1a,PASS,3024 words,
+DRAR,2024,length_vs_real,1a,INFO,20245 chars vs real median 80672 chars (25%),
+DRAR,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+DRAR,2024,substantive,1c,PASS,1161 words,
+DRAR,2024,length_vs_real,1c,INFO,8415 chars vs real median 6000 chars (140%),
+DRAR,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+DRAR,2024,substantive,7,PASS,2653 words,
+DRAR,2024,length_vs_real,7,INFO,17686 chars vs real median 66970 chars (26%),
+DRAR,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+DRAR,2024,substantive,8,PASS,435 words,
+DRAR,2024,length_vs_real,8,INFO,2858 chars vs real median 171195 chars (2%),
+DRAR,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+DRAR,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+DRAR,2024,numeric_consistency,7,FAIL,"61/75 figures traced; unmatched: 1.673e+09 in '$1,673 million'; 9.035e+09 in '$9,035 million'; 4.63e+08 in '$463 million'; 2.18e+08 in '$218 million'; 2.105e+09 in '$2,105 million'; 1.86e+09 in '$1,860 million'; 1.87e+08 in '$187 million'; 34.5 in '34.5%'; 9.3 in '9.3%'; 2.3 in '2.3%'; 34.5 in '34.5%'; 4.3 in '4.3%'; 39.9 in '39.9%'; -3.3 in 'negative 3.3%'","13 of 14 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect; not explained: 39.9 in '39.9%'"
+DRAR,2024,numeric_consistency,8,PASS,66/66 figures traced,
+KRAT,2024,substantive,1,PASS,1824 words,
+KRAT,2024,length_vs_real,1,INFO,13067 chars vs real median 61281 chars (21%),
+KRAT,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KRAT,2024,substantive,1a,PASS,4258 words,
+KRAT,2024,length_vs_real,1a,INFO,28829 chars vs real median 80672 chars (36%),
+KRAT,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KRAT,2024,substantive,1c,PASS,612 words,
+KRAT,2024,length_vs_real,1c,INFO,4528 chars vs real median 6000 chars (75%),
+KRAT,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KRAT,2024,substantive,7,PASS,3013 words,
+KRAT,2024,length_vs_real,7,INFO,19839 chars vs real median 66970 chars (30%),
+KRAT,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KRAT,2024,substantive,8,PASS,435 words,
+KRAT,2024,length_vs_real,8,INFO,2749 chars vs real median 171195 chars (2%),
+KRAT,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KRAT,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+KRAT,2024,numeric_consistency,7,FAIL,"73/83 figures traced; unmatched: 1.444e+09 in '$1,444 million'; 1.274e+09 in '$1,274 million'; 1.3e+07 in '$13 million'; 8.6e+07 in '$86 million'; 4.1e+07 in '$41 million'; 13.9 in '13.9%'; 13.9 in '13.9%'; 25.3 in '25.3%'; -5.5 in '-5.5%'; 13.9 in '13.9%'","9 of 10 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect; not explained: 25.3 in '25.3%'"
+KRAT,2024,numeric_consistency,8,PASS,66/66 figures traced,
+ZONE,2024,substantive,1,PASS,2614 words,
+ZONE,2024,length_vs_real,1,INFO,18932 chars vs real median 61281 chars (31%),
+ZONE,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ZONE,2024,substantive,1a,PASS,2766 words,
+ZONE,2024,length_vs_real,1a,INFO,18616 chars vs real median 80672 chars (23%),
+ZONE,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ZONE,2024,substantive,1c,PASS,694 words,
+ZONE,2024,length_vs_real,1c,INFO,5138 chars vs real median 6000 chars (86%),
+ZONE,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ZONE,2024,substantive,7,PASS,2152 words,
+ZONE,2024,length_vs_real,7,INFO,14587 chars vs real median 66970 chars (22%),
+ZONE,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ZONE,2024,substantive,8,PASS,435 words,
+ZONE,2024,length_vs_real,8,INFO,2686 chars vs real median 171195 chars (2%),
+ZONE,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ZONE,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+ZONE,2024,numeric_consistency,7,FAIL,64/80 figures traced; unmatched: 1.71e+08 in '$171 million'; 2.2e+07 in '$22 million'; 6.9e+07 in '$69 million'; 3.7e+07 in '$37 million'; 4.3e+07 in '$43 million'; 5e+06 in '$5 million'; 2.1e+07 in '$21 million'; 8.2 in '8.2%'; 8.2 in '8.2%'; 3.8 in '3.8%'; 72.1 in '72.1%'; 8.1 in '8.1%'; 42.5 in '42.5%'; 4.2 in '4.2%'; 29 in '29.0%',"16 of 16 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+ZONE,2024,numeric_consistency,8,PASS,66/66 figures traced,
+ZTLN,2024,substantive,1,PASS,2075 words,
+ZTLN,2024,length_vs_real,1,INFO,14845 chars vs real median 61281 chars (24%),
+ZTLN,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ZTLN,2024,substantive,1a,PASS,3331 words,
+ZTLN,2024,length_vs_real,1a,INFO,22392 chars vs real median 80672 chars (28%),
+ZTLN,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ZTLN,2024,substantive,1c,PASS,771 words,
+ZTLN,2024,length_vs_real,1c,INFO,5770 chars vs real median 6000 chars (96%),
+ZTLN,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ZTLN,2024,substantive,7,PASS,2588 words,
+ZTLN,2024,length_vs_real,7,INFO,17507 chars vs real median 66970 chars (26%),
+ZTLN,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ZTLN,2024,substantive,8,PASS,435 words,
+ZTLN,2024,length_vs_real,8,INFO,2761 chars vs real median 171195 chars (2%),
+ZTLN,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ZTLN,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+ZTLN,2024,numeric_consistency,7,FAIL,"63/71 figures traced; unmatched: 1.097e+09 in '$1,097 million'; 7.69e+08 in '$769 million'; 6.7 in '6.7%'; 120 in '120.0%'; 6.7 in '6.7%'; 38.7 in '38.7%'; 2.4 in '2.4%'; 120 in '120.0%'","8 of 8 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+ZTLN,2024,numeric_consistency,8,PASS,66/66 figures traced,
+OSRR,2024,substantive,1,PASS,2731 words,
+OSRR,2024,length_vs_real,1,INFO,19394 chars vs real median 61281 chars (32%),
+OSRR,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+OSRR,2024,substantive,1a,PASS,3209 words,
+OSRR,2024,length_vs_real,1a,INFO,21840 chars vs real median 80672 chars (27%),
+OSRR,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+OSRR,2024,substantive,1c,PASS,1092 words,
+OSRR,2024,length_vs_real,1c,INFO,8071 chars vs real median 6000 chars (135%),
+OSRR,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+OSRR,2024,substantive,7,PASS,2333 words,
+OSRR,2024,length_vs_real,7,INFO,15776 chars vs real median 66970 chars (24%),
+OSRR,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+OSRR,2024,substantive,8,PASS,435 words,
+OSRR,2024,length_vs_real,8,INFO,2763 chars vs real median 171195 chars (2%),
+OSRR,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+OSRR,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+OSRR,2024,numeric_consistency,7,FAIL,65/78 figures traced; unmatched: 4.29e+08 in '$429 million'; 3.9e+07 in '$39 million'; 1.19e+08 in '$119 million'; 6.2e+07 in '$62 million'; 7e+06 in '$7 million'; 7e+07 in '$70 million'; 4.1 in '4.1%'; 5 in '5.0%'; 4.1 in '4.1%'; 26.4 in '26.4%'; 5.3 in '5.3%'; 20.6 in '20.6%'; 5 in '5.0%',"13 of 13 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+OSRR,2024,numeric_consistency,8,PASS,66/66 figures traced,
+ORZA,2024,substantive,1,PASS,2192 words,
+ORZA,2024,length_vs_real,1,INFO,15635 chars vs real median 61281 chars (26%),
+ORZA,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ORZA,2024,substantive,1a,PASS,4091 words,
+ORZA,2024,length_vs_real,1a,INFO,27534 chars vs real median 80672 chars (34%),
+ORZA,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ORZA,2024,substantive,1c,PASS,917 words,
+ORZA,2024,length_vs_real,1c,INFO,6791 chars vs real median 6000 chars (113%),
+ORZA,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ORZA,2024,substantive,7,PASS,2848 words,
+ORZA,2024,length_vs_real,7,INFO,19426 chars vs real median 66970 chars (29%),
+ORZA,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ORZA,2024,substantive,8,PASS,435 words,
+ORZA,2024,length_vs_real,8,INFO,2850 chars vs real median 171195 chars (2%),
+ORZA,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+ORZA,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+ORZA,2024,numeric_consistency,7,FAIL,"64/75 figures traced; unmatched: 6.92e+09 in '$6,920 million'; 15.1 in '15.1%'; 15.9 in '15.9%'; 16.2 in '16.2%'; 15.1 in '15.1%'; 16 in '16.0%'; 48.1 in '48.1%'; 15.9 in '15.9%'; 39.7 in '39.7%'; 16.2 in '16.2%'; 25.9 in '25.9%'","11 of 11 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+ORZA,2024,numeric_consistency,8,PASS,66/66 figures traced,
+KUAQ,2024,substantive,1,PASS,2122 words,
+KUAQ,2024,length_vs_real,1,INFO,15093 chars vs real median 61281 chars (25%),
+KUAQ,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KUAQ,2024,substantive,1a,PASS,3260 words,
+KUAQ,2024,length_vs_real,1a,INFO,21745 chars vs real median 80672 chars (27%),
+KUAQ,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KUAQ,2024,substantive,1c,PASS,1058 words,
+KUAQ,2024,length_vs_real,1c,INFO,7618 chars vs real median 6000 chars (127%),
+KUAQ,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KUAQ,2024,substantive,7,PASS,2593 words,
+KUAQ,2024,length_vs_real,7,INFO,17180 chars vs real median 66970 chars (26%),
+KUAQ,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KUAQ,2024,substantive,8,PASS,435 words,
+KUAQ,2024,length_vs_real,8,INFO,2726 chars vs real median 171195 chars (2%),
+KUAQ,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+KUAQ,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+KUAQ,2024,numeric_consistency,7,FAIL,71/85 figures traced; unmatched: 4.95e+08 in '$495 million'; 5.6e+07 in '$56 million'; 5.3e+07 in '$53 million'; 6e+07 in '$60 million'; 6.3e+07 in '$63 million'; 8e+06 in '$8 million'; 2.4e+07 in '$24 million'; 26.9 in '26.9%'; 5.4 in '5.4%'; 26.9 in '26.9%'; 8.9 in '8.9%'; 14.3 in '14.3%'; 26.2 in '26.2%'; 11.9 in '11.9%',"14 of 14 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+KUAQ,2024,numeric_consistency,8,PASS,66/66 figures traced,
+DEVR,2024,substantive,1,PASS,1810 words,
+DEVR,2024,length_vs_real,1,INFO,13061 chars vs real median 61281 chars (21%),
+DEVR,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+DEVR,2024,substantive,1a,PASS,4285 words,
+DEVR,2024,length_vs_real,1a,INFO,29099 chars vs real median 80672 chars (36%),
+DEVR,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+DEVR,2024,substantive,1c,PASS,1238 words,
+DEVR,2024,length_vs_real,1c,INFO,9165 chars vs real median 6000 chars (153%),
+DEVR,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+DEVR,2024,substantive,7,PASS,2147 words,
+DEVR,2024,length_vs_real,7,INFO,14716 chars vs real median 66970 chars (22%),
+DEVR,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+DEVR,2024,substantive,8,PASS,435 words,
+DEVR,2024,length_vs_real,8,INFO,2850 chars vs real median 171195 chars (2%),
+DEVR,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings"
+DEVR,2024,required_headings,8,FAIL,Statement of (Income|Operations),"filing uses the plural 'Statements of Operations', which step09's pattern doesn't accept"
+DEVR,2024,numeric_consistency,7,FAIL,"63/70 figures traced; unmatched: 2.223e+09 in '$2,223 million'; 1.95e+08 in '$195 million'; 2.95e+08 in '$295 million'; 5.33e+08 in '$533 million'; 6.11e+08 in '$611 million'; 5.5 in '5.5%'; 26.5 in '26.5%'","7 of 7 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+DEVR,2024,numeric_consistency,8,PASS,66/66 figures traced,
