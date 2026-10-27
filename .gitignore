@@ -62,6 +62,8 @@ runs/detect/
 # ignore experiment artifacts and datasets
 **.pkl
 **.csv
+# SynthHeart: source dataset (Kaggle cardiovascular disease, pre-approved by Vector for the bootcamp)
+!data/cardio_train.csv
 
 # Tabular data gitignore
 implementations/tabular_data/**.csv
