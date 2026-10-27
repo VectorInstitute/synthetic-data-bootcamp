@@ -160,11 +160,16 @@ def to_financials(statements: list[tuple[str, list]]) -> dict:
 
 
 def to_text(element) -> str:
-    """Render one Item's HTML as text, tables as `label | value` rows."""
-    lines = []
+    """Render one Item's HTML as text, tables as `label | value` rows.
+
+    Blocks are separated by a blank line and a table's rows stay together in one
+    block, as in Dylan's filings, so RAG.chunks splits both layouts the same way.
+    """
+    blocks = []
     for node in element:
         name = getattr(node, "name", None)
         if name == "table":
+            lines = []
             caption = node.find("caption")
             if caption:
                 lines.extend(caption.get_text("\n", strip=True).splitlines())
@@ -178,9 +183,10 @@ def to_text(element) -> str:
                     " | ".join(td.get_text(" ", strip=True) for td in tr.find_all(["td", "th"]))
                     for tr in node.find_all("tr")
                 )
+            blocks.append("\n".join(line for line in lines if line))
         elif name:
-            lines.append(node.get_text(" ", strip=True))
-    return "\n\n".join(line for line in lines if line)
+            blocks.append(node.get_text(" ", strip=True))
+    return "\n\n".join(block for block in blocks if block)
 
 
 def item_nodes(soup: BeautifulSoup, html_id: str) -> list:
@@ -239,7 +245,7 @@ def two_year_figures(financials: dict) -> tuple[set[float], set[float]]:
     each line's year-over-year change, and the prior year's line-to-revenue and
     line-to-total-assets ratios (prior-year margins and asset mix).
     """
-    prior = {k[: -len("_prior")]: v for k, v in financials["cash_flow_statement"]["prior_year"].items()}
+    prior = {k[: -len("_prior")]: v for k, v in financials["cash_flow_statement"].get("prior_year", {}).items()}
     current = {}
 
     def walk(d: dict) -> None:

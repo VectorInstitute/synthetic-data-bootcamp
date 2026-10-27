@@ -33,3 +33,6 @@ logs/
 # Rendered PDFs are a derived artifact of the narrative text; regenerate with
 # src.step10_build_pdfs rather than tracking them.
 data/pdf_reports/
+
+# Cached embedding vectors from RAG.retrieval's hosted models; rebuilt on demand.
+data/embedding_cache/
