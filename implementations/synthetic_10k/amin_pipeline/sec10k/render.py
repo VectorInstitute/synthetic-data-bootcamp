@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from aieng.syn_data.sec10k.places import CITIES, STATE_NAMES
+from sec10k.places import CITIES, STATE_NAMES
 
 
 LABELS = {

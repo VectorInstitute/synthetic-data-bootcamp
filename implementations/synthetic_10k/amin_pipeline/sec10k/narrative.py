@@ -3,13 +3,13 @@ r"""Write the narrative Items of each fictional company's 10-K with an LLM.
 Usage::
 
     # Write the prompts only (no API calls), to inspect them and their size
-    python -m aieng.syn_data.sec10k.narrative --data data/sec10k --limit 2 --dry-run
+    python -m sec10k.narrative --data data/sec10k --limit 2 --dry-run
 
     # Generate two filings with Gemini Flash through the Vector proxy
-    python -m aieng.syn_data.sec10k.narrative --data data/sec10k --limit 2
+    python -m sec10k.narrative --data data/sec10k --limit 2
 
     # Use a stronger model for MD&A only
-    python -m aieng.syn_data.sec10k.narrative --data data/sec10k --limit 2 \
+    python -m sec10k.narrative --data data/sec10k --limit 2 \
         --item-model 7=gemini-3.1-pro-preview
 
 For each spec in ``data/sec10k/synthetic/specs/`` the model writes Items 1, 1A,
@@ -50,23 +50,23 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Protocol
 
+from aieng.syn_data.synbench.llm.config import (
+    get_api_key,
+    get_base_url,
+    get_reasoning_effort,
+)
 from openai import OpenAI
 
-from aieng.syn_data.sec10k.calibrate import load_sectors
-from aieng.syn_data.sec10k.export import write_filing
-from aieng.syn_data.sec10k.render import facts_sheet, item_8
-from aieng.syn_data.sec10k.specs import sample_quantile
-from aieng.syn_data.sec10k.validate import (
+from sec10k.calibrate import load_sectors
+from sec10k.export import write_filing
+from sec10k.render import facts_sheet, item_8
+from sec10k.specs import sample_quantile
+from sec10k.validate import (
     HEADINGS,
     exemplar_overlap,
     real_name_patterns,
     validate_section,
     word_count,
-)
-from aieng.syn_data.synbench.llm.config import (
-    get_api_key,
-    get_base_url,
-    get_reasoning_effort,
 )
 
 

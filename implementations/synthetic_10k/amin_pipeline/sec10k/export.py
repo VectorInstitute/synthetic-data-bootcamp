@@ -2,7 +2,7 @@
 
 Usage::
 
-    python -m aieng.syn_data.sec10k.export --data data/sec10k --companies syn0001
+    python -m sec10k.export --data data/sec10k --companies syn0001
 
 Reads the generated Items in ``synthetic/filings/{company_id}/item_*.txt`` and
 the spec, adds the cover page, table of contents and formulaic Items
@@ -22,14 +22,14 @@ import re
 from pathlib import Path
 from typing import Any
 
-from aieng.syn_data.sec10k.boilerplate import (
+from sec10k.boilerplate import (
     HEADINGS,
     OUTLINE,
     cover_facts,
     template_items,
 )
-from aieng.syn_data.sec10k.render import BALANCE_ORDER, LABELS, item_8, money
-from aieng.syn_data.sec10k.statements import INCOME_LINES
+from sec10k.render import BALANCE_ORDER, LABELS, item_8, money
+from sec10k.statements import INCOME_LINES
 
 
 logger = logging.getLogger(__name__)

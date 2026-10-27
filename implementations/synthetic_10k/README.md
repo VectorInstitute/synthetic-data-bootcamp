@@ -5,7 +5,7 @@ Two pipelines that build fictional companies' 10-K filings, and shared evals tha
 ```
 synthetic_10k/
   README.md            this overview
-  amin_pipeline/       README for Amin's pipeline (code: aieng-synthetic-data/aieng/syn_data/sec10k/)
+  amin_pipeline/       Amin's pipeline: the sec10k package, its tests and README
   dylan_pipeline/      Dylan's pipeline, self-contained (src/step00..step09, data/, PLAN.md)
   evals/               cross-pipeline validation scripts, sample inputs and results
 ```

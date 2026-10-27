@@ -10,8 +10,8 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from aieng.syn_data.sec10k.boilerplate import HEADINGS
-from aieng.syn_data.sec10k.render import derived_metrics
+from sec10k.boilerplate import HEADINGS
+from sec10k.render import derived_metrics
 
 
 __all__ = ["HEADINGS", "validate_section"]

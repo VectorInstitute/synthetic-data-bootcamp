@@ -5,13 +5,13 @@ Each script runs one pipeline's validator on the other pipeline's filings withou
 | Script | What it runs | On | Output |
 |---|---|---|---|
 | `phase7_gates.py` | Dylan's Phase 7 gates (`dylan_pipeline/src/step09_validate_filings.py`) | `filing.html` files from Amin's pipeline; the two showcase filings are in `samples/amin_showcase/` | `results/phase7_on_amin_showcase/`: each filing converted into Dylan's layout, plus `validation_report.csv` |
-| `amin_checks.py` | Amin's narrative checks (`aieng-synthetic-data/aieng/syn_data/sec10k/validate.py`) | Dylan's 20 fictional companies in `dylan_pipeline/data/synthetic/` | `results/amin_checks_on_dylan20/validation_report.csv` |
+| `amin_checks.py` | Amin's narrative checks (`amin_pipeline/sec10k/validate.py`) | Dylan's 20 fictional companies in `dylan_pipeline/data/synthetic/` | `results/amin_checks_on_dylan20/validation_report.csv` |
 
 Dylan's own run of his gates on his filings is in `dylan_pipeline/data/validation_report.csv`. The [folder overview](../README.md#evals) summarises all three results.
 
 ## Run
 
-From this folder, in an environment with Dylan's requirements (`../dylan_pipeline/requirements.txt`) and the `aieng-synthetic-data` package (the repo's `uv` environment):
+From this folder, in an environment with Dylan's requirements (`../dylan_pipeline/requirements.txt`) and the repo's `uv` environment:
 
 ```bash
 python phase7_gates.py samples/amin_showcase/*.html

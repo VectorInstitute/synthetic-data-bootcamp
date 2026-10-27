@@ -1,6 +1,6 @@
 """Run Amin's narrative checks on Dylan's fictional-company filings.
 
-Amin's checks live in aieng-synthetic-data/aieng/syn_data/sec10k/validate.py and run
+Amin's checks live in ../amin_pipeline/sec10k/validate.py and run
 inside his narrative step on each generated section. This script applies the ones
 that don't depend on his prompts to every filing under
 ../dylan_pipeline/data/synthetic/{fictional_id}/{fy}/:
@@ -27,7 +27,7 @@ or a line as a share of total assets). That needs Dylan's requirements installed
 Dylan's filings are single-year, so his financials.json is used for both the current
 and the prior year: line changes are then zero and add no extra allowed figures.
 
-Run from this folder (needs the aieng-synthetic-data package, e.g. via `uv run`):
+Run from this folder (in the repo's `uv` environment):
     python amin_checks.py
 """
 
@@ -42,9 +42,9 @@ from typing import Any
 
 EVALS_DIR = Path(__file__).resolve().parent
 DYLAN_DIR = EVALS_DIR.parent / "dylan_pipeline"
-sys.path.insert(0, str(EVALS_DIR.parents[2] / "aieng-synthetic-data"))
+sys.path.insert(0, str(EVALS_DIR.parent / "amin_pipeline"))
 
-from aieng.syn_data.sec10k.validate import (  # noqa: E402
+from sec10k.validate import (  # noqa: E402
     _DOLLARS,
     _PERCENT,
     check_company_name,

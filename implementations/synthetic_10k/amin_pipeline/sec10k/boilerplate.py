@@ -12,8 +12,8 @@ import random
 from datetime import date
 from typing import Any
 
-from aieng.syn_data.sec10k.places import CITIES, STATE_NAMES
-from aieng.syn_data.sec10k.render import money
+from sec10k.places import CITIES, STATE_NAMES
+from sec10k.render import money
 
 
 # Ordered as in a real 10-K: (part, item, heading).

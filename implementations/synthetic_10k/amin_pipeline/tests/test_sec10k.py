@@ -4,9 +4,9 @@ from pathlib import Path
 
 import pytest
 
-from aieng.syn_data.sec10k import key_financials, read_filing, split_sections
-from aieng.syn_data.sec10k.build import FilingName, process_filing
-from aieng.syn_data.sec10k.reader import parse_number
+from sec10k import key_financials, read_filing, split_sections
+from sec10k.build import FilingName, process_filing
+from sec10k.reader import parse_number
 
 
 FILLER = "Lorem ipsum dolor sit amet. " * 200
