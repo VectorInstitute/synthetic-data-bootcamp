@@ -1,0 +1,83 @@
+# Pipeline configuration for the real 10-K corpus.
+
+# SEC EDGAR requires a name and contact email on every request.
+# Do NOT put real values here: this file is committed. Set them in config.local.yaml
+# (git-ignored). The scripts refuse to run while the placeholders remain.
+sec_identity:
+  name: "FILL_IN_YOUR_NAME"
+  email: "FILL_IN_YOUR_EMAIL@example.com"
+
+# Company tickers, grouped into named profiles.
+companies:
+  # Small test run (5 banks)
+  test:
+    - JPM
+    - PNC
+    - FITB
+    - KEY
+    - ZION
+  # Full list: 50 S&P 500 companies drawn at random (python -m src.step00_sample_companies,
+  # random.Random(42).sample over data/sp500_constituents.csv). Citigroup is excluded
+  # by name (no plain-text Item headings in its 10-K body, see SECTIONS.md), along with
+  # dotted share-class tickers and duplicate listings of the same company by CIK.
+  full:
+    - ABNB
+    - AEE
+    - AEP
+    - AFL
+    - AIG
+    - AVGO
+    - AXON
+    - AZO
+    - BALL
+    - BEN
+    - CARR
+    - CDNS
+    - CEG
+    - COIN
+    - CRL
+    - CRM
+    - CRWD
+    - CSGP
+    - CVS
+    - DDOG
+    - DRI
+    - DUK
+    - F
+    - FAST
+    - FIS
+    - GDDY
+    - HCA
+    - HIG
+    - HUM
+    - KEY
+    - LNT
+    - MA
+    - MLM
+    - MMM
+    - MRK
+    - NOC
+    - NTRS
+    - OXY
+    - PGR
+    - PHM
+    - PNW
+    - QCOM
+    - RDDT
+    - ROP
+    - RSG
+    - STX
+    - SW
+    - TXT
+    - USB
+    - XOM
+
+# Which profile above to process: "test" or "full"
+run_profile: full
+
+# Fiscal years to download. Fiscal year = year of the filing's period of report.
+# Non-December year-ends (e.g. Visa, Paychex) are labeled by the year their fiscal year ends.
+fiscal_years:
+  - 2023
+  - 2024
+  - 2025
