@@ -1,33 +1,35 @@
-"""Run the Phase 7 validation gates on synthetic filings made outside this pipeline.
+"""Run Dylan's Phase 7 validation gates on filings from Amin's pipeline.
 
-Input: one or more EDGAR-style filing.html files written by the aieng `sec10k`
-package (aieng-synthetic-data/aieng/syn_data/sec10k/export.py), such as the two
-showcase filings.
-Output, under --out-dir (default data/external/):
+Dylan's gates live in ../dylan_pipeline/src/step09_validate_filings.py and read his
+folder layout. This script converts each EDGAR-style filing.html written by Amin's
+pipeline (aieng-synthetic-data/aieng/syn_data/sec10k/export.py) into that layout and
+runs his checks on it without changing them.
 
-- {fictional_id}/{fy}/spec.json, financials.json, item_1.txt ... item_8.txt: the filing
-  converted into this pipeline's layout, so step09's checks run on it unchanged.
+Output, under --out-dir (default results/phase7_on_amin_showcase/):
+
+- {ticker}/{fy}/spec.json, financials.json, item_1.txt ... item_8.txt: the filing
+  converted into Dylan's layout.
 - validation_report.csv: one row per filing x check, same columns as step09's report
   plus `note`, which explains a failure when it is a known difference between the two
   pipelines rather than a defect in the filing.
 
 What differs from step09 and why:
 
-- The `sec10k` filings carry two fiscal years in every statement. The prior year's
+- Amin's filings carry two fiscal years in every statement. The prior year's
   values go under `cash_flow_statement.prior_year`, so step09's dollar check accepts
   them without changing its ratio checks. Table rows are written one value per row
   ("Revenue | 15,645" and "Revenue (prior year) | 13,661") because step09 reads a
   third column as a percentage.
-- The `sec10k` filings don't record which real company's text was the style exemplar,
+- Amin's filings don't record which real company's text was the style exemplar,
   so the per-template leak check is replaced by a check for every S&P 500 company name
-  in data/sp500_constituents.csv. Tickers are not checked across all 503 companies:
-  many (A, ALL, IT, ON, KEY) are ordinary words.
+  in Dylan's data/sp500_constituents.csv. Tickers are not checked across all 503
+  companies: many (A, ALL, IT, ON, KEY) are ordinary words.
 - Unmatched figures that equal a year-over-year change (in dollars or percent) or a
   prior-year ratio are noted, since step09 was written for single-year filings and
   doesn't expect them. Anything left over is listed as "not explained".
 
-Run from the project directory:
-    python -m src.validate_external_filings /path/to/Company-10-K-FY2024.html [...]
+Needs Dylan's requirements (../dylan_pipeline/requirements.txt). Run from this folder:
+    python phase7_gates.py samples/amin_showcase/*.html
 """
 
 import argparse
@@ -35,12 +37,16 @@ import csv
 import io
 import json
 import re
+import sys
 from pathlib import Path
 
 from bs4 import BeautifulSoup
 
-from src.config import PROJECT_DIR
-from src.step09_validate_filings import (
+
+EVALS_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(EVALS_DIR.parent / "dylan_pipeline"))
+
+from src.step09_validate_filings import (  # noqa: E402
     ITEM_8_REQUIRED_PATTERNS,
     ITEMS,
     MIN_WORDS,
@@ -50,15 +56,15 @@ from src.step09_validate_filings import (
     load_real_companies,
     real_section_stats,
 )
-from src.utils import setup_logging, write_atomic
+from src.utils import setup_logging, write_atomic  # noqa: E402
 
 
-logger = setup_logging("validate_external_filings")
+logger = setup_logging("phase7_gates")
 
-DEFAULT_OUT_DIR = PROJECT_DIR / "data" / "external"
+DEFAULT_OUT_DIR = EVALS_DIR / "results" / "phase7_on_amin_showcase"
 HTML_ITEM_IDS = {"1": "item-1", "1a": "item-1A", "1c": "item-1C", "7": "item-7", "8": "item-8"}
 
-# `sec10k` statement labels whose step09 key differs from a plain slug of the label.
+# Amin's statement labels whose step09 key differs from a plain slug of the label.
 KEY_OVERRIDES = {
     "revenue": "revenues",
     "selling_general_and_administrative": "selling_general_administrative",
@@ -117,7 +123,7 @@ def read_statement(table) -> tuple[str, list[tuple[str, str, list[float | None]]
 
 
 def to_financials(statements: list[tuple[str, list]]) -> dict:
-    """Map the three `sec10k` statements onto step09's financials.json schema."""
+    """Map the three statements of Amin's filings onto step09's schema."""
     out = {
         "balance_sheet": {"assets": {}, "liabilities": {}, "equity": {}},
         "income_statement": {"operating_expenses": {}},
@@ -197,7 +203,8 @@ def convert(html_path: Path, out_dir: Path) -> Path:
     statements = [read_statement(t) for t in fin_tables]
     company = statements[0][0].splitlines()[0]
     fy_match = re.search(r"FY(\d{4})", html_path.name) or re.search(
-        r"fiscal year ended \w+ \d+, (\d{4})", soup.get_text(" ")
+        r"fiscal year ended \w+ \d+, (\d{4})",
+        soup.get_text(" "),
     )
     fiscal_year = int(fy_match.group(1))
     facts = soup.select("table.facts")
@@ -271,7 +278,7 @@ def validate(spec_path: Path, real_companies: dict[str, str], real_stats: dict[s
                 "status": status,
                 "detail": detail,
                 "note": note,
-            }
+            },
         )
 
     names = {name for name in real_companies.values() if len(name) > 3}
@@ -299,7 +306,7 @@ def validate(spec_path: Path, real_companies: dict[str, str], real_stats: dict[s
             item,
             "FAIL" if hits else "PASS",
             "; ".join(hits) or "none of 503 S&P 500 names found",
-            "checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in sec10k filings",
+            "checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Amin's filings",
         )
 
     if "8" in texts:
@@ -347,7 +354,7 @@ def validate(spec_path: Path, real_companies: dict[str, str], real_stats: dict[s
 def main() -> None:
     """Convert each filing.html, run the Phase 7 gates, and write the report."""
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("html", nargs="+", type=Path, help="filing.html files written by the sec10k package")
+    parser.add_argument("html", nargs="+", type=Path, help="filing.html files written by Amin's pipeline")
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
     args = parser.parse_args()
 
@@ -360,7 +367,8 @@ def main() -> None:
 
     buffer = io.StringIO()
     writer = csv.DictWriter(
-        buffer, fieldnames=["fictional_id", "fiscal_year", "check", "item", "status", "detail", "note"]
+        buffer,
+        fieldnames=["fictional_id", "fiscal_year", "check", "item", "status", "detail", "note"],
     )
     writer.writeheader()
     writer.writerows(all_rows)
@@ -369,7 +377,11 @@ def main() -> None:
 
     failures = [r for r in all_rows if r["status"] == "FAIL"]
     logger.info(
-        "Validated %d filings, %d checks, %d failures. Report: %s", len(args.html), len(all_rows), len(failures), report
+        "Validated %d filings, %d checks, %d failures. Report: %s",
+        len(args.html),
+        len(all_rows),
+        len(failures),
+        report,
     )
     for r in failures:
         logger.warning(
