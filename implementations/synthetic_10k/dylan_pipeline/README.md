@@ -396,6 +396,14 @@ generation does" split as `step08_generate_filings.py`. Put a key in a gitignore
 file in this directory (`DEEPSEEK_API_KEY=sk-...`), or export it in your shell; either way,
 never commit it.
 
+The semantic retriever's embedded doc matrix is cached to
+`data/semantic_embeddings_cache.npz` (git-ignored, numpy's native archive — see
+`RAG.retrieval`'s module docstring), on top of (not instead of) `RAG.retrieval`'s own
+per-text SQLite cache for hosted embedding models, so a restart of `chatbot_server.py`
+doesn't re-embed all 1,272 chunks every time. It's keyed by a hash of the model name and
+every chunk's text, so it's invalidated automatically if the corpus or `RAG_EMBEDDING_MODEL`
+changes.
+
 **Command line:**
 
 ```bash

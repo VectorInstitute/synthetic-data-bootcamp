@@ -48,6 +48,7 @@ DATA_DIR = RAW_DIR.parent
 SYNTHETIC_DIR = DATA_DIR / "synthetic"
 QA_PATH = DATA_DIR / "qa_pairs.csv"
 ENV_PATH = PROJECT_DIR / ".env"
+EMBEDDING_CACHE_PATH = DATA_DIR / "semantic_embeddings_cache.npz"
 
 CLAUDE_MODEL = "claude-sonnet-5-5"
 DEEPSEEK_API_URL = "https://api.deepseek.com/chat/completions"
@@ -73,7 +74,11 @@ def build_index() -> tuple[dict[str, Chunk], Bm25Retriever, SemanticRetriever]:
     texts = [c.text for c in chunks]
     logger.info("Indexing %d chunks from %d synthetic companies", len(chunks), len({c.ticker for c in chunks}))
     bm25 = Bm25Retriever(chunk_ids, texts)
-    semantic = SemanticRetriever(chunk_ids, texts)
+    semantic = SemanticRetriever(chunk_ids, texts, cache_path=EMBEDDING_CACHE_PATH)
+    logger.info(
+        "Semantic embeddings %s",
+        "loaded from cache" if semantic.loaded_from_cache else f"computed fresh (cached to {EMBEDDING_CACHE_PATH.name} for next time)",
+    )
     return {c.chunk_id: c for c in chunks}, bm25, semantic
 
 
