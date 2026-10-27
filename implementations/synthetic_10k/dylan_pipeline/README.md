@@ -176,6 +176,24 @@ python -m src.step07_make_financials
 - Deterministic and local: no network calls, reproducible from `spec.json` and the already-cached
   companyfacts, fixed seed in `src/step07_make_financials.py`.
 
+## Run a separate batch
+
+Steps 06 to 09 read and write `data/synthetic/` unless `SYNTHETIC_DIR` is set, so a new
+batch can sit next to the committed 20 companies:
+
+```bash
+export SYNTHETIC_DIR=data/runs/gemini20/synthetic
+python -m src.step06_make_specs --n 20 --seed 7
+python -m src.step07_make_financials
+python -m src.step08_generate_filings --backend openai --model gemini-3-flash-preview --workers 4
+python -m src.step09_validate_filings   # report: data/runs/gemini20/validation_report.csv
+```
+
+`--backend openai` calls any OpenAI-compatible endpoint, such as Vector's proxy on the
+Coder workspace (`SYNBENCH_BASE_URL`, key in `OPENAI_API_KEY` or `SYNBENCH_API_KEY`).
+Step 07 needs `data/companyfacts/` (step 04) and step 08 uses `data/parsed/` (steps
+01-02) for style exemplars; both are git-ignored.
+
 ## Generate fictional company narrative text (placeholder, not run)
 
 ```bash

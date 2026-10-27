@@ -104,6 +104,8 @@ Item 8 is rendered from the statements by code. Each section is then validated, 
 - Items 1, 1A, 1C, 2 and 3 quote only a few dollar amounts (none in 1C and 2), so the figures stay in Items 7 and 8
 - the fictional company is named in Items 1 and 7
 
+`--items 1 1A 1C 7 8` writes only those Items (Item 8 is always built from the statements), to match Dylan's pipeline.
+
 Output goes to `data/sec10k/synthetic/filings/{company_id}/`: `item_*.txt`, the exact `prompts/` sent, `metrics.json`, and the assembled filing as `filing.txt` and `filing.html`. Finished companies are skipped on the next run unless you pass `--overwrite`.
 
 Each Item can use its own model with `--item-model ITEM=MODEL`, repeatable. For example, to give the MD&A a stronger model:

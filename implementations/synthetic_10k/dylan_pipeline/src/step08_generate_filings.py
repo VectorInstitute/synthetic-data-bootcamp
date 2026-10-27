@@ -12,28 +12,38 @@ exemplar at data/parsed/{template_ticker}/{template_fy}/item_*.txt. Output:
 data/synthetic/{fictional_id}/{fy}/item_*.txt, one per target item, overwriting
 whatever (if anything) is there.
 
-Requires the `anthropic` package (see requirements.txt) and ANTHROPIC_API_KEY set in
-the environment.
+Two backends:
+- `--backend anthropic` (default): the Claude API. Requires ANTHROPIC_API_KEY.
+- `--backend openai`: any OpenAI-compatible endpoint, such as Vector's proxy on the
+  Coder workspace. Reads the endpoint from SYNBENCH_BASE_URL (default
+  https://proxy.vectorinstitute.ai/v1) and the key from OPENAI_API_KEY or
+  SYNBENCH_API_KEY, the same variables the bootcamp's notebooks use. Pass --model,
+  e.g. gemini-3-flash-preview.
+
+A company whose five item files already exist is skipped unless --overwrite is given,
+so an interrupted run can be resumed.
 
 Run from the project directory:
     python -m src.step08_generate_filings
+    python -m src.step08_generate_filings --backend openai \
+        --model gemini-3-flash-preview --workers 4
 """
 
+import argparse
 import csv
 import json
 import os
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-import anthropic
-
-from src.config import PARSED_DIR, RAW_DIR
+from src.config import PARSED_DIR, RAW_DIR, SYNTHETIC_DIR
 from src.utils import setup_logging, write_atomic
 
 
 logger = setup_logging("generate_filings")
 
-SYNTHETIC_DIR = RAW_DIR.parent / "synthetic"
 MAX_TOKENS = 4096
+DEFAULT_BASE_URL = "https://proxy.vectorinstitute.ai/v1"
 
 # Generation order from PLAN.md Phase 6: Item 7 quotes the Item 8 numbers, so it's
 # written before Item 8; earlier items are passed in as context for later ones.
@@ -138,52 +148,102 @@ real company shown above, or any other real company, by name.
 """
 
 
-def generate_item(
-    client: "anthropic.Anthropic",
-    item: str,
-    spec: dict,
-    financials: dict,
-    prior_items: dict[str, str],
-) -> str:
+def make_complete(backend: str, model: str | None, max_tokens: int):
+    """Return a function prompt, item -> generated text, for the chosen backend."""
+    if backend == "anthropic":
+        import anthropic  # noqa: PLC0415
+
+        api_key = os.environ.get("ANTHROPIC_API_KEY")
+        if not api_key:
+            raise SystemExit(
+                "ANTHROPIC_API_KEY is not set. Set it, or use --backend openai with "
+                "Vector's proxy (see this module's docstring).",
+            )
+        client = anthropic.Anthropic(api_key=api_key)
+
+        def complete(prompt: str, item: str) -> str:
+            response = client.messages.create(
+                model=model or ITEM_MODELS[item],
+                max_tokens=max_tokens,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            return response.content[0].text
+
+        return complete
+
+    from openai import OpenAI  # noqa: PLC0415
+
+    if not model:
+        raise SystemExit("--backend openai needs --model, e.g. gemini-3-flash-preview")
+    api_key = os.environ.get("OPENAI_API_KEY") or os.environ.get("SYNBENCH_API_KEY")
+    if not api_key:
+        raise SystemExit("Set OPENAI_API_KEY or SYNBENCH_API_KEY for --backend openai.")
+    client = OpenAI(base_url=os.environ.get("SYNBENCH_BASE_URL", DEFAULT_BASE_URL), api_key=api_key)
+
+    def complete(prompt: str, item: str) -> str:
+        response = client.chat.completions.create(
+            model=model,
+            max_tokens=max_tokens,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        return response.choices[0].message.content or ""
+
+    return complete
+
+
+def generate_item(complete, item: str, spec: dict, financials: dict, prior_items: dict[str, str]) -> str:
     """Call the API for one item and return its text."""
     ticker = spec["template"]["ticker"]
     fiscal_year = spec["template"]["fiscal_year"]
     exemplar = real_exemplar(ticker, fiscal_year, item)
     prompt = build_prompt(item, spec, financials, exemplar, prior_items)
-    response = client.messages.create(
-        model=ITEM_MODELS[item],
-        max_tokens=MAX_TOKENS,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return response.content[0].text
+    return complete(prompt, item)
+
+
+def generate_company(complete, spec_path: Path, overwrite: bool) -> None:
+    """Write every item for one fictional company, in GENERATION_ORDER."""
+    spec = load_json(spec_path)
+    paths = {item: spec_path.parent / f"item_{item.lower()}.txt" for item in GENERATION_ORDER}
+    if not overwrite and all(p.exists() for p in paths.values()):
+        logger.info("%s: all items exist, skipping", spec["fictional_id"])
+        return
+    financials = load_json(spec_path.parent / "financials.json")
+    prior_items: dict[str, str] = {}
+    for item in GENERATION_ORDER:
+        text = generate_item(complete, item, spec, financials, prior_items)
+        write_atomic(paths[item], text)
+        prior_items[item] = text
+        logger.info("%s: wrote Item %s (%d chars)", spec["fictional_id"], item, len(text))
 
 
 def main() -> None:
-    """Generate every item for every fictional company found under data/synthetic/."""
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        raise SystemExit(
-            "ANTHROPIC_API_KEY is not set. This script is a placeholder: the "
-            "data/synthetic/*/item_*.txt files in this repo were written directly in "
-            "a Claude Code session instead (see PLAN.md Phase 6), not through this "
-            "script. Set ANTHROPIC_API_KEY to actually run it.",
-        )
-    client = anthropic.Anthropic(api_key=api_key)
+    """Generate every item for every fictional company found under SYNTHETIC_DIR."""
+    parser = argparse.ArgumentParser(description="Generate narrative for fictional companies.")
+    parser.add_argument("--backend", choices=["anthropic", "openai"], default="anthropic")
+    parser.add_argument("--model", help="one model for every item (default: ITEM_MODELS)")
+    parser.add_argument("--max-tokens", type=int, default=MAX_TOKENS)
+    parser.add_argument("--workers", type=int, default=1, help="companies generated in parallel")
+    parser.add_argument("--overwrite", action="store_true", help="regenerate finished companies")
+    args = parser.parse_args()
+    complete = make_complete(args.backend, args.model, args.max_tokens)
 
     spec_paths = sorted(SYNTHETIC_DIR.glob("*/*/spec.json"))
     if not spec_paths:
         logger.warning("No specs found under %s; run src.step06_make_specs first", SYNTHETIC_DIR)
         return
 
-    for spec_path in spec_paths:
-        spec = load_json(spec_path)
-        financials = load_json(spec_path.parent / "financials.json")
-        prior_items: dict[str, str] = {}
-        for item in GENERATION_ORDER:
-            text = generate_item(client, item, spec, financials, prior_items)
-            write_atomic(spec_path.parent / f"item_{item.lower()}.txt", text)
-            prior_items[item] = text
-            logger.info("%s: wrote Item %s (%d chars)", spec["fictional_id"], item, len(text))
+    failures = []
+
+    def run(spec_path: Path) -> None:
+        try:
+            generate_company(complete, spec_path, args.overwrite)
+        except Exception:
+            logger.exception("%s: generation failed", spec_path.parent.parent.name)
+            failures.append(spec_path.parent.parent.name)
+
+    with ThreadPoolExecutor(max_workers=args.workers) as pool:
+        list(pool.map(run, spec_paths))
+    logger.info("Done: %d companies, %d failed %s", len(spec_paths), len(failures), sorted(failures))
 
 
 if __name__ == "__main__":

@@ -8,6 +8,15 @@ synthetic_10k/
   amin_pipeline/       Amin's pipeline: the sec10k package, its tests and README
   dylan_pipeline/      Dylan's pipeline, self-contained (src/step00..step09, data/, PLAN.md)
   evals/               cross-pipeline validation scripts, sample inputs and results
+  run_batch.sh         one batch from both pipelines with the same model and sections, plus evals
+```
+
+## Generate a batch with both pipelines
+
+[`run_batch.sh`](run_batch.sh) generates N fictional companies with each pipeline using the same model on Vector's proxy and the same sections (Items 1, 1A, 1C, 7, 8), then runs every eval on both batches. Run it from the repository root on the Coder workspace; the settings are at the top of the script.
+
+```bash
+RUN=gemini20 N=20 MODEL=gemini-3-flash-preview bash implementations/synthetic_10k/run_batch.sh
 ```
 
 ## How the two pipelines differ

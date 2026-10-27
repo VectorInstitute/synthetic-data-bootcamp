@@ -24,14 +24,13 @@ import json
 import random
 from datetime import datetime, timezone
 
-from src.config import COMPANYFACTS_DIR, RAW_DIR
+from src.config import COMPANYFACTS_DIR, RAW_DIR, SYNTHETIC_DIR
 from src.step05_make_calibration import annual_value
 from src.utils import setup_logging, write_atomic
 
 
 logger = setup_logging("make_financials")
 
-SYNTHETIC_DIR = RAW_DIR.parent / "synthetic"
 CALIBRATION_PATH = RAW_DIR.parent / "calibration.json"
 SEED = 42
 RATIO_JITTER_RANGE = (0.85, 1.15)
