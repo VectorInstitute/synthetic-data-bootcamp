@@ -1,0 +1,142 @@
+{
+  "company_id": "syn0010",
+  "name": "Kalondra Machinery, Inc.",
+  "sector": "Industrials",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 158.67,
+  "totals": {
+    "seconds": 158.15,
+    "prompt_tokens": 33628,
+    "completion_tokens": 28467,
+    "total_tokens": 62095,
+    "reasoning_tokens": 10148,
+    "calls": 6
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1226,
+      "prompt_chars": 14166,
+      "words": 1946,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1290,
+      "prompt_chars": 26091,
+      "words": 3141,
+      "attempts": 3,
+      "exemplar_overlap": 0.0019,
+      "issues": [
+        "Item 1A cites 8 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1231,
+      "prompt_chars": 36254,
+      "words": 2449,
+      "attempts": 1,
+      "exemplar_overlap": 0.0119,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 860,
+      "exemplar_words": 284,
+      "prompt_chars": 40318,
+      "words": 967,
+      "attempts": 1,
+      "exemplar_overlap": 0.0021,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 21.51,
+      "prompt_tokens": 3243,
+      "completion_tokens": 3852,
+      "total_tokens": 7095,
+      "reasoning_tokens": 1517,
+      "finish_reason": "stop",
+      "words": 1946,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 32.88,
+      "prompt_tokens": 5089,
+      "completion_tokens": 5752,
+      "total_tokens": 10841,
+      "reasoning_tokens": 2246,
+      "finish_reason": "stop",
+      "words": 2946,
+      "issues": [
+        "Item 1A cites 9 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 31.31,
+      "prompt_tokens": 5133,
+      "completion_tokens": 5393,
+      "total_tokens": 10526,
+      "reasoning_tokens": 1248,
+      "finish_reason": "stop",
+      "words": 3424,
+      "issues": [
+        "Item 1A cites 12 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gemini-3-flash-preview",
+      "seconds": 31.12,
+      "prompt_tokens": 5134,
+      "completion_tokens": 5459,
+      "total_tokens": 10593,
+      "reasoning_tokens": 1732,
+      "finish_reason": "stop",
+      "words": 3141,
+      "issues": [
+        "Item 1A cites 8 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 26.07,
+      "prompt_tokens": 7104,
+      "completion_tokens": 5280,
+      "total_tokens": 12384,
+      "reasoning_tokens": 1799,
+      "finish_reason": "stop",
+      "words": 2449,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 15.26,
+      "prompt_tokens": 7925,
+      "completion_tokens": 2731,
+      "total_tokens": 10656,
+      "reasoning_tokens": 1606,
+      "finish_reason": "stop",
+      "words": 967,
+      "issues": []
+    }
+  ]
+}

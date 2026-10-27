@@ -1,0 +1,172 @@
+{
+  "company_id": "syn0009",
+  "name": "Torsel Software, Inc.",
+  "sector": "Information Technology",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 217.45,
+  "totals": {
+    "seconds": 216.77,
+    "prompt_tokens": 43022,
+    "completion_tokens": 40648,
+    "total_tokens": 83670,
+    "reasoning_tokens": 14408,
+    "calls": 8
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1225,
+      "prompt_chars": 14417,
+      "words": 2014,
+      "attempts": 2,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1039,
+      "prompt_chars": 24334,
+      "words": 2884,
+      "attempts": 3,
+      "exemplar_overlap": 0.0,
+      "issues": [
+        "Item 1A cites 7 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1220,
+      "prompt_chars": 36210,
+      "words": 2347,
+      "attempts": 2,
+      "exemplar_overlap": 0.0054,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 723,
+      "prompt_chars": 43324,
+      "words": 1071,
+      "attempts": 1,
+      "exemplar_overlap": 0.0037,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 22.33,
+      "prompt_tokens": 3124,
+      "completion_tokens": 3967,
+      "total_tokens": 7091,
+      "reasoning_tokens": 1280,
+      "finish_reason": "stop",
+      "words": 2164,
+      "issues": [
+        "Remove these real company names and describe them generically: Nasdaq."
+      ]
+    },
+    {
+      "item": "1",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 22.9,
+      "prompt_tokens": 3151,
+      "completion_tokens": 4127,
+      "total_tokens": 7278,
+      "reasoning_tokens": 1580,
+      "finish_reason": "stop",
+      "words": 2014,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 38.53,
+      "prompt_tokens": 4700,
+      "completion_tokens": 6836,
+      "total_tokens": 11536,
+      "reasoning_tokens": 2196,
+      "finish_reason": "stop",
+      "words": 3915,
+      "issues": [
+        "Item 1A cites 10 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 34.49,
+      "prompt_tokens": 4745,
+      "completion_tokens": 6032,
+      "total_tokens": 10777,
+      "reasoning_tokens": 1299,
+      "finish_reason": "stop",
+      "words": 3997,
+      "issues": [
+        "Item 1A cites 9 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gemini-3-flash-preview",
+      "seconds": 29.3,
+      "prompt_tokens": 4744,
+      "completion_tokens": 5208,
+      "total_tokens": 9952,
+      "reasoning_tokens": 1755,
+      "finish_reason": "stop",
+      "words": 2884,
+      "issues": [
+        "Item 1A cites 7 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 21.63,
+      "prompt_tokens": 7029,
+      "completion_tokens": 4730,
+      "total_tokens": 11759,
+      "reasoning_tokens": 1140,
+      "finish_reason": "stop",
+      "words": 2461,
+      "issues": [
+        "These percentages are not in the facts sheet; use only the derived percentages given: 0.3%, 0.2%, 0.1%."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 32.39,
+      "prompt_tokens": 7075,
+      "completion_tokens": 7282,
+      "total_tokens": 14357,
+      "reasoning_tokens": 3951,
+      "finish_reason": "stop",
+      "words": 2347,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 15.2,
+      "prompt_tokens": 8454,
+      "completion_tokens": 2466,
+      "total_tokens": 10920,
+      "reasoning_tokens": 1207,
+      "finish_reason": "stop",
+      "words": 1071,
+      "issues": []
+    }
+  ]
+}

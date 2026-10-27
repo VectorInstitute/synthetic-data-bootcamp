@@ -1,0 +1,172 @@
+{
+  "company_id": "syn0017",
+  "name": "Orris Aerospace, Inc.",
+  "sector": "Industrials",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 228.9,
+  "totals": {
+    "seconds": 228.2,
+    "prompt_tokens": 44462,
+    "completion_tokens": 39157,
+    "total_tokens": 83619,
+    "reasoning_tokens": 14748,
+    "calls": 8
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1222,
+      "prompt_chars": 14253,
+      "words": 2731,
+      "attempts": 2,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1234,
+      "prompt_chars": 25525,
+      "words": 3209,
+      "attempts": 3,
+      "exemplar_overlap": 0.0,
+      "issues": [
+        "Item 1A cites 7 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1312,
+      "prompt_chars": 37374,
+      "words": 2333,
+      "attempts": 2,
+      "exemplar_overlap": 0.0029,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 1090,
+      "prompt_chars": 45944,
+      "words": 1092,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 21.73,
+      "prompt_tokens": 2935,
+      "completion_tokens": 3737,
+      "total_tokens": 6672,
+      "reasoning_tokens": 1560,
+      "finish_reason": "stop",
+      "words": 1771,
+      "issues": [
+        "The section has 1771 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 33.31,
+      "prompt_tokens": 2976,
+      "completion_tokens": 5386,
+      "total_tokens": 8362,
+      "reasoning_tokens": 2063,
+      "finish_reason": "stop",
+      "words": 2731,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 33.66,
+      "prompt_tokens": 4867,
+      "completion_tokens": 5408,
+      "total_tokens": 10275,
+      "reasoning_tokens": 1688,
+      "finish_reason": "stop",
+      "words": 3164,
+      "issues": [
+        "Item 1A cites 6 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 26.4,
+      "prompt_tokens": 4911,
+      "completion_tokens": 4417,
+      "total_tokens": 9328,
+      "reasoning_tokens": 1224,
+      "finish_reason": "stop",
+      "words": 2682,
+      "issues": [
+        "Item 1A cites 9 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gemini-3-flash-preview",
+      "seconds": 35.75,
+      "prompt_tokens": 4911,
+      "completion_tokens": 5324,
+      "total_tokens": 10235,
+      "reasoning_tokens": 1504,
+      "finish_reason": "stop",
+      "words": 3209,
+      "issues": [
+        "Item 1A cites 7 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 29.03,
+      "prompt_tokens": 7481,
+      "completion_tokens": 5915,
+      "total_tokens": 13396,
+      "reasoning_tokens": 2279,
+      "finish_reason": "stop",
+      "words": 2524,
+      "issues": [
+        "These dollar amounts are not in the financial statements; use only figures from the facts sheet: $1,275 million."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 28.28,
+      "prompt_tokens": 7522,
+      "completion_tokens": 5835,
+      "total_tokens": 13357,
+      "reasoning_tokens": 2537,
+      "finish_reason": "stop",
+      "words": 2333,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 20.04,
+      "prompt_tokens": 8859,
+      "completion_tokens": 3135,
+      "total_tokens": 11994,
+      "reasoning_tokens": 1893,
+      "finish_reason": "stop",
+      "words": 1092,
+      "issues": []
+    }
+  ]
+}

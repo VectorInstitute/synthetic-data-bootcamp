@@ -1,0 +1,108 @@
+{
+  "company_id": "syn0004",
+  "name": "Lonnov Software, Inc.",
+  "sector": "Information Technology",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 106.01,
+  "totals": {
+    "seconds": 105.62,
+    "prompt_tokens": 23729,
+    "completion_tokens": 18453,
+    "total_tokens": 42182,
+    "reasoning_tokens": 6604,
+    "calls": 4
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1231,
+      "prompt_chars": 14628,
+      "words": 2306,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1233,
+      "prompt_chars": 25264,
+      "words": 3633,
+      "attempts": 1,
+      "exemplar_overlap": 0.0478,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1223,
+      "prompt_chars": 36511,
+      "words": 2447,
+      "attempts": 1,
+      "exemplar_overlap": 0.0064,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 963,
+      "prompt_chars": 45377,
+      "words": 1061,
+      "attempts": 1,
+      "exemplar_overlap": 0.0132,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 29.82,
+      "prompt_tokens": 3095,
+      "completion_tokens": 5188,
+      "total_tokens": 8283,
+      "reasoning_tokens": 2297,
+      "finish_reason": "stop",
+      "words": 2306,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 33.21,
+      "prompt_tokens": 4947,
+      "completion_tokens": 5664,
+      "total_tokens": 10611,
+      "reasoning_tokens": 1386,
+      "finish_reason": "stop",
+      "words": 3633,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 26.43,
+      "prompt_tokens": 6919,
+      "completion_tokens": 5045,
+      "total_tokens": 11964,
+      "reasoning_tokens": 1623,
+      "finish_reason": "stop",
+      "words": 2447,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 16.16,
+      "prompt_tokens": 8768,
+      "completion_tokens": 2556,
+      "total_tokens": 11324,
+      "reasoning_tokens": 1298,
+      "finish_reason": "stop",
+      "words": 1061,
+      "issues": []
+    }
+  ]
+}

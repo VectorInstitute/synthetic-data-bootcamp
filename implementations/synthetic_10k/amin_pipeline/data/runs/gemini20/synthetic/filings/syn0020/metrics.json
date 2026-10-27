@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0020",
+  "name": "Drazennov Medical, Inc.",
+  "sector": "Health Care",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 130.76,
+  "totals": {
+    "seconds": 130.3,
+    "prompt_tokens": 30628,
+    "completion_tokens": 24405,
+    "total_tokens": 55033,
+    "reasoning_tokens": 8271,
+    "calls": 5
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1220,
+      "prompt_chars": 14032,
+      "words": 1810,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1226,
+      "prompt_chars": 25381,
+      "words": 4285,
+      "attempts": 1,
+      "exemplar_overlap": 0.0007,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1216,
+      "prompt_chars": 35971,
+      "words": 2147,
+      "attempts": 2,
+      "exemplar_overlap": 0.0094,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 544,
+      "prompt_chars": 42076,
+      "words": 1238,
+      "attempts": 1,
+      "exemplar_overlap": 0.0189,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 20.48,
+      "prompt_tokens": 3263,
+      "completion_tokens": 3406,
+      "total_tokens": 6669,
+      "reasoning_tokens": 1198,
+      "finish_reason": "stop",
+      "words": 1810,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 36.97,
+      "prompt_tokens": 4886,
+      "completion_tokens": 6704,
+      "total_tokens": 11590,
+      "reasoning_tokens": 1699,
+      "finish_reason": "stop",
+      "words": 4285,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 27.66,
+      "prompt_tokens": 7094,
+      "completion_tokens": 5885,
+      "total_tokens": 12979,
+      "reasoning_tokens": 1551,
+      "finish_reason": "stop",
+      "words": 3175,
+      "issues": [
+        "These percentages are not in the facts sheet; use only the derived percentages given: 50 percent."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 25.22,
+      "prompt_tokens": 7130,
+      "completion_tokens": 5498,
+      "total_tokens": 12628,
+      "reasoning_tokens": 2404,
+      "finish_reason": "stop",
+      "words": 2147,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 19.97,
+      "prompt_tokens": 8255,
+      "completion_tokens": 2912,
+      "total_tokens": 11167,
+      "reasoning_tokens": 1419,
+      "finish_reason": "stop",
+      "words": 1238,
+      "issues": []
+    }
+  ]
+}

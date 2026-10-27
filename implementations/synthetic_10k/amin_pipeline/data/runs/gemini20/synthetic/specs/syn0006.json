@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0006",
+  "name": "Selzenqua Semiconductor, Inc.",
+  "ticker": "SEQZ",
+  "sector": "Information Technology",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "NJ",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 16983,
+  "revenue_growth": 0.1365,
+  "employees": 50700,
+  "ratios": {
+    "gross_margin": 0.3626,
+    "operating_margin": 0.0763,
+    "sga_ratio": 0.03,
+    "da_ratio": 0.0537,
+    "capex_ratio": 0.0468,
+    "tax_rate": 0.2295,
+    "asset_turnover": 0.3426,
+    "equity_ratio": 0.2393,
+    "current_assets_ratio": 0.5115,
+    "current_ratio": 1.0728,
+    "cash_ratio": 0.0446,
+    "ppe_ratio": 0.11,
+    "debt_ratio": 0.2039,
+    "receivables_ratio": 0.1746,
+    "rd_ratio": 0.2563,
+    "inventory_ratio": 0.2516,
+    "goodwill_ratio": 0.0485,
+    "dividend_payout": 0.1202,
+    "other_operating_cash_ratio": -0.0263
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 16983,
+        "cost_of_revenue": 10825,
+        "gross_profit": 6158,
+        "research_and_development": 4353,
+        "selling_general_and_administrative": 509,
+        "other_operating_expense": 0,
+        "operating_income": 1296,
+        "interest_expense": 455,
+        "pretax_income": 841,
+        "income_tax": 193,
+        "net_income": 648
+      },
+      "2023": {
+        "revenue": 14943,
+        "cost_of_revenue": 9375,
+        "gross_profit": 5568,
+        "research_and_development": 3801,
+        "selling_general_and_administrative": 455,
+        "other_operating_expense": 98,
+        "operating_income": 1214,
+        "interest_expense": 406,
+        "pretax_income": 808,
+        "income_tax": 194,
+        "net_income": 614
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 2211,
+        "receivables": 2965,
+        "inventory": 4273,
+        "total_current_assets": 13499,
+        "property_plant_and_equipment": 5453,
+        "goodwill": 2404,
+        "total_assets": 49571,
+        "total_current_liabilities": 12583,
+        "long_term_debt": 10108,
+        "total_equity": 11862,
+        "other_current_assets": 4050,
+        "other_noncurrent_assets": 28215,
+        "other_noncurrent_liabilities": 15018,
+        "total_liabilities": 37709,
+        "total_liabilities_and_equity": 49571
+      },
+      "2023": {
+        "cash": 2023,
+        "receivables": 2544,
+        "inventory": 3836,
+        "total_current_assets": 12005,
+        "property_plant_and_equipment": 5069,
+        "goodwill": 2092,
+        "total_assets": 44689,
+        "total_current_liabilities": 11622,
+        "long_term_debt": 9020,
+        "total_equity": 10999,
+        "other_current_assets": 3602,
+        "other_noncurrent_assets": 25523,
+        "other_noncurrent_liabilities": 13048,
+        "total_liabilities": 33690,
+        "total_liabilities_and_equity": 44689
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 648,
+        "depreciation_and_amortization": 912,
+        "other_operating_items": -447,
+        "net_cash_from_operating_activities": 1113,
+        "capital_expenditures": -795,
+        "other_investing_activities": -1433,
+        "net_cash_from_investing_activities": -2228,
+        "net_change_in_long_term_debt": 1088,
+        "dividends_paid": -78,
+        "share_repurchases_net": 293,
+        "net_cash_from_financing_activities": 1303,
+        "net_change_in_cash": 188,
+        "cash_beginning_of_year": 2023,
+        "cash_end_of_year": 2211
+      }
+    }
+  }
+}

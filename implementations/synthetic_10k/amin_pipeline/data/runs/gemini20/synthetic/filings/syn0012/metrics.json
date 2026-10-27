@@ -1,0 +1,142 @@
+{
+  "company_id": "syn0012",
+  "name": "Venzen Industries, Inc.",
+  "sector": "Industrials",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 176.58,
+  "totals": {
+    "seconds": 176.0,
+    "prompt_tokens": 33098,
+    "completion_tokens": 30372,
+    "total_tokens": 63470,
+    "reasoning_tokens": 8295,
+    "calls": 6
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1224,
+      "prompt_chars": 14960,
+      "words": 2245,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1221,
+      "prompt_chars": 25471,
+      "words": 3451,
+      "attempts": 3,
+      "exemplar_overlap": 0.0032,
+      "issues": [
+        "Item 1A cites 9 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1217,
+      "prompt_chars": 36981,
+      "words": 3762,
+      "attempts": 1,
+      "exemplar_overlap": 0.0044,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 779,
+      "prompt_chars": 44512,
+      "words": 1028,
+      "attempts": 1,
+      "exemplar_overlap": 0.0029,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 25.21,
+      "prompt_tokens": 3140,
+      "completion_tokens": 4076,
+      "total_tokens": 7216,
+      "reasoning_tokens": 1300,
+      "finish_reason": "stop",
+      "words": 2245,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 33.21,
+      "prompt_tokens": 4905,
+      "completion_tokens": 5539,
+      "total_tokens": 10444,
+      "reasoning_tokens": 1139,
+      "finish_reason": "stop",
+      "words": 3645,
+      "issues": [
+        "Item 1A cites 20 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 36.73,
+      "prompt_tokens": 4950,
+      "completion_tokens": 6098,
+      "total_tokens": 11048,
+      "reasoning_tokens": 1548,
+      "finish_reason": "stop",
+      "words": 3827,
+      "issues": [
+        "Item 1A cites 5 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gemini-3-flash-preview",
+      "seconds": 32.9,
+      "prompt_tokens": 4949,
+      "completion_tokens": 5626,
+      "total_tokens": 10575,
+      "reasoning_tokens": 1536,
+      "finish_reason": "stop",
+      "words": 3451,
+      "issues": [
+        "Item 1A cites 9 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 31.92,
+      "prompt_tokens": 6852,
+      "completion_tokens": 6614,
+      "total_tokens": 13466,
+      "reasoning_tokens": 1574,
+      "finish_reason": "stop",
+      "words": 3762,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 16.03,
+      "prompt_tokens": 8302,
+      "completion_tokens": 2419,
+      "total_tokens": 10721,
+      "reasoning_tokens": 1198,
+      "finish_reason": "stop",
+      "words": 1028,
+      "issues": []
+    }
+  ]
+}

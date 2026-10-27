@@ -1,0 +1,117 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Torsel Software, Inc. (ticker TSOE)
+Sector: Information Technology
+Incorporated in: Delaware
+Headquarters: Princeton, New Jersey
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 28,000
+
+Torsel Software, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      24,213        21,422
+Cost of revenue                              13,334        11,813
+Gross profit                                 10,879         9,609
+Research and development                      2,620         2,375
+Selling, general and administrative           2,673         2,303
+Other operating expense                       1,453         1,285
+Operating income                              4,133         3,646
+Interest expense                                190           167
+Income before income taxes                    3,943         3,479
+Provision for income taxes                      442           364
+Net income                                    3,501         3,115
+
+Torsel Software, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            1,154           960
+Accounts receivable, net                             4,671         4,187
+Inventories                                          1,608         1,433
+Other current assets                                 3,185         2,821
+Total current assets                                10,618         9,401
+Property, plant and equipment, net                   2,477         2,180
+Goodwill                                             1,951         1,600
+Other non-current assets                            14,250        11,796
+Total assets                                        29,296        24,977
+Total current liabilities                            7,798         7,171
+Long-term debt                                       4,222         3,721
+Other non-current liabilities                        9,179         7,111
+Total liabilities                                   21,199        18,003
+Total stockholders' equity                           8,097         6,974
+Total liabilities and stockholders' equity          29,296        24,977
+
+Torsel Software, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             3,501
+Depreciation and amortization                            867
+Changes in working capital and other                   (346)
+Net cash provided by operating activities              4,022
+Purchases of property and equipment                    (472)
+Other investing activities, net                      (1,479)
+Net cash used in investing activities                (1,951)
+Net change in long-term debt                             501
+Dividends paid                                             0
+Share repurchases, net of issuances                  (2,378)
+Net cash used in financing activities                (1,877)
+Net change in cash and cash equivalents                  194
+Cash and cash equivalents, beginning of year             960
+Cash and cash equivalents, end of year                 1,154
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 13.0%
+Net income growth, fiscal 2024 versus 2023: 12.4%
+Operating income growth, fiscal 2024 versus 2023: 13.4%
+Gross margin, fiscal 2024: 44.9%
+Operating margin, fiscal 2024: 17.1%
+Net margin, fiscal 2024: 14.5%
+Effective tax rate, fiscal 2024: 11.2%
+Research and development as a share of revenue, fiscal 2024: 10.8%
+Selling, general and administrative as a share of revenue, fiscal 2024: 11.0%
+Gross margin, fiscal 2023: 44.9%
+Operating margin, fiscal 2023: 17.0%
+Net margin, fiscal 2023: 14.5%
+Effective tax rate, fiscal 2023: 10.5%
+Research and development as a share of revenue, fiscal 2023: 11.1%
+Selling, general and administrative as a share of revenue, fiscal 2023: 10.8%
+
+STYLE EXAMPLE: the start of Item 1 from a real Information Technology company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1. BUSINESS
+General
+Overview
+Lumentum Holdings Inc. (“we,” “us,” “our”, “Lumentum” or the “Company”) is a leading provider of optical and photonic products and is recognized as an industry leader based on revenue and market share. Our products are essential to a range of cloud, artificial intelligence and machine learning (“AI/ML”), telecommunications, consumer, and industrial end-market applications. We operate in two end-market focused reportable segments, Cloud & Networking and Industrial Tech.
+Our Cloud & Networking products comprise a comprehensive portfolio of optical and photonic chips, components, modules, and subsystems supplied to cloud data center operators, AI/ML infrastructure providers, and network equipment manufacturer customers who are building cloud data center and network infrastructures. Our products enable high-capacity optical links for cloud computing, AI/ML workloads, and data center interconnect (“DCI”) applications, as well as for communications service provider networks. Our offerings support access (local), metro (intracity), long-haul (intercity and global), and submarine (undersea) network infrastructure. Additionally, our Cloud & Networking products serve enterprise network infrastructure needs, including storage area networks (“SANs”), local area networks (“LANs”), and wide area networks (“WANs”). Demand for our products is fueled by the ongoing expansion of network capacity required to support cloud and services, AI/ML processing, streaming video, video conferencing, wireless and mobile connectivity, and the internet of things (“IoT”).
+Our Industrial Tech products include short-pulse solid-state lasers, kilowatt-class fiber lasers, diode lasers, and gas lasers, serving a wide range of end-markets applications. In the consumer market, our laser light sources are integrated into customers’ 3D sensing cameras, primarily used in mobile devices. In the industrial manufacturing market, our lasers are embedded in machine tools used for precision material processing across diverse industries, including semiconductor and microelectronics fabrication, electric vehicle and battery production, metal cutting and welding, and advanced manufacturing. Adoption of our Industrial Tech products is driven by the need to advance semiconductor and microelectronics technology roadmaps and by Industry 4.0 and 5.0 trends that emphasize greater manufacturing precision, flexibility, and sustainability.
+We have a global footprint that enables us to address global market opportunities for our products with employees engaged in research and development (“R&D”), administration, manufacturing, support and sales and marketing activities in various locations worldwide. We have manufacturing capabilities and facilities in North America, Asia-Pacific and Europe. Our headquarters are located in San Jose, California, and we employed approximately 10,562 full-time employees around the world as of June 28, 2025.
+2
+Table of Contents
+Lumentum was incorporated in Delaware as a wholly owned subsidiary of JDS Uniphase Corporation (“JDSU”) on February 10, 2015. In August 2015, the Company was spun-off from JDSU and became an independent publicly traded company through the distribution of our common stock by JDSU to its stockholders. In 2015, the remaining parent company, JDSU, was renamed Viavi Solutions Inc. (“Viavi”). Our business traces its origins to Uniphase Corporation, which was formed in 1979 and became publicly traded in 1992. Uniphase was originally a supplier of commercial lasers, and later became a leading supplier of optical transmission products. In 1999, JDS Fitel Inc., a pioneer in products for fiber optic networking which was formed in 1981, merged with Uniphase to become JDSU, a global leader in optical networking. Subsequent acquisitions by JDSU broadened the depth and breadth of what is now Lumentum’s businesses, as well as the intellectual property, technology and product offerings of the company. The fundamental laser and photonic component technologies which we acquired through various acquisitions form the basis of cloud and communications optical network infrastructure today. These technologies will continue to enable us to develop highly integrated products to satisfy our customers’ ever-increasing needs for smaller, lower power and lower cost optical and photonic products.
+In December 2018, we completed the acquisition of Oclaro, Inc. (“Oclaro”), which enhanced our product portfolio by adding Oclaro’s indium phosphide laser and photonic integrated circuit technologies, as well as its coherent component and module capabilities. These additions broadened our revenue mix and strengthened our position to meet the evolving needs of our customers.
+In August 2022, we completed the acquisition of NeoPhotonics Corporation (“NeoPhotonics”), which expanded our opportunities in optical components used in cloud and telecom network infrastructure.
+In August 2022, we completed a transaction to acquire IPG Photonics’ telecom transmission product lines (“IPG telecom transmission product lines”) that develop and market products for use in telecommunications and datacenter infrastructure, including coherent Digital Signal Processors (“DSPs”), application-specific integrated circuits (“ASICs”) and optical transceivers.
+In November 2023, we completed the acquisition of Cloud Light Technology Limited (“Cloud Light”). Our Cloud Light business designs, markets, and manufactures advanced optical modules for data center interconnect applications. The acquisition has enabled us to be well-positioned to serve the growing needs of cloud and networking customers, particularly those customers focused on optimizing their data center infrastructure for the demands of AI/ML.
+Industry Trends and Business Risks
+Our business is driven by end-market applications leveraging the performance advantages of advanced optical and photonic solutions. We operate within global markets characterized by robust, long-term growth trends that are increasing demand for our products and technologies.
+The convergence of factors including the growing reliance on data transmission, the rapid adoption of AI/ML, and the increasing digitalization of society is driving expansion in cloud data centers and the demand for higher-bandwidth network solutions. Lumentum's products and technologies are at the forefront of these trends, engineered to support increased data volumes and computational loads while meeting the industry's need for advanced network capabilities.
+Additionally, the manufacturing industry's pursuit of higher precision, innovative materials, and improved efficiency fuels demand for industrial laser-based solutions. Lumentum is well-positioned to capitalize on this trend through the provision of ultrafast lasers for micromachining and advanced material processing, as well as laser emitters for 3D sensing applications.
+While we maintain a positive outlook on the long-term prospects for our products and technologies, we acknowledge the presence of industry and market risks and uncertainties, including fluctuations in supply and demand, that have led to volatility in our business and financial performance.
+3
+Table of Contents
+Supply Chain and Inventory Management
+Our supply chain is complex, and we need to manage supply of certain components required to build our products while confronted with fluctuating demand from our customers. Our business and our customers’ businesses were negatively impacted by worldwide logistics and supply chain issues during and following the COVID-19 pandemic, including constraints on available cargo capabilities and limited availability of once broadly available supplies of both raw materials and finished components. From time to time, we experience shortages of the types of components we and our customers require in our products, and we have had to incur incremental supply and procurement costs in order to increase our ability to fulfill demands from our customers.
+In addition, through fiscal year 2024, we experienced significant fluctuations in demand as customers delayed projected shipments or built up inventory in response to supply shortages and then brought down inventories as supply chain constraints eased. Our revenue fluctuated in response to these changes in demand and our margins were adversely impacted as we were not been able to fully recover costs, such as underutilized manufacturing capacity. However, during fiscal year 2025, network equipment manufacturers continued to normalize inventory levels and we saw increasing demand from AI and cloud customers as they continue to expand their data centers.
+Due to worldwide operations, we and our customers are [...]
+>>>
+
+TASK
+Write Item 1. Business for Torsel Software, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe the business: overview, principal products and services, two or three reportable segments described qualitatively, customers, sales and marketing, competition, seasonality, intellectual property, government regulation, human capital (state the number of employees from the facts sheet) and available information. The only dollar figure you may cite is total revenue.
+Length: about 3000 words. Start with the line "Item 1. Business" and output only the section text.

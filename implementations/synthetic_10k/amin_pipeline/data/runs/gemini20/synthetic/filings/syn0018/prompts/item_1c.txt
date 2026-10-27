@@ -1,0 +1,355 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Orzenka Midstream, Inc. (ticker ORZA)
+Sector: Energy
+Incorporated in: Delaware
+Headquarters: Phoenix, Arizona
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 177,300
+
+Orzenka Midstream, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      52,746        45,826
+Cost of revenue                              27,191        23,802
+Gross profit                                 25,555        22,024
+Research and development                          0             0
+Selling, general and administrative           1,313         1,095
+Other operating expense                       3,165         2,750
+Operating income                             21,077        18,179
+Interest expense                              3,832         3,302
+Income before income taxes                   17,245        14,877
+Provision for income taxes                    4,089         3,552
+Net income                                   13,156        11,325
+
+Orzenka Midstream, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                           10,049         8,785
+Accounts receivable, net                             6,609         5,785
+Inventories                                          1,060           956
+Other current assets                                 7,594         6,655
+Total current assets                                25,312        22,181
+Property, plant and equipment, net                 129,641       111,941
+Goodwill                                            15,677        13,577
+Other non-current assets                             1,743         1,509
+Total assets                                       172,373       149,208
+Total current liabilities                           45,346        38,324
+Long-term debt                                      85,152        73,377
+Other non-current liabilities                        2,074         2,799
+Total liabilities                                  132,572       114,500
+Total stockholders' equity                          39,801        34,708
+Total liabilities and stockholders' equity         172,373       149,208
+
+Orzenka Midstream, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                            13,156
+Depreciation and amortization                          4,336
+Changes in working capital and other                     285
+Net cash provided by operating activities             17,777
+Purchases of property and equipment                  (6,198)
+Other investing activities, net                     (14,027)
+Net cash used in investing activities               (20,225)
+Net change in long-term debt                          11,775
+Dividends paid                                       (3,564)
+Share repurchases, net of issuances                  (4,499)
+Net cash used in financing activities                  3,712
+Net change in cash and cash equivalents                1,264
+Cash and cash equivalents, beginning of year           8,785
+Cash and cash equivalents, end of year                10,049
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 15.1%
+Net income growth, fiscal 2024 versus 2023: 16.2%
+Operating income growth, fiscal 2024 versus 2023: 15.9%
+Gross margin, fiscal 2024: 48.4%
+Operating margin, fiscal 2024: 40.0%
+Net margin, fiscal 2024: 24.9%
+Effective tax rate, fiscal 2024: 23.7%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 2.5%
+Gross margin, fiscal 2023: 48.1%
+Operating margin, fiscal 2023: 39.7%
+Net margin, fiscal 2023: 24.7%
+Effective tax rate, fiscal 2023: 23.9%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 2.4%
+
+STYLE EXAMPLE: the start of Item 1C from a real Energy company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1C. Cybersecurity
+Risk Management and Strategy
+We have processes in place designed to protect our information systems, data, assets, infrastructure and computing environments from cybersecurity threats and risks while maintaining confidentiality, integrity, and availability. These enterprise-wide processes are based upon policies, practices and standards that guide us on identifying, assessing, and managing material cybersecurity risks and include, but are not limited to:
+•placing security limits on physical and network access to our information technology (“IT”) and operating technology (“OT”) systems;
+•employing internal IT and OT controls designed to detect cybersecurity threats by collecting and analyzing data in our centralized cybersecurity operations center;
+•utilizing layers of defensive methodologies designed to facilitate cyber resilience, minimize attack surfaces, and provide flexibility and scalability in our ability to address cybersecurity risks and threats;
+•providing cybersecurity threat and awareness training to employees and contractors;
+•limiting remote network access to our IT and OT network environments; and
+•assessing our cybersecurity resiliency through various methods, including penetration testing, tabletop exercises with varying scenarios and participants ranging from individuals on our operations teams to executive leadership, and analyzing our corporate cybersecurity incident response plan.
+We apply an enterprise risk management (“ERM”) methodology as established and led by our executive leadership team and overseen by our Board to identify, assess, and manage enterprise-level risks. Our cybersecurity risk program directly integrates and is intended to align with our governing ERM program.
+We engage with external resources to contribute to and provide independent evaluation of our cybersecurity practices, including a periodic assessment of our cybersecurity program that is performed by a third party. Our cybersecurity leadership and operational teams monitor cybersecurity threat intelligence and applicable cybersecurity regulatory requirements in a variety of ways, including by communicating with federal agencies, trade associations, service providers, and other miscellaneous third-party resources. Our management team, through consultation with our Senior Vice President and Chief Digital Officer (“CDO”), Vice President and Chief Information Security Officer (“CISO”), and the Audit Committee of our Board, use the information gathered from these sources to inform long-term cybersecurity investments and strategies which seek to identify cybersecurity threats and protect against, detect, respond to and recover from cybersecurity incidents.
+The information systems, data, assets, infrastructure, and computing environments of our third-party service providers are also at risk of cybersecurity incidents. We manage third-party service provider cybersecurity risks through contract management, evaluation of applicable security control assessments, and third-party risk assessment processes.
+As of February 27, 2025, we do not believe that any risks from cybersecurity threats, including as a result of past cybersecurity incidents, have had, or are reasonably likely to have, a material adverse effect on the company, including our business strategy, results of operations or financial condition. However, there can be no assurance that our cybersecurity processes will prevent or mitigate cybersecurity incidents or threats and that efforts will always be successful. It is possible that cybersecurity incidents may occur and could have a material adverse effect on our business strategy, results of operations, or financial condition. See “Business and Operational Risks--We are increasingly dependent on the performance of our information technology systems and those of our third-party business partners and service providers” in Item 1A. Risk Factors of this Annual Report on Form 10-K.
+31
+Table of Contents
+Governance
+Our full Board of Directors oversees enterprise-level risks and has delegated to the Audit Committee of our Board oversight of risks from cybersecurity threats as informed through the ERM program. Our CDO and CISO are standing members of the ERM committee, comprised of members of senior management, and as part of the committee, report on and evaluate cybersecurity threats and risk management efforts, as communicated to them by way of their direct reports and the larger cybersecurity team. The CDO and CISO are responsible for managing risks from cybersecurity threats. The CDO and CISO provide regular cybersecurity briefings to the Board of Directors including the Audit Committee, with a minimum of two briefings per year and additional briefings as needed. The Audit Committee also has direct access to the CDO and CISO and their management teams for other updates on cybersecurity and information security strategy throughout the year. Additionally, the CDO and CISO, from time to time, meet with members of management to discuss cybersecurity risks, strategy, and threats.
+Our CISO is responsible for implementing the cybersecurity program which is comprised of Cybersecurity GRC (Governance, Risk & Compliance), Cybersecurity Architecture, Engineering & Operations, and a Cyber Fusion Center that includes Threat Intelligence, Vulnerability Management, & Incident Response. Our CISO has more than 30 years of experience in the oil and gas industry and has held various leadership and strategic roles across IT, software R&D and marketing, including collectively serving as a chief information security officer for seven years at two publicly traded companies. Our CISO also holds an Executive Master in Cybersecurity degree, a Master of Computer Science degree, and undergraduate degrees in both computer science and mathematics.
+Our CISO works at the direction of the CDO, who has more than 20 years of executive IT leadership experience and leads the company’s Digital and Information Technology functions that seek to provide innovative, secure, and reliable technology products and services to MPC and its customers. Prior to joining MPC in 2021, our CDO was employed by GE and its subsidiary companies for over 20 years, holding several executive IT leadership roles with increasing responsibility. He was then named Senior Vice President and Chief Information Officer of Services for parent company GE in 2017 and was later named the Vice President and Chief Information Officer of GE Healthcare. Our CDO holds a Bachelor’s degree in Business Administration, Management and Information Systems.
+32
+Table of Contents
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+OVERVIEW
+
+Orzenka Midstream, Inc. (which may be referred to as "Orzenka," "the Company," "we," "us," or "our") is a leading energy infrastructure company headquartered in Phoenix, Arizona. Incorporated in the state of Delaware, we operate a vast and diversified portfolio of midstream assets that serve as a critical link between the production of energy commodities and various end-use markets. Our primary operations include the gathering, processing, and transportation of natural gas; the transportation, storage, and terminalling of crude oil and refined products; and the fractionation and marketing of natural gas liquids (NGLs).
+
+For the fiscal year ended December 31, 2024, the Company generated total revenue of $52,746 million. Our business model is designed to provide stable and predictable cash flows through a high percentage of fee-based contracts and long-term service agreements. We serve a broad customer base that includes major integrated energy companies, independent producers of oil and natural gas, refineries, local distribution companies, and industrial consumers.
+
+Our strategic objective is to maximize shareholder value by optimizing our existing asset base, pursuing disciplined organic growth projects, and maintaining a strong balance sheet. We focus on areas with high-quality geological reserves and robust production profiles, ensuring that our infrastructure is positioned to capture significant volumes of energy products as they move through the value chain. As of December 31, 2024, we employed approximately 177,300 people across our various operational regions and corporate offices.
+
+REPORTABLE SEGMENTS
+
+Our business is organized into three reportable segments based on the nature of the services provided and the types of products handled: Gathering and Processing, Logistics and Storage, and Marketing and Terminals.
+
+Gathering and Processing
+
+The Gathering and Processing segment provides "wellhead-to-market" services for natural gas producers. These operations are essential for preparing raw natural gas for transportation on long-haul interstate pipelines and for extracting valuable NGLs.
+
+- Gathering: Our gathering systems consist of a network of small-diameter pipelines that collect raw natural gas from individual wellheads or central receipt points. Once collected, the gas is transported to larger-diameter trunk lines. During this process, we utilize compression stations to increase the pressure of the gas, allowing it to flow through the system and into processing facilities.
+
+- Processing: Raw natural gas often contains impurities such as water vapor, carbon dioxide, and hydrogen sulfide, as well as NGLs that must be removed to meet pipeline quality specifications. Our processing plants utilize cryogenic expansion and other advanced technologies to separate the methane (residue gas) from the NGL stream.
+
+- Fractionation: After the NGLs are extracted during processing, the resulting "y-grade" or mixed NGL stream is transported to our fractionation facilities. Fractionation is the process of separating the mixed NGL stream into individual, purity products including ethane, propane, normal butane, isobutane, and natural gasoline. These products are then sold into the petrochemical, heating, and transportation markets.
+
+Logistics and Storage
+
+The Logistics and Storage segment focuses on the large-scale transportation and long-term storage of crude oil, refined products, and NGLs. This segment operates a significant network of pipelines and storage hubs that connect major supply basins to refining centers and export terminals.
+
+- Crude Oil Pipelines: We operate a comprehensive system of pipelines that transport crude oil from production areas to refineries and interconnecting pipelines. Our systems are designed to handle various grades of crude oil, ensuring that our refinery customers receive the specific feedstocks required for their operations.
+
+- Refined Product Pipelines: This segment also includes pipelines dedicated to the transport of finished petroleum products, such as motor gasoline, diesel fuel, and jet fuel. These assets connect refineries to distribution terminals located near major population centers.
+
+- Storage and Terminalling: We own and operate significant storage capacity, including above-ground tank farms and underground salt caverns. These facilities provide our customers with the flexibility to manage supply and demand imbalances, support seasonal inventory requirements, and facilitate the blending of various product grades. Our terminals serve as critical transfer points for moving products between pipelines, trucks, railcars, and marine vessels.
+
+Marketing and Terminals
+
+The Marketing and Terminals segment engages in the wholesale distribution of energy products and provides specialized terminalling services that facilitate the final delivery of products to end-users.
+
+- Wholesale Marketing: We purchase and resell natural gas, NGLs, and refined products to maximize the utilization of our assets and capture regional price differentials. Our marketing team leverages our extensive storage and transportation capacity to provide reliable supply solutions to industrial and commercial customers.
+
+- Marine and Rail Terminals: We operate sophisticated terminal facilities equipped to handle waterborne and rail-based shipments. These assets are vital for the export of NGLs and refined products to international markets and for the movement of commodities to domestic regions not served by pipelines.
+
+- Blending and Additization: At our terminal locations, we provide value-added services such as the blending of ethanol into gasoline and the injection of specialized performance additives. These services ensure that the products leaving our facilities meet all regulatory requirements and customer specifications.
+
+PRINCIPAL PRODUCTS AND SERVICES
+
+Our operations revolve around the handling of four primary energy commodities:
+
+- Natural Gas: Primarily composed of methane, natural gas is used for electricity generation, industrial manufacturing, and residential heating. We provide the infrastructure necessary to move this gas from the producer to the local distribution utility.
+
+- Natural Gas Liquids (NGLs): These include ethane (used in plastics production), propane (used for home heating and as a petrochemical feedstock), and butanes (used in gasoline blending and as refinery feedstocks).
+
+- Crude Oil: We transport and store various grades of crude oil, which serves as the primary feedstock for the production of transportation fuels and other petroleum-based products.
+
+- Refined Products: These include finished motor gasoline, ultra-low sulfur diesel, and commercial jet fuel produced by refineries and distributed through our logistics network.
+
+CUSTOMERS AND CONTRACTUAL ARRANGEMENTS
+
+We maintain long-term relationships with a diverse group of customers across the energy value chain. Our revenue is primarily derived from fee-based arrangements, which mitigate our direct exposure to commodity price volatility.
+
+- Fee-Based Contracts: Under these agreements, we receive a set fee for every unit of volume gathered, processed, transported, or stored. These fees are often subject to annual inflation adjustments.
+
+- Minimum Volume Commitments (MVCs): Many of our long-term contracts include MVC clauses, which require the customer to pay for a minimum amount of throughput even if they do not utilize the full capacity. This provides a guaranteed baseline of revenue to support our capital investments.
+
+- Keep-Whole and Percent-of-Proceeds: In some of our processing arrangements, we may have exposure to commodity prices through keep-whole contracts (where we retain a portion of the extracted NGLs in exchange for the energy content of the gas used in processing) or percent-of-proceeds contracts (where we receive a percentage of the sale price of the processed gas and NGLs). However, we actively manage these exposures through hedging programs.
+
+SALES AND MARKETING
+
+Our sales and marketing efforts are focused on securing long-term commitments for our existing assets and identifying new opportunities for infrastructure development. We employ a dedicated team of commercial professionals who work closely with producers and end-users to develop tailored midstream solutions. Our marketing activities also involve the optimization of our asset footprint by utilizing our storage and transportation capacity to bridge the gap between supply-rich regions and demand-heavy markets.
+
+COMPETITION
+
+The midstream energy industry is highly competitive. We compete with other midstream companies, major integrated energy firms, and producer-owned gathering systems. Competition is based on several factors, including:
+
+- Fee rates and commercial terms.
+- Connectivity to multiple downstream markets and liquid hubs.
+- Reliability and safety of operations.
+- Ability to execute large-scale infrastructure projects on time and within budget.
+- Proximity of assets to high-growth production areas.
+
+While some of our assets are located in areas with limited competition due to geographical constraints or high barriers to entry, other regions feature multiple service providers. We believe our integrated service offering and extensive footprint provide a competitive advantage in attracting and retaining customers.
+
+SEASONALITY
+
+Certain aspects of our business are subject to seasonal fluctuations. Demand for natural gas and propane typically increases during the winter months due to higher heating requirements. Conversely, demand for motor gasoline and certain refined products often peaks during the summer driving season. These seasonal patterns can influence the throughput volumes on our pipelines and the utilization rates of our storage facilities. While our fee-based contract structure helps stabilize revenue throughout the year, significant deviations from normal weather patterns can impact our operational results.
+
+INTELLECTUAL PROPERTY
+
+Our business relies on a combination of proprietary technologies, specialized software, and trade secrets to ensure the efficient and safe operation of our assets. We utilize advanced Supervisory Control and Data Acquisition (SCADA) systems to monitor our pipeline networks in real-time. We also hold various patents and trademarks related to our specialized processing techniques and corporate branding. While intellectual property is important to our operations, we do not believe that the expiration of any single patent or license would have a material adverse effect on our consolidated financial position.
+
+GOVERNMENT REGULATION
+
+Our operations are subject to extensive and evolving federal, state, and local laws and regulations. These regulations govern everything from the rates we charge for transportation to the environmental impact of our facilities.
+
+Environmental Matters
+
+We are subject to stringent environmental laws that regulate [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+The following risk factors could materially and adversely affect our business, operations, financial results, market price or value of our securities. This list is not exhaustive, and we place no priority or likelihood based on order of presentation or grouping under sub-headings. Our operations and financial performance are subject to various risks and uncertainties, including those described below, which could cause our actual results to differ materially from those projected in any forward-looking statements.
+
+RISKS RELATED TO OUR BUSINESS AND INDUSTRY
+
+We are dependent on the levels of production of natural gas, NGLs, and crude oil, which could be adversely affected by a decline in commodity prices or other factors beyond our control.
+
+Our midstream operations, including gathering, processing, and transportation, are significantly dependent on the volumes of energy commodities produced by our customers. While we primarily utilize fee-based contracts to mitigate direct price exposure, our throughput volumes are highly sensitive to the capital expenditure budgets and drilling activities of upstream producers. If prices for natural gas, crude oil, or NGLs remain low for an extended period or experience significant volatility, our customers may reduce their exploration and production activities, shut in existing wells, or delay the development of new acreage. Such actions would lead to a decrease in the volumes delivered to our systems, which would reduce our revenue and cash flows. Furthermore, a prolonged downturn in commodity prices could adversely affect the creditworthiness of our customers, potentially leading to contract defaults or the renegotiation of existing agreements on terms less favorable to us.
+
+The transition toward a lower-carbon economy and increased regulation of greenhouse gas emissions may reduce demand for the fossil fuels we handle.
+
+There is an increasing global focus on climate change and a transition toward renewable energy sources and lower-carbon technologies. This shift is driven by government policies, international agreements, technological advancements, and changing consumer preferences. Policies aimed at reducing greenhouse gas emissions, such as carbon taxes, cap-and-trade systems, or mandates for renewable energy, could decrease the long-term demand for natural gas, crude oil, and refined products. If the demand for these commodities declines, the utilization of our pipeline and storage infrastructure may decrease, leading to a reduction in our profitability and the potential impairment of our long-lived assets. Additionally, increased scrutiny from investors and financial institutions regarding the environmental impact of the energy industry could limit our access to capital or increase our borrowing costs.
+
+We face intense competition from other midstream companies and integrated energy firms that could result in lower throughput and reduced profit margins.
+
+The midstream sector is highly competitive, and we compete with numerous entities for the acquisition of new volumes and the development of new infrastructure. Our competitors include other large midstream companies, independent gathering and processing firms, and the midstream subsidiaries of integrated energy companies. Some of these competitors may have greater financial resources, lower cost of capital, or more extensive asset footprints in certain basins than we do. Competition is based on various factors, including the proximity of assets to production, the reliability of service, the rates charged for transportation and processing, and the ability to offer a broad suite of integrated services. If we are unable to compete effectively, we may lose customers to other providers, be forced to reduce our fees to retain business, or fail to secure the volumes necessary to support our growth projects.
+
+Our Marketing and Terminals segment is subject to market price volatility and regional supply and demand imbalances.
+
+While our core business is fee-based, our Marketing and Terminals segment engages in the purchase and sale of energy commodities to optimize our asset utilization. This activity exposes us to risks associated with price fluctuations between different geographical locations and different points in time. Although we employ hedging strategies to manage these risks, such programs may not be entirely effective and can result in significant realized or unrealized losses. Regional supply gluts or infrastructure bottlenecks can lead to a decrease in the price of commodities at our receipt points relative to our delivery points, narrowing our marketing margins. Furthermore, sudden shifts in market structure, such as a move from contango to backwardation, can negatively impact the profitability of our storage operations.
+
+Seasonality and extreme weather patterns can cause significant fluctuations in our operating results and throughput volumes.
+
+Our business is subject to seasonal variations in demand for energy products. For instance, demand for natural gas and propane is typically higher during the winter months for heating, while demand for motor gasoline and certain refined products generally peaks during the summer driving season. These patterns influence the volumes transported through our pipelines and the utilization of our storage facilities. In addition to normal seasonal variations, extreme weather events, such as hurricanes, severe winter storms, or prolonged heat waves, can disrupt our operations or those of our customers and suppliers. Such events may cause physical damage to our infrastructure, lead to power outages, or result in the temporary suspension of production or refining activities, all of which could materially impact our quarterly financial performance.
+
+RISKS RELATED TO OPERATIONS
+
+Operational hazards, including leaks, spills, explosions, or mechanical failures, could result in significant liabilities and reputational damage.
+
+The operation of complex energy infrastructure involves inherent risks, including the potential for pipeline ruptures, equipment malfunctions, fires, and explosions. Such incidents can result in personal injury or loss of life, significant damage to property and the environment, and the interruption of our business operations. As a midstream provider, we handle large volumes of flammable and hazardous materials, and any release of these substances could lead to substantial clean-up costs, regulatory fines, and legal claims. Although we maintain insurance coverage, it may not be sufficient to cover all possible liabilities, and the occurrence of a major operational incident could have a lasting negative impact on our reputation and our ability to obtain necessary permits for future projects.
+
+We rely on sophisticated information technology systems, and a cyberattack or system failure could disrupt our operations and damage our business.
+
+Our operations are highly dependent on digital technologies, including Supervisory Control and Data Acquisition (SCADA) systems used to monitor and control our pipelines and processing plants. These systems are vulnerable to cyberattacks from various actors, including state-sponsored entities, criminal organizations, and hacktivists. A successful cyberattack could result in the unauthorized access to sensitive data, the disruption of our operational controls, or the total shutdown of critical infrastructure. Such a breach could lead to safety incidents, environmental damage, and significant financial losses. Furthermore, as we integrate new technologies and expand our digital footprint, the complexity and frequency of these threats are likely to increase, requiring continuous investment in cybersecurity measures that may not be fully effective.
+
+Our large workforce and reliance on specialized labor present risks related to labor costs, retention, and potential work stoppages.
+
+As of December 31, 2024, we employed about 177,300 people across our operations. Our success depends on our ability to attract, train, and retain highly skilled personnel, including engineers, technicians, and safety professionals. The market for qualified labor in the energy industry is competitive, and an increase in labor costs could negatively impact our operating margins. Additionally, a portion of our workforce may be represented by labor unions or covered by collective bargaining agreements. Any disputes with these unions could lead to work stoppages, strikes, or other disruptions that would interfere with our ability to operate our assets and serve our customers. The scale of our workforce also increases our exposure to various employment-related legal claims and regulatory compliance requirements.
+
+Inflation and supply chain disruptions may increase our operating expenses and the cost of our capital projects.
+
+Our financial results are impacted by the cost of materials, equipment, and services required to maintain our infrastructure and execute our growth strategy. In recent periods, global supply chains have experienced disruptions that have led to delays in the delivery of critical components and increased prices for steel, electrical equipment, and specialized machinery. If inflationary pressures persist, our cost of revenue and general and administrative expenses may rise more rapidly than the fees we are able to charge under our contracts. While many of our agreements include inflation-adjustment mechanisms, these may not fully offset the impact of rising costs, particularly if there is a lag between the incurrence of higher expenses and the adjustment of our rates.
+
+Physical risks associated with climate change, such as extreme temperatures and rising sea levels, could damage our assets.
+
+Our headquarters are located in Phoenix, Arizona, and we maintain a significant asset footprint in regions that are susceptible to extreme weather conditions. Chronic climate changes, such as sustained increases in temperature, could reduce the efficiency of our compression and cooling systems, particularly in our processing plants. Acute physical risks, including the increased frequency of wildfires in the Western United States or more intense tropical storms along the Gulf Coast, could result in physical damage to our pipelines, terminals, and storage tanks. These events may require us to make significant capital expenditures for repairs or adaptation measures and could lead to prolonged service interruptions that reduce our revenue.
+
+RISKS RELATED TO FINANCING AND CAPITAL STRUCTURE
+
+Our [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+The following discussion and analysis of our financial condition and results of operations should be read in conjunction with the Consolidated Financial Statements and the related notes included elsewhere in this Annual Report on Form 10-K. This discussion contains forward-looking statements that involve risks and uncertainties. Our actual results could differ materially from those anticipated in these forward-looking statements as a result of various factors, including those discussed below and in Item 1A. Risk Factors.
+
+Introduction
+
+Orzenka Midstream, Inc. (ORZA) is a Delaware corporation headquartered in Phoenix, Arizona. We are a leading provider of midstream energy services, operating a diverse network of infrastructure assets essential to the gathering, processing, transportation, and storage of natural gas, natural gas liquids (NGLs), crude oil, and refined products. Our operations are critical to connecting energy production from major North American basins to domestic and international end-use markets.
+
+As of December 31, 2024, we employed approximately 177,300 people. Our business is characterized by a high degree of fee-based revenue, which provides stability in various commodity price environments. We manage our business through three primary reportable segments: Gathering and Processing, Logistics and Storage, and Marketing and Terminals.
+
+Executive Summary of 2024 Financial Performance
+
+During the fiscal year ended December 31, 2024, we achieved significant growth in our financial and operational results, driven by increased throughput volumes across our pipeline systems and higher utilization of our processing and fractionation facilities. Key highlights for the year include:
+
+- Total revenue increased 15.1% to $52,746 million in 2024, compared to $45,826 million in 2023.
+- Operating income increased 15.9% to $21,077 million in 2024, compared to $18,179 million in 2023.
+- Net income grew 16.2% to $13,156 million in 2024, compared to $11,325 million in 2023.
+- Net cash provided by operating activities was $17,777 million.
+- We returned significant capital to stockholders through $3,564 million in dividend payments and $4,499 million in share repurchases.
+- We continued our disciplined capital investment program, with $6,198 million in purchases of property and equipment to support organic growth and asset integrity.
+
+Business Environment and Market Outlook
+
+Our results are influenced by the overall demand for energy commodities and the levels of drilling and production activity in the basins where our assets are located. In 2024, we observed continued strength in production volumes, particularly in the unconventional plays that require extensive gathering and processing infrastructure.
+
+The demand for natural gas and NGLs remained robust, supported by industrial consumption and the continued expansion of export capabilities. Our Logistics and Storage segment benefited from high demand for crude oil transportation and storage services as producers sought reliable paths to market. While commodity prices experienced periods of volatility during the year, our fee-based contract structure mitigated the direct impact on our margins.
+
+We believe the long-term outlook for midstream infrastructure remains favorable. The ongoing transition toward a lower-carbon economy continues to position natural gas as a vital bridge fuel, while NGLs remain essential feedstocks for the global petrochemical industry. We are focused on optimizing our existing footprint and executing on a backlog of expansion projects that align with our customers' long-term production plans.
+
+Results of Operations
+
+The following table and discussion provide a comparison of our results of operations for the fiscal year ended December 31, 2024, and the fiscal year ended December 31, 2023.
+
+Revenue
+
+Total revenue for 2024 was $52,746 million, an increase of $6,920 million, or 15.1%, from $45,826 million in 2023. This increase was primarily driven by higher throughput volumes in our Gathering and Processing segment and expanded capacity in our Logistics and Storage segment. Specifically, the commencement of service on several expansion projects in the latter half of 2023 and early 2024 contributed to the year-over-year growth.
+
+In our Gathering and Processing segment, revenue growth was supported by increased drilling activity by our producer customers in high-growth basins. This led to higher gathering volumes and increased demand for our processing and fractionation services. In our Logistics and Storage segment, revenue benefited from new long-term transportation agreements and higher utilization of our refined product terminals. Our Marketing and Terminals segment also contributed to the revenue increase, as we leveraged our storage and transportation capacity to capture regional price differentials and provide reliable supply to wholesale customers.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue for 2024 was $27,191 million, compared to $23,802 million in 2023. The increase in cost of revenue was largely proportional to the increase in our operational activity and throughput volumes. Major components of our cost of revenue include the cost of natural gas and NGLs purchased for our marketing activities, energy costs associated with operating our compression and processing facilities, and field-level maintenance expenses.
+
+Gross profit for 2024 was $25,555 million, an increase of 16.0% from $22,024 million in 2023. Our gross margin for 2024 was 48.4%, a slight increase from 48.1% in 2023. The expansion in gross margin reflects our ability to manage operational costs effectively while benefiting from a higher proportion of fee-based revenue and improved economies of scale as our systems handled larger volumes.
+
+Selling, General and Administrative (SG&A) Expenses
+
+SG&A expenses were $1,313 million in 2024, compared to $1,095 million in 2023. As a percentage of revenue, SG&A expenses were 2.5% in 2024, compared to 2.4% in 2023. The increase in absolute dollars was primarily due to higher personnel costs associated with our workforce of approximately 177,300 employees, including increased compensation and benefits. Additionally, we incurred higher professional service fees related to our ongoing digital transformation initiatives and increased corporate costs to support our expanded operational footprint.
+
+Other Operating Expenses
+
+Other operating expenses, which primarily consist of depreciation and amortization, were $3,165 million in 2024, compared to $2,750 million in 2023. This increase was driven by the significant investment in our asset base over the past several years. As new projects are placed into service, we begin recognizing the associated depreciation expense. Property, plant and equipment, net, increased to $129,641 million at December 31, 2024, from $111,941 million at the end of the prior year, reflecting our continued commitment to infrastructure development.
+
+Operating Income
+
+Operating income for 2024 was $21,077 million, representing an increase of 15.9% from $18,179 million in 2023. Our operating margin remained strong at 40.0% in 2024, compared to 39.7% in 2023. The improvement in operating income and margin demonstrates the inherent operating leverage in our midstream model, where incremental volumes can often be handled with relatively lower incremental costs.
+
+Interest Expense
+
+Interest expense for 2024 was $3,832 million, compared to $3,302 million in 2023. This increase was primarily due to higher average outstanding debt balances during the year. We utilized the debt markets to fund our growth capital expenditures and for general corporate purposes. Long-term debt increased to $85,152 million at December 31, 2024, from $73,377 million at December 31, 2023. The increase in interest expense also reflects the impact of higher prevailing interest rates on our floating-rate debt instruments and the refinancing of maturing obligations at current market rates.
+
+Provision for Income Taxes
+
+Our provision for income taxes was $4,089 million in 2024, compared to $3,552 million in 2023. Our effective tax rate was 23.7% for 2024, a slight decrease from 23.9% in 2023. The effective tax rate is influenced by the mix of our earnings across various state jurisdictions and the impact of permanent tax differences. The decrease in the effective rate was primarily due to the realization of certain state tax credits and adjustments to our valuation allowances.
+
+Net Income
+
+Net income for 2024 was $13,156 million, an increase of 16.2% from $11,325 million in 2023. Our net margin for 2024 was 24.9%, compared to 24.7% in 2023. The growth in net income reflects the strong operational performance across all segments, disciplined cost management, and the successful execution of our strategic growth projects.
+
+Liquidity and Capital Resources
+
+Our primary sources of liquidity are cash flows from operations, borrowings under our credit facilities, and proceeds from the issuance of long-term debt. We believe that our current liquidity position and expected cash flows from operations will be sufficient to meet our anticipated contractual obligations, capital expenditures, and dividend payments for the foreseeable future.
+
+As of December 31, 2024, we had $10,049 million in cash and cash equivalents, compared to $8,785 million at December 31, 2023. Our total current assets were $25,312 million, while total current liabilities were $45,346 million. The deficit in working capital is typical for our industry and is managed through our access to revolving credit facilities and the capital markets.
+
+Cash Flows from Operating Activities
+
+Net cash provided by operating activities was $17,777 million in 2024. This was primarily driven by our net income of $13,156 million, adjusted for non-cash items such as depreciation and amortization of $4,336 million. Changes in working capital and other items contributed $285 million to operating cash flows. The strong cash flow generation reflects the high quality of our fee-based earnings and the efficient operation of our asset base.
+
+Cash Flows from Investing Activities
+
+Net cash used in investing activities was $20,225 million in 2024. The primary use of cash in this category was $6,198 million for the purchase of property and equipment. These capital expenditures were directed toward [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Orzenka Midstream, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 820 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

@@ -1,0 +1,108 @@
+{
+  "company_id": "syn0019",
+  "name": "Kaqua Brands, Inc.",
+  "sector": "Consumer Discretionary",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 106.93,
+  "totals": {
+    "seconds": 106.52,
+    "prompt_tokens": 23346,
+    "completion_tokens": 18675,
+    "total_tokens": 42021,
+    "reasoning_tokens": 7363,
+    "calls": 4
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1232,
+      "prompt_chars": 14043,
+      "words": 2144,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 998,
+      "prompt_chars": 23672,
+      "words": 3260,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1233,
+      "prompt_chars": 35857,
+      "words": 2593,
+      "attempts": 1,
+      "exemplar_overlap": 0.003,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 1142,
+      "prompt_chars": 45544,
+      "words": 1058,
+      "attempts": 1,
+      "exemplar_overlap": 0.0122,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 25.08,
+      "prompt_tokens": 3048,
+      "completion_tokens": 4244,
+      "total_tokens": 7292,
+      "reasoning_tokens": 1577,
+      "finish_reason": "stop",
+      "words": 2144,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 34.41,
+      "prompt_tokens": 4570,
+      "completion_tokens": 6087,
+      "total_tokens": 10657,
+      "reasoning_tokens": 2266,
+      "finish_reason": "stop",
+      "words": 3260,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 29.38,
+      "prompt_tokens": 7002,
+      "completion_tokens": 5624,
+      "total_tokens": 12626,
+      "reasoning_tokens": 2007,
+      "finish_reason": "stop",
+      "words": 2593,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 17.65,
+      "prompt_tokens": 8726,
+      "completion_tokens": 2720,
+      "total_tokens": 11446,
+      "reasoning_tokens": 1513,
+      "finish_reason": "stop",
+      "words": 1058,
+      "issues": []
+    }
+  ]
+}

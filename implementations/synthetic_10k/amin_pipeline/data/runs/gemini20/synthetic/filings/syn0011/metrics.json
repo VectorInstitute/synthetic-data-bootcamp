@@ -1,0 +1,142 @@
+{
+  "company_id": "syn0011",
+  "name": "Novmer Materials, Inc.",
+  "sector": "Materials",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 186.23,
+  "totals": {
+    "seconds": 185.63,
+    "prompt_tokens": 34024,
+    "completion_tokens": 33487,
+    "total_tokens": 67511,
+    "reasoning_tokens": 11498,
+    "calls": 6
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1225,
+      "prompt_chars": 14408,
+      "words": 2224,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1223,
+      "prompt_chars": 25393,
+      "words": 4281,
+      "attempts": 3,
+      "exemplar_overlap": 0.0088,
+      "issues": [
+        "Item 1A cites 20 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1480,
+      "prompt_chars": 37352,
+      "words": 2664,
+      "attempts": 1,
+      "exemplar_overlap": 0.0044,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 935,
+      "prompt_chars": 44712,
+      "words": 1064,
+      "attempts": 1,
+      "exemplar_overlap": 0.0056,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 22.84,
+      "prompt_tokens": 3051,
+      "completion_tokens": 4109,
+      "total_tokens": 7160,
+      "reasoning_tokens": 1397,
+      "finish_reason": "stop",
+      "words": 2224,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 40.36,
+      "prompt_tokens": 4865,
+      "completion_tokens": 7330,
+      "total_tokens": 12195,
+      "reasoning_tokens": 2655,
+      "finish_reason": "stop",
+      "words": 3901,
+      "issues": [
+        "Item 1A cites 17 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 38.25,
+      "prompt_tokens": 4910,
+      "completion_tokens": 6784,
+      "total_tokens": 11694,
+      "reasoning_tokens": 2127,
+      "finish_reason": "stop",
+      "words": 3932,
+      "issues": [
+        "Item 1A cites 12 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gemini-3-flash-preview",
+      "seconds": 38.29,
+      "prompt_tokens": 4910,
+      "completion_tokens": 6446,
+      "total_tokens": 11356,
+      "reasoning_tokens": 1356,
+      "finish_reason": "stop",
+      "words": 4281,
+      "issues": [
+        "Item 1A cites 20 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 26.28,
+      "prompt_tokens": 7800,
+      "completion_tokens": 5652,
+      "total_tokens": 13452,
+      "reasoning_tokens": 2041,
+      "finish_reason": "stop",
+      "words": 2664,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 19.61,
+      "prompt_tokens": 8488,
+      "completion_tokens": 3166,
+      "total_tokens": 11654,
+      "reasoning_tokens": 1922,
+      "finish_reason": "stop",
+      "words": 1064,
+      "issues": []
+    }
+  ]
+}

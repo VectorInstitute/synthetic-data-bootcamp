@@ -1,0 +1,370 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Oral Communications, Inc. (ticker ORAL)
+Sector: Communication Services
+Incorporated in: Delaware
+Headquarters: Reston, Virginia
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 205,300
+
+Oral Communications, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                     119,056       130,116
+Cost of revenue                              79,196        87,114
+Gross profit                                 39,860        43,002
+Research and development                          0             0
+Selling, general and administrative          16,846        16,973
+Other operating expense                           0             0
+Operating income                             23,014        26,029
+Interest expense                              3,372         3,576
+Income before income taxes                   19,642        22,453
+Provision for income taxes                    4,596         5,185
+Net income                                   15,046        17,268
+
+Oral Communications, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                           10,708        11,340
+Accounts receivable, net                            10,072        11,045
+Inventories                                              0             0
+Other current assets                                 8,906         9,593
+Total current assets                                29,686        31,978
+Property, plant and equipment, net                  69,032        71,000
+Goodwill                                            26,770        27,200
+Other non-current assets                           191,319       205,006
+Total assets                                       316,807       335,184
+Total current liabilities                           36,690        39,805
+Long-term debt                                      74,925        79,463
+Other non-current liabilities                      106,063       108,584
+Total liabilities                                  217,678       227,852
+Total stockholders' equity                          99,129       107,332
+Total liabilities and stockholders' equity         316,807       335,184
+
+Oral Communications, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                            15,046
+Depreciation and amortization                         20,299
+Changes in working capital and other                     964
+Net cash provided by operating activities             36,309
+Purchases of property and equipment                 (19,954)
+Other investing activities, net                       10,800
+Net cash used in investing activities                (9,154)
+Net change in long-term debt                         (4,538)
+Dividends paid                                             0
+Share repurchases, net of issuances                 (23,249)
+Net cash used in financing activities               (27,787)
+Net change in cash and cash equivalents                (632)
+Cash and cash equivalents, beginning of year          11,340
+Cash and cash equivalents, end of year                10,708
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: -8.5%
+Net income growth, fiscal 2024 versus 2023: -12.9%
+Operating income growth, fiscal 2024 versus 2023: -11.6%
+Gross margin, fiscal 2024: 33.5%
+Operating margin, fiscal 2024: 19.3%
+Net margin, fiscal 2024: 12.6%
+Effective tax rate, fiscal 2024: 23.4%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 14.1%
+Gross margin, fiscal 2023: 33.0%
+Operating margin, fiscal 2023: 20.0%
+Net margin, fiscal 2023: 13.3%
+Effective tax rate, fiscal 2023: 23.1%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 13.0%
+
+STYLE EXAMPLE: the start of Item 1C from a real Communication Services company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1C. Cybersecurity.
+We have a cybersecurity program to assess and manage risks to the confidentiality, integrity, and availability of our data, networks and technology assets across WBD. Our board of directors oversees risk management at WBD and has delegated functional oversight of cybersecurity and information technology risks to the Audit Committee. Our Chief Information Security Officer (“CISO”) is responsible for the management of such risks and oversees a global organization whose responsibilities include proactively managing and monitoring information and content security, cybersecurity risk, and processes to enable secure and resilient access to, and use of, WBD products and services. Our cybersecurity risk management processes are aligned and integrated into our overall enterprise risk management approach.
+Risk Management and Strategy
+We have a cybersecurity risk management strategy for safeguarding our digital assets that includes both technical and non-technical cybersecurity controls. Our multi-layered technical defense involves a series of protective measures across various levels of our technology environment. This includes fortifying our network perimeter through intrusion detection and prevention systems, securing individual devices with antivirus solutions and endpoint detection, implementing network security measures, and ensuring the resilience of applications. In addition to these technical security solutions, we also leverage non-technical methods, such as promoting a cybersecurity-conscious culture throughout WBD which includes mandatory annual cybersecurity training for all employees, a regular cadence of cybersecurity messaging to our employees, and frequent phishing simulations. Further, we engage independent third parties to conduct annual internal and external penetration testing and independent assessments of our cybersecurity risk management practices using the National Institute of Standards and Technology’s cybersecurity framework and other leading industry practices as guidelines. We also engage an independent third party to conduct a biennial cybersecurity maturity assessment to evaluate the maturity of our entire cybersecurity program.
+We also invest in cybersecurity incident detection and response. Our Cybersecurity Operations Center provides continuous threat monitoring and anomaly detection that is intended to prevent or minimize damage from a cybersecurity attack. We have a Cybersecurity Incident Response Plan that establishes procedures, roles, responsibilities, and communication protocols for WBD executive management and technical staff in the event of a cybersecurity incident. We test the efficacy of the Cybersecurity Incident Response Plan and assess our response capabilities by conducting annual tabletop exercises that simulate cybersecurity threat scenarios.
+27
+We have ongoing processes to identify and assess cybersecurity risks associated with current and prospective third-party service providers. These processes include a vendor cybersecurity compliance assessment at the time of onboarding, contract renewal and/or as needed in the event of a cybersecurity incident affecting such third-party vendor. In addition, we require our providers to meet appropriate security requirements, controls and responsibilities and notify us in the event of a cybersecurity incident that impacts us.
+We have established cybersecurity information sharing and collaboration practices with both government agencies and industry partners, which we believe enhances our overall cybersecurity resilience.
+Governance
+We have established a cybersecurity governance structure to engage appropriate stakeholders. Our CISO is informed about and monitors our prevention, detection, mitigation and remediation efforts related to cyber threats through regular communication and reporting from our information security team. Our Chief Financial Officer, our Chief Legal Officer, our Chief Audit and Risk Officer and our Chief Information Officer also have input and involvement in our cybersecurity program. Our board of directors has an active role, as a whole and at the committee level, in overseeing the Company’s overall risk management, including cybersecurity risks. Our board of directors has delegated responsibility for cybersecurity and information technology risks to our Audit Committee and is regularly informed about such risks through committee reports and other presentations. Our Audit Committee regularly reviews and discusses our cybersecurity risks and is updated quarterly by our CISO on how we identify, assess and mitigate those risks. Our Audit Committee receives quarterly updates from our CISO on our cybersecurity risk posture, the status of projects to strengthen and enhance our cybersecurity program, the evolving threat landscape, and cybersecurity incident reports and learnings. The Audit Committee also periodically devotes additional meeting time, as needed, to in-depth discussions on a particularly relevant cybersecurity topic or to education on developments in the realm of cybersecurity. In addition to the quarterly incident reports, cybersecurity incidents meeting pre-determined criteria are reported to the Audit Committee outside of regularly scheduled quarterly updates and to WBD executive management as needed.
+Our CISO has over 30 years of expertise in global digital and information security, cybersecurity risk management, data privacy and compliance across diverse industries including media and entertainment, biotechnology, pharmaceuticals, financial services, and government defense sectors and holds multiple industry-recognized certifications including, among others, a Certificate of Cybersecurity Oversight from the National Association of Corporate Directors and a Certified Information Systems Security Professional certification.
+We periodically experience cybersecurity incidents, but, as of December 31, 2024, we are not aware of any such incidents that have materially impacted or are reasonably likely to materially impact our business, financial condition or results of operations. However, despite our efforts, we cannot eliminate all risks from cybersecurity threats or provide assurances that we have not experienced undetected cybersecurity incidents or will not discover additional information about previously detected events. See Item 1A, “Risk Factors” for details on the risks from cybersecurity threats that we face.
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+General
+
+Oral Communications, Inc. is a leading provider of communications, technology, information, and entertainment products and services to consumers, businesses, and governmental agencies. For convenience, the terms "Oral Communications," "the Company," "we," "us," or "our" are used in this Annual Report on Form 10-K to refer to Oral Communications, Inc. and its consolidated subsidiaries.
+
+Incorporated in the State of Delaware and headquartered in Reston, Virginia, we operate at the intersection of connectivity and content. Our mission is to deliver seamless, high-speed communication solutions that empower our customers to connect with the people and information that matter most. During the fiscal year ended December 31, 2024, we generated total revenue of $119,056 million. This figure represents a decrease of 8.5% compared to the prior fiscal year, reflecting broader industry shifts and a strategic transition toward higher-margin service offerings.
+
+As a premier Communication Services company, we maintain a robust infrastructure that includes nationwide wireless networks, extensive fiber-optic installations, and sophisticated data centers. Our scale allows us to serve a diverse customer base ranging from individual mobile subscribers to large-scale multinational corporations and federal entities.
+
+Strategy
+
+Our long-term strategy is centered on maintaining our leadership position in the wireless and broadband markets while expanding our digital service capabilities. We focus on three primary pillars: network excellence, customer experience, and operational efficiency. By investing in next-generation network technologies, including the continued rollout of high-capacity spectrum and fiber-to-the-premises, we aim to provide superior reliability and speed. We also seek to simplify our product offerings to improve customer retention and reduce the cost of acquisition.
+
+Reportable Segments
+
+As of December 31, 2024, we classified our operations into three reportable segments: Wireless Services, Wireline and Broadband, and Media and Digital Services. This structure aligns with how our chief operating decision maker evaluates performance and allocates resources.
+
+Wireless Services
+
+The Wireless Services segment is our largest business unit and serves as the primary driver of our consolidated revenue. This segment provides a comprehensive suite of wireless communications services, including postpaid and prepaid service plans, data and messaging services, and the sale of wireless equipment such as smartphones, tablets, and wearable technology.
+
+Our wireless network utilizes a combination of licensed spectrum across various frequency bands to provide broad geographic coverage and high-speed data capacity. We continue to transition our customer base to advanced network standards, which allows for more efficient use of our spectrum assets and provides customers with enhanced throughput for data-intensive applications. Revenue in this segment is primarily generated through monthly recurring service fees and the sale of hardware. We offer various financing options for equipment to make the latest technology accessible to a broad range of consumers.
+
+Wireline and Broadband
+
+The Wireline and Broadband segment provides high-speed internet, voice, and video services over our extensive fiber-optic and legacy copper networks. We offer these services to both residential and business customers. For residential consumers, our fiber-optic internet services provide symmetrical upload and download speeds that support high-definition video streaming, online gaming, and remote work environments.
+
+For our business and enterprise customers, this segment provides sophisticated networking solutions, including private lines, software-defined networking, and cloud connectivity. We also provide wholesale services to other communication providers who utilize our network infrastructure to complete their own service offerings. As the demand for bandwidth continues to grow, we are focused on expanding our fiber footprint to reach more households and commercial buildings, which we believe will drive long-term growth in our broadband subscriber base.
+
+Media and Digital Services
+
+The Media and Digital Services segment encompasses our content distribution, digital advertising, and value-added technology services. This segment is responsible for the curation and delivery of digital content across our platforms, as well as the management of our proprietary advertising technology. We leverage our deep customer relationships and data analytics capabilities to provide targeted advertising solutions for brands looking to reach specific demographics across mobile and web interfaces.
+
+Additionally, this segment focuses on developing and scaling new digital products, such as home security and automation, internet-of-things (IoT) connectivity for vehicles and industrial equipment, and managed IT services for small and medium-sized businesses. By integrating these services with our core connectivity offerings, we aim to increase the "stickiness" of our customer relationships and improve the overall lifetime value of each subscriber.
+
+Principal Products and Services
+
+Wireless Communications
+
+We offer a variety of wireless service plans designed to meet the needs of different consumer segments. Our postpaid plans typically involve a monthly billing cycle and often include unlimited data, talk, and text, along with additional features such as international roaming and access to premium streaming content. Our prepaid plans allow customers to pay in advance for a specific amount of service, providing flexibility for those who do not wish to enter into long-term contracts or undergo credit checks.
+
+Broadband and Connectivity
+
+Our broadband services are delivered through a mix of technologies, with a strategic emphasis on fiber-to-the-home. We provide several tiers of internet speed, allowing customers to choose a plan that fits their usage patterns and budget. In addition to basic connectivity, we offer managed Wi-Fi solutions that ensure optimal coverage within the home or office. Our voice services include traditional landline telephony as well as Voice over Internet Protocol (VoIP) solutions that integrate with our broadband offerings.
+
+Enterprise Solutions
+
+For our large-scale corporate and government clients, we provide specialized services that include dedicated internet access, wide-area networking (WAN), and cybersecurity services. We assist these organizations in managing their complex communication needs through a combination of hardware, software, and consulting services. Our global network reach allows us to support the international operations of our enterprise clients, providing consistent service levels across multiple geographies.
+
+Customers
+
+Our customer base is highly diversified and consists of millions of individual consumers, small businesses, large enterprises, and government agencies.
+
+Consumer Customers
+
+The majority of our subscribers are individual consumers who use our wireless and broadband services for personal communication, entertainment, and information access. We segment our consumer market based on usage patterns, demographic data, and geographic location to tailor our marketing efforts and product bundles.
+
+Business and Government Customers
+
+We serve businesses of all sizes, from sole proprietorships to Global 500 companies. Our business customers rely on us for mission-critical connectivity that supports their daily operations. We also hold numerous contracts with local, state, and federal government agencies to provide secure and resilient communication infrastructure. These contracts often involve long-term commitments and specific service-level agreements regarding network uptime and security protocols.
+
+Sales and Marketing
+
+We employ a multi-channel sales and marketing strategy to reach our target audiences and drive customer acquisition.
+
+Retail and Direct Sales
+
+We operate a significant number of company-owned retail stores across the country, which serve as a primary touchpoint for customers to experience our products and receive personalized service. In addition to our own stores, we maintain a presence in third-party retail locations, including big-box electronics stores and independent authorized dealers. Our direct sales force focuses on our business and government segments, building long-term relationships and designing customized solutions for complex organizational needs.
+
+Digital and Online Channels
+
+Our website and mobile applications are increasingly important channels for both sales and customer support. Customers can purchase devices, change their service plans, and pay their bills through our digital platforms. We utilize digital marketing techniques, including search engine optimization, social media advertising, and email campaigns, to drive traffic to our online properties and convert prospects into subscribers.
+
+Brand Advertising
+
+We invest significantly in brand advertising to maintain high levels of awareness and reinforce our value proposition. Our marketing campaigns utilize a mix of traditional media, such as television and radio, and digital media to communicate our network reliability, speed, and the value of our bundled services.
+
+Competition
+
+The communication services industry is characterized by intense competition, rapid technological change, and evolving consumer preferences. We compete with a variety of companies across our different business segments.
+
+Wireless Competition
+
+In the wireless market, we compete primarily with other national wireless carriers, as well as regional providers and mobile virtual network operators (MVNOs). Competition is based on network quality, price, data speeds, and the variety of devices offered. In recent years, competition has intensified as carriers offer aggressive promotions, such as device subsidies and bundled streaming services, to attract and retain customers.
+
+Broadband and Wireline Competition
+
+Our broadband services compete with cable companies, other telecommunications providers, and satellite internet services. Cable companies have historically been strong competitors in the residential broadband market, and many are now expanding their wireless offerings to compete with our core mobile business. Conversely, we are increasingly competing with cable providers by offering fixed wireless access (FWA) as an alternative to traditional wired broadband in certain areas.
+
+Technology and Media Competition
+
+Our media and digital services segment competes with major technology companies, digital advertising platforms, and content creators. The shift toward digital advertising and the proliferation of streaming platforms have created a highly fragmented market where we must constantly innovate to capture consumer attention and advertising dollars.
+
+Seasonality
+
+Our business experiences a degree of seasonality, particularly in our Wireless Services segment. We typically see an increase in equipment sales and new subscriber activations during the fourth quarter of the calendar year. This is driven by holiday shopping patterns and the typical release cycle of flagship smartphones from major manufacturers. Our marketing expenses [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+Investing in our securities involves a high degree of risk. You should carefully consider the risks and uncertainties described below, together with all of the other information in this Annual Report on Form 10-K, including our consolidated financial statements and related notes, before making an investment decision. The risks described below are not the only ones we face. Additional risks and uncertainties that we are unaware of, or that we currently believe are not material, may also become important factors that adversely affect our business. If any of the following risks actually occur, our business, financial condition, results of operations and cash flows could be materially and adversely affected. In that event, the trading price of our common stock could decline, and you may lose part or all of your investment.
+
+Risks Related to Our Business and Industry
+
+We face intense competition in all aspects of our business, which may continue to put pressure on our ability to attract and retain customers and could lead to further declines in revenue.
+
+The communications industry is highly competitive and characterized by rapid technological change and evolving consumer preferences. Our Wireless Services and Wireline and Broadband segments compete with a variety of national and regional carriers, cable television companies, satellite providers, and other technology firms. Some of our competitors may have lower cost structures, more favorable regulatory treatment, or greater financial resources than we do. In the wireless market, aggressive pricing and promotional activities, such as device subsidies and bundled service offerings, have become common and may lead to increased customer churn or reduced average revenue per user. If we are unable to match the prices or service offerings of our competitors, our market share may decline. Furthermore, as cable companies continue to expand their wireless service offerings through mobile virtual network operator arrangements, the distinction between traditional telecommunications and cable providers is blurring, creating a more crowded and competitive environment. During the fiscal year ended December 31, 2024, our revenue decreased 8.5%, partly due to these competitive pressures and the resulting impact on our subscriber base.
+
+The migration of consumers away from traditional wireline and television services toward digital and streaming alternatives could continue to adversely affect our financial results.
+
+Our Wireline and Broadband segment and our Media and Digital Services segment are subject to significant risks from "cord-cutting" and other changes in consumer behavior. Many consumers are increasingly choosing to replace traditional landline voice services and linear television packages with mobile services and over-the-top streaming platforms. While we offer broadband connectivity that supports these digital services, the revenue generated from high-speed internet access may not fully offset the loss of revenue from legacy voice and video products. Additionally, our Media and Digital Services segment relies on advertising revenue and content distribution, both of which are being disrupted by the proliferation of digital platforms. If we fail to successfully transition our business model to capture more value from streaming and digital advertising, or if the decline in our legacy businesses accelerates, our results of operations will continue to be negatively impacted.
+
+A failure to successfully anticipate and adapt to technological changes could render our services less competitive or obsolete.
+
+The communications services industry is subject to constant technological evolution, including the transition to next-generation wireless standards and the expansion of fiber-optic networks. Our success depends on our ability to accurately predict which technologies will become industry standards and to invest our capital accordingly. For example, the industry is currently undergoing a significant shift toward high-capacity wireless spectrum and fiber-to-the-premises. If we invest in technologies that do not gain widespread adoption, or if we are slower than our competitors in deploying new infrastructure, we may lose customers and incur significant impairment charges on our assets. Because we have a large base of property, plant and equipment, net, totaling $69,032 million, any significant shift in technology that necessitates the early retirement of existing assets could result in substantial non-cash charges.
+
+Our Media and Digital Services segment is dependent on the advertising market, which is sensitive to economic conditions and shifts in marketing spend.
+
+We derive a portion of our revenue from digital advertising and value-added technology services. The advertising market is highly cyclical and tends to decline during periods of economic uncertainty or recession. Furthermore, advertisers are increasingly shifting their budgets toward large-scale digital platforms that offer sophisticated targeting capabilities. If our proprietary advertising technology fails to provide sufficient value to brands, or if we cannot maintain a large enough audience across our platforms to attract advertisers, our advertising revenue will decline. This segment also faces competition from established technology giants who have vast amounts of customer data and dominant positions in the digital ad market. Any reduction in advertising spending or a shift in spend away from our platforms could materially affect our profitability.
+
+Risks Related to Technology and Operations
+
+A significant security breach or a failure of our network infrastructure could damage our reputation and lead to substantial financial losses.
+
+As a provider of communications and data services, we handle vast amounts of sensitive information, including personal customer data and proprietary business information for our enterprise and government clients. We are a frequent target of cyberattacks, including malware, ransomware, and sophisticated phishing attempts. While we invest in cybersecurity measures, there is no guarantee that our systems will not be compromised. A successful breach could lead to the theft of customer information, disruption of services, and significant legal and regulatory liabilities. Beyond the direct costs of remediation, a security incident could cause long-term damage to our brand and lead to the loss of customers who no longer trust us with their data. Additionally, our physical network infrastructure is vulnerable to damage from natural disasters, power outages, and acts of terrorism. Given our reliance on nationwide wireless and fiber networks, a major outage could result in substantial service credits to customers and a loss of revenue.
+
+Our reliance on third-party suppliers for equipment and content exposes us to supply chain disruptions and rising costs.
+
+We depend on a limited number of suppliers for critical components of our network, including wireless base stations, routers, and fiber-optic cabling. We also rely on manufacturers to provide the smartphones and other devices that we sell to our customers. Any disruption in the global supply chain, whether due to geopolitical tensions, trade disputes, or manufacturing delays, could prevent us from expanding our network or meeting customer demand for new devices. For example, shortages in semiconductor components can lead to delays in the availability of 5G-enabled hardware. Furthermore, our Media and Digital Services segment relies on third-party content creators. If the cost of licensing popular content increases, or if we are unable to secure distribution rights for high-demand programming, our ability to attract and retain subscribers for our digital services will be impaired.
+
+We have a large and diverse workforce, and any labor disputes or an inability to attract and retain key talent could disrupt our operations.
+
+With about 205,300 employees, our operations are dependent on our ability to manage a large workforce and maintain productive labor relations. A portion of our employees may be represented by unions or covered by collective bargaining agreements. Any work stoppages, strikes, or protracted negotiations over new contracts could lead to service disruptions and increased labor costs. Additionally, we compete for specialized talent in areas such as network engineering, software development, and data science. In a competitive labor market, we may face challenges in recruiting and retaining the skilled professionals needed to drive our technological innovation. If our labor costs increase significantly or if we experience a shortage of critical skills, our selling, general and administrative expenses, which were $16,846 million in fiscal year 2024, could rise, further pressuring our margins.
+
+Rapid developments in artificial intelligence could disrupt our business model or create new competitive threats.
+
+The emergence of generative artificial intelligence and other advanced AI technologies presents both opportunities and risks for our company. While we may use AI to improve our customer service and network efficiency, our competitors may use the same technologies to gain a cost advantage or to create new services that compete with our own. Furthermore, the use of AI in the creation and distribution of content could disrupt the traditional media landscape in which our Media and Digital Services segment operates. There are also significant ethical and regulatory concerns surrounding the use of AI, including issues related to data privacy and algorithmic bias. If we fail to effectively integrate AI into our operations or if we face legal challenges related to our use of these technologies, our business could be adversely affected.
+
+Risks Related to Financing and Capital Structure
+
+Our substantial level of indebtedness could adversely affect our financial health and prevent us from fulfilling our obligations.
+
+As of December 31, 2024, we had total long-term debt of $74,925 million. This high level of debt requires us to dedicate a significant portion of our cash flow from operations to the payment of interest and principal. In fiscal year 2024, our interest expense was $3,372 million. Our indebtedness could have important consequences, including making us more vulnerable [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+OVERVIEW
+
+Oral Communications, Inc. is a leading provider of communications, technology, information, and entertainment products and services. Throughout this section, Oral Communications, Inc. is referred to as we, us, our, the Company, or Oral Communications. We are a Delaware corporation headquartered in Reston, Virginia, and our operations are primarily focused on providing high-quality connectivity solutions to a diverse base of consumer, business, and government customers.
+
+Our Management’s Discussion and Analysis of Financial Condition and Results of Operations (MD&A) is intended to provide a narrative explanation of our financial statements from the perspective of management. This discussion should be read in conjunction with our consolidated financial statements and the related notes included elsewhere in this Annual Report on Form 10-K.
+
+The communications services industry continues to undergo significant structural shifts, driven by the transition from legacy wireline services to high-speed fiber and next-generation wireless technologies. During the fiscal year ended December 31, 2024, our financial results reflected these broader industry trends as well as our internal strategic focus on operational efficiency and capital allocation. Total revenue for the fiscal year 2024 was $119,056 million, which represented a decrease of 8.5% compared to the fiscal year 2023. This decline was primarily attributable to heightened competition in the wireless sector, the ongoing secular decline of legacy voice and data services, and a strategic decision to prioritize higher-margin service revenue over lower-margin equipment sales.
+
+Despite the decrease in top-line revenue, we maintained a strong focus on cost management and network optimization. We ended the year with about 205,300 employees, reflecting our efforts to streamline our workforce and automate core business processes. Our net income for the fiscal year 2024 was $15,046 million, a decrease of 12.9% from the prior year. However, we continued to generate significant cash flow from operations, totaling $36,309 million, which supported our capital investment programs and our strategy of returning value to stockholders through substantial share repurchases.
+
+RESULTS OF OPERATIONS
+
+The following table summarizes our consolidated results of operations for the fiscal years ended December 31, 2024 and 2023.
+
+(Dollars in millions)
+Fiscal Year 2024
+Fiscal Year 2023
+
+Revenue
+$119,056
+$130,116
+
+Cost of revenue
+$79,196
+$87,114
+
+Gross profit
+$39,860
+$43,002
+
+Selling, general and administrative
+$16,846
+$16,973
+
+Operating income
+$23,014
+$26,029
+
+Interest expense
+$3,372
+$3,576
+
+Income before income taxes
+$19,642
+$22,453
+
+Provision for income taxes
+$4,596
+$5,185
+
+Net income
+$15,046
+$17,268
+
+Revenue
+
+Consolidated revenue decreased 8.5% in 2024 to $119,056 million, compared to $130,116 million in 2023. This decrease was driven by several factors across our reportable segments. In our Wireless Services segment, revenue was impacted by intense pricing competition from national and regional carriers, which led to lower average revenue per user (ARPU) as we utilized promotional offers to maintain our subscriber base. Additionally, equipment revenue decreased as consumers demonstrated longer replacement cycles for smartphones and other mobile devices.
+
+In our Wireline and Broadband segment, we continued to see a decrease in revenue from legacy voice and copper-based data services. While we experienced growth in our high-speed fiber-to-the-premises offerings, the gains in fiber revenue were not sufficient to fully offset the erosion of the legacy wireline business. Furthermore, our Media and Digital Services segment faced a challenging environment for digital advertising, as advertisers adjusted their spending in response to macroeconomic uncertainty and shifted budgets toward larger, global digital platforms.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue was $79,196 million in 2024, compared to $87,114 million in 2023. The decrease in cost of revenue was primarily due to lower equipment costs associated with the decline in wireless handset sales. We also realized benefits from our ongoing network modernization efforts, which have reduced the costs associated with maintaining older, less efficient infrastructure.
+
+Our gross margin for the fiscal year 2024 was 33.5%, compared to 33.0% in 2023. The improvement in gross margin as a percentage of revenue reflects a favorable shift in our revenue mix toward higher-margin connectivity services and away from lower-margin hardware sales. Additionally, we have been successful in negotiating more favorable terms with certain content and technology suppliers, which helped mitigate inflationary pressures on our operating costs.
+
+Selling, General and Administrative Expenses
+
+Selling, general and administrative (SG&A) expenses were $16,846 million in 2024, compared to $16,973 million in 2023. As a share of revenue, SG&A expenses were 14.1% in 2024, compared to 13.0% in 2023. The decrease in absolute dollar terms was driven by our continued focus on operational transformation, including the consolidation of back-office functions and a reduction in personnel-related costs. We have also optimized our marketing spend by utilizing data analytics to more effectively target our customer acquisition efforts.
+
+The increase in SG&A as a percentage of revenue was primarily due to the fixed nature of certain administrative costs, which did not decrease at the same rate as our total revenue. Furthermore, we incurred costs related to the enhancement of our digital sales channels and customer support platforms as we transition more of our customer interactions to online interfaces.
+
+Research and Development
+
+Research and development (R&D) expenses were $0 million in both 2024 and 2023. As a share of revenue, R&D remained at 0.0%. Our business model focuses on the deployment and integration of advanced communication technologies developed by third-party equipment manufacturers and software providers. We invest heavily in the acquisition of spectrum and the construction of physical network infrastructure, which are capitalized as property, plant and equipment rather than being expensed as research and development.
+
+Operating Income and Operating Margin
+
+Operating income decreased 11.6% to $23,014 million in 2024, compared to $26,029 million in 2023. Our operating margin was 19.3% in 2024, compared to 20.0% in 2023. The decrease in operating income and margin was primarily the result of the decline in total revenue, which outweighed the cost savings achieved in our cost of revenue and SG&A accounts. The competitive environment necessitated continued investment in customer retention and network quality, which put pressure on our operating profitability during the year.
+
+Interest Expense
+
+Interest expense was $3,372 million in 2024, compared to $3,576 million in 2023. This decrease was primarily driven by a reduction in our total long-term debt, which decreased from $79,463 million at the end of 2023 to $74,925 million at the end of 2024. We utilized a portion of our cash flow to retire maturing debt obligations and refinance certain high-interest notes with lower-cost financing. The decrease in interest expense also reflects the impact of higher capitalized interest related to our ongoing multi-year network construction projects.
+
+Provision for Income Taxes and Effective Tax Rate
+
+The provision for income taxes was $4,596 million in 2024, compared to $5,185 million in 2023. Our effective tax rate was 23.4% in 2024, compared to 23.1% in 2023. The increase in the effective tax rate was primarily due to changes in the mix of our earnings across different state jurisdictions and a decrease in the availability of certain tax credits compared to the prior year. The overall decrease in the tax provision in dollar terms was consistent with the decrease in our income before income taxes.
+
+Net Income
+
+Net income decreased 12.9% to $15,046 million in 2024, compared to $17,268 million in 2023. Our net margin was 12.6% in 2024, compared to 13.3% in 2023. The decrease in net income reflects the operational challenges discussed above, partially offset by lower interest expenses and a lower tax provision. Despite the decline, our net income remains substantial, providing the foundation for our capital allocation strategy and our ability to reinvest in the business.
+
+LIQUIDITY AND CAPITAL RESOURCES
+
+We maintain a strong liquidity position to fund our operations, invest in our network infrastructure, and return capital to stockholders. Our primary sources of liquidity are cash generated from operations and access to the capital markets.
+
+Cash and Cash Equivalents
+
+As of December 31, 2024, we had cash and cash equivalents of $10,708 million, compared to $11,340 million as of December 31, 2023. The decrease of $632 million in our cash balance reflects our strategic decision to utilize excess cash for share repurchases and debt reduction. We believe our current cash position, combined with our expected future cash flows from operations, will be sufficient to meet our anticipated liquidity requirements for the next twelve months and beyond.
+
+Cash Flows from Operating Activities
+
+Net cash provided by operating activities was $36,309 million in 2024. Our operating cash flow is primarily driven by the collection of service revenue from our wireless and broadband subscribers. In 2024, our cash flow benefited from disciplined working capital management, including a decrease in accounts receivable, net, which was $10,072 million at year-end compared to $11,045 million at the prior year-end. Changes in working capital and other factors contributed $964 million to our operating cash flow. We continue to focus on improving our billing and collection processes to accelerate cash inflows.
+
+Cash Flows from Investing Activities
+
+Net cash used in investing activities was $9,154 million in 2024. This was comprised of the following:
+
+- Purchases of property and equipment, which totaled $19,954 million. These capital expenditures were primarily directed toward the expansion of our 5G wireless network and the continued rollout of fiber-to-the-premises. Our investment in network infrastructure is critical to maintaining our competitive position and meeting the growing demand for high-speed data.
+- Other investing activities, net, provided $10,800 million. This was primarily driven by the sale of certain non-core assets [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Oral Communications, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 570 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

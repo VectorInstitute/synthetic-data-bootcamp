@@ -1,0 +1,108 @@
+{
+  "company_id": "syn0003",
+  "name": "Selzennov Materials, Inc.",
+  "sector": "Materials",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 106.94,
+  "totals": {
+    "seconds": 106.58,
+    "prompt_tokens": 23338,
+    "completion_tokens": 18555,
+    "total_tokens": 41893,
+    "reasoning_tokens": 6517,
+    "calls": 4
+  },
+  "sections": {
+    "1": {
+      "target_words": 2880,
+      "exemplar_words": 1223,
+      "prompt_chars": 14347,
+      "words": 2097,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1250,
+      "prompt_chars": 26324,
+      "words": 3910,
+      "attempts": 1,
+      "exemplar_overlap": 0.0023,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1216,
+      "prompt_chars": 36638,
+      "words": 2535,
+      "attempts": 1,
+      "exemplar_overlap": 0.0061,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 860,
+      "prompt_chars": 44555,
+      "words": 1043,
+      "attempts": 1,
+      "exemplar_overlap": 0.0228,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 26.48,
+      "prompt_tokens": 2966,
+      "completion_tokens": 4363,
+      "total_tokens": 7329,
+      "reasoning_tokens": 1807,
+      "finish_reason": "stop",
+      "words": 2097,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 35.44,
+      "prompt_tokens": 4981,
+      "completion_tokens": 5892,
+      "total_tokens": 10873,
+      "reasoning_tokens": 1294,
+      "finish_reason": "stop",
+      "words": 3910,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 26.02,
+      "prompt_tokens": 6800,
+      "completion_tokens": 5078,
+      "total_tokens": 11878,
+      "reasoning_tokens": 1440,
+      "finish_reason": "stop",
+      "words": 2535,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 18.64,
+      "prompt_tokens": 8591,
+      "completion_tokens": 3222,
+      "total_tokens": 11813,
+      "reasoning_tokens": 1976,
+      "finish_reason": "stop",
+      "words": 1043,
+      "issues": []
+    }
+  ]
+}

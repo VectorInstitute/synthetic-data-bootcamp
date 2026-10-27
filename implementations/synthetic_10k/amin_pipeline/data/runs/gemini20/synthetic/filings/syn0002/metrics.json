@@ -1,0 +1,144 @@
+{
+  "company_id": "syn0002",
+  "name": "Novix Aerospace, Inc.",
+  "sector": "Industrials",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 158.07,
+  "totals": {
+    "seconds": 157.52,
+    "prompt_tokens": 39901,
+    "completion_tokens": 30572,
+    "total_tokens": 70473,
+    "reasoning_tokens": 11595,
+    "calls": 6
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1236,
+      "prompt_chars": 14509,
+      "words": 2037,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1229,
+      "prompt_chars": 25660,
+      "words": 2948,
+      "attempts": 1,
+      "exemplar_overlap": 0.0013,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1312,
+      "prompt_chars": 37700,
+      "words": 2946,
+      "attempts": 3,
+      "exemplar_overlap": 0.0026,
+      "issues": [
+        "These dollar amounts are not in the financial statements; use only figures from the facts sheet: $866 million.",
+        "These percentages are not in the facts sheet; use only the derived percentages given: 0.2%."
+      ]
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 1157,
+      "prompt_chars": 46476,
+      "words": 1193,
+      "attempts": 1,
+      "exemplar_overlap": 0.0017,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 23.93,
+      "prompt_tokens": 3211,
+      "completion_tokens": 4339,
+      "total_tokens": 7550,
+      "reasoning_tokens": 1759,
+      "finish_reason": "stop",
+      "words": 2037,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 28.16,
+      "prompt_tokens": 4993,
+      "completion_tokens": 4784,
+      "total_tokens": 9777,
+      "reasoning_tokens": 1320,
+      "finish_reason": "stop",
+      "words": 2948,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 26.21,
+      "prompt_tokens": 7560,
+      "completion_tokens": 5993,
+      "total_tokens": 13553,
+      "reasoning_tokens": 2214,
+      "finish_reason": "stop",
+      "words": 2723,
+      "issues": [
+        "These percentages are not in the facts sheet; use only the derived percentages given: 0.2%."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 26.34,
+      "prompt_tokens": 7596,
+      "completion_tokens": 5643,
+      "total_tokens": 13239,
+      "reasoning_tokens": 2045,
+      "finish_reason": "stop",
+      "words": 2664,
+      "issues": [
+        "These percentages are not in the facts sheet; use only the derived percentages given: 0.2%."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 3,
+      "model": "gemini-3-flash-preview",
+      "seconds": 28.45,
+      "prompt_tokens": 7596,
+      "completion_tokens": 6384,
+      "total_tokens": 13980,
+      "reasoning_tokens": 2242,
+      "finish_reason": "stop",
+      "words": 2946,
+      "issues": [
+        "These dollar amounts are not in the financial statements; use only figures from the facts sheet: $866 million.",
+        "These percentages are not in the facts sheet; use only the derived percentages given: 0.2%."
+      ]
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 24.43,
+      "prompt_tokens": 8945,
+      "completion_tokens": 3429,
+      "total_tokens": 12374,
+      "reasoning_tokens": 2015,
+      "finish_reason": "stop",
+      "words": 1193,
+      "issues": []
+    }
+  ]
+}

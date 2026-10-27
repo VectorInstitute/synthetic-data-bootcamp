@@ -1,0 +1,108 @@
+{
+  "company_id": "syn0005",
+  "name": "Merqua Land, Inc.",
+  "sector": "Real Estate",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 113.53,
+  "totals": {
+    "seconds": 113.17,
+    "prompt_tokens": 24074,
+    "completion_tokens": 19409,
+    "total_tokens": 43483,
+    "reasoning_tokens": 6441,
+    "calls": 4
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1251,
+      "prompt_chars": 14367,
+      "words": 2202,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1301,
+      "prompt_chars": 25239,
+      "words": 4808,
+      "attempts": 1,
+      "exemplar_overlap": 0.0017,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1453,
+      "prompt_chars": 36925,
+      "words": 2537,
+      "attempts": 1,
+      "exemplar_overlap": 0.0039,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 670,
+      "prompt_chars": 42044,
+      "words": 989,
+      "attempts": 1,
+      "exemplar_overlap": 0.004,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 23.68,
+      "prompt_tokens": 3119,
+      "completion_tokens": 3874,
+      "total_tokens": 6993,
+      "reasoning_tokens": 1189,
+      "finish_reason": "stop",
+      "words": 2202,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 45.29,
+      "prompt_tokens": 4961,
+      "completion_tokens": 7514,
+      "total_tokens": 12475,
+      "reasoning_tokens": 1927,
+      "finish_reason": "stop",
+      "words": 4808,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 29.19,
+      "prompt_tokens": 7797,
+      "completion_tokens": 5770,
+      "total_tokens": 13567,
+      "reasoning_tokens": 2248,
+      "finish_reason": "stop",
+      "words": 2537,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 15.01,
+      "prompt_tokens": 8197,
+      "completion_tokens": 2251,
+      "total_tokens": 10448,
+      "reasoning_tokens": 1077,
+      "finish_reason": "stop",
+      "words": 989,
+      "issues": []
+    }
+  ]
+}

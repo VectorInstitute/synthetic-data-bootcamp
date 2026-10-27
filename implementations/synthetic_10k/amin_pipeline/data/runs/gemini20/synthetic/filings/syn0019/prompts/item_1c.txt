@@ -1,0 +1,332 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Kaqua Brands, Inc. (ticker KUAQ)
+Sector: Consumer Discretionary
+Incorporated in: Delaware
+Headquarters: Seattle, Washington
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 21,200
+
+Kaqua Brands, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      10,633        11,128
+Cost of revenue                               7,696         8,135
+Gross profit                                  2,937         2,993
+Research and development                          0             0
+Selling, general and administrative             542           595
+Other operating expense                         479           419
+Operating income                              1,916         1,979
+Interest expense                                175           183
+Income before income taxes                    1,741         1,796
+Provision for income taxes                      439           470
+Net income                                    1,302         1,326
+
+Kaqua Brands, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                              481           508
+Accounts receivable, net                               266           269
+Inventories                                              0             0
+Other current assets                                   320           332
+Total current assets                                 1,067         1,109
+Property, plant and equipment, net                   3,902         4,109
+Goodwill                                               354           368
+Other non-current assets                             4,335         4,254
+Total assets                                         9,658         9,840
+Total current liabilities                              869           887
+Long-term debt                                       3,880         4,068
+Other non-current liabilities                          289           294
+Total liabilities                                    5,038         5,249
+Total stockholders' equity                           4,620         4,591
+Total liabilities and stockholders' equity           9,658         9,840
+
+Kaqua Brands, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             1,302
+Depreciation and amortization                            239
+Changes in working capital and other                      64
+Net cash provided by operating activities              1,605
+Purchases of property and equipment                    (336)
+Other investing activities, net                          165
+Net cash used in investing activities                  (171)
+Net change in long-term debt                           (188)
+Dividends paid                                         (628)
+Share repurchases, net of issuances                    (645)
+Net cash used in financing activities                (1,461)
+Net change in cash and cash equivalents                 (27)
+Cash and cash equivalents, beginning of year             508
+Cash and cash equivalents, end of year                   481
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: -4.4%
+Net income growth, fiscal 2024 versus 2023: -1.8%
+Operating income growth, fiscal 2024 versus 2023: -3.2%
+Gross margin, fiscal 2024: 27.6%
+Operating margin, fiscal 2024: 18.0%
+Net margin, fiscal 2024: 12.2%
+Effective tax rate, fiscal 2024: 25.2%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 5.1%
+Gross margin, fiscal 2023: 26.9%
+Operating margin, fiscal 2023: 17.8%
+Net margin, fiscal 2023: 11.9%
+Effective tax rate, fiscal 2023: 26.2%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 5.3%
+
+STYLE EXAMPLE: the start of Item 1C from a real Consumer Discretionary company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1C. Cybersecurity
+Risk Management and Strategy
+Cybersecurity risk management is an important part of our enterprise risk management efforts. We have an enterprise-wide cybersecurity program that is designed to identify, protect, detect, and respond to reasonably foreseeable cybersecurity risk and threats, and continuously work to enhance and improve our cybersecurity and risk management efforts. We routinely assess material risks from cybersecurity threats and maintain incident response plans designed to protect, identify, evaluate, respond to, and recover from a cybersecurity incident. The plans are designed to be flexible so that they may be adapted to an array of potential scenarios, and provide for the creation of cross-functional cybersecurity incident response teams in the event of a cybersecurity incident. We regularly conduct exercises to help ensure our overall preparedness for a cybersecurity incident.
+We also have invested in tools and technologies to protect our data and information technology, and we monitor our systems on an ongoing basis to identify and assess risk. In addition, we have mandatory cybersecurity training designed to educate and train employees on how to identify and report cybersecurity threats. We also provide specialized training for employees in more sensitive roles.
+We take measures to assess and, where warranted, update and improve our cybersecurity program, including by regularly conducting internal risk assessments, internal control validations, independent program assessments, threat assessments, penetration testing, and scanning of our systems for vulnerabilities. Our cybersecurity risk management framework is based on applicable laws and regulations, as well as industry recognized standards and practices, including a system and organization controls 2 (SOC 2 type II) examination for certain DoorDash Operations (as defined below), an ISO 27001 certification for certain Wolt Operations (as defined below), and an annual payment card industry data security standard review of our security controls protecting payment card information. We undergo periodic third-party assessments against recognized industry standards and practices, including an annual payment card industry data security standard review of our security controls protecting payment card information. We also periodically engage third-party advisors to assess the effectiveness of our cybersecurity program, policies and practices, consult with external advisors regarding opportunities and enhancements to strengthen our policies and practices, and assess our cybersecurity capabilities using third-party security firms. Our internal audit team provides independent assessment of our cybersecurity program and controls.
+With respect to third-party service providers, our cybersecurity program includes conducting due diligence and vendor risk assessment of relevant service providers’ cybersecurity programs prior to onboarding, as well as ongoing monitoring through our third-party risk management policies and programs. We also contractually require third-party service providers with access to our information technology systems, sensitive business data, or personal information to implement and maintain appropriate security controls and provide for contractual restrictions on their ability to use our data. We work with these third-party service providers to help ensure their cybersecurity protocols are appropriate to the risk presented by
+49
+Table of Contents
+their access to or use of our systems and/or data, including notification and coordination concerning incidents occurring on third-party systems that may affect us. Our service providers are contractually required to notify us promptly of security incidents that may affect our systems or data, including personal information.
+To date, risks from cybersecurity threats have not materially affected our business or operations. Although we have invested in the protection of our data and information technology, and monitor our systems on an ongoing basis, there can be no assurance that such efforts will be successful in preventing our information technology systems from being compromised or otherwise protecting us completely from security breaches or incidents. For additional information regarding whether any risks from cybersecurity threats, including as a result of previous cybersecurity incidents, have materially affected or are reasonably likely to materially affect our company, including our business strategy, results of operations, or financial condition, please see the section titled "Risk Factors," in this Annual Report on Form 10-K, including the section titled “Risk Factors—Risks Related to Our Business and Operations—We have been subject to cybersecurity incidents in the past and anticipate being the target of future attacks. Any actual or perceived cybersecurity incident or security or privacy breach could interrupt our operations, subject us to claims, litigation, regulatory investigations and liability, and adversely affect our reputation, brand, business, financial condition, and results of operations.”
+Governance
+Our board of directors is responsible for overseeing risk management for the Company and administers this responsibility both directly and with assistance from its committees. Our board of directors has designated our audit committee to administer oversight of cybersecurity risk management, which is a critical component of our enterprise risk management program. As such, our audit committee receives regular updates on our cybersecurity program and is actively involved in reviewing our cybersecurity and technology risks and opportunities, risk mitigation strategies, incident and industry trends, areas of emerging risks, and other areas of importance, including with respect to cybersecurity. Security updates are also provided to the full board of directors from time to time.
+The Company's cybersecurity risk management is jointly led by (i) for all operations other than our Wolt Operations (“DoorDash Operations”), DoorDash, Inc.’s Director of Security Governance, Risk, and Compliance, who is currently serving as interim security lead (the “Interim Security Lead”) while the Company onboards a new Chief Information Security Officer, and (ii) for our international operations conducted under Wolt and its subsidiaries (“Wolt Operations”), Wolt’s Chief Security Officer. The Interim Security Lead is responsible for assessing and managing information security and technology risks for DoorDash Operations and reports to the General Counsel. She has worked in security and technology for over 17 years, with the last 10 years spent in security leadership. She holds a bachelor's degree in finance and management information systems from the University of Maryland. Wolt’s Chief Security Officer is responsible for assessing and managing information security, technology, and physical security and safety risks for Wolt Operations, and reports to the Chief Executive Officer of Wolt. He has worked in security and technology for over 30 years. Each of their respective teams are composed of experienced personnel with a broad range of experience across the technology industry.
+Management is responsible for assessing, identifying, and managing material cybersecurity risks, and both the Interim Security Lead and Wolt’s Chief Security Officer and their respective teams meet regularly with each other and with members of management to review and evaluate our cybersecurity risks and risk management program. As part of its oversight of cybersecurity risks, our audit committee receives regular updates on the risks and status of both the DoorDash and Wolt security programs. Both programs have in place coordinated cybersecurity incident response processes that set forth procedures for managing and responding to cybersecurity incidents across the enterprise, including the assignment of cross-functional roles and responsibilities and protocols for the escalation of significant incidents to members of management and our audit committee.
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+OVERVIEW
+
+Kaqua Brands, Inc. is a leading global consumer discretionary company that designs, markets, and distributes a diverse portfolio of lifestyle products including apparel, home goods, and outdoor equipment. We are dedicated to providing high-quality, innovative products that enhance the daily lives of our customers. Our business is built on a foundation of brand strength, operational excellence, and a commitment to delivering value to our stakeholders.
+
+Founded and incorporated in the State of Delaware, Kaqua Brands, Inc. has grown from a regional specialist into a multi-category industry participant with a significant presence across various retail channels. Our principal executive offices are located in Seattle, Washington. As used in this Annual Report on Form 10-K, the terms Kaqua, the Company, we, us, and our refer to Kaqua Brands, Inc. and its consolidated subsidiaries.
+
+In fiscal 2024, our total revenue was $10,633 million. This performance reflects our ability to navigate a complex macroeconomic environment characterized by shifting consumer preferences and evolving retail dynamics. During the fiscal year, our revenue decreased 4.4% compared to the prior year, primarily due to softened demand in certain discretionary categories and strategic adjustments to our product mix. Despite these challenges, we maintained a disciplined approach to cost management and operational efficiency, which supported our margins and overall financial stability.
+
+OUR STRATEGY
+
+The consumer discretionary sector is currently undergoing significant transformation driven by technological advancements and changing shopper behavior. Our strategic objective is to maintain and grow our market position by leveraging our core competencies in brand management and supply chain logistics. Our strategy is centered on three primary pillars:
+
+- Brand Elevation and Innovation: We focus on enhancing the equity of our core brands through continuous product innovation and targeted marketing campaigns. By investing in design and functionality, we aim to create products that resonate with the modern consumer and command brand loyalty.
+
+- Omnichannel Excellence: We are committed to providing a seamless shopping experience across all touchpoints, including our proprietary e-commerce platforms, third-party digital marketplaces, and physical retail partner locations. We continue to invest in our digital infrastructure to improve customer engagement and fulfillment capabilities.
+
+- Operational Efficiency and Scalability: We strive to optimize our global supply chain and internal processes to reduce lead times and improve inventory management. Our goal is to maintain a flexible cost structure that allows us to adapt quickly to market fluctuations while supporting long-term growth.
+
+PRINCIPAL PRODUCTS AND SERVICES
+
+Our product offerings are diverse and span several categories within the consumer discretionary space. We categorize our products based on their primary use and the consumer needs they address.
+
+Apparel and Accessories
+We offer a wide range of apparel for men, women, and children, focusing on activewear, casual wear, and seasonal collections. Our accessories line includes footwear, bags, and wearable technology designed to complement our apparel offerings. We emphasize the use of high-quality materials and functional design to differentiate our products in a highly competitive market.
+
+Home and Living
+Our home and living portfolio includes interior decor, small furniture pieces, textiles, and kitchenware. These products are designed to offer a blend of aesthetic appeal and practical utility, catering to consumers looking to enhance their living spaces. We frequently update our collections to align with contemporary interior design trends.
+
+Outdoor and Recreation
+We provide equipment and gear for outdoor activities, including camping, hiking, and fitness. This category includes high-performance gear designed for durability and reliability in various environmental conditions. Our outdoor products are marketed to enthusiasts who value quality and technical innovation.
+
+REPORTABLE SEGMENTS
+
+For management and reporting purposes, we organize our business into three reportable segments based on product category and market characteristics.
+
+Lifestyle Segment
+The Lifestyle segment comprises our apparel and accessories business. This segment is characterized by rapid trend cycles and a strong emphasis on brand imagery. We manage this segment by focusing on seasonal launches and high-impact marketing collaborations. The Lifestyle segment represents a significant portion of our brand engagement and is a key driver of our digital traffic.
+
+Home Segment
+The Home segment includes our furniture, decor, and household products. This segment typically experiences different demand drivers than apparel, often influenced by housing market trends and consumer confidence levels. We focus on long-term product durability and timeless design within this segment to appeal to a broad demographic of homeowners and renters.
+
+Outdoor Segment
+The Outdoor segment focuses on our recreation and fitness equipment. This segment benefits from growing consumer interest in health, wellness, and outdoor experiences. We compete in this segment by emphasizing the technical specifications and safety standards of our products, catering to both casual users and dedicated outdoor enthusiasts.
+
+CUSTOMERS
+
+Our customer base is broad and geographically diverse, consisting primarily of individual consumers who purchase our products for personal use. We reach these customers through a multi-channel distribution strategy:
+
+- Direct-to-Consumer (DTC): We sell directly to consumers through our integrated e-commerce websites and mobile applications. This channel allows us to own the customer relationship, gather valuable data, and offer exclusive products and promotions.
+
+- Wholesale Partners: We maintain strong relationships with a network of wholesale partners, including national department stores, specialty retailers, and regional boutiques. These partners help us achieve broad physical distribution and reach customers who prefer an in-person shopping experience.
+
+- Digital Marketplaces: We leverage major third-party online marketplaces to expand our reach and tap into established global logistics networks. This channel is particularly important for our international expansion efforts.
+
+We do not have a single customer that accounts for more than 10% of our consolidated revenue, which mitigates our credit risk and reliance on any individual retail partner.
+
+SALES AND MARKETING
+
+Our sales and marketing efforts are designed to build brand awareness, drive consumer traffic, and foster long-term loyalty. We utilize a data-driven approach to allocate our marketing spend across various channels:
+
+- Digital Marketing: We invest heavily in search engine optimization, social media advertising, and influencer partnerships. These efforts are aimed at reaching consumers where they spend a significant portion of their time online and driving conversion on our DTC platforms.
+
+- Content Creation: We produce high-quality visual and editorial content that showcases our products in lifestyle contexts. This content is distributed through our digital channels and email marketing campaigns to engage our community.
+
+- Brand Events and Showrooms: Periodically, we host pop-up events and maintain physical showrooms in key urban markets. These physical touchpoints allow consumers to interact with our brands in a curated environment and provide opportunities for experiential marketing.
+
+- Loyalty Programs: We operate customer loyalty programs that reward frequent purchasers with early access to new products, exclusive discounts, and personalized recommendations.
+
+COMPETITION
+
+The consumer discretionary industry is highly fragmented and intensely competitive. We compete with a wide array of companies, including:
+
+- Global lifestyle and apparel brands with significant marketing resources.
+- Specialized retailers that focus on specific categories such as home decor or outdoor gear.
+- Mass-market retailers and department stores that offer competing products at various price points.
+- Direct-to-consumer startups that leverage social media and digital-first business models.
+
+The primary factors on which we compete include brand reputation, product quality, design innovation, price, and the effectiveness of our omnichannel distribution. Our ability to anticipate and respond to changing consumer trends is critical to our competitive positioning. Many of our competitors have longer operating histories, greater brand recognition, or more extensive financial resources than we do. However, we believe our focused brand portfolio and agile operating model allow us to compete effectively.
+
+SEASONALITY
+
+Our business is subject to seasonal fluctuations that impact our quarterly results. Traditionally, we experience our highest sales volumes during the fourth calendar quarter, coinciding with the holiday shopping season. This peak is particularly pronounced in our Lifestyle and Home segments. Our Outdoor segment may experience secondary peaks during the spring and summer months as consumers prepare for outdoor activities.
+
+To manage this seasonality, we carefully plan our inventory levels and marketing activities throughout the year. We also utilize seasonal clearance sales to manage inventory turnover and prepare for new product introductions. High demand during peak periods can place significant pressure on our supply chain and fulfillment operations.
+
+INTELLECTUAL PROPERTY
+
+Intellectual property is a vital component of our business and a key driver of our competitive advantage. We rely on a combination of trademarks, patents, copyrights, and trade secrets to protect our brands and innovations.
+
+- Trademarks: We hold numerous trademark registrations for our brand names, including Kaqua, and associated logos in the United States and various international jurisdictions. These trademarks are essential to our brand identity and consumer recognition.
+
+- Patents: We seek patent protection for unique designs and technical innovations, particularly in our Outdoor and Recreation segment. These patents help us prevent competitors from copying our proprietary functional features.
+
+- Trade Secrets: We maintain strict internal controls to protect our trade secrets, which include proprietary manufacturing processes, customer data, and strategic business plans.
+
+We actively monitor the market for potential infringements of our intellectual property and take appropriate legal action when necessary to protect our rights.
+
+GOVERNMENT REGULATION
+
+Our operations are subject to extensive laws and regulations in the United States and the international markets where we operate. These regulations impact various aspects of our business:
+
+- Product Safety: We must comply with rigorous product safety standards, including those established by the Consumer Product Safety Commission (CPSC) in the U.S. and similar regulatory [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+Our business, financial condition, and results of operations are subject to various risks and uncertainties. You should carefully consider the risks and uncertainties described below, together with all of the other information in this Annual Report on Form 10-K, including those described in the Management’s Discussion and Analysis of Financial Condition and Results of Operations section and our consolidated financial statements and related notes. Any of the following risks could materially and adversely affect our business, financial condition, results of operations, and cash flows.
+
+Risks Related to Our Business and Industry
+
+Our business is highly sensitive to consumer spending patterns and general economic conditions that affect the consumer discretionary sector.
+
+As a company primarily engaged in the sale of apparel, home goods, and outdoor equipment, our results are heavily dependent on the health of the consumer discretionary market. Purchases of our products are often seen as non-essential by consumers. During periods of economic uncertainty, high inflation, or recession, consumers may prioritize spending on essential items such as food, healthcare, and housing, leading to a reduction in demand for our lifestyle and recreation products. We have recently experienced a decrease in total revenue, which reflects a softening in consumer demand. If macroeconomic conditions further deteriorate, or if consumer confidence fails to improve, our sales volumes and profitability could continue to decline. Factors such as rising interest rates, fluctuations in fuel and energy costs, and volatility in the financial markets can all contribute to reduced household wealth and discretionary income, impacting our ability to maintain or grow our revenue base.
+
+The consumer discretionary industry is intensely competitive, and our failure to compete effectively could result in a loss of market share.
+
+We operate in a highly fragmented environment where we compete with global lifestyle brands, specialized retailers, and mass-market department stores. Some of our competitors have significantly greater financial, marketing, and distribution resources than we do. Others may have lower cost structures or more established brand recognition in specific niches, such as high-performance outdoor gear or luxury home decor. The rise of direct-to-consumer startups and digital-first brands has further intensified competition by lowering the barriers to entry for new market participants. If we are unable to differentiate our products through design, quality, and brand imagery, or if we fail to price our products competitively while maintaining our gross margins, our market share may erode. Competitive pressures may also force us to increase our spending on marketing and promotional activities, which could adversely affect our operating income.
+
+Our success depends on our ability to anticipate and respond to rapidly changing consumer preferences and fashion trends.
+
+The apparel and home goods markets are characterized by short product life cycles and frequent shifts in consumer tastes. Our ability to maintain our brand appeal depends on our design teams’ capacity to identify and react to these trends in a timely manner. Because we do not record research and development expenses, we rely heavily on our marketing and design personnel to interpret market signals and translate them into commercially viable products. If we fail to accurately predict which styles or functional features will resonate with consumers, we may experience lower-than-anticipated sales and be forced to rely on heavy discounting to move products through our distribution channels. A failure to remain relevant to our core customer demographic could have a long-term negative impact on our brand equity and results of operations.
+
+Our brand reputation is a critical asset, and any negative publicity could harm our business.
+
+The Kaqua brand name and our associated logos are central to our identity and our ability to command a premium in the marketplace. Our reputation could be damaged by various factors, including product quality issues, safety recalls, or negative perceptions regarding our environmental and social impact. In the age of social media, any perceived failing in our corporate governance, labor practices, or customer service can be amplified quickly, leading to a loss of consumer trust. Such damage to our reputation can be difficult and costly to repair and may result in a permanent decline in customer loyalty and sales. Furthermore, if our wholesale partners or digital marketplace providers experience reputational damage, it could indirectly affect the perception of our brands by association.
+
+The seasonal nature of our business creates volatility in our quarterly results and places pressure on our operations.
+
+We experience significant fluctuations in our financial performance throughout the year, with a substantial portion of our revenue and net income typically generated during the fourth calendar quarter. This concentration of sales during the holiday shopping season makes us highly vulnerable to any disruptions during this period, such as adverse weather conditions, supply chain delays, or shifts in consumer shopping behavior. If our performance during the peak season falls below expectations, it is unlikely that we would be able to recover the lost revenue in subsequent quarters. This seasonality also requires us to manage our cash flow and working capital carefully to ensure we have sufficient liquidity to fund operations during periods of lower sales activity.
+
+Risks Related to Our Operations and Supply Chain
+
+Our unique operating model and lack of owned inventory on our balance sheet make us highly dependent on third-party partners.
+
+As of the end of fiscal 2024, we reported no inventory on our consolidated balance sheet. This indicates a business model that relies heavily on just-in-time manufacturing, dropshipping, or third-party fulfillment arrangements where we do not take physical title to goods for extended periods. This model makes us exceptionally vulnerable to the operational stability and financial health of our supply chain and logistics partners. Any disruption in the ability of these third parties to manufacture, store, or ship products to our customers could lead to immediate stockouts and lost sales. Because we do not maintain a cushion of owned inventory, we have limited ability to mitigate the impact of sudden supply chain shocks, such as factory closures, labor strikes, or transportation bottlenecks.
+
+We rely on a global network of third-party manufacturers and suppliers for the production of our products.
+
+We do not own or operate the facilities that manufacture our apparel, home goods, or outdoor equipment. Instead, we outsource production to third-party vendors, many of whom are located in international jurisdictions. This reliance on external manufacturers subjects us to risks beyond our control, including fluctuations in the cost of raw materials such as cotton, synthetic fibers, and wood. Increases in labor costs in the regions where our products are made can also compress our gross margins. Additionally, we are exposed to risks related to the political and economic stability of the countries where our suppliers operate. Changes in trade policies, the imposition of tariffs, or regional conflicts could disrupt our supply chain and increase the cost of our goods sold.
+
+Interruptions in our logistics and distribution network could adversely affect our ability to deliver products to customers.
+
+Our ability to meet customer expectations depends on the efficient operation of our distribution network, which includes third-party carriers and digital marketplace logistics. We are headquartered in Seattle, Washington, and our distribution activities involve the movement of goods across significant distances. Any disruption to major shipping routes, port congestion, or a shortage of trucking capacity could delay the delivery of our products. Such delays not only result in dissatisfied customers and potential order cancellations but can also lead to increased freight and handling costs. As we continue to grow our direct-to-consumer and digital marketplace channels, the complexity of our logistics operations increases, further exposing us to the risk of operational failures.
+
+A failure of our information technology systems or a cybersecurity breach could disrupt our operations and damage our reputation.
+
+We rely extensively on information technology systems to manage our e-commerce platforms, process financial transactions, and coordinate with our supply chain partners. These systems are vulnerable to damage or interruption from power outages, hardware failures, computer viruses, and cybersecurity attacks. As a company with a significant digital presence, we collect and store sensitive personal information from our customers and employees. A successful data breach could result in the unauthorized disclosure of this information, leading to legal liability, regulatory fines, and a loss of consumer confidence. We have devoted resources to protecting our digital infrastructure, but the evolving nature of cyber threats means we cannot guarantee that our security measures will be effective in all cases.
+
+Our large workforce and reliance on human capital present risks related to labor costs and retention.
+
+With approximately 21,200 employees, we are subject to various risks related to labor relations and human resource management. We compete for talent in highly competitive markets, particularly in our headquarters region of Seattle. Increases in the minimum wage, changes in labor laws, or rising costs for employee benefits such as healthcare can significantly impact our selling, general and administrative expenses. Furthermore, any labor unrest, such as strikes or work stoppages at our distribution partners or within our own operations, could disrupt our business. Our ability to execute our strategy also depends on the continued service of our senior management and our ability to attract and retain skilled personnel in areas such as digital marketing and supply chain management.
+
+Our significant [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+The following discussion and analysis of our financial condition and results of operations should be read in conjunction with our consolidated financial statements and the related notes included elsewhere in this Annual Report on Form 10-K. This discussion contains forward-looking statements that involve risks and uncertainties. Our actual results could differ materially from those anticipated in these forward-looking statements as a result of various factors, including those discussed below and in the section entitled Risk Factors in Part I, Item 1A of this report.
+
+Overview
+
+Kaqua Brands, Inc. is a global leader in the consumer discretionary market, specializing in the design and distribution of lifestyle products across three primary categories: apparel and accessories, home and living, and outdoor and recreation. Headquartered in Seattle, Washington, and incorporated in Delaware, we operate a lean, high-efficiency business model that leverages a global network of third-party partners to deliver high-quality goods to a diverse customer base. As of December 31, 2024, we employed approximately 21,200 people who support our corporate functions, design initiatives, and marketing strategies.
+
+Our financial performance in fiscal 2024 reflects a period of strategic transition and operational discipline. During the year, we navigated a challenging macroeconomic environment characterized by shifting consumer spending patterns and heightened competition. Total revenue for the fiscal year ended December 31, 2024, was $10,633 million, representing a decrease of 4.4% compared to $11,128 million in the prior fiscal year. This decline was primarily driven by a softening in demand for non-essential discretionary goods and our intentional decision to exit certain lower-margin wholesale accounts to focus on more profitable direct-to-consumer and premium digital marketplace channels.
+
+Despite the contraction in top-line revenue, we successfully expanded our gross margin and maintained strong operating and net margins. Our gross margin improved to 27.6% in fiscal 2024 from 26.9% in fiscal 2023. This improvement was the result of a more favorable product mix and a reduction in inbound freight costs. Our disciplined approach to cost management is further evidenced by the reduction in selling, general and administrative expenses, which decreased to $542 million, or 5.1% of revenue, compared to $595 million, or 5.3% of revenue, in the prior year.
+
+We continue to generate significant cash flow from operations, which reached $1,605 million in fiscal 2024. This robust cash generation allowed us to return substantial capital to our stockholders through $628 million in dividends and $645 million in share repurchases, while also reducing our long-term debt by a net $188 million. We believe our strong balance sheet and flexible operating model position us well to navigate future market volatility and invest in long-term growth opportunities.
+
+Results of Operations
+
+The following table and discussion provide a comparison of our results of operations for the fiscal years ended December 31, 2024, and December 31, 2023.
+
+Revenue
+
+For the fiscal year ended December 31, 2024, revenue was $10,633 million compared to $11,128 million for the fiscal year ended December 31, 2023. This represents a decrease of $495 million, or 4.4%. The decrease in revenue was observed across our primary product categories, though the impact varied by segment.
+
+The decline was largely attributable to a reduction in unit volume as consumers faced inflationary pressures, leading to a more cautious approach toward discretionary purchases in the apparel and home goods categories. Furthermore, our strategic shift to prioritize brand health over volume resulted in reduced promotional activity and the termination of several low-volume wholesale relationships. While these actions contributed to the overall revenue decrease, they were instrumental in protecting our brand equity and improving our overall margin profile.
+
+Geographically, we experienced softened demand in our domestic markets, which was partially offset by stabilization in certain international digital marketplaces. The Lifestyle segment, which includes apparel and accessories, remained the largest contributor to our revenue, although it faced the most significant headwinds due to rapid changes in fashion trends and intense price competition from digital-native competitors. The Home segment saw a moderate decline as housing market activity slowed, impacting the demand for interior decor and furniture. The Outdoor segment remained relatively resilient, benefiting from continued consumer interest in health and wellness, although it was not immune to the general downward trend in discretionary spending.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue for fiscal 2024 was $7,696 million, compared to $8,135 million in fiscal 2023. This represents a decrease of $439 million, or 5.4%. The decrease in cost of revenue was primarily driven by lower sales volumes and a reduction in global logistics and shipping rates compared to the prior year. Additionally, we realized efficiencies in our third-party manufacturing costs as we consolidated production with our highest-performing vendors.
+
+Gross profit for fiscal 2024 was $2,937 million, compared to $2,993 million in fiscal 2023. While gross profit decreased in absolute dollar terms by $56 million, our gross margin increased to 27.6% in fiscal 2024 from 26.9% in fiscal 2023. This 70-basis point improvement in gross margin was primarily due to a higher proportion of sales coming from our direct-to-consumer channels, which typically carry higher margins than our wholesale business. We also benefited from a more disciplined pricing strategy and reduced clearance activity, as we better aligned our supply chain with actual demand.
+
+Selling, General and Administrative Expenses
+
+Selling, general and administrative (SG&A) expenses were $542 million for fiscal 2024, representing 5.1% of revenue, compared to $595 million, or 5.3% of revenue, for fiscal 2023. The decrease of $53 million, or 8.9%, was the result of a comprehensive cost-optimization program initiated at the beginning of the fiscal year.
+
+Key drivers of the decrease in SG&A included a reduction in marketing and advertising spend as we shifted toward more efficient, data-driven digital campaigns and reduced our reliance on expensive traditional media. We also realized savings in personnel-related costs through natural attrition and a reorganization of our corporate support functions. Despite these reductions, we continued to invest in our core digital infrastructure to support our omnichannel strategy. Our SG&A as a share of revenue remains low relative to many industry peers, reflecting our efficient corporate structure and the leverage we gain from our approximately 21,200 employees.
+
+Research and Development
+
+For both fiscal 2024 and fiscal 2023, research and development (R&D) expenses were $0 million. As a brand-focused consumer discretionary company, we do not engage in traditional scientific research and development. Instead, our product development costs are primarily related to design and aesthetic innovation, which are captured within our cost of revenue or SG&A expenses. Our competitive advantage is driven by brand management, marketing, and supply chain excellence rather than technological R&D.
+
+Other Operating Expense
+
+Other operating expense increased to $479 million in fiscal 2024 from $419 million in fiscal 2023, an increase of $60 million, or 14.3%. This increase was primarily driven by non-cash charges related to the impairment of certain long-lived assets and restructuring costs associated with our efforts to streamline our distribution network. As we optimized our physical footprint, we incurred charges related to the early termination of leases and the write-down of equipment that was no longer aligned with our long-term operational strategy. These charges are reflected in the decrease of our Property, plant and equipment, net from $4,109 million in 2023 to $3,902 million in 2024.
+
+Operating Income
+
+Operating income for fiscal 2024 was $1,916 million, compared to $1,979 million in fiscal 2023. This represents a decrease of $63 million, or 3.2%. The decrease in operating income was primarily the result of lower gross profit and higher other operating expenses, which were only partially offset by the reduction in SG&A expenses. Despite the decrease in absolute operating income, our operating margin improved slightly to 18.0% in fiscal 2024 from 17.8% in fiscal 2023, reflecting our ability to maintain profitability levels through rigorous cost control even as revenue declined.
+
+Interest Expense
+
+Interest expense for fiscal 2024 was $175 million, compared to $183 million in fiscal 2023. The decrease of $8 million, or 4.4%, was primarily due to a lower average outstanding debt balance during the year. We reduced our long-term debt from $4,068 million at the end of fiscal 2023 to $3,880 million at the end of fiscal 2024, a net decrease of $188 million. This reduction in leverage, combined with the expiration of certain higher-interest rate debt instruments, contributed to the lower interest burden.
+
+Provision for Income Taxes
+
+Our provision for income taxes was $439 million for fiscal 2024, compared to $470 million for fiscal 2023. Our effective tax rate for fiscal 2024 was 25.2%, a decrease from 26.2% in fiscal 2023. The decrease in the effective tax rate was primarily due to a more favorable geographic mix of earnings and the resolution of certain tax contingencies in international jurisdictions. We continue to manage our tax position to ensure compliance with global regulations while optimizing our after-tax cash flows.
+
+Net Income
+
+Net income for fiscal 2024 was $1,302 million, compared to $1,326 million in fiscal 2023. This represents a decrease of $24 million, or 1.8%. The decrease in net income was less pronounced than the decrease in revenue or operating income, primarily due to the lower interest expense and a more favorable effective tax rate. Our net [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Kaqua Brands, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 900 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

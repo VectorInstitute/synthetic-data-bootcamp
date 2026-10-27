@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0006",
+  "name": "Selzenqua Semiconductor, Inc.",
+  "sector": "Information Technology",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 123.87,
+  "totals": {
+    "seconds": 123.47,
+    "prompt_tokens": 30477,
+    "completion_tokens": 24948,
+    "total_tokens": 55425,
+    "reasoning_tokens": 9073,
+    "calls": 5
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1231,
+      "prompt_chars": 14516,
+      "words": 2298,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1227,
+      "prompt_chars": 25167,
+      "words": 3578,
+      "attempts": 1,
+      "exemplar_overlap": 0.0025,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1262,
+      "prompt_chars": 36614,
+      "words": 2492,
+      "attempts": 2,
+      "exemplar_overlap": 0.0094,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 810,
+      "exemplar_words": 1053,
+      "prompt_chars": 45459,
+      "words": 1030,
+      "attempts": 1,
+      "exemplar_overlap": 0.0048,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 25.64,
+      "prompt_tokens": 2975,
+      "completion_tokens": 4543,
+      "total_tokens": 7518,
+      "reasoning_tokens": 1682,
+      "finish_reason": "stop",
+      "words": 2298,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 29.64,
+      "prompt_tokens": 4915,
+      "completion_tokens": 6205,
+      "total_tokens": 11120,
+      "reasoning_tokens": 2078,
+      "finish_reason": "stop",
+      "words": 3578,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 28.26,
+      "prompt_tokens": 6870,
+      "completion_tokens": 6245,
+      "total_tokens": 13115,
+      "reasoning_tokens": 2074,
+      "finish_reason": "stop",
+      "words": 3022,
+      "issues": [
+        "These percentages are not in the facts sheet; use only the derived percentages given: 0.3%."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 25.05,
+      "prompt_tokens": 6906,
+      "completion_tokens": 5627,
+      "total_tokens": 12533,
+      "reasoning_tokens": 2124,
+      "finish_reason": "stop",
+      "words": 2492,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 14.88,
+      "prompt_tokens": 8811,
+      "completion_tokens": 2328,
+      "total_tokens": 11139,
+      "reasoning_tokens": 1115,
+      "finish_reason": "stop",
+      "words": 1030,
+      "issues": []
+    }
+  ]
+}

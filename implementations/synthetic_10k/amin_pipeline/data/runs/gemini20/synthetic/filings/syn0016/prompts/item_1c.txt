@@ -1,0 +1,330 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Zenaltal Foods, Inc. (ticker ZTLN)
+Sector: Consumer Staples
+Incorporated in: Delaware
+Headquarters: Princeton, New Jersey
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 22,700
+
+Zenaltal Foods, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      15,185        16,282
+Cost of revenue                              10,552        11,321
+Gross profit                                  4,633         4,961
+Research and development                         91           128
+Selling, general and administrative           3,994         4,250
+Other operating expense                           0           188
+Operating income                                548           395
+Interest expense                                240           256
+Income before income taxes                      308           139
+Provision for income taxes                       66            29
+Net income                                      242           110
+
+Zenaltal Foods, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            1,747         1,764
+Accounts receivable, net                             1,247         1,321
+Inventories                                          1,081         1,115
+Other current assets                                 1,746         1,801
+Total current assets                                 5,821         6,001
+Property, plant and equipment, net                   2,945         3,190
+Goodwill                                             2,389         2,416
+Other non-current assets                            10,047        10,638
+Total assets                                        21,202        22,245
+Total current liabilities                            7,227         7,611
+Long-term debt                                       5,341         5,690
+Other non-current liabilities                          635           523
+Total liabilities                                   13,203        13,824
+Total stockholders' equity                           7,999         8,421
+Total liabilities and stockholders' equity          21,202        22,245
+
+Zenaltal Foods, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                               242
+Depreciation and amortization                            173
+Changes in working capital and other                     307
+Net cash provided by operating activities                722
+Purchases of property and equipment                    (516)
+Other investing activities, net                          790
+Net cash used in investing activities                    274
+Net change in long-term debt                           (349)
+Dividends paid                                         (197)
+Share repurchases, net of issuances                    (467)
+Net cash used in financing activities                (1,013)
+Net change in cash and cash equivalents                 (17)
+Cash and cash equivalents, beginning of year           1,764
+Cash and cash equivalents, end of year                 1,747
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: -6.7%
+Net income growth, fiscal 2024 versus 2023: 120.0%
+Operating income growth, fiscal 2024 versus 2023: 38.7%
+Gross margin, fiscal 2024: 30.5%
+Operating margin, fiscal 2024: 3.6%
+Net margin, fiscal 2024: 1.6%
+Effective tax rate, fiscal 2024: 21.4%
+Research and development as a share of revenue, fiscal 2024: 0.6%
+Selling, general and administrative as a share of revenue, fiscal 2024: 26.3%
+Gross margin, fiscal 2023: 30.5%
+Operating margin, fiscal 2023: 2.4%
+Net margin, fiscal 2023: 0.7%
+Effective tax rate, fiscal 2023: 20.9%
+Research and development as a share of revenue, fiscal 2023: 0.8%
+Selling, general and administrative as a share of revenue, fiscal 2023: 26.1%
+
+STYLE EXAMPLE: the start of Item 1C from a real Consumer Staples company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1C. CYBERSECURITY
+Management’s Role in Assessing and Managing Cybersecurity Risk; Processes for assessing, identifying and managing material risks from cybersecurity threats
+We have a systematic and thorough risk management process, which is designed to identify, assess, prioritize and mitigate the risks that could negatively impact achievement of our strategic and operating objectives. A key component of this process is our Enterprise Risk Management (“ERM”) Committee, which is led by our Chairman, President and Chief Executive Officer, and includes our Chief Financial Officer, Chief Legal Officer, Chief Information Officer and other members of senior management. The ERM Committee monitors both current and emerging risks facing the Company and meets at least quarterly to review the prioritization of identified risks. The ERM Committee has identified cybersecurity as a critical risk facing the Company. Each of the most critical risks identified is assigned to a member of senior management who oversees the management, mitigation and presentation of the risk to the senior leadership team and throughout the year to our Board of Directors. The risks relating to information technology, including cybersecurity, are overseen by our Chief Information Officer. Our Chief Information Officer then assigns the risks within the Information Technology risk category to others on his team. The cybersecurity risk is managed and overseen by our Chief Information Security Officer (“CISO”), who reports to our Chief Information Officer. Cybersecurity as a risk is presented to the full ERM Committee annually or more frequently as needed.
+We have a dedicated information security organization, led by our CISO and overseen by our Chief Information Officer, which is responsible for assessing and managing material risks from cybersecurity threats. Our Chief Information Officer reports to our Group President, Growth and Strategy, a member of our senior leadership team who reports to our Chairman of the Board, President and Chief Executive Officer.
+Our CISO has over 25 years of information technology experience, including leading data analytics, customer relationship management, architecture and application development teams. He has been leading our global information security program for almost seven years. He is a Certified Information Systems Professional, a member of Google Cloud CISO Customer Advisory Board and New Jersey Infragard and completed the FBI CISO Academy. He joined the Company over 25 years ago and has extensive knowledge regarding our business processes and the associated information technology platforms utilized worldwide, enabling him to guide his organization to protect the Company’s systems and information.
+Our Chief Information Officer joined the Company over 25 years ago and has expertise across a wide array of information technology and systems, with experience leading a large array of different functions within the global information technology organization. He has led our information technology Operational Performance and Reliability Committee for the last nine years, which reviews and provides continuous improvement processes and technology across infrastructure, information security, architecture, application and end user performance. He has application development leadership experience across all functions, including the policies and controls that govern both application development and implementation of packaged software. He has a certification from Stanford University for Cybersecurity and Executive Strategy.
+The Company’s information security organization seeks to employ cybersecurity best practices, including implementing new technologies to proactively identify and monitor new vulnerabilities and reduce risk, conducting due diligence of third-party vendors’ information security programs, maintaining security policies and standards and regularly updating and testing our response planning and protocols. The information security organization also works in partnership with our Internal Audit function to identify cybersecurity risks and review cybersecurity-related internal controls with third parties as part of the overall internal controls process. The information security organization also gains valuable information to improve our threat and risk awareness capabilities as a member of an industry information sharing and analysis organization, which provides strategic and tactical information sharing channels. Additionally, employees are provided mandatory cybersecurity awareness training on an annual basis, which includes information about how to identify and report cybersecurity concerns and incidents. The information security organization also conducts phishing simulations and testing scenarios through tabletop exercises and assessment activities, to help ensure compliance with our cyber policies and procedures. We maintain a cybersecurity insurance policy and have retained relevant incident response services. Additionally, we maintain an offensive security team that
+21
+works both independently and with third party cybersecurity professionals to conduct security assessments of our enterprise-wide cybersecurity practices, including penetration testing, and identify areas for continuous improvement within the information security program. The Company is a member of the Retail and Hospitality Information Sharing and Analysis Center, which provides additional intelligence associated with threats pertaining to our industry.
+We maintain a Data Security Incident Response Plan (the “Plan”), which outlines the processes and procedures that we should follow to respond to, remediate and resolve a security incident involving a potential or actual compromise of our proprietary information and/or personal information. It also describes the structure, roles and responsibilities of personnel involved in responding to such incidents and provides a process for alerting senior management of such incidents. The Plan is reviewed on an annual basis and revised as necessary.
+Our dedicated information security organization leverages various frameworks for managing cybersecurity risks, including the National Institute of Standards and Technology (“NIST”) framework. The key pillars of the NIST framework are to (i) develop an organizational understanding to manage cybersecurity risk to systems, people, assets, data and capabilities; (ii) develop and implement appropriate safeguards to ensure delivery of critical services; (iii) develop and implement appropriate activities to identify the occurrence of a cybersecurity event; (iv) develop and implement appropriate activities to maintain plans for resilience and to restore any capabilities or services that were impaired due to a cybersecurity incident; and (v) develop appropriate activities to action an incident.
+We have a comprehensive third party cybersecurity risk review process, which prioritizes, monitors and assesses the risks associated with our third party service provider interactions. The third party service provider assessment framework follows industry standard practices and allows us to properly understand the risk associated with the services provided which are key to our company’s daily operations.
+For additional information regarding risks faced by the Company from cybersecurity threats, see Item 1A, “Risk Factors - A cybersecurity incident, data breach or a failure of key technology systems could adversely impact our business.”
+Board’s Oversight of Cybersecurity Risks
+Our Board of Directors is focused on cybersecurity. Specific responsibility for cybersecurity oversight is delegated to the Audit Committee. The Board oversees our risk management process to ensure it is properly designed, well-functioning and consistent with our overall corporate strategy. Our Audit Committee oversees the ERM process and the implementation of appropriate risk monitoring and management systems, though all Board members attend Audit Committee meetings and participate in risk management discussions.
+Our Board of Directors has adopted a written statement, known as the Independent Board Candidate Qualifications and made available on our website, outlining the qualities sought in our directors. This statement, which is refreshed periodically, is used by the Nominating, Governance and Corporate Responsibility Committee (“NGCR Committee”) to evaluate individual director candidates. The NGCR Committee has identified experience with overseeing and managing risk management processes, including with respect to cybersecurity, as being important to creating an effective, well-rounded and diverse Board. Directors with experience overseeing and managing risk management processes play a critical role in the Board’s [...]
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Company Overview
+
+Zenaltal Foods, Inc. (the Company, Zenaltal, we, us, or our) is a global leader in the consumer staples sector, specializing in the development, manufacture, and distribution of a diverse portfolio of food products. Incorporated in the State of Delaware and headquartered in Princeton, New Jersey, the Company has established itself as a critical link in the global food supply chain. We provide a wide array of products ranging from shelf-stable pantry essentials and refrigerated goods to specialized ingredients for the broader food industry.
+
+For the fiscal year ended December 31, 2024, the Company generated total revenue of $15,185 million. This represented a performance where revenue decreased 6.7% compared to the prior fiscal year. Despite the fluctuations in the global macroeconomic environment, Zenaltal remains committed to its core mission of providing high-quality, nutritious, and convenient food solutions to consumers and commercial partners worldwide. Our operations are supported by a robust infrastructure of manufacturing facilities, distribution centers, and research and development hubs, all managed by a dedicated workforce of about 22,700 employees.
+
+The Company’s business model is built upon a vertically integrated supply chain that ensures quality control from the procurement of raw agricultural commodities to the final delivery of branded products to retail shelves. We collaborate with a vast network of growers, suppliers, and logistics partners to manage the complexities of food production and distribution. Our strategic focus is centered on innovation, operational efficiency, and the expansion of our market presence in both mature and emerging economies.
+
+Reportable Segments
+
+The Company’s operations are organized and managed through three reportable business segments: Consumer Packaged Goods, Foodservice Solutions, and Industrial Ingredients. These segments are classified based on the nature of the products provided, the primary customer base, and the methods used to distribute products.
+
+Consumer Packaged Goods
+
+The Consumer Packaged Goods (CPG) segment is the Company’s largest business unit and serves as the primary interface with individual consumers. This segment focuses on the production and marketing of branded food products sold through retail channels, including supermarkets, mass merchandisers, club stores, and e-commerce platforms. The product portfolio within this segment includes a variety of categories such as snacks, prepared meals, condiments, and beverages.
+
+Our CPG strategy is driven by brand equity and consumer insights. We invest significantly in understanding evolving dietary preferences, such as the increasing demand for plant-based options, reduced-sugar formulations, and clean-label products. This segment utilizes a sophisticated marketing and sales apparatus to maintain brand loyalty and capture market share in highly competitive categories. The CPG segment also manages our private label partnerships, where we manufacture high-quality products for major retailers under their own proprietary brands.
+
+Foodservice Solutions
+
+The Foodservice Solutions segment provides customized food products and culinary expertise to the away-from-home dining market. Our customers in this segment include national and regional restaurant chains, healthcare facilities, educational institutions, and hospitality providers. We offer a range of solutions from bulk ingredients to fully prepared entrees designed to help foodservice operators improve kitchen efficiency, reduce labor costs, and maintain consistent quality across multiple locations.
+
+This segment operates through a specialized sales force and a network of third-party distributors. We work closely with culinary professionals to develop bespoke menu items and seasonal offerings that align with current food trends. The Foodservice Solutions segment is characterized by long-term relationships and contract-based sales, providing a stable revenue stream that complements the more transactional nature of the CPG segment.
+
+Industrial Ingredients
+
+The Industrial Ingredients segment focuses on the processing of raw agricultural commodities into value-added components used by other food and beverage manufacturers. This segment produces a variety of essential ingredients, including sweeteners, edible oils, starches, and protein concentrates. These products serve as the foundational building blocks for a wide range of consumer products, from baked goods and dairy alternatives to infant formula and animal nutrition.
+
+Operating primarily in the business-to-business (B2B) space, this segment leverages our large-scale processing capabilities and technical expertise. We provide our industrial customers with consistent, high-specification ingredients that meet rigorous safety and quality standards. The Industrial Ingredients segment is also responsible for managing the Company’s commodity risk and ensuring a steady supply of raw materials for our own internal production needs.
+
+Principal Products and Services
+
+Zenaltal Foods, Inc. offers an extensive lineup of products designed to meet the needs of a broad demographic. Our principal product categories include:
+
+- Shelf-stable goods: This category encompasses canned vegetables, fruits, soups, and pasta sauces. These products are valued for their long shelf life, convenience, and nutritional value.
+- Refrigerated and frozen foods: We produce a variety of temperature-controlled items, including frozen appetizers, entrees, and refrigerated spreads. These products cater to consumers seeking quick meal solutions without compromising on taste.
+- Snacks and convenience foods: Our portfolio includes crackers, nuts, and grain-based bars, which are positioned to capture the growing trend of on-the-go consumption.
+- Specialty ingredients: We manufacture high-purity ingredients such as emulsifiers, thickeners, and flavor enhancers that are essential for food texture and stability.
+
+In addition to our physical products, we provide technical services to our commercial and industrial clients. This includes formulation assistance, supply chain optimization consulting, and food safety training. These services enhance our value proposition and foster deeper integration with our business partners.
+
+Sales and Marketing
+
+The Company employs a multi-faceted sales and marketing strategy to drive demand and support our brands. Our marketing efforts are designed to build emotional connections with consumers through traditional advertising, digital media, and social media engagement. We focus on highlighting the quality, sustainability, and health benefits of our products.
+
+Our sales organization is structured to manage diverse distribution channels. We utilize a combination of a direct sales force and independent brokers to reach our retail and foodservice customers. For our largest retail accounts, we employ dedicated account management teams that work collaboratively with customers on category management, promotional planning, and shelf space optimization.
+
+Trade promotions represent a significant portion of our marketing spend. These include temporary price reductions, in-store displays, and couponing programs designed to encourage trial and repeat purchases. We also utilize data analytics to measure the effectiveness of our marketing campaigns and to refine our strategies in real-time.
+
+Customers
+
+Our customer base is highly diversified, spanning various geographic regions and market segments. In the CPG segment, our primary customers are large-scale retailers and wholesalers. We maintain strong relationships with the world’s leading grocery chains and mass merchants. While we have a broad customer base, the loss of one or more of our largest retail partners could have a material impact on our financial results.
+
+In the Foodservice Solutions segment, we serve a wide range of operators, from global fast-food franchises to local school districts. These customers prioritize consistency, reliability, and cost-effectiveness. In the Industrial Ingredients segment, our customers are typically other large multinational food and beverage companies that require high volumes of specialized components.
+
+Competition
+
+The food industry is intensely competitive. We compete with large multinational food companies, regional players, and private label manufacturers. The primary factors of competition include brand recognition, product quality, price, innovation, and the ability to secure distribution and shelf space.
+
+In recent years, we have seen increased competition from private label brands as retailers seek to offer lower-cost alternatives to national brands. To counter this, we focus on continuous product innovation and the maintenance of strong brand equity. We also face competition from smaller, niche brands that often target specific consumer trends, such as organic or non-GMO products. Our ability to compete effectively depends on our capacity to anticipate and respond to these shifting consumer preferences.
+
+Seasonality
+
+Our business experiences a degree of seasonality, although the diversified nature of our portfolio helps to mitigate significant fluctuations. Demand for certain products, such as soups and baking ingredients, tends to be higher during the colder months in the Northern Hemisphere. Conversely, demand for snacks and beverages may increase during the summer months and holiday seasons.
+
+In our Industrial Ingredients segment, the availability and price of raw materials can be seasonal, influenced by harvest cycles and weather patterns. We manage these seasonal variances through strategic inventory management and the use of forward-contracting and hedging strategies.
+
+Intellectual Property
+
+The Company relies on a combination of trademarks, patents, trade secrets, and copyrights to protect its intellectual property. Our brand names are among our most valuable assets, and we aggressively defend our trademarks against infringement. We also hold numerous patents related to our food processing technologies and product formulations.
+
+In addition to formal legal protections, we rely on proprietary technical know-how and trade secrets, particularly in the areas of flavor development and manufacturing processes. We require our employees and certain third parties to sign confidentiality agreements to protect this information. While our intellectual property is important to our success, we do not believe that the loss of any single patent or trademark would have a material adverse effect on our business as a whole.
+
+Government Regulation
+
+As a participant in the food industry, Zenaltal is subject to extensive regulation by federal, state, and local authorities in the United States, as well as by international regulatory bodies in the jurisdictions where we operate.
+
+In the United States, our operations are primarily overseen by the Food and Drug Administration (FDA) and the United States Department of Agriculture (USDA). These agencies regulate food [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+RISK FACTORS.
+
+The following risk factors could have a material adverse effect on our business, financial condition, results of operations, or cash flows. These risks are not the only ones we face. Additional risks and uncertainties not presently known to us or that we currently deem immaterial may also impair our business operations. This section should be read in conjunction with the Consolidated Financial Statements and the related notes included elsewhere in this Annual Report on Form 10-K.
+
+RISKS RELATED TO OUR BUSINESS AND INDUSTRY
+
+The food industry is highly competitive, and our failure to compete effectively could adversely affect our market share and profitability.
+
+We operate in a highly competitive environment, facing competition from large multinational food companies, regional producers, and private label manufacturers. Many of our competitors have substantial financial, marketing, and research resources. Competition is based on product quality, price, brand recognition, innovation, and the ability to secure shelf space at retail locations. In recent periods, we have observed a trend toward increased price competition and promotional activity. If we are unable to maintain our competitive position through product innovation and effective marketing, our revenue and margins may decline. Our recent performance, characterized by a decrease in total revenue, underscores the challenges posed by this competitive landscape. If we fail to respond to the strategies of our competitors, including their pricing actions and product launches, our financial results could be materially and adversely affected.
+
+Shifts in consumer preferences and dietary trends may reduce demand for our products.
+
+Our success depends on our ability to anticipate and respond to changing consumer preferences. Consumers are increasingly focused on health and wellness, seeking products that are organic, non-GMO, low in sugar, or plant-based. There is also a growing demand for transparency in labeling and sustainably sourced ingredients. If we fail to innovate or adjust our product portfolio to align with these evolving trends, our brand equity and sales volume could diminish. We have invested in research and development to address these needs, though our spending in this area decreased in the most recent fiscal year. Any failure to accurately predict consumer trends or a delay in bringing new products to market could result in a loss of market share to more agile competitors or niche brands that cater specifically to these new preferences.
+
+Volatility in the cost of raw materials and energy could increase our operating costs and reduce our margins.
+
+Our manufacturing operations require significant quantities of agricultural commodities, including grains, edible oils, and proteins, as well as energy for processing and transportation. The prices of these inputs are volatile and can be affected by factors beyond our control, such as weather patterns, crop disease, geopolitical tensions, and changes in government agricultural programs. While we use hedging strategies and forward-contracting to manage some of this risk, these measures may not fully offset the impact of price increases. If we are unable to pass increased input costs on to our customers through higher selling prices, or if there is a significant delay in doing so, our gross profit and operating margins will be compressed. Conversely, if we raise prices, we may experience a decline in sales volume as consumers switch to lower-priced alternatives.
+
+We depend on a limited number of large retailers for a significant portion of our sales.
+
+A substantial part of our revenue is generated from sales to a small number of large-scale retailers and wholesalers. This concentration of customers gives them significant leverage over us in negotiations regarding pricing, promotional allowances, and payment terms. The loss of any one of our major retail partners, or a significant reduction in the volume of products they purchase from us, would have a material adverse effect on our financial condition. Furthermore, if these retailers face financial difficulties or undergo consolidation, our credit risk could increase, and our distribution network could be disrupted. Our ability to maintain strong relationships with these key accounts is critical to our ongoing success.
+
+The growth of private label brands may continue to pressure our branded product sales.
+
+Retailers continue to expand their private label offerings, which often compete directly with our branded products at lower price points. During periods of economic uncertainty or high inflation, consumers may increasingly trade down from national brands to private label alternatives. If we are unable to differentiate our products through superior quality, innovation, or brand loyalty, we may lose market share to these store brands. Additionally, because we also manufacture private label products for certain retailers, we face the risk that our own branded products will be cannibalized by the very products we produce for our customers, potentially leading to lower overall margins.
+
+Our brand reputation is essential to our business, and any negative publicity could damage our sales.
+
+The Zenaltal name and our various product brands are among our most valuable assets. Our reputation for quality, safety, and corporate responsibility is critical to maintaining consumer trust and retail partnerships. Negative publicity, whether or not justified, regarding the safety or quality of our products, our environmental impact, or our labor practices could severely damage our brand equity. In the age of social media, such information can spread rapidly and be difficult to correct. Any erosion of consumer confidence could lead to a long-term decline in demand for our products and have a material adverse effect on our results of operations.
+
+Failure to successfully implement our innovation and research and development strategies could hinder our growth.
+
+Our long-term success depends on our ability to develop and commercialize new products and improvements to existing products. We recently reduced our investment in research and development, which could limit our ability to keep pace with technological advancements in food processing or to meet emerging consumer demands. Innovation is inherently risky, and there is no guarantee that our investments will result in successful product launches. If our new products fail to gain consumer acceptance or if we are unable to improve our manufacturing efficiencies through technical innovation, our competitive position and financial performance could suffer.
+
+RISKS RELATED TO OPERATIONS
+
+Any concerns regarding food safety or product contamination could result in significant liability and damage to our reputation.
+
+As a food manufacturer, we are subject to risks associated with product contamination, spoilage, and tampering. Such incidents can occur at any stage of the supply chain, from the procurement of raw materials to the distribution of finished goods. A product recall, whether voluntary or mandated by regulatory authorities, could result in substantial costs, including the cost of destroying inventory, lost sales, and potential legal claims. Furthermore, even if a safety issue is not directly related to our products but affects the broader industry or a specific category in which we compete, consumer confidence could be negatively impacted. Any major food safety incident could lead to a significant decline in revenue and long-term damage to our brand reputation.
+
+Disruptions in our supply chain or manufacturing facilities could adversely affect our ability to meet customer demand.
+
+Our operations rely on a complex network of suppliers, manufacturing plants, and distribution centers. Any disruption to this network caused by natural disasters, equipment failure, labor disputes, or transportation bottlenecks could prevent us from delivering products to our customers on time. We operate several large-scale manufacturing facilities where production is concentrated; an extended shutdown of any of these sites could result in significant lost revenue and increased costs as we attempt to shift production elsewhere. Additionally, we rely on third-party providers for certain logistics and distribution functions. Any failure by these partners to meet their obligations could disrupt our supply chain and harm our customer relationships.
+
+Our ability to manage our large and diverse workforce is critical to our operational success.
+
+We employ about 22,700 people across our global operations. Our ability to attract, train, and retain qualified employees is essential to maintaining our production standards and achieving our strategic goals. We face competition for labor in many of the regions where we operate, and increases in labor costs, including wages and benefits, could pressure our margins. Furthermore, a portion of our workforce may be represented by labor unions or covered by collective bargaining agreements. Any work stoppages, strikes, or significant labor disputes could disrupt our manufacturing processes and adversely affect our financial results. Changes in labor laws or regulations, including those related to the minimum wage or healthcare, could also increase our operating expenses.
+
+We are vulnerable to cybersecurity threats and disruptions to our information technology systems.
+
+Our business operations are highly dependent on information technology systems to manage our supply chain, process orders, and maintain financial records. We also collect and store sensitive data, including proprietary business information and personal data related to our employees and customers. Like other large corporations, we are subject to frequent cyberattacks, including malware, ransomware, and phishing attempts. A significant breach of our security systems could result in the theft of intellectual property, the disclosure of confidential information, or the disruption of our business operations. Such an event could lead to substantial remediation costs, legal liability, and damage to our reputation. While we invest in cybersecurity defenses, the evolving nature of these threats means we cannot guarantee [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+Overview
+
+Zenaltal Foods, Inc. is a leading provider in the consumer staples sector, focused on the production and distribution of a wide range of food products across three primary reportable segments: Consumer Packaged Goods, Foodservice Solutions, and Industrial Ingredients. Headquartered in Princeton, New Jersey, and employing about 22,700 associates, our global operations are dedicated to delivering high-quality food solutions to retail, foodservice, and industrial customers.
+
+The following discussion and analysis is intended to provide an overview of our financial condition and results of operations for the fiscal year ended December 31, 2024 ("fiscal 2024"), compared to the fiscal year ended December 31, 2023 ("fiscal 2023"). This section should be read in conjunction with our Consolidated Financial Statements and the related notes. 
+
+In fiscal 2024, our financial performance was characterized by a strategic focus on operational efficiency and cost management amidst a challenging macroeconomic environment. While total revenue decreased 6.7% compared to the prior year, we achieved a significant improvement in profitability, with net income increasing 120.0%. This growth in earnings was driven by disciplined expense control, the non-recurrence of prior-year operating charges, and a favorable shift in our product mix toward higher-margin offerings.
+
+Our management team continues to navigate pressures including volatility in raw material costs, shifting consumer preferences toward private label and health-conscious products, and intense competition across all segments. We remain committed to our long-term strategy of optimizing our manufacturing footprint, investing in targeted innovation, and maintaining a strong balance sheet to support shareholder returns and future growth.
+
+Results of Operations
+
+Revenue
+
+For the fiscal year ended December 31, 2024, total revenue was $15,185 million, compared to $16,282 million for the fiscal year ended December 31, 2023. This represents a decrease of $1,097 million, or 6.7%. The decline in revenue was primarily attributable to several factors across our business segments.
+
+In the Consumer Packaged Goods segment, we experienced lower sales volumes as consumers increasingly moved toward private label alternatives in response to inflationary pressures. Additionally, we strategically exited certain low-margin product lines within our snack and shelf-stable categories to focus on more profitable branded offerings. In the Foodservice Solutions segment, revenue was impacted by a rationalization of our customer base, where we prioritized higher-volume national accounts over smaller, less efficient distribution channels. The Industrial Ingredients segment faced headwinds from lower market prices for certain agricultural commodities, which resulted in lower pass-through pricing to our business-to-business customers.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue for fiscal 2024 was $10,552 million, compared to $11,321 million in fiscal 2023. This decrease of $769 million was largely aligned with the reduction in total sales volume. We benefited from lower input costs for certain raw materials and improved manufacturing efficiencies resulting from our ongoing supply chain optimization initiatives.
+
+Gross profit for fiscal 2024 was $4,633 million, compared to $4,961 million in the prior year. Despite the lower absolute gross profit, our gross margin remained stable at 30.5% for both fiscal 2024 and fiscal 2023. This stability in margin reflects our ability to maintain pricing discipline and offset inflationary pressures through cost-saving measures and a more favorable product mix, even as total revenue declined.
+
+Research and Development
+
+Research and development (R&D) expenses were $91 million in fiscal 2024, compared to $128 million in fiscal 2023. As a share of revenue, R&D expenses were 0.6% in fiscal 2024, compared to 0.8% in fiscal 2023. The decrease in R&D spending reflects a more targeted approach to innovation, focusing on high-potential projects in the plant-based and clean-label categories while reducing spend on legacy product maintenance. We continue to prioritize investments that align with evolving consumer dietary trends and enhance our competitive position in the health and wellness space.
+
+Selling, General and Administrative
+
+Selling, general and administrative (SG&A) expenses were $3,994 million in fiscal 2024, compared to $4,250 million in fiscal 2023. This decrease of $256 million was driven by broad-based cost reduction efforts, including a reduction in corporate headcount, lower marketing and promotional spending, and the realization of synergies from previous organizational restructuring.
+
+As a share of revenue, SG&A expenses were 26.3% in fiscal 2024, compared to 26.1% in fiscal 2023. The slight increase as a percentage of revenue was primarily due to the deleveraging effect of lower total sales, as certain fixed costs within our administrative and distribution infrastructure could not be reduced as quickly as the decline in revenue.
+
+Other Operating Expense
+
+Other operating expense was $0 in fiscal 2024, compared to $188 million in fiscal 2023. The expense in the prior year was primarily related to non-recurring charges, including asset impairment costs and restructuring expenses associated with the closure of two underperforming manufacturing facilities. The absence of these charges in the current fiscal year contributed significantly to the improvement in our operating results.
+
+Operating Income
+
+Operating income for fiscal 2024 was $548 million, compared to $395 million in fiscal 2023, representing an increase of 38.7%. Our operating margin improved to 3.6% in fiscal 2024, compared to 2.4% in fiscal 2023. This expansion in operating margin was primarily the result of our successful efforts to reduce SG&A and R&D expenses, as well as the non-recurrence of the $188 million in other operating expenses recorded in the prior year. These factors more than offset the impact of lower total revenue and gross profit.
+
+Interest Expense
+
+Interest expense was $240 million in fiscal 2024, compared to $256 million in fiscal 2023. The decrease was primarily due to a lower average outstanding debt balance during the year, as we utilized cash flow from operations and proceeds from asset sales to reduce our long-term debt obligations.
+
+Income Before Income Taxes and Provision for Income Taxes
+
+Income before income taxes was $308 million for fiscal 2024, compared to $139 million for fiscal 2023. The provision for income taxes was $66 million in fiscal 2024, compared to $29 million in fiscal 2023.
+
+Our effective tax rate was 21.4% in fiscal 2024, compared to 20.9% in fiscal 2023. The increase in the effective tax rate was primarily due to a different geographic mix of earnings and the impact of certain non-deductible expenses, partially offset by tax benefits associated with our research and development activities.
+
+Net Income
+
+Net income for fiscal 2024 was $242 million, compared to $110 million in fiscal 2023, representing an increase of 120.0%. Our net margin improved to 1.6% in fiscal 2024, compared to 0.7% in fiscal 2023. The substantial increase in net income reflects the combined impact of improved operating efficiencies, lower interest costs, and the absence of significant non-recurring charges that impacted the prior year.
+
+Liquidity and Capital Resources
+
+Our primary sources of liquidity are cash generated from operations and availability under our credit facilities. As of December 31, 2024, we had cash and cash equivalents of $1,747 million, compared to $1,764 million at the end of the prior fiscal year. We believe that our existing cash balances, along with anticipated cash flows from operations and access to capital markets, will be sufficient to meet our anticipated liquidity needs for the next twelve months and the foreseeable future.
+
+Cash Flows
+
+Net cash provided by operating activities was $722 million in fiscal 2024. This was driven by net income of $242 million, adjusted for non-cash items including depreciation and amortization of $173 million. Changes in working capital and other items contributed $307 million to operating cash flow, reflecting disciplined management of accounts receivable and inventories. Accounts receivable, net, decreased to $1,247 million from $1,321 million, and inventories decreased to $1,081 million from $1,115 million, as we focused on improving our cash conversion cycle.
+
+Net cash provided by investing activities was $274 million in fiscal 2024. This included $516 million used for the purchases of property and equipment, as we continued to invest in the modernization and automation of our manufacturing facilities. These capital expenditures were more than offset by $790 million in net proceeds from other investing activities, which primarily consisted of proceeds from the sale of non-core assets and business units as part of our strategic portfolio optimization.
+
+Net cash used in financing activities was $1,013 million in fiscal 2024. This included a net change in long-term debt of $349 million, representing a reduction in our total debt obligations. We also remained committed to returning capital to shareholders, paying dividends of $197 million and executing share repurchases, net of issuances, of $467 million during the year.
+
+Capital Expenditures
+
+Capital expenditures in fiscal 2024 were $516 million, focused on enhancing operational efficiency, ensuring food safety and quality, and supporting our sustainability initiatives. We expect our capital expenditures in the coming fiscal year to remain focused on high-return projects that strengthen our manufacturing capabilities and support our long-term growth strategy.
+
+Debt and Financing
+
+As of December 31, 2024, our long-term debt was $5,341 million, a decrease from $5,690 million at the end of fiscal 2023. Our total liabilities were $13,203 million at the end of fiscal 2024, compared to $13,824 million at the end of the prior year. We maintain a conservative capital structure and are focused on maintaining our investment-grade credit profile. Our current debt obligations include a mix of senior notes and revolving credit facilities, with staggered maturities to [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Zenaltal Foods, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 590 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

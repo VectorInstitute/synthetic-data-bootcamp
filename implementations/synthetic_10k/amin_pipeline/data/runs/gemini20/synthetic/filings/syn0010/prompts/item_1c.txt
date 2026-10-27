@@ -1,0 +1,319 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Kalondra Machinery, Inc. (ticker KOLR)
+Sector: Industrials
+Incorporated in: Delaware
+Headquarters: San Jose, California
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 126,100
+
+Kalondra Machinery, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      82,769        77,572
+Cost of revenue                              57,989        55,129
+Gross profit                                 24,780        22,443
+Research and development                      1,986         1,899
+Selling, general and administrative           6,406         5,876
+Other operating expense                       4,966         4,654
+Operating income                             11,422        10,014
+Interest expense                                103           103
+Income before income taxes                   11,319         9,911
+Provision for income taxes                    2,368         2,019
+Net income                                    8,951         7,892
+
+Kalondra Machinery, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                              897           866
+Accounts receivable, net                             6,308         6,149
+Inventories                                         15,863        14,921
+Other current assets                                 1,214         1,155
+Total current assets                                24,282        23,091
+Property, plant and equipment, net                  11,753        10,740
+Goodwill                                             7,727         7,428
+Other non-current assets                            15,724        16,503
+Total assets                                        59,486        57,762
+Total current liabilities                           34,205        33,227
+Long-term debt                                       2,278         2,288
+Other non-current liabilities                        1,493         1,318
+Total liabilities                                   37,976        36,833
+Total stockholders' equity                          21,510        20,929
+Total liabilities and stockholders' equity          59,486        57,762
+
+Kalondra Machinery, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             8,951
+Depreciation and amortization                          4,114
+Changes in working capital and other                     588
+Net cash provided by operating activities             13,653
+Purchases of property and equipment                  (2,210)
+Other investing activities, net                      (3,032)
+Net cash used in investing activities                (5,242)
+Net change in long-term debt                            (10)
+Dividends paid                                         (567)
+Share repurchases, net of issuances                  (7,803)
+Net cash used in financing activities                (8,380)
+Net change in cash and cash equivalents                   31
+Cash and cash equivalents, beginning of year             866
+Cash and cash equivalents, end of year                   897
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 6.7%
+Net income growth, fiscal 2024 versus 2023: 13.4%
+Operating income growth, fiscal 2024 versus 2023: 14.1%
+Gross margin, fiscal 2024: 29.9%
+Operating margin, fiscal 2024: 13.8%
+Net margin, fiscal 2024: 10.8%
+Effective tax rate, fiscal 2024: 20.9%
+Research and development as a share of revenue, fiscal 2024: 2.4%
+Selling, general and administrative as a share of revenue, fiscal 2024: 7.7%
+Gross margin, fiscal 2023: 28.9%
+Operating margin, fiscal 2023: 12.9%
+Net margin, fiscal 2023: 10.2%
+Effective tax rate, fiscal 2023: 20.4%
+Research and development as a share of revenue, fiscal 2023: 2.4%
+Selling, general and administrative as a share of revenue, fiscal 2023: 7.6%
+
+STYLE EXAMPLE: the start of Item 1C from a real Industrials company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1C. CYBERSECURITY.
+The Company maintains a comprehensive cybersecurity management and governance program. The Company’s information security management system is based upon the National Institute of Standards and Technology Cybersecurity Framework (NIST CSF). The Company engages internal and third-party auditors and other professional parties when necessary, as part of its cybersecurity management program. The Company conducts penetration and compromise assessment tests, implements detection and prevention tools, monitors cyber events and has active disaster recovery plans. For third-party IT services, the Company conducts an architectural, privacy and security analysis of their solution. If any gaps are identified, the third-party remediates or mitigates the risk to an acceptable level. The Company simulates potential cyber-attacks and performs incident responses to test preparedness. These exercises are used to train and update the Company’s Incident Response plan, including any gaps identified. The Company conducts yearly information security training for employees and conducts ongoing phishing tests.
+The Company’s Security Risk Council, including the Chief Information Security Officer, meets regularly to cover risks, plans and updates to the security program. It briefs the Board of Directors and/or the Audit Committee of the Board of Directors on technology and information security matters. Management and the Board of Directors also receive periodic updates on the status of cybersecurity investments to guard against such events. In the event of a security breach, the Company’s Security Risk Council evaluates its significance and briefs the Board on the event.
+The Company has not experienced any notable security incidents that would have a material impact on the results of operations and financial condition of the Company. Certain dealers and suppliers have reported they have experienced cyberattacks and those have not caused any material impact to the Company.
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Overview
+
+Kalondra Machinery, Inc., together with its consolidated subsidiaries, is a global leader in the design, manufacture, and distribution of heavy machinery, power systems, and advanced industrial technologies. Incorporated in the State of Delaware and headquartered in San Jose, California, the Company provides essential equipment and services to a diverse range of industries, including construction, mining, energy, and precision manufacturing. With a history of engineering excellence, Kalondra Machinery, Inc. serves as a critical link in the global industrial supply chain, enabling the development of infrastructure, the extraction of natural resources, and the advancement of automated production.
+
+Our operations are characterized by a commitment to innovation, operational efficiency, and a customer-centric service model. We maintain an extensive global footprint, with manufacturing facilities, distribution centers, and service hubs located across multiple continents. This geographic diversity allows us to respond effectively to regional market demands and mitigate risks associated with localized economic fluctuations. In fiscal year 2024, the Company generated total revenue of $82,769 million.
+
+Reportable Segments
+
+The Company manages its operations through three primary reportable segments: Construction and Infrastructure, Industrial Power and Energy, and Precision Manufacturing Systems. These segments are organized based on the nature of the products and services provided, as well as the end markets they serve.
+
+Construction and Infrastructure
+
+The Construction and Infrastructure segment is our largest business unit by volume and is responsible for the production of a wide array of machinery used in earthmoving, road building, and urban development. Our product portfolio in this segment includes backhoe loaders, excavators, motor graders, track-type tractors, and asphalt pavers. These machines are engineered to operate in the most demanding environments, providing our customers with the reliability and productivity required for large-scale civil engineering projects.
+
+In addition to heavy machinery, this segment offers a suite of technology-enabled solutions designed to optimize job site performance. These include telematics systems that monitor equipment health and location, automated grade control systems that improve leveling accuracy, and fleet management software that assists contractors in reducing idle time and fuel consumption. By integrating hardware with sophisticated digital tools, we help our customers improve their operational margins and meet increasingly stringent project timelines.
+
+Industrial Power and Energy
+
+The Industrial Power and Energy segment focuses on the design and manufacture of reciprocating engines, turbines, and integrated power systems. These products serve a variety of applications, including electric power generation, marine propulsion, and industrial drive systems for the oil and gas sector. Our engines are designed to run on a range of fuels, including diesel, natural gas, and increasingly, alternative fuels such as hydrogen blends and biofuels.
+
+This segment also provides comprehensive energy storage solutions and microgrid controllers, which are becoming vital as industrial customers seek to integrate renewable energy sources into their power portfolios. Our power systems are frequently used as primary energy sources in remote locations where grid access is unavailable, as well as critical backup power for hospitals, data centers, and telecommunications infrastructure. The service component of this segment is particularly robust, as long-term maintenance contracts ensure the continuous operation of high-value power assets.
+
+Precision Manufacturing Systems
+
+The Precision Manufacturing Systems segment represents our commitment to the future of factory automation and industrial robotics. This segment develops and produces high-precision CNC (Computer Numerical Control) machines, robotic assembly arms, and additive manufacturing systems. These technologies are utilized primarily by customers in the automotive, aerospace, and consumer electronics industries to achieve high levels of throughput and exacting quality standards.
+
+Our precision systems are increasingly focused on the concept of the smart factory, where interconnected machines communicate in real-time to adjust production schedules and identify potential mechanical failures before they occur. This segment also includes our software division, which develops proprietary computer-aided design and manufacturing tools. By providing both the physical machinery and the digital architecture required for modern manufacturing, we position ourselves as a strategic partner to global industrial firms seeking to modernize their production lines.
+
+Customers
+
+Our customer base is highly diversified, ranging from small, family-owned construction firms and local municipalities to multinational energy corporations and sovereign entities. In the Construction and Infrastructure segment, customers typically include general contractors, rental equipment companies, and mining operators. The Industrial Power and Energy segment serves utility companies, shipping lines, and industrial plant operators. Precision Manufacturing Systems primarily sells to high-volume manufacturers and specialized engineering firms.
+
+We do not depend on any single customer for a disproportionate share of our total revenue. Our largest customers often engage with us through long-term framework agreements that encompass equipment sales, parts supply, and ongoing technical support. This breadth of customer engagement provides a stable foundation for our revenue streams and allows us to gain deep insights into the evolving needs of various industrial sectors.
+
+Sales and Marketing
+
+We utilize a multi-channel distribution strategy to reach our global customer base. The primary component of this strategy is our extensive network of independent dealers. These dealers are typically local or regional businesses that possess deep knowledge of their specific markets. They provide not only sales expertise but also critical after-sales support, including maintenance, repair, and parts distribution. This dealer model allows us to maintain a local presence in nearly every major market without the capital intensity of owning and operating every retail location.
+
+For our largest global accounts and complex industrial projects, we employ a direct sales force. These professionals work closely with customers to develop customized equipment configurations and integrated service packages. Marketing efforts are focused on demonstrating the total cost of ownership advantages of our products, emphasizing fuel efficiency, durability, and high resale value. We also participate in major international trade shows and utilize digital marketing platforms to showcase our latest technological advancements.
+
+Competition
+
+The markets for industrial machinery and power systems are intensely competitive. We compete with both large, diversified global manufacturers and smaller, specialized regional players. The primary factors influencing competition in our industry include product performance, reliability, technological innovation, price, and the quality of the dealer support network.
+
+In recent years, competition has intensified as new entrants, particularly from emerging markets, have introduced lower-cost alternatives. We respond to this competition by continuously investing in research and development to maintain our technological lead and by enhancing our service offerings. Our ability to provide a comprehensive "lifecycle" solution—from initial purchase and financing to maintenance and eventual trade-in—remains a key competitive differentiator.
+
+Seasonality
+
+Our business experiences a degree of seasonality, particularly within the Construction and Infrastructure segment. Demand for construction equipment in the Northern Hemisphere typically peaks during the spring and summer months when weather conditions are most favorable for building activity. Conversely, the Industrial Power and Energy segment may see increased demand for power generation equipment during periods of extreme weather or in advance of winter months.
+
+Budgetary cycles of government entities also influence the timing of our sales, as many infrastructure projects are funded through public appropriations that follow specific fiscal calendars. While these seasonal patterns are predictable, they can be disrupted by broader economic cycles or significant shifts in commodity prices, which influence the capital expenditure budgets of our mining and energy customers.
+
+Intellectual Property
+
+Intellectual property is a vital asset to Kalondra Machinery, Inc. We rely on a combination of patents, trademarks, copyrights, and trade secrets to protect our innovations and maintain our competitive position. Our patent portfolio covers a wide range of technologies, including engine combustion cycles, hydraulic system designs, autonomous navigation algorithms, and material science breakthroughs.
+
+We actively monitor and enforce our intellectual property rights globally to prevent unauthorized use of our technology and branding. In addition to our own research and development efforts, we occasionally license technology from third parties or enter into collaborative research agreements. We believe that our brand name is one of our most valuable intangible assets, symbolizing quality and durability to customers worldwide.
+
+Government Regulation
+
+Our operations are subject to extensive and evolving government regulations in the jurisdictions where we manufacture and sell our products. These regulations primarily concern environmental protection, occupational health and safety, and international trade.
+
+Environmental Regulation
+
+We are subject to stringent emission standards for our engines and machinery, such as those established by the Environmental Protection Agency in the United States and similar regulatory bodies in Europe and Asia. These regulations require continuous investment in engine technology to reduce the output of nitrogen oxides and particulate matter. Additionally, our manufacturing facilities must comply with laws regarding waste management, water discharge, and chemical handling.
+
+Trade and Export Controls
+
+As a global exporter, we must adhere to various trade regulations, including export controls, customs duties, and economic sanctions. Changes in trade policy or the imposition of tariffs on raw materials, such as steel and aluminum, can significantly impact our manufacturing costs and the pricing of our products in international markets. We maintain robust compliance programs to ensure we meet all legal requirements related to cross-border transactions.
+
+Safety and Labor
+
+The safety of our products is regulated by various national and international standards. We are committed to meeting or exceeding these standards to ensure the well-being of the operators who use our equipment. Our manufacturing sites are also subject to labor laws and workplace safety regulations, such as those overseen by the Occupational Safety and Health Administration.
+
+Human Capital
+
+The success of Kalondra Machinery, Inc. is driven by [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+RISK FACTORS.
+
+Our business, financial condition, results of operations and cash flows are subject to various risks and uncertainties. The following risk factors should be read carefully in connection with evaluating our company and the forward-looking statements contained in this Annual Report on Form 10-K. Any of the following risks could materially adversely affect our business, operating results, financial condition and the actual outcome of matters as to which forward-looking statements are made.
+
+Macroeconomic and Industry Risks
+
+Volatility in global economic conditions and cyclicality in the industries we serve may adversely affect our sales and profitability.
+Our financial performance is highly dependent on the level of activity in the construction, mining, energy, and manufacturing industries. These sectors are inherently cyclical and are influenced by factors beyond our control, including global GDP growth, interest rates, inflation, and availability of credit. During periods of economic downturn or uncertainty, our customers may delay or cancel large-scale capital investments, leading to reduced demand for our heavy machinery and power systems. For instance, in our Construction and Infrastructure segment, a slowdown in residential or commercial real estate development can lead to a significant decrease in the sale of backhoe loaders and excavators. Because a substantial portion of our cost structure is fixed, a decline in revenue can result in a disproportionate impact on our operating income, which was $11,422 million in fiscal 2024.
+
+Fluctuations in commodity prices can significantly impact the demand for our products and services.
+Many of our customers in the mining and energy sectors base their capital expenditure budgets on the prevailing prices of commodities such as oil, natural gas, copper, iron ore, and coal. When commodity prices are low or volatile, mining and energy companies often reduce production levels and defer equipment upgrades or replacements. This directly impacts our Industrial Power and Energy segment, which provides critical engines and turbines for these operations. Furthermore, sustained low commodity prices can lead to increased competition for a smaller pool of projects, putting downward pressure on our margins. If these industries experience prolonged periods of depressed pricing, our results of operations and cash flows could be materially and adversely affected.
+
+Our business is subject to intense competition from both established global manufacturers and emerging regional competitors.
+The industrial machinery and power systems markets are characterized by vigorous competition based on product performance, reliability, technological innovation, and price. We compete with several large, diversified multinational corporations that have significant financial resources and global reach. Additionally, we face increasing competition from manufacturers in emerging markets who may benefit from lower labor and production costs, allowing them to offer products at lower price points. If we are unable to maintain our technological lead or if competitors introduce products that offer better value or performance, we may lose market share. Our ability to compete also depends on the strength of our dealer network and our ability to provide superior after-sales support. Failure to compete effectively could lead to reduced revenue and a decline in our gross margin, which stood at 29.9% in fiscal 2024.
+
+Changes in government spending and infrastructure policy can affect the demand for our products.
+A significant portion of the demand for our construction equipment is driven by public sector investment in infrastructure, such as highways, bridges, and airports. Government spending is subject to political processes, budget constraints, and shifting policy priorities. Reductions in government funding or delays in the approval of infrastructure projects can lead to decreased demand for our machinery. Similarly, changes in tax incentives for industrial investment or environmental subsidies for power systems can influence customer purchasing decisions. As we serve customers globally, we are exposed to the fiscal health and policy directions of numerous national and local governments, any of which could change in a manner that negatively impacts our business.
+
+Operational Risks
+
+Disruptions in our global supply chain or increases in the cost of raw materials could adversely affect our manufacturing operations.
+We rely on a complex global network of suppliers for raw materials, components, and sub-assemblies. We are particularly exposed to fluctuations in the prices of steel and aluminum, which are primary inputs for our machinery. While we attempt to manage these costs through long-term contracts and hedging strategies, we may not be able to fully offset price increases through productivity gains or by passing costs on to our customers. Furthermore, any disruption in our supply chain due to natural disasters, geopolitical instability, labor disputes, or transportation bottlenecks could delay our production schedules and increase our costs. If a key supplier fails to deliver critical components on time or meets our quality standards, it could result in production halts and damage our reputation with customers.
+
+Our reliance on an independent dealer network poses risks to our distribution and service capabilities.
+We distribute the majority of our products through a network of independent dealers. These dealers are responsible for the primary relationship with the end-user, including sales, maintenance, and repair services. The financial health and operational effectiveness of these dealers are critical to our success. If a significant number of our dealers experience financial difficulties or fail to invest in the necessary infrastructure and personnel to support our products, our market share and brand reputation could suffer. While we provide training and support to our dealers, we do not control their daily operations. Any failure by our dealers to provide high-quality service or to maintain adequate inventories of parts and equipment could lead to customer dissatisfaction and lost sales.
+
+We face risks associated with our large and diverse global workforce.
+With about 126,100 employees, we are subject to various labor-related risks, including the ability to attract and retain skilled personnel in a competitive labor market. Our manufacturing operations require specialized engineering and technical expertise. A shortage of qualified labor or significant increases in labor costs could impact our ability to meet production targets and maintain our margins. Additionally, a portion of our workforce is represented by unions or works councils. Any labor disputes, strikes, or work stoppages could disrupt our operations and result in significant costs. We also face the challenge of managing a large workforce across diverse legal and cultural environments, which increases the complexity of our human resources and compliance functions.
+
+Manufacturing complexities and the management of production capacity could impact our financial results.
+Operating a global network of manufacturing facilities involves significant fixed costs and complex logistical coordination. We must constantly balance our production capacity with fluctuating market demand. If we overestimate demand, we may face underutilization of our facilities, leading to higher per-unit costs and reduced profitability. Conversely, if we underestimate demand, we may be unable to fulfill customer orders in a timely manner, resulting in lost revenue and potential damage to customer relationships. The introduction of new products or manufacturing technologies also carries risks of production delays, quality issues, and higher-than-expected ramp-up costs.
+
+Information technology security threats and service disruptions could harm our business.
+We rely heavily on sophisticated information technology systems to manage our operations, including manufacturing, supply chain, sales, and financial reporting. We also offer digital solutions to our customers, such as telematics and fleet management software, which involve the collection and storage of data. Like other large global corporations, we are subject to constant threats from cyberattacks, including malware, ransomware, and phishing. A significant breach of our systems could result in the theft of intellectual property, the disruption of our business operations, or the unauthorized disclosure of confidential information. Such an event could lead to legal liability, regulatory fines, and significant reputational damage. Furthermore, any failure or interruption of our IT infrastructure could impede our ability to process orders and manage our global business effectively.
+
+Strategic and Technology Risks
+
+Our failure to innovate and develop new technologies could render our products obsolete.
+The industrial machinery and power systems industries are undergoing rapid technological transformation. We must continuously invest in research and development to stay ahead of competitors and meet evolving customer needs. In fiscal 2024, our research and development expenses were $1,986 million. Our focus includes the development of autonomous machinery, electric and hybrid power systems, and advanced digital tools for the smart factory. If we fail to successfully develop and commercialize these technologies, or if we are slower to market than our competitors, our competitive position could be significantly weakened. There is also no guarantee that our investments in new technologies will result in commercially viable products or achieve the desired return on investment.
+
+The transition to a low-carbon economy presents both challenges and risks to our traditional product lines.
+There is increasing global pressure to reduce greenhouse gas emissions and transition away from fossil fuels. This trend affects many of the industries we serve, particularly energy and mining. While we are developing engines that run on alternative fuels and expanding our renewable energy solutions, a significant portion of our current revenue is derived from products that utilize internal combustion engines. If the transition to alternative energy sources occurs more rapidly than we anticipate, or if we are unable to develop competitive low-emission products, our traditional business segments could face declining demand. Furthermore, new regulations aimed at carbon reduction could increase our manufacturing costs [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+(dollars in millions, except share and per-share amounts)
+
+The following Management’s Discussion and Analysis of Financial Condition and Results of Operations (MD&A) is intended to provide a narrative from the perspective of management on our financial condition, results of operations, liquidity, and certain other factors that may affect our future results. This MD&A should be read in conjunction with the Consolidated Financial Statements and related notes included in Item 8 of this Annual Report on Form 10-K.
+
+Overview
+
+Kalondra Machinery, Inc. is a leading global provider of heavy machinery, industrial power systems, and precision manufacturing technologies. Our business is organized into three primary reportable segments: Construction and Infrastructure, Industrial Power and Energy, and Precision Manufacturing Systems. We operate a complex global footprint to serve customers in the construction, mining, energy, and automated manufacturing sectors. Our success is driven by our ability to integrate advanced digital technologies with robust mechanical engineering, supported by an extensive network of independent dealers and a dedicated workforce of about 126,100 employees.
+
+Fiscal Year 2024 Performance Highlights
+
+During the fiscal year ended December 31, 2024, we experienced strong demand across our core markets, resulting in a revenue increase of 6.7% compared to the prior year. This growth was primarily driven by increased volume in our Construction and Infrastructure segment, supported by government-funded infrastructure projects globally, and a significant expansion in our Precision Manufacturing Systems segment as industrial customers accelerated their investments in smart factory automation.
+
+Financial highlights for the fiscal year 2024 include:
+
+- Total revenue of $82,769 million, compared to $77,572 million in fiscal 2023.
+- Operating income of $11,422 million, representing an operating margin of 13.8%.
+- Net income of $8,951 million, an increase of 13.4% from the prior year.
+- Cash provided by operating activities of $13,653 million.
+- Significant capital returns to stockholders, including $7,803 million in share repurchases and $567 million in dividends.
+- Ending cash and cash equivalents of $897 million.
+
+Management continued to focus on operational excellence and margin expansion through strategic pricing actions and manufacturing efficiencies. Gross margin improved to 29.9% in 2024, up from 28.9% in 2023, reflecting our ability to manage inflationary pressures in raw materials such as steel and aluminum through productivity gains and value-based pricing.
+
+Results of Operations
+
+Revenue
+
+Total revenue for fiscal 2024 was $82,769 million, an increase of $5,197 million, or 6.7%, compared to $77,572 million in fiscal 2023. The increase was primarily attributable to higher sales volumes in the Construction and Infrastructure segment and favorable price realization across all segments. In our Industrial Power and Energy segment, revenue growth was supported by strong demand for backup power solutions for data centers and marine propulsion systems. Precision Manufacturing Systems saw double-digit growth as manufacturers in the aerospace and automotive sectors modernized their production lines with our robotic and additive manufacturing solutions. These gains were partially offset by a moderate slowdown in mining equipment demand in certain regions due to volatility in commodity prices.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue for fiscal 2024 was $57,989 million, compared to $55,129 million in 2023. The increase in cost of revenue was primarily driven by higher sales volumes and increased costs for specialized components used in our precision manufacturing and power systems. However, as a percentage of revenue, cost of revenue decreased as we realized the benefits of our global sourcing initiatives and improved manufacturing absorption at our major assembly plants.
+
+Gross profit was $24,780 million in 2024, compared to $22,443 million in 2023. Gross margin for 2024 was 29.9%, an improvement of 100 basis points from the 28.9% reported in 2023. This margin expansion was the result of strategic pricing adjustments implemented throughout the year to offset higher input costs, as well as a more favorable product mix characterized by increased sales of high-margin aftermarket parts and digital service subscriptions.
+
+Research and Development (R&D)
+
+R&D expenses were $1,986 million in 2024, compared to $1,899 million in 2023. As a share of revenue, R&D remained constant at 2.4% in both fiscal years. Our R&D investment remains focused on critical long-term growth drivers, including the development of autonomous machine capabilities, electric and hybrid drivetrain technologies, and engines capable of utilizing hydrogen and other alternative fuels. The increase in absolute spending reflects our commitment to maintaining a technological lead in the transition to a low-carbon industrial economy and the continued integration of artificial intelligence into our fleet management software.
+
+Selling, General and Administrative (SG&A)
+
+SG&A expenses were $6,406 million in 2024, compared to $5,876 million in 2023. As a share of revenue, SG&A increased slightly to 7.7% in 2024 from 7.6% in 2023. This increase was primarily due to higher personnel-related costs, including incentive compensation and benefits for our global workforce of about 126,100 employees, as well as increased investments in our digital infrastructure and cybersecurity systems. We also incurred higher marketing and promotional expenses related to the launch of our new generation of smart excavators and high-efficiency turbines.
+
+Other Operating Expense
+
+Other operating expense was $4,966 million in 2024, compared to $4,654 million in 2023. This line item includes depreciation and amortization not allocated to cost of revenue, restructuring charges, and certain litigation-related costs. The increase in 2024 was primarily driven by higher amortization of intangible assets following recent technology acquisitions and modest restructuring costs associated with the consolidation of certain manufacturing facilities in Europe.
+
+Operating Income
+
+Operating income was $11,422 million in 2024, an increase of $1,408 million, or 14.1%, compared to $10,014 million in 2023. Operating margin improved to 13.8% in 2024 from 12.9% in 2023. The growth in operating income outpaced revenue growth, reflecting the operating leverage inherent in our business model and our successful efforts to control fixed costs while expanding gross margins.
+
+Interest Expense
+
+Interest expense was $103 million in 2024, which was unchanged from the $103 million reported in 2023. Our interest expense remained stable as we did not issue significant new debt during the year and maintained a consistent capital structure. Our long-term debt decreased $10 million during the year, ending at $2,278 million.
+
+Provision for Income Taxes
+
+The provision for income taxes was $2,368 million in 2024, compared to $2,019 million in 2023. The effective tax rate for 2024 was 20.9%, compared to 20.4% in 2023. The increase in the effective tax rate was primarily due to a shift in the geographic mix of our earnings toward higher-tax jurisdictions and a decrease in certain tax credits related to international R&D activities.
+
+Net Income
+
+Net income for fiscal 2024 was $8,951 million, an increase of $1,059 million, or 13.4%, compared to $7,892 million in 2023. Net margin improved to 10.8% in 2024 from 10.2% in 2023. The increase in net income reflects the strong operating performance of the company, partially offset by the higher provision for income taxes.
+
+Liquidity and Capital Resources
+
+We maintain a strong liquidity position to fund our operations, invest in research and development, finance capital expenditures, and return capital to stockholders. Our primary sources of liquidity are cash generated from operations and our existing cash and cash equivalents. We believe that our current liquidity and anticipated cash flows from operations will be sufficient to meet our working capital, capital expenditure, and debt service requirements for the foreseeable future.
+
+Cash and Cash Equivalents
+
+As of December 31, 2024, we had cash and cash equivalents of $897 million, compared to $866 million as of December 31, 2023. The increase of $31 million reflects strong operating cash flows, largely offset by significant share repurchases and capital investments.
+
+Operating Activities
+
+Net cash provided by operating activities was $13,653 million in 2024. This was driven by net income of $8,951 million, adjusted for non-cash items including $4,114 million in depreciation and amortization. Changes in working capital and other items contributed $588 million to operating cash flow. The management of working capital remained a priority, as we balanced the need to maintain adequate inventories of $15,863 million to meet customer demand with the goal of optimizing cash flow. Accounts receivable, net, stood at $6,308 million at year-end, reflecting efficient collection processes despite higher sales volumes.
+
+Investing Activities
+
+Net cash used in investing activities was $5,242 million in 2024. This included $2,210 million for the purchase of property, plant, and equipment (capital expenditures). These investments were primarily directed toward expanding our manufacturing capacity for precision manufacturing systems and upgrading our power system assembly lines to support alternative fuel engine production. Other investing activities, net, resulted in a cash outflow of $3,032 million, which primarily included strategic business acquisitions and investments in marketable securities.
+
+Financing Activities
+
+Net cash used in financing activities was $8,380 million in 2024. The primary use of financing cash was the return of capital to stockholders, including $7,803 million in share repurchases and $567 million in dividend payments. We believe these actions demonstrate our commitment to delivering value to our stockholders while maintaining a robust balance sheet. During the year, we had a net change in long-term debt of $10 million, representing routine repayments.
+
+Debt and Financing Obligations
+
+Total liabilities as of December 31, 2024, were $37,976 million, compared to $36,833 million at the end of 2023. Long-term debt was $2,278 million, a decrease from $2,288 million in the prior [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Kalondra Machinery, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 860 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

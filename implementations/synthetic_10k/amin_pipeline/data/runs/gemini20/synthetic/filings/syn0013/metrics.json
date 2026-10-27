@@ -1,0 +1,142 @@
+{
+  "company_id": "syn0013",
+  "name": "Draor Midstream, Inc.",
+  "sector": "Energy",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 177.43,
+  "totals": {
+    "seconds": 176.89,
+    "prompt_tokens": 35826,
+    "completion_tokens": 32270,
+    "total_tokens": 68096,
+    "reasoning_tokens": 12321,
+    "calls": 6
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1395,
+      "prompt_chars": 14693,
+      "words": 2026,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1241,
+      "prompt_chars": 25144,
+      "words": 3024,
+      "attempts": 3,
+      "exemplar_overlap": 0.0,
+      "issues": [
+        "Item 1A cites 10 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1233,
+      "prompt_chars": 35742,
+      "words": 2662,
+      "attempts": 1,
+      "exemplar_overlap": 0.0059,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 1031,
+      "prompt_chars": 44816,
+      "words": 1161,
+      "attempts": 1,
+      "exemplar_overlap": 0.006,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 21.75,
+      "prompt_tokens": 3863,
+      "completion_tokens": 3611,
+      "total_tokens": 7474,
+      "reasoning_tokens": 1108,
+      "finish_reason": "stop",
+      "words": 2026,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 41.22,
+      "prompt_tokens": 5196,
+      "completion_tokens": 8344,
+      "total_tokens": 13540,
+      "reasoning_tokens": 4080,
+      "finish_reason": "stop",
+      "words": 3401,
+      "issues": [
+        "Item 1A cites 27 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 36.77,
+      "prompt_tokens": 5241,
+      "completion_tokens": 6298,
+      "total_tokens": 11539,
+      "reasoning_tokens": 1977,
+      "finish_reason": "stop",
+      "words": 3585,
+      "issues": [
+        "Item 1A cites 15 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gemini-3-flash-preview",
+      "seconds": 31.06,
+      "prompt_tokens": 5241,
+      "completion_tokens": 5457,
+      "total_tokens": 10698,
+      "reasoning_tokens": 1786,
+      "finish_reason": "stop",
+      "words": 3024,
+      "issues": [
+        "Item 1A cites 10 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 28.83,
+      "prompt_tokens": 7326,
+      "completion_tokens": 5890,
+      "total_tokens": 13216,
+      "reasoning_tokens": 2085,
+      "finish_reason": "stop",
+      "words": 2662,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 17.26,
+      "prompt_tokens": 8959,
+      "completion_tokens": 2670,
+      "total_tokens": 11629,
+      "reasoning_tokens": 1285,
+      "finish_reason": "stop",
+      "words": 1161,
+      "issues": []
+    }
+  ]
+}
