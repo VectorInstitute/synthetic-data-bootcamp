@@ -18,6 +18,10 @@ data/companyfacts/*.json
 !data/companyfacts_status.csv
 !data/sp500_constituents.csv
 !data/validation_report.csv
+!data/qa_pairs.csv
+!data/retrieval_eval.csv
+!data/gap_report.csv
+!data/privacy_report.csv
 
 # Your real SEC identity (name and email) lives here, never in config.yaml
 config.local.yaml
@@ -25,3 +29,7 @@ config.local.yaml
 # Logs and local environment
 logs/
 .venv/
+
+# Rendered PDFs are a derived artifact of the narrative text; regenerate with
+# src.step10_build_pdfs rather than tracking them.
+data/pdf_reports/

@@ -9,6 +9,8 @@ summary. Covers PLAN.md Phase 7's "automatic" gates:
   financials.json, within the rounding the narrative text itself uses.
 - The three financial-statement headings are present in Item 8.
 - Every item file is substantive (not just a stub).
+- Every non-baseline company's spec.json scenario (src/step06b_add_scenarios.py) is
+  actually grounded somewhere in its narrative, not just recorded in the spec.
 
 Section length against the real corpus's distribution is reported, not gated:
 Phase 6 condensed every section by a documented, deliberate choice (see PLAN.md
@@ -254,6 +256,50 @@ def closest_match(value: float, candidates: set[float], *, relative: bool) -> bo
     return False
 
 
+# Phase 4.5 (src/step06b_add_scenarios.py) gives most companies a scenario with
+# structured facts the narrative must ground its claims in. Two scenario types carry
+# a distinctive proper noun (the acquired company's name, the launched product's
+# name) that can be checked for verbatim; the rest are checked by keyword, since
+# there's no single string to anchor on for something like "a rate case outcome."
+SCENARIO_ANCHOR_FACT = {
+    "mergers_and_acquisitions": "acquired_name",
+    "product_launch": "product_name",
+}
+SCENARIO_KEYWORDS = {
+    "competitive_displacement": ["migrat", "competing", "displac"],
+    "margin_crisis": ["unsustainable", "reimbursement"],
+    "capital_structure": ["repurchase"],
+    "cash_burn": ["profitability"],
+    "regulatory_rate_case": ["rate case", "rate increase", "rate proceeding"],
+    "weather_event": ["storm"],
+    "regulatory_pricing_pressure": ["pricing", "pharmacy benefit", "drug pricing"],
+    "regulatory_consent_order": ["consent order"],
+}
+
+
+def check_scenario_grounding(scenario: dict, combined_text: str) -> tuple[str, str]:
+    """Return (status, detail) for whether `combined_text` grounds `scenario`.
+
+    "baseline" companies have nothing to ground, so they're skipped rather than
+    passed or failed. Everything else must show at least one piece of concrete
+    evidence that the scenario was actually woven into the narrative, not just
+    recorded in spec.json.
+    """
+    scenario_type = scenario.get("type", "baseline")
+    if scenario_type == "baseline":
+        return "SKIP", "baseline scenario, nothing to ground"
+
+    if scenario_type in SCENARIO_ANCHOR_FACT:
+        anchor = scenario["facts"][SCENARIO_ANCHOR_FACT[scenario_type]]
+        found = anchor in combined_text
+        return ("PASS" if found else "FAIL"), (f"'{anchor}' found" if found else f"'{anchor}' not found in narrative")
+
+    keywords = SCENARIO_KEYWORDS.get(scenario_type, [])
+    lowered = combined_text.lower()
+    matched = [k for k in keywords if k in lowered]
+    return ("PASS" if matched else "FAIL"), (f"matched: {matched}" if matched else f"none of {keywords} found")
+
+
 def real_section_stats() -> dict[str, list[int]]:
     """Return real corpus char counts per item, from parse_status.csv's ok rows."""
     stats: dict[str, list[int]] = {item: [] for item in ITEMS}
@@ -300,6 +346,19 @@ def validate_company(spec_path: Path, real_companies: dict[str, str], real_stats
     if "8" in texts:
         missing_headings = [p.pattern for p in ITEM_8_REQUIRED_PATTERNS if not p.search(texts["8"])]
         add("required_headings", "8", "FAIL" if missing_headings else "PASS", "; ".join(missing_headings) or "all present")
+
+    if "scenario" in spec:
+        combined_text = "\n".join(texts.get(item, "") for item in ("1", "1a", "7", "8"))
+        status, detail = check_scenario_grounding(spec["scenario"], combined_text)
+        if status != "SKIP":
+            # The type prefix (e.g. "[margin_crisis]") makes the scenario category
+            # machine-readable from this one field, without a separate lookup file --
+            # a dashboard building a "scenario diversity" view needs the type, not just
+            # the free-text match detail, and the type itself isn't a leak (it's the
+            # company's own fictional scenario label, not anything about its real
+            # template).
+            scenario_type = spec["scenario"].get("type", "unknown")
+            add("scenario_grounding", "1/1a/7/8", status, f"[{scenario_type}] {detail}")
 
     expected_dollars, expected_percents = build_expected_figures(financials)
     for item in ("7", "8"):

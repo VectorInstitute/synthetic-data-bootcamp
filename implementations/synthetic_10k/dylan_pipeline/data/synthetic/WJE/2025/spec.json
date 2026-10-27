@@ -21,5 +21,13 @@
     "framework": "the NIST Cybersecurity Framework and ISO/IEC 27001",
     "oversight": "the full Board of Directors, with support from the Audit Committee",
     "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "cash_burn",
+    "summary": "Fieldstone Partners recorded an operating and net loss for fiscal 2025, reflecting ongoing investment in research and development and sales and marketing ahead of sustained profitability, consistent with its stage of growth as a subscription-based cybersecurity platform.",
+    "facts": {
+      "driver": "ongoing investment in research and development and sales and marketing ahead of sustained profitability",
+      "framing": "consistent with the company's growth stage as a subscription-based platform business, not a deteriorating core business"
+    }
   }
 }

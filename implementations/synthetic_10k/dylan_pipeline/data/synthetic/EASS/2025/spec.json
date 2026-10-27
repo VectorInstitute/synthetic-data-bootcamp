@@ -20,5 +20,15 @@
     "framework": "ISO/IEC 27001",
     "oversight": "the full Board of Directors, with support from the Audit Committee",
     "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "mergers_and_acquisitions",
+    "summary": "Cedarfield Systems Holdings completed the acquisition of Thornridge Packaging Corp., a fictional packaging manufacturer, during fiscal 2025, consistent with its history of bolt-on acquisitions in the packaging industry.",
+    "facts": {
+      "acquired_name": "Thornridge Packaging Corp.",
+      "purchase_price": 249712064,
+      "rationale": "expand manufacturing capacity and customer relationships in adjacent packaging end markets",
+      "integration_status": "substantially integrated into existing operations as of fiscal year end"
+    }
   }
 }

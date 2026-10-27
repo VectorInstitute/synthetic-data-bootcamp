@@ -21,5 +21,13 @@
     "framework": "the NIST Cybersecurity Framework",
     "oversight": "the full Board of Directors, with support from the Audit Committee",
     "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "weather_event",
+    "summary": "Westgate Technologies' fiscal 2023 capital spending reflects its ongoing multi-year infrastructure program together with incremental storm restoration and system-hardening work following significant weather events affecting its service territory during the year.",
+    "facts": {
+      "driver": "significant weather events affecting the service territory during fiscal 2023",
+      "effect": "incremental storm restoration and system-hardening work layered onto the ongoing capital program"
+    }
   }
 }

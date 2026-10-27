@@ -6,10 +6,38 @@ Two pipelines that build fictional companies' 10-K filings, and shared evals tha
 synthetic_10k/
   README.md            this overview
   amin_pipeline/       Amin's pipeline: the sec10k package, its tests and README
-  dylan_pipeline/      Dylan's pipeline, self-contained (src/step00..step09, data/, PLAN.md)
-  evals/               cross-pipeline validation scripts, sample inputs and results
+  dylan_pipeline/      Dylan's pipeline (src/step00..step10, data/, PLAN.md)
+  RAG/                 Dylan's retrieval benchmark and chatbot over the synthetic + real corpus
+  evals/               cross-pipeline validation scripts, the gap and privacy reports, results
+  dashboard/           Dylan's self-contained results dashboard and the chatbot UI
   run_batch.sh         one batch from both pipelines with the same model and sections, plus evals
 ```
+
+## RAG, extra evals and dashboard (from Dylan's pipeline)
+
+These modules build on Dylan's pipeline and import its `src` package, so run them from this folder with `PYTHONPATH=dylan_pipeline`. They read and write `dylan_pipeline/data/`.
+
+| Folder | Script | Output |
+|---|---|---|
+| `RAG/` | `chunks.py`, `retrieval.py`: paragraph chunking; BM25, a semantic embedding retriever (fastembed), reciprocal rank fusion and ranking metrics | |
+| `RAG/` | `step11_make_qa.py`: QA pairs with a gold passage each | `data/qa_pairs.csv` |
+| `RAG/` | `step12_evaluate_retrievers.py`: BM25, semantic and hybrid retrieval on synthetic, real and mixed corpora | `data/retrieval_eval.csv` |
+| `RAG/` | `chatbot.py`, `chatbot_server.py`: RAG chatbot demo (CLI and browser UI) | |
+| `evals/` | `step13_gap_report.py`: synthetic-vs-real gap (length, vocabulary, numbers, retriever ranking) | `data/gap_report.csv` |
+| `evals/` | `step14_privacy_check.py`: distance of each fictional company's financials from its real template | `data/privacy_report.csv` |
+| `dashboard/` | `build_dashboard.py`: embeds the five result CSVs and vendored d3 into `template.html` | `dashboard/index.html` |
+
+```bash
+cd implementations/synthetic_10k
+PYTHONPATH=dylan_pipeline python -m src.step03_build_index        # from dylan_pipeline: index of real + synthetic filings
+PYTHONPATH=dylan_pipeline python -m RAG.step11_make_qa
+PYTHONPATH=dylan_pipeline python -m RAG.step12_evaluate_retrievers
+PYTHONPATH=dylan_pipeline:. python evals/step13_gap_report.py
+PYTHONPATH=dylan_pipeline:. python evals/step14_privacy_check.py
+PYTHONPATH=dylan_pipeline python dashboard/build_dashboard.py     # then open dashboard/index.html
+```
+
+Details are in [dylan_pipeline/README.md](dylan_pipeline/README.md) and `dylan_pipeline/PLAN.md` (Phases 8-11).
 
 ## Generate a batch with both pipelines
 
