@@ -19,12 +19,13 @@ These modules build on Dylan's pipeline and import its `src` package, so run the
 
 | Folder | Script | Output |
 |---|---|---|
-| `RAG/` | `chunks.py`, `retrieval.py`: paragraph chunking; BM25, a semantic embedding retriever (fastembed), reciprocal rank fusion and ranking metrics | |
+| `RAG/` | `chunks.py`, `retrieval.py`: paragraph chunking; BM25, a semantic embedding retriever (fastembed locally, or `text-embedding-*` models through Vector's proxy with `RAG_EMBEDDING_MODEL`), reciprocal rank fusion and ranking metrics | |
 | `RAG/` | `step11_make_qa.py`: QA pairs with a gold passage each | `data/qa_pairs.csv` |
 | `RAG/` | `step12_evaluate_retrievers.py`: BM25, semantic and hybrid retrieval on synthetic, real and mixed corpora | `data/retrieval_eval.csv` |
 | `RAG/` | `chatbot.py`, `chatbot_server.py`: RAG chatbot demo (CLI and browser UI) | |
 | `evals/` | `step13_gap_report.py`: synthetic-vs-real gap (length, vocabulary, numbers, retriever ranking) | `data/gap_report.csv` |
 | `evals/` | `step14_privacy_check.py`: distance of each fictional company's financials from its real template | `data/privacy_report.csv` |
+| `evals/` | `compare_sets.py`: fidelity, utility (retrieval) and privacy for several synthetic sets side by side, with `text-embedding-3-small` | `evals/results/compare_sets/comparison.md` |
 | `dashboard/` | `build_dashboard.py`: embeds the five result CSVs and vendored d3 into `template.html` | `dashboard/index.html` |
 
 ```bash
