@@ -1,0 +1,361 @@
+fictional_id,fiscal_year,check,item,status,detail,note
+TANL,2024,substantive,1,PASS,874 words,
+TANL,2024,length_vs_real,1,INFO,6734 chars vs real median 61281 chars (11%),
+TANL,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+TANL,2024,substantive,1a,PASS,1343 words,
+TANL,2024,length_vs_real,1a,INFO,9865 chars vs real median 80672 chars (12%),
+TANL,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+TANL,2024,substantive,1c,PASS,822 words,
+TANL,2024,length_vs_real,1c,INFO,6215 chars vs real median 6000 chars (104%),
+TANL,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+TANL,2024,substantive,7,PASS,1614 words,
+TANL,2024,length_vs_real,7,INFO,11319 chars vs real median 66970 chars (17%),
+TANL,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+TANL,2024,substantive,8,PASS,435 words,
+TANL,2024,length_vs_real,8,INFO,2793 chars vs real median 171195 chars (2%),
+TANL,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+TANL,2024,required_headings,8,PASS,all present,
+TANL,2024,numeric_consistency,7,FAIL,42/48 figures traced; unmatched: 15.5 in '15.5%'; 16.8 in '16.8%'; 13.9 in '13.9%'; 9.9 in '9.9%'; 21.4 in '21.4%'; 12.2 in '12.2%',"6 of 6 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+TANL,2024,numeric_consistency,8,PASS,66/66 figures traced,
+NOIX,2024,substantive,1,PASS,885 words,
+NOIX,2024,length_vs_real,1,INFO,6684 chars vs real median 61281 chars (11%),
+NOIX,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NOIX,2024,substantive,1a,PASS,1583 words,
+NOIX,2024,length_vs_real,1a,INFO,11819 chars vs real median 80672 chars (15%),
+NOIX,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NOIX,2024,substantive,1c,PASS,789 words,
+NOIX,2024,length_vs_real,1c,INFO,5944 chars vs real median 6000 chars (99%),
+NOIX,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NOIX,2024,substantive,7,PASS,1465 words,
+NOIX,2024,length_vs_real,7,INFO,10162 chars vs real median 66970 chars (15%),
+NOIX,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NOIX,2024,substantive,8,PASS,435 words,
+NOIX,2024,length_vs_real,8,INFO,2724 chars vs real median 171195 chars (2%),
+NOIX,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NOIX,2024,required_headings,8,PASS,all present,
+NOIX,2024,numeric_consistency,7,FAIL,45/52 figures traced; unmatched: 7.5 in '7.5%'; 7.5 in '7.5%'; 30.1 in '30.1%'; 9 in '9.0%'; 12.7 in '12.7%'; 8.9 in '8.9%'; 12.8 in '12.8%',"7 of 7 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+NOIX,2024,numeric_consistency,8,PASS,66/66 figures traced,
+SOLV,2024,substantive,1,PASS,911 words,
+SOLV,2024,length_vs_real,1,INFO,6956 chars vs real median 61281 chars (11%),
+SOLV,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+SOLV,2024,substantive,1a,PASS,1122 words,
+SOLV,2024,length_vs_real,1a,INFO,8195 chars vs real median 80672 chars (10%),
+SOLV,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+SOLV,2024,substantive,1c,PASS,862 words,
+SOLV,2024,length_vs_real,1c,INFO,6584 chars vs real median 6000 chars (110%),
+SOLV,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+SOLV,2024,substantive,7,PASS,1274 words,
+SOLV,2024,length_vs_real,7,INFO,9026 chars vs real median 66970 chars (13%),
+SOLV,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+SOLV,2024,substantive,8,PASS,435 words,
+SOLV,2024,length_vs_real,8,INFO,2717 chars vs real median 171195 chars (2%),
+SOLV,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+SOLV,2024,required_headings,8,PASS,all present,
+SOLV,2024,numeric_consistency,7,FAIL,42/48 figures traced; unmatched: 5.3 in '5.3%'; 33.9 in '33.9%'; 5.3 in '5.3%'; 16.5 in '16.5%'; 14.4 in '14.4%'; 33.9 in '33.9%',"6 of 6 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+SOLV,2024,numeric_consistency,8,PASS,66/66 figures traced,
+LNON,2024,substantive,1,PASS,996 words,
+LNON,2024,length_vs_real,1,INFO,7443 chars vs real median 61281 chars (12%),
+LNON,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+LNON,2024,substantive,1a,PASS,1397 words,
+LNON,2024,length_vs_real,1a,INFO,10181 chars vs real median 80672 chars (13%),
+LNON,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+LNON,2024,substantive,1c,PASS,901 words,
+LNON,2024,length_vs_real,1c,INFO,6763 chars vs real median 6000 chars (113%),
+LNON,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+LNON,2024,substantive,7,PASS,1488 words,
+LNON,2024,length_vs_real,7,INFO,10352 chars vs real median 66970 chars (15%),
+LNON,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+LNON,2024,substantive,8,PASS,435 words,
+LNON,2024,length_vs_real,8,INFO,2760 chars vs real median 171195 chars (2%),
+LNON,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+LNON,2024,required_headings,8,PASS,all present,
+LNON,2024,numeric_consistency,7,FAIL,"40/46 figures traced; unmatched: 1.1657e+10 in '$11,657 million'; 2.2 in '2.2%'; 36.1 in '36.1%'; 4.5 in '4.5%'; 9.1 in '9.1%'; 19.4 in '19.4%'","5 of 6 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect; not explained: 1.1657e+10 in '$11,657 million'"
+LNON,2024,numeric_consistency,8,PASS,66/66 figures traced,
+MERQ,2024,substantive,1,PASS,979 words,
+MERQ,2024,length_vs_real,1,INFO,7491 chars vs real median 61281 chars (12%),
+MERQ,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+MERQ,2024,substantive,1a,PASS,885 words,
+MERQ,2024,length_vs_real,1a,INFO,6476 chars vs real median 80672 chars (8%),
+MERQ,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+MERQ,2024,substantive,1c,PASS,835 words,
+MERQ,2024,length_vs_real,1c,INFO,6341 chars vs real median 6000 chars (106%),
+MERQ,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+MERQ,2024,substantive,7,PASS,1404 words,
+MERQ,2024,length_vs_real,7,INFO,9623 chars vs real median 66970 chars (14%),
+MERQ,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+MERQ,2024,substantive,8,PASS,435 words,
+MERQ,2024,length_vs_real,8,INFO,2669 chars vs real median 171195 chars (2%),
+MERQ,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+MERQ,2024,required_headings,8,PASS,all present,
+MERQ,2024,numeric_consistency,7,FAIL,48/59 figures traced; unmatched: 1.55e+08 in '$155 million'; 1.2e+07 in '$12 million'; 1.3e+07 in '$13 million'; 3.4e+07 in '$34 million'; 5e+06 in '$5 million'; 15.4 in '15.4%'; 13.2 in '13.2%'; 2.7 in '2.7%'; 72.5 in '72.5%'; 22.5 in '22.5%'; 74.2 in '74.2%',"9 of 11 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect; not explained: 72.5 in '72.5%'; 74.2 in '74.2%'"
+MERQ,2024,numeric_consistency,8,PASS,66/66 figures traced,
+SEQZ,2024,substantive,1,PASS,963 words,
+SEQZ,2024,length_vs_real,1,INFO,7361 chars vs real median 61281 chars (12%),
+SEQZ,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+SEQZ,2024,substantive,1a,PASS,1297 words,
+SEQZ,2024,length_vs_real,1a,INFO,9331 chars vs real median 80672 chars (12%),
+SEQZ,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+SEQZ,2024,substantive,1c,PASS,777 words,
+SEQZ,2024,length_vs_real,1c,INFO,5882 chars vs real median 6000 chars (98%),
+SEQZ,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+SEQZ,2024,substantive,7,PASS,1604 words,
+SEQZ,2024,length_vs_real,7,INFO,11413 chars vs real median 66970 chars (17%),
+SEQZ,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+SEQZ,2024,substantive,8,PASS,435 words,
+SEQZ,2024,length_vs_real,8,INFO,2741 chars vs real median 171195 chars (2%),
+SEQZ,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+SEQZ,2024,required_headings,8,PASS,all present,
+SEQZ,2024,numeric_consistency,7,FAIL,"42/54 figures traced; unmatched: 1.45e+09 in '$1,450 million'; 5.9e+08 in '$590 million'; 5.52e+08 in '$552 million'; 5.4e+07 in '$54 million'; 8.2e+07 in '$82 million'; 4.9e+07 in '$49 million'; 3.4e+07 in '$34 million'; 13.7 in '13.7%'; 13.7 in '13.7%'; 37.3 in '37.3%'; 6.8 in '6.8%'; 4.1 in '4.1%'","12 of 12 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+SEQZ,2024,numeric_consistency,8,PASS,66/66 figures traced,
+ORAL,2024,substantive,1,PASS,852 words,
+ORAL,2024,length_vs_real,1,INFO,6499 chars vs real median 61281 chars (11%),
+ORAL,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ORAL,2024,substantive,1a,PASS,1011 words,
+ORAL,2024,length_vs_real,1a,INFO,7412 chars vs real median 80672 chars (9%),
+ORAL,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ORAL,2024,substantive,1c,PASS,617 words,
+ORAL,2024,length_vs_real,1c,INFO,4574 chars vs real median 6000 chars (76%),
+ORAL,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ORAL,2024,substantive,7,PASS,1450 words,
+ORAL,2024,length_vs_real,7,INFO,10190 chars vs real median 66970 chars (15%),
+ORAL,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ORAL,2024,substantive,8,PASS,435 words,
+ORAL,2024,length_vs_real,8,INFO,2782 chars vs real median 171195 chars (2%),
+ORAL,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ORAL,2024,required_headings,8,PASS,all present,
+ORAL,2024,numeric_consistency,7,FAIL,41/49 figures traced; unmatched: 33 in '33.0%'; 33 in '33.0%'; 13 in '13.0%'; 11.6 in '11.6%'; 20 in '20.0%'; 23.1 in '23.1%'; 12.9 in '12.9%'; 13.3 in '13.3%',"7 of 8 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect; not explained: 11.6 in '11.6%'"
+ORAL,2024,numeric_consistency,8,PASS,66/66 figures traced,
+NQVU,2024,substantive,1,PASS,993 words,
+NQVU,2024,length_vs_real,1,INFO,7199 chars vs real median 61281 chars (12%),
+NQVU,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NQVU,2024,substantive,1a,PASS,1089 words,
+NQVU,2024,length_vs_real,1a,INFO,7984 chars vs real median 80672 chars (10%),
+NQVU,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NQVU,2024,substantive,1c,PASS,859 words,
+NQVU,2024,length_vs_real,1c,INFO,6257 chars vs real median 6000 chars (104%),
+NQVU,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NQVU,2024,substantive,7,PASS,1403 words,
+NQVU,2024,length_vs_real,7,INFO,9750 chars vs real median 66970 chars (15%),
+NQVU,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NQVU,2024,substantive,8,PASS,435 words,
+NQVU,2024,length_vs_real,8,INFO,2723 chars vs real median 171195 chars (2%),
+NQVU,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NQVU,2024,required_headings,8,PASS,all present,
+NQVU,2024,numeric_consistency,7,FAIL,42/45 figures traced; unmatched: 30.3 in '30.3%'; 30.3 in '30.3%'; 12 in '12.0%',"3 of 3 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+NQVU,2024,numeric_consistency,8,PASS,66/66 figures traced,
+TSOE,2024,substantive,1,PASS,1029 words,
+TSOE,2024,length_vs_real,1,INFO,7797 chars vs real median 61281 chars (13%),
+TSOE,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+TSOE,2024,substantive,1a,PASS,976 words,
+TSOE,2024,length_vs_real,1a,INFO,7043 chars vs real median 80672 chars (9%),
+TSOE,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+TSOE,2024,substantive,1c,PASS,772 words,
+TSOE,2024,length_vs_real,1c,INFO,5798 chars vs real median 6000 chars (97%),
+TSOE,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+TSOE,2024,substantive,7,PASS,1435 words,
+TSOE,2024,length_vs_real,7,INFO,9952 chars vs real median 66970 chars (15%),
+TSOE,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+TSOE,2024,substantive,8,PASS,435 words,
+TSOE,2024,length_vs_real,8,INFO,2728 chars vs real median 171195 chars (2%),
+TSOE,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+TSOE,2024,required_headings,8,PASS,all present,
+TSOE,2024,numeric_consistency,7,FAIL,41/46 figures traced; unmatched: 13 in '13.0%'; 13 in '13.0%'; 13.4 in '13.4%'; 10.5 in '10.5%'; 12.4 in '12.4%',"5 of 5 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+TSOE,2024,numeric_consistency,8,PASS,66/66 figures traced,
+KOLR,2024,substantive,1,PASS,806 words,
+KOLR,2024,length_vs_real,1,INFO,6194 chars vs real median 61281 chars (10%),
+KOLR,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KOLR,2024,substantive,1a,PASS,1039 words,
+KOLR,2024,length_vs_real,1a,INFO,7781 chars vs real median 80672 chars (10%),
+KOLR,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KOLR,2024,substantive,1c,PASS,740 words,
+KOLR,2024,length_vs_real,1c,INFO,5544 chars vs real median 6000 chars (92%),
+KOLR,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KOLR,2024,substantive,7,PASS,1402 words,
+KOLR,2024,length_vs_real,7,INFO,9967 chars vs real median 66970 chars (15%),
+KOLR,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KOLR,2024,substantive,8,PASS,435 words,
+KOLR,2024,length_vs_real,8,INFO,2756 chars vs real median 171195 chars (2%),
+KOLR,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KOLR,2024,required_headings,8,PASS,all present,
+KOLR,2024,numeric_consistency,7,FAIL,"42/54 figures traced; unmatched: 2.86e+09 in '$2,860 million'; 8.7e+07 in '$87 million'; 5.3e+08 in '$530 million'; 3.12e+08 in '$312 million'; 1.408e+09 in '$1,408 million'; 1.059e+09 in '$1,059 million'; 6.7 in '6.7%'; 6.7 in '6.7%'; 28.9 in '28.9%'; 14.1 in '14.1%'; 20.4 in '20.4%'; 13.4 in '13.4%'","12 of 12 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+KOLR,2024,numeric_consistency,8,PASS,66/66 figures traced,
+NOMV,2024,substantive,1,PASS,841 words,
+NOMV,2024,length_vs_real,1,INFO,6553 chars vs real median 61281 chars (11%),
+NOMV,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NOMV,2024,substantive,1a,PASS,1300 words,
+NOMV,2024,length_vs_real,1a,INFO,9854 chars vs real median 80672 chars (12%),
+NOMV,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NOMV,2024,substantive,1c,PASS,802 words,
+NOMV,2024,length_vs_real,1c,INFO,5988 chars vs real median 6000 chars (100%),
+NOMV,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NOMV,2024,substantive,7,PASS,1504 words,
+NOMV,2024,length_vs_real,7,INFO,10599 chars vs real median 66970 chars (16%),
+NOMV,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NOMV,2024,substantive,8,PASS,435 words,
+NOMV,2024,length_vs_real,8,INFO,2717 chars vs real median 171195 chars (2%),
+NOMV,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+NOMV,2024,required_headings,8,PASS,all present,
+NOMV,2024,numeric_consistency,7,FAIL,"36/41 figures traced; unmatched: 1.175e+09 in '$1,175 million'; 6.5 in '6.5%'; 13.8 in '13.8%'; 19.9 in '19.9%'; 61.8 in '61.8%'","4 of 5 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect; not explained: 19.9 in '19.9%'"
+NOMV,2024,numeric_consistency,8,PASS,66/66 figures traced,
+VNNZ,2024,substantive,1,PASS,935 words,
+VNNZ,2024,length_vs_real,1,INFO,7280 chars vs real median 61281 chars (12%),
+VNNZ,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+VNNZ,2024,substantive,1a,PASS,1021 words,
+VNNZ,2024,length_vs_real,1a,INFO,7539 chars vs real median 80672 chars (9%),
+VNNZ,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+VNNZ,2024,substantive,1c,PASS,829 words,
+VNNZ,2024,length_vs_real,1c,INFO,6303 chars vs real median 6000 chars (105%),
+VNNZ,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+VNNZ,2024,substantive,7,PASS,1712 words,
+VNNZ,2024,length_vs_real,7,INFO,12122 chars vs real median 66970 chars (18%),
+VNNZ,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+VNNZ,2024,substantive,8,PASS,435 words,
+VNNZ,2024,length_vs_real,8,INFO,2759 chars vs real median 171195 chars (2%),
+VNNZ,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+VNNZ,2024,required_headings,8,PASS,all present,
+VNNZ,2024,numeric_consistency,7,FAIL,"47/63 figures traced; unmatched: 3.57e+09 in '$3,570 million'; 2.183e+09 in '$2,183 million'; 4.8e+08 in '$480 million'; 5.69e+08 in '$569 million'; 4.72e+08 in '$472 million'; 8 in '8.0%'; 8 in '8.0%'; 35.5 in '35.5%'; 8.3 in '8.3%'; 8 in '8.0%'; 10.5 in '10.5%'; 12.2 in '12.2%'; 14.4 in '14.4%'; 22.5 in '22.5%'; 12 in '12.0%'","16 of 16 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+VNNZ,2024,numeric_consistency,8,PASS,66/66 figures traced,
+DRAR,2024,substantive,1,PASS,974 words,
+DRAR,2024,length_vs_real,1,INFO,7325 chars vs real median 61281 chars (12%),
+DRAR,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+DRAR,2024,substantive,1a,PASS,893 words,
+DRAR,2024,length_vs_real,1a,INFO,6838 chars vs real median 80672 chars (8%),
+DRAR,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+DRAR,2024,substantive,1c,PASS,769 words,
+DRAR,2024,length_vs_real,1c,INFO,5759 chars vs real median 6000 chars (96%),
+DRAR,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+DRAR,2024,substantive,7,PASS,1424 words,
+DRAR,2024,length_vs_real,7,INFO,10030 chars vs real median 66970 chars (15%),
+DRAR,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+DRAR,2024,substantive,8,PASS,435 words,
+DRAR,2024,length_vs_real,8,INFO,2786 chars vs real median 171195 chars (2%),
+DRAR,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+DRAR,2024,required_headings,8,PASS,all present,
+DRAR,2024,numeric_consistency,7,FAIL,34/37 figures traced; unmatched: 9.3 in '9.3%'; 34.5 in '34.5%'; 39.9 in '39.9%',"2 of 3 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect; not explained: 39.9 in '39.9%'"
+DRAR,2024,numeric_consistency,8,PASS,66/66 figures traced,
+KRAT,2024,substantive,1,PASS,865 words,
+KRAT,2024,length_vs_real,1,INFO,6450 chars vs real median 61281 chars (11%),
+KRAT,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KRAT,2024,substantive,1a,PASS,1188 words,
+KRAT,2024,length_vs_real,1a,INFO,8601 chars vs real median 80672 chars (11%),
+KRAT,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KRAT,2024,substantive,1c,PASS,549 words,
+KRAT,2024,length_vs_real,1c,INFO,4245 chars vs real median 6000 chars (71%),
+KRAT,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KRAT,2024,substantive,7,PASS,1545 words,
+KRAT,2024,length_vs_real,7,INFO,10708 chars vs real median 66970 chars (16%),
+KRAT,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KRAT,2024,substantive,8,PASS,435 words,
+KRAT,2024,length_vs_real,8,INFO,2677 chars vs real median 171195 chars (2%),
+KRAT,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KRAT,2024,required_headings,8,PASS,all present,
+KRAT,2024,numeric_consistency,7,FAIL,38/44 figures traced; unmatched: 13.9 in '13.9%'; 13.9 in '13.9%'; 13 in '13.0%'; 13.8 in '13.8%'; 25.3 in '25.3%'; 14 in '14.0%',"5 of 6 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect; not explained: 25.3 in '25.3%'"
+KRAT,2024,numeric_consistency,8,PASS,66/66 figures traced,
+ZONE,2024,substantive,1,PASS,928 words,
+ZONE,2024,length_vs_real,1,INFO,6829 chars vs real median 61281 chars (11%),
+ZONE,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ZONE,2024,substantive,1a,PASS,1292 words,
+ZONE,2024,length_vs_real,1a,INFO,9544 chars vs real median 80672 chars (12%),
+ZONE,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ZONE,2024,substantive,1c,PASS,646 words,
+ZONE,2024,length_vs_real,1c,INFO,4945 chars vs real median 6000 chars (82%),
+ZONE,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ZONE,2024,substantive,7,PASS,1578 words,
+ZONE,2024,length_vs_real,7,INFO,10952 chars vs real median 66970 chars (16%),
+ZONE,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ZONE,2024,substantive,8,PASS,435 words,
+ZONE,2024,length_vs_real,8,INFO,2614 chars vs real median 171195 chars (2%),
+ZONE,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ZONE,2024,required_headings,8,PASS,all present,
+ZONE,2024,numeric_consistency,7,FAIL,45/52 figures traced; unmatched: 4.8e+07 in '$48 million'; 3.03e+08 in '$303 million'; 8.2 in '8.2%'; 72.1 in '72.1%'; 4.2 in '4.2%'; 29 in '29.0%'; 17.4 in '17.4%',"5 of 7 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect; not explained: 4.8e+07 in '$48 million'; 3.03e+08 in '$303 million'"
+ZONE,2024,numeric_consistency,8,PASS,66/66 figures traced,
+ZTLN,2024,substantive,1,PASS,916 words,
+ZTLN,2024,length_vs_real,1,INFO,6825 chars vs real median 61281 chars (11%),
+ZTLN,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ZTLN,2024,substantive,1a,PASS,1244 words,
+ZTLN,2024,length_vs_real,1a,INFO,9207 chars vs real median 80672 chars (11%),
+ZTLN,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ZTLN,2024,substantive,1c,PASS,630 words,
+ZTLN,2024,length_vs_real,1c,INFO,4846 chars vs real median 6000 chars (81%),
+ZTLN,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ZTLN,2024,substantive,7,PASS,1582 words,
+ZTLN,2024,length_vs_real,7,INFO,11333 chars vs real median 66970 chars (17%),
+ZTLN,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ZTLN,2024,substantive,8,PASS,435 words,
+ZTLN,2024,length_vs_real,8,INFO,2689 chars vs real median 171195 chars (2%),
+ZTLN,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ZTLN,2024,required_headings,8,PASS,all present,
+ZTLN,2024,numeric_consistency,7,FAIL,"45/54 figures traced; unmatched: 1.097e+09 in '$1,097 million'; 7.69e+08 in '$769 million'; 1.53e+08 in '$153 million'; 6.7 in '6.7%'; 120 in '120.0%'; 6.7 in '6.7%'; 38.7 in '38.7%'; 2.4 in '2.4%'; 120 in '120.0%'","9 of 9 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+ZTLN,2024,numeric_consistency,8,PASS,66/66 figures traced,
+OSRR,2024,substantive,1,PASS,941 words,
+OSRR,2024,length_vs_real,1,INFO,6980 chars vs real median 61281 chars (11%),
+OSRR,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+OSRR,2024,substantive,1a,PASS,964 words,
+OSRR,2024,length_vs_real,1a,INFO,7207 chars vs real median 80672 chars (9%),
+OSRR,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+OSRR,2024,substantive,1c,PASS,818 words,
+OSRR,2024,length_vs_real,1c,INFO,6117 chars vs real median 6000 chars (102%),
+OSRR,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+OSRR,2024,substantive,7,PASS,1273 words,
+OSRR,2024,length_vs_real,7,INFO,8862 chars vs real median 66970 chars (13%),
+OSRR,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+OSRR,2024,substantive,8,PASS,435 words,
+OSRR,2024,length_vs_real,8,INFO,2691 chars vs real median 171195 chars (2%),
+OSRR,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+OSRR,2024,required_headings,8,PASS,all present,
+OSRR,2024,numeric_consistency,7,FAIL,42/48 figures traced; unmatched: 4.1 in '4.1%'; 4.1 in '4.1%'; 26.4 in '26.4%'; 5.3 in '5.3%'; 20.6 in '20.6%'; 5 in '5.0%',"6 of 6 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+OSRR,2024,numeric_consistency,8,PASS,66/66 figures traced,
+ORZA,2024,substantive,1,PASS,925 words,
+ORZA,2024,length_vs_real,1,INFO,6743 chars vs real median 61281 chars (11%),
+ORZA,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ORZA,2024,substantive,1a,PASS,1262 words,
+ORZA,2024,length_vs_real,1a,INFO,9370 chars vs real median 80672 chars (12%),
+ORZA,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ORZA,2024,substantive,1c,PASS,818 words,
+ORZA,2024,length_vs_real,1c,INFO,6147 chars vs real median 6000 chars (102%),
+ORZA,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ORZA,2024,substantive,7,PASS,1569 words,
+ORZA,2024,length_vs_real,7,INFO,11165 chars vs real median 66970 chars (17%),
+ORZA,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ORZA,2024,substantive,8,PASS,435 words,
+ORZA,2024,length_vs_real,8,INFO,2778 chars vs real median 171195 chars (2%),
+ORZA,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+ORZA,2024,required_headings,8,PASS,all present,
+ORZA,2024,numeric_consistency,7,FAIL,38/46 figures traced; unmatched: 15.1 in '15.1%'; 14.2 in '14.2%'; 48.1 in '48.1%'; 19.9 in '19.9%'; 15.1 in '15.1%'; 15.9 in '15.9%'; 16 in '16.0%'; 16.2 in '16.2%',"8 of 8 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+ORZA,2024,numeric_consistency,8,PASS,66/66 figures traced,
+KUAQ,2024,substantive,1,PASS,881 words,
+KUAQ,2024,length_vs_real,1,INFO,6551 chars vs real median 61281 chars (11%),
+KUAQ,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KUAQ,2024,substantive,1a,PASS,1452 words,
+KUAQ,2024,length_vs_real,1a,INFO,10709 chars vs real median 80672 chars (13%),
+KUAQ,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KUAQ,2024,substantive,1c,PASS,676 words,
+KUAQ,2024,length_vs_real,1c,INFO,5121 chars vs real median 6000 chars (85%),
+KUAQ,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KUAQ,2024,substantive,7,PASS,1468 words,
+KUAQ,2024,length_vs_real,7,INFO,10183 chars vs real median 66970 chars (15%),
+KUAQ,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KUAQ,2024,substantive,8,PASS,435 words,
+KUAQ,2024,length_vs_real,8,INFO,2654 chars vs real median 171195 chars (2%),
+KUAQ,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+KUAQ,2024,required_headings,8,PASS,all present,
+KUAQ,2024,numeric_consistency,7,FAIL,"46/50 figures traced; unmatched: 1.273e+09 in '$1,273 million'; 26.9 in '26.9%'; 26.2 in '26.2%'; 11.9 in '11.9%'","3 of 4 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect; not explained: 1.273e+09 in '$1,273 million'"
+KUAQ,2024,numeric_consistency,8,PASS,66/66 figures traced,
+DEVR,2024,substantive,1,PASS,1016 words,
+DEVR,2024,length_vs_real,1,INFO,7348 chars vs real median 61281 chars (12%),
+DEVR,2024,real_company_leak,1,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+DEVR,2024,substantive,1a,PASS,971 words,
+DEVR,2024,length_vs_real,1a,INFO,7004 chars vs real median 80672 chars (9%),
+DEVR,2024,real_company_leak,1a,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+DEVR,2024,substantive,1c,PASS,787 words,
+DEVR,2024,length_vs_real,1c,INFO,6036 chars vs real median 6000 chars (101%),
+DEVR,2024,real_company_leak,1c,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+DEVR,2024,substantive,7,PASS,1716 words,
+DEVR,2024,length_vs_real,7,INFO,11896 chars vs real median 66970 chars (18%),
+DEVR,2024,real_company_leak,7,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+DEVR,2024,substantive,8,PASS,435 words,
+DEVR,2024,length_vs_real,8,INFO,2778 chars vs real median 171195 chars (2%),
+DEVR,2024,real_company_leak,8,PASS,none of 503 S&P 500 names found,"checks every S&P 500 name, case-sensitive so phrases like 'waste management' don't match; the exemplar company is not recorded in Method 1's filings"
+DEVR,2024,required_headings,8,PASS,all present,
+DEVR,2024,numeric_consistency,7,FAIL,"45/56 figures traced; unmatched: 2.223e+09 in '$2,223 million'; 1.18e+09 in '$1,180 million'; 1.95e+08 in '$195 million'; 2.95e+08 in '$295 million'; 1.34e+08 in '$134 million'; 4.19e+08 in '$419 million'; 8.4e+07 in '$84 million'; 3.35e+08 in '$335 million'; 3.12e+08 in '$312 million'; 5.5 in '5.5%'; 26.5 in '26.5%'","11 of 11 unmatched figures are year-over-year changes or prior-year ratios, which step09 doesn't expect"
+DEVR,2024,numeric_consistency,8,PASS,66/66 figures traced,

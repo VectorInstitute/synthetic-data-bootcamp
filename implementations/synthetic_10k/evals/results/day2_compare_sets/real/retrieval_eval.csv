@@ -1,0 +1,6 @@
+experiment,retriever,n_questions,recall_at_5,recall_at_10,mrr,ndcg_at_10
+real_only,bm25,31,1.0,1.0,0.8333,0.8692
+real_only,semantic:text-embedding-3-small,31,0.9677,1.0,0.7348,0.7902
+real_only,hybrid:bm25+text-embedding-3-small,31,1.0,1.0,0.8306,0.872
+real_only,semantic:potion-retrieval-32M,31,0.7419,0.9032,0.5442,0.6132
+real_only,hybrid:bm25+potion-retrieval-32M,31,0.9677,1.0,0.7446,0.8073
