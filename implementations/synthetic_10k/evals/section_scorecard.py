@@ -10,12 +10,15 @@ Figure accuracy (text-to-table consistency)
 - traced_pct (higher): share of dollar amounts and percentages in the Item that trace
   to the company's statements or a value derived from them (Method 2's step09 rules,
   plus year-over-year changes and prior-year ratios for two-year filings, as in
-  method2_gates). Synthetic sets only.
+  method2_gates). Synthetic sets only. Left blank when the Item has fewer than
+  MIN_FIGURES_PER_DOC figures per filing on average, since a share of almost nothing
+  says nothing (a set that writes no figures would otherwise score 100%).
 
 Retrieval utility (what a RAG benchmark built on the set measures)
 - fact_recall_at_10 (higher): BM25 recall@10 over the set's chunks for the
   financial-fact questions of compare_sets (revenue, net income, total assets, net
-  and operating margin) whose answer sits in this Item.
+  and operating margin) whose answer sits in this Item. Left blank under
+  MIN_QUESTIONS questions.
 - self_retrieval_mrr (closer to real): a sentence from each chunk, with the company's
   name removed, is the query; MRR of finding its own chunk among all chunks of this
   Item. Low means passages repeat across companies; real filings set the target.
@@ -93,6 +96,8 @@ DEFAULT_OUT = HERE / "results" / "section_scorecard"
 TOP_TERMS = 1000
 QUERIES_PER_DOC = 5
 MIN_QUERY_WORDS = 12
+MIN_FIGURES_PER_DOC = 1  # below this average, traced_pct is not scored
+MIN_QUESTIONS = 5  # below this many questions for an Item, fact recall is not scored
 REAL = "real"
 # metric -> (weight, direction): "high" = higher is better, "real" = closer to the real
 # value is better, "le_real" = at or below the real value is best, then closer to it.
@@ -106,7 +111,7 @@ WEIGHTS = {
     "cross_doc_overlap": (1, "le_real"),
     "copied_from_real": (1, "le_real"),
 }
-COLUMNS = ["set", "item", "n_docs", "median_words", *WEIGHTS]
+COLUMNS = ["set", "item", "n_docs", "median_words", "n_figures", "n_questions", *WEIGHTS]
 ITEM_LABELS = {
     "1": "Item 1 Business",
     "1a": "Item 1A Risk Factors",
@@ -231,8 +236,11 @@ class RealItems:
         return float(np.isin(h, self.index[item]).mean()) if len(h) else 0.0
 
 
-def fact_recall_by_item(qa_rows: list[dict], chunks: list[Chunk]) -> dict[str, float]:
-    """BM25 recall@10 per Item of the gold chunk, over all of the group's chunks."""
+def fact_recall_by_item(qa_rows: list[dict], chunks: list[Chunk]) -> dict[str, tuple[float | None, int]]:
+    """Return (BM25 recall@10 of the gold chunk, question count) per Item.
+
+    Recall is None for an Item with fewer than MIN_QUESTIONS questions.
+    """
     if not qa_rows:
         return {}
     bm25 = Bm25Retriever([c.chunk_id for c in chunks], [c.text for c in chunks])
@@ -240,7 +248,10 @@ def fact_recall_by_item(qa_rows: list[dict], chunks: list[Chunk]) -> dict[str, f
     for q in qa_rows:
         gold = set(filter(None, q.get("gold_chunk_ids", "").split(";"))) or {q["gold_chunk_id"]}
         per_item.setdefault(q["item"], []).append(recall_at_k(bm25.rank(q["question"]), gold, 10))
-    return {item: round(statistics.mean(v), 3) for item, v in per_item.items()}
+    return {
+        item: (round(statistics.mean(v), 3) if len(v) >= MIN_QUESTIONS else None, len(v))
+        for item, v in per_item.items()
+    }
 
 
 def set_rows(name: str, companies: list[Company], real: RealItems, seed: int) -> list[dict]:
@@ -275,8 +286,10 @@ def set_rows(name: str, companies: list[Company], real: RealItems, seed: int) ->
                 "item": item,
                 "n_docs": len(docs),
                 "median_words": round(statistics.median(words)),
-                "traced_pct": round(traced / total * 100, 1) if total else None,
-                "fact_recall_at_10": recall.get(item),
+                "n_figures": total,
+                "n_questions": recall.get(item, (None, 0))[1],
+                "traced_pct": round(traced / total * 100, 1) if total >= MIN_FIGURES_PER_DOC * len(docs) else None,
+                "fact_recall_at_10": recall.get(item, (None, 0))[0],
                 "self_retrieval_mrr": self_retrieval_mrr([(c.company_id, c.name, t) for c, t in docs], seed),
                 "length_ratio": round(statistics.median(words) / real_words, 2) if real_words else None,
                 "vocab_jaccard": round(
@@ -334,8 +347,10 @@ def real_rows(sample: list[tuple[RealFiling, dict]], real: RealItems, seed: int,
                 "item": item,
                 "n_docs": len(docs),
                 "median_words": round(mw) if (mw := real.median_words.get(item)) else None,
+                "n_figures": None,
+                "n_questions": recall.get(item, (None, 0))[1],
                 "traced_pct": None,
-                "fact_recall_at_10": recall.get(item),
+                "fact_recall_at_10": recall.get(item, (None, 0))[0],
                 "self_retrieval_mrr": self_retrieval_mrr([(f.ticker, f.name, t) for f, t in docs], seed),
                 "length_ratio": 1.0,
                 "vocab_jaccard": 1.0,
@@ -412,7 +427,7 @@ def markdown(rows: list[dict], set_names: list[str]) -> str:
             "| Metric | " + " | ".join(r["set"] for r in shown) + " |",
             "|---" * (len(shown) + 1) + "|",
         ]
-        for metric in ["n_docs", "median_words", *WEIGHTS]:
+        for metric in ["n_docs", "median_words", "n_figures", "n_questions", *WEIGHTS]:
             cells = []
             for r in shown:
                 cell = fmt(r.get(metric))

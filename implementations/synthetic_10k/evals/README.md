@@ -74,6 +74,8 @@ What changed from Day 1:
 - Retriever-order agreement (Spearman across 3 retrievers) stays in `compare_sets.py` but is not used to pick a method. With 3 retrievers and 31 real questions it is too noisy.
 - Self-retrieval and cross-document overlap are new. They catch boilerplate repeated across companies, which makes a retrieval benchmark too hard or too easy in ways real filings aren't.
 
+`traced_pct` is left blank when an Item averages under one figure per filing, and `fact_recall_at_10` when it has fewer than 5 questions. Otherwise a set that writes almost no figures scores a perfect 100% and wins the suggestion. The `n_figures` and `n_questions` rows show how much each score rests on.
+
 `self_retrieval_mrr` and `cross_doc_overlap` depend on corpus size, so the real column uses a random real sample of `--real-sample` filings (default 20, the size of a batch). When the real corpus has no Item 8 text (Method 1's parsed corpus on Coder may not), Item 8 has no real column.
 
 ```bash
