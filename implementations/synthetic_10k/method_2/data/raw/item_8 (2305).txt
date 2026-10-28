@@ -1,0 +1,359 @@
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+The following discussion and analysis of our financial condition and results of operations should be read in conjunction with our consolidated financial statements and related notes appearing elsewhere in this Annual Report on Form 10-K. This section of this Form 10-K generally discusses 2024 and 2023 items and year-to-year comparisons between 2024 and 2023. Discussions of 2022 items and year-to-year comparisons between 2023 and 2022 are not included in this Form 10-K, and such disclosure can be found in “Management’s Discussion and Analysis of Financial Condition and Results of Operations” in Part II, Item 7 of the Company’s Annual Report on Form 10-K for the fiscal year ended December 31, 2023, which information is incorporated herein by reference. In addition to historical financial information, the following discussion contains forward-looking statements that are based upon current plans, expectations, and beliefs that involve risks and uncertainties. Our actual results may differ materially from those anticipated in these forward-looking statements as a result of various factors, including those factors discussed in the section titled “Risk Factors” and in other parts of this Annual Report on Form 10-K. Our fiscal year end is December 31.
+Overview
+Cloudflare’s mission is to help build a better Internet. We have built a global network that delivers a broad range of services to businesses of all sizes and in all geographies—making them more secure, enhancing the performance of their business-critical applications, and eliminating the cost and complexity of managing individual network hardware. Our network serves as a scalable, easy-to-use, unified control plane to deliver security, performance, and reliability across their on-premises, hybrid, cloud, and software-as-a-service (SaaS) applications. In addition, the distributed and programmable nature of our network increasingly is resulting in our customers building their applications on top of our network, too — including both traditional applications and those that are enhanced with artificial intelligence (AI).
+Our Business Model
+Our business model benefits from our ability to serve the needs of all customers ranging from individual developers to the largest enterprises, in a cost-effective manner. Our products generally are easy to deploy and allow for rapid and efficient onboarding of new customers and expansion of our relationships with our existing customers over time. Given the large customer base we have and the immense amount of Internet traffic that we manage, we are able to negotiate mutually beneficial agreements with Internet service providers (ISPs) that allow us to place our equipment directly in their data centers, which drives down our bandwidth and co-location expenses. This symbiotic relationship that we have with ISPs and the efficiency of our serverless network architecture allows us to introduce new products on our network at low marginal cost.
+We generate revenue primarily from sales to our customers of subscriptions to access our network and products. We offer a variety of plans to our free and paying customers depending on their required features and functionality.
+•Contracted customers. Our contracted customers, which consist of customers that enter into contracts for our Enterprise subscription plan, have contracts that typically range from one to three years and are typically billed on a monthly or annual basis. Our agreements with contracted customers are tailored and priced to meet their varying needs and requirements. Enterprise subscription plan agreements for our contracted customers generally include a base subscription and, in some cases, a portion based on variable usage. Agreements with certain of our larger enterprise customers may be structured as a "pool of funds" in which the customer commits to spend at least a specified amount on our products during the subscription period. These “pool of funds” arrangements do not require the customer to subscribe for specific products or spend any specific amounts during any month, quarter or, if applicable, year of the subscription period, but the funds must be utilized during the subscription period under the terms of these subscription agreements.
+•Pay-as-you-go customers. For our pay-as-you-go customers, we offer the ability to purchase our products through our website. We make our pay-as-you-go product solutions available in several configurations. For customers securing and accelerating their Internet properties using our website and application services, we offer Pro and Business subscription plans through our website per registered domain, and it is common for customers to purchase subscriptions to cover multiple Internet properties (e.g., domains, websites, application programming interfaces (APIs), and mobile applications). Pay-as-you-go customers can subscribe to more than one solution and purchase add-on products and network functionality we offer to meet their more advanced needs. For pay-as-you-go or contracted customers who need a scalable Zero
+75
+Table of contents
+Trust security solution to secure users and internal resources using our Zero Trust and network services solutions, we make these products available on a per seat basis. In addition, for developers building serverless applications, we offer our Cloudflare Workers product to these customers on a usage-based plan that is metered by requests and execution time. Our pay-as-you-go customers typically pay with a credit card on a monthly or annual basis for our Pro and Business subscription plans and on a monthly basis for our other pay-as-you-go plans and add-on products.
+Key elements of our business model include:
+•Significant investment in ongoing product development. We invest significantly in research and development. Our focus on research and development allows us to continually enhance the capabilities and functionality of our global network with new products and product features that are innovative and powerful and can be quickly adopted by our customers and helps us grow our customer base, which allows us to serve a greater portion of the world's Internet traffic. That in turn provides us with greater knowledge and insight into the challenges that Internet users face every day.
+•Investments in our network for growth. We believe that the size, sophistication, and distributed nature of our global network provide us with a significant competitive advantage. We intend to continue to make substantial investments in our global network infrastructure to support the growth of our business, including the addition of servers with storage capabilities to support our storage and database products and servers with graphics processing units (GPUs) to support our AI-related developer platform products. As we invest in our network, we believe the service that we can provide our customers and the insight and knowledge that we can gain will continue to grow.
+•Efficient go-to-market model. We have built an efficient go-to market model that reflects the flexibility and ease of use our products offer to our customers around the world. This has enabled us to acquire new customers as well as to expand within our existing customer base in a rapid, cost-effective manner. In particular, we have invested heavily in our contracted customer sales efforts.
+◦New customer acquisition. We believe that anyone that relies on the Internet to deliver products, services, or content or to operate its business can be a Cloudflare customer. As such, we are focused on driving an increased number of customers onto our network and products to support our long-term growth. We continue to invest to build our direct sales force, increase brand awareness, leverage and expand channel partners, and improve the sophistication of our sales operations for contracted customers, particularly large customers. Additionally, through our pay-as-you-go offering, a customer can subscribe to one of our many plans and begin using our network quickly, with minimal technical skill and no professional services. This has allowed us to acquire a large portion of our paying customers very rapidly and at significantly lower customer acquisition costs than our other product offerings.
+◦Expansion of our existing customers. We believe that our network enables a large opportunity for growth within our existing customer base given the breadth of products we offer on our infrastructure platform. Our relationships with customers often start with servicing a portion of their overall needs and expand over time as they realize the significant value we deliver. Once a customer has adopted one product on our network, it can easily add additional products. As we add more products and functionality to our network, we see opportunities to drive upsell as customers seek to consolidate onto one infrastructure platform to meet all of their security, performance, and reliability network requirements. We also intend to continue to invest in market awareness of our new products to improve growth within our existing customers.
+◦International reach. Our global network, with a presence in more than 335 cities and over 125 countries worldwide, has helped to foster our strong international growth. International markets represented 49%, 48%, and 47% of our revenue in the years ended December 31, 2024, 2023, and 2022, respectively, and we intend to continue to invest in our international growth as a strategy to expand our customer base around the world.
+•Free customer base. Free customers are an important part of our business. These customers are typically individual developers, early-stage startups, hobbyists, and other users and, like our pay-as-you-go customers, sign up for our service through our website. Our free customers create scale, serve as efficient brand marketing, and help us attract developers, customers, and potential employees. These free customers expose us to diverse traffic, threats, and problems, often allowing us to see potential security,
+76
+Table of contents
+performance, and reliability issues at the earliest stage. This knowledge allows us to improve our products and deliver more effective solutions to our paying customers. In addition, the added scale and diversity of this traffic makes us valuable to a diverse set of global ISPs, improving the breadth and economic terms of our interconnections, bandwidth costs, and co-location expenses. Finally, the enthusiastic engagement of our free customer base represents a "virtual quality assurance" function that allows us to maintain a high rate of product innovation, while ensuring our products are extensively tested in real world environments before they are deployed to our paying customers.
+Opportunities, Challenges, and Risks
+We believe that the growth of our business and our future success are dependent upon many factors, including growing our paying customer base, particularly large customers, expanding our relationships with existing paying customers, developing and successfully launching new products and features, expanding into additional market segments, expanding our base of free customers, and developing and maintaining favorable peering and co-location relationships. Each of these factors presents significant opportunities for us, but also poses material challenges and risks that we must successfully address in order to grow our business and improve our operating results. We expect that addressing these challenges and risks will increase our operating expenses significantly over the next several years. The timing of our future profitability, if we achieve profitability at all, will depend upon many variables, including the success of our growth strategies and the timing and size of investments and expenditures that we choose to undertake, as well as market growth and other factors that are not within our control. In addition, we must comply with complex, uncertain, and evolving laws, rules, and regulatory requirements across federal, state, and international jurisdictions. If we fail to successfully address these challenges, risks, and variables, our business, operating results, financial condition, and prospects may be adversely affected.
+Impact of Macroeconomic Developments
+We are closely monitoring macroeconomic developments and global events, such as the conflicts in the Middle East and Ukraine and the potential worsening or expansion of those conflicts and other areas of geopolitical tension around the world, and other geopolitical events such as elections and other governmental changes, and, in each case, how they may adversely impact our and our customers’ businesses. Weak economic conditions or uncertainty regarding the stability of financial markets related to stock market volatility, inflation, recession, threats of tariffs and other impediments to cross-border trade, trade agreements or governmental fiscal, monetary and tax policies, among others, also could adversely impact our and our customers’ business, financial condition and operating results. In addition, general tightening in the credit market, lower levels of liquidity, increases in rates of default and bankruptcy, and significant volatility in equity and fixed-income markets could all negatively impact our customers’ purchasing decisions. Potentially as a result of these various macroeconomic impacts on our customers, we periodically have experienced lengthening of the average sales cycle for certain types of customers and sales (including sales to new customers and expansion sales to existing customers), slowdowns in our pipeline of potential new customers and in the rate of converting sales pipeline opportunities into new sales, increases in average days sales outstanding, higher levels of churn in our paying customer base (which is when any of our paying customers cease to be a paying customer for any reason, including any pay-as-you-go customer converting to a free subscription plan), and lengthening of the timing of payment from some of our customers, all of which may have contributed to a slowdown in our revenue growth from prior periods (including with respect to new customers). We believe macroeconomic uncertainty could persist during 2025. As a result, we expect that some or all of the negative trends described in this paragraph may emerge or recur during future quarters.
+To the extent challenging macroeconomic conditions persist, we may experience additional adverse effects on our business, financial condition, or results of operations in future periods. These effects could include, among others, reduction or increased delays in purchasing decisions by existing and potential new paying customers, additional lengthening of the sales cycle for some of our existing and potential new paying customers, potential customer requests for concessions (including in terms of payment amounts and/or timing and earlier or additional termination rights), potential losses of paying customers as a result of economic distress or bankruptcy (particularly among our small and medium paying customer base), potential reductions in new non-U.S. customers and expansion of sales to existing non-U.S. paying customers as a result of our products, which are substantially all sold in U.S. dollars, becoming relatively more expensive for such customers due to the higher value of the U.S. dollar relative to other currencies, and increased costs for employee compensation and equipment purchases resulting from continued inflationary cost pressures.
+77
+Table of contents
+For further discussion of the challenges and risks we confront related to macroeconomic conditions and geopolitical tension around the world, please refer to Part I, Item 1A “Risk Factors” of this Annual Report on Form 10-K.
+78
+Table of contents
+Financial Measures and Key Business Metrics
+We review a number of financial and operating metrics, including the following non-GAAP financial measures and key metrics to evaluate our business, measure our performance, identify trends affecting our business, formulate business plans, and make strategic decisions.
+Year Ended December 31,
+2024	2023	2022
+(dollars in thousands)
+Gross profit
+$	1,290,924	$	989,740	$	742,631
+Gross margin
+77	%	76	%	76	%
+Loss from operations
+$	(154,761)	$	(185,485)	$	(201,203)
+Non-GAAP income from operations
+$	230,111	$	122,017	$	35,679
+Operating margin
+(9)	%	(14)	%	(21)	%
+Non-GAAP operating margin
+14	%	9	%	4	%
+Net cash provided by operating activities
+$	380,429	$	254,406	$	123,595
+Net cash used in investing activities
+$	(330,224)	$	(186,201)	$	(235,696)
+Net cash provided by (used in) financing activities
+$	12,785	$	(192,185)	$	6,347
+Free cash flow
+$	166,915	$	119,464	$	(39,769)
+Net cash provided by operating activities (as a percentage of revenue)
+23	%	20	%	13	%
+Free cash flow margin
+10	%	9	%	(4)	%
+Paying customers(1)
+237,714	189,791	162,086
+Paying customers (> $100,000 Annualized Revenue)(1)
+3,497	2,756	2,042
+(1)Key business metrics are derived on a quarterly basis. Refer to Key Business Metrics section below for further detail.
+The following table summarizes the revenue by region based on the billing address of customers who use the Company’s products:
+Year Ended December 31,
+2024	2023	2022
+(dollars in thousands)
+Amount	Percentage
+of Revenue	Amount	Percentage
+of Revenue	Amount	Percentage
+of Revenue
+United States	$	849,500	51	%	$	678,184	52	%	$	515,722	53	%
+Europe, Middle East, and Africa
+466,499	28	%	356,569	28	%	258,291	26	%
+Asia Pacific	223,234	13	%	168,826	13	%	133,353	14	%
+Other	130,393	8	%	93,166	7	%	67,875	7	%
+Total	$	1,669,626	100	%	$	1,296,745	100	%	$	975,241	100	%
+Non-GAAP Financial Measures
+In addition to our results determined in accordance with generally accepted accounting principles in the United States (U.S. GAAP), we believe the following non-GAAP measures are useful in evaluating our operating performance. We use the following non-GAAP financial information to evaluate our ongoing operations and for internal planning and forecasting purposes. We believe that non-GAAP financial information, when taken collectively, may be helpful to investors because it provides consistency and comparability with past financial performance. However, non-GAAP financial information is presented for supplemental informational purposes only, has limitations as an analytical tool, and should not be considered in isolation or as a substitute for financial information presented in accordance with U.S. GAAP. In particular, free cash flow is not a substitute for cash provided by operating activities. Additionally, the utility of free cash flow as a measure of our liquidity is further limited as it does not represent the total increase or decrease in our cash balance for a given period. In addition, other companies, including companies in our industry, may calculate similarly-titled non-GAAP measures differently
+79
+Table of contents
+or may use other measures to evaluate their performance, all of which could reduce the usefulness of our non-GAAP financial measures as tools for comparison. A reconciliation is provided below for each non-GAAP financial measure to the most directly comparable financial measure stated in accordance with U.S. GAAP. Investors are encouraged to review the related U.S. GAAP financial measures and the reconciliation of these non-GAAP financial measures to their most directly comparable U.S. GAAP financial measures, and not to rely on any single financial measure to evaluate our business.
+Non-GAAP Income from Operations and Non-GAAP Operating Margin
+We define non-GAAP income from operations and non-GAAP operating margin as U.S. GAAP loss from operations and U.S. GAAP operating margin, respectively, excluding stock-based compensation expense and its related employer payroll taxes, amortization of acquired intangible assets, acquisition-related and other expenses. We exclude stock-based compensation expense, which is a non-cash expense, from certain of our non-GAAP financial measures because we believe that excluding this item provides meaningful supplemental information regarding operational performance. We exclude employer payroll tax expenses related to stock-based compensation, which is a cash expense, from certain of our non-GAAP financial measures, because such expenses are dependent upon the price of our Class A common stock and other factors that are beyond our control and do not correlate to the operation of our business. We exclude amortization of acquired intangible assets, which is a non-cash expense, related to business combinations from certain of our non-GAAP financial measures because such expenses are related to business combinations and have no direct correlation to the operation of our business. We exclude acquisition-related and other expenses from certain of our non-GAAP financial measures because such expenses are related to business combinations and have no direct correlation to the operation of our business. Acquisition-related and other expenses can be cash or non-cash expenses incurred in connection with the acquisition, and include third-party transaction costs and compensation expense for key acquired personnel. We also excluded the one-time cash compensation charge incurred during the three months ended March 31, 2024 from certain of our non-GAAP financial measures because it was not attributable to services provided and did not correlate to the ongoing operation of our business.
+Year Ended December 31,
+2024	2023	2022
+(dollars in thousands)
+Loss from operations	$	(154,761)	$	(185,485)	$	(201,203)
+Add:
+Stock-based compensation expense and related employer payroll taxes
+356,423	287,500	217,766
+Amortization of acquired intangible assets	12,747	20,002	15,169
+Acquisition-related and other expenses	702	—	3,947
+One-time compensation charge
+15,000	—	—
+Non-GAAP income from operations
+$	230,111	$	122,017	$	35,679
+Operating margin	(9)	%	(14)	%	(21)	%
+Non-GAAP operating margin (non-GAAP income from operations as a percentage of revenue)
+14	%	9	%	4	%
+Free Cash Flow and Free Cash Flow Margin
+Free cash flow is a non-GAAP financial measure that we calculate as net cash provided by operating activities less cash used for purchases of property and equipment and capitalized internal-use software. Free cash flow margin is calculated as free cash flow divided by revenue. We believe that free cash flow and free cash flow margin are useful indicators of liquidity that provide information to management and investors about the amount of cash generated from our operations that, after the investments in property and equipment and capitalized internal-use software, can be used for strategic initiatives, including investing in our business, and strengthening our financial position. We believe that historical and future trends in free cash flow and free cash flow margin, even if negative, provide useful information about the amount of cash generated by our operating activities that is available (or not available) to be used for strategic initiatives. For example, if free cash flow is negative, we may need to access cash reserves or other sources of capital to invest in strategic initiatives. One limitation of free cash flow and free cash flow margin is
+80
+Table of contents
+that they do not reflect our future contractual commitments. Additionally, free cash flow does not represent the total increase or decrease in our cash balance for a given period.
+Year Ended December 31,
+2024	2023	2022
+(dollars in thousands)
+Net cash provided by operating activities
+$	380,429	$	254,406	$	123,595
+Less: Purchases of property and equipment
+(185,037)	(114,396)	(143,606)
+Less: Capitalized internal-use software
+(28,477)	(20,546)	(19,758)
+Free cash flow
+$	166,915	$	119,464	$	(39,769)
+Net cash used in investing activities
+$	(330,224)	$	(186,201)	$	(235,696)
+Net cash provided by (used in) financing activities
+$	12,785	$	(192,185)	$	6,347
+Net cash provided by operating activities (as a percentage of revenue)
+23	%	20	%	13	%
+Less: Purchases of property and equipment (as a percentage of revenue)
+(11)	%	(9)	%	(15)	%
+Less: Capitalized internal-use software (as a percentage of revenue)
+(2)	%	(2)	%	(2)	%
+Free cash flow margin
+10	%	9	%	(4)	%
+Key Business Metrics
+In addition to our results determined in accordance with U.S. GAAP and the non-GAAP measures discussed above, we also review the key business metrics discussed below to assist us in evaluating our business, measuring performance, identifying trends, formulating business plans, and making strategic decisions. There are a number of limitations associated with the use of key business metrics as analytical tools, however, and we do not rely upon any single key business metric to evaluate our business. In addition, other companies, including companies in our industry, may calculate similarly-titled business metrics differently or may use other measures to evaluate their performance, all of which could reduce the usefulness of these business metrics as tools for comparison to such companies.
+Paying Customers
+We believe our ability to grow the number of paying customers on our network provides a key indicator of growth of our business and our future business opportunities. We define a paying customer at the end of the quarter as a person or entity who has generated revenue and has an active contract with us or one of our partners during such quarter, excluding (i) customers that were not acquired through ordinary sales channels, (ii) customers using only our registrar product, and (iii) customers using our consumer applications, such as 1.1.1.1 and WARP, which agreements and customers together represent an insignificant amount of our revenue. An entity is defined as a company, a government institution, a non-profit organization, or a distinct business unit of a large company. An active contract is defined as a customer relationship for which we have provided services during the quarter. The number of paying customers was 237,714, 189,791, and 162,086 as of December 31, 2024, 2023, and 2022, respectively.
+Paying Customers (> $100,000 Annualized Revenue)
+While we continue to grow customers across all sizes, over time, our large customers have contributed an increasing share of our revenue. We view the number of customers with Annualized Revenue greater than $100,000 as indicative of our penetration within large enterprise accounts. To measure Annualized Revenue at the end of a quarter, we take the sum of revenue for each customer in the quarter and multiply that amount by four. For example, if we signed a new customer that generated $1,800 of revenue in a quarter, that customer would account for $7,200 of Annualized Revenue for that year. Our Annualized Revenue calculation excludes (i) agreements that were not entered into through ordinary sales channels, (ii) revenue generated from customers using only our registrar product, and (iii) customers using our consumer applications, such as 1.1.1.1 and WARP, which agreements and customers together represent an insignificant amount of our revenue. Our Annualized Revenue
+81
+Table of contents
+metric also includes any usage charges by a customer during a period, which represents a small portion of our total revenue and may not be recurring. As a result, Annualized Revenue may be higher than actual revenue over the course of the year. The number of paying customers with Annualized Revenue greater than $100,000 was 3,497, 2,756, and 2,042 as of December 31, 2024, 2023, and 2022, respectively.
+Dollar-Based Net Retention Rate
+Our ability to maintain long-term revenue growth and achieve profitability is dependent on our ability to retain and grow revenue generated from our existing paying customers. We believe that we will achieve these objectives by continuing to focus on customer loyalty and adding additional products and functionality to our network. Our dollar-based net retention rate is a key way we measure our performance in these areas. Dollar-based net retention measures our ability to retain and expand recurring revenue from existing customers. To calculate dollar-based net retention for a quarter, we compare the Annualized Revenue from paying customers four quarters prior to the Annualized Revenue from the same set of customers in the most recent quarter. Our dollar-based net retention includes expansion and is net of contraction and attrition, but excludes Annualized Revenue from new customers in the current period. Our dollar-based net retention excludes the benefit of free customers that upgrade to a paid subscription between the prior and current periods, even though this is an important source of incremental growth. We believe this provides a more meaningful representation of our ability to add incremental business from existing paying customers as they renew and expand their contracts. Our dollar-based net retention rates for the three months ended December 31, 2024, 2023, and 2022 were 111%, 115%, and 122%, respectively.
+Components of Our Results of Operations
+Revenue
+We generate revenue primarily from sales to our customers of subscriptions to access our network and products, together with related support services. Arrangements with customers generally do not provide the customer with the right to take possession at any time of our software operating our global network. Instead, customers are granted continuous access to our network and products over the contractual period. A time-elapsed output method is used to measure progress because we transfer control evenly over the contractual period. Accordingly, the fixed consideration related to subscription and support revenue is generally recognized on a straight-line basis over the contract term beginning on the date that the service is made available to the customer. Usage-based consideration is primarily related to fees charged for our customer’s use of excess bandwidth when accessing our network in a given period and is recognized as revenue in the period in which the usage occurs.
+The subscription and support term contracts for the Company’s contracted customers, typically range from one to three years. Most of our contracts with contracted customers are non-cancelable over the contractual term. Customers may have the right to terminate their contracts for cause if we fail to perform in accordance with the contractual terms. For our pay-as-you-go customers, subscription and support term contracts are typically monthly.
+Cost of Revenue
+Cost of revenue consists primarily of expenses that are directly related to providing our service to our paying customers. These expenses include expenses related to operating in co-location facilities, network and bandwidth costs, depreciation of our equipment located in co-location facilities, certificate authority services costs for paying customers, related overhead costs, the amortization of our capitalized internal-use software, and the amortization of acquired developed technologies. Cost of revenue also includes employee-related costs, including salaries, benefits, and stock-based compensation for employees whose primary responsibilities relate to supporting our paying customers. Other costs included in cost of revenue include credit card fees related to processing customer transactions and allocated overhead costs.
+As our customers expand and increase the use of our global network and products driven by additional applications and connected devices, we expect that our cost of revenue will continue to increase due to higher network and bandwidth costs and expenses related to operating in additional co-location facilities. However, we expect to continue to benefit from economies of scale as our customers increase the use of our global network and products. We intend to continue to invest additional resources in our global network and products and our customer support
+82
+Table of contents
+organizations as we grow our business. The level and timing of investment in these areas could affect our cost of revenue in the future.
+Gross Profit and Gross Margin
+Gross profit is revenue less cost of revenue and gross margin is gross profit as a percentage of revenue. Our gross profit and gross margin have and are expected to continue to fluctuate from period to period due to the timing of acquisition of new customers, our renewals with existing customers and expenses that are directly related to providing our service to our paying customers. We expect our gross profit to increase in absolute dollars and our gross margin to remain consistent over the long term, although our gross margin could fluctuate from period to period depending on the interplay of all of these factors.
+Operating Expenses
+Sales and Marketing
+Sales and marketing expenses consist primarily of employee-related costs, including salaries, a one-time cash compensation charge incurred during the three months ended March 31, 2024, benefits, and stock-based compensation expense, sales commissions that are recognized as expenses over the period of benefit, marketing programs, certificate authority services costs for free customers, travel-related expenses, bandwidth and co-location costs for free customers, and allocated overhead costs. Sales commissions earned by our sales force and the associated payroll taxes that are direct and incremental to the acquisition of channel partner and direct customer contracts are deferred and amortized over an estimated period of benefit of three years for the initial acquisition of a contract and over the contractual term of the renewals for renewal contracts. We plan to continue to invest in sales and marketing to grow our customer base and increase our brand awareness, including marketing efforts to continue to drive our pay-as-you-go business model. As a result, we expect our sales and marketing expenses to increase in absolute dollars for the foreseeable future. However, we expect our sales and marketing expenses to decrease as a percentage of our revenue over the long term, although our sales and marketing expenses may fluctuate as a percentage of our revenue from period to period due to the timing and extent of these expenses.
+Research and Development
+Research and development costs consist primarily of employee-related costs, including salaries, benefits, and stock-based compensation expense, consulting costs, depreciation of equipment used in research and development, and allocated overhead costs. Research and development costs support our efforts to add new features to our existing offerings and to ensure the security, performance, and reliability of our global network. We expect our research and development expenses to increase in absolute dollars for the foreseeable future as we continue to invest in research and development efforts to enhance the functionality of our global network and products. We expect our research and development expenses to decrease as a percentage of our revenue over the long term, although our research and development expenses may fluctuate as a percentage of our revenue from period to period due to the timing and extent of these expenses.
+General and Administrative
+General and administrative expenses consist primarily of employee-related costs, including salaries, benefits, and stock-based compensation expense for our finance, legal, human resources, and other administrative personnel, professional fees for external legal services, accounting, and other consulting services, bad debt expense, and allocated overhead costs. We expect our general and administrative expenses to continue to increase in absolute dollars for the foreseeable future to support our growth as well as due to additional costs associated with legal, accounting, compliance, insurance, investor relations, and other costs as a result of operating as a public company. However, we expect our general and administrative expenses to decrease as a percentage of our revenue over the long term, although our general and administrative expenses may fluctuate as a percentage of our revenue from period to period due to the timing and extent of these expenses.
+Non-Operating Income (Expense)
+Interest Income
+83
+Table of contents
+Interest income consists primarily of interest earned on our cash, cash equivalents, and our investment holdings.
+Interest Expense
+Interest expense consists primarily of contractual interest expense and amortization of the debt issuance costs on our 0.75% Convertible Senior Notes due 2025 (the 2025 Notes) and 0% Convertible Senior Notes due 2026 (the 2026 Notes, and together with the 2025 Notes, the Notes).
+Loss on Extinguishment of Debt
+Loss on extinguishment of debt consists of loss recognized from open market transactions to repurchase approximately $123.0 million in aggregate principal amount of the 2025 Notes for an aggregate of $172.7 million in cash (including accrued interest) (the 2025 Notes Repurchases). Refer to Note 7 to the consolidated financial statements in Part II, Item 8 of this Annual Report on Form 10-K for further detail.
+Other Income (Expense), Net
+Other income (expense), net consists primarily of gain on sale of property and equipment and foreign currency transaction gains and losses.
+Provision for (Benefit from) Income Taxes
+Provision for (benefit from) income taxes consists primarily of income taxes in certain foreign jurisdictions in which we conduct business, as well as state income taxes in the United States. We have a full valuation allowance on our U.S. federal, U.S. state, and U.K. deferred tax assets as we have concluded that it is more likely than not that the deferred tax assets will not be realized.
+84
+Table of contents
+Results of Operations
+The following tables set forth our consolidated results of operations for the periods presented in dollars and as a percentage of our revenue for those periods:
+Year Ended December 31,
+2024	2023	2022
+(in thousands)
+Revenue	$	1,669,626	$	1,296,745	$	975,241
+Cost of revenue
+378,702	307,005	232,610
+Gross profit	1,290,924	989,740	742,631
+Operating expenses:
+Sales and marketing
+745,791	599,117	465,762
+Research and development
+421,374	358,143	298,303
+General and administrative
+278,520	217,965	179,769
+Total operating expenses	1,445,685	1,175,225	943,834
+Loss from operations	(154,761)	(185,485)	(201,203)
+Non-operating income (expense):
+Interest income	87,426	68,167	14,877
+Interest expense	(5,196)	(5,872)	(4,984)
+Loss on extinguishment of debt	—	(50,300)	—
+Other income (expense), net	1,660	(4,372)	577
+Total non-operating income, net
+83,890	7,623	10,470
+Loss before income taxes	(70,871)	(177,862)	(190,733)
+Provision for income taxes
+7,929	6,087	2,648
+Net loss	$	(78,800)	$	(183,949)	$	(193,381)
+85
+Table of contents
+Year Ended December 31,
+2024	2023	2022
+Percentage of Revenue Data:
+Revenue
+100	%	100	%	100	%
+Cost of revenue	23	24	24
+Gross margin
+77	76	76
+Operating expenses:
+Sales and marketing	44	46	48
+Research and development	25	27	31
+General and administrative	17	17	18
+Total operating expenses
+86	90	97
+Loss from operations
+(9)	(14)	(21)
+Non-operating income (expense):
+Interest income	5	5	2
+Interest expense	—	—	(1)
+Loss on extinguishment of debt	—	(4)	—
+Other income (expense), net	—	—	—
+Total non-operating income, net
+5	1	1
+Loss before income taxes
+(4)	(13)	(20)
+Provision for income taxes
+1	1	—
+Net loss
+(5)	%	(14)	%	(20)	%
+Comparison of the Years Ended December 31, 2024 and 2023
+Revenue
+Year Ended December 31,	Change
+2024	2023	$	%
+(dollars in thousands)
+Revenue	$	1,669,626	$	1,296,745	$	372,881	29	%
+Revenue increased by $372.9 million, or 29%, for the year ended December 31, 2024 compared to the year ended December 31, 2023. The increase in revenue was primarily due to the addition of new paying customers, which increased by 25% during the year ended December 31, 2024, as well as expansion within our existing paying customers, which was reflected by our dollar-based net retention rate of 111% for the three months ended December 31, 2024.
+Cost of Revenue and Gross Margin
+Year Ended December 31,	Change
+2024	2023	$	%
+(dollars in thousands)
+Cost of revenue	$	378,702	$	307,005	$	71,697	23	%
+Gross margin	77	%	76	%
+Cost of revenue increased by $71.7 million, or 23%, for the year ended December 31, 2024 compared to the year ended December 31, 2023. The increase in the cost of revenue was primarily due to an increase of $32.6 million of third-party technology services costs, registry expenses, and payment processing fees, an increase of $23.9 million in expenses related to operating in co-location facilities and network and bandwidth costs for operating our global network for our expanded customer base, as well as increased capacity to support our growth, an increase of $15.4
+86
+Table of contents
+million in employee-related costs, and an increase of $2.1 million in purchases of computer equipment and supplies. This increase was partially offset by $6.4 million of decreased depreciation expense. The decrease in depreciation expense was mainly driven by the $14.9 million decrease due to the impact of the change in useful life of servers associated with cost of revenue from 4 years to 5 years, partially offset by an increase related to purchases of equipment located in co-location facilities.
+Gross margin did not significantly fluctuate during the year ended December 31, 2024 as compared to the year ended December 31, 2023.
+Operating Expenses
+Sales and Marketing
+Year Ended December 31,	Change
+2024	2023	$	%
+(dollars in thousands)
+Sales and marketing	$	745,791	$	599,117	$	146,674	24	%
+Sales and marketing expenses increased by $146.7 million, or 24%, for the year ended December 31, 2024 compared to the year ended December 31, 2023. The increase was primarily driven by $90.9 million in increased employee-related costs due to an 11% increase in headcount in our sales and marketing organization, including an increase of $19.2 million in stock-based compensation expense, and a $15.0 million one-time compensation charge. The remainder of the increase was primarily due to an increase of $24.5 million in expenses for marketing programs due to acquisitions, investments in brand awareness advertising, third-party industry events, and digital performance marketing, an increase of $9.7 million in co-location and bandwidth expenses for free customers, an increase of $7.2 million in travel-related expenses, an increase of $5.8 million in consulting expenses, and an increase of $4.1 million in subscription expenses.
+Research and Development
+Year Ended December 31,	Change
+2024	2023	$	%
+(dollars in thousands)
+Research and development	$	421,374	$	358,143	$	63,231	18	%
+Research and development expenses increased by $63.2 million, or 18%, for the year ended December 31, 2024 compared to the year ended December 31, 2023. The increase was primarily driven by $64.3 million in increased employee-related costs due to a 25% increase in headcount in our research and development organization, including an increase of $15.4 million in stock-based compensation expense, and an increase of $4.5 million in subscription expenses, partially offset by increased capitalized internal-use software development costs of $11.1 million.
+General and Administrative
+Year Ended December 31,	Change
+2024	2023	$	%
+(dollars in thousands)
+General and administrative	$	278,520	$	217,965	$	60,555	28	%
+General and administrative expenses increased by $60.6 million, or 28%, for the year ended December 31, 2024 compared to the year ended December 31, 2023. The increase was primarily driven by $48.9 million in increased employee-related costs due to a 21% increase in headcount in our general and administrative organization, including an increase of $33.1 million in stock-based compensation expense. The remainder of the increase was primarily due to an increase of $6.1 million in professional fees for third-party accounting, consulting, and legal services.
+Non-Operating Income (Expense)
+87
+Table of contents
+Interest Income
+Year Ended December 31,	Change
+2024	2023	$	%
+(dollars in thousands)
+Interest income	$	87,426	$	68,167	$	19,259	28	%
+Interest income increased by $19.3 million, or 28%, for the year ended December 31, 2024 compared to the year ended December 31, 2023. The increase was primarily driven by an increase in interest rates and investment balance.
+Interest Expense
+Year Ended December 31,	Change
+2024	2023	$	%
+(dollars in thousands)
+Interest expense	$	(5,196)	$	(5,872)	$	676	(12)	%
+Interest expense did not significantly fluctuate during the year ended December 31, 2024 as compared to the year ended December 31, 2023.
+Loss on Extinguishment of Debt
+Year Ended December 31,	Change
+2024	2023	$	%
+(dollars in thousands)
+Loss on extinguishment of debt	$	—	$	(50,300)	$	50,300	*
+______________
+* Not meaningful
+Loss on extinguishment of debt decreased by $50.3 million for the year ended December 31, 2024 as compared to the year ended December 31, 2023. The decrease was driven by the loss on extinguishment of debt we recognized in connection with the 2025 Notes Repurchases during the year ended December 31, 2023. Refer to Note 7 to the consolidated financial statements in Part II, Item 8 of this Annual Report on Form 10-K.
+Other Income (Expense), net
+Year Ended December 31,	Change
+2024	2023	$	%
+(dollars in thousands)
+Other income (expense), net	$	1,660	$	(4,372)	$	6,032	*
+______________
+* Not meaningful
+Other income (expense), net increased by $6.0 million for the year ended December 31, 2024 compared to the year ended December 31, 2023. The increase was primarily driven by larger unrealized gain due to changes in foreign currency exchange rates relative to the U.S. dollar compared to prior periods.
+88
+Table of contents
+Provision for Income Taxes
+Year Ended December 31,	Change
+2024	2023	$	%
+(dollars in thousands)
+Provision for income taxes
+$	7,929	$	6,087	$	1,842	30	%
+We recorded an income tax expense of $7.9 million during the year ended December 31, 2024 as compared to an income tax expense of $6.1 million for the year ended December 31, 2023. The income tax expense of $7.9 million for the year ended December 31, 2024 was primarily related to withholding taxes in the United States and income tax expense from profitable foreign jurisdictions, offset by the partial release of the U.S. and U.K. valuation allowances in connection with acquisitions. The income tax expense of $6.1 million for the year ended December 31, 2023 was primarily related to withholding taxes in the United States and income tax expense from profitable foreign jurisdictions.
+Liquidity and Capital Resources
+Since our inception, we have financed our operations primarily through net proceeds from the sale of our equity and debt securities, as well as cash flow from our operating activities, and we expect to continue to finance our operations using the same sources for the foreseeable future. In May 2020, we issued $575.0 million aggregate principal amount of the 2025 Notes in a private offering to qualified institutional buyers pursuant to Rule 144A promulgated under the Securities Act, from which we received total proceeds, net of initial purchaser discounts and commissions and debt issuance costs, of $562.5 million. In August 2021, we issued $1,293.8 million aggregate principal amount of the 2026 Notes in a private offering to qualified institutional buyers pursuant to Rule 144A promulgated under the Securities Act, from which we received total proceeds, net of initial purchaser discounts and commissions and debt issuance costs of $1,274.0 million. Concurrently with the completion of the offering of the 2026 Notes, we also entered into privately-negotiated exchange agreements with certain holders of the 2025 Notes to exchange approximately $400 million in aggregate principal amount of the 2025 Notes for an aggregate of $400.7 million in cash (including accrued interest) and approximately 7.6 million shares of our Class A common stock. In May 2023, we repurchased approximately $123.0 million in aggregate principal amount of the 2025 Notes for $172.7 million in cash (including accrued interest). Subsequently, in July 2023, we settled conversions of the remaining $35.4 million aggregated principal amount outstanding of the 2025 Notes in a combination of $35.4 million cash and approximately 0.5 million shares of our Class A common stock. In May 2024, the Company entered into a credit agreement with a syndicated group of lenders, which provides for a senior secured $400.0 million revolving credit facility (the Revolving Credit Facility), with a sublimit of $30.0 million available for the issuance of letters of credit and $30.0 million available for swingline borrowings. The credit agreement permits the Company to increase the commitments under the Revolving Credit Facility by an aggregate principal amount of up to $150.0 million, subject to the satisfaction of certain conditions. The proceeds of the loans under the Revolving Credit Facility may be used for working capital and general corporate purposes. As of December 31, 2024, no loans were outstanding under the Revolving Credit Facility. Letters of credit issued under the credit agreement were not material as of December 31, 2024.
+As of December 31, 2024, we had cash and cash equivalents of $147.7 million, including $14.3 million held by our foreign subsidiaries. Our cash and cash equivalents primarily consist of cash and highly liquid money market funds and U.S. treasury securities. We also had available-for-sale securities of $1,708.2 million consisting of corporate bonds, U.S. treasury securities, U.S. government agency securities, and commercial paper. As of December 31, 2024, our investment portfolio consisted of investment grade securities with an average credit rating of AA. We have generated significant operating losses from our operations as reflected in our accumulated deficit of $1,102.6 million as of December 31, 2024. We expect to continue to incur operating losses and cash flow that may fluctuate between positive and negative for the foreseeable future due to the investments we intend to make in our business, and as a result we may require additional capital resources to execute on our strategic initiatives to grow our business.
+We believe that our existing cash, cash equivalents, available-for-sale securities, and available capacity under the Revolving Credit Facility will be sufficient to meet our working capital and capital expenditure needs for at least the next 12 months. For the period beyond the next 12 months, we believe we will be able to meet our working capital and capital expenditure needs from our existing cash, cash equivalents, available-for-sale-securities, available
+89
+Table of contents
+borrowings under the Revolving Credit Facility, the cash flows from our operating activities and, if necessary, proceeds from other potential equity or debt financings. Our assessments of the period of time through which our existing financial resources will be adequate to support our operations and our expected sources of capital for the future operation of our business after such period of time are forward-looking statements and involve risks and uncertainties. Our actual results could vary as a result of, and our near- and long-term future capital requirements will depend on, many factors, including our growth rate, subscription renewal activity, the timing and extent of spending to support our infrastructure and research and development efforts, the expansion of sales and marketing activities, the timing of new introductions of products or features, the continuing market adoption of our global network and products, and the impact of macroeconomic conditions to our and our customers', vendors', and partners' businesses. We may in the future enter into arrangements to acquire or invest in complementary businesses, services and technologies, including intellectual property rights, and such acquisitions and investments could increase our need for additional capital. We have based our estimates on assumptions that may prove to be wrong, and we could use our available capital resources sooner than we currently expect. Additionally, some of the factors that may influence our operations are not within our control, such as general economic conditions. We may seek, or be required to seek, additional equity or debt financing from time to time in the future. In the event that additional financing is required from outside sources, we may not be able to raise it on terms acceptable to us or at all. If we are unable to raise additional capital when desired, or if we cannot expand our operations or otherwise capitalize on our business opportunities because we lack sufficient capital, our business, operating results, and financial condition would be adversely affected.
+As of December 31, 2024, our material cash requirements include contractual obligations from the 2026 Notes, purchase commitments and lease obligations. Refer to Notes 6, 7, and 8 to the consolidated financial statements in Part II, Item 8 of this Annual Report on Form 10-K for more information regarding these material cash requirements.
+In addition to the contractual obligations described above, as of December 31, 2024, we had $6.5 million recognized as total restricted cash on our consolidated balance sheets mainly related to indemnity holdback consideration associated with asset acquisitions and business combinations.
+Cash Flows
+The following table summarizes our cash flows for the periods presented:
+Year Ended December 31,
+2024	2023	2022
+(in thousands)
+Net cash provided by operating activities
+$	380,429	$	254,406	$	123,595
+Net cash used in investing activities	$	(330,224)	$	(186,201)	$	(235,696)
+Net cash provided by (used in) financing activities
+$	12,785	$	(192,185)	$	6,347
+Operating Activities
+Net cash provided by operating activities during the year ended December 31, 2024 was $380.4 million, which resulted from a net loss of $78.8 million, adjusted for non-cash charges of $568.2 million and net cash outflow of $108.9 million from changes in operating assets and liabilities. Non-cash charges primarily consisted of $338.5 million for stock-based compensation expense, $127.7 million for depreciation and amortization expense, $77.8 million for amortization of deferred contract acquisition costs, $49.5 million for non-cash operating lease costs, $10.0 million for provision for bad debt, and $4.0 million for amortization of convertible note issuance costs, which were partially offset by $42.1 million for net accretion of discounts. The net cash outflow from changes in operating assets and liabilities was primarily the result of a $116.8 million increase in deferred contract acquisition costs due to the addition of new customers, a $78.5 million increase in accounts receivable, net, which increased due to our growing customer base and timing of collections from our customers, $55.2 million increase in payments for operating lease liabilities, a $38.2 million increase in prepaid expenses and other current assets, and a $5.5 million increase in contract assets, which were partially offset by a $135.0 million increase in deferred revenue, an $18.7 million increase in accrued compensation, an $18.6 million increase in accounts payable, and a $9.9 million increase in accrued expenses and other current liabilities.
+Net cash provided by operating activities during the year ended December 31, 2023 was $254.4 million, which resulted from a net loss of $183.9 million, adjusted for non-cash charges of $543.1 million and net cash outflow of
+90
+Table of contents
+$104.7 million from changes in operating assets and liabilities. Non-cash charges primarily consisted of $274.0 million for stock-based compensation expense, $135.8 million for depreciation and amortization expense, $61.4 million for amortization of deferred contract acquisition costs, $50.3 million for loss on extinguishment of debt, $44.8 million for non-cash operating lease costs, $13.6 million for provision for bad debt, and $4.5 million for amortization of convertible note issuance costs, which were partially offset by $44.4 million for net accretion of discounts. The net cash outflow from changes in operating assets and liabilities was primarily the result of a $113.4 million increase in accounts receivable, net, which increased due to our growing customer base and timing of collections from our customers, a $101.5 million increase in deferred contract acquisition costs due to increased sales commissions from the addition of new customers, a $40.0 million increase in payments for operating lease liabilities, a $22.1 million increase in prepaid expenses and other current assets related to operating activities, which were partially offset by a $134.5 million increase in deferred revenue, a $21.8 million increase in accrued compensation, an $11.8 million increase in accounts payable related to operating activities, and a $4.0 million increase in accrued expenses and other current liabilities related to operating activities.
+Investing Activities
+Net cash used in investing activities during the year ended December 31, 2024 of $330.2 million resulted primarily from the purchases of available-for-sale securities of $1,572.1 million, capital expenditures of $185.0 million, cash paid for asset acquisitions and business combinations, net of cash acquired of $38.0 million, and capitalization of internal-use software development costs of $28.5 million, which were partially offset by maturities of available-for-sale securities of $1,493.4 million.
+Net cash used in investing activities during the year ended December 31, 2023 of $186.2 million resulted primarily from the purchases of available-for-sale securities of $1,877.5 million, capital expenditures of $114.4 million, capitalization of internal-use software development costs of $20.5 million, and cash paid for asset acquisitions of $6.1 million. These activities were partially offset by the maturities of available-for-sale securities of $1,812.0 million and the sales of available-for-sale securities of $20.2 million.
+Financing Activities
+Net cash provided by financing activities of $12.8 million during the year ended December 31, 2024 was primarily due to $19.8 million proceeds from the issuance of Class A common stock pursuant to the 2019 Employee Stock Purchase Plan (ESPP) and $12.9 million of proceeds from the exercise of vested stock options, which were partially offset by $16.8 million payment of tax withholding on Restricted Stock Unit (RSU) settlements, and $2.1 million cash paid for issuance costs on revolving credit facility.
+Net cash used in financing activities of $192.2 million during the year ended December 31, 2023 was primarily due to $207.6 million of repayments of the 2025 Notes, $10.5 million of payments of indemnity holdback, and $8.0 million payment of tax withholding on RSU settlements, which were partially offset by $19.1 million proceeds from the issuance of Class A common stock pursuant to the ESPP and $14.9 million of proceeds from the exercise of vested and unvested stock options.
+Off-Balance Sheet Arrangements
+As of December 31, 2024, we did not have any relationships with unconsolidated organizations or financial partnerships, such as structured finance or special purpose entities, which would have been established for the purpose of facilitating off-balance sheet arrangements or other contractually narrow or limited purposes.
+Critical Accounting Estimates
+Our consolidated financial statements are prepared in accordance with U.S. GAAP. The preparation of these consolidated financial statements requires us to make estimates and assumptions that affect the reported amounts of assets, liabilities, revenue and expenses, and related disclosures. Such estimates include, but are not limited to, allowance for doubtful accounts, deferred contract acquisitions costs, the period of benefit generated from the deferred contract acquisition costs, the capitalization and estimated useful life of internal-use software, valuation of acquired intangible assets, the assessment of recoverability of intangible assets and their estimated useful lives, useful lives of property and equipment, the determination of the incremental borrowing rate used for operating lease
+91
+Table of contents
+liabilities, the valuation and recognition of stock-based compensation awards, uncertain tax positions, and the recognition and measurement of current and deferred income tax assets and liabilities. None of these estimates are critical accounting estimates for the preparation of our consolidated financial statements. Our estimates are based on historical experience and various other assumptions that we believe to be reasonable under the circumstances, and we evaluate our estimates and assumptions on an ongoing basis. Due in part to the conflicts in the Middle East and Ukraine, and the potential worsening and expansion of such conflicts, and other geopolitical and macroeconomic conditions, there is ongoing uncertainty and significant disruption in the global economy and financial markets. We are not aware of any specific event or circumstance that would require an update to our estimates or assumptions or a revision of the carrying value of assets or liabilities as of February 20, 2025, the date of issuance of this Annual Report on Form 10-K. These estimates and assumptions may change in the future, however, as new events occur and additional information is obtained. Our actual results could differ from these estimates.
+Change in Accounting Estimate
+In January 2024, we completed an assessment of the useful lives of our servers-network infrastructure, resulting in a change in the estimated useful lives of our servers-network infrastructure from four years to five years. This change in accounting estimate was effective beginning fiscal year 2024. Based on the carrying value of assets in service as of December 31, 2023, the change resulted in a reduction of depreciation expense of $21.1 million for the year ended December 31, 2024, recorded primarily in cost of revenue. See Note 1 of the Notes to Consolidated Financial Statements included in Item 8 of this Annual Report on Form 10-K for information relating to the useful lives of our servers-network infrastructure.
+Recent Accounting Pronouncements
+Refer to Note 2 to the consolidated financial statements in Part II, Item 8 of this Annual Report on Form 10-K for more information regarding recently adopted accounting pronouncements.
+Recently Issued Accounting Pronouncements Not Yet Effective
+In December 2023, the FASB issued ASU 2023-09, Income Taxes (Topic 740): Improvements to Income Tax Disclosures, which requires an entity, on an annual basis, to disclose additional income tax information, primarily related to the rate reconciliation and income taxes paid. The amendment in the ASU is intended to enhance the transparency and decision usefulness of income tax disclosures. The ASU is effective for annual periods beginning after December 15, 2024. We are currently evaluating the impact of the new standard.
+In November 2024, the FASB issued ASU 2024-03, Income Statement—Reporting Comprehensive Income—Expense Disaggregation Disclosures (Subtopic 220-40), Disaggregation of Income Statement Expenses. The ASU requires a public business entity to disclose additional information about specific expense categories in the notes to the financial statements for interim and annual reporting periods. The ASU does not change or remove current expense disclosure requirements. The ASU is effective for annual reporting periods beginning after December 15, 2026, and for interim reporting periods beginning after December 15, 2027, with early adoption permitted. We are currently evaluating the impact of the new standard.
