@@ -22,8 +22,8 @@ Two backends:
   SYNBENCH_API_KEY, the same variables the bootcamp's notebooks use. Pass --model,
   e.g. gemini-3-flash-preview.
 
-A company whose five item files already exist is skipped unless --overwrite is given,
-so an interrupted run can be resumed.
+Item files that already exist (and aren't empty) are kept and passed on as context
+unless --overwrite is given, so an interrupted run resumes with only the missing items.
 
 Run from the project directory:
     python -m method_2.step08_generate_filings
@@ -222,6 +222,11 @@ def generate_company(complete, spec_path: Path, overwrite: bool) -> None:
     financials = load_json(spec_path.parent / "financials.json")
     prior_items: dict[str, str] = {}
     for item in GENERATION_ORDER:
+        # Resume: reuse an item already written by an earlier, interrupted run, so a
+        # rerun only pays for the items that are missing (or empty).
+        if not overwrite and paths[item].exists() and paths[item].stat().st_size:
+            prior_items[item] = paths[item].read_text(encoding="utf-8")
+            continue
         text = generate_item(complete, item, spec, financials, prior_items)
         write_atomic(paths[item], text)
         prior_items[item] = text
