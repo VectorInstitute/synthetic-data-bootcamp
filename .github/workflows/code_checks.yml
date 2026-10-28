@@ -49,8 +49,10 @@ jobs:
           uv venv .venv
           source .venv/bin/activate
           # Include optional dependencies for text-sft and tabular-data groups.
-          uv sync --all-extras --dev --group text-sft --group tabular-data
-          pre-commit run --all-files
+          # synthetic-10k (a default group) conflicts with tabular-data, so leave it out,
+          # and keep pre-commit's `uv run` hooks from re-syncing the default groups.
+          uv sync --all-extras --dev --no-group synthetic-10k --group text-sft --group tabular-data
+          UV_NO_SYNC=1 pre-commit run --all-files
 
       - name: pip-audit (gh-action-pip-audit)
         uses: pypa/gh-action-pip-audit@1220774d901786e6f652ae159f7b6bc8fea6d266
