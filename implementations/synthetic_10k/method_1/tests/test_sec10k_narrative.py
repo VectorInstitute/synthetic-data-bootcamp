@@ -197,3 +197,62 @@ def test_identifiers_are_flagged_and_labels_are_readable():
     assert metric_label("revenue_growth_pct", 2024) == (
         "Revenue growth, fiscal 2024 versus 2023"
     )
+
+
+class _FakeStream:
+    """Stands in for ``client.messages.stream(...)``: a thinking block, then text."""
+
+    def __init__(self, stop_reason: str = "end_turn", **kwargs: Any) -> None:
+        self.kwargs = kwargs
+        self.stop_reason = stop_reason
+
+    def __enter__(self) -> "_FakeStream":
+        return self
+
+    def __exit__(self, *exc: object) -> None:
+        return None
+
+    def get_final_message(self) -> Any:
+        from types import SimpleNamespace  # noqa: PLC0415
+
+        return SimpleNamespace(
+            content=[
+                SimpleNamespace(type="thinking", thinking=""),
+                SimpleNamespace(type="text", text="Item 1. Business\n\nHello."),
+            ],
+            model="claude-opus-5-5",
+            stop_reason=self.stop_reason,
+            stop_details=None,
+            usage=SimpleNamespace(input_tokens=100, output_tokens=40),
+        )
+
+
+def test_anthropic_client_keeps_text_and_sets_effort(monkeypatch: Any) -> None:
+    """Claude calls stream with an effort, skip thinking blocks and blank refusals."""
+    from method_1 import narrative  # noqa: PLC0415
+
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
+    monkeypatch.setenv("OPENAI_API_KEY", "test-key")
+    assert isinstance(
+        narrative.make_client("claude-opus-5-5"), narrative.AnthropicUsageClient
+    )
+    assert isinstance(narrative.make_client("gpt-4o"), narrative.UsageClient)
+
+    client = narrative.AnthropicUsageClient("claude-opus-5-5", effort="xhigh")
+    calls: list[dict[str, Any]] = []
+
+    def stream(**kwargs: Any) -> _FakeStream:
+        calls.append(kwargs)
+        return _FakeStream(**kwargs)
+
+    monkeypatch.setattr(client.client.messages, "stream", stream)
+    result = client.chat("system", "prompt", max_tokens=1000)
+    assert result.text == "Item 1. Business\n\nHello."
+    assert result.total_tokens == 140
+    assert calls[0]["output_config"] == {"effort": "xhigh"}
+    assert "temperature" not in calls[0]
+
+    monkeypatch.setattr(
+        client.client.messages, "stream", lambda **kw: _FakeStream("refusal", **kw)
+    )
+    assert client.chat("system", "prompt", max_tokens=1000).text == ""
