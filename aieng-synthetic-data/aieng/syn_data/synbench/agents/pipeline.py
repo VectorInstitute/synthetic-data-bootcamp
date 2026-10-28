@@ -28,7 +28,7 @@ DEFAULT_ROLES = ["user_sim", "planner", "executor", "critic"]
 class AgentPipeline:
     """Multi-role pipeline: user_sim → planner → executor → critic per dialogue turn."""
 
-    def __init__(
+    def __init__(  # noqa: PLR0917
         self,
         domain: DomainBundle,
         roles: list[str] | None = None,

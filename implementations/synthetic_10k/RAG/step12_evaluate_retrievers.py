@@ -132,7 +132,13 @@ def main() -> None:
     for r in rows:
         logger.info(
             "%-15s %-12s n=%-4d recall@5=%.2f recall@10=%.2f mrr=%.2f ndcg@10=%.2f",
-            r["experiment"], r["retriever"], r["n_questions"], r["recall_at_5"], r["recall_at_10"], r["mrr"], r["ndcg_at_10"],
+            r["experiment"],
+            r["retriever"],
+            r["n_questions"],
+            r["recall_at_5"],
+            r["recall_at_10"],
+            r["mrr"],
+            r["ndcg_at_10"],
         )
 
 

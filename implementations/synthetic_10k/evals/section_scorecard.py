@@ -191,7 +191,7 @@ def cross_doc_overlap(texts: list[str]) -> float | None:
     hashes = [np.unique(hasher.hashes(tokenize(t))) for t in texts]
     counts = Counter(h for hs in hashes for h in hs.tolist())
     shares = [float(np.mean([counts[h] > 1 for h in hs.tolist()])) for hs in hashes if len(hs)]
-    return round(median(shares), 3) if shares else None
+    return round(statistics.median(shares), 3) if shares else None
 
 
 class RealItems:
@@ -274,11 +274,11 @@ def set_rows(name: str, companies: list[Company], real: RealItems, seed: int) ->
                 "set": name,
                 "item": item,
                 "n_docs": len(docs),
-                "median_words": round(median(words)),
+                "median_words": round(statistics.median(words)),
                 "traced_pct": round(traced / total * 100, 1) if total else None,
                 "fact_recall_at_10": recall.get(item),
                 "self_retrieval_mrr": self_retrieval_mrr([(c.company_id, c.name, t) for c, t in docs], seed),
-                "length_ratio": round(median(words) / real_words, 2) if real_words else None,
+                "length_ratio": round(statistics.median(words) / real_words, 2) if real_words else None,
                 "vocab_jaccard": round(
                     len(top_terms([t for _, t in docs]) & real.terms[item])
                     / len(top_terms([t for _, t in docs]) | real.terms[item]),
@@ -286,9 +286,12 @@ def set_rows(name: str, companies: list[Company], real: RealItems, seed: int) ->
                 )
                 if real.terms.get(item)
                 else None,
-                "figures_per_1k": round(median([figure_count(t) / max(len(t.split()), 1) * 1000 for _, t in docs]), 2),
+                "figures_per_1k": round(
+                    statistics.median([figure_count(t) / max(len(t.split()), 1) * 1000 for _, t in docs]),
+                    2,
+                ),
                 "cross_doc_overlap": cross_doc_overlap([t for _, t in docs]),
-                "copied_from_real": round(median([real.copied_share(t, item) for _, t in docs]), 3)
+                "copied_from_real": round(statistics.median([real.copied_share(t, item) for _, t in docs]), 3)
                 if len(real.index.get(item, []))
                 else None,
             },
@@ -330,17 +333,15 @@ def real_rows(sample: list[tuple[RealFiling, dict]], real: RealItems, seed: int,
                 "set": label,
                 "item": item,
                 "n_docs": len(docs),
-                "median_words": round(real.median_words[item]) if real.median_words.get(item) else None,
+                "median_words": round(mw) if (mw := real.median_words.get(item)) else None,
                 "traced_pct": None,
                 "fact_recall_at_10": recall.get(item),
                 "self_retrieval_mrr": self_retrieval_mrr([(f.ticker, f.name, t) for f, t in docs], seed),
                 "length_ratio": 1.0,
                 "vocab_jaccard": 1.0,
-                "figures_per_1k": round(real.figures_per_1k[item], 2)
-                if real.figures_per_1k.get(item) is not None
-                else None,
+                "figures_per_1k": round(fig, 2) if (fig := real.figures_per_1k.get(item)) is not None else None,
                 "cross_doc_overlap": cross_doc_overlap([t for _, t in docs]),
-                "copied_from_real": round(median(holdout), 3) if holdout else None,
+                "copied_from_real": round(statistics.median(holdout), 3) if holdout else None,
             },
         )
     return rows

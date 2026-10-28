@@ -61,6 +61,7 @@ import sys
 from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 
 HERE = Path(__file__).resolve().parent
@@ -99,7 +100,11 @@ DEFAULT_SETS = {
     "method2_gemini": ROOT / "method_2" / "data" / "runs" / "gemini20" / "synthetic",
     "method2_claude": ROOT / "method_2" / "data" / "synthetic",
 }
-SET_LABELS = {"method1_gemini": "Method 1 · Gemini", "method2_gemini": "Method 2 · Gemini", "method2_claude": "Method 2 · Claude"}
+SET_LABELS = {
+    "method1_gemini": "Method 1 · Gemini",
+    "method2_gemini": "Method 2 · Gemini",
+    "method2_claude": "Method 2 · Claude",
+}
 DEFAULT_REAL_DIR = ROOT / "method_2" / "data" / "parsed"
 DEFAULT_REAL_FINANCIALS = ROOT.parents[1] / "data" / "sec10k" / "financials.csv"
 CALIBRATION_PATH = ROOT / "method_2" / "data" / "calibration.json"
@@ -245,7 +250,7 @@ class ShingleHasher:
             count=len(tokens),
         )
         n = len(ids) - SHINGLE + 1
-        h = np.zeros(n, dtype=np.uint64)
+        h: np.ndarray = np.zeros(n, dtype=np.uint64)
         with np.errstate(over="ignore"):
             for j in range(SHINGLE):
                 h = h * np.uint64(1_000_003) + ids[j : j + n]
@@ -361,7 +366,9 @@ def gap_summary(companies: list[Company], real: RealCorpus) -> dict:
 
 
 def real_gap_summary(real: RealCorpus) -> dict:
-    out = {f"item_{item}_median_words": round(statistics.median(w)) if w else None for item, w in real.words.items()}
+    out: dict[str, float | None] = {
+        f"item_{item}_median_words": round(statistics.median(w)) if w else None for item, w in real.words.items()
+    }
     out["vocab_jaccard"] = 1.0
     out["dollars_per_1k_words"] = round(statistics.median(real.dollars_per_1k), 2)
     out["percents_per_1k_words"] = round(statistics.median(real.percents_per_1k), 2)
@@ -693,7 +700,7 @@ def markdown(summary: dict, set_names: list[str]) -> str:
             "Item 8 has all three statement headings (singular or plural)",
             "",
             [s["gates"]["required_headings"] for s in sets],
-        )
+        ),
     )
     out.append(row("Items 7 and 8 with every figure traced", "", [s["gates"]["numeric_consistency"] for s in sets]))
     out.append(row("Figures traced to the statements", "", [fmt(s["gates"]["figures_traced_pct"], "%") for s in sets]))
@@ -753,7 +760,7 @@ def markdown(summary: dict, set_names: list[str]) -> str:
     out.append(row("Names found", "", [s["real_names_found"] or "none" for s in sets]))
     out.append(row("Template company's name or ticker in text", "", [s["template_leaks"] for s in sets]))
     out.append(
-        row("Median distance to nearest real company-year", "", [fmt(s["nearest_median_pct"], "%") for s in sets])
+        row("Median distance to nearest real company-year", "", [fmt(s["nearest_median_pct"], "%") for s in sets]),
     )
     out.append(
         row("Companies within 5% of a real company on every field", "", [str(s["n_within_5pct_all"]) for s in sets]),
@@ -852,7 +859,7 @@ def main() -> None:
     real_mrr = {r["retriever"]: r["mrr"] for r in real_retrieval}
     copied_real = [s * 100 for s in real.holdout_copied_shares()]
 
-    summary = {
+    summary: dict[str, Any] = {
         "embedding_models": models,
         "real": {
             "n_filings": len(filings),
@@ -860,7 +867,7 @@ def main() -> None:
             "n_qa": len(real_qa),
             "gap": real_gap_summary(real),
             "retrieval": real_retrieval,
-            "best_retriever": max(real_mrr, key=real_mrr.get) if real_mrr else "n/a",
+            "best_retriever": max(real_mrr, key=lambda k: real_mrr[k]) if real_mrr else "n/a",
             "copied_median_pct": median_or_none(copied_real),
             "copied_max_pct": round(max(copied_real), 1) if copied_real else None,
         },
@@ -902,7 +909,7 @@ def main() -> None:
             "n_scenario_qa": sum(r["kind"] == "scenario" for r in qa_rows),
             "retrieval": retrieval,
             "ranking_spearman": spearman([real_mrr[k] for k in shared], [own[k] for k in shared]),
-            "best_retriever": max(own, key=own.get) if own else "n/a",
+            "best_retriever": max(own, key=lambda k: own[k]) if own else "n/a",
             "n_real_name_filings": sum(bool(r["real_names"]) for r in text),
             "real_names_found": ", ".join(f"{n} ({k})" for n, k in names.most_common(6)),
             "template_leaks": f"{sum(bool(r['template_leak']) for r in text)}/{len(comps)}"

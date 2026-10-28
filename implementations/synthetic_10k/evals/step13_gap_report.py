@@ -127,7 +127,9 @@ def number_distribution_rows(index_rows: list[dict]) -> list[dict]:
         stats[source] = {
             "dollars_per_1k_words": statistics.median(dollars_per_1k) if dollars_per_1k else 0.0,
             "percents_per_1k_words": statistics.median(percents_per_1k) if percents_per_1k else 0.0,
-            "median_dollar_magnitude_millions": statistics.median(dollar_magnitudes) / 1e6 if dollar_magnitudes else 0.0,
+            "median_dollar_magnitude_millions": statistics.median(dollar_magnitudes) / 1e6
+            if dollar_magnitudes
+            else 0.0,
             "median_percent_value": statistics.median(percent_values) if percent_values else 0.0,
         }
 
@@ -220,7 +222,14 @@ def main() -> None:
 
     logger.info("Wrote %d rows to %s", len(rows), REPORT_PATH)
     for r in rows:
-        logger.info("%-28s %-32s real=%-10s synthetic=%-10s %s", r["comparison"], r["metric"], r["real"], r["synthetic"], r["note"])
+        logger.info(
+            "%-28s %-32s real=%-10s synthetic=%-10s %s",
+            r["comparison"],
+            r["metric"],
+            r["real"],
+            r["synthetic"],
+            r["note"],
+        )
 
 
 if __name__ == "__main__":

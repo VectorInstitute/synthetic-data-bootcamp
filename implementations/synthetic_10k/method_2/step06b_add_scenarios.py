@@ -26,7 +26,6 @@ Run from the project directory:
 """
 
 import json
-from pathlib import Path
 
 from method_2.config import RAW_DIR
 from method_2.utils import setup_logging, write_atomic
@@ -212,13 +211,41 @@ SCENARIOS = {
     # Real 10-Ks are mostly like this, so keeping a control group matters as much as the
     # scenario coverage does -- a benchmark where every company has a dramatic event would
     # itself be unrealistic.
-    "CRJ": {"type": "baseline", "summary": "Ordinary course of business; no material scenario event during the fiscal year.", "facts": {}},
-    "JFG": {"type": "baseline", "summary": "Ordinary course of business; no material scenario event during the fiscal year.", "facts": {}},
-    "PKPM": {"type": "baseline", "summary": "Ordinary course of business; no material scenario event during the fiscal year.", "facts": {}},
-    "SKR": {"type": "baseline", "summary": "Ordinary course of business; no material scenario event during the fiscal year.", "facts": {}},
-    "TOUN": {"type": "baseline", "summary": "Ordinary course of business; no material scenario event during the fiscal year.", "facts": {}},
-    "XTE": {"type": "baseline", "summary": "Ordinary course of business; no material scenario event during the fiscal year.", "facts": {}},
-    "FAI": {"type": "baseline", "summary": "Ordinary course of business; no material scenario event during the fiscal year.", "facts": {}},
+    "CRJ": {
+        "type": "baseline",
+        "summary": "Ordinary course of business; no material scenario event during the fiscal year.",
+        "facts": {},
+    },
+    "JFG": {
+        "type": "baseline",
+        "summary": "Ordinary course of business; no material scenario event during the fiscal year.",
+        "facts": {},
+    },
+    "PKPM": {
+        "type": "baseline",
+        "summary": "Ordinary course of business; no material scenario event during the fiscal year.",
+        "facts": {},
+    },
+    "SKR": {
+        "type": "baseline",
+        "summary": "Ordinary course of business; no material scenario event during the fiscal year.",
+        "facts": {},
+    },
+    "TOUN": {
+        "type": "baseline",
+        "summary": "Ordinary course of business; no material scenario event during the fiscal year.",
+        "facts": {},
+    },
+    "XTE": {
+        "type": "baseline",
+        "summary": "Ordinary course of business; no material scenario event during the fiscal year.",
+        "facts": {},
+    },
+    "FAI": {
+        "type": "baseline",
+        "summary": "Ordinary course of business; no material scenario event during the fiscal year.",
+        "facts": {},
+    },
 }
 
 

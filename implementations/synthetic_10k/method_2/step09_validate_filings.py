@@ -324,7 +324,16 @@ def validate_company(spec_path: Path, real_companies: dict[str, str], real_stats
     rows = []
 
     def add(check: str, item: str, status: str, detail: str) -> None:
-        rows.append({"fictional_id": fictional_id, "fiscal_year": fy, "check": check, "item": item, "status": status, "detail": detail})
+        rows.append(
+            {
+                "fictional_id": fictional_id,
+                "fiscal_year": fy,
+                "check": check,
+                "item": item,
+                "status": status,
+                "detail": detail,
+            },
+        )
 
     texts = {}
     for item in ITEMS:
@@ -340,14 +349,24 @@ def validate_company(spec_path: Path, real_companies: dict[str, str], real_stats
         real_counts = real_stats.get(item, [])
         if real_counts:
             median = sorted(real_counts)[len(real_counts) // 2]
-            add("length_vs_real", item, "INFO", f"{len(text)} chars vs real median {median} chars ({len(text) / median:.0%})")
+            add(
+                "length_vs_real",
+                item,
+                "INFO",
+                f"{len(text)} chars vs real median {median} chars ({len(text) / median:.0%})",
+            )
 
         findings = check_real_company_leaks(text, template_ticker, template_name)
         add("real_company_leak", item, "FAIL" if findings else "PASS", "; ".join(findings) or "none found")
 
     if "8" in texts:
         missing_headings = [p.pattern for p in ITEM_8_REQUIRED_PATTERNS if not p.search(texts["8"])]
-        add("required_headings", "8", "FAIL" if missing_headings else "PASS", "; ".join(missing_headings) or "all present")
+        add(
+            "required_headings",
+            "8",
+            "FAIL" if missing_headings else "PASS",
+            "; ".join(missing_headings) or "all present",
+        )
 
     if "scenario" in spec:
         combined_text = "\n".join(texts.get(item, "") for item in ("1", "1a", "7", "8"))
@@ -368,7 +387,9 @@ def validate_company(spec_path: Path, real_companies: dict[str, str], real_stats
             continue
         dollars, percents = extract_figures(texts[item])
         unmatched_dollars = [(v, ctx) for v, ctx in dollars if not closest_match(v, expected_dollars, relative=True)]
-        unmatched_percents = [(v, ctx) for v, ctx in percents if not closest_match(v, expected_percents, relative=False)]
+        unmatched_percents = [
+            (v, ctx) for v, ctx in percents if not closest_match(v, expected_percents, relative=False)
+        ]
         total = len(dollars) + len(percents)
         unmatched = unmatched_dollars + unmatched_percents
         status = "PASS" if not unmatched else "FAIL"
@@ -410,7 +431,14 @@ def main() -> None:
         REPORT_PATH,
     )
     for r in failures:
-        logger.warning("FAIL %s FY%s %s item %s: %s", r["fictional_id"], r["fiscal_year"], r["check"], r["item"], r["detail"])
+        logger.warning(
+            "FAIL %s FY%s %s item %s: %s",
+            r["fictional_id"],
+            r["fiscal_year"],
+            r["check"],
+            r["item"],
+            r["detail"],
+        )
 
 
 if __name__ == "__main__":

@@ -59,7 +59,8 @@ def load_csv(filename: str) -> list[dict]:
 
 def main() -> None:
     """Embed the five result CSVs and the vendored d3 source into dashboard/template.html,
-    writing dashboard/index.html."""
+    writing dashboard/index.html.
+    """
     template = TEMPLATE_PATH.read_text(encoding="utf-8")
     if D3_SCRIPT_TAG not in template:
         raise SystemExit(f"Expected to find {D3_SCRIPT_TAG!r} in {TEMPLATE_PATH} to anchor the injected data")
