@@ -32,6 +32,12 @@ The Vector proxy is reached with the ``openai`` SDK at ``SYNBENCH_BASE_URL``
 ``implementations/agent_benchmark_generation/1-check_access_to_model.ipynb``.
 ``--model`` picks the model (default ``gemini-3-flash-preview``) and
 ``--list-models`` prints the ids the proxy serves.
+
+A ``claude-*`` model goes straight to the Anthropic API instead when
+``ANTHROPIC_API_KEY`` is set (in the environment or a ``.env`` file), for a
+baseline run with your own key; ``--provider`` forces either route. Claude
+models always think, so ``--reasoning-effort`` sets their effort (default
+``high``) and ``--temperature`` is not sent.
 """
 
 from __future__ import annotations
@@ -40,6 +46,7 @@ import argparse
 import csv
 import json
 import logging
+import os
 import random
 import re
 import time
@@ -50,11 +57,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Protocol
 
+import anthropic
 from aieng.syn_data.synbench.llm.config import (
     get_api_key,
     get_base_url,
     get_reasoning_effort,
 )
+from dotenv import load_dotenv
 from openai import OpenAI
 
 from method_1.calibrate import load_sectors
@@ -73,6 +82,11 @@ from method_1.validate import (
 logger = logging.getLogger(__name__)
 
 DEFAULT_MODEL = "gemini-3-flash-preview"
+# Output-token ceilings of models that reject a larger max_tokens.
+MODEL_MAX_TOKENS = {"gpt-4o": 16384}
+CLAUDE_EFFORTS = ("low", "medium", "high", "xhigh", "max")
+DEFAULT_CLAUDE_EFFORT = "high"
+CLAUDE_THINKING_TOKENS = 32000  # headroom for adaptive thinking on top of the text
 GENERATION_ORDER = ["1", "1A", "2", "3", "7", "7A", "1C"]
 # Real sections run long (median Item 1A is ~11,000 words); targets are sampled
 # from calibration.json and capped here to keep a pilot cheap.
@@ -222,6 +236,9 @@ class UsageClient:
         extra: dict[str, Any] = {}
         if self.reasoning_effort:
             extra["reasoning_effort"] = self.reasoning_effort
+        for prefix, cap in MODEL_MAX_TOKENS.items():
+            if self.model.startswith(prefix):
+                max_tokens = min(max_tokens, cap)
         start = time.perf_counter()
         response = self.client.chat.completions.create(
             model=self.model,
@@ -238,6 +255,83 @@ class UsageClient:
     def list_models(self) -> list[str]:
         """Return the model ids served by the endpoint."""
         return sorted(m.id for m in self.client.models.list())
+
+
+class AnthropicUsageClient:
+    """Chat client for the Anthropic API (a Claude baseline with your own key).
+
+    Reads ``ANTHROPIC_API_KEY`` from the environment or a ``.env`` file. Claude
+    models always think (adaptive thinking), so ``effort`` sets how much, and the
+    output budget gets ``CLAUDE_THINKING_TOKENS`` of headroom on top of the text.
+    Requests are streamed, which long outputs need. A refused request returns
+    empty text with ``finish_reason`` "refusal", so validation fails and the
+    section is retried like any other failed draft.
+    """
+
+    def __init__(
+        self,
+        model: str,
+        *,
+        effort: str | None = None,
+        max_retries: int = 5,
+        timeout: float = 900.0,
+    ) -> None:
+        load_dotenv()
+        self.model = model
+        self.effort = effort if effort in CLAUDE_EFFORTS else DEFAULT_CLAUDE_EFFORT
+        self.client = anthropic.Anthropic(max_retries=max_retries, timeout=timeout)
+
+    def chat(self, system: str, prompt: str, *, max_tokens: int) -> Completion:
+        """Stream one message and return its text, usage and latency."""
+        start = time.perf_counter()
+        with self.client.messages.stream(
+            model=self.model,
+            max_tokens=max_tokens + CLAUDE_THINKING_TOKENS,
+            system=system,
+            messages=[{"role": "user", "content": prompt}],
+            output_config={"effort": self.effort},
+        ) as stream:
+            message = stream.get_final_message()
+        if message.stop_reason == "refusal":
+            logger.warning(
+                "%s refused the request: %s", self.model, message.stop_details
+            )
+        text = "".join(b.text for b in message.content if b.type == "text")
+        usage = message.usage
+        return Completion(
+            text=text if message.stop_reason != "refusal" else "",
+            model=message.model,
+            seconds=round(time.perf_counter() - start, 2),
+            prompt_tokens=usage.input_tokens,
+            completion_tokens=usage.output_tokens,
+            total_tokens=usage.input_tokens + usage.output_tokens,
+            finish_reason=message.stop_reason,
+        )
+
+    def list_models(self) -> list[str]:
+        """Return the model ids the API key can use."""
+        return sorted(m.id for m in self.client.models.list())
+
+
+def make_client(
+    model: str,
+    *,
+    provider: str = "auto",
+    temperature: float = 0.7,
+    reasoning_effort: str | None = None,
+) -> ChatClient:
+    """Return the Anthropic client for Claude when a key is set, else the proxy's."""
+    if provider == "auto":
+        load_dotenv()
+        use_anthropic = model.startswith("claude-") and bool(
+            os.environ.get("ANTHROPIC_API_KEY")
+        )
+        provider = "anthropic" if use_anthropic else "proxy"
+    if provider == "anthropic":
+        return AnthropicUsageClient(model, effort=reasoning_effort)
+    return UsageClient(
+        model, temperature=temperature, reasoning_effort=reasoning_effort
+    )
 
 
 def _completion(payload: dict[str, Any], model: str, start: float) -> Completion:
@@ -583,7 +677,16 @@ def main() -> None:
     parser.add_argument("--limit", type=int, help="first N specs only")
     parser.add_argument("--workers", type=int, default=2)
     parser.add_argument("--temperature", type=float, default=0.7)
-    parser.add_argument("--reasoning-effort", help="passed through if set")
+    parser.add_argument(
+        "--reasoning-effort",
+        help="passed through if set; for Claude, the effort (default high)",
+    )
+    parser.add_argument(
+        "--provider",
+        choices=["auto", "proxy", "anthropic"],
+        default="auto",
+        help="auto: Anthropic API for claude-* models when ANTHROPIC_API_KEY is set",
+    )
     parser.add_argument("--length-scale", type=float, default=1.0)
     parser.add_argument("--overwrite", action="store_true", help="redo finished")
     parser.add_argument("--dry-run", action="store_true", help="prompts only")
@@ -601,8 +704,9 @@ def main() -> None:
 
     client = None
     if not args.dry_run or args.list_models:
-        client = UsageClient(
+        client = make_client(
             args.model,
+            provider=args.provider,
             temperature=args.temperature,
             reasoning_effort=args.reasoning_effort,
         )
@@ -613,8 +717,9 @@ def main() -> None:
     item_clients: dict[str, ChatClient] = {}
     if not args.dry_run:
         item_clients = {
-            item: UsageClient(
+            item: make_client(
                 model,
+                provider=args.provider,
                 temperature=args.temperature,
                 reasoning_effort=args.reasoning_effort,
             )
@@ -648,6 +753,7 @@ def main() -> None:
         "model": args.model,
         "item_models": item_models,
         "items": args.items,
+        "provider": type(client).__name__ if client else None,
         "dry_run": args.dry_run,
         "temperature": args.temperature,
         "length_scale": args.length_scale,

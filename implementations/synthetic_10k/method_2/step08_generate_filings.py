@@ -13,7 +13,9 @@ data/synthetic/{fictional_id}/{fy}/item_*.txt, one per target item, overwriting
 whatever (if anything) is there.
 
 Two backends:
-- `--backend anthropic` (default): the Claude API. Requires ANTHROPIC_API_KEY.
+- `--backend anthropic` (default): the Claude API. Requires ANTHROPIC_API_KEY, from the
+  environment or the repo-root .env. `--effort` (default high) sets how much the model
+  thinks; thinking gets 32,000 tokens on top of --max-tokens.
 - `--backend openai`: any OpenAI-compatible endpoint, such as Vector's proxy on the
   Coder workspace. Reads the endpoint from SYNBENCH_BASE_URL (default
   https://proxy.vectorinstitute.ai/v1) and the key from OPENAI_API_KEY or
@@ -37,12 +39,13 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from method_2.config import PARSED_DIR, RAW_DIR, SYNTHETIC_DIR
-from method_2.utils import setup_logging, write_atomic
+from method_2.utils import load_dotenv, setup_logging, write_atomic
 
 
 logger = setup_logging("generate_filings")
 
 MAX_TOKENS = 4096
+THINKING_TOKENS = 32000  # Anthropic backend: room for thinking on top of max_tokens
 DEFAULT_BASE_URL = "https://proxy.vectorinstitute.ai/v1"
 
 # Generation order from PLAN.md Phase 6: Item 7 quotes the Item 8 numbers, so it's
@@ -148,7 +151,7 @@ real company shown above, or any other real company, by name.
 """
 
 
-def make_complete(backend: str, model: str | None, max_tokens: int):
+def make_complete(backend: str, model: str | None, max_tokens: int, effort: str = "high"):
     """Return a function prompt, item -> generated text, for the chosen backend."""
     if backend == "anthropic":
         import anthropic  # noqa: PLC0415
@@ -162,12 +165,19 @@ def make_complete(backend: str, model: str | None, max_tokens: int):
         client = anthropic.Anthropic(api_key=api_key)
 
         def complete(prompt: str, item: str) -> str:
-            response = client.messages.create(
+            # Current Claude models always think, so the response can open with a
+            # thinking block: keep only the text blocks. Streamed, since thinking
+            # plus a long section can outlast a plain request's timeout.
+            with client.messages.stream(
                 model=model or ITEM_MODELS[item],
-                max_tokens=max_tokens,
+                max_tokens=max_tokens + THINKING_TOKENS,
                 messages=[{"role": "user", "content": prompt}],
-            )
-            return response.content[0].text
+                output_config={"effort": effort},
+            ) as stream:
+                message = stream.get_final_message()
+            if message.stop_reason == "refusal":
+                raise RuntimeError(f"Item {item}: the model refused ({message.stop_details})")
+            return "".join(block.text for block in message.content if block.type == "text")
 
         return complete
 
@@ -222,10 +232,17 @@ def main() -> None:
     parser.add_argument("--backend", choices=["anthropic", "openai"], default="anthropic")
     parser.add_argument("--model", help="one model for every item (default: ITEM_MODELS)")
     parser.add_argument("--max-tokens", type=int, default=MAX_TOKENS)
+    parser.add_argument(
+        "--effort",
+        choices=["low", "medium", "high", "xhigh", "max"],
+        default="high",
+        help="Anthropic backend only: thinking effort",
+    )
     parser.add_argument("--workers", type=int, default=1, help="companies generated in parallel")
     parser.add_argument("--overwrite", action="store_true", help="regenerate finished companies")
     args = parser.parse_args()
-    complete = make_complete(args.backend, args.model, args.max_tokens)
+    load_dotenv(Path(__file__).resolve().parents[3] / ".env")  # repo-root .env, if any
+    complete = make_complete(args.backend, args.model, args.max_tokens, args.effort)
 
     spec_paths = sorted(SYNTHETIC_DIR.glob("*/*/spec.json"))
     if not spec_paths:

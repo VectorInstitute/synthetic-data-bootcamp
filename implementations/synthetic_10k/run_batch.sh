@@ -14,6 +14,9 @@
 #   SEED       spec sampling seed                             (default 7)
 #   MODEL      model on Vector's proxy                        (default gemini-3-flash-preview)
 #   WORKERS    companies generated in parallel                (default 4)
+#   EFFORT     Claude models only: thinking effort             (default high)
+# A claude-* MODEL goes to the Anthropic API when ANTHROPIC_API_KEY is set (e.g. in the
+# repo-root .env), otherwise to Vector's proxy like every other model.
 # Method 2's step08 gets --max-tokens 16384: on Gemini the limit also covers hidden reasoning
 # tokens, and the default 4096 cuts sections off mid-sentence.
 #   M1_DATA  Method 1's parsed corpus with calibration.json      (default data/sec10k)
@@ -29,6 +32,7 @@ N=${N:-20}
 SEED=${SEED:-7}
 MODEL=${MODEL:-gemini-3-flash-preview}
 WORKERS=${WORKERS:-4}
+EFFORT=${EFFORT:-high}
 ITEMS=(1 1A 1C 7 8)
 
 REPO=$(pwd)
@@ -49,7 +53,9 @@ method1() {
   for f in calibration.json index.csv financials.csv parsed; do ln -sfn "$M1_DATA/$f" "$M1_RUN/$f"; done
   cd "$HERE"
   uv run python -m method_1.specs --data "$M1_RUN" --n "$N" --seed "$SEED"
-  uv run python -m method_1.narrative --data "$M1_RUN" --model "$MODEL" --items "${ITEMS[@]}" --workers "$WORKERS"
+  local effort=()
+  [[ "$MODEL" == claude-* ]] && effort=(--reasoning-effort "$EFFORT")
+  uv run python -m method_1.narrative --data "$M1_RUN" --model "$MODEL" --items "${ITEMS[@]}" --workers "$WORKERS" "${effort[@]}"
   cd "$REPO"
 }
 
@@ -63,7 +69,9 @@ method2() {
   export SYNTHETIC_DIR="$M2_RUN/synthetic"
   uv run python -m method_2.step06_make_specs --n "$N" --seed "$SEED"
   uv run python -m method_2.step07_make_financials
-  uv run python -m method_2.step08_generate_filings --backend openai --model "$MODEL" --workers "$WORKERS" --max-tokens 16384
+  local backend=openai
+  [[ "$MODEL" == claude-* && -n "${ANTHROPIC_API_KEY:-}" ]] && backend=anthropic
+  uv run python -m method_2.step08_generate_filings --backend "$backend" --model "$MODEL" --workers "$WORKERS" --max-tokens 16384 --effort "$EFFORT"
   uv run python -m method_2.step09_validate_filings
   unset SYNTHETIC_DIR
   cd "$REPO"
