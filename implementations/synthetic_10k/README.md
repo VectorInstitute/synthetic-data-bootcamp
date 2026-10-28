@@ -69,9 +69,75 @@ RUN=gemini20 N=20 MODEL=gemini-3-flash-preview bash implementations/synthetic_10
 | Calibration | Per GICS sector: percentiles of about 20 ratios and of section lengths | Generic across sectors: percentiles of 6 totals and 6 ratios |
 | Fictional company | Ratios sampled from its sector's percentiles | One real company-year as a template, scaled by a random size factor |
 | Statements | Two years (current and prior), income statement, balance sheet, cash flow | One year, line items from the template company's own ratios |
-| Narrative | Written by an LLM through Vector's proxy (Gemini by default), with checks and up to 3 retries per section | Written in a Claude Code session; the API script (`step08`) is built but has not been run |
+| Narrative | Written by an LLM through Vector's proxy (Gemini by default), with checks and up to 3 retries per section | One LLM call per section, no retries. The committed 20 companies were written in a Claude Code session; `step08` generates new batches through Vector's proxy or the Anthropic API |
 | Output | Items 1 to 16 as text, plus an EDGAR-style HTML and PDF filing | Items 1, 1A, 1C, 7, 8 as text (condensed by design) |
 | Built-in checks | `validate.py`, run on each section during generation | `step09_validate_filings.py`, run on the finished filings |
+
+## How each method makes the numbers and the text
+
+Both methods follow the same rule: **code fixes every number first, then an LLM writes prose around those numbers.** The LLM never decides a figure. The methods differ in where the numbers come from, what the LLM is shown, and when the text is checked.
+
+```mermaid
+flowchart LR
+  R[Real 10-Ks<br/>sections + XBRL facts] --> C[Calibration]
+  C --> S[Spec<br/>profile + size + ratios]
+  S --> T[Statements<br/>income, balance sheet, cash flow]
+  T --> P[Prompt per Item<br/>facts + style example + earlier Items]
+  R -. style example .-> P
+  P --> L[LLM]
+  L --> X[Narrative Items<br/>1, 1A, 1C, 7]
+  X --> V{Checks:<br/>figures trace to statements?}
+  T --> V
+  T --> I8[Item 8 tables]
+```
+
+### Method 1: sector statistics, checked while writing
+
+1. **Calibration** (`calibrate.py`): from 305 real 10-Ks, per GICS sector, the 10th to 90th percentiles of company size (log revenue), about 20 ratios (gross and operating margin, SG&A, R&D, D&A and capex intensity, tax rate, asset turnover, equity, current, cash, PP&E, debt, receivables, inventory, goodwill, payout) and of each Item's length.
+2. **Spec** (`specs.py`): picks a sector in proportion to its real filers, then draws each ratio independently from that sector's percentiles. It then clamps the draws so they fit together (for example, operating costs must fit inside gross profit). Name and ticker are invented from syllables and checked against every real filer.
+3. **Statements** (`statements.py`): builds two fiscal years (the prior year's ratios are lightly perturbed) of income statement, balance sheet and cash flow in whole $ millions. "Other" lines absorb the residuals, so every identity holds exactly. Specs that fail an accounting or plausibility check are redrawn.
+4. **Prompt** (`narrative.py`, `render.py`): a facts sheet with the profile, both years' statements and code-computed percentages (margins, year-over-year changes), so the LLM never does arithmetic. Each prompt also has a 1,200-word excerpt of the same Item from a real company in the same sector, the Items already written, and a length target drawn from the sector's real lengths (capped to keep cost down).
+5. **Writing and checks** (`validate.py`): each Item is checked as soon as it is written. The checks cover the heading, length, the company's name, real company names, copying from the style example (at most 5% of 8-word sequences), leaked variable names and how many dollar amounts the Item cites. In Item 7, every amount and percentage must also appear in the facts sheet. A failing Item is rewritten with the problems as feedback, up to 3 drafts.
+6. **Item 8 and the rest**: Item 8 is rendered from the statements by code, never by the LLM. Items 2, 3 and 7A are LLM-written, and Items 1B, 4, 5, 6 and 9 to 16 come from templates. `export.py` assembles an EDGAR-style `filing.html`.
+
+### Method 2: a disguised real company, checked afterwards
+
+1. **Calibration** (`step05_make_calibration.py`): from the companyfacts XBRL of 50 sampled S&P 500 companies (FY2023 to FY2025), one record per company-year (147 in total), with 6 totals and 6 ratios.
+2. **Spec** (`step06_make_specs.py`): picks one real company-year as a template, keeps its sector, sub-industry and HQ state, and scales its totals by a random 0.7 to 1.4 with 0.85 to 1.15 jitter per ratio. It also draws Item 1C facts (framework, board oversight, whether an incident was disclosed) and checks the name against all 503 S&P 500 names and tickers.
+3. **Scenario** (`step06b_add_scenarios.py`): a storyline per company (acquisition, product launch, cash burn, ...). The scenarios are hand-written for the committed 20 companies, and `run_batch.sh` doesn't add them to new batches.
+4. **Statements** (`step07_make_financials.py`): one fiscal year, in dollars. Each line item is the template company's own share of its total, applied to the fictional total, with one "other" line per statement so it reconciles exactly.
+5. **Prompt** (`step08_generate_filings.py`): the profile, only the figures that Item needs, the Items already written, the same Item from the template company itself as a style example (first 6,000 characters), and the median real length. The scenario is not in the prompt.
+6. **Writing and checks**: one call per Item, in the order 1, 1A, 7, 1C, 8, with no checks while writing. **Item 8 is written by the LLM** from the statement JSON. Afterwards, `step09_validate_filings.py` checks for real names and the template's name, whether the Item 7 and 8 figures trace to the statements (it also accepts sums and ratios of lines), the Item 8 headings, minimum length and whether the scenario appears in the text.
+
+## Text and tabular data, and how they connect
+
+Each filing has two kinds of synthetic data:
+
+| | Tabular | Text |
+|---|---|---|
+| What | The spec (profile, size, ratios) and the financial statements | Narrative Items 1, 1A, 1C, 7 (Method 1 also 2, 3, 7A) |
+| Made by | Code, from calibration statistics (Method 1) or a scaled real template (Method 2) | An LLM, conditioned on the tabular data and a real style example |
+| Exact? | Yes: every identity reconciles by construction | No: checked afterwards for figures, names, copying and length |
+| Method 1 files | `synthetic/specs/{id}.json` (spec + statements) | `synthetic/filings/{id}/item_*.txt`, `filing.html` |
+| Method 2 files | `{id}/{fy}/spec.json`, `financials.json` | `{id}/{fy}/item_*.txt` |
+
+The link runs one way. The tables are fixed first and passed into each prompt, so each figure in the text should be a copy of a table value. The checks then test that link in reverse: every dollar amount and percentage in the text has to trace back to a table line or a value derived from one. That trace rate is the main measure of text-to-table consistency.
+
+How much of the tables each Item gets, and so how tightly it is tied to them:
+
+| Item | Method 1: figures given / allowed | Method 2: figures given | How tightly tied to the tables |
+|---|---|---|---|
+| 1 Business | Full facts sheet; at most 3 dollar amounts, guidance says revenue only; employees | Revenue only | Loose: qualitative, one or two figures |
+| 1A Risk Factors | Full facts sheet; told to quote no amounts (at most 4) | Total assets, liabilities, equity | Loose: exposures described in words |
+| 1C Cybersecurity | Facts sheet; no amounts allowed | Framework, oversight and incident flag (spec, not statements) | None: no financial figures |
+| 7 MD&A | Both years' statements and derived percentages; every figure must trace | The full single-year statements | Tight: the most numeric text Item |
+| 8 Financial Statements | Rendered by code, so exact | Written by the LLM from the statement JSON | Is the table itself |
+
+### What this suggests per section (to test with the per-section evals)
+
+- **Items 1, 1A, 1C:** mostly text, so the comparison is about realism, variety and privacy. Method 2's style example is the template company's own Item, which may make its text more specific, but it raises the risk of carrying over that company's real business. Method 1 uses a different company from the same sector and rejects drafts that copy it.
+- **Item 7:** Method 1 has two years and precomputed changes, so its MD&A can compare years as real MD&As do. Method 2's single year can't, and the LLM has to work out any ratio itself.
+- **Item 8:** Method 1's tables are exact by construction. Method 2's depend on the LLM copying the JSON correctly, which likely explains part of its low trace rate on Gemini.
 
 ## Evals
 
