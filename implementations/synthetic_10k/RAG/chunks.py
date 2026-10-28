@@ -15,7 +15,7 @@ import csv
 from dataclasses import dataclass
 from pathlib import Path
 
-from src.config import RAW_DIR
+from method_2.config import RAW_DIR
 
 
 INDEX_PATH = RAW_DIR.parent / "index.csv"

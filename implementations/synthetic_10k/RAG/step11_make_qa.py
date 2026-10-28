@@ -5,14 +5,14 @@ Synthetic questions (20 companies): template-based and fully deterministic. Ever
 answer is a value already in that company's financials.json or spec.json scenario
 facts; the gold chunk and the exact answer span are found by scanning the company's
 own chunked narrative with the same figure-extraction and tolerance-matching logic
-src.step09_validate_filings already uses for the numeric-consistency gate (so a
+method_2.step09_validate_filings already uses for the numeric-consistency gate (so a
 financial-fact question's answer is guaranteed to be a verbatim substring of its
 gold chunk by construction, not by a separate check).
 
 Real questions (6 companies): hand-authored from a short, grep-verified excerpt of
 each filing (not the whole filing -- some run to 100,000+ words), matching the
 template-ticker/fiscal-year sample Phase 7's model-judged review already used
-(src.step09_validate_filings's docstring). Each answer is checked against the
+(method_2.step09_validate_filings's docstring). Each answer is checked against the
 actual chunked text before being written out; the script hard-fails if one isn't
 found verbatim, which is what PLAN.md Phase 9 means by "check that each answer span
 appears in the text."
@@ -30,8 +30,8 @@ Analytical questions are grounded the same way: a chunk search, verified at
 generation time, never a paraphrase. See PLAN.md Phase 9 for which chunks turned out
 to state cause and effect together (no new grounding invented to force this).
 
-Run from implementations/synthetic_10k (after src.step03_build_index):
-    PYTHONPATH=dylan_pipeline python -m RAG.step11_make_qa
+Run from implementations/synthetic_10k (after method_2.step03_build_index):
+    uv run python -m RAG.step11_make_qa
 """
 
 import csv
@@ -39,16 +39,17 @@ import io
 import json
 import re
 
-from RAG.chunks import Chunk, load_chunks
-from src.config import RAW_DIR
-from src.step09_validate_filings import (
+from method_2.config import RAW_DIR
+from method_2.step09_validate_filings import (
     SCENARIO_ANCHOR_FACT,
     SCENARIO_KEYWORDS,
     closest_match,
     extract_figures,
     to_float,
 )
-from src.utils import setup_logging, write_atomic
+from method_2.utils import setup_logging, write_atomic
+
+from RAG.chunks import Chunk, load_chunks
 
 
 logger = setup_logging("make_qa")
@@ -64,7 +65,7 @@ FINANCIAL_FACTS = [
     (("balance_sheet", "assets", "total_assets"), "What were {name}'s total assets as of the end of fiscal {fy}?", False),
 ]
 
-# One "why" question per keyword-grounded scenario type (src.step06b_add_scenarios),
+# One "why" question per keyword-grounded scenario type (method_2.step06b_add_scenarios),
 # phrased so answering it requires reading the passage that connects the scenario's
 # cause to its effect, not just matching a category label. The two anchor-fact types
 # (mergers_and_acquisitions, product_launch) are handled separately below since their
@@ -201,7 +202,7 @@ def qa_row(source: str, ticker: str, fy: int, item: str, style: str, question: s
 
 
 def scenario_qa_rows(spec: dict, company_chunks: list[Chunk]) -> list[dict]:
-    """Questions grounded in spec.json's scenario (src.step06b_add_scenarios); [] for baseline."""
+    """Questions grounded in spec.json's scenario (method_2.step06b_add_scenarios); [] for baseline."""
     scenario = spec.get("scenario", {})
     scenario_type = scenario.get("type", "baseline")
     if scenario_type == "baseline":

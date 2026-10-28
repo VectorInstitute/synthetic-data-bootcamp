@@ -22,15 +22,15 @@ same as you'd re-run step12 after step11, or step03 after the synthetic corpus
 changes. Nothing here refreshes itself.
 
 Run from implementations/synthetic_10k (after step09, step11, step12, step13, step14):
-    PYTHONPATH=dylan_pipeline python dashboard/build_dashboard.py
+    uv run python -m dashboard.build_dashboard
 """
 
 import csv
 import json
 from pathlib import Path
 
-from src.config import RAW_DIR
-from src.utils import setup_logging, write_atomic
+from method_2.config import RAW_DIR
+from method_2.utils import setup_logging, write_atomic
 
 
 logger = setup_logging("build_dashboard")
