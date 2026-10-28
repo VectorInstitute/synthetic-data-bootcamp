@@ -96,7 +96,11 @@ def _load_doc_matrix_cache(path: Path, chunk_ids: list[str], texts: list[str], m
 
 
 def _save_doc_matrix_cache(
-    path: Path, chunk_ids: list[str], texts: list[str], model_name: str, doc_matrix: np.ndarray
+    path: Path,
+    chunk_ids: list[str],
+    texts: list[str],
+    model_name: str,
+    doc_matrix: np.ndarray,
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_name(path.stem + ".tmp.npz")  # numpy appends .npz unless the name already ends with it
