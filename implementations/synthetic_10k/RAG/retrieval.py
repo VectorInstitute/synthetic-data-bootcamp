@@ -80,7 +80,8 @@ def _content_hash(model_name: str, texts: list[str]) -> str:
 
 def _load_doc_matrix_cache(path: Path, chunk_ids: list[str], texts: list[str], model_name: str) -> np.ndarray | None:
     """Return the cached doc_matrix if `path` exists and matches chunk_ids/texts/model
-    exactly, else None (missing, corrupt, or stale -- all treated as a cache miss)."""
+    exactly, else None (missing, corrupt, or stale -- all treated as a cache miss).
+    """
     if not path.exists():
         return None
     try:
@@ -94,7 +95,9 @@ def _load_doc_matrix_cache(path: Path, chunk_ids: list[str], texts: list[str], m
         return None
 
 
-def _save_doc_matrix_cache(path: Path, chunk_ids: list[str], texts: list[str], model_name: str, doc_matrix: np.ndarray) -> None:
+def _save_doc_matrix_cache(
+    path: Path, chunk_ids: list[str], texts: list[str], model_name: str, doc_matrix: np.ndarray
+) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_name(path.stem + ".tmp.npz")  # numpy appends .npz unless the name already ends with it
     np.savez(
