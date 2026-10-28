@@ -10,7 +10,11 @@ Figure accuracy (text-to-table consistency)
 - traced_pct (higher): share of dollar amounts and percentages in the Item that trace
   to the company's statements or a value derived from them (Method 2's step09 rules,
   plus year-over-year changes and prior-year ratios for two-year filings, as in
-  method2_gates). Synthetic sets only. Left blank when the Item has fewer than
+  method2_gates). Real filings are traced the same way against their own XBRL
+  headline figures (Method 1's financials.csv), so the real column says how much of
+  a real filing's numbers come from its headline statements; segment, quarterly and
+  other untagged figures can't trace there, so real stays well under 100%. Left
+  blank when the Item has fewer than
   MIN_FIGURES_PER_DOC figures per filing on average, since a share of almost nothing
   says nothing (a set that writes no figures would otherwise score 100%).
 
@@ -65,7 +69,13 @@ ROOT = HERE.parent
 sys.path.insert(0, str(ROOT))
 
 import numpy as np  # noqa: E402
-from method_2.step09_validate_filings import build_expected_figures, closest_match, extract_figures  # noqa: E402
+from method_1.financials import DURATION_METRICS, INSTANT_METRICS  # noqa: E402
+from method_2.step09_validate_filings import (  # noqa: E402
+    UNIVERSAL_PERCENTS,
+    build_expected_figures,
+    closest_match,
+    extract_figures,
+)
 from method_2.utils import setup_logging, write_atomic  # noqa: E402
 from RAG.chunks import Chunk  # noqa: E402
 from RAG.retrieval import Bm25Retriever, recall_at_k, reciprocal_rank, tokenize  # noqa: E402
@@ -144,6 +154,98 @@ def traced_share(text: str, financials: dict) -> tuple[int, int]:
         closest_match(v, percents_expected, relative=False) or closest_match(v, yoy_percents, relative=False)
         for v, _ in percents
     )
+    return traced, len(dollars) + len(percents)
+
+
+# XBRL metrics that aren't dollar amounts, or are so small that the dollar tolerance's
+# absolute floor would let almost any figure match them.
+REAL_NON_DOLLAR_METRICS = {"eps_diluted", "employees"}
+REAL_REVENUE_RATIO_METRICS = [
+    "cost_of_revenue",
+    "gross_profit",
+    "operating_income",
+    "pretax_income",
+    "income_tax",
+    "net_income",
+    "rd_expense",
+    "sga_expense",
+    "depreciation_amortization",
+    "operating_cash_flow",
+    "capex",
+    "dividends_paid",
+]
+REAL_ASSET_RATIO_METRICS = [
+    "current_assets",
+    "total_liabilities",
+    "current_liabilities",
+    "stockholders_equity",
+    "cash",
+    "ppe_net",
+    "goodwill",
+    "long_term_debt",
+    "inventory",
+    "receivables",
+]
+
+
+def load_real_metrics(financials_csv: Path) -> dict[tuple[str, int], dict[str, float]]:
+    """Return every XBRL metric in Method 1's financials.csv, per (ticker, fiscal year)."""
+    out: dict[tuple[str, int], dict[str, float]] = {}
+    if not financials_csv.exists():
+        logger.warning("No %s; real filings get no figures traced", financials_csv)
+        return out
+    with open(financials_csv, encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            metrics = {}
+            for m in [*DURATION_METRICS, *INSTANT_METRICS]:
+                try:
+                    metrics[m] = float(row[m])
+                except (KeyError, TypeError, ValueError):
+                    continue
+            out[(row["ticker"], int(row["fiscal_year"]))] = metrics
+    return out
+
+
+def real_expected_figures(current: dict[str, float], prior: dict[str, float]) -> tuple[set[float], set[float]]:
+    """Return (dollars, percents) a real filing can cite from its XBRL headline figures.
+
+    The same kinds of values as a synthetic filing's: every line, gross profit, lines
+    as a share of revenue and of total assets, the tax rate, ROE and ROA, and, when
+    the prior fiscal year's row exists, the year-over-year changes and prior ratios.
+    """
+    dollars: set[float] = set()
+    percents = set(UNIVERSAL_PERCENTS)
+    for year in (current, prior):
+        values = {k: v for k, v in year.items() if k not in REAL_NON_DOLLAR_METRICS}
+        dollars |= set(values.values())
+        revenue, assets = values.get("revenue"), values.get("total_assets")
+        if revenue and "cost_of_revenue" in values and "gross_profit" not in values:
+            values["gross_profit"] = revenue - values["cost_of_revenue"]
+            dollars.add(values["gross_profit"])
+        if revenue:
+            percents |= {values[m] / revenue * 100 for m in REAL_REVENUE_RATIO_METRICS if m in values}
+        if assets:
+            percents |= {values[m] / assets * 100 for m in REAL_ASSET_RATIO_METRICS if m in values}
+            if "net_income" in values:
+                percents.add(values["net_income"] / assets * 100)
+        if values.get("pretax_income") and "income_tax" in values:
+            percents.add(values["income_tax"] / values["pretax_income"] * 100)
+        if values.get("stockholders_equity") and "net_income" in values:
+            percents.add(values["net_income"] / values["stockholders_equity"] * 100)
+    for k, p in prior.items():
+        if k in current and k not in REAL_NON_DOLLAR_METRICS:
+            dollars.add(current[k] - p)
+            if p:
+                percents.add((current[k] / p - 1) * 100)
+    return dollars, percents
+
+
+def real_traced_share(text: str, expected: tuple[set[float], set[float]]) -> tuple[int, int]:
+    """Return (traced, total) figures in a real filing's `text`."""
+    dollars_expected, percents_expected = expected
+    dollars, percents = extract_figures(text)
+    traced = sum(closest_match(v, dollars_expected, relative=True) for v, _ in dollars)
+    traced += sum(closest_match(v, percents_expected, relative=False) for v, _ in percents)
     return traced, len(dollars) + len(percents)
 
 
@@ -312,7 +414,13 @@ def set_rows(name: str, companies: list[Company], real: RealItems, seed: int) ->
     return rows
 
 
-def real_rows(sample: list[tuple[RealFiling, dict]], real: RealItems, seed: int, label: str) -> list[dict]:
+def real_rows(
+    sample: list[tuple[RealFiling, dict]],
+    real: RealItems,
+    seed: int,
+    label: str,
+    metrics: dict[tuple[str, int], dict[str, float]],
+) -> list[dict]:
     """Return the same metrics on a real sample of the sets' size."""
     chunks, qa_rows = [], []
     for filing, record in sample:
@@ -341,15 +449,25 @@ def real_rows(sample: list[tuple[RealFiling, dict]], real: RealItems, seed: int,
         holdout = [
             float(np.isin(h, real.other_index[item]).mean()) for h in real.holdout_hashes.get(item, []) if len(h)
         ]
+        traced = total = 0
+        traced_docs = 0
+        for f, t in docs:
+            current = metrics.get((f.ticker, f.fiscal_year))
+            if not current:
+                continue
+            a, b = real_traced_share(t, real_expected_figures(current, metrics.get((f.ticker, f.fiscal_year - 1), {})))
+            traced, total, traced_docs = traced + a, total + b, traced_docs + 1
         rows.append(
             {
                 "set": label,
                 "item": item,
                 "n_docs": len(docs),
                 "median_words": round(mw) if (mw := real.median_words.get(item)) else None,
-                "n_figures": None,
+                "n_figures": total if traced_docs else None,
                 "n_questions": recall.get(item, (None, 0))[1],
-                "traced_pct": None,
+                "traced_pct": round(traced / total * 100, 1)
+                if traced_docs and total >= MIN_FIGURES_PER_DOC * traced_docs
+                else None,
                 "fact_recall_at_10": recall.get(item, (None, 0))[0],
                 "self_retrieval_mrr": self_retrieval_mrr([(f.ticker, f.name, t) for f, t in docs], seed),
                 "length_ratio": 1.0,
@@ -481,7 +599,7 @@ def main() -> None:
     sample = [(f, by_key.get((f.ticker, f.fiscal_year), {})) for f in sample_filings]
     real = RealItems(filings, holdout={(f.ticker, f.fiscal_year) for f in sample_filings})
 
-    rows = real_rows(sample, real, args.seed, REAL)
+    rows = real_rows(sample, real, args.seed, REAL, load_real_metrics(args.real_financials))
     for name, cs in companies.items():
         logger.info("Scoring %s (%d companies)", name, len(cs))
         rows += set_rows(name, cs, real, args.seed)

@@ -76,6 +76,8 @@ What changed from Day 1:
 
 `traced_pct` is left blank when an Item averages under one figure per filing, and `fact_recall_at_10` when it has fewer than 5 questions. Otherwise a set that writes almost no figures scores a perfect 100% and wins the suggestion. The `n_figures` and `n_questions` rows show how much each score rests on.
 
+The real row's `traced_pct` traces real filings against their own XBRL headline figures in Method 1's `financials.csv`, with the same tolerances and derived values (ratios, gross profit, and year-over-year changes when the prior fiscal year's row exists). Segment, quarterly and other untagged figures can't trace there, so the real baseline sits well under 100%. It shows how much of a real filing's numbers come from its headline statements, which is the fair yardstick for a synthetic set's score.
+
 `self_retrieval_mrr` and `cross_doc_overlap` depend on corpus size, so the real column uses a random real sample of `--real-sample` filings (default 20, the size of a batch). When the real corpus has no Item 8 text (Method 1's parsed corpus on Coder may not), Item 8 has no real column.
 
 ```bash
