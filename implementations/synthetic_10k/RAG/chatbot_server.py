@@ -15,7 +15,7 @@ chatbot page calls:
 Retrieval and generation reuse RAG.chatbot as-is; the index and generator are built
 once at startup and shared across requests via the server instance (threaded, since
 fastembed/requests calls are not instant). Run from implementations/synthetic_10k:
-    PYTHONPATH=dylan_pipeline python -m RAG.chatbot_server
+    uv run python -m RAG.chatbot_server
 then open http://localhost:8001/chatbot.html (linked from the dashboard's nav, and
 vice versa). Ctrl-C to stop.
 """
@@ -24,8 +24,9 @@ import json
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
+from method_2.utils import setup_logging
+
 from RAG.chatbot import answer_question, build_index, demo_rows, get_generator
-from src.utils import setup_logging
 
 
 logger = setup_logging("chatbot_server")

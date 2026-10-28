@@ -169,11 +169,11 @@
     <div id="demo-list" class="demo-list"><div class="loading">Loading&hellip;</div></div>
   </div>
 
-  <p class="foot">Backed by <code>src/chatbot.py</code> + <code>src/chatbot_server.py</code>: BM25 and a
+  <p class="foot">Backed by <code>RAG/chatbot.py</code> + <code>RAG/chatbot_server.py</code>: BM25 and a
   real semantic retriever (fastembed / <code>minishlab/potion-retrieval-32M</code>) over the 20 synthetic
   companies' chunks, fused by reciprocal rank fusion. Generation (if an API key is configured) is
   DeepSeek first, then Claude, then retrieval-only &mdash; see the status pill above. Unlike
-  <code>index.html</code>, this page needs the server running (<code>python -m src.chatbot_server</code>):
+  <code>index.html</code>, this page needs the server running (<code>uv run python -m RAG.chatbot_server</code>):
   retrieval and any LLM call happen in Python, not the browser.</p>
 
 </div>
@@ -248,7 +248,7 @@
       addMessage('bot', data.answer, data.sources);
     } catch (err) {
       pending.remove();
-      addMessage('bot', `Error: ${err.message} (is the server running? python -m src.chatbot_server)`);
+      addMessage('bot', `Error: ${err.message} (is the server running? uv run python -m RAG.chatbot_server)`);
     } finally {
       chatSend.disabled = false;
       chatInput.focus();

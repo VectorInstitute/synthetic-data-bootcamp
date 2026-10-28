@@ -85,6 +85,23 @@ synbench = [
     "python-dotenv>=1.2.2",
 ]
 
+# Synthetic 10-K methods, RAG benchmark and evals (implementations/synthetic_10k).
+# In default-groups, so a plain `uv sync` from the repo root installs them.
+synthetic-10k = [
+    "anthropic==1.14.0",
+    "beautifulsoup4==4.15.0",
+    "edgartools==5.60.0",
+    "fastembed==0.9.0",
+    # fastembed 0.9.0 declares huggingface-hub<2.0 but imports an internal module
+    # (_snapshot_download) that huggingface-hub removed in its 1.x release; pin below 1.0.
+    "huggingface-hub==0.36.2",
+    "lxml==6.1.3",
+    "numpy>=2.2",
+    "openai==3.20.0",
+    "pyyaml==6.0.3",
+    "rank-bm25==0.2.2",
+    "requests>=2.34.2",
+]
 
 tabular-data = [
     "gdown>=6.1.0",
@@ -93,7 +110,10 @@ tabular-data = [
 ]
 
 [tool.uv]
-default-groups = ["dev"]
+default-groups = ["dev", "synthetic-10k"]
+# midst-toolkit (tabular-data) caps numpy below the version fastembed needs on Python 3.14+,
+# so the two groups resolve separately: sync tabular-data with `--no-group synthetic-10k`.
+conflicts = [[{ group = "synthetic-10k" }, { group = "tabular-data" }]]
 # aieng-platform-onboard pins filelock, virtualenv, and urllib3 to older exact
 # versions; override so the security floors in [project.dependencies] still win.
 override-dependencies = [

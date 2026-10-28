@@ -11,13 +11,13 @@ a retrieved chunk_id lines up with data/qa_pairs.csv's gold_chunk_id.
 
 Generation is optional and provider-pluggable, picked at startup from whichever API
 key is set in the environment (or in a gitignored .env file next to this project,
-see src.utils.load_dotenv): DeepSeek first (DEEPSEEK_API_KEY), then Claude
+see method_2.utils.load_dotenv): DeepSeek first (DEEPSEEK_API_KEY), then Claude
 (ANTHROPIC_API_KEY), then retrieval-only -- same "retrieval doesn't need a key;
 generation does" fallback as step08_generate_filings.
 
 Two CLI modes:
-    PYTHONPATH=dylan_pipeline python -m RAG.chatbot            interactive chat loop
-    PYTHONPATH=dylan_pipeline python -m RAG.chatbot --demo     scripted scenario-analysis walkthrough: one
+    uv run python -m RAG.chatbot            interactive chat loop
+    uv run python -m RAG.chatbot --demo     scripted scenario-analysis walkthrough: one
                                       analytical question per non-baseline scenario
                                       company (13 of data/qa_pairs.csv's 15 analytical
                                       rows span 13 companies), showing whether hybrid
@@ -35,11 +35,11 @@ from collections.abc import Callable
 
 import anthropic
 import requests
+from method_2.config import PROJECT_DIR, RAW_DIR
+from method_2.utils import load_dotenv, setup_logging
 
 from RAG.chunks import Chunk, load_chunks
-from src.config import PROJECT_DIR, RAW_DIR
 from RAG.retrieval import Bm25Retriever, SemanticRetriever, reciprocal_rank_fusion
-from src.utils import load_dotenv, setup_logging
 
 
 logger = setup_logging("chatbot")
