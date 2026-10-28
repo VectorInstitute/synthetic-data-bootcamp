@@ -8,7 +8,7 @@ Run every command below from `implementations/synthetic_10k/` so Python finds th
 
 ```bash
 cd implementations/synthetic_10k
-uv run pytest method_1/tests    # 24 tests, no network
+uv run pytest method_1/tests    # 26 tests, no network
 ```
 
 ## Step 1: parse the real filings
