@@ -77,7 +77,9 @@ def build_index() -> tuple[dict[str, Chunk], Bm25Retriever, SemanticRetriever]:
     semantic = SemanticRetriever(chunk_ids, texts, cache_path=EMBEDDING_CACHE_PATH)
     logger.info(
         "Semantic embeddings %s",
-        "loaded from cache" if semantic.loaded_from_cache else f"computed fresh (cached to {EMBEDDING_CACHE_PATH.name} for next time)",
+        "loaded from cache"
+        if semantic.loaded_from_cache
+        else f"computed fresh (cached to {EMBEDDING_CACHE_PATH.name} for next time)",
     )
     return {c.chunk_id: c for c in chunks}, bm25, semantic
 
