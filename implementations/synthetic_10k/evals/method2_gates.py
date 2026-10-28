@@ -40,7 +40,7 @@ import re
 import sys
 from pathlib import Path
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 
 EVALS_DIR = Path(__file__).resolve().parent
@@ -192,10 +192,12 @@ def to_text(element) -> str:
 def item_nodes(soup: BeautifulSoup, html_id: str) -> list:
     """Return the nodes between an Item's h2 and the next Item or Part heading."""
     heading = soup.find(id=html_id)
+    if heading is None:
+        return []
     nodes = []
     for sib in heading.next_siblings:
         if getattr(sib, "name", None) == "h2" or (
-            getattr(sib, "name", None) == "div" and "page" in (sib.get("class") or [])
+            isinstance(sib, Tag) and sib.name == "div" and "page" in (sib.get("class") or [])
         ):
             break
         nodes.append(sib)
@@ -212,6 +214,8 @@ def convert(html_path: Path, out_dir: Path) -> Path:
         r"fiscal year ended \w+ \d+, (\d{4})",
         soup.get_text(" "),
     )
+    if fy_match is None:
+        raise ValueError(f"{html_path.name}: no fiscal year in the file name or text")
     fiscal_year = int(fy_match.group(1))
     facts = soup.select("table.facts")
     cells = [td.get_text(strip=True) for t in facts for td in t.find_all("td")]

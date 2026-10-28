@@ -55,7 +55,7 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Protocol
+from typing import Any, Protocol, cast
 
 import anthropic
 from aieng.syn_data.synbench.llm.config import (
@@ -289,7 +289,9 @@ class AnthropicUsageClient:
             max_tokens=max_tokens + CLAUDE_THINKING_TOKENS,
             system=system,
             messages=[{"role": "user", "content": prompt}],
-            output_config={"effort": self.effort},
+            output_config=cast(
+                "anthropic.types.OutputConfigParam", {"effort": self.effort}
+            ),
         ) as stream:
             message = stream.get_final_message()
         if message.stop_reason == "refusal":
@@ -319,7 +321,7 @@ def make_client(
     provider: str = "auto",
     temperature: float = 0.7,
     reasoning_effort: str | None = None,
-) -> ChatClient:
+) -> UsageClient | AnthropicUsageClient:
     """Return the Anthropic client for Claude when a key is set, else the proxy's."""
     if provider == "auto":
         load_dotenv()

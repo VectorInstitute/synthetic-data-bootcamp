@@ -35,8 +35,10 @@ import argparse
 import csv
 import json
 import os
+from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+from typing import cast
 
 from method_2.config import PARSED_DIR, RAW_DIR, SYNTHETIC_DIR
 from method_2.utils import load_dotenv, setup_logging, write_atomic
@@ -151,7 +153,7 @@ real company shown above, or any other real company, by name.
 """
 
 
-def make_complete(backend: str, model: str | None, max_tokens: int, effort: str = "high"):
+def make_complete(backend: str, model: str | None, max_tokens: int, effort: str = "high") -> Callable[[str, str], str]:
     """Return a function prompt, item -> generated text, for the chosen backend."""
     if backend == "anthropic":
         import anthropic  # noqa: PLC0415
@@ -164,7 +166,7 @@ def make_complete(backend: str, model: str | None, max_tokens: int, effort: str 
             )
         client = anthropic.Anthropic(api_key=api_key)
 
-        def complete(prompt: str, item: str) -> str:
+        def complete_anthropic(prompt: str, item: str) -> str:
             # Current Claude models always think, so the response can open with a
             # thinking block: keep only the text blocks. Streamed, since thinking
             # plus a long section can outlast a plain request's timeout.
@@ -172,14 +174,14 @@ def make_complete(backend: str, model: str | None, max_tokens: int, effort: str 
                 model=model or ITEM_MODELS[item],
                 max_tokens=max_tokens + THINKING_TOKENS,
                 messages=[{"role": "user", "content": prompt}],
-                output_config={"effort": effort},
+                output_config=cast("anthropic.types.OutputConfigParam", {"effort": effort}),
             ) as stream:
                 message = stream.get_final_message()
             if message.stop_reason == "refusal":
                 raise RuntimeError(f"Item {item}: the model refused ({message.stop_details})")
             return "".join(block.text for block in message.content if block.type == "text")
 
-        return complete
+        return complete_anthropic
 
     from openai import OpenAI  # noqa: PLC0415
 
@@ -188,17 +190,17 @@ def make_complete(backend: str, model: str | None, max_tokens: int, effort: str 
     api_key = os.environ.get("OPENAI_API_KEY") or os.environ.get("SYNBENCH_API_KEY")
     if not api_key:
         raise SystemExit("Set OPENAI_API_KEY or SYNBENCH_API_KEY for --backend openai.")
-    client = OpenAI(base_url=os.environ.get("SYNBENCH_BASE_URL", DEFAULT_BASE_URL), api_key=api_key)
+    openai_client = OpenAI(base_url=os.environ.get("SYNBENCH_BASE_URL", DEFAULT_BASE_URL), api_key=api_key)
 
-    def complete(prompt: str, item: str) -> str:
-        response = client.chat.completions.create(
+    def complete_openai(prompt: str, item: str) -> str:
+        response = openai_client.chat.completions.create(
             model=model,
             max_tokens=max_tokens,
             messages=[{"role": "user", "content": prompt}],
         )
         return response.choices[0].message.content or ""
 
-    return complete
+    return complete_openai
 
 
 def generate_item(complete, item: str, spec: dict, financials: dict, prior_items: dict[str, str]) -> str:

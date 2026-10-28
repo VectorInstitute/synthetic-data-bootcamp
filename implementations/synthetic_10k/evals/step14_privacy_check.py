@@ -91,8 +91,13 @@ def main() -> None:
     closest = min(rows, key=lambda r: abs(r["pct_diff"]) if r["pct_diff"] is not None else float("inf"))
     logger.info(
         "Wrote %d rows to %s (%d companies). Median |pct diff| %.1f%%, closest single field %s/%s at %.1f%%",
-        len(rows), REPORT_PATH, len(spec_paths),
-        sorted(diffs)[len(diffs) // 2], closest["fictional_id"], closest["field"], closest["pct_diff"],
+        len(rows),
+        REPORT_PATH,
+        len(spec_paths),
+        sorted(diffs)[len(diffs) // 2],
+        closest["fictional_id"],
+        closest["field"],
+        closest["pct_diff"],
     )
 
 

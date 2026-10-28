@@ -106,7 +106,12 @@ class Handler(SimpleHTTPRequestHandler):
         srv = self.server
         try:
             answer, passages, provider = answer_question(
-                question, srv.chunks_by_id, srv.bm25, srv.semantic, srv.provider, srv.generate,
+                question,
+                srv.chunks_by_id,
+                srv.bm25,
+                srv.semantic,
+                srv.provider,
+                srv.generate,
             )
         except Exception:
             logger.exception("POST /api/chat failed for question: %r", question)
@@ -136,7 +141,9 @@ def main() -> None:
     chunks_by_id, bm25, semantic = build_index()
     provider, generate = get_generator()
     if provider == "retrieval_only":
-        logger.warning("No DEEPSEEK_API_KEY or ANTHROPIC_API_KEY set -- running retrieval-only (no synthesized answers)")
+        logger.warning(
+            "No DEEPSEEK_API_KEY or ANTHROPIC_API_KEY set -- running retrieval-only (no synthesized answers)",
+        )
     else:
         logger.info("Generation backend: %s", provider)
 

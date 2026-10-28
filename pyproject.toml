@@ -195,6 +195,18 @@ allow_untyped_defs = true
 allow_incomplete_defs = true
 allow_untyped_calls = true
 
+[[tool.mypy.overrides]]
+# Hackathon code for the synthetic 10-K methods: it passes JSON-shaped dicts
+# around, so bare generics and unannotated helpers are allowed; real type
+# errors are still reported.
+module = "implementations.synthetic_10k.*"
+allow_any_generics = true
+allow_untyped_defs = true
+allow_incomplete_defs = true
+allow_untyped_calls = true
+warn_return_any = false
+disable_error_code = ["var-annotated"]
+
 [tool.ruff]
 include = ["*.py", "pyproject.toml", "*.ipynb"]
 line-length = 120
@@ -238,6 +250,9 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["E402", "F401", "F403", "F811"]
 "*.ipynb" = ["D100", "E402", "B018"]
+# Hackathon code for the synthetic 10-K methods: docstrings and function size
+# are not enforced there; correctness rules still apply.
+"implementations/synthetic_10k/**" = ["D1", "D205", "D400", "D401", "W505", "N999", "PLR0912", "PLR0915", "PLR0917"]
 
 [tool.nbqa.addopts]
 # Notebooks idiomatically spread imports across cells, use trailing expressions

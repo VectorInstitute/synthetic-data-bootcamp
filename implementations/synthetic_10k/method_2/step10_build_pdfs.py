@@ -66,8 +66,8 @@ def tableize(text: str) -> str:
             out.append("| " + " | ".join(header) + " |")
             out.append("|" + "|".join(["---"] * n_cols) + "|")
             for row in block:
-                row = row + [""] * (n_cols - len(row))
-                out.append("| " + " | ".join(row) + " |")
+                cells = row + [""] * (n_cols - len(row))
+                out.append("| " + " | ".join(cells) + " |")
             out.append("")
             continue
         out.append(line)
@@ -123,12 +123,17 @@ def build_pdf(spec_path: Path) -> Path:
         [
             "pandoc",
             str(md_path),
-            "-f", "markdown-tex_math_dollars",
+            "-f",
+            "markdown-tex_math_dollars",
             "--pdf-engine=xelatex",
-            "-V", "geometry:margin=1in",
-            "-M", f"title={spec['fictional_name']} ({fid}) - Form 10-K",
-            "-M", f"date=FY{fy}",
-            "-o", str(tmp_pdf_path),
+            "-V",
+            "geometry:margin=1in",
+            "-M",
+            f"title={spec['fictional_name']} ({fid}) - Form 10-K",
+            "-M",
+            f"date=FY{fy}",
+            "-o",
+            str(tmp_pdf_path),
         ],
         check=True,
         capture_output=True,

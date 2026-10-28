@@ -121,7 +121,7 @@ def scaled_line_items(
     year: int,
     tags_by_name: dict[str, list[str]],
     *,
-    template_total: float,
+    template_total: float | None,
     fictional_total: float,
 ) -> dict[str, int]:
     """Scale each template ratio (tag / template_total) onto fictional_total.
