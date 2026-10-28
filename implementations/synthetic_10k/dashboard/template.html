@@ -442,9 +442,9 @@
     </div>
   </section>
 
-  <p class="foot">Built by <code>src/step09_validate_filings.py</code>, <code>step11_make_qa.py</code>,
+  <p class="foot">Built by <code>method_2/step09_validate_filings.py</code>, <code>step11_make_qa.py</code>,
   <code>step12_evaluate_retrievers.py</code>, <code>step13_gap_report.py</code> and
-  <code>step14_privacy_check.py</code> in the <code>dylan_pipeline</code>. This page reads
+  <code>step14_privacy_check.py</code> in the <code>method_2</code>. This page reads
   <code>data/validation_report.csv</code>, <code>data/qa_pairs.csv</code>,
   <code>data/retrieval_eval.csv</code>, <code>data/gap_report.csv</code>, and
   <code>data/privacy_report.csv</code> directly at load time &mdash; nothing on this page is typed in
@@ -960,7 +960,7 @@
   }
 
   // ---------- load the 5 CSVs and render once ----------
-  // src/step15_build_dashboard.py turns this template into dashboard/index.html by
+  // dashboard/build_dashboard.py turns this template into dashboard/index.html by
   // injecting `window.__DASHBOARD_DATA__` (the 5 CSVs, parsed) just above this
   // script tag -- the built file needs no server and no fetch, so it opens directly
   // over file://. This template itself has no embedded data, so editing it and
@@ -972,11 +972,11 @@
   } else {
     const v = Date.now();
     Promise.all([
-      d3.csv(`../dylan_pipeline/data/validation_report.csv?v=${v}`),
-      d3.csv(`../dylan_pipeline/data/qa_pairs.csv?v=${v}`),
-      d3.csv(`../dylan_pipeline/data/retrieval_eval.csv?v=${v}`),
-      d3.csv(`../dylan_pipeline/data/gap_report.csv?v=${v}`),
-      d3.csv(`../dylan_pipeline/data/privacy_report.csv?v=${v}`),
+      d3.csv(`../method_2/data/validation_report.csv?v=${v}`),
+      d3.csv(`../method_2/data/qa_pairs.csv?v=${v}`),
+      d3.csv(`../method_2/data/retrieval_eval.csv?v=${v}`),
+      d3.csv(`../method_2/data/gap_report.csv?v=${v}`),
+      d3.csv(`../method_2/data/privacy_report.csv?v=${v}`),
     ]).then(([validation, qa, retrieval, gap, privacy]) => {
       render(validation, qa, retrieval, gap, privacy);
     }).catch((err) => {

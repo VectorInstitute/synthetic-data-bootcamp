@@ -4,7 +4,7 @@ Four comparisons (PLAN.md Phase 10):
   1. Section length (chars/words per item, from data/index.csv directly).
   2. Vocabulary overlap (Jaccard over each corpus's most frequent terms).
   3. Number distributions (dollar-figure magnitude and percent-figure value, reusing
-     src.step09_validate_filings's own figure extraction).
+     method_2.step09_validate_filings's own figure extraction).
   4. BM25 score distributions, and whether retriever *ranking* (which of BM25/TF-IDF/
      hybrid wins) agrees between the synthetic_only and real_only experiments already
      in data/retrieval_eval.csv (RAG.step12_evaluate_retrievers) -- no need to re-run
@@ -20,9 +20,9 @@ retrieval over those specific QA pairs.
 Output: data/gap_report.csv, one row per metric, plus the narrative writeup in
 PLAN.md Phase 10.
 
-Run from implementations/synthetic_10k (after src.step03_build_index and
+Run from implementations/synthetic_10k (after method_2.step03_build_index and
 RAG.step12_evaluate_retrievers):
-    PYTHONPATH=dylan_pipeline:. python evals/step13_gap_report.py
+    uv run python -m evals.step13_gap_report
 """
 
 import csv
@@ -30,11 +30,11 @@ import io
 import statistics
 from collections import Counter
 
+from method_2.config import RAW_DIR
+from method_2.step09_validate_filings import extract_figures
+from method_2.utils import setup_logging, write_atomic
 from RAG.chunks import load_chunks
-from src.config import RAW_DIR
 from RAG.retrieval import Bm25Retriever, tokenize
-from src.step09_validate_filings import extract_figures
-from src.utils import setup_logging, write_atomic
 
 
 logger = setup_logging("gap_report")
@@ -127,7 +127,9 @@ def number_distribution_rows(index_rows: list[dict]) -> list[dict]:
         stats[source] = {
             "dollars_per_1k_words": statistics.median(dollars_per_1k) if dollars_per_1k else 0.0,
             "percents_per_1k_words": statistics.median(percents_per_1k) if percents_per_1k else 0.0,
-            "median_dollar_magnitude_millions": statistics.median(dollar_magnitudes) / 1e6 if dollar_magnitudes else 0.0,
+            "median_dollar_magnitude_millions": statistics.median(dollar_magnitudes) / 1e6
+            if dollar_magnitudes
+            else 0.0,
             "median_percent_value": statistics.median(percent_values) if percent_values else 0.0,
         }
 
@@ -220,7 +222,14 @@ def main() -> None:
 
     logger.info("Wrote %d rows to %s", len(rows), REPORT_PATH)
     for r in rows:
-        logger.info("%-28s %-32s real=%-10s synthetic=%-10s %s", r["comparison"], r["metric"], r["real"], r["synthetic"], r["note"])
+        logger.info(
+            "%-28s %-32s real=%-10s synthetic=%-10s %s",
+            r["comparison"],
+            r["metric"],
+            r["real"],
+            r["synthetic"],
+            r["note"],
+        )
 
 
 if __name__ == "__main__":

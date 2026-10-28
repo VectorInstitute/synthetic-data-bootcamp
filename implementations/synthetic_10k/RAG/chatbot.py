@@ -11,13 +11,13 @@ a retrieved chunk_id lines up with data/qa_pairs.csv's gold_chunk_id.
 
 Generation is optional and provider-pluggable, picked at startup from whichever API
 key is set in the environment (or in a gitignored .env file next to this project,
-see src.utils.load_dotenv): DeepSeek first (DEEPSEEK_API_KEY), then Claude
+see method_2.utils.load_dotenv): DeepSeek first (DEEPSEEK_API_KEY), then Claude
 (ANTHROPIC_API_KEY), then retrieval-only -- same "retrieval doesn't need a key;
 generation does" fallback as step08_generate_filings.
 
 Two CLI modes:
-    PYTHONPATH=dylan_pipeline python -m RAG.chatbot            interactive chat loop
-    PYTHONPATH=dylan_pipeline python -m RAG.chatbot --demo     scripted scenario-analysis walkthrough: one
+    uv run python -m RAG.chatbot            interactive chat loop
+    uv run python -m RAG.chatbot --demo     scripted scenario-analysis walkthrough: one
                                       analytical question per non-baseline scenario
                                       company (13 of data/qa_pairs.csv's 15 analytical
                                       rows span 13 companies), showing whether hybrid
@@ -35,11 +35,11 @@ from collections.abc import Callable
 
 import anthropic
 import requests
+from method_2.config import PROJECT_DIR, RAW_DIR
+from method_2.utils import load_dotenv, setup_logging
 
 from RAG.chunks import Chunk, load_chunks
-from src.config import PROJECT_DIR, RAW_DIR
 from RAG.retrieval import Bm25Retriever, SemanticRetriever, reciprocal_rank_fusion
-from src.utils import load_dotenv, setup_logging
 
 
 logger = setup_logging("chatbot")
@@ -110,12 +110,14 @@ def synthesize_claude(client: "anthropic.Anthropic", question: str, passages: li
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": prompt}],
     )
-    return response.content[0].text
+    # Current Claude models can open with a thinking block: keep only the text.
+    return "".join(block.text for block in response.content if block.type == "text")
 
 
 def synthesize_deepseek(api_key: str, question: str, passages: list[Chunk]) -> str:
     """DeepSeek's chat completions API is OpenAI-compatible; plain `requests` is
-    enough, no SDK needed for one call shape."""
+    enough, no SDK needed for one call shape.
+    """
     prompt = f"Question: {question}\n\nPassages:\n{format_context(passages)}"
     response = requests.post(
         DEEPSEEK_API_URL,
@@ -138,7 +140,8 @@ def synthesize_deepseek(api_key: str, question: str, passages: list[Chunk]) -> s
 def get_generator() -> tuple[str, Generator | None]:
     """Pick a generation backend from the environment: DeepSeek first, then Claude,
     then retrieval-only (no key set for either). Reads .env (gitignored) if present,
-    without overriding an already-exported shell variable."""
+    without overriding an already-exported shell variable.
+    """
     load_dotenv(ENV_PATH)
 
     deepseek_key = os.environ.get("DEEPSEEK_API_KEY")
@@ -185,7 +188,7 @@ def source_dict(c: Chunk) -> dict:
 
 
 def load_scenario_info() -> dict[str, dict]:
-    """ticker -> {"company_name", "type", "summary"}, read from each spec.json."""
+    """Ticker -> {"company_name", "type", "summary"}, read from each spec.json."""
     info = {}
     for spec_path in sorted(SYNTHETIC_DIR.glob("*/*/spec.json")):
         spec = json.loads(spec_path.read_text(encoding="utf-8"))
@@ -213,7 +216,8 @@ def demo_rows(
 ) -> list[dict]:
     """One row per scenario company: does hybrid retrieval land on the scenario-
     grounded passage, not just a keyword-overlapping one? Shared by the CLI --demo
-    and RAG.chatbot_server's GET /api/demo, so both show exactly the same data."""
+    and RAG.chatbot_server's GET /api/demo, so both show exactly the same data.
+    """
     scenario_info = load_scenario_info()
     seen_tickers: set[str] = set()
     rows = []
@@ -296,7 +300,10 @@ def run_chat(
 ) -> None:
     print("SEC 10-K synthetic corpus chatbot -- ask about any of the 20 fictional companies.")
     print("Type 'quit' or 'exit' to leave.\n")
-    print(f"Generation backend: {provider}" + (" (no API key set -- showing top-retrieved passage)" if provider == "retrieval_only" else ""))
+    print(
+        f"Generation backend: {provider}"
+        + (" (no API key set -- showing top-retrieved passage)" if provider == "retrieval_only" else ""),
+    )
     print()
 
     while True:
@@ -328,7 +335,9 @@ def main() -> None:
     chunks_by_id, bm25, semantic = build_index()
     provider, generate = get_generator()
     if provider == "retrieval_only":
-        logger.warning("No DEEPSEEK_API_KEY or ANTHROPIC_API_KEY set -- running retrieval-only (no synthesized answers)")
+        logger.warning(
+            "No DEEPSEEK_API_KEY or ANTHROPIC_API_KEY set -- running retrieval-only (no synthesized answers)",
+        )
     else:
         logger.info("Generation backend: %s", provider)
 

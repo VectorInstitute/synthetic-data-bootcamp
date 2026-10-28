@@ -1,0 +1,788 @@
+r"""Write the narrative Items of each fictional company's 10-K with an LLM.
+
+Usage::
+
+    # Write the prompts only (no API calls), to inspect them and their size
+    python -m method_1.narrative --data data/sec10k --limit 2 --dry-run
+
+    # Generate two filings with Gemini Flash through the Vector proxy
+    python -m method_1.narrative --data data/sec10k --limit 2
+
+    # Use a stronger model for MD&A only
+    python -m method_1.narrative --data data/sec10k --limit 2 \
+        --item-model 7=gemini-3.1-pro-preview
+
+For each spec in ``data/sec10k/synthetic/specs/`` the model writes Items 1, 1A,
+2, 3, 7, 7A and 1C, in that order, each prompt holding the company's facts
+sheet, the Items already written, a length target from ``calibration.json`` and
+an excerpt of the same Item from a real company in the same sector as a style
+example. Item 8 is rendered from the statements by code and the formulaic Items
+(1B, 4, 5, 6, 9 to 16) come from templates (``boilerplate.py``). Each section is
+validated (``validate.py``) and regenerated with the issues as feedback, up to
+``MAX_ATTEMPTS`` drafts.
+
+Writes ``data/sec10k/synthetic/filings/{company_id}/``: ``item_*.txt``,
+``filing.txt`` and ``filing.html`` (the whole 10-K, see ``export.py``),
+``prompts/`` and ``metrics.json`` (time, tokens, model, attempts and issues per
+call). Every run also writes ``synthetic/runs/{run_id}.json`` and appends its
+totals to ``runs.jsonl``.
+
+The Vector proxy is reached with the ``openai`` SDK at ``SYNBENCH_BASE_URL``
+(default ``https://proxy.vectorinstitute.ai/v1``) with ``OPENAI_API_KEY``, as in
+``implementations/agent_benchmark_generation/1-check_access_to_model.ipynb``.
+``--model`` picks the model (default ``gemini-3-flash-preview``) and
+``--list-models`` prints the ids the proxy serves.
+
+A ``claude-*`` model goes straight to the Anthropic API instead when
+``ANTHROPIC_API_KEY`` is set (in the environment or a ``.env`` file), for a
+baseline run with your own key; ``--provider`` forces either route. Claude
+models always think, so ``--reasoning-effort`` sets their effort (default
+``high``) and ``--temperature`` is not sent.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import logging
+import os
+import random
+import re
+import time
+from collections.abc import Callable, Collection
+from concurrent.futures import ThreadPoolExecutor
+from dataclasses import asdict, dataclass, field
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Protocol, cast
+
+import anthropic
+from aieng.syn_data.synbench.llm.config import (
+    get_api_key,
+    get_base_url,
+    get_reasoning_effort,
+)
+from dotenv import load_dotenv
+from openai import OpenAI
+
+from method_1.calibrate import load_sectors
+from method_1.export import write_filing
+from method_1.render import facts_sheet, item_8
+from method_1.specs import sample_quantile
+from method_1.validate import (
+    HEADINGS,
+    exemplar_overlap,
+    real_name_patterns,
+    validate_section,
+    word_count,
+)
+
+
+logger = logging.getLogger(__name__)
+
+DEFAULT_MODEL = "gemini-3-flash-preview"
+# Output-token ceilings of models that reject a larger max_tokens.
+MODEL_MAX_TOKENS = {"gpt-4o": 16384}
+CLAUDE_EFFORTS = ("low", "medium", "high", "xhigh", "max")
+DEFAULT_CLAUDE_EFFORT = "high"
+CLAUDE_THINKING_TOKENS = 32000  # headroom for adaptive thinking on top of the text
+GENERATION_ORDER = ["1", "1A", "2", "3", "7", "7A", "1C"]
+# Real sections run long (median Item 1A is ~11,000 words); targets are sampled
+# from calibration.json and capped here to keep a pilot cheap.
+WORD_CAPS = {
+    "1": 3000,
+    "1A": 3500,
+    "2": 500,
+    "3": 350,
+    "7": 3000,
+    "7A": 700,
+    "1C": 900,
+}
+MAX_ATTEMPTS = 3  # first draft plus up to two regenerations with feedback
+EXEMPLAR_WORDS = 1200
+CONTEXT_WORDS = 1500  # of each earlier Item, shown for consistency
+
+SYSTEM = """\
+You write sections of annual reports on Form 10-K for a fictional US public \
+company, in the register of real SEC filings: formal, specific, and organised \
+under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than \
+"-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other \
+dollar amounts or percentages; when you cite a figure, copy it from the facts \
+sheet (amounts in millions as "$1,234 million", or billions with one decimal \
+as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe \
+competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening \
+boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never \
+with a minus sign."""
+
+GUIDANCE = {
+    "1": (
+        "Describe the business: overview, principal products and services, two "
+        "or three reportable segments described qualitatively, customers, sales "
+        "and marketing, competition, seasonality, intellectual property, "
+        "government regulation, human capital (state the number of employees from "
+        "the facts sheet) and available information. The only dollar figure you "
+        "may cite is total revenue."
+    ),
+    "1A": (
+        "List the material risks, grouped under sub-headings (for example risks "
+        "related to the business and industry, to operations, to financing and "
+        "capital structure, to legal and regulatory matters, and general risks). "
+        "Each risk starts with a one-sentence heading line, followed by one or two "
+        "paragraphs. Make the risks specific to this company's sector, cost "
+        "structure and balance sheet. Do not quote dollar amounts or "
+        "percentages; describe exposures in words, as real risk factors do."
+    ),
+    "2": (
+        "Describe the principal properties: corporate headquarters (in the "
+        "headquarters city given in the facts), the main facilities used by each segment, "
+        "whether they are owned or leased, and whether they are adequate for "
+        "current needs. Use words for sizes rather than dollar amounts."
+    ),
+    "3": (
+        "Describe legal proceedings in the usual form: the company is party to "
+        "claims arising in the ordinary course of business (for example "
+        "commercial, intellectual property, employment or product matters), "
+        "management does not expect them to have a material adverse effect, and "
+        "litigation is inherently uncertain. Do not name real parties or courts "
+        "cases; do not quote amounts."
+    ),
+    "7A": (
+        "Describe exposure to market risk: interest rate risk (on debt and cash "
+        "investments), foreign currency risk, and commodity or equity price "
+        "risk where relevant to the sector, and how the company manages them. "
+        "You may cite long-term debt, cash and interest expense from the facts "
+        "sheet; express sensitivities qualitatively (no invented amounts)."
+    ),
+    "7": (
+        "Write MD&A with these parts: overview; results of operations comparing "
+        "the current with the prior fiscal year line by line (revenue, cost of "
+        "revenue and gross margin, each operating expense, operating income, "
+        "interest expense, effective tax rate, net income), giving plausible "
+        "qualitative drivers; liquidity and capital resources (cash, operating, "
+        "investing and financing cash flows, capital expenditures, debt, "
+        "dividends and share repurchases); and critical accounting estimates. "
+        "Quote amounts and percentages exactly as they appear in the facts sheet. "
+        "Do not include market risk disclosures; Item 7A covers them."
+    ),
+    "1C": (
+        "Describe cybersecurity risk management and strategy (processes, third "
+        "parties, assessment of risks from threats) and governance (board "
+        "oversight committee, the role and experience of the chief information "
+        "security officer, reporting lines). Avoid numbers."
+    ),
+}
+
+
+@dataclass
+class Completion:
+    """One model response with its usage and timing."""
+
+    text: str
+    model: str
+    seconds: float
+    prompt_tokens: int = 0
+    completion_tokens: int = 0
+    total_tokens: int = 0
+    reasoning_tokens: int = 0
+    finish_reason: str | None = None
+
+
+class ChatClient(Protocol):
+    """Anything that turns a system and user prompt into a ``Completion``."""
+
+    def chat(self, system: str, prompt: str, *, max_tokens: int) -> Completion:
+        """Generate one completion."""
+        ...
+
+
+class UsageClient:
+    """Chat client for the Vector proxy that also returns token usage and latency.
+
+    Connects as in ``implementations/agent_benchmark_generation/
+    1-check_access_to_model.ipynb``: the ``openai`` SDK with ``base_url`` from
+    ``SYNBENCH_BASE_URL`` (default ``https://proxy.vectorinstitute.ai/v1``) and
+    the key from ``OPENAI_API_KEY``, both also read from a ``.env`` file. The SDK
+    retries rate limits and server errors itself.
+    """
+
+    def __init__(
+        self,
+        model: str,
+        *,
+        temperature: float = 0.7,
+        reasoning_effort: str | None = None,
+        max_retries: int = 5,
+        timeout: float = 600.0,
+    ) -> None:
+        self.model = model
+        self.temperature = temperature
+        self.reasoning_effort = reasoning_effort or get_reasoning_effort(model)
+        self.client = OpenAI(
+            base_url=get_base_url(),
+            api_key=get_api_key(),
+            max_retries=max_retries,
+            timeout=timeout,
+        )
+
+    def chat(self, system: str, prompt: str, *, max_tokens: int) -> Completion:
+        """Call the chat completions API once (with the SDK's retries)."""
+        extra: dict[str, Any] = {}
+        if self.reasoning_effort:
+            extra["reasoning_effort"] = self.reasoning_effort
+        for prefix, cap in MODEL_MAX_TOKENS.items():
+            if self.model.startswith(prefix):
+                max_tokens = min(max_tokens, cap)
+        start = time.perf_counter()
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user", "content": prompt},
+            ],
+            temperature=self.temperature,
+            max_tokens=max_tokens,
+            **extra,
+        )
+        return _completion(response.model_dump(), self.model, start)
+
+    def list_models(self) -> list[str]:
+        """Return the model ids served by the endpoint."""
+        return sorted(m.id for m in self.client.models.list())
+
+
+class AnthropicUsageClient:
+    """Chat client for the Anthropic API (a Claude baseline with your own key).
+
+    Reads ``ANTHROPIC_API_KEY`` from the environment or a ``.env`` file. Claude
+    models always think (adaptive thinking), so ``effort`` sets how much, and the
+    output budget gets ``CLAUDE_THINKING_TOKENS`` of headroom on top of the text.
+    Requests are streamed, which long outputs need. A refused request returns
+    empty text with ``finish_reason`` "refusal", so validation fails and the
+    section is retried like any other failed draft.
+    """
+
+    def __init__(
+        self,
+        model: str,
+        *,
+        effort: str | None = None,
+        max_retries: int = 5,
+        timeout: float = 900.0,
+    ) -> None:
+        load_dotenv()
+        self.model = model
+        self.effort = effort if effort in CLAUDE_EFFORTS else DEFAULT_CLAUDE_EFFORT
+        self.client = anthropic.Anthropic(max_retries=max_retries, timeout=timeout)
+
+    def chat(self, system: str, prompt: str, *, max_tokens: int) -> Completion:
+        """Stream one message and return its text, usage and latency."""
+        start = time.perf_counter()
+        with self.client.messages.stream(
+            model=self.model,
+            max_tokens=max_tokens + CLAUDE_THINKING_TOKENS,
+            system=system,
+            messages=[{"role": "user", "content": prompt}],
+            output_config=cast(
+                "anthropic.types.OutputConfigParam", {"effort": self.effort}
+            ),
+        ) as stream:
+            message = stream.get_final_message()
+        if message.stop_reason == "refusal":
+            logger.warning(
+                "%s refused the request: %s", self.model, message.stop_details
+            )
+        text = "".join(b.text for b in message.content if b.type == "text")
+        usage = message.usage
+        return Completion(
+            text=text if message.stop_reason != "refusal" else "",
+            model=message.model,
+            seconds=round(time.perf_counter() - start, 2),
+            prompt_tokens=usage.input_tokens,
+            completion_tokens=usage.output_tokens,
+            total_tokens=usage.input_tokens + usage.output_tokens,
+            finish_reason=message.stop_reason,
+        )
+
+    def list_models(self) -> list[str]:
+        """Return the model ids the API key can use."""
+        return sorted(m.id for m in self.client.models.list())
+
+
+def make_client(
+    model: str,
+    *,
+    provider: str = "auto",
+    temperature: float = 0.7,
+    reasoning_effort: str | None = None,
+) -> UsageClient | AnthropicUsageClient:
+    """Return the Anthropic client for Claude when a key is set, else the proxy's."""
+    if provider == "auto":
+        load_dotenv()
+        use_anthropic = model.startswith("claude-") and bool(
+            os.environ.get("ANTHROPIC_API_KEY")
+        )
+        provider = "anthropic" if use_anthropic else "proxy"
+    if provider == "anthropic":
+        return AnthropicUsageClient(model, effort=reasoning_effort)
+    return UsageClient(
+        model, temperature=temperature, reasoning_effort=reasoning_effort
+    )
+
+
+def _completion(payload: dict[str, Any], model: str, start: float) -> Completion:
+    choice = payload["choices"][0]
+    usage = payload.get("usage") or {}
+    details = usage.get("completion_tokens_details") or {}
+    return Completion(
+        text=choice["message"].get("content") or "",
+        model=payload.get("model") or model,
+        seconds=round(time.perf_counter() - start, 2),
+        prompt_tokens=usage.get("prompt_tokens") or 0,
+        completion_tokens=usage.get("completion_tokens") or 0,
+        total_tokens=usage.get("total_tokens") or 0,
+        reasoning_tokens=details.get("reasoning_tokens") or 0,
+        finish_reason=choice.get("finish_reason"),
+    )
+
+
+@dataclass
+class Corpus:
+    """Real filings used for style examples, length targets and name checks."""
+
+    data: Path
+    calibration: dict[str, Any]
+    sections: dict[tuple[str, str], list[str]] = field(default_factory=dict)
+    real_names: list[re.Pattern[str]] = field(default_factory=list)
+
+    @classmethod
+    def load(cls, data: Path) -> Corpus:
+        """Read calibration.json, index.csv and the real company names."""
+        corpus = cls(data, json.loads((data / "calibration.json").read_text()))
+        sectors = load_sectors()
+        companies = set()
+        index = data / "index.csv"
+        if index.exists():
+            with index.open() as f:
+                for row in csv.DictReader(f):
+                    companies.add(row["company"])
+                    if row["status"] != "ok" or row.get("source", "real") != "real":
+                        continue
+                    key = (sectors.get(row["ticker"], "Unknown"), row["item"])
+                    corpus.sections.setdefault(key, []).append(row["path"])
+        corpus.real_names = real_name_patterns(sorted(companies))
+        return corpus
+
+    def exemplar(self, sector: str, item: str, rng: random.Random) -> str:
+        """Return an excerpt of a real same-sector Item ("" when none is on disk)."""
+        paths = [
+            p for p in self.sections.get((sector, item), []) if (self.data / p).exists()
+        ]
+        if not paths:
+            return ""
+        words = (self.data / rng.choice(sorted(paths))).read_text().split(" ")
+        excerpt = " ".join(words[:EXEMPLAR_WORDS])
+        return excerpt + (" [...]" if len(words) > EXEMPLAR_WORDS else "")
+
+    def target_words(self, item: str, rng: random.Random, scale: float) -> int:
+        """Sample a section length from the real distribution, then cap it."""
+        q = self.calibration.get("section_words", {}).get(item)
+        sampled = sample_quantile(q, rng) if q else WORD_CAPS[item]
+        return max(200, int(round(min(sampled, WORD_CAPS[item]) * scale, -1)))
+
+
+def build_prompt(
+    spec: dict[str, Any],
+    item: str,
+    *,
+    target: int,
+    exemplar: str,
+    earlier: dict[str, str],
+) -> str:
+    """Assemble the user prompt for one Item."""
+    parts = [f"FACTS SHEET (all figures in USD millions)\n{facts_sheet(spec)}"]
+    if exemplar:
+        parts.append(
+            f"STYLE EXAMPLE: the start of Item {item} from a real "
+            f"{spec['sector']} company's 10-K. Follow its structure and tone; do "
+            f"not copy its wording, names or numbers.\n<<<\n{exemplar}\n>>>"
+        )
+    for done, text in earlier.items():
+        words = text.split(" ")
+        shown = " ".join(words[:CONTEXT_WORDS])
+        cut = " [...]" if len(words) > CONTEXT_WORDS else ""
+        parts.append(
+            f"ALREADY WRITTEN, Item {done} of this filing (stay consistent with "
+            f"it):\n<<<\n{shown}{cut}\n>>>"
+        )
+    parts.append(
+        f"TASK\nWrite {HEADINGS[item]} for {spec['name']}'s annual report for the "
+        f"fiscal year ended {spec['fiscal_year_end']}. {GUIDANCE[item]}\n"
+        f"Length: about {target} words. Start with the line "
+        f'"{HEADINGS[item]}" and output only the section text.'
+    )
+    return "\n\n".join(parts)
+
+
+def clean_output(text: str, item: str) -> str:
+    """Strip markdown the model adds anyway and make sure the heading is there."""
+    text = re.sub(r"^\s*#+\s*", "", text, flags=re.MULTILINE)
+    text = text.replace("**", "").replace("__", "")
+    text = re.sub(r"^\s*[*•]\s+", "- ", text, flags=re.MULTILINE).strip()
+    text = re.sub(r"^```\w*\s*|\s*```$", "", text).strip()
+    first, _, rest = text.partition("\n")
+    if re.match(rf"item\s+{re.escape(item)}\.", first, re.IGNORECASE):
+        text = rest.strip()  # replaced by the canonical heading below
+    return f"{HEADINGS[item]}\n\n{text}\n"
+
+
+def _max_tokens(target: int) -> int:
+    # About 1.4 tokens per word, doubled for headroom, plus room for thinking.
+    return int(target * 2.8) + 8192
+
+
+def generate_item(
+    client: ChatClient,
+    spec: dict[str, Any],
+    item: str,
+    *,
+    prompt: str,
+    target: int,
+    check: Callable[[str], list[str]],
+) -> tuple[str, list[dict[str, Any]]]:
+    """Generate one Item, regenerating with feedback while validation fails."""
+    calls: list[dict[str, Any]] = []
+    text = ""
+    issues: list[str] = []
+    for attempt in range(1, MAX_ATTEMPTS + 1):
+        user = prompt
+        if issues:
+            user += (
+                "\n\nA previous draft had these problems; fix all of them:\n- "
+                + "\n- ".join(issues)
+            )
+        result = client.chat(SYSTEM, user, max_tokens=_max_tokens(target))
+        text = clean_output(result.text, item)
+        issues = check(text)
+        record = asdict(result)
+        del record["text"]
+        calls.append(
+            {
+                "item": item,
+                "attempt": attempt,
+                **record,
+                "words": word_count(text),
+                "issues": issues,
+            }
+        )
+        logger.info(
+            "%s Item %s attempt %d: %d words, %d tokens, %.1fs, %d issues",
+            spec["company_id"],
+            item,
+            attempt,
+            word_count(text),
+            result.total_tokens,
+            result.seconds,
+            len(issues),
+        )
+        if not issues:
+            break
+    return text, calls
+
+
+def _totals(calls: list[dict[str, Any]]) -> dict[str, Any]:
+    keys = ("seconds", "prompt_tokens", "completion_tokens", "total_tokens")
+    out: dict[str, Any] = {k: sum(c.get(k, 0) for c in calls) for k in keys}
+    out["reasoning_tokens"] = sum(c.get("reasoning_tokens", 0) for c in calls)
+    out["seconds"] = round(out["seconds"], 2)
+    out["calls"] = len(calls)
+    return out
+
+
+def write_company(
+    spec: dict[str, Any],
+    corpus: Corpus,
+    client: ChatClient | None,
+    *,
+    out_root: Path,
+    length_scale: float = 1.0,
+    item_clients: dict[str, ChatClient] | None = None,
+    only: Collection[str] | None = None,
+) -> dict[str, Any]:
+    """Generate (or, without a client, only prompt) one company's filing.
+
+    ``item_clients`` overrides ``client`` for the Items it names, so each Item
+    can use a different model. ``only`` limits the filing to the Items it names
+    (Item 8 is always built from the statements).
+    """
+    order = [i for i in GENERATION_ORDER if only is None or i in only]
+    cid = spec["company_id"]
+    out = out_root / cid
+    (out / "prompts").mkdir(parents=True, exist_ok=True)
+    rng = random.Random(cid)
+    started = time.perf_counter()
+    items: dict[str, str] = {"8": item_8(spec)}
+    calls: list[dict[str, Any]] = []
+    sections: dict[str, Any] = {}
+    for item in order:
+        target = corpus.target_words(item, rng, length_scale)
+        exemplar = corpus.exemplar(spec["sector"], item, rng)
+        earlier = {i: items[i] for i in order if i in items}
+        if client is None:  # dry run: show where earlier Items will go
+            earlier = {
+                i: f"[Item {i} as generated]" for i in order[: order.index(item)]
+            }
+        prompt = build_prompt(
+            spec, item, target=target, exemplar=exemplar, earlier=earlier
+        )
+        (out / "prompts" / f"item_{item.lower()}.txt").write_text(
+            SYSTEM + "\n\n" + prompt
+        )
+        sections[item] = {
+            "target_words": target,
+            "exemplar_words": word_count(exemplar),
+            "prompt_chars": len(SYSTEM) + len(prompt),
+        }
+        item_client = (item_clients or {}).get(item, client)
+        if item_client is None:
+            continue
+
+        def check(
+            text: str, item: str = item, exemplar: str = exemplar, target: int = target
+        ) -> list[str]:
+            return validate_section(
+                text,
+                item=item,
+                spec=spec,
+                target_words=target,
+                exemplar=exemplar,
+                real_names=corpus.real_names,
+            )
+
+        text, item_calls = generate_item(
+            item_client, spec, item, prompt=prompt, target=target, check=check
+        )
+        items[item] = text
+        calls += item_calls
+        sections[item].update(
+            words=word_count(text),
+            attempts=len(item_calls),
+            exemplar_overlap=round(exemplar_overlap(text, exemplar), 4),
+            issues=item_calls[-1]["issues"],
+        )
+        (out / f"item_{item.lower()}.txt").write_text(text)
+
+    (out / "item_8.txt").write_text(items["8"])
+    dry_run = client is None
+    if not dry_run:
+        write_filing(spec, out, None if only is None else {*only, "8"})
+    metrics = {
+        "company_id": cid,
+        "name": spec["name"],
+        "sector": spec["sector"],
+        "dry_run": dry_run,
+        "passed": not dry_run and all(not s["issues"] for s in sections.values()),
+        "wall_seconds": round(time.perf_counter() - started, 2),
+        "totals": _totals(calls),
+        "sections": sections,
+        "calls": calls,
+    }
+    (out / "metrics.json").write_text(json.dumps(metrics, indent=2))
+    return metrics
+
+
+def run(
+    specs: list[dict[str, Any]],
+    corpus: Corpus,
+    client: ChatClient | None,
+    *,
+    out_root: Path,
+    workers: int = 1,
+    length_scale: float = 1.0,
+    item_clients: dict[str, ChatClient] | None = None,
+    only: Collection[str] | None = None,
+) -> list[dict[str, Any]]:
+    """Generate filings for ``specs``, ``workers`` companies at a time."""
+
+    def one(spec: dict[str, Any]) -> dict[str, Any]:
+        try:
+            return write_company(
+                spec,
+                corpus,
+                client,
+                out_root=out_root,
+                length_scale=length_scale,
+                item_clients=item_clients,
+                only=only,
+            )
+        except Exception as exc:  # keep going; the run summary records it
+            logger.exception("Failed on %s", spec["company_id"])
+            return {"company_id": spec["company_id"], "error": repr(exc)}
+
+    with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
+        return list(pool.map(one, specs))
+
+
+def summarize(
+    results: list[dict[str, Any]], *, run_id: str, config: dict[str, Any]
+) -> dict[str, Any]:
+    """Run-level record: config, per-company totals and grand totals."""
+    done = [r for r in results if "totals" in r]
+    calls = [c for r in done for c in r["calls"]]
+    totals = _totals(calls)
+    n = max(1, len(done))
+    return {
+        "run_id": run_id,
+        **config,
+        "companies": len(results),
+        "succeeded": len(done),
+        "passed_validation": sum(r["passed"] for r in done),
+        "errors": [r for r in results if "error" in r],
+        "totals": totals,
+        "per_company_avg": {
+            "seconds": round(sum(r["wall_seconds"] for r in done) / n, 2),
+            "total_tokens": round(totals["total_tokens"] / n),
+        },
+        "by_company": [
+            {
+                "company_id": r["company_id"],
+                "passed": r["passed"],
+                "wall_seconds": r["wall_seconds"],
+                **r["totals"],
+            }
+            for r in done
+        ],
+    }
+
+
+def main() -> None:
+    """Command-line entry point."""
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument("--data", type=Path, default=Path("data/sec10k"))
+    parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument(
+        "--item-model",
+        action="append",
+        default=[],
+        metavar="ITEM=MODEL",
+        help="model for one Item, e.g. 7=gemini-3.1-pro-preview (repeatable)",
+    )
+    parser.add_argument("--companies", nargs="*", help="company ids, e.g. syn0001")
+    parser.add_argument("--limit", type=int, help="first N specs only")
+    parser.add_argument("--workers", type=int, default=2)
+    parser.add_argument("--temperature", type=float, default=0.7)
+    parser.add_argument(
+        "--reasoning-effort",
+        help="passed through if set; for Claude, the effort (default high)",
+    )
+    parser.add_argument(
+        "--provider",
+        choices=["auto", "proxy", "anthropic"],
+        default="auto",
+        help="auto: Anthropic API for claude-* models when ANTHROPIC_API_KEY is set",
+    )
+    parser.add_argument("--length-scale", type=float, default=1.0)
+    parser.add_argument("--overwrite", action="store_true", help="redo finished")
+    parser.add_argument("--dry-run", action="store_true", help="prompts only")
+    parser.add_argument("--list-models", action="store_true")
+    parser.add_argument(
+        "--items",
+        nargs="*",
+        help="only these Items, e.g. 1 1A 1C 7 8 (default: all; 8 is always built)",
+    )
+    args = parser.parse_args()
+    logging.basicConfig(
+        level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s"
+    )
+    logging.getLogger("httpx").setLevel(logging.WARNING)  # one line per request
+
+    client = None
+    if not args.dry_run or args.list_models:
+        client = make_client(
+            args.model,
+            provider=args.provider,
+            temperature=args.temperature,
+            reasoning_effort=args.reasoning_effort,
+        )
+    if args.list_models and client is not None:
+        print("\n".join(client.list_models()))
+        return
+    item_models = dict(pair.split("=", 1) for pair in args.item_model)
+    item_clients: dict[str, ChatClient] = {}
+    if not args.dry_run:
+        item_clients = {
+            item: make_client(
+                model,
+                provider=args.provider,
+                temperature=args.temperature,
+                reasoning_effort=args.reasoning_effort,
+            )
+            for item, model in item_models.items()
+        }
+
+    synthetic = args.data / "synthetic"
+    specs = [json.loads(p.read_text()) for p in sorted(synthetic.glob("specs/*.json"))]
+    if args.companies:
+        specs = [s for s in specs if s["company_id"] in args.companies]
+    out_root = synthetic / "filings"
+    if not args.overwrite and not args.dry_run:
+        specs = [
+            s for s in specs if not (out_root / s["company_id"] / "filing.txt").exists()
+        ]
+    specs = specs[: args.limit]
+
+    run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    started = time.perf_counter()
+    results = run(
+        specs,
+        Corpus.load(args.data),
+        client,
+        out_root=out_root,
+        workers=args.workers,
+        length_scale=args.length_scale,
+        item_clients=item_clients,
+        only=args.items,
+    )
+    config = {
+        "model": args.model,
+        "item_models": item_models,
+        "items": args.items,
+        "provider": type(client).__name__ if client else None,
+        "dry_run": args.dry_run,
+        "temperature": args.temperature,
+        "length_scale": args.length_scale,
+        "workers": args.workers,
+        "wall_seconds": round(time.perf_counter() - started, 2),
+    }
+    summary = summarize(results, run_id=run_id, config=config)
+    runs = synthetic / "runs"
+    runs.mkdir(parents=True, exist_ok=True)
+    (runs / f"{run_id}.json").write_text(json.dumps(summary, indent=2))
+    line = {k: v for k, v in summary.items() if k not in ("by_company", "errors")}
+    with (synthetic / "runs.jsonl").open("a") as f:
+        f.write(json.dumps(line) + "\n")
+    t = summary["totals"]
+    logger.info(
+        "Run %s: %d/%d companies passed validation, %d calls, %d tokens "
+        "(%d prompt, %d completion), %.0fs",
+        run_id,
+        summary["passed_validation"],
+        len(specs),
+        t["calls"],
+        t["total_tokens"],
+        t["prompt_tokens"],
+        t["completion_tokens"],
+        config["wall_seconds"],
+    )
+
+
+if __name__ == "__main__":
+    main()

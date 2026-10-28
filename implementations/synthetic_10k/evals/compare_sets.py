@@ -1,12 +1,12 @@
 r"""Fidelity, utility and privacy evals on several synthetic 10-K sets, side by side.
 
-Each set is a folder of fictional filings from either pipeline: Amin's
-`filings/{company}/filing.html` (converted with phase7_gates.convert) or Dylan's
+Each set is a folder of fictional filings from either pipeline: Method 1's
+`filings/{company}/filing.html` (converted with method2_gates.convert) or Method 2's
 `{fictional_id}/{fy}/` layout. Every set is scored the same way against one real
 corpus, so the columns are comparable:
 
 Fidelity, does it read and compute like a real 10-K?
-- Dylan's Phase 7 gates in the form phase7_gates.validate runs them (every S&P 500
+- Method 2's Phase 7 gates in the form method2_gates.validate runs them (every S&P 500
   name instead of one template; prior-year figures allowed): substantive sections,
   Item 8 headings, and the share of dollar and percent figures in Items 7 and 8
   that trace to the statements.
@@ -16,8 +16,8 @@ Fidelity, does it read and compute like a real 10-K?
 Utility, is it useful for a retrieval benchmark (as in RAG.step11/step12)?
 - QA pairs built the same way for every set and for a sample of real filings:
   revenue, net income, total assets, net margin and operating margin, each answered
-  by a verbatim span of one chunk. Dylan's scenario questions are counted separately,
-  since only his scenario-bearing set can have them.
+  by a verbatim span of one chunk. Method 2's scenario questions are counted separately,
+  since only its scenario-bearing set can have them.
 - Recall@5, recall@10, MRR and nDCG@10 for BM25, each embedding model, and a BM25 +
   embedding hybrid, on the set alone (synthetic_only), on the real sample alone
   (real_only, the same for every set) and on both together (mixed).
@@ -25,16 +25,16 @@ Utility, is it useful for a retrieval benchmark (as in RAG.step11/step12)?
   (Spearman correlation of MRR across retrievers).
 
 Privacy, could it expose a real company?
-- Real company names in the text (Amin's case-sensitive S&P 500 patterns), and for
-  Dylan's sets the template company's own name or ticker.
+- Real company names in the text (Method 1's case-sensitive S&P 500 patterns), and for
+  Method 2's sets the template company's own name or ticker.
 - Distance from each fictional company's financials to the closest real
-  company-year (median relative difference over shared fields), and for Dylan's sets
+  company-year (median relative difference over shared fields), and for Method 2's sets
   to the template it was scaled from.
 - Share of each filing's 8-word sequences that also appear in the real corpus. The
   "Real 10-Ks" column gives the same figure for the real sample against the other
   real filings, since boilerplate repeats across real filings too.
 
-Embeddings: `--embedding-models` (default text-embedding-3-small, plus Dylan's local
+Embeddings: `--embedding-models` (default text-embedding-3-small, plus Method 2's local
 potion-retrieval-32M when fastembed can load it). text-embedding-* models go through
 Vector's proxy (OPENAI_API_KEY or SYNBENCH_API_KEY) and are cached on disk, see
 RAG.retrieval.
@@ -43,11 +43,11 @@ Output, under --out (default results/compare_sets/): comparison.md (the three
 tables), summary.json, and per-set CSVs (gates, qa_pairs, retrieval_eval,
 privacy_financials, privacy_text), plus the real sample's QA pairs.
 
-Run from implementations/synthetic_10k with Dylan's environment:
-    PYTHONPATH=dylan_pipeline:. dylan_pipeline/.venv/bin/python evals/compare_sets.py
-    PYTHONPATH=dylan_pipeline:. dylan_pipeline/.venv/bin/python evals/compare_sets.py \
-        --set amin_gemini=amin_pipeline/data/runs/gemini20/synthetic/filings \
-        --set dylan_claude=dylan_pipeline/data/synthetic --real-sample 10
+Run from implementations/synthetic_10k, in the repo's uv environment:
+    uv run python -m evals.compare_sets
+    uv run python -m evals.compare_sets \
+        --set method1_gemini=method_1/data/runs/gemini20/synthetic/filings \
+        --set method2_claude=method_2/data/synthetic --real-sample 10
 """
 
 import argparse
@@ -61,17 +61,22 @@ import sys
 from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-sys.path.insert(0, str(ROOT / "dylan_pipeline"))
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(HERE))
 
-import amin_checks  # noqa: E402
 import numpy as np  # noqa: E402
-import phase7_gates  # noqa: E402
+from method_2.step09_validate_filings import (  # noqa: E402
+    check_real_company_leaks,
+    closest_match,
+    extract_figures,
+    load_real_companies,
+    real_section_stats,
+)
+from method_2.utils import setup_logging, write_atomic  # noqa: E402
 from RAG import step11_make_qa as qa  # noqa: E402
 from RAG.chunks import Chunk, chunk_text  # noqa: E402
 from RAG.retrieval import (  # noqa: E402
@@ -84,28 +89,26 @@ from RAG.retrieval import (  # noqa: E402
     reciprocal_rank_fusion,
     tokenize,
 )
-from src.step09_validate_filings import (  # noqa: E402
-    check_real_company_leaks,
-    closest_match,
-    extract_figures,
-    load_real_companies,
-    real_section_stats,
-)
-from src.utils import setup_logging, write_atomic  # noqa: E402
+
+from evals import method1_checks, method2_gates  # noqa: E402
 
 
 logger = setup_logging("compare_sets")
 
 DEFAULT_SETS = {
-    "amin_gemini": ROOT / "amin_pipeline" / "data" / "runs" / "gemini20" / "synthetic" / "filings",
-    "dylan_gemini": ROOT / "dylan_pipeline" / "data" / "runs" / "gemini20" / "synthetic",
-    "dylan_claude": ROOT / "dylan_pipeline" / "data" / "synthetic",
+    "method1_gemini": ROOT / "method_1" / "data" / "runs" / "gemini20" / "synthetic" / "filings",
+    "method2_gemini": ROOT / "method_2" / "data" / "runs" / "gemini20" / "synthetic",
+    "method2_claude": ROOT / "method_2" / "data" / "synthetic",
 }
-SET_LABELS = {"amin_gemini": "Amin · Gemini", "dylan_gemini": "Dylan · Gemini", "dylan_claude": "Dylan · Claude"}
-DEFAULT_REAL_DIR = ROOT / "dylan_pipeline" / "data" / "parsed"
+SET_LABELS = {
+    "method1_gemini": "Method 1 · Gemini",
+    "method2_gemini": "Method 2 · Gemini",
+    "method2_claude": "Method 2 · Claude",
+}
+DEFAULT_REAL_DIR = ROOT / "method_2" / "data" / "parsed"
 DEFAULT_REAL_FINANCIALS = ROOT.parents[1] / "data" / "sec10k" / "financials.csv"
-CALIBRATION_PATH = ROOT / "dylan_pipeline" / "data" / "calibration.json"
-CONSTITUENTS_PATH = ROOT / "dylan_pipeline" / "data" / "sp500_constituents.csv"
+CALIBRATION_PATH = ROOT / "method_2" / "data" / "calibration.json"
+CONSTITUENTS_PATH = ROOT / "method_2" / "data" / "sp500_constituents.csv"
 DEFAULT_OUT = HERE / "results" / "compare_sets"
 
 ITEMS = ["1", "1a", "1c", "7", "8"]
@@ -120,7 +123,7 @@ PRIVACY_FIELDS = [
     "net_income",
     "operating_income",
 ]
-# Amin's financials.csv column names for the privacy fields.
+# Method 1's financials.csv column names for the privacy fields.
 REAL_FINANCIALS_COLUMNS = {"revenue": "revenues"}
 RETRIEVAL_FIELDS = ["experiment", "retriever", "n_questions", "recall_at_5", "recall_at_10", "mrr", "ndcg_at_10"]
 
@@ -147,11 +150,11 @@ class RealFiling:
 
 
 def load_set(name: str, path: Path, work_dir: Path) -> list[Company]:
-    """Return the set's companies in Dylan's layout, converting Amin's filing.html if needed."""
+    """Return the set's companies in Method 2's layout, converting Method 1's filing.html if needed."""
     htmls = sorted(path.glob("*/filing.html"))
     if htmls:
         converted = work_dir / name / "converted"
-        spec_paths = [phase7_gates.convert(h, converted) for h in htmls]
+        spec_paths = [method2_gates.convert(h, converted) for h in htmls]
     else:
         spec_paths = sorted(path.glob("*/*/spec.json"))
     if not spec_paths:
@@ -179,7 +182,7 @@ def item_texts(folder: Path) -> dict[str, str]:
 
 
 def load_real_records(financials_csv: Path) -> list[dict]:
-    """Real company-years with the privacy fields: Dylan's calibration.json plus Amin's financials.csv."""
+    """Real company-years with the privacy fields: Method 2's calibration.json plus Method 1's financials.csv."""
     records = []
     calibration = json.loads(CALIBRATION_PATH.read_text(encoding="utf-8"))
     for r in calibration["company_years"]:
@@ -247,7 +250,7 @@ class ShingleHasher:
             count=len(tokens),
         )
         n = len(ids) - SHINGLE + 1
-        h = np.zeros(n, dtype=np.uint64)
+        h: np.ndarray = np.zeros(n, dtype=np.uint64)
         with np.errstate(over="ignore"):
             for j in range(SHINGLE):
                 h = h * np.uint64(1_000_003) + ids[j : j + n]
@@ -312,14 +315,14 @@ def run_gates(companies: list[Company]) -> list[dict]:
     real_companies, real_stats = load_real_companies(), real_section_stats()
     rows = []
     for c in companies:
-        rows.extend(phase7_gates.validate(c.folder / "spec.json", real_companies, real_stats))
+        rows.extend(method2_gates.validate(c.folder / "spec.json", real_companies, real_stats))
     return rows
 
 
 def gate_summary(rows: list[dict]) -> dict:
     def pass_rate(check: str) -> str:
         sel = [r for r in rows if r["check"] == check]
-        # phase7_gates notes a heading "failure" that is only the plural "Statements of".
+        # method2_gates notes a heading "failure" that is only the plural "Statements of".
         ok = [r for r in sel if r["status"] == "PASS" or r.get("note", "").startswith("filing uses the plural")]
         return f"{len(ok)}/{len(sel)}" if sel else "n/a"
 
@@ -363,7 +366,9 @@ def gap_summary(companies: list[Company], real: RealCorpus) -> dict:
 
 
 def real_gap_summary(real: RealCorpus) -> dict:
-    out = {f"item_{item}_median_words": round(statistics.median(w)) if w else None for item, w in real.words.items()}
+    out: dict[str, float | None] = {
+        f"item_{item}_median_words": round(statistics.median(w)) if w else None for item, w in real.words.items()
+    }
     out["vocab_jaccard"] = 1.0
     out["dollars_per_1k_words"] = round(statistics.median(real.dollars_per_1k), 2)
     out["percents_per_1k_words"] = round(statistics.median(real.percents_per_1k), 2)
@@ -609,7 +614,7 @@ def privacy_financial_rows(companies: list[Company], records: list[dict]) -> lis
 
 
 def privacy_text_rows(companies: list[Company], real: RealCorpus) -> list[dict]:
-    name_patterns = amin_checks.load_real_names()
+    name_patterns = method1_checks.load_real_names()
     sp500 = load_real_companies()
     rows = []
     for c in companies:
@@ -619,7 +624,7 @@ def privacy_text_rows(companies: list[Company], real: RealCorpus) -> list[dict]:
             {
                 n
                 for t in texts.values()
-                for issue in amin_checks.check_real_names(t, name_patterns)
+                for issue in method1_checks.check_real_names(t, name_patterns)
                 for n in issue.split(": ", 1)[1].rstrip(".").split(", ")
             },
         )
@@ -695,7 +700,7 @@ def markdown(summary: dict, set_names: list[str]) -> str:
             "Item 8 has all three statement headings (singular or plural)",
             "",
             [s["gates"]["required_headings"] for s in sets],
-        )
+        ),
     )
     out.append(row("Items 7 and 8 with every figure traced", "", [s["gates"]["numeric_consistency"] for s in sets]))
     out.append(row("Figures traced to the statements", "", [fmt(s["gates"]["figures_traced_pct"], "%") for s in sets]))
@@ -755,7 +760,7 @@ def markdown(summary: dict, set_names: list[str]) -> str:
     out.append(row("Names found", "", [s["real_names_found"] or "none" for s in sets]))
     out.append(row("Template company's name or ticker in text", "", [s["template_leaks"] for s in sets]))
     out.append(
-        row("Median distance to nearest real company-year", "", [fmt(s["nearest_median_pct"], "%") for s in sets])
+        row("Median distance to nearest real company-year", "", [fmt(s["nearest_median_pct"], "%") for s in sets]),
     )
     out.append(
         row("Companies within 5% of a real company on every field", "", [str(s["n_within_5pct_all"]) for s in sets]),
@@ -813,7 +818,7 @@ def main() -> None:
         "--real-financials",
         type=Path,
         default=DEFAULT_REAL_FINANCIALS,
-        help="Amin's financials.csv (XBRL metrics per filing)",
+        help="Method 1's financials.csv (XBRL metrics per filing)",
     )
     parser.add_argument("--real-sample", type=int, default=15, help="real filings in the retrieval sample")
     parser.add_argument("--seed", type=int, default=7)
@@ -854,7 +859,7 @@ def main() -> None:
     real_mrr = {r["retriever"]: r["mrr"] for r in real_retrieval}
     copied_real = [s * 100 for s in real.holdout_copied_shares()]
 
-    summary = {
+    summary: dict[str, Any] = {
         "embedding_models": models,
         "real": {
             "n_filings": len(filings),
@@ -862,7 +867,7 @@ def main() -> None:
             "n_qa": len(real_qa),
             "gap": real_gap_summary(real),
             "retrieval": real_retrieval,
-            "best_retriever": max(real_mrr, key=real_mrr.get) if real_mrr else "n/a",
+            "best_retriever": max(real_mrr, key=lambda k: real_mrr[k]) if real_mrr else "n/a",
             "copied_median_pct": median_or_none(copied_real),
             "copied_max_pct": round(max(copied_real), 1) if copied_real else None,
         },
@@ -904,7 +909,7 @@ def main() -> None:
             "n_scenario_qa": sum(r["kind"] == "scenario" for r in qa_rows),
             "retrieval": retrieval,
             "ranking_spearman": spearman([real_mrr[k] for k in shared], [own[k] for k in shared]),
-            "best_retriever": max(own, key=own.get) if own else "n/a",
+            "best_retriever": max(own, key=lambda k: own[k]) if own else "n/a",
             "n_real_name_filings": sum(bool(r["real_names"]) for r in text),
             "real_names_found": ", ".join(f"{n} ({k})" for n, k in names.most_common(6)),
             "template_leaks": f"{sum(bool(r['template_leak']) for r in text)}/{len(comps)}"

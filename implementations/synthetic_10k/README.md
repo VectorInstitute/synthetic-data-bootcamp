@@ -1,78 +1,156 @@
 # Synthetic 10-K reports (team BMO-1)
 
-Two pipelines that build fictional companies' 10-K filings, and shared evals that check each pipeline's output with both pipelines' validators. The pipelines were built in parallel, use different data and methods, and are kept separate so either can be run, compared, or reused.
+Two methods that build fictional companies' 10-K filings, and shared evals that check each method's output with both methods' validators. The methods were built in parallel, use different data and approaches, and are kept separate so either can be run, compared, or reused. Method 1 was built by Amin Kharaghani and Method 2 by Dylan Nguyen.
 
 ```
 synthetic_10k/
-  README.md            this overview
-  amin_pipeline/       Amin's pipeline: the sec10k package, its tests and README
-  dylan_pipeline/      Dylan's pipeline (src/step00..step10, data/, PLAN.md)
-  RAG/                 Dylan's retrieval benchmark and chatbot over the synthetic + real corpus
-  evals/               cross-pipeline validation scripts, the gap and privacy reports, results
-  dashboard/           Dylan's self-contained results dashboard and the chatbot UI
-  run_batch.sh         one batch from both pipelines with the same model and sections, plus evals
+  README.md       this overview
+  method_1/       Method 1: Python package (python -m method_1.<step>), tests, README
+  method_2/       Method 2: Python package (python -m method_2.<step>), config, data/, PLAN.md
+  RAG/            retrieval benchmark and chatbot over the synthetic + real corpus (built on Method 2)
+  evals/          cross-method validation scripts, the gap and privacy reports, results
+  dashboard/      self-contained results dashboard and the chatbot UI (built on Method 2)
+  run_batch.sh    one batch from both methods with the same model and sections, plus evals
 ```
 
-## RAG, extra evals and dashboard (from Dylan's pipeline)
+## Setup
 
-These modules build on Dylan's pipeline and import its `src` package, so run them from this folder with `PYTHONPATH=dylan_pipeline`. They read and write `dylan_pipeline/data/`.
+The whole repository has one environment, the `.venv` at its root. The packages both methods, RAG and the evals need are the `synthetic-10k` group in the root `pyproject.toml`, which a plain `uv sync` installs. Every command runs from this folder, so `method_1`, `method_2`, `RAG`, `evals` and `dashboard` import as packages with no `PYTHONPATH`.
+
+```bash
+uv sync                                  # once, from the repository root
+cd implementations/synthetic_10k
+uv run pytest method_1/tests             # Method 1's unit tests
+uv run python -m method_1.narrative --help
+uv run python -m method_2.step08_generate_filings --help
+```
+
+## RAG, extra evals and dashboard (from Method 2)
+
+These modules build on Method 2 and import the `method_2` package, so run them from this folder with `uv run python -m ...`. They read and write `method_2/data/`.
 
 | Folder | Script | Output |
 |---|---|---|
 | `RAG/` | `chunks.py`, `retrieval.py`: paragraph chunking; BM25, a semantic embedding retriever (fastembed locally, or `text-embedding-*` models through Vector's proxy with `RAG_EMBEDDING_MODEL`), reciprocal rank fusion and ranking metrics | |
-| `RAG/` | `step11_make_qa.py`: QA pairs with a gold passage each | `data/qa_pairs.csv` |
-| `RAG/` | `step12_evaluate_retrievers.py`: BM25, semantic and hybrid retrieval on synthetic, real and mixed corpora | `data/retrieval_eval.csv` |
+| `RAG/` | `step11_make_qa.py`: QA pairs with a gold passage each | `method_2/data/qa_pairs.csv` |
+| `RAG/` | `step12_evaluate_retrievers.py`: BM25, semantic and hybrid retrieval on synthetic, real and mixed corpora | `method_2/data/retrieval_eval.csv` |
 | `RAG/` | `chatbot.py`, `chatbot_server.py`: RAG chatbot demo (CLI and browser UI) | |
-| `evals/` | `step13_gap_report.py`: synthetic-vs-real gap (length, vocabulary, numbers, retriever ranking) | `data/gap_report.csv` |
-| `evals/` | `step14_privacy_check.py`: distance of each fictional company's financials from its real template | `data/privacy_report.csv` |
+| `evals/` | `step13_gap_report.py`: synthetic-vs-real gap (length, vocabulary, numbers, retriever ranking) | `method_2/data/gap_report.csv` |
+| `evals/` | `step14_privacy_check.py`: distance of each fictional company's financials from its real template | `method_2/data/privacy_report.csv` |
 | `evals/` | `compare_sets.py`: fidelity, utility (retrieval) and privacy for several synthetic sets side by side, with `text-embedding-3-small` | `evals/results/compare_sets/comparison.md` |
 | `dashboard/` | `build_dashboard.py`: embeds the five result CSVs and vendored d3 into `template.html` | `dashboard/index.html` |
 
 ```bash
 cd implementations/synthetic_10k
-PYTHONPATH=dylan_pipeline python -m src.step03_build_index        # from dylan_pipeline: index of real + synthetic filings
-PYTHONPATH=dylan_pipeline python -m RAG.step11_make_qa
-PYTHONPATH=dylan_pipeline python -m RAG.step12_evaluate_retrievers
-PYTHONPATH=dylan_pipeline:. python evals/step13_gap_report.py
-PYTHONPATH=dylan_pipeline:. python evals/step14_privacy_check.py
-PYTHONPATH=dylan_pipeline python dashboard/build_dashboard.py     # then open dashboard/index.html
+uv run python -m method_2.step03_build_index   # index of real + synthetic filings
+uv run python -m RAG.step11_make_qa
+uv run python -m RAG.step12_evaluate_retrievers
+uv run python -m evals.step13_gap_report
+uv run python -m evals.step14_privacy_check
+uv run python -m dashboard.build_dashboard    # then open dashboard/index.html
 ```
 
-Details are in [dylan_pipeline/README.md](dylan_pipeline/README.md) and `dylan_pipeline/PLAN.md` (Phases 8-11).
+Details are in [method_2/README.md](method_2/README.md) and `method_2/PLAN.md` (Phases 8-11).
 
-## Generate a batch with both pipelines
+## Generate a batch with both methods
 
-[`run_batch.sh`](run_batch.sh) generates N fictional companies with each pipeline using the same model on Vector's proxy and the same sections (Items 1, 1A, 1C, 7, 8), then runs every eval on both batches. Run it from the repository root on the Coder workspace; the settings are at the top of the script.
+[`run_batch.sh`](run_batch.sh) generates N fictional companies with each method using the same model on Vector's proxy and the same sections (Items 1, 1A, 1C, 7, 8), then runs every eval on both batches. Run it from the repository root on the Coder workspace; the settings are at the top of the script.
 
 ```bash
 RUN=gemini20 N=20 MODEL=gemini-3-flash-preview bash implementations/synthetic_10k/run_batch.sh
 ```
 
-## How the two pipelines differ
+## How the two methods differ
 
-| | Amin's pipeline ([README](amin_pipeline/README.md)) | Dylan's pipeline ([README](dylan_pipeline/README.md)) |
+| | Method 1 ([README](method_1/README.md)) | Method 2 ([README](method_2/README.md)) |
 |---|---|---|
 | Real filings | 305 S&P 500 10-Ks filed in 2025 (mostly FY2024), main document only, from a local download | 50 S&P 500 companies sampled at random, FY2023 to FY2025, downloaded with edgartools, including EX-13 exhibits |
 | Sections parsed | Items 1, 1A, 1C, 7, 7A, 8, plus every inline XBRL fact in the filing | Items 1, 1A, 1C, 7, 8; XBRL facts from SEC's companyfacts API |
 | Calibration | Per GICS sector: percentiles of about 20 ratios and of section lengths | Generic across sectors: percentiles of 6 totals and 6 ratios |
 | Fictional company | Ratios sampled from its sector's percentiles | One real company-year as a template, scaled by a random size factor |
 | Statements | Two years (current and prior), income statement, balance sheet, cash flow | One year, line items from the template company's own ratios |
-| Narrative | Written by an LLM through Vector's proxy (Gemini by default), with checks and up to 3 retries per section | Written in a Claude Code session; the API script (`step08`) is built but has not been run |
+| Narrative | Written by an LLM through Vector's proxy (Gemini by default), with checks and up to 3 retries per section | One LLM call per section, no retries. The committed 20 companies were written in a Claude Code session; `step08` generates new batches through Vector's proxy or the Anthropic API |
 | Output | Items 1 to 16 as text, plus an EDGAR-style HTML and PDF filing | Items 1, 1A, 1C, 7, 8 as text (condensed by design) |
 | Built-in checks | `validate.py`, run on each section during generation | `step09_validate_filings.py`, run on the finished filings |
 
+## How each method makes the numbers and the text
+
+Both methods follow the same rule: **code fixes every number first, then an LLM writes prose around those numbers.** The LLM never decides a figure. The methods differ in where the numbers come from, what the LLM is shown, and when the text is checked.
+
+```mermaid
+flowchart LR
+  R[Real 10-Ks<br/>sections + XBRL facts] --> C[Calibration]
+  C --> S[Spec<br/>profile + size + ratios]
+  S --> T[Statements<br/>income, balance sheet, cash flow]
+  T --> P[Prompt per Item<br/>facts + style example + earlier Items]
+  R -. style example .-> P
+  P --> L[LLM]
+  L --> X[Narrative Items<br/>1, 1A, 1C, 7]
+  X --> V{Checks:<br/>figures trace to statements?}
+  T --> V
+  T --> I8[Item 8 tables]
+```
+
+### Method 1: sector statistics, checked while writing
+
+1. **Calibration** (`calibrate.py`): from 305 real 10-Ks, per GICS sector, the 10th to 90th percentiles of company size (log revenue), about 20 ratios (gross and operating margin, SG&A, R&D, D&A and capex intensity, tax rate, asset turnover, equity, current, cash, PP&E, debt, receivables, inventory, goodwill, payout) and of each Item's length.
+2. **Spec** (`specs.py`): picks a sector in proportion to its real filers, then draws each ratio independently from that sector's percentiles. It then clamps the draws so they fit together (for example, operating costs must fit inside gross profit). Name and ticker are invented from syllables and checked against every real filer.
+3. **Statements** (`statements.py`): builds two fiscal years (the prior year's ratios are lightly perturbed) of income statement, balance sheet and cash flow in whole $ millions. "Other" lines absorb the residuals, so every identity holds exactly. Specs that fail an accounting or plausibility check are redrawn.
+4. **Prompt** (`narrative.py`, `render.py`): a facts sheet with the profile, both years' statements and code-computed percentages (margins, year-over-year changes), so the LLM never does arithmetic. Each prompt also has a 1,200-word excerpt of the same Item from a real company in the same sector, the Items already written, and a length target drawn from the sector's real lengths (capped to keep cost down).
+5. **Writing and checks** (`validate.py`): each Item is checked as soon as it is written. The checks cover the heading, length, the company's name, real company names, copying from the style example (at most 5% of 8-word sequences), leaked variable names and how many dollar amounts the Item cites. In Item 7, every amount and percentage must also appear in the facts sheet. A failing Item is rewritten with the problems as feedback, up to 3 drafts.
+6. **Item 8 and the rest**: Item 8 is rendered from the statements by code, never by the LLM. Items 2, 3 and 7A are LLM-written, and Items 1B, 4, 5, 6 and 9 to 16 come from templates. `export.py` assembles an EDGAR-style `filing.html`.
+
+### Method 2: a disguised real company, checked afterwards
+
+1. **Calibration** (`step05_make_calibration.py`): from the companyfacts XBRL of 50 sampled S&P 500 companies (FY2023 to FY2025), one record per company-year (147 in total), with 6 totals and 6 ratios.
+2. **Spec** (`step06_make_specs.py`): picks one real company-year as a template, keeps its sector, sub-industry and HQ state, and scales its totals by a random 0.7 to 1.4 with 0.85 to 1.15 jitter per ratio. It also draws Item 1C facts (framework, board oversight, whether an incident was disclosed) and checks the name against all 503 S&P 500 names and tickers.
+3. **Scenario** (`step06b_add_scenarios.py`): a storyline per company (acquisition, product launch, cash burn, ...). The scenarios are hand-written for the committed 20 companies, and `run_batch.sh` doesn't add them to new batches.
+4. **Statements** (`step07_make_financials.py`): one fiscal year, in dollars. Each line item is the template company's own share of its total, applied to the fictional total, with one "other" line per statement so it reconciles exactly.
+5. **Prompt** (`step08_generate_filings.py`): the profile, only the figures that Item needs, the Items already written, the same Item from the template company itself as a style example (first 6,000 characters), and the median real length. The scenario is not in the prompt.
+6. **Writing and checks**: one call per Item, in the order 1, 1A, 7, 1C, 8, with no checks while writing. **Item 8 is written by the LLM** from the statement JSON. Afterwards, `step09_validate_filings.py` checks for real names and the template's name, whether the Item 7 and 8 figures trace to the statements (it also accepts sums and ratios of lines), the Item 8 headings, minimum length and whether the scenario appears in the text.
+
+## Text and tabular data, and how they connect
+
+Each filing has two kinds of synthetic data:
+
+| | Tabular | Text |
+|---|---|---|
+| What | The spec (profile, size, ratios) and the financial statements | Narrative Items 1, 1A, 1C, 7 (Method 1 also 2, 3, 7A) |
+| Made by | Code, from calibration statistics (Method 1) or a scaled real template (Method 2) | An LLM, conditioned on the tabular data and a real style example |
+| Exact? | Yes: every identity reconciles by construction | No: checked afterwards for figures, names, copying and length |
+| Method 1 files | `synthetic/specs/{id}.json` (spec + statements) | `synthetic/filings/{id}/item_*.txt`, `filing.html` |
+| Method 2 files | `{id}/{fy}/spec.json`, `financials.json` | `{id}/{fy}/item_*.txt` |
+
+The link runs one way. The tables are fixed first and passed into each prompt, so each figure in the text should be a copy of a table value. The checks then test that link in reverse: every dollar amount and percentage in the text has to trace back to a table line or a value derived from one. That trace rate is the main measure of text-to-table consistency.
+
+How much of the tables each Item gets, and so how tightly it is tied to them:
+
+| Item | Method 1: figures given / allowed | Method 2: figures given | How tightly tied to the tables |
+|---|---|---|---|
+| 1 Business | Full facts sheet; at most 3 dollar amounts, guidance says revenue only; employees | Revenue only | Loose: qualitative, one or two figures |
+| 1A Risk Factors | Full facts sheet; told to quote no amounts (at most 4) | Total assets, liabilities, equity | Loose: exposures described in words |
+| 1C Cybersecurity | Facts sheet; no amounts allowed | Framework, oversight and incident flag (spec, not statements) | None: no financial figures |
+| 7 MD&A | Both years' statements and derived percentages; every figure must trace | The full single-year statements | Tight: the most numeric text Item |
+| 8 Financial Statements | Rendered by code, so exact | Written by the LLM from the statement JSON | Is the table itself |
+
+### What this suggests per section (to test with the per-section evals)
+
+- **Items 1, 1A, 1C:** mostly text, so the comparison is about realism, variety and privacy. Method 2's style example is the template company's own Item, which may make its text more specific, but it raises the risk of carrying over that company's real business. Method 1 uses a different company from the same sector and rejects drafts that copy it.
+- **Item 7:** Method 1 has two years and precomputed changes, so its MD&A can compare years as real MD&As do. Method 2's single year can't, and the LLM has to work out any ratio itself.
+- **Item 8:** Method 1's tables are exact by construction. Method 2's depend on the LLM copying the JSON correctly, which likely explains part of its low trace rate on Gemini.
+
 ## Evals
 
-[`evals/`](evals/README.md) runs each pipeline's validator on the other pipeline's filings, without changing either validator.
+[`evals/`](evals/README.md) runs each method's validator on the other method's filings, without changing either validator.
 
 | Validator | Run on | Checks | Pass | Fail | Result |
 |---|---|---|---|---|---|
-| Dylan's step09 | his own 20 companies | 360 | 260 (+100 info) | 0 | [report](dylan_pipeline/data/validation_report.csv) |
-| Dylan's step09 | Amin's 2 showcase filings | 36 | 22 (+10 info) | 4 | [report](evals/results/phase7_on_amin_showcase/validation_report.csv) |
-| Amin's checks | Dylan's 20 companies | 400 (+100 skipped) | 375 | 25 | [report](evals/results/amin_checks_on_dylan20/validation_report.csv) |
+| Method 2's step09 | its own 20 companies | 360 | 260 (+100 info) | 0 | [report](method_2/data/validation_report.csv) |
+| Method 2's step09 | Method 1's 2 showcase filings | 36 | 22 (+10 info) | 4 | [report](evals/results/method2_gates_on_method1_showcase/validation_report.csv) |
+| Method 1's checks | Method 2's 20 companies | 400 (+100 skipped) | 375 | 25 | [report](evals/results/method1_checks_on_method2_claude20/validation_report.csv) |
 
 None of the failures is a defect in a filing. Each one comes from a difference in what the two validators expect:
 
-- **Dylan's checks on Amin's filings:** Dylan's Item 8 heading pattern accepts only "Statement of Operations", not the plural that Amin's filings use (2 failures). His number check expects single-year filings, so it flags year-over-year changes and prior-year margins in MD&A (2 failures, 17 figures). Every figure in Item 8 traces to the statements.
-- **Amin's checks on Dylan's filings:** Amin's number check allows fewer derived figures. Every figure behind the 25 failures is one that Dylan's check accepts, such as a sum of lines (total debt) or a ratio Amin's check doesn't compute. No real company names, leaked variable names or missing company names were found.
-- The exemplar-overlap check (copying from the real template filing) was skipped for Dylan's filings, because his parsed real filings are git-ignored. It runs automatically where `dylan_pipeline/data/parsed/` exists.
+- **Method 2's checks on Method 1's filings:** Method 2's Item 8 heading pattern accepts only "Statement of Operations", not the plural that Method 1's filings use (2 failures). Its number check expects single-year filings, so it flags year-over-year changes and prior-year margins in MD&A (2 failures, 17 figures). Every figure in Item 8 traces to the statements.
+- **Method 1's checks on Method 2's filings:** Method 1's number check allows fewer derived figures. Every figure behind the 25 failures is one that Method 2's check accepts, such as a sum of lines (total debt) or a ratio Method 1's check doesn't compute. No real company names, leaked variable names or missing company names were found.
+- The exemplar-overlap check (copying from the real template filing) was skipped for Method 2's filings, because its parsed real filings are git-ignored. It runs automatically where `method_2/data/parsed/` exists.

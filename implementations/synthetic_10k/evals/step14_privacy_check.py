@@ -16,16 +16,16 @@ actual same-year value (`data/calibration.json`'s `company_years`, written once 
 
 Output: data/privacy_report.csv, one row per (fictional company, financial field).
 
-Run from implementations/synthetic_10k (after src.step06_make_specs):
-    PYTHONPATH=dylan_pipeline:. python evals/step14_privacy_check.py
+Run from implementations/synthetic_10k (after method_2.step06_make_specs):
+    uv run python -m evals.step14_privacy_check
 """
 
 import csv
 import io
 import json
 
-from src.config import COMPANYFACTS_DIR, RAW_DIR
-from src.utils import setup_logging, write_atomic
+from method_2.config import COMPANYFACTS_DIR, RAW_DIR
+from method_2.utils import setup_logging, write_atomic
 
 
 logger = setup_logging("privacy_check")
@@ -91,8 +91,13 @@ def main() -> None:
     closest = min(rows, key=lambda r: abs(r["pct_diff"]) if r["pct_diff"] is not None else float("inf"))
     logger.info(
         "Wrote %d rows to %s (%d companies). Median |pct diff| %.1f%%, closest single field %s/%s at %.1f%%",
-        len(rows), REPORT_PATH, len(spec_paths),
-        sorted(diffs)[len(diffs) // 2], closest["fictional_id"], closest["field"], closest["pct_diff"],
+        len(rows),
+        REPORT_PATH,
+        len(spec_paths),
+        sorted(diffs)[len(diffs) // 2],
+        closest["fictional_id"],
+        closest["field"],
+        closest["pct_diff"],
     )
 
 

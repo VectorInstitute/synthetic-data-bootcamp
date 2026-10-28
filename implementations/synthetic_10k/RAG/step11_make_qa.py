@@ -5,14 +5,14 @@ Synthetic questions (20 companies): template-based and fully deterministic. Ever
 answer is a value already in that company's financials.json or spec.json scenario
 facts; the gold chunk and the exact answer span are found by scanning the company's
 own chunked narrative with the same figure-extraction and tolerance-matching logic
-src.step09_validate_filings already uses for the numeric-consistency gate (so a
+method_2.step09_validate_filings already uses for the numeric-consistency gate (so a
 financial-fact question's answer is guaranteed to be a verbatim substring of its
 gold chunk by construction, not by a separate check).
 
 Real questions (6 companies): hand-authored from a short, grep-verified excerpt of
 each filing (not the whole filing -- some run to 100,000+ words), matching the
 template-ticker/fiscal-year sample Phase 7's model-judged review already used
-(src.step09_validate_filings's docstring). Each answer is checked against the
+(method_2.step09_validate_filings's docstring). Each answer is checked against the
 actual chunked text before being written out; the script hard-fails if one isn't
 found verbatim, which is what PLAN.md Phase 9 means by "check that each answer span
 appears in the text."
@@ -30,25 +30,27 @@ Analytical questions are grounded the same way: a chunk search, verified at
 generation time, never a paraphrase. See PLAN.md Phase 9 for which chunks turned out
 to state cause and effect together (no new grounding invented to force this).
 
-Run from implementations/synthetic_10k (after src.step03_build_index):
-    PYTHONPATH=dylan_pipeline python -m RAG.step11_make_qa
+Run from implementations/synthetic_10k (after method_2.step03_build_index):
+    uv run python -m RAG.step11_make_qa
 """
 
 import csv
 import io
 import json
 import re
+from typing import Any
 
-from RAG.chunks import Chunk, load_chunks
-from src.config import RAW_DIR
-from src.step09_validate_filings import (
+from method_2.config import RAW_DIR
+from method_2.step09_validate_filings import (
     SCENARIO_ANCHOR_FACT,
     SCENARIO_KEYWORDS,
     closest_match,
     extract_figures,
     to_float,
 )
-from src.utils import setup_logging, write_atomic
+from method_2.utils import setup_logging, write_atomic
+
+from RAG.chunks import Chunk, load_chunks
 
 
 logger = setup_logging("make_qa")
@@ -61,10 +63,14 @@ QA_FIELDS = ["qa_id", "source", "ticker", "fiscal_year", "item", "style", "quest
 FINANCIAL_FACTS = [
     (("income_statement", "revenues"), "What were {name}'s total revenues for fiscal {fy}?", False),
     (("income_statement", "net_income"), "What was {name}'s net income for fiscal {fy}?", False),
-    (("balance_sheet", "assets", "total_assets"), "What were {name}'s total assets as of the end of fiscal {fy}?", False),
+    (
+        ("balance_sheet", "assets", "total_assets"),
+        "What were {name}'s total assets as of the end of fiscal {fy}?",
+        False,
+    ),
 ]
 
-# One "why" question per keyword-grounded scenario type (src.step06b_add_scenarios),
+# One "why" question per keyword-grounded scenario type (method_2.step06b_add_scenarios),
 # phrased so answering it requires reading the passage that connects the scenario's
 # cause to its effect, not just matching a category label. The two anchor-fact types
 # (mergers_and_acquisitions, product_launch) are handled separately below since their
@@ -88,7 +94,10 @@ SCENARIO_KEYWORD_QUESTIONS = {
 # requires reading past the figures to the sentence that characterizes them.
 SEVERITY_PHRASE_QUESTIONS = {
     "margin_crisis": ("How severe does {name} describe its fiscal {fy} margin compression?", "thinnest margins"),
-    "cash_burn": ("What does {name}'s fiscal {fy} operating loss reflect about its stage of growth, per its MD&A?", "ahead of sustained profitability"),
+    "cash_burn": (
+        "What does {name}'s fiscal {fy} operating loss reflect about its stage of growth, per its MD&A?",
+        "ahead of sustained profitability",
+    ),
 }
 
 # Verified present in the risk-factor item of every company with the matching
@@ -103,48 +112,74 @@ PRODUCT_LAUNCH_RISK_PHRASE = "may not realize the expected benefits"
 REAL_QA = [
     ("AEP", 2025, "1", "How many employees did AEP's subsidiaries have as of December 31, 2025?", "17,581 employees"),
     (
-        "AEP", 2025, "1",
+        "AEP",
+        2025,
+        "1",
         "In what year was American Electric Power incorporated, and in which state?",
         "incorporated under the laws of the State of New York in 1906",
     ),
     (
-        "BEN", 2024, "7",
+        "BEN",
+        2024,
+        "7",
         "What was Franklin Resources' total assets under management (AUM) at September 30, 2024?",
         "$1,678.6 billion",
     ),
     (
-        "BEN", 2024, "7",
+        "BEN",
+        2024,
+        "7",
         "How much did Franklin Resources' AUM growth reflect from the acquisition of Putnam Investments?",
         "$148.3 billion from the acquisition of Putnam Investments",
     ),
     (
-        "USB", 2025, "7",
+        "USB",
+        2025,
+        "7",
         "How much net income did U.S. Bancorp earn in 2025 compared with 2024?",
         "$7.6 billion in 2025 compared with $6.3 billion in 2024",
     ),
     (
-        "USB", 2025, "7",
+        "USB",
+        2025,
+        "7",
         "What was U.S. Bancorp's diluted earnings per common share in 2025, and how much did it increase from 2024?",
         "$4.62 in 2025, representing a 21.9 percent increase",
     ),
-    ("CVS", 2024, "7", "How many retail locations did CVS Health have as of December 31, 2024?", "more than 9,000 retail locations"),
     (
-        "CVS", 2024, "7",
+        "CVS",
+        2024,
+        "7",
+        "How many retail locations did CVS Health have as of December 31, 2024?",
+        "more than 9,000 retail locations",
+    ),
+    (
+        "CVS",
+        2024,
+        "7",
         "Approximately how many pharmacy benefits manager plan members did CVS Health serve?",
         "approximately 90 million plan members",
     ),
     (
-        "NOC", 2025, "7",
+        "NOC",
+        2025,
+        "7",
         "How much cash did Northrop Grumman receive for the sale of its Immersive Mission Solutions (IMS) operating unit?",
         "$333 million in cash",
     ),
-    ("NOC", 2025, "7", "When did Northrop Grumman complete the divestiture of its training services business?", "May 24, 2025"),
+    (
+        "NOC",
+        2025,
+        "7",
+        "When did Northrop Grumman complete the divestiture of its training services business?",
+        "May 24, 2025",
+    ),
     ("CRWD", 2025, "1", "In what year was CrowdStrike founded?", "Founded in 2011"),
     ("CRWD", 2025, "7", "On what date does CrowdStrike's fiscal year end?", "fiscal years ended January 31, 2025"),
 ]
 
 
-def get_field(d: dict, path: tuple[str, ...]) -> float | None:
+def get_field(d: Any, path: tuple[str, ...]) -> float | None:
     for key in path:
         if key not in d:
             return None
@@ -187,7 +222,16 @@ def find_phrase_chunk(phrase: str, chunks: list[Chunk]) -> Chunk | None:
     return next((c for c in chunks if lowered in c.text.lower()), None)
 
 
-def qa_row(source: str, ticker: str, fy: int, item: str, style: str, question: str, answer: str, gold_chunk_id: str) -> dict:
+def qa_row(
+    source: str,
+    ticker: str,
+    fy: int,
+    item: str,
+    style: str,
+    question: str,
+    answer: str,
+    gold_chunk_id: str,
+) -> dict:
     return {
         "source": source,
         "ticker": ticker,
@@ -201,7 +245,7 @@ def qa_row(source: str, ticker: str, fy: int, item: str, style: str, question: s
 
 
 def scenario_qa_rows(spec: dict, company_chunks: list[Chunk]) -> list[dict]:
-    """Questions grounded in spec.json's scenario (src.step06b_add_scenarios); [] for baseline."""
+    """Questions grounded in spec.json's scenario (method_2.step06b_add_scenarios); [] for baseline."""
     scenario = spec.get("scenario", {})
     scenario_type = scenario.get("type", "baseline")
     if scenario_type == "baseline":
@@ -224,16 +268,51 @@ def scenario_qa_rows(spec: dict, company_chunks: list[Chunk]) -> list[dict]:
             if found:
                 price_chunk, price_answer = found
                 question = f"How much did {name} pay to acquire {facts['acquired_name']}?"
-                rows.append(qa_row("synthetic", ticker, fy, price_chunk.item, "factual", question, price_answer, price_chunk.chunk_id))
+                rows.append(
+                    qa_row(
+                        "synthetic",
+                        ticker,
+                        fy,
+                        price_chunk.item,
+                        "factual",
+                        question,
+                        price_answer,
+                        price_chunk.chunk_id,
+                    ),
+                )
             risk_chunk = find_phrase_chunk(ACQUISITION_RISK_PHRASE, company_chunks)
             if risk_chunk:
-                question = f"What integration risk does {name} face following its acquisition of {facts['acquired_name']}?"
-                rows.append(qa_row("synthetic", ticker, fy, risk_chunk.item, "analytical", question, ACQUISITION_RISK_PHRASE, risk_chunk.chunk_id))
+                question = (
+                    f"What integration risk does {name} face following its acquisition of {facts['acquired_name']}?"
+                )
+                rows.append(
+                    qa_row(
+                        "synthetic",
+                        ticker,
+                        fy,
+                        risk_chunk.item,
+                        "analytical",
+                        question,
+                        ACQUISITION_RISK_PHRASE,
+                        risk_chunk.chunk_id,
+                    ),
+                )
         if scenario_type == "product_launch":
             risk_chunk = find_phrase_chunk(PRODUCT_LAUNCH_RISK_PHRASE, company_chunks)
             if risk_chunk:
                 question = f"What risk does {name} face related to its launch of {facts['product_name']}?"
-                rows.append(qa_row("synthetic", ticker, fy, risk_chunk.item, "analytical", question, PRODUCT_LAUNCH_RISK_PHRASE, risk_chunk.chunk_id))
+                rows.append(
+                    qa_row(
+                        "synthetic",
+                        ticker,
+                        fy,
+                        risk_chunk.item,
+                        "analytical",
+                        question,
+                        PRODUCT_LAUNCH_RISK_PHRASE,
+                        risk_chunk.chunk_id,
+                    ),
+                )
         return rows
 
     template = SCENARIO_KEYWORD_QUESTIONS.get(scenario_type)
@@ -246,17 +325,34 @@ def scenario_qa_rows(spec: dict, company_chunks: list[Chunk]) -> list[dict]:
         if matched_keyword:
             m = re.search(re.escape(matched_keyword) + r"\w*", chunk.text, re.IGNORECASE)
             answer = m.group(0) if m else matched_keyword
-            rows.append(qa_row("synthetic", ticker, fy, chunk.item, "analytical", template.format(name=name, fy=fy), answer, chunk.chunk_id))
+            rows.append(
+                qa_row(
+                    "synthetic",
+                    ticker,
+                    fy,
+                    chunk.item,
+                    "analytical",
+                    template.format(name=name, fy=fy),
+                    answer,
+                    chunk.chunk_id,
+                ),
+            )
 
             severity = SEVERITY_PHRASE_QUESTIONS.get(scenario_type)
             if severity:
                 severity_template, phrase = severity
-                if phrase.lower() in lowered:
-                    m2 = re.search(re.escape(phrase), chunk.text, re.IGNORECASE)
+                m2 = re.search(re.escape(phrase), chunk.text, re.IGNORECASE)
+                if m2:
                     rows.append(
                         qa_row(
-                            "synthetic", ticker, fy, chunk.item, "analytical",
-                            severity_template.format(name=name, fy=fy), m2.group(0), chunk.chunk_id,
+                            "synthetic",
+                            ticker,
+                            fy,
+                            chunk.item,
+                            "analytical",
+                            severity_template.format(name=name, fy=fy),
+                            m2.group(0),
+                            chunk.chunk_id,
                         ),
                     )
             break
@@ -277,16 +373,42 @@ def synthetic_qa_rows(spec_path, all_chunks: list[Chunk]) -> list[dict]:
         found = find_figure_chunk(value, company_chunks, is_percent=is_percent)
         if found:
             chunk, answer = found
-            rows.append(qa_row("synthetic", ticker, fy, chunk.item, "factual", template.format(name=name, fy=fy), answer, chunk.chunk_id))
+            rows.append(
+                qa_row(
+                    "synthetic",
+                    ticker,
+                    fy,
+                    chunk.item,
+                    "factual",
+                    template.format(name=name, fy=fy),
+                    answer,
+                    chunk.chunk_id,
+                ),
+            )
 
     revenue = get_field(financials, ("income_statement", "revenues"))
     net_income = get_field(financials, ("income_statement", "net_income"))
     operating_income = financials["income_statement"].get("operating_income")
     if revenue:
-        found = find_figure_chunk(net_income / revenue * 100, company_chunks, is_percent=True)
+        found = (
+            find_figure_chunk(net_income / revenue * 100, company_chunks, is_percent=True)
+            if net_income is not None
+            else None
+        )
         if found:
             chunk, answer = found
-            rows.append(qa_row("synthetic", ticker, fy, chunk.item, "factual", f"What was {name}'s net margin for fiscal {fy}?", answer, chunk.chunk_id))
+            rows.append(
+                qa_row(
+                    "synthetic",
+                    ticker,
+                    fy,
+                    chunk.item,
+                    "factual",
+                    f"What was {name}'s net margin for fiscal {fy}?",
+                    answer,
+                    chunk.chunk_id,
+                ),
+            )
         if operating_income is not None:
             found = find_figure_chunk(operating_income / revenue * 100, company_chunks, is_percent=True)
             if found:

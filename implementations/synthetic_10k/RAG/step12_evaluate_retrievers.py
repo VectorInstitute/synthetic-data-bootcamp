@@ -12,16 +12,24 @@ minishlab/potion-retrieval-32M, a static embedding model, not a transformer).
 Output: data/retrieval_eval.csv, one row per (experiment, retriever).
 
 Run from implementations/synthetic_10k (after RAG.step11_make_qa):
-    PYTHONPATH=dylan_pipeline python -m RAG.step12_evaluate_retrievers
+    uv run python -m RAG.step12_evaluate_retrievers
 """
 
 import csv
 import io
 
+from method_2.config import RAW_DIR
+from method_2.utils import setup_logging, write_atomic
+
 from RAG.chunks import Chunk, load_chunks
-from src.config import RAW_DIR
-from RAG.retrieval import Bm25Retriever, SemanticRetriever, ndcg_at_k, reciprocal_rank, reciprocal_rank_fusion, recall_at_k
-from src.utils import setup_logging, write_atomic
+from RAG.retrieval import (
+    Bm25Retriever,
+    SemanticRetriever,
+    ndcg_at_k,
+    recall_at_k,
+    reciprocal_rank,
+    reciprocal_rank_fusion,
+)
 
 
 logger = setup_logging("evaluate_retrievers")
@@ -124,7 +132,13 @@ def main() -> None:
     for r in rows:
         logger.info(
             "%-15s %-12s n=%-4d recall@5=%.2f recall@10=%.2f mrr=%.2f ndcg@10=%.2f",
-            r["experiment"], r["retriever"], r["n_questions"], r["recall_at_5"], r["recall_at_10"], r["mrr"], r["ndcg_at_10"],
+            r["experiment"],
+            r["retriever"],
+            r["n_questions"],
+            r["recall_at_5"],
+            r["recall_at_10"],
+            r["mrr"],
+            r["ndcg_at_10"],
         )
 
 

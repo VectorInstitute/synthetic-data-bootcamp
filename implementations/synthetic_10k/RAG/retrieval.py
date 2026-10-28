@@ -22,12 +22,12 @@ Two things were tried first and ruled out:
 Calibration note: `fastembed==0.9.0` declares `huggingface-hub<2.0` but imports an
 internal module (`_snapshot_download`) that huggingface-hub removed in its 1.x
 release, so installing fastembed alone (which resolved huggingface-hub 1.33.0) broke
-on import. Fixed by pinning `huggingface-hub==0.36.2` in requirements.txt.
+on import. Fixed by pinning `huggingface-hub==0.36.2` (now in the root pyproject's synthetic-10k group).
 
 Hosted embeddings: a model name starting with `text-embedding-` (for example
 `text-embedding-3-small`) is embedded through an OpenAI-compatible endpoint instead,
 such as Vector's proxy on the Coder workspace. It reads the same variables as
-src.step08_generate_filings: SYNBENCH_BASE_URL (default
+method_2.step08_generate_filings: SYNBENCH_BASE_URL (default
 https://proxy.vectorinstitute.ai/v1) and the key from OPENAI_API_KEY or SYNBENCH_API_KEY.
 Vectors are cached on disk (one SQLite file per model under data/embedding_cache/), so
 a chunk is only ever embedded once across runs and corpora. Set RAG_EMBEDDING_MODEL to
@@ -62,7 +62,7 @@ TOKEN_RE = re.compile(r"[a-z0-9]+")
 POTION_MODEL_NAME = "minishlab/potion-retrieval-32M"
 SEMANTIC_MODEL_NAME = os.environ.get("RAG_EMBEDDING_MODEL") or POTION_MODEL_NAME
 DEFAULT_BASE_URL = "https://proxy.vectorinstitute.ai/v1"
-CACHE_DIR = Path(__file__).resolve().parents[1] / "dylan_pipeline" / "data" / "embedding_cache"
+CACHE_DIR = Path(__file__).resolve().parents[1] / "method_2" / "data" / "embedding_cache"
 # text-embedding-3 models accept up to 8,191 tokens per input; a few real-filing table
 # chunks run longer, so inputs are cut to a character budget well under that.
 MAX_INPUT_CHARS = 20_000

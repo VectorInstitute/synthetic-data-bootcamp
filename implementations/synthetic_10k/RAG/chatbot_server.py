@@ -15,7 +15,7 @@ chatbot page calls:
 Retrieval and generation reuse RAG.chatbot as-is; the index and generator are built
 once at startup and shared across requests via the server instance (threaded, since
 fastembed/requests calls are not instant). Run from implementations/synthetic_10k:
-    PYTHONPATH=dylan_pipeline python -m RAG.chatbot_server
+    uv run python -m RAG.chatbot_server
 then open http://localhost:8001/chatbot.html (linked from the dashboard's nav, and
 vice versa). Ctrl-C to stop.
 """
@@ -24,8 +24,9 @@ import json
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
+from method_2.utils import setup_logging
+
 from RAG.chatbot import answer_question, build_index, demo_rows, get_generator
-from src.utils import setup_logging
 
 
 logger = setup_logging("chatbot_server")
@@ -105,7 +106,12 @@ class Handler(SimpleHTTPRequestHandler):
         srv = self.server
         try:
             answer, passages, provider = answer_question(
-                question, srv.chunks_by_id, srv.bm25, srv.semantic, srv.provider, srv.generate,
+                question,
+                srv.chunks_by_id,
+                srv.bm25,
+                srv.semantic,
+                srv.provider,
+                srv.generate,
             )
         except Exception:
             logger.exception("POST /api/chat failed for question: %r", question)
@@ -135,7 +141,9 @@ def main() -> None:
     chunks_by_id, bm25, semantic = build_index()
     provider, generate = get_generator()
     if provider == "retrieval_only":
-        logger.warning("No DEEPSEEK_API_KEY or ANTHROPIC_API_KEY set -- running retrieval-only (no synthesized answers)")
+        logger.warning(
+            "No DEEPSEEK_API_KEY or ANTHROPIC_API_KEY set -- running retrieval-only (no synthesized answers)",
+        )
     else:
         logger.info("Generation backend: %s", provider)
 
