@@ -56,10 +56,11 @@ PERCENT_ABSOLUTE_TOLERANCE = 0.25
 # and 21% (the U.S. federal statutory corporate tax rate, cited as a comparison).
 UNIVERSAL_PERCENTS = {0.0, 100.0, 21.0}
 
+# Singular or plural: real filings and Method 1 write "Statements of Operations".
 ITEM_8_REQUIRED_PATTERNS = [
-    re.compile(r"Consolidated Balance Sheet", re.IGNORECASE),
-    re.compile(r"Statement of (Income|Operations)", re.IGNORECASE),
-    re.compile(r"Statement of Cash Flows", re.IGNORECASE),
+    re.compile(r"Consolidated Balance Sheets?", re.IGNORECASE),
+    re.compile(r"Statements? of (Income|Operations)", re.IGNORECASE),
+    re.compile(r"Statements? of Cash Flows", re.IGNORECASE),
 ]
 
 UNIT_SCALE = {"thousand": 1e3, "million": 1e6, "billion": 1e9}
