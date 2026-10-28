@@ -35,3 +35,7 @@ data/pdf_reports/
 
 # Cached embedding vectors from RAG.retrieval's hosted models; rebuilt on demand.
 data/embedding_cache/
+
+# Cached whole-corpus doc matrix for RAG.chatbot / RAG.chatbot_server (see
+# RAG.retrieval's module docstring); regenerated automatically, content-hash checked.
+data/semantic_embeddings_cache.npz

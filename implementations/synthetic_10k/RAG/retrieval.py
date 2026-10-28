@@ -32,6 +32,17 @@ https://proxy.vectorinstitute.ai/v1) and the key from OPENAI_API_KEY or SYNBENCH
 Vectors are cached on disk (one SQLite file per model under data/embedding_cache/), so
 a chunk is only ever embedded once across runs and corpora. Set RAG_EMBEDDING_MODEL to
 pick the model SemanticRetriever uses by default; it stays potion-retrieval-32M if unset.
+
+Persisting the whole doc matrix: that per-text SQLite cache still means re-embedding
+every chunk's text (one call per chunk, cache-hit or not) each time a SemanticRetriever
+is constructed. Pass `cache_path` to also skip that call entirely on an exact repeat --
+the embedded matrix is saved as a plain .npz (numpy's native archive; a real vector DB
+would add an approximate index meant for millions of vectors, when this corpus has
+~1,300 chunks and already does brute-force cosine search on purpose) keyed by a hash of
+the model name plus every chunk's text, so a corpus or model change invalidates it
+automatically. Most useful for a long-lived, often-restarted process (RAG.chatbot_server)
+with the local fastembed backend, where the SQLite cache's per-chunk round trips (even
+though local) still add up across ~1,300 chunks on every restart.
 """
 
 import hashlib
@@ -55,6 +66,44 @@ CACHE_DIR = Path(__file__).resolve().parents[1] / "method_2" / "data" / "embeddi
 # text-embedding-3 models accept up to 8,191 tokens per input; a few real-filing table
 # chunks run longer, so inputs are cut to a character budget well under that.
 MAX_INPUT_CHARS = 20_000
+
+
+def _content_hash(model_name: str, texts: list[str]) -> str:
+    h = hashlib.sha256()
+    h.update(model_name.encode("utf-8"))
+    h.update(b"\x00")
+    for t in texts:
+        h.update(t.encode("utf-8"))
+        h.update(b"\x00")
+    return h.hexdigest()
+
+
+def _load_doc_matrix_cache(path: Path, chunk_ids: list[str], texts: list[str], model_name: str) -> np.ndarray | None:
+    """Return the cached doc_matrix if `path` exists and matches chunk_ids/texts/model
+    exactly, else None (missing, corrupt, or stale -- all treated as a cache miss)."""
+    if not path.exists():
+        return None
+    try:
+        data = np.load(path, allow_pickle=False)
+        if data["content_hash"].item() != _content_hash(model_name, texts):
+            return None
+        if list(data["chunk_ids"]) != chunk_ids:
+            return None
+        return data["doc_matrix"]
+    except Exception:
+        return None
+
+
+def _save_doc_matrix_cache(path: Path, chunk_ids: list[str], texts: list[str], model_name: str, doc_matrix: np.ndarray) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(path.stem + ".tmp.npz")  # numpy appends .npz unless the name already ends with it
+    np.savez(
+        tmp,
+        chunk_ids=np.array(chunk_ids),
+        content_hash=np.array(_content_hash(model_name, texts)),
+        doc_matrix=doc_matrix,
+    )
+    tmp.replace(path)
 
 
 class FastEmbedEmbedder:
@@ -171,12 +220,33 @@ class Bm25Retriever:
 
 
 class SemanticRetriever:
-    """Cosine similarity over real sentence embeddings; see module docstring."""
+    """Cosine similarity over real sentence embeddings; see module docstring.
 
-    def __init__(self, chunk_ids: list[str], texts: list[str], model_name: str = SEMANTIC_MODEL_NAME) -> None:
+    Pass `cache_path` to persist the embedded doc matrix as a .npz and skip
+    re-embedding the corpus on the next construction with the same
+    chunk_ids/texts/model_name (see the module docstring's "Persisting the whole doc
+    matrix" note). Query-time embedding in `rank`/`rank_many` isn't cached -- queries
+    vary, so there's nothing to hit.
+    """
+
+    def __init__(
+        self,
+        chunk_ids: list[str],
+        texts: list[str],
+        model_name: str = SEMANTIC_MODEL_NAME,
+        cache_path: Path | None = None,
+    ) -> None:
         self.chunk_ids = chunk_ids
         self.embedder = get_embedder(model_name)
+        cached = _load_doc_matrix_cache(cache_path, chunk_ids, texts, model_name) if cache_path is not None else None
+        if cached is not None:
+            self.doc_matrix = cached
+            self.loaded_from_cache = True
+            return
         self.doc_matrix = _normalize(self.embedder.embed(texts))
+        self.loaded_from_cache = False
+        if cache_path is not None:
+            _save_doc_matrix_cache(cache_path, chunk_ids, texts, model_name, self.doc_matrix)
 
     def rank(self, query: str) -> list[str]:
         """Return chunk_ids sorted best-first for `query`."""
