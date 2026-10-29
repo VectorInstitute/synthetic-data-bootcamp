@@ -3,7 +3,7 @@ r"""End-to-end RAG answers to the shared fact questions, per set.
 For each set, every company's ten standard questions (qa.fact_questions, the same
 bank the scorecard uses) go through the RAG chatbot's pipeline: hybrid retrieval
 (BM25 + semantic embeddings, fused by reciprocal rank) over all of the set's chunks,
-then an LLM answers from the top passages only. The answer is scored against the
+then an LLM answers from the top 10 passages only. The answer is scored against the
 company's statements with the same tolerance as the scorecard (dollars within 1%,
 percentages within 0.25 points). Every question counts, so a set whose filings never
 state a fact scores a miss on it.
@@ -58,7 +58,7 @@ from evals.section_scorecard import load_real_metrics  # noqa: E402
 
 logger = setup_logging("rag_answers")
 
-TOP_K = 5
+TOP_K = 10
 DEFAULT_MODEL = "gpt-4o-mini"
 SYSTEM_PROMPT = (
     "You answer questions about companies using only the 10-K passages provided. "
@@ -92,15 +92,23 @@ def answer_all(
     chunks: list[Chunk],
     client: UsageClient,
     workers: int,
+    retriever: str = "hybrid",
 ) -> list[dict]:
-    """Retrieve, answer and score every question over one corpus."""
+    """Retrieve, answer and score every question over one corpus.
+
+    BM25 indexes each chunk with its company/year/Item prefix, so the company name in
+    the question finds the company's passages. The semantic retriever embeds the raw
+    chunk: with the shared prefix, every chunk of a company embeds alike and fusion
+    pulls in that company's wrong passages.
+    """
     by_id = {c.chunk_id: c for c in chunks}
-    ids, texts = list(by_id), [contextual(c) for c in by_id.values()]
-    bm25 = Bm25Retriever(ids, texts)
-    semantic = SemanticRetriever(ids, texts)
+    ids = list(by_id)
+    bm25 = Bm25Retriever(ids, [contextual(c) for c in by_id.values()])
+    semantic = SemanticRetriever(ids, [c.text for c in by_id.values()]) if retriever == "hybrid" else None
 
     def one(q: dict) -> dict:
-        fused = reciprocal_rank_fusion([bm25.rank(q["question"]), semantic.rank(q["question"])])[:TOP_K]
+        rankings = [bm25.rank(q["question"])] + ([semantic.rank(q["question"])] if semantic else [])
+        fused = reciprocal_rank_fusion(rankings)[:TOP_K]
         gold = set(filter(None, q["gold_chunk_ids"].split(";")))
         prompt = f"Question: {q['question']}\n\nPassages:\n{format_context([by_id[c] for c in fused])}"
         try:
@@ -149,6 +157,7 @@ def main() -> None:
     parser.add_argument("--set", action="append", default=[], metavar="NAME=PATH", help="a synthetic set; repeat")
     parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument("--workers", type=int, default=8)
+    parser.add_argument("--retriever", choices=["hybrid", "bm25"], default="hybrid")
     parser.add_argument("--real-dir", type=Path, default=DEFAULT_REAL_DIR)
     parser.add_argument("--real-financials", type=Path, default=DEFAULT_REAL_FINANCIALS)
     parser.add_argument("--real-sample", type=int, default=20, help="0 skips real filings")
@@ -171,7 +180,7 @@ def main() -> None:
             facts = real_facts(metrics.get((f.ticker, f.fiscal_year), {}))
             questions.extend(make_questions(f.ticker, f.name, f.fiscal_year, facts, mine))
         logger.info("real: %d questions over %d chunks", len(questions), len(chunks))
-        rows = answer_all("real", questions, chunks, client, args.workers)
+        rows = answer_all("real", questions, chunks, client, args.workers, args.retriever)
         answers += rows
         summaries.append(summary("real", rows))
 
@@ -190,7 +199,7 @@ def main() -> None:
             chunks.extend(mine)
             questions.extend(make_questions(c.company_id, c.name, c.fiscal_year, synthetic_facts(c.financials), mine))
         logger.info("%s: %d questions over %d chunks", name, len(questions), len(chunks))
-        rows = answer_all(name, questions, chunks, client, args.workers)
+        rows = answer_all(name, questions, chunks, client, args.workers, args.retriever)
         answers += rows
         summaries.append(summary(name, rows))
         logger.info("%s", summaries[-1])
