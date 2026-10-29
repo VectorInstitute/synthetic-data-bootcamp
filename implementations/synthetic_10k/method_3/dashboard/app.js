@@ -2,7 +2,7 @@
 const $=id=>document.getElementById(id), S=FinancialStats;
 const METRICS={revenue:['Revenue','money'],total_assets:['Total assets','money'],total_liabilities:['Total liabilities','money'],stockholders_equity:['Shareholders’ equity','money'],net_income:['Net income','money'],operating_income:['Operating income','money'],operating_cash_flow:['Operating cash flow','money'],gross_margin:['Gross margin','ratio'],operating_margin:['Operating margin','ratio'],net_margin:['Net margin','ratio'],asset_turnover:['Asset turnover','times'],equity_ratio:['Equity / assets','ratio'],liabilities_ratio:['Liabilities / assets','ratio'],cash_ratio:['Cash / assets','ratio'],rd_ratio:['R&D / revenue','ratio'],ocf_margin:['Operating cash flow / revenue','ratio']};
 const SECTORS={'Information Technology':'Information Technology','Health Care':'Health Care','Industrials':'Industrials','Consumer Discretionary':'Consumer Discretionary','Consumer Staples':'Consumer Staples','Energy':'Energy','Materials':'Materials','Utilities':'Utilities','Communication Services':'Communication Services','Real Estate':'Real Estate'};
-const COLORS=['#4264ce','#c27a2b','#16836a','#64748b'];
+const COLORS=['var(--series-1)','var(--series-2)','var(--series-3)','var(--ink-2)'];
 const CORR=['operating_margin','net_margin','asset_turnover','equity_ratio','cash_ratio','rd_ratio'];
 const SHORT=['Op.','Net','Turn.','Eq.','Cash','R&D'];
 const PRIVACY_FEATURES=['revenue','asset_turnover','operating_margin','equity_ratio','cash_ratio'];
@@ -61,10 +61,10 @@ function matrix(rows){return CORR.flatMap((a,i)=>CORR.map((b,j)=>({...S.correlat
 function drawCorrelations(){const reference=matrix(current.real), color=d3.scaleDiverging([-1,0,1],d3.interpolateRdBu);
  cards('syntheticCorr','realCorr',(card,g,index)=>{const cells=matrix(g.rows);card.innerHTML='<h3>Correlation matrix · Pearson r</h3>';
   const svg=svgFrame(card,270,218).attr('aria-label',`${g.label} Correlation matrix`), cell=29,x0=68,y0=14;
-  const boxes=svg.selectAll('rect').data(cells).join('rect').attr('x',d=>x0+d.j*cell).attr('y',d=>y0+d.i*cell).attr('width',cell-1).attr('height',cell-1).attr('rx',2).attr('fill',d=>d.r===null?'#edf0f4':color(d.r));
+  const boxes=svg.selectAll('rect').data(cells).join('rect').attr('x',d=>x0+d.j*cell).attr('y',d=>y0+d.i*cell).attr('width',cell-1).attr('height',cell-1).attr('rx',2).attr('fill',d=>d.r===null?'var(--grid)':color(d.r));
   hover(boxes,d=>`${METRICS[d.a][0]} × ${METRICS[d.b][0]}\nr = ${d.r===null?'N/A':d.r.toFixed(3)} · Valid pairs ${d.n}`);
-  svg.selectAll('.coefficient').data(cells).join('text').attr('class','coefficient').attr('x',d=>x0+d.j*cell+14).attr('y',d=>y0+d.i*cell+17).attr('text-anchor','middle').attr('fill',d=>d.r!==null&&Math.abs(d.r)>.6?'white':'#334155').text(d=>d.r===null?'—':d.r.toFixed(1));
-  SHORT.forEach((label,i)=>{svg.append('text').attr('x',x0-6).attr('y',y0+i*cell+18).attr('text-anchor','end').attr('fill','#617084').attr('font-size',10).text(label);svg.append('text').attr('x',x0+i*cell+14).attr('y',y0+6*cell+14).attr('text-anchor','middle').attr('fill','#617084').attr('font-size',9).text(label);});
+  svg.selectAll('.coefficient').data(cells).join('text').attr('class','coefficient').attr('x',d=>x0+d.j*cell+14).attr('y',d=>y0+d.i*cell+17).attr('text-anchor','middle').attr('fill',d=>d.r!==null&&Math.abs(d.r)>.6?'white':'var(--ink-1)').text(d=>d.r===null?'—':d.r.toFixed(1));
+  SHORT.forEach((label,i)=>{svg.append('text').attr('x',x0-6).attr('y',y0+i*cell+18).attr('text-anchor','end').attr('fill','var(--ink-muted)').attr('font-size',10).text(label);svg.append('text').attr('x',x0+i*cell+14).attr('y',y0+6*cell+14).attr('text-anchor','middle').attr('fill','var(--ink-muted)').attr('font-size',9).text(label);});
   const differences=cells.filter((d,k)=>d.i<d.j&&d.r!==null&&reference[k].r!==null).map(d=>Math.abs(d.r-reference.find(x=>x.i===d.i&&x.j===d.j).r));
   card.insertAdjacentHTML('beforeend',`<div class="corr-key">−1 negative · 0 · +1 positive; — insufficient data or constant values</div>${index<3?`<div class="stats"><span>Mean absolute difference from real correlations <strong>${differences.length?d3.mean(differences).toFixed(3):'N/A'}</strong></span><span>${differences.length} pairs</span></div>`:''}`);
  });
@@ -78,6 +78,26 @@ function drawDiagnostics(){cards('diagnostics','realDiagnostics',(card,g,i)=>{if
  if(d.mean_absolute_adjustment){card.insertAdjacentHTML('beforeend',`<details><summary>Adjustments by metric</summary><small>Absolute ratio changes; 0.01 means 1 percentage point, except for asset turnover. Includes rounding.</small>${tableHtml(d.mean_absolute_adjustment)}</details>`);}
  if(d.rejection_reasons&&Object.keys(d.rejection_reasons).length)card.insertAdjacentHTML('beforeend',`<details><summary>Rejection reasons (multiple per attempt possible)</summary>${tableHtml(d.rejection_reasons)}</details>`);
  });}
+function drawSectorCoverage(){
+ const entries=Object.entries(current.model_info).sort((a,b)=>b[1].n-a[1].n);
+ const card=$('sectorCoverage');card.innerHTML='<h3>Real-report sector coverage behind this sample</h3>';
+ if(!entries.length){card.insertAdjacentHTML('beforeend','<div class="empty">No sector data available</div>');return;}
+ const w=760,barH=22,gap=8,left=190,top=10,right=50,h=entries.length*(barH+gap)+top;
+ const svg=d3.select(card).append('svg').attr('viewBox',`0 0 ${w} ${h}`).attr('role','img').attr('aria-label','Real companies per sector backing this sample');
+ const max=d3.max(entries,([,d])=>d.n)||1,x=d3.scaleLinear().domain([0,max]).range([0,w-left-right]);
+ const bars=svg.append('g').selectAll('rect').data(entries).join('rect')
+  .attr('x',left).attr('y',(_,i)=>top+i*(barH+gap)).attr('height',barH)
+  .attr('width',([,d])=>Math.max(2,x(d.n))).attr('fill','var(--series-1)').attr('opacity',.85).attr('rx',3);
+ hover(bars,([sector,d])=>`${SECTORS[sector]||sector}\n${d.n} real companies${d.fit_policy==='pooled_singleton'?' · pooled model (too few for its own fit)':` · shrinkage ${d.shrinkage.toFixed(2)}`}`);
+ svg.append('g').selectAll('text').data(entries).join('text')
+  .attr('x',left-10).attr('y',(_,i)=>top+i*(barH+gap)+barH/2+4).attr('text-anchor','end')
+  .attr('font-size',11).attr('fill','var(--ink-2)').text(([sector])=>SECTORS[sector]||sector);
+ svg.append('g').selectAll('text').data(entries).join('text')
+  .attr('x',([,d])=>left+Math.max(2,x(d.n))+6).attr('y',(_,i)=>top+i*(barH+gap)+barH/2+4)
+  .attr('font-size',11).attr('fill','var(--ink-2)').text(([,d])=>d.n);
+ const total=entries.reduce((s,[,d])=>s+d.n,0);
+ card.insertAdjacentHTML('beforeend',`<p class="metric-details">${entries.length} sector${entries.length===1?'':'s'} represented, ${total} real compan${total===1?'y':'ies'} total in the current scope. A sector modeled on very few companies (pooled fallback) is noted on hover. This is the one measure here of how much real-world situational variety backs the sample -- not scenario labels like Method 2's hand-authored ones, since Method 1 and Method 3 condition on sector rather than discrete scenarios.</p>`);
+}
 function sourcePanel(){
  const p=current.provenance,counts={};
  p.excluded.forEach(r=>counts[r.reason]=(counts[r.reason]||0)+1);
@@ -100,7 +120,7 @@ function drawPairTrends(){
  const datasets=groups().map(g=>complete(g.rows));
  const x=d3.scaleLinear().domain(paddedDomain(datasets.flat().map(r=>r.metrics[a]))).range([48,282]);
  const y=d3.scaleLinear().domain(paddedDomain(datasets.flat().map(r=>r.metrics[b]))).range([190,44]);
- const reference=current.real,realColor='#243b64';
+ const reference=current.real,realColor='var(--ink-2)';
  cards('syntheticTrends','realTrends',(card,g,i)=>{
   if(i===3){const fit=FinancialEvaluation.pairTrend(reference,reference,a,b).real;card.innerHTML=`<h3>Real reference · selected pair</h3><p>${METRICS[a][0]} × ${METRICS[b][0]}</p><div class="diagnostic-row"><span>Pearson r</span><strong>${fit.r===null?'N/A':fit.r.toFixed(3)}</strong></div><div class="diagnostic-row"><span>Complete observations</span><strong>${fit.n}/${reference.length}</strong></div><small>Dark circles and dashed lines in each comparison show this same real population. Colored diamonds and solid lines show the corresponding synthetic method. Missing values are excluded. A line is unavailable when X is constant or fewer than two complete observations exist.</small>`;return;}
   const pair=FinancialEvaluation.pairTrend(reference,g.rows,a,b);
@@ -118,8 +138,8 @@ function drawPairTrends(){
   });
   svg.append('g').attr('class','axis').attr('transform','translate(0,190)').call(d3.axisBottom(x).ticks(4).tickFormat(v=>fmt(v,a)));
   svg.append('g').attr('class','axis').attr('transform','translate(48,0)').call(d3.axisLeft(y).ticks(4).tickFormat(v=>fmt(v,b)));
-  svg.append('text').attr('x',165).attr('y',231).attr('text-anchor','middle').attr('font-size',10).attr('fill','#617084').text(METRICS[a][0]);
-  svg.append('text').attr('transform','translate(11,117) rotate(-90)').attr('text-anchor','middle').attr('font-size',10).attr('fill','#617084').text(METRICS[b][0]);
+  svg.append('text').attr('x',165).attr('y',231).attr('text-anchor','middle').attr('font-size',10).attr('fill','var(--ink-muted)').text(METRICS[a][0]);
+  svg.append('text').attr('transform','translate(11,117) rotate(-90)').attr('text-anchor','middle').attr('font-size',10).attr('fill','var(--ink-muted)').text(METRICS[b][0]);
   [[realColor,'Real',true],[COLORS[i],'Synthetic',false]].forEach(([color,label,isReal],j)=>{
    const legend=svg.append('g').attr('transform',`translate(${53+j*112},20)`);
    legend.append('line').attr('x1',0).attr('x2',20).attr('stroke',color).attr('stroke-width',2).attr('stroke-dasharray',isReal?'5,3':null);
@@ -162,9 +182,10 @@ function render(){const n=current.n;$('syntheticCount').textContent=`${n.toLocal
  $('correlationScope').textContent=current.sector==='all'?' Sectors are pooled here; select a sector to inspect within-sector relationships.':' Within-sector relationships are shown.';
  $('methodHeadings').innerHTML=current.methods.map((m,i)=>`<div class="method-card" style="--series:${COLORS[i]}"><h3>${m.label}</h3><strong>${m.rows.length.toLocaleString()}</strong><span> companies</span><p>${['Independent sector quantiles + original accounting engine','Scale and perturb a real financial profile','Empirical marginals + regularized joint dependence'][i]}</p></div>`).join('');
  $('realHeading').innerHTML=`<div class="method-card" style="--series:${COLORS[3]}"><h3>SEC 10-K · Real reference</h3><strong>${current.real.length}</strong><span> reports</span><p>Fitting and comparison use the same real observations</p></div>`;
- drawHistograms();drawScatter();drawCorrelations();drawPairTrends();drawEvaluation();drawStatements();drawDiagnostics();sourcePanel();}
-function busy(value){document.body.classList.toggle('pending',value);$('workspace').setAttribute('aria-busy',String(value));$('downloadCsv').disabled=value||!current;$('downloadJson').disabled=value||!current;}
-async function generate(){const id=++requestId;if(controller)controller.abort();controller=new AbortController();busy(true);$('error').hidden=true;$('status').textContent='Generating and checking three sets of statements…';const n=Number($('sampleCount').value),seed=Number($('seed').value),sector=$('sector').value;const start=performance.now();try{const response=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({n,seed,sector}),signal:controller.signal});const result=await response.json();if(!response.ok)throw new Error(result.error||'Generation failed');if(id!==requestId)return;current=result;render();busy(false);$('status').textContent=`Updated · ${((performance.now()-start)/1000).toFixed(1)} s · seed ${seed}`;}catch(error){if(error.name==='AbortError'||id!==requestId)return;current=null;busy(false);$('error').hidden=false;$('error').textContent=`${error.message}. Adjust the settings and generate again.`;$('status').textContent='Generation incomplete';$('workspace').setAttribute('aria-busy','false');$('workspace').style.opacity='.35';}finally{if(current)$('workspace').style.opacity='';}}
+ drawHistograms();drawScatter();drawCorrelations();drawPairTrends();drawEvaluation();drawSectorCoverage();drawStatements();drawDiagnostics();sourcePanel();}
+function workspaces(){return document.querySelectorAll('.workspace');}
+function busy(value){document.body.classList.toggle('pending',value);workspaces().forEach(w=>w.setAttribute('aria-busy',String(value)));$('downloadCsv').disabled=value||!current;$('downloadJson').disabled=value||!current;}
+async function generate(){const id=++requestId;if(controller)controller.abort();controller=new AbortController();busy(true);$('error').hidden=true;$('status').textContent='Generating and checking three sets of statements…';const n=Number($('sampleCount').value),seed=Number($('seed').value),sector=$('sector').value;const start=performance.now();try{const response=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({n,seed,sector}),signal:controller.signal});const result=await response.json();if(!response.ok)throw new Error(result.error||'Generation failed');if(id!==requestId)return;current=result;render();busy(false);$('status').textContent=`Updated · ${((performance.now()-start)/1000).toFixed(1)} s · seed ${seed}`;}catch(error){if(error.name==='AbortError'||id!==requestId)return;current=null;busy(false);$('error').hidden=false;$('error').textContent=`${error.message}. Adjust the settings and generate again.`;$('status').textContent='Generation incomplete';workspaces().forEach(w=>{w.setAttribute('aria-busy','false');w.style.opacity='.35';});}finally{if(current)workspaces().forEach(w=>{w.style.opacity='';});}}
 function schedule(){clearTimeout(timer);requestId++;if(controller)controller.abort();busy(true);$('status').textContent='Settings changed; generation pending…';timer=setTimeout(generate,450);}
 $('sampleCount').addEventListener('input',()=>{$('countLabel').textContent=Number($('sampleCount').value).toLocaleString();schedule();});
 $('sector').addEventListener('change',schedule);$('seed').addEventListener('change',schedule);$('regenerate').addEventListener('click',()=>{clearTimeout(timer);generate();});
