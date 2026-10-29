@@ -1,0 +1,1436 @@
+concept,value,raw,unit,decimals,start,end,instant,dimensions
+ibkr:DerivativeCollateralObligationToReturnCashOrSecurities,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+ibkr:DerivativeCollateralObligationToReturnCashOrSecurities,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+ibkr:DerivativeCollateralRightToReclaimCashOrSecurities,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+ibkr:DerivativeCollateralRightToReclaimCashOrSecurities,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+ibkr:ReceivablesFromCustomerNet,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+ibkr:ReceivablesFromCustomerNet,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+ibkr:SecuritiesSegregatedForRegulatoryPurposesPurchasedUnderAgreementsToResellAmountOffsetAgainstCollateral,0.0,,Unit13,,,,2023-12-31,
+ibkr:SecuritiesSegregatedForRegulatoryPurposesPurchasedUnderAgreementsToResellAmountOffsetAgainstCollateral,0.0,,Unit13,,,,2024-12-31,
+ibkr:SecuritiesSegregatedForRegulatoryPurposesPurchasedUnderAgreementsToResellGrossLiability,0.0,,Unit13,,,,2023-12-31,
+ibkr:SecuritiesSegregatedForRegulatoryPurposesPurchasedUnderAgreementsToResellGrossLiability,0.0,,Unit13,,,,2024-12-31,
+ibkr:TotalFinancialLiabilitiesNotMeasuredAtFairValue,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+ibkr:TotalFinancialLiabilitiesNotMeasuredAtFairValue,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+ibkr:TotalFinancialLiabilitiesNotMeasuredAtFairValue,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+ibkr:TotalFinancialLiabilitiesNotMeasuredAtFairValue,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+srt:PayablesToBrokerDealersAndClearingOrganizations,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+srt:PayablesToBrokerDealersAndClearingOrganizations,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+srt:PayablesToBrokerDealersAndClearingOrganizations,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+srt:PayablesToBrokerDealersAndClearingOrganizations,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+srt:PayablesToCustomers,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+srt:PayablesToCustomers,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+srt:PayablesToCustomers,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+srt:PayablesToCustomers,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:CashReserveDepositRequiredAndMade,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:CashReserveDepositRequiredAndMade,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:CommitmentsAndContingencies,0.0,,Unit13,,,,2023-12-31,
+us-gaap:CommitmentsAndContingencies,0.0,,Unit13,,,,2024-12-31,
+us-gaap:CommonStockValue,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockValue,0.0,,Unit13,,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockValue,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockValue,0.0,,Unit13,,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:DerivativeAssetFairValueGrossLiability,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:DerivativeAssetFairValueGrossLiability,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeAssetFairValueGrossLiability,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:DerivativeAssetFairValueGrossLiability,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeAssetSecuritiesPurchasedUnderAgreementsToResellSecuritiesBorrowedLiability,0.0,,Unit13,,,,2023-12-31,
+us-gaap:DerivativeAssetSecuritiesPurchasedUnderAgreementsToResellSecuritiesBorrowedLiability,0.0,,Unit13,,,,2024-12-31,
+us-gaap:DerivativeFairValueOfDerivativeAssetAmountOffsetAgainstCollateral,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:DerivativeFairValueOfDerivativeLiabilityAmountOffsetAgainstCollateral,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeLiabilityFairValueGrossAsset,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:DerivativeLiabilityFairValueGrossAsset,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeLiabilityFairValueGrossAsset,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:DerivativeLiabilityFairValueGrossAsset,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeLiabilitySecuritiesSoldUnderAgreementsToResellSecuritiesLoanedAsset,0.0,,Unit13,,,,2023-12-31,
+us-gaap:DerivativeLiabilitySecuritiesSoldUnderAgreementsToResellSecuritiesLoanedAsset,0.0,,Unit13,,,,2024-12-31,
+us-gaap:InterestPayableCurrentAndNoncurrent,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:InterestPayableCurrentAndNoncurrent,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:InterestPayableCurrentAndNoncurrent,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:InterestPayableCurrentAndNoncurrent,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:InterestReceivable,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:InterestReceivable,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:OtherShortTermBorrowings,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:OtherShortTermBorrowings,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:OtherShortTermBorrowings,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:OtherShortTermBorrowings,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:ReceivablesFromBrokersDealersAndClearingOrganizations,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:ReceivablesFromBrokersDealersAndClearingOrganizations,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:SecuritiesBorrowed,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:SecuritiesBorrowed,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:SecuritiesBorrowedLiability,0.0,,Unit13,,,,2023-12-31,
+us-gaap:SecuritiesBorrowedLiability,0.0,,Unit13,,,,2024-12-31,
+us-gaap:SecuritiesLoaned,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:SecuritiesLoaned,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:SecuritiesLoaned,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:SecuritiesLoaned,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:SecuritiesLoanedAsset,0.0,,Unit13,,,,2023-12-31,
+us-gaap:SecuritiesLoanedAsset,0.0,,Unit13,,,,2024-12-31,
+us-gaap:SecuritiesPurchasedUnderAgreementsToResell,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:SecuritiesPurchasedUnderAgreementsToResell,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:SecuritiesPurchasedUnderAgreementsToResellAmountOffsetAgainstCollateral,0.0,,Unit13,,,,2023-12-31,
+us-gaap:SecuritiesPurchasedUnderAgreementsToResellAmountOffsetAgainstCollateral,0.0,,Unit13,,,,2024-12-31,
+us-gaap:SecuritiesPurchasedUnderAgreementsToResellLiability,0.0,,Unit13,,,,2023-12-31,
+us-gaap:SecuritiesPurchasedUnderAgreementsToResellLiability,0.0,,Unit13,,,,2024-12-31,
+us-gaap:SecuritiesReserveDepositRequiredAndMade,0.0,,Unit13,,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:SecuritiesReserveDepositRequiredAndMade,0.0,,Unit13,,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+dei:EntityPublicFloat,12885708490.0,"12,885,708,490",Unit13,0,,,2024-06-28,
+dei:EntityCommonStockSharesOutstanding,108931614.0,"108,931,614",Unit1,INF,,,2025-02-21,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+dei:EntityCommonStockSharesOutstanding,100.0,100,Unit1,INF,,,2025-02-21,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,3633000000.0,"3,633",Unit13,-6,,,2024-12-31,
+us-gaap:CashAndCashEquivalentsAtCarryingValue,3753000000.0,"3,753",Unit13,-6,,,2023-12-31,
+us-gaap:CashReserveDepositRequiredAndMade,36600000000.0,"36,600",Unit13,-6,,,2024-12-31,
+us-gaap:CashReserveDepositRequiredAndMade,28840000000.0,"28,840",Unit13,-6,,,2023-12-31,
+us-gaap:SecuritiesReserveDepositRequiredAndMade,27846000000.0,"27,846",Unit13,-6,,,2024-12-31,
+us-gaap:SecuritiesReserveDepositRequiredAndMade,35386000000.0,"35,386",Unit13,-6,,,2023-12-31,
+us-gaap:SecuritiesBorrowed,5369000000.0,"5,369",Unit13,-6,,,2024-12-31,
+us-gaap:SecuritiesBorrowed,5835000000.0,"5,835",Unit13,-6,,,2023-12-31,
+us-gaap:SecuritiesPurchasedUnderAgreementsToResell,6575000000.0,"6,575",Unit13,-6,,,2024-12-31,
+us-gaap:SecuritiesPurchasedUnderAgreementsToResell,5504000000.0,"5,504",Unit13,-6,,,2023-12-31,
+us-gaap:FinancialInstrumentsOwnedAtFairValue,1847000000.0,"1,847",Unit13,-6,,,2024-12-31,"{""us-gaap:PledgedStatusAxis"": ""us-gaap:AssetNotPledgedAsCollateralMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,1422000000.0,"1,422",Unit13,-6,,,2023-12-31,"{""us-gaap:PledgedStatusAxis"": ""us-gaap:AssetNotPledgedAsCollateralMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,77000000.0,77,Unit13,-6,,,2024-12-31,"{""us-gaap:PledgedStatusAxis"": ""us-gaap:AssetPledgedAsCollateralMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,66000000.0,66,Unit13,-6,,,2023-12-31,"{""us-gaap:PledgedStatusAxis"": ""us-gaap:AssetPledgedAsCollateralMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,1924000000.0,"1,924",Unit13,-6,,,2024-12-31,
+us-gaap:FinancialInstrumentsOwnedAtFairValue,1488000000.0,"1,488",Unit13,-6,,,2023-12-31,
+us-gaap:AllowanceForDoubtfulAccountsReceivable,25000000.0,25,Unit13,-6,,,2024-12-31,
+us-gaap:AllowanceForDoubtfulAccountsReceivable,10000000.0,10,Unit13,-6,,,2023-12-31,
+ibkr:ReceivablesFromCustomerNet,64432000000.0,"64,432",Unit13,-6,,,2024-12-31,
+ibkr:ReceivablesFromCustomerNet,44472000000.0,"44,472",Unit13,-6,,,2023-12-31,
+us-gaap:ReceivablesFromBrokersDealersAndClearingOrganizations,2196000000.0,"2,196",Unit13,-6,,,2024-12-31,
+us-gaap:ReceivablesFromBrokersDealersAndClearingOrganizations,1643000000.0,"1,643",Unit13,-6,,,2023-12-31,
+us-gaap:InterestReceivable,446000000.0,446,Unit13,-6,,,2024-12-31,
+us-gaap:InterestReceivable,375000000.0,375,Unit13,-6,,,2023-12-31,
+ibkr:ReceivablesNet,67074000000.0,"67,074",Unit13,-6,,,2024-12-31,
+ibkr:ReceivablesNet,46490000000.0,"46,490",Unit13,-6,,,2023-12-31,
+us-gaap:OtherAssets,1121000000.0,"1,121",Unit13,-6,,,2024-12-31,
+us-gaap:OtherAssets,955000000.0,955,Unit13,-6,,,2023-12-31,
+us-gaap:Assets,150142000000.0,"150,142",Unit13,-6,,,2024-12-31,
+us-gaap:Assets,128251000000.0,"128,251",Unit13,-6,,,2023-12-31,
+us-gaap:OtherShortTermBorrowings,14000000.0,14,Unit13,-6,,,2024-12-31,
+us-gaap:OtherShortTermBorrowings,17000000.0,17,Unit13,-6,,,2023-12-31,
+us-gaap:SecuritiesLoaned,16248000000.0,"16,248",Unit13,-6,,,2024-12-31,
+us-gaap:SecuritiesLoaned,11347000000.0,"11,347",Unit13,-6,,,2023-12-31,
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,293000000.0,293,Unit13,-6,,,2024-12-31,
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,193000000.0,193,Unit13,-6,,,2023-12-31,
+srt:PayablesToCustomers,115343000000.0,"115,343",Unit13,-6,,,2024-12-31,
+srt:PayablesToCustomers,101012000000.0,"101,012",Unit13,-6,,,2023-12-31,
+srt:PayablesToBrokerDealersAndClearingOrganizations,476000000.0,476,Unit13,-6,,,2024-12-31,
+srt:PayablesToBrokerDealersAndClearingOrganizations,590000000.0,590,Unit13,-6,,,2023-12-31,
+us-gaap:OtherLiabilities,195000000.0,195,Unit13,-6,,,2024-12-31,
+us-gaap:OtherLiabilities,210000000.0,210,Unit13,-6,,,2023-12-31,
+us-gaap:AccruedLiabilitiesCurrentAndNoncurrent,665000000.0,665,Unit13,-6,,,2024-12-31,
+us-gaap:AccruedLiabilitiesCurrentAndNoncurrent,504000000.0,504,Unit13,-6,,,2023-12-31,
+us-gaap:InterestPayableCurrentAndNoncurrent,311000000.0,311,Unit13,-6,,,2024-12-31,
+us-gaap:InterestPayableCurrentAndNoncurrent,311000000.0,311,Unit13,-6,,,2023-12-31,
+ibkr:OtherPayables,116990000000.0,"116,990",Unit13,-6,,,2024-12-31,
+ibkr:OtherPayables,102627000000.0,"102,627",Unit13,-6,,,2023-12-31,
+us-gaap:Liabilities,133545000000.0,"133,545",Unit13,-6,,,2024-12-31,
+us-gaap:Liabilities,114184000000.0,"114,184",Unit13,-6,,,2023-12-31,
+us-gaap:CommonStockParOrStatedValuePerShare,0.01,0.01,Unit14,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockParOrStatedValuePerShare,0.01,0.01,Unit14,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockParOrStatedValuePerShare,0.01,0.01,Unit14,INF,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockParOrStatedValuePerShare,0.01,0.01,Unit14,INF,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesAuthorized,1000000000.0,"1,000,000,000",Unit1,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesAuthorized,1000000000.0,"1,000,000,000",Unit1,INF,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesIssued,109061059.0,"109,061,059",Unit1,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesIssued,107178928.0,"107,178,928",Unit1,INF,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesOutstanding,108904613.0,"108,904,613",Unit1,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesOutstanding,107045894.0,"107,045,894",Unit1,INF,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockValue,1000000.0,1,Unit13,-6,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockValue,1000000.0,1,Unit13,-6,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesOutstanding,100.0,100,Unit1,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesOutstanding,100.0,100,Unit1,INF,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesIssued,100.0,100,Unit1,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesIssued,100.0,100,Unit1,INF,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesAuthorized,100.0,100,Unit1,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesAuthorized,100.0,100,Unit1,INF,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:AdditionalPaidInCapital,1816000000.0,"1,816",Unit13,-6,,,2024-12-31,
+us-gaap:AdditionalPaidInCapital,1726000000.0,"1,726",Unit13,-6,,,2023-12-31,
+us-gaap:RetainedEarningsAccumulatedDeficit,2515000000.0,"2,515",Unit13,-6,,,2024-12-31,
+us-gaap:RetainedEarningsAccumulatedDeficit,1852000000.0,"1,852",Unit13,-6,,,2023-12-31,
+ibkr:AccumulatedOtherComprehensiveIncomeLossTax,0.0,0,Unit13,-6,,,2024-12-31,
+ibkr:AccumulatedOtherComprehensiveIncomeLossTax,0.0,0,Unit13,-6,,,2023-12-31,
+us-gaap:AccumulatedOtherComprehensiveIncomeLossNetOfTax,-45000000.0,45,Unit13,-6,,,2024-12-31,
+us-gaap:AccumulatedOtherComprehensiveIncomeLossNetOfTax,8000000.0,8,Unit13,-6,,,2023-12-31,
+us-gaap:TreasuryStockCommonShares,156446.0,"156,446",Unit1,INF,,,2024-12-31,
+us-gaap:TreasuryStockCommonShares,133034.0,"133,034",Unit1,INF,,,2023-12-31,
+us-gaap:TreasuryStockValue,7000000.0,7,Unit13,-6,,,2024-12-31,
+us-gaap:TreasuryStockValue,3000000.0,3,Unit13,-6,,,2023-12-31,
+us-gaap:StockholdersEquity,4280000000.0,"4,280",Unit13,-6,,,2024-12-31,
+us-gaap:StockholdersEquity,3584000000.0,"3,584",Unit13,-6,,,2023-12-31,
+us-gaap:MinorityInterest,12317000000.0,"12,317",Unit13,-6,,,2024-12-31,
+us-gaap:MinorityInterest,10483000000.0,"10,483",Unit13,-6,,,2023-12-31,
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,16597000000.0,"16,597",Unit13,-6,,,2024-12-31,
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,14067000000.0,"14,067",Unit13,-6,,,2023-12-31,
+us-gaap:LiabilitiesAndStockholdersEquity,150142000000.0,"150,142",Unit13,-6,,,2024-12-31,
+us-gaap:LiabilitiesAndStockholdersEquity,128251000000.0,"128,251",Unit13,-6,,,2023-12-31,
+us-gaap:BrokerageCommissionsRevenue,1697000000.0,"1,697",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:BrokerageCommissionsRevenue,1360000000.0,"1,360",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:BrokerageCommissionsRevenue,1322000000.0,"1,322",Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:OtherFeesAndServices,280000000.0,280,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:OtherFeesAndServices,197000000.0,197,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:OtherFeesAndServices,184000000.0,184,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:OtherIncomeLoss,60000000.0,60,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:OtherIncomeLoss,-11000000.0,11,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:OtherIncomeLoss,-107000000.0,107,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:NoninterestIncome,2037000000.0,"2,037",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:NoninterestIncome,1546000000.0,"1,546",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:NoninterestIncome,1399000000.0,"1,399",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:InterestIncomeOperating,7339000000.0,"7,339",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:InterestIncomeOperating,6230000000.0,"6,230",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:InterestIncomeOperating,2686000000.0,"2,686",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:InterestExpenseOperating,4191000000.0,"4,191",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:InterestExpenseOperating,3436000000.0,"3,436",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:InterestExpenseOperating,1018000000.0,"1,018",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:InterestIncomeExpenseNet,3148000000.0,"3,148",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:InterestIncomeExpenseNet,2794000000.0,"2,794",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:InterestIncomeExpenseNet,1668000000.0,"1,668",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:RevenuesNetOfInterestExpense,5185000000.0,"5,185",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:RevenuesNetOfInterestExpense,4340000000.0,"4,340",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:RevenuesNetOfInterestExpense,3067000000.0,"3,067",Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:ExecutionAndClearing,447000000.0,447,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:ExecutionAndClearing,386000000.0,386,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:ExecutionAndClearing,324000000.0,324,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:LaborAndRelatedExpense,574000000.0,574,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:LaborAndRelatedExpense,527000000.0,527,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:LaborAndRelatedExpense,454000000.0,454,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:OccupancyDepreiationAndAmortization,101000000.0,101,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:OccupancyDepreiationAndAmortization,99000000.0,99,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:OccupancyDepreiationAndAmortization,90000000.0,90,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:Communication,39000000.0,39,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:Communication,41000000.0,41,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:Communication,33000000.0,33,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:SellingGeneralAndAdministrativeExpense,314000000.0,314,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:SellingGeneralAndAdministrativeExpense,211000000.0,211,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:SellingGeneralAndAdministrativeExpense,165000000.0,165,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:CustomerBadDebt,15000000.0,15,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:CustomerBadDebt,7000000.0,7,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:CustomerBadDebt,3000000.0,3,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:NoninterestExpense,1490000000.0,"1,490",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:NoninterestExpense,1271000000.0,"1,271",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:NoninterestExpense,1069000000.0,"1,069",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,3695000000.0,"3,695",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,3069000000.0,"3,069",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,1998000000.0,"1,998",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncomeTaxExpenseBenefit,288000000.0,288,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncomeTaxExpenseBenefit,257000000.0,257,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncomeTaxExpenseBenefit,156000000.0,156,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:ProfitLoss,3407000000.0,"3,407",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:ProfitLoss,2812000000.0,"2,812",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:ProfitLoss,1842000000.0,"1,842",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:NetIncomeLossAttributableToNoncontrollingInterest,2652000000.0,"2,652",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:NetIncomeLossAttributableToNoncontrollingInterest,2212000000.0,"2,212",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:NetIncomeLossAttributableToNoncontrollingInterest,1462000000.0,"1,462",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic,755000000.0,755,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic,600000000.0,600,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic,380000000.0,380,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:EarningsPerShareBasic,6.99,6.99,Unit14,2,2024-01-01,2024-12-31,,
+us-gaap:EarningsPerShareBasic,5.72,5.72,Unit14,2,2023-01-01,2023-12-31,,
+us-gaap:EarningsPerShareBasic,3.78,3.78,Unit14,2,2022-01-01,2022-12-31,,
+us-gaap:EarningsPerShareDiluted,6.93,6.93,Unit14,2,2024-01-01,2024-12-31,,
+us-gaap:EarningsPerShareDiluted,5.67,5.67,Unit14,2,2023-01-01,2023-12-31,,
+us-gaap:EarningsPerShareDiluted,3.75,3.75,Unit14,2,2022-01-01,2022-12-31,,
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,108112199.0,"108,112,199",Unit1,0,2024-01-01,2024-12-31,,
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,104965050.0,"104,965,050",Unit1,0,2023-01-01,2023-12-31,,
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,100460016.0,"100,460,016",Unit1,0,2022-01-01,2022-12-31,,
+us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding,109002938.0,"109,002,938",Unit1,0,2024-01-01,2024-12-31,,
+us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding,105846877.0,"105,846,877",Unit1,0,2023-01-01,2023-12-31,,
+us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding,101299609.0,"101,299,609",Unit1,0,2022-01-01,2022-12-31,,
+us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic,755000000.0,755,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic,600000000.0,600,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic,380000000.0,380,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:OtherComprehensiveIncomeLossForeignCurrencyTransactionAndTranslationAdjustmentBeforeTax,-53000000.0,53,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:OtherComprehensiveIncomeLossForeignCurrencyTransactionAndTranslationAdjustmentBeforeTax,30000000.0,30,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:OtherComprehensiveIncomeLossForeignCurrencyTransactionAndTranslationAdjustmentBeforeTax,-26000000.0,26,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:OtherComprehensiveIncomeLossNetOfTaxPortionAttributableToParent,-53000000.0,53,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:OtherComprehensiveIncomeLossNetOfTaxPortionAttributableToParent,30000000.0,30,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:OtherComprehensiveIncomeLossNetOfTaxPortionAttributableToParent,-26000000.0,26,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:ComprehensiveIncomeNetOfTax,702000000.0,702,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:ComprehensiveIncomeNetOfTax,630000000.0,630,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:ComprehensiveIncomeNetOfTax,354000000.0,354,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:NetIncomeLossAttributableToNoncontrollingInterest,2652000000.0,"2,652",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:NetIncomeLossAttributableToNoncontrollingInterest,2212000000.0,"2,212",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:NetIncomeLossAttributableToNoncontrollingInterest,1462000000.0,"1,462",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:OtherComprehensiveIncomeForeignCurrencyTransactionAndTranslationAdjustmentNetOfTaxPortionAttributableToNoncontrollingInterest,-154000000.0,154,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:OtherComprehensiveIncomeForeignCurrencyTransactionAndTranslationAdjustmentNetOfTaxPortionAttributableToNoncontrollingInterest,92000000.0,92,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:OtherComprehensiveIncomeForeignCurrencyTransactionAndTranslationAdjustmentNetOfTaxPortionAttributableToNoncontrollingInterest,-85000000.0,85,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:ComprehensiveIncomeNetOfTaxAttributableToNoncontrollingInterest,2498000000.0,"2,498",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:ComprehensiveIncomeNetOfTaxAttributableToNoncontrollingInterest,2304000000.0,"2,304",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:ComprehensiveIncomeNetOfTaxAttributableToNoncontrollingInterest,1377000000.0,"1,377",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:ProfitLoss,3407000000.0,"3,407",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:ProfitLoss,2812000000.0,"2,812",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:ProfitLoss,1842000000.0,"1,842",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:DeferredIncomeTaxExpenseBenefit,-2000000.0,2,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:DeferredIncomeTaxExpenseBenefit,30000000.0,30,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:DeferredIncomeTaxExpenseBenefit,20000000.0,20,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:DepreciationAmortizationAndAccretionNet,67000000.0,67,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:DepreciationAmortizationAndAccretionNet,65000000.0,65,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:DepreciationAmortizationAndAccretionNet,58000000.0,58,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:OperatingLeaseRightOfUseAssetAmortizationExpense,29000000.0,29,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:OperatingLeaseRightOfUseAssetAmortizationExpense,29000000.0,29,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:OperatingLeaseRightOfUseAssetAmortizationExpense,26000000.0,26,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:ShareBasedCompensation,112000000.0,112,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:ShareBasedCompensation,100000000.0,100,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:ShareBasedCompensation,92000000.0,92,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:UnrealizedChangesOnOtherInvestmentsNet,12000000.0,12,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:UnrealizedChangesOnOtherInvestmentsNet,14000000.0,14,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:UnrealizedChangesOnOtherInvestmentsNet,-8000000.0,8,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:GainOnRemeasurementOfTaxReceivableAgreementLiability,-10000000.0,10,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:GainOnRemeasurementOfTaxReceivableAgreementLiability,7000000.0,7,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:GainOnRemeasurementOfTaxReceivableAgreementLiability,6000000.0,6,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:OtherNoncashIncomeExpense,-15000000.0,15,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:OtherNoncashIncomeExpense,-7000000.0,7,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:OtherNoncashIncomeExpense,-3000000.0,3,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:OtherAssetImpairmentCharges,1000000.0,1,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:SharesDistributedToCustomersUnderPromotions,23000000.0,23,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:SharesDistributedToCustomersUnderPromotions,12000000.0,12,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:SharesDistributedToCustomersUnderPromotions,9000000.0,9,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncreaseDecreaseInMarketableSecuritiesRestricted,-7540000000.0,"7,540",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncreaseDecreaseInMarketableSecuritiesRestricted,3605000000.0,"3,605",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncreaseDecreaseInMarketableSecuritiesRestricted,16660000000.0,"16,660",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncreaseDecreaseInSecuritiesBorrowed,-466000000.0,466,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncreaseDecreaseInSecuritiesBorrowed,1086000000.0,"1,086",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncreaseDecreaseInSecuritiesBorrowed,837000000.0,837,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:IncreaseDecreaseInSecuritiesPurchasedUnderAgreementsToResell,1071000000.0,"1,071",Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:IncreaseDecreaseInSecuritiesPurchasedUnderAgreementsToResell,-525000000.0,525,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:IncreaseDecreaseInSecuritiesPurchasedUnderAgreementsToResell,1649000000.0,"1,649",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncreaseDecreaseInFinancialInstrumentsUsedInOperatingActivities,434000000.0,434,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncreaseDecreaseInFinancialInstrumentsUsedInOperatingActivities,1033000000.0,"1,033",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncreaseDecreaseInFinancialInstrumentsUsedInOperatingActivities,-189000000.0,189,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:IncreaseDecreaseInReceivablesFromCustomersNet,-19975000000.0,"19,975",Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:IncreaseDecreaseInReceivablesFromCustomersNet,-5719000000.0,"5,719",Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:IncreaseDecreaseInReceivablesFromCustomersNet,16172000000.0,"16,172",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncreaseDecreaseInOtherReceivables,624000000.0,624,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncreaseDecreaseInOtherReceivables,-1792000000.0,"1,792",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncreaseDecreaseInOtherReceivables,-88000000.0,88,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncreaseDecreaseInOtherOperatingAssets,203000000.0,203,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncreaseDecreaseInOtherOperatingAssets,103000000.0,103,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncreaseDecreaseInOtherOperatingAssets,-35000000.0,35,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncreaseDecreaseInSecuritiesLoanedTransactions,4901000000.0,"4,901",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncreaseDecreaseInSecuritiesLoanedTransactions,2407000000.0,"2,407",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncreaseDecreaseInSecuritiesLoanedTransactions,-2829000000.0,"2,829",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncreaseDecreaseInFinancialInstrumentsSoldNotYetPurchased,100000000.0,100,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncreaseDecreaseInFinancialInstrumentsSoldNotYetPurchased,47000000.0,47,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncreaseDecreaseInFinancialInstrumentsSoldNotYetPurchased,-36000000.0,36,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncreaseDecreaseInPayablesToCustomers,14331000000.0,"14,331",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncreaseDecreaseInPayablesToCustomers,7817000000.0,"7,817",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncreaseDecreaseInPayablesToCustomers,7561000000.0,"7,561",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncreaseDecreaseInOtherAccountsPayableAndAccruedLiabilities,44000000.0,44,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncreaseDecreaseInOtherAccountsPayableAndAccruedLiabilities,468000000.0,468,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncreaseDecreaseInOtherAccountsPayableAndAccruedLiabilities,-119000000.0,119,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:NetCashProvidedByUsedInOperatingActivities,8724000000.0,"8,724",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:NetCashProvidedByUsedInOperatingActivities,4544000000.0,"4,544",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:NetCashProvidedByUsedInOperatingActivities,3968000000.0,"3,968",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:PaymentsToAcquireOtherInvestments,40000000.0,40,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:PaymentsToAcquireOtherInvestments,26000000.0,26,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:PaymentsToAcquireOtherInvestments,5000000.0,5,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:ProceedsFromSaleMaturityAndCollectionsOfInvestments,45000000.0,45,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:ProceedsFromSaleMaturityAndCollectionsOfInvestments,23000000.0,23,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:ProceedsFromSaleMaturityAndCollectionsOfInvestments,7000000.0,7,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:PaymentsForProceedsFromProductiveAssets,49000000.0,49,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:PaymentsForProceedsFromProductiveAssets,49000000.0,49,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:PaymentsForProceedsFromProductiveAssets,69000000.0,69,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:NetCashProvidedByUsedInInvestingActivities,-44000000.0,44,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:NetCashProvidedByUsedInInvestingActivities,-52000000.0,52,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:NetCashProvidedByUsedInInvestingActivities,-67000000.0,67,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:ProceedsFromRepaymentsOfShortTermDebtMaturingInMoreThanThreeMonths,-3000000.0,3,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:ProceedsFromRepaymentsOfShortTermDebtMaturingInMoreThanThreeMonths,-1000000.0,1,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:ProceedsFromRepaymentsOfShortTermDebtMaturingInMoreThanThreeMonths,-9000000.0,9,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:PaymentsOfDividendsCommonStock,92000000.0,92,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:PaymentsOfDividendsCommonStock,42000000.0,42,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:PaymentsOfDividendsCommonStock,40000000.0,40,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:PaymentsOfDividendsMinorityInterest,715000000.0,715,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:PaymentsOfDividendsMinorityInterest,556000000.0,556,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:PaymentsOfDividendsMinorityInterest,404000000.0,404,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:RepurchasesOfCommonStockForEmployeeTaxWithholdingUnderStockIncentivePlans,54000000.0,54,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:RepurchasesOfCommonStockForEmployeeTaxWithholdingUnderStockIncentivePlans,34000000.0,34,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:RepurchasesOfCommonStockForEmployeeTaxWithholdingUnderStockIncentivePlans,20000000.0,20,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:ProceedsFromSaleOfTreasuryStock,56000000.0,56,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:ProceedsFromSaleOfTreasuryStock,34000000.0,34,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:ProceedsFromSaleOfTreasuryStock,23000000.0,23,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:TaxReceivableAgreementPayments,25000000.0,25,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:TaxReceivableAgreementPayments,25000000.0,25,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:TaxReceivableAgreementPayments,20000000.0,20,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:NetCashProvidedByUsedInFinancingActivities,-833000000.0,833,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:NetCashProvidedByUsedInFinancingActivities,-624000000.0,624,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:NetCashProvidedByUsedInFinancingActivities,-470000000.0,470,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:EffectOfExchangeRateOnCashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,-207000000.0,207,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:EffectOfExchangeRateOnCashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,122000000.0,122,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:EffectOfExchangeRateOnCashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,-111000000.0,111,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect,7640000000.0,"7,640",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect,3990000000.0,"3,990",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect,3320000000.0,"3,320",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,32593000000.0,"32,593",Unit13,-6,,,2023-12-31,
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,28603000000.0,"28,603",Unit13,-6,,,2022-12-31,
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,25283000000.0,"25,283",Unit13,-6,,,2021-12-31,
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,40233000000.0,"40,233",Unit13,-6,,,2024-12-31,
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,32593000000.0,"32,593",Unit13,-6,,,2023-12-31,
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,28603000000.0,"28,603",Unit13,-6,,,2022-12-31,
+us-gaap:CashAndCashEquivalentsAtCarryingValue,3633000000.0,"3,633",Unit13,-6,,,2024-12-31,
+us-gaap:CashAndCashEquivalentsAtCarryingValue,3753000000.0,"3,753",Unit13,-6,,,2023-12-31,
+us-gaap:CashAndCashEquivalentsAtCarryingValue,3436000000.0,"3,436",Unit13,-6,,,2022-12-31,
+us-gaap:CashReserveDepositRequiredAndMade,36600000000.0,"36,600",Unit13,-6,,,2024-12-31,
+us-gaap:CashReserveDepositRequiredAndMade,28840000000.0,"28,840",Unit13,-6,,,2023-12-31,
+us-gaap:CashReserveDepositRequiredAndMade,25167000000.0,"25,167",Unit13,-6,,,2022-12-31,
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,40233000000.0,"40,233",Unit13,-6,,,2024-12-31,
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,32593000000.0,"32,593",Unit13,-6,,,2023-12-31,
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,28603000000.0,"28,603",Unit13,-6,,,2022-12-31,
+us-gaap:InterestPaidNet,4190000000.0,"4,190",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:InterestPaidNet,3317000000.0,"3,317",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:InterestPaidNet,833000000.0,833,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncomeTaxesPaidNet,279000000.0,279,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncomeTaxesPaidNet,228000000.0,228,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncomeTaxesPaidNet,148000000.0,148,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:CashPaidForAmountsIncludedInLeaseLiabilities,39000000.0,39,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:CashPaidForAmountsIncludedInLeaseLiabilities,35000000.0,35,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:CashPaidForAmountsIncludedInLeaseLiabilities,32000000.0,32,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:StockIssued1,39000000.0,39,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:StockIssued1,229000000.0,229,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:StockIssued1,192000000.0,192,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:MinorityInterestDecreaseFromRedemptions,39000000.0,39,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:MinorityInterestDecreaseFromRedemptions,229000000.0,229,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:MinorityInterestDecreaseFromRedemptions,192000000.0,192,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:ConsolidationControllingOwnershipInterestChangesNet,41000000.0,41,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:ConsolidationControllingOwnershipInterestChangesNet,33000000.0,33,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:ConsolidationControllingOwnershipInterestChangesNet,27000000.0,27,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:ConsolidationNonControllingOwnershipInterestChangesNet,-41000000.0,41,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:ConsolidationNonControllingOwnershipInterestChangesNet,-33000000.0,33,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:ConsolidationNonControllingOwnershipInterestChangesNet,-27000000.0,27,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:OtherSignificantNoncashTransactionValueOfConsiderationGiven1,1000000.0,1,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:CommonStockSharesIssued,98359572.0,"98,359,572",Unit1,INF,,,2021-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,1000000.0,1,Unit13,-6,,,2021-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,1442000000.0,"1,442",Unit13,-6,,,2021-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,-5000000.0,5,Unit13,-6,,,2021-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,953000000.0,953,Unit13,-6,,,2021-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:RetainedEarningsMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,4000000.0,4,Unit13,-6,,,2021-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AccumulatedOtherComprehensiveIncomeMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,2395000000.0,"2,395",Unit13,-6,,,2021-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,7827000000.0,"7,827",Unit13,-6,,,2021-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,10222000000.0,"10,222",Unit13,-6,,,2021-12-31,
+ibkr:StockIssuedDuringPeriodShareRedemptionsNewIssues,3271390.0,"3,271,390",Unit1,INF,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+ibkr:StockIssuedDuringPeriodValueRedemptionsNewIssues,84000000.0,84,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+ibkr:StockIssuedDuringPeriodValueRedemptionsNewIssues,84000000.0,84,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:StockIssuedDuringPeriodValueRedemptionsNewIssues,-84000000.0,84,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:StockIssuedDuringPeriodSharesShareBasedCompensationGross,1276186.0,"1,276,186",Unit1,INF,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+ibkr:IssuanceOfCommonStockPromotionsShare,150000.0,"150,000",Unit1,INF,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+ibkr:IssuanceOfCommonStockPromotions,2000000.0,2,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+ibkr:IssuanceOfCommonStockPromotions,-10000000.0,10,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+ibkr:IssuanceOfCommonStockPromotions,-8000000.0,8,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:IssuanceOfCommonStockPromotions,8000000.0,8,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+ibkr:NetDistributionOfCommonStockPromotion,9000000.0,9,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+ibkr:NetDistributionOfCommonStockPromotion,9000000.0,9,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:NetDistributionOfCommonStockPromotion,9000000.0,9,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:AdjustmentsToAdditionalPaidInCapitalShareBasedCompensationRestrictedStockUnitsRequisiteServicePeriodRecognition,23000000.0,23,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+us-gaap:AdjustmentsToAdditionalPaidInCapitalShareBasedCompensationRestrictedStockUnitsRequisiteServicePeriodRecognition,23000000.0,23,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:AdjustmentsToAdditionalPaidInCapitalShareBasedCompensationRestrictedStockUnitsRequisiteServicePeriodRecognition,69000000.0,69,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:AdjustmentsToAdditionalPaidInCapitalShareBasedCompensationRestrictedStockUnitsRequisiteServicePeriodRecognition,92000000.0,92,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:PeriodIncreaseTaxSavingsRetained,3000000.0,3,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+ibkr:PeriodIncreaseTaxSavingsRetained,3000000.0,3,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:PeriodIncreaseTaxSavingsRetained,3000000.0,3,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:RepurchaseOfCommonStockForEmployeeTaxWithholdingUnderStockIncentivePlans,-20000000.0,20,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+ibkr:RepurchaseOfCommonStockForEmployeeTaxWithholdingUnderStockIncentivePlans,-20000000.0,20,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:RepurchaseOfCommonStockForEmployeeTaxWithholdingUnderStockIncentivePlans,-20000000.0,20,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:StockIssuedDuringPeriodValueTreasuryStockReissued,20000000.0,20,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+us-gaap:StockIssuedDuringPeriodValueTreasuryStockReissued,1000000.0,1,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:RetainedEarningsMember""}"
+us-gaap:StockIssuedDuringPeriodValueTreasuryStockReissued,21000000.0,21,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:StockIssuedDuringPeriodValueTreasuryStockReissued,2000000.0,2,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:StockIssuedDuringPeriodValueTreasuryStockReissued,23000000.0,23,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:CommonStockDividendsPerShareCashPaid,0.1,0.10,Unit14,INF,2022-01-01,2022-12-31,,
+us-gaap:DividendsCommonStock,40000000.0,40,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:RetainedEarningsMember""}"
+us-gaap:DividendsCommonStock,40000000.0,40,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:DividendsCommonStock,40000000.0,40,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:MinorityInterestDecreaseFromDistributionsToNoncontrollingInterestHolders,405000000.0,405,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:MinorityInterestDecreaseFromDistributionsToNoncontrollingInterestHolders,405000000.0,405,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:OwnershipInterestChangeSCE,27000000.0,27,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+ibkr:OwnershipInterestChangeSCE,27000000.0,27,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:OwnershipInterestChangeSCE,-27000000.0,27,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,380000000.0,380,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:RetainedEarningsMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,-26000000.0,26,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AccumulatedOtherComprehensiveIncomeMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,354000000.0,354,Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,1377000000.0,"1,377",Unit13,-6,2022-01-01,2022-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,1731000000.0,"1,731",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:CommonStockSharesIssued,103057148.0,"103,057,148",Unit1,INF,,,2022-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,1000000.0,1,Unit13,-6,,,2022-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,1581000000.0,"1,581",Unit13,-6,,,2022-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,-6000000.0,6,Unit13,-6,,,2022-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,1294000000.0,"1,294",Unit13,-6,,,2022-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:RetainedEarningsMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,-22000000.0,22,Unit13,-6,,,2022-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AccumulatedOtherComprehensiveIncomeMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,2848000000.0,"2,848",Unit13,-6,,,2022-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,8767000000.0,"8,767",Unit13,-6,,,2022-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,11615000000.0,"11,615",Unit13,-6,,,2022-12-31,
+ibkr:StockIssuedDuringPeriodShareRedemptionsNewIssues,2632748.0,"2,632,748",Unit1,INF,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+ibkr:StockIssuedDuringPeriodValueRedemptionsNewIssues,81000000.0,81,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+ibkr:StockIssuedDuringPeriodValueRedemptionsNewIssues,81000000.0,81,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:StockIssuedDuringPeriodValueRedemptionsNewIssues,-81000000.0,81,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:StockIssuedDuringPeriodSharesShareBasedCompensationGross,1389032.0,"1,389,032",Unit1,INF,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+ibkr:IssuanceOfCommonStockPromotionsShare,100000.0,"100,000",Unit1,INF,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+ibkr:IssuanceOfCommonStockPromotions,2000000.0,2,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+ibkr:IssuanceOfCommonStockPromotions,-8000000.0,8,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+ibkr:IssuanceOfCommonStockPromotions,-6000000.0,6,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:IssuanceOfCommonStockPromotions,6000000.0,6,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+ibkr:NetDistributionOfCommonStockPromotion,11000000.0,11,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+ibkr:NetDistributionOfCommonStockPromotion,11000000.0,11,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:NetDistributionOfCommonStockPromotion,1000000.0,1,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+ibkr:NetDistributionOfCommonStockPromotion,12000000.0,12,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:AdjustmentsToAdditionalPaidInCapitalShareBasedCompensationRestrictedStockUnitsRequisiteServicePeriodRecognition,25000000.0,25,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+us-gaap:AdjustmentsToAdditionalPaidInCapitalShareBasedCompensationRestrictedStockUnitsRequisiteServicePeriodRecognition,25000000.0,25,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:AdjustmentsToAdditionalPaidInCapitalShareBasedCompensationRestrictedStockUnitsRequisiteServicePeriodRecognition,75000000.0,75,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:AdjustmentsToAdditionalPaidInCapitalShareBasedCompensationRestrictedStockUnitsRequisiteServicePeriodRecognition,100000000.0,100,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:PeriodIncreaseTaxSavingsRetained,4000000.0,4,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+ibkr:PeriodIncreaseTaxSavingsRetained,4000000.0,4,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:PeriodIncreaseTaxSavingsRetained,4000000.0,4,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:RepurchaseOfCommonStockForEmployeeTaxWithholdingUnderStockIncentivePlans,-34000000.0,34,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+ibkr:RepurchaseOfCommonStockForEmployeeTaxWithholdingUnderStockIncentivePlans,-34000000.0,34,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:RepurchaseOfCommonStockForEmployeeTaxWithholdingUnderStockIncentivePlans,-34000000.0,34,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:StockIssuedDuringPeriodValueTreasuryStockReissued,34000000.0,34,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+us-gaap:StockIssuedDuringPeriodValueTreasuryStockReissued,34000000.0,34,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:StockIssuedDuringPeriodValueTreasuryStockReissued,34000000.0,34,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:CommonStockDividendsPerShareCashPaid,0.1,0.10,Unit14,INF,2023-01-01,2023-12-31,,
+us-gaap:DividendsCommonStock,42000000.0,42,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:RetainedEarningsMember""}"
+us-gaap:DividendsCommonStock,42000000.0,42,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:DividendsCommonStock,42000000.0,42,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:MinorityInterestDecreaseFromDistributionsToNoncontrollingInterestHolders,556000000.0,556,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:MinorityInterestDecreaseFromDistributionsToNoncontrollingInterestHolders,556000000.0,556,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:OwnershipInterestChangeSCE,33000000.0,33,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+ibkr:OwnershipInterestChangeSCE,33000000.0,33,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:OwnershipInterestChangeSCE,-33000000.0,33,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,600000000.0,600,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:RetainedEarningsMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,30000000.0,30,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AccumulatedOtherComprehensiveIncomeMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,630000000.0,630,Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,2304000000.0,"2,304",Unit13,-6,2023-01-01,2023-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,2934000000.0,"2,934",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:CommonStockSharesIssued,107178928.0,"107,178,928",Unit1,INF,,,2023-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,1000000.0,1,Unit13,-6,,,2023-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,1726000000.0,"1,726",Unit13,-6,,,2023-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,-3000000.0,3,Unit13,-6,,,2023-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,1852000000.0,"1,852",Unit13,-6,,,2023-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:RetainedEarningsMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,8000000.0,8,Unit13,-6,,,2023-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AccumulatedOtherComprehensiveIncomeMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,3584000000.0,"3,584",Unit13,-6,,,2023-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,10483000000.0,"10,483",Unit13,-6,,,2023-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,14067000000.0,"14,067",Unit13,-6,,,2023-12-31,
+ibkr:StockIssuedDuringPeriodShareRedemptionsNewIssues,333000.0,"333,000",Unit1,INF,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+ibkr:StockIssuedDuringPeriodValueRedemptionsNewIssues,12000000.0,12,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+ibkr:StockIssuedDuringPeriodValueRedemptionsNewIssues,12000000.0,12,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:StockIssuedDuringPeriodValueRedemptionsNewIssues,-12000000.0,12,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:StockIssuedDuringPeriodSharesShareBasedCompensationGross,1349131.0,"1,349,131",Unit1,INF,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+ibkr:IssuanceOfCommonStockPromotionsShare,200000.0,"200,000",Unit1,INF,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+ibkr:IssuanceOfCommonStockPromotions,6000000.0,6,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+ibkr:IssuanceOfCommonStockPromotions,-23000000.0,23,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+ibkr:IssuanceOfCommonStockPromotions,-17000000.0,17,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:IssuanceOfCommonStockPromotions,17000000.0,17,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+ibkr:NetDistributionOfCommonStockPromotion,1000000.0,1,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+ibkr:NetDistributionOfCommonStockPromotion,19000000.0,19,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+ibkr:NetDistributionOfCommonStockPromotion,20000000.0,20,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:NetDistributionOfCommonStockPromotion,2000000.0,2,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+ibkr:NetDistributionOfCommonStockPromotion,22000000.0,22,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:AdjustmentsToAdditionalPaidInCapitalShareBasedCompensationRestrictedStockUnitsRequisiteServicePeriodRecognition,28000000.0,28,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+us-gaap:AdjustmentsToAdditionalPaidInCapitalShareBasedCompensationRestrictedStockUnitsRequisiteServicePeriodRecognition,28000000.0,28,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:AdjustmentsToAdditionalPaidInCapitalShareBasedCompensationRestrictedStockUnitsRequisiteServicePeriodRecognition,84000000.0,84,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:AdjustmentsToAdditionalPaidInCapitalShareBasedCompensationRestrictedStockUnitsRequisiteServicePeriodRecognition,112000000.0,112,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:PeriodIncreaseTaxSavingsRetained,1000000.0,1,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+ibkr:PeriodIncreaseTaxSavingsRetained,1000000.0,1,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:PeriodIncreaseTaxSavingsRetained,1000000.0,1,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:RepurchaseOfCommonStockForEmployeeTaxWithholdingUnderStockIncentivePlans,-54000000.0,54,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+ibkr:RepurchaseOfCommonStockForEmployeeTaxWithholdingUnderStockIncentivePlans,-54000000.0,54,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:RepurchaseOfCommonStockForEmployeeTaxWithholdingUnderStockIncentivePlans,-54000000.0,54,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:StockIssuedDuringPeriodValueTreasuryStockReissued,1000000.0,1,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+us-gaap:StockIssuedDuringPeriodValueTreasuryStockReissued,54000000.0,54,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+us-gaap:StockIssuedDuringPeriodValueTreasuryStockReissued,55000000.0,55,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:StockIssuedDuringPeriodValueTreasuryStockReissued,1000000.0,1,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:StockIssuedDuringPeriodValueTreasuryStockReissued,56000000.0,56,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:DividendsCommonStock,92000000.0,92,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:RetainedEarningsMember""}"
+us-gaap:DividendsCommonStock,92000000.0,92,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:DividendsCommonStock,92000000.0,92,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:MinorityInterestDecreaseFromDistributionsToNoncontrollingInterestHolders,715000000.0,715,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:MinorityInterestDecreaseFromDistributionsToNoncontrollingInterestHolders,715000000.0,715,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:OwnershipInterestChangeSCE,41000000.0,41,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+ibkr:OwnershipInterestChangeSCE,41000000.0,41,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+ibkr:OwnershipInterestChangeSCE,-41000000.0,41,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,755000000.0,755,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:RetainedEarningsMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,-53000000.0,53,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AccumulatedOtherComprehensiveIncomeMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,702000000.0,702,Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,2498000000.0,"2,498",Unit13,-6,2024-01-01,2024-12-31,,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest,3200000000.0,"3,200",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:CommonStockSharesIssued,109061059.0,"109,061,059",Unit1,INF,,,2024-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,1000000.0,1,Unit13,-6,,,2024-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,1816000000.0,"1,816",Unit13,-6,,,2024-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AdditionalPaidInCapitalMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,-7000000.0,7,Unit13,-6,,,2024-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:TreasuryStockCommonMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,2515000000.0,"2,515",Unit13,-6,,,2024-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:RetainedEarningsMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,-45000000.0,45,Unit13,-6,,,2024-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:AccumulatedOtherComprehensiveIncomeMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,4280000000.0,"4,280",Unit13,-6,,,2024-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:ParentMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,12317000000.0,"12,317",Unit13,-6,,,2024-12-31,"{""us-gaap:StatementEquityComponentsAxis"": ""us-gaap:NoncontrollingInterestMember""}"
+us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest,16597000000.0,"16,597",Unit13,-6,,,2024-12-31,
+us-gaap:CommonStockDividendsPerShareCashPaid,0.1,0.10,Unit14,INF,2024-01-01,2024-03-31,,
+us-gaap:CommonStockDividendsPerShareCashPaid,0.25,0.25,Unit14,INF,2024-04-01,2024-12-31,,
+us-gaap:MinorityInterestOwnershipPercentageByParent,0.258,25.8,Unit15,3,,,2024-12-31,"{""srt:OwnershipAxis"": ""ibkr:IbgLlcMember""}"
+dei:EntityNumberOfEmployees,2998.0,"2,998",Unit12,INF,,,2024-12-31,
+us-gaap:SecuritiesReserveDepositRequiredAndMade,6460000000.0,"6,460",Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:U.s.AndForeignGovernmentSecuritiesMember""}"
+us-gaap:SecuritiesReserveDepositRequiredAndMade,5684000000.0,"5,684",Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:U.s.AndForeignGovernmentSecuritiesMember""}"
+us-gaap:SecuritiesReserveDepositRequiredAndMade,33000000.0,33,Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:MunicipalBondsMember""}"
+us-gaap:SecuritiesReserveDepositRequiredAndMade,70000000.0,70,Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:MunicipalBondsMember""}"
+us-gaap:SecuritiesReserveDepositRequiredAndMade,21353000000.0,"21,353",Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:SecuritiesPurchasedUnderAgreementToResellMember""}"
+us-gaap:SecuritiesReserveDepositRequiredAndMade,29632000000.0,"29,632",Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:SecuritiesPurchasedUnderAgreementToResellMember""}"
+us-gaap:SecuritiesReserveDepositRequiredAndMade,27846000000.0,"27,846",Unit13,-6,,,2024-12-31,
+us-gaap:SecuritiesReserveDepositRequiredAndMade,35386000000.0,"35,386",Unit13,-6,,,2023-12-31,
+us-gaap:EquityMethodInvestments,172000000.0,172,Unit13,-6,,,2024-12-31,
+us-gaap:EquityMethodInvestments,142000000.0,142,Unit13,-6,,,2023-12-31,
+ibkr:EquitySecuritiesFvNiAdjustedCost,29000000.0,29,Unit13,-6,,,2024-12-31,
+ibkr:EquitySecuritiesFvNiAdjustedCost,22000000.0,22,Unit13,-6,,,2023-12-31,
+us-gaap:EquitySecuritiesFvNi,32000000.0,32,Unit13,-6,,,2024-12-31,
+us-gaap:EquitySecuritiesFvNi,44000000.0,44,Unit13,-6,,,2023-12-31,
+us-gaap:MembershipsInExchangesOwned,2000000.0,2,Unit13,-6,,,2024-12-31,
+us-gaap:MembershipsInExchangesOwned,2000000.0,2,Unit13,-6,,,2023-12-31,
+ibkr:TotalInvestments,235000000.0,235,Unit13,-6,,,2024-12-31,
+ibkr:TotalInvestments,210000000.0,210,Unit13,-6,,,2023-12-31,
+us-gaap:OtherAssets,1127000000.0,"1,127",Unit13,-6,,,2023-12-31,"{""srt:RestatementAxis"": ""srt:ScenarioPreviouslyReportedMember""}"
+us-gaap:OtherAssets,-172000000.0,172,Unit13,-6,,,2023-12-31,"{""srt:RestatementAxis"": ""srt:RestatementAdjustmentMember""}"
+us-gaap:OtherAssets,955000000.0,955,Unit13,-6,,,2023-12-31,
+us-gaap:Assets,128423000000.0,"128,423",Unit13,-6,,,2023-12-31,"{""srt:RestatementAxis"": ""srt:ScenarioPreviouslyReportedMember""}"
+us-gaap:Assets,-172000000.0,172,Unit13,-6,,,2023-12-31,"{""srt:RestatementAxis"": ""srt:RestatementAdjustmentMember""}"
+us-gaap:Assets,128251000000.0,"128,251",Unit13,-6,,,2023-12-31,
+us-gaap:AccruedLiabilitiesCurrentAndNoncurrent,676000000.0,676,Unit13,-6,,,2023-12-31,"{""srt:RestatementAxis"": ""srt:ScenarioPreviouslyReportedMember""}"
+us-gaap:AccruedLiabilitiesCurrentAndNoncurrent,-172000000.0,172,Unit13,-6,,,2023-12-31,"{""srt:RestatementAxis"": ""srt:RestatementAdjustmentMember""}"
+us-gaap:AccruedLiabilitiesCurrentAndNoncurrent,504000000.0,504,Unit13,-6,,,2023-12-31,
+ibkr:OtherPayables,102799000000.0,"102,799",Unit13,-6,,,2023-12-31,"{""srt:RestatementAxis"": ""srt:ScenarioPreviouslyReportedMember""}"
+ibkr:OtherPayables,-172000000.0,172,Unit13,-6,,,2023-12-31,"{""srt:RestatementAxis"": ""srt:RestatementAdjustmentMember""}"
+ibkr:OtherPayables,102627000000.0,"102,627",Unit13,-6,,,2023-12-31,
+us-gaap:Liabilities,114356000000.0,"114,356",Unit13,-6,,,2023-12-31,"{""srt:RestatementAxis"": ""srt:ScenarioPreviouslyReportedMember""}"
+us-gaap:Liabilities,-172000000.0,172,Unit13,-6,,,2023-12-31,"{""srt:RestatementAxis"": ""srt:RestatementAdjustmentMember""}"
+us-gaap:Liabilities,114184000000.0,"114,184",Unit13,-6,,,2023-12-31,
+us-gaap:LiabilitiesAndStockholdersEquity,128423000000.0,"128,423",Unit13,-6,,,2023-12-31,"{""srt:RestatementAxis"": ""srt:ScenarioPreviouslyReportedMember""}"
+us-gaap:LiabilitiesAndStockholdersEquity,-172000000.0,172,Unit13,-6,,,2023-12-31,"{""srt:RestatementAxis"": ""srt:RestatementAdjustmentMember""}"
+us-gaap:LiabilitiesAndStockholdersEquity,128251000000.0,"128,251",Unit13,-6,,,2023-12-31,
+ibkr:StockGrantedExpenseYearOfGrant,0.5,50,Unit15,2,,,2007-05-03,
+ibkr:StockGrantedExpenseRemainingVestingPeriod,0.5,50,Unit15,2,,,2007-05-03,
+ibkr:StockGrantedExpenseOverFiftyNine,1.0,100,Unit15,2,,,2007-05-03,
+ibkr:PercentSharesForfeitedPostEmployment,0.5,50,Unit15,2,,,2007-05-03,
+ibkr:OverFiftyNinePercentUnvestedSharesEligible,1.0,100,Unit15,2,,,2007-05-03,
+us-gaap:MinorityInterestOwnershipPercentageByParent,0.1,10.0,Unit15,3,,,2007-05-03,"{""srt:OwnershipAxis"": ""ibkr:IbgLlcMember""}"
+ibkr:OwnershipPercentage,0.258,25.8,Unit15,3,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:IbgIncMember""}"
+ibkr:OwnershipPercentage,0.742,74.2,Unit15,3,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:HoldingsMember""}"
+ibkr:OwnershipPercentage,1.0,100.0,Unit15,3,,,2024-12-31,
+ibkr:MembershipInterests,108931614.0,"108,931,614",Unit1,INF,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:IbgIncMember""}"
+ibkr:MembershipInterests,313643354.0,"313,643,354",Unit1,INF,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:HoldingsMember""}"
+ibkr:MembershipInterests,422574968.0,"422,574,968",Unit1,INF,,,2024-12-31,
+ibkr:HoldingsRedemptionIBGLLC,0.1,10.0,Unit15,3,,,2007-05-03,
+us-gaap:MinorityInterestOwnershipPercentageByNoncontrollingOwners,0.9,90,Unit15,2,,,2007-05-03,"{""srt:OwnershipAxis"": ""ibkr:IbgLlcMember""}"
+ibkr:HoldingsOwnershipPercentageClassB,1.0,100,Unit15,2,,,2007-05-03,
+us-gaap:CommonStockParOrStatedValuePerShare,0.01,0.01,Unit14,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesAuthorized,1000000000.0,"1,000,000,000",Unit1,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesIssued,109061059.0,"109,061,059",Unit1,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesOutstanding,108904613.0,"108,904,613",Unit1,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesAuthorized,1000000000.0,"1,000,000,000",Unit1,INF,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesIssued,107178928.0,"107,178,928",Unit1,INF,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesOutstanding,107045894.0,"107,045,894",Unit1,INF,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesAuthorized,100.0,100,Unit1,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesIssued,100.0,100,Unit1,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesOutstanding,100.0,100,Unit1,INF,,,2024-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesAuthorized,100.0,100,Unit1,INF,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesIssued,100.0,100,Unit1,INF,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesOutstanding,100.0,100,Unit1,INF,,,2023-12-31,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:PreferredStockSharesAuthorized,10000.0,"10,000",Unit1,INF,,,2024-12-31,
+us-gaap:PreferredStockSharesAuthorized,10000.0,"10,000",Unit1,INF,,,2023-12-31,
+ibkr:UnamortizedDeferredTaxAssetArisingFromEquityOfferings,196000000.0,196,Unit13,-6,,,2024-12-31,
+ibkr:UnamortizedDeferredTaxAssetArisingFromEquityOfferings,197000000.0,197,Unit13,-6,,,2023-12-31,
+ibkr:DeferredTaxAssetsPercentagePayableToHoldings,0.85,85,Unit15,2,2024-01-01,2024-12-31,,
+ibkr:DeferredTaxAssetPercentageRetainedByCompany,0.15,15,Unit15,2,2024-01-01,2024-12-31,,
+us-gaap:DeferredTaxAssetsTaxCreditCarryforwards,688000000.0,688,Unit13,-6,,,2024-12-31,
+ibkr:DeferredTaxAssetsPayableToHoldings,585000000.0,585,Unit13,-6,2007-05-03,2024-12-31,,
+ibkr:DeferredTaxAssetsValueNotPayableToCompany,103000000.0,103,Unit13,-6,2007-05-03,2024-12-31,,
+ibkr:DeferredTaxAssetsPaidToHoldings,293000000.0,293,Unit13,-6,2007-05-03,2024-12-31,,
+us-gaap:CommonStockCapitalSharesReservedForFutureIssuance,360000000.0,360,Unit1,INF,,,2007-05-03,
+ibkr:ShareRedeemedByIBGHoldings,5013259.0,"5,013,259",Unit1,INF,2008-01-01,2010-12-31,,
+ibkr:CashRedemptions,114000000.0,114,Unit13,-6,2008-01-01,2010-12-31,,
+us-gaap:StockIssuedDuringPeriodSharesNewIssues,40111445.0,"40,111,445",Unit1,INF,2011-01-01,2023-12-31,,"{""us-gaap:StatementClassOfStockAxis"": ""ibkr:MemberRedemptionsMember""}"
+ibkr:FairValueOfIssuedSharesInExchangeForMembershipInterests,1900000000.0,1.9,Unit13,-8,2011-01-01,2023-12-31,,
+us-gaap:StockIssuedDuringPeriodSharesNewIssues,333000.0,"333,000",Unit1,INF,2024-07-25,2024-07-25,,"{""us-gaap:StatementClassOfStockAxis"": ""ibkr:MemberRedemptionsMember""}"
+ibkr:FairValueOfIssuedSharesInExchangeForMembershipInterests,39000000.0,39,Unit13,-6,2024-07-25,2024-07-25,,
+ibkr:StockRegisteredDuringPeriodSharesCommonStock,630000.0,"630,000",Unit1,INF,2023-07-26,2023-07-26,,
+ibkr:StockRegisteredDuringPeriodSharesCommonStock,1000000.0,"1,000,000",Unit1,INF,2019-10-07,2019-10-07,,
+us-gaap:StockIssuedDuringPeriodSharesNewIssues,620000.0,"620,000",Unit1,INF,2019-01-01,2024-12-31,,"{""us-gaap:StatementClassOfStockAxis"": ""ibkr:IbkrPromotionsMember""}"
+us-gaap:MinorityInterestOwnershipPercentageByParent,0.258,25.8,Unit15,3,,,2024-12-31,"{""srt:OwnershipAxis"": ""ibkr:IbgLlcMember""}"
+us-gaap:MinorityInterestOwnershipPercentageByNoncontrollingOwners,0.742,74.2,Unit15,3,,,2024-12-31,"{""srt:OwnershipAxis"": ""ibkr:IbgLlcMember""}"
+ibkr:MajorityStakeholderPercentage,0.846,84.6,Unit15,3,,,2007-05-03,"{""dei:LegalEntityAxis"": ""ibkr:ThomasPeterffyAndAffiliatesMember"", ""srt:OwnershipAxis"": ""ibkr:IbgLlcMember""}"
+ibkr:MajorityStakeholderPercentage,0.914,91.4,Unit15,3,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:ThomasPeterffyAndAffiliatesMember"", ""srt:OwnershipAxis"": ""ibkr:IbgLlcMember""}"
+us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic,755000000.0,755,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic,600000000.0,600,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic,380000000.0,380,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,108112099.0,"108,112,099",Unit1,0,2024-01-01,2024-12-31,,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,104964950.0,"104,964,950",Unit1,0,2023-01-01,2023-12-31,,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,100459916.0,"100,459,916",Unit1,0,2022-01-01,2022-12-31,,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,100.0,100,Unit1,0,2024-01-01,2024-12-31,,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,100.0,100,Unit1,0,2023-01-01,2023-12-31,,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,100.0,100,Unit1,0,2022-01-01,2022-12-31,,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,108112199.0,"108,112,199",Unit1,0,2024-01-01,2024-12-31,,
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,104965050.0,"104,965,050",Unit1,0,2023-01-01,2023-12-31,,
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,100460016.0,"100,460,016",Unit1,0,2022-01-01,2022-12-31,,
+us-gaap:EarningsPerShareBasic,6.99,6.99,Unit14,2,2024-01-01,2024-12-31,,
+us-gaap:EarningsPerShareBasic,5.72,5.72,Unit14,2,2023-01-01,2023-12-31,,
+us-gaap:EarningsPerShareBasic,3.78,3.78,Unit14,2,2022-01-01,2022-12-31,,
+us-gaap:NetIncomeLossAvailableToCommonStockholdersDiluted,755000000.0,755,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:NetIncomeLossAvailableToCommonStockholdersDiluted,600000000.0,600,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:NetIncomeLossAvailableToCommonStockholdersDiluted,380000000.0,380,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,108112099.0,"108,112,099",Unit1,0,2024-01-01,2024-12-31,,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,104964950.0,"104,964,950",Unit1,0,2023-01-01,2023-12-31,,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,100459916.0,"100,459,916",Unit1,0,2022-01-01,2022-12-31,,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:WeightedAverageNumberDilutedSharesOutstandingAdjustment,890739.0,"890,739",Unit1,0,2024-01-01,2024-12-31,,
+us-gaap:WeightedAverageNumberDilutedSharesOutstandingAdjustment,881827.0,"881,827",Unit1,0,2023-01-01,2023-12-31,,
+us-gaap:WeightedAverageNumberDilutedSharesOutstandingAdjustment,839593.0,"839,593",Unit1,0,2022-01-01,2022-12-31,,
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,100.0,100,Unit1,0,2024-01-01,2024-12-31,,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,100.0,100,Unit1,0,2023-01-01,2023-12-31,,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,100.0,100,Unit1,0,2022-01-01,2022-12-31,,"{""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding,109002938.0,"109,002,938",Unit1,0,2024-01-01,2024-12-31,,
+us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding,105846877.0,"105,846,877",Unit1,0,2023-01-01,2023-12-31,,
+us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding,101299609.0,"101,299,609",Unit1,0,2022-01-01,2022-12-31,,
+us-gaap:EarningsPerShareDiluted,6.93,6.93,Unit14,2,2024-01-01,2024-12-31,,
+us-gaap:EarningsPerShareDiluted,5.67,5.67,Unit14,2,2023-01-01,2023-12-31,,
+us-gaap:EarningsPerShareDiluted,3.75,3.75,Unit14,2,2022-01-01,2022-12-31,,
+ibkr:DividendsPaid,961000000.0,961,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:DividendsPaid,741000000.0,741,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:DividendsPaid,533000000.0,533,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:CashDividendsPaidToParentCompany,246000000.0,246,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:CashDividendsPaidToParentCompany,185000000.0,185,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:CashDividendsPaidToParentCompany,128000000.0,128,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:CommonStockDividendsPerShareCashPaid,0.1,0.10,Unit14,INF,2023-01-01,2023-12-31,,
+us-gaap:CommonStockDividendsPerShareCashPaid,0.1,0.10,Unit14,INF,2022-01-01,2022-12-31,,
+us-gaap:PaymentsOfDividendsCommonStock,42000000.0,42,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:PaymentsOfDividendsCommonStock,40000000.0,40,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:CommonStockDividendsPerShareCashPaid,0.1,0.10,Unit14,2,2024-01-01,2024-03-31,,
+us-gaap:CommonStockDividendsPerShareCashPaid,0.25,0.25,Unit14,2,2024-04-01,2024-12-31,,
+us-gaap:PaymentsOfDividendsCommonStock,92000000.0,92,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:CommonStockDividendsPerShareCashPaid,0.25,0.25,Unit14,INF,2025-01-21,2025-01-21,,"{""us-gaap:SubsequentEventTypeAxis"": ""us-gaap:SubsequentEventMember""}"
+us-gaap:ComprehensiveIncomeNetOfTax,702000000.0,702,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:ComprehensiveIncomeNetOfTax,630000000.0,630,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:ComprehensiveIncomeNetOfTax,354000000.0,354,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:ComprehensiveEarningsPerShareBasic,6.5,6.50,Unit14,2,2024-01-01,2024-12-31,,
+ibkr:ComprehensiveEarningsPerShareBasic,6.0,6.00,Unit14,2,2023-01-01,2023-12-31,,
+ibkr:ComprehensiveEarningsPerShareBasic,3.53,3.53,Unit14,2,2022-01-01,2022-12-31,,
+ibkr:ComprehensiveEarningsPerShareDiluted,6.44,6.44,Unit14,2,2024-01-01,2024-12-31,,
+ibkr:ComprehensiveEarningsPerShareDiluted,5.95,5.95,Unit14,2,2023-01-01,2023-12-31,,
+ibkr:ComprehensiveEarningsPerShareDiluted,3.5,3.50,Unit14,2,2022-01-01,2022-12-31,,
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,108112199.0,"108,112,199",Unit1,0,2024-01-01,2024-12-31,,
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,104965050.0,"104,965,050",Unit1,0,2023-01-01,2023-12-31,,
+us-gaap:WeightedAverageNumberOfSharesOutstandingBasic,100460016.0,"100,460,016",Unit1,0,2022-01-01,2022-12-31,,
+us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding,109002938.0,"109,002,938",Unit1,0,2024-01-01,2024-12-31,,
+us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding,105846877.0,"105,846,877",Unit1,0,2023-01-01,2023-12-31,,
+us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding,101299609.0,"101,299,609",Unit1,0,2022-01-01,2022-12-31,,
+ibkr:SecuritiesSegregatedUnderRegulations,6460000000.0,"6,460",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""ibkr:U.s.AndForeignGovernmentSecuritiesMember""}"
+ibkr:SecuritiesSegregatedUnderRegulations,6460000000.0,"6,460",Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:U.s.AndForeignGovernmentSecuritiesMember""}"
+ibkr:SecuritiesSegregatedUnderRegulations,33000000.0,33,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:MunicipalBondsMember""}"
+ibkr:SecuritiesSegregatedUnderRegulations,33000000.0,33,Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:MunicipalBondsMember""}"
+ibkr:SecuritiesSegregatedUnderRegulations,6460000000.0,"6,460",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+ibkr:SecuritiesSegregatedUnderRegulations,33000000.0,33,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+ibkr:SecuritiesSegregatedUnderRegulations,6493000000.0,"6,493",Unit13,-6,,,2024-12-31,
+us-gaap:FinancialInstrumentsOwnedAtFairValue,1763000000.0,"1,763",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,1763000000.0,"1,763",Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,84000000.0,84,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:StockOptionMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,84000000.0,84,Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:StockOptionMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,54000000.0,54,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""ibkr:FinancialInstrumentsOwnedUSAndForeignGovernmentObligationsAtFairValueMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,54000000.0,54,Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:FinancialInstrumentsOwnedUSAndForeignGovernmentObligationsAtFairValueMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,2000000.0,2,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:MutualFundMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,2000000.0,2,Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:MutualFundMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,21000000.0,21,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member"", ""us-gaap:FinancialInstrumentAxis"": ""ibkr:PreciousMetalsMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,21000000.0,21,Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:PreciousMetalsMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,1903000000.0,"1,903",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,21000000.0,21,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,1924000000.0,"1,924",Unit13,-6,,,2024-12-31,
+us-gaap:OtherAssetsFairValueDisclosure,260000000.0,260,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""ibkr:CustomerHeldFractionalSharesMember""}"
+us-gaap:OtherAssetsFairValueDisclosure,260000000.0,260,Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:CustomerHeldFractionalSharesMember""}"
+us-gaap:OtherAssetsFairValueDisclosure,32000000.0,32,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""ibkr:OtherInvestmentsInEquitySecuritiesMember""}"
+us-gaap:OtherAssetsFairValueDisclosure,32000000.0,32,Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:OtherInvestmentsInEquitySecuritiesMember""}"
+us-gaap:OtherAssetsFairValueDisclosure,292000000.0,292,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:OtherAssetsFairValueDisclosure,292000000.0,292,Unit13,-6,,,2024-12-31,
+ibkr:FinancialInstrumentsTradingNonTradingAtFairValue,8655000000.0,"8,655",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+ibkr:FinancialInstrumentsTradingNonTradingAtFairValue,54000000.0,54,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+ibkr:FinancialInstrumentsTradingNonTradingAtFairValue,8709000000.0,"8,709",Unit13,-6,,,2024-12-31,
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,116000000.0,116,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,116000000.0,116,Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,96000000.0,96,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:StockOptionMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,96000000.0,96,Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:StockOptionMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,18000000.0,18,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member"", ""us-gaap:FinancialInstrumentAxis"": ""ibkr:PreciousMetalsMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,18000000.0,18,Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:PreciousMetalsMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,63000000.0,63,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,63000000.0,63,Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,212000000.0,212,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,81000000.0,81,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,293000000.0,293,Unit13,-6,,,2024-12-31,
+ibkr:OtherFairValueLiabilitiesIncludedInAccountsPayableAccruedExpensesAndOtherLiabilities,260000000.0,260,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""ibkr:FractionalSharesRepurchaseObligationMember""}"
+ibkr:OtherFairValueLiabilitiesIncludedInAccountsPayableAccruedExpensesAndOtherLiabilities,260000000.0,260,Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:FractionalSharesRepurchaseObligationMember""}"
+ibkr:OtherFairValueLiabilitiesIncludedInAccountsPayableAccruedExpensesAndOtherLiabilities,260000000.0,260,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+ibkr:OtherFairValueLiabilitiesIncludedInAccountsPayableAccruedExpensesAndOtherLiabilities,260000000.0,260,Unit13,-6,,,2024-12-31,
+ibkr:TotalFinancialLiabilitiesAtFairValue,472000000.0,472,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+ibkr:TotalFinancialLiabilitiesAtFairValue,81000000.0,81,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+ibkr:TotalFinancialLiabilitiesAtFairValue,553000000.0,553,Unit13,-6,,,2024-12-31,
+ibkr:SecuritiesSegregatedUnderRegulations,5684000000.0,"5,684",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""ibkr:U.s.AndForeignGovernmentSecuritiesMember""}"
+ibkr:SecuritiesSegregatedUnderRegulations,5684000000.0,"5,684",Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:U.s.AndForeignGovernmentSecuritiesMember""}"
+ibkr:SecuritiesSegregatedUnderRegulations,70000000.0,70,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:MunicipalBondsMember""}"
+ibkr:SecuritiesSegregatedUnderRegulations,70000000.0,70,Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:MunicipalBondsMember""}"
+ibkr:SecuritiesSegregatedUnderRegulations,5684000000.0,"5,684",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+ibkr:SecuritiesSegregatedUnderRegulations,70000000.0,70,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+ibkr:SecuritiesSegregatedUnderRegulations,5754000000.0,"5,754",Unit13,-6,,,2023-12-31,
+us-gaap:FinancialInstrumentsOwnedAtFairValue,1023000000.0,"1,023",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,1023000000.0,"1,023",Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,354000000.0,354,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:StockOptionMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,354000000.0,354,Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:StockOptionMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,39000000.0,39,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""ibkr:FinancialInstrumentsOwnedUSAndForeignGovernmentObligationsAtFairValueMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,39000000.0,39,Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:FinancialInstrumentsOwnedUSAndForeignGovernmentObligationsAtFairValueMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,12000000.0,12,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member"", ""us-gaap:FinancialInstrumentAxis"": ""ibkr:PreciousMetalsMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,12000000.0,12,Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:PreciousMetalsMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,60000000.0,60,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,60000000.0,60,Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,1416000000.0,"1,416",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,72000000.0,72,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,1488000000.0,"1,488",Unit13,-6,,,2023-12-31,
+us-gaap:OtherAssetsFairValueDisclosure,144000000.0,144,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""ibkr:CustomerHeldFractionalSharesMember""}"
+us-gaap:OtherAssetsFairValueDisclosure,144000000.0,144,Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:CustomerHeldFractionalSharesMember""}"
+us-gaap:OtherAssetsFairValueDisclosure,44000000.0,44,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""ibkr:OtherInvestmentsInEquitySecuritiesMember""}"
+us-gaap:OtherAssetsFairValueDisclosure,44000000.0,44,Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:OtherInvestmentsInEquitySecuritiesMember""}"
+us-gaap:OtherAssetsFairValueDisclosure,188000000.0,188,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:OtherAssetsFairValueDisclosure,188000000.0,188,Unit13,-6,,,2023-12-31,
+ibkr:FinancialInstrumentsTradingNonTradingAtFairValue,7288000000.0,"7,288",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+ibkr:FinancialInstrumentsTradingNonTradingAtFairValue,142000000.0,142,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+ibkr:FinancialInstrumentsTradingNonTradingAtFairValue,7430000000.0,"7,430",Unit13,-6,,,2023-12-31,
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,77000000.0,77,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,77000000.0,77,Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,104000000.0,104,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:StockOptionMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,104000000.0,104,Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:StockOptionMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,7000000.0,7,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member"", ""us-gaap:FinancialInstrumentAxis"": ""ibkr:PreciousMetalsMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,7000000.0,7,Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:PreciousMetalsMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,5000000.0,5,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,5000000.0,5,Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,181000000.0,181,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,12000000.0,12,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:FinancialInstrumentsSoldNotYetPurchasedAtFairValue,193000000.0,193,Unit13,-6,,,2023-12-31,
+ibkr:OtherFairValueLiabilitiesIncludedInAccountsPayableAccruedExpensesAndOtherLiabilities,144000000.0,144,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member"", ""us-gaap:FinancialInstrumentAxis"": ""ibkr:FractionalSharesRepurchaseObligationMember""}"
+ibkr:OtherFairValueLiabilitiesIncludedInAccountsPayableAccruedExpensesAndOtherLiabilities,144000000.0,144,Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""ibkr:FractionalSharesRepurchaseObligationMember""}"
+ibkr:OtherFairValueLiabilitiesIncludedInAccountsPayableAccruedExpensesAndOtherLiabilities,144000000.0,144,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+ibkr:OtherFairValueLiabilitiesIncludedInAccountsPayableAccruedExpensesAndOtherLiabilities,144000000.0,144,Unit13,-6,,,2023-12-31,
+ibkr:TotalFinancialLiabilitiesAtFairValue,325000000.0,325,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+ibkr:TotalFinancialLiabilitiesAtFairValue,12000000.0,12,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+ibkr:TotalFinancialLiabilitiesAtFairValue,337000000.0,337,Unit13,-6,,,2023-12-31,
+us-gaap:FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisLiabilityTransfersNet,0.0,no,Unit13,INF,2024-01-01,2024-12-31,,
+us-gaap:CashAndCashEquivalentsAtCarryingValue,3633000000.0,"3,633",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,3633000000.0,"3,633",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,3633000000.0,"3,633",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:CashReserveDepositRequiredAndMade,36600000000.0,"36,600",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:CashReserveDepositRequiredAndMade,36600000000.0,"36,600",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:CashReserveDepositRequiredAndMade,36600000000.0,"36,600",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:SecuritiesReserveDepositRequiredAndMade,21353000000.0,"21,353",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:SecuritiesReserveDepositRequiredAndMade,21353000000.0,"21,353",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:SecuritiesReserveDepositRequiredAndMade,21353000000.0,"21,353",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:SecuritiesBorrowed,5369000000.0,"5,369",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:SecuritiesBorrowed,5369000000.0,"5,369",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:SecuritiesBorrowed,5369000000.0,"5,369",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:SecuritiesPurchasedUnderAgreementsToResell,6575000000.0,"6,575",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:SecuritiesPurchasedUnderAgreementsToResell,6575000000.0,"6,575",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:SecuritiesPurchasedUnderAgreementsToResell,6575000000.0,"6,575",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+ibkr:ReceivablesFromCustomerNet,64432000000.0,"64,432",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+ibkr:ReceivablesFromCustomerNet,64432000000.0,"64,432",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+ibkr:ReceivablesFromCustomerNet,64432000000.0,"64,432",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:ReceivablesFromBrokersDealersAndClearingOrganizations,2196000000.0,"2,196",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:ReceivablesFromBrokersDealersAndClearingOrganizations,2196000000.0,"2,196",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:ReceivablesFromBrokersDealersAndClearingOrganizations,2196000000.0,"2,196",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:InterestReceivable,446000000.0,446,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:InterestReceivable,446000000.0,446,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:InterestReceivable,446000000.0,446,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:OtherAssets,30000000.0,30,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:OtherAssets,32000000.0,32,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:OtherAssets,3000000.0,3,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:OtherAssets,29000000.0,29,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+ibkr:TotalFinancialAssetsNotMeasuredAtFairValue,140634000000.0,"140,634",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+ibkr:TotalFinancialAssetsNotMeasuredAtFairValue,140636000000.0,"140,636",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+ibkr:TotalFinancialAssetsNotMeasuredAtFairValue,40233000000.0,"40,233",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+ibkr:TotalFinancialAssetsNotMeasuredAtFairValue,100374000000.0,"100,374",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+ibkr:TotalFinancialAssetsNotMeasuredAtFairValue,29000000.0,29,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:OtherShortTermBorrowings,14000000.0,14,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:OtherShortTermBorrowings,14000000.0,14,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:OtherShortTermBorrowings,14000000.0,14,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:SecuritiesLoaned,16248000000.0,"16,248",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:SecuritiesLoaned,16248000000.0,"16,248",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:SecuritiesLoaned,16248000000.0,"16,248",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+srt:PayablesToCustomers,115343000000.0,"115,343",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+srt:PayablesToCustomers,115343000000.0,"115,343",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+srt:PayablesToCustomers,115343000000.0,"115,343",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+srt:PayablesToBrokerDealersAndClearingOrganizations,476000000.0,476,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+srt:PayablesToBrokerDealersAndClearingOrganizations,476000000.0,476,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+srt:PayablesToBrokerDealersAndClearingOrganizations,476000000.0,476,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:InterestPayableCurrentAndNoncurrent,311000000.0,311,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:InterestPayableCurrentAndNoncurrent,311000000.0,311,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:InterestPayableCurrentAndNoncurrent,311000000.0,311,Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+ibkr:TotalFinancialLiabilitiesNotMeasuredAtFairValue,132392000000.0,"132,392",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+ibkr:TotalFinancialLiabilitiesNotMeasuredAtFairValue,132392000000.0,"132,392",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+ibkr:TotalFinancialLiabilitiesNotMeasuredAtFairValue,132392000000.0,"132,392",Unit13,-6,,,2024-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,3753000000.0,"3,753",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,3753000000.0,"3,753",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,3753000000.0,"3,753",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:CashReserveDepositRequiredAndMade,28840000000.0,"28,840",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:CashReserveDepositRequiredAndMade,28840000000.0,"28,840",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:CashReserveDepositRequiredAndMade,28840000000.0,"28,840",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+us-gaap:SecuritiesReserveDepositRequiredAndMade,29632000000.0,"29,632",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:SecuritiesReserveDepositRequiredAndMade,29632000000.0,"29,632",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:SecuritiesReserveDepositRequiredAndMade,29632000000.0,"29,632",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:SecuritiesBorrowed,5835000000.0,"5,835",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:SecuritiesBorrowed,5835000000.0,"5,835",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:SecuritiesBorrowed,5835000000.0,"5,835",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:SecuritiesPurchasedUnderAgreementsToResell,5504000000.0,"5,504",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:SecuritiesPurchasedUnderAgreementsToResell,5504000000.0,"5,504",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:SecuritiesPurchasedUnderAgreementsToResell,5504000000.0,"5,504",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+ibkr:ReceivablesFromCustomerNet,44472000000.0,"44,472",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+ibkr:ReceivablesFromCustomerNet,44472000000.0,"44,472",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+ibkr:ReceivablesFromCustomerNet,44472000000.0,"44,472",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:ReceivablesFromBrokersDealersAndClearingOrganizations,1643000000.0,"1,643",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:ReceivablesFromBrokersDealersAndClearingOrganizations,1643000000.0,"1,643",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:ReceivablesFromBrokersDealersAndClearingOrganizations,1643000000.0,"1,643",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:InterestReceivable,375000000.0,375,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:InterestReceivable,375000000.0,375,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:InterestReceivable,375000000.0,375,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:OtherAssets,22000000.0,22,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:OtherAssets,23000000.0,23,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:OtherAssets,2000000.0,2,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:OtherAssets,21000000.0,21,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+ibkr:TotalFinancialAssetsNotMeasuredAtFairValue,120076000000.0,"120,076",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+ibkr:TotalFinancialAssetsNotMeasuredAtFairValue,120077000000.0,"120,077",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+ibkr:TotalFinancialAssetsNotMeasuredAtFairValue,32593000000.0,"32,593",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel1Member""}"
+ibkr:TotalFinancialAssetsNotMeasuredAtFairValue,87463000000.0,"87,463",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+ibkr:TotalFinancialAssetsNotMeasuredAtFairValue,21000000.0,21,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel3Member""}"
+us-gaap:OtherShortTermBorrowings,17000000.0,17,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:OtherShortTermBorrowings,17000000.0,17,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:OtherShortTermBorrowings,17000000.0,17,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:SecuritiesLoaned,11347000000.0,"11,347",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:SecuritiesLoaned,11347000000.0,"11,347",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:SecuritiesLoaned,11347000000.0,"11,347",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+srt:PayablesToCustomers,101012000000.0,"101,012",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+srt:PayablesToCustomers,101012000000.0,"101,012",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+srt:PayablesToCustomers,101012000000.0,"101,012",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+srt:PayablesToBrokerDealersAndClearingOrganizations,590000000.0,590,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+srt:PayablesToBrokerDealersAndClearingOrganizations,590000000.0,590,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+srt:PayablesToBrokerDealersAndClearingOrganizations,590000000.0,590,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+us-gaap:InterestPayableCurrentAndNoncurrent,311000000.0,311,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+us-gaap:InterestPayableCurrentAndNoncurrent,311000000.0,311,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:InterestPayableCurrentAndNoncurrent,311000000.0,311,Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+ibkr:TotalFinancialLiabilitiesNotMeasuredAtFairValue,113277000000.0,"113,277",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:CarryingReportedAmountFairValueDisclosureMember""}"
+ibkr:TotalFinancialLiabilitiesNotMeasuredAtFairValue,113277000000.0,"113,277",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+ibkr:TotalFinancialLiabilitiesNotMeasuredAtFairValue,113277000000.0,"113,277",Unit13,-6,,,2023-12-31,"{""us-gaap:FairValueByFairValueHierarchyLevelAxis"": ""us-gaap:FairValueInputsLevel2Member""}"
+ibkr:SecuritiesSegregatedForRegulatoryPurposesPurchasedUnderAgreementsToResellGross,21353000000.0,"21,353",Unit13,-6,,,2024-12-31,
+ibkr:SecuritiesSegregatedForRegulatoryPurposesPurchasedUnderAgreementsToResell,21353000000.0,"21,353",Unit13,-6,,,2024-12-31,
+ibkr:SecuritiesSegregatedForRegulatoryPurposesPurchasedUnderAgreementsToResellCollateralObligationToReturnCashOr,21353000000.0,"21,353",Unit13,-6,,,2024-12-31,
+us-gaap:SecuritiesBorrowedGross,5369000000.0,"5,369",Unit13,-6,,,2024-12-31,
+us-gaap:SecuritiesBorrowed,5369000000.0,"5,369",Unit13,-6,,,2024-12-31,
+ibkr:SecuritiesBorrowedCollateralObligationToReturnCashOrSecurities,5159000000.0,"5,159",Unit13,-6,,,2024-12-31,
+us-gaap:SecuritiesBorrowedAmountOffsetAgainstCollateral,210000000.0,210,Unit13,-6,,,2024-12-31,
+us-gaap:SecuritiesPurchasedUnderAgreementsToResellGross,6575000000.0,"6,575",Unit13,-6,,,2024-12-31,
+us-gaap:SecuritiesPurchasedUnderAgreementsToResell,6575000000.0,"6,575",Unit13,-6,,,2024-12-31,
+ibkr:SecuritiesPurchasedUnderAgreementsToResellCollateralObligationToReturnCashOrSecurities,6575000000.0,"6,575",Unit13,-6,,,2024-12-31,
+us-gaap:DerivativeFairValueOfDerivativeAsset,84000000.0,84,Unit13,-6,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeAssets,84000000.0,84,Unit13,-6,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+ibkr:DerivativeCollateralObligationToReturnCashOrSecurities,69000000.0,69,Unit13,-6,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeFairValueOfDerivativeAssetAmountOffsetAgainstCollateral,15000000.0,15,Unit13,-6,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeAssetSecuritiesPurchasedUnderAgreementsToResellSecuritiesBorrowedGross,33381000000.0,"33,381",Unit13,-6,,,2024-12-31,
+us-gaap:DerivativeAssetSecuritiesPurchasedUnderAgreementsToResellSecuritiesBorrowed,33381000000.0,"33,381",Unit13,-6,,,2024-12-31,
+ibkr:DerivativeAssetSecuritiesPurchasedUnderAgreementsToResellSecuritiesBorrowedCollateralObligationToReturnCashOrSecurities,33156000000.0,"33,156",Unit13,-6,,,2024-12-31,
+us-gaap:DerivativeAssetSecuritiesPurchasedUnderAgreementsToResellSecuritiesBorrowedAmountOffsetAgainstCollateral,225000000.0,225,Unit13,-6,,,2024-12-31,
+us-gaap:SecuritiesLoanedGross,16248000000.0,"16,248",Unit13,-6,,,2024-12-31,
+us-gaap:SecuritiesLoaned,16248000000.0,"16,248",Unit13,-6,,,2024-12-31,
+ibkr:SecuritiesLoanedCollateralRightToReclaimCashOrSecurities,15105000000.0,"15,105",Unit13,-6,,,2024-12-31,
+us-gaap:SecuritiesLoanedAmountOffsetAgainstCollateral,1143000000.0,"1,143",Unit13,-6,,,2024-12-31,
+us-gaap:DerivativeFairValueOfDerivativeLiability,96000000.0,96,Unit13,-6,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeLiabilities,96000000.0,96,Unit13,-6,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+ibkr:DerivativeCollateralRightToReclaimCashOrSecurities,69000000.0,69,Unit13,-6,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeFairValueOfDerivativeLiabilityAmountOffsetAgainstCollateral,27000000.0,27,Unit13,-6,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeFairValueOfDerivativeLiability,63000000.0,63,Unit13,-6,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:DerivativeLiabilities,63000000.0,63,Unit13,-6,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:DerivativeFairValueOfDerivativeLiabilityAmountOffsetAgainstCollateral,63000000.0,63,Unit13,-6,,,2024-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:DerivativeLiabilitySecuritiesSoldUnderAgreementsToResellSecuritiesLoanedGross,16407000000.0,"16,407",Unit13,-6,,,2024-12-31,
+us-gaap:DerivativeLiabilitySecuritiesSoldUnderAgreementsToResellSecuritiesLoaned,16407000000.0,"16,407",Unit13,-6,,,2024-12-31,
+ibkr:DerivativeLiabilitySecuritiesSoldUnderAgreementsToResellSecuritiesLoanedCollateralRightToReclaimCashOrSecurities,15174000000.0,"15,174",Unit13,-6,,,2024-12-31,
+us-gaap:DerivativeLiabilitySecuritiesSoldUnderAgreementsToResellSecuritiesLoanedAmountOffsetAgainstCollateral,1233000000.0,"1,233",Unit13,-6,,,2024-12-31,
+ibkr:SecuritiesSegregatedForRegulatoryPurposesPurchasedUnderAgreementsToResellGross,29632000000.0,"29,632",Unit13,-6,,,2023-12-31,
+ibkr:SecuritiesSegregatedForRegulatoryPurposesPurchasedUnderAgreementsToResell,29632000000.0,"29,632",Unit13,-6,,,2023-12-31,
+ibkr:SecuritiesSegregatedForRegulatoryPurposesPurchasedUnderAgreementsToResellCollateralObligationToReturnCashOr,29632000000.0,"29,632",Unit13,-6,,,2023-12-31,
+us-gaap:SecuritiesBorrowedGross,5835000000.0,"5,835",Unit13,-6,,,2023-12-31,
+us-gaap:SecuritiesBorrowed,5835000000.0,"5,835",Unit13,-6,,,2023-12-31,
+ibkr:SecuritiesBorrowedCollateralObligationToReturnCashOrSecurities,5618000000.0,"5,618",Unit13,-6,,,2023-12-31,
+us-gaap:SecuritiesBorrowedAmountOffsetAgainstCollateral,217000000.0,217,Unit13,-6,,,2023-12-31,
+us-gaap:SecuritiesPurchasedUnderAgreementsToResellGross,5504000000.0,"5,504",Unit13,-6,,,2023-12-31,
+us-gaap:SecuritiesPurchasedUnderAgreementsToResell,5504000000.0,"5,504",Unit13,-6,,,2023-12-31,
+ibkr:SecuritiesPurchasedUnderAgreementsToResellCollateralObligationToReturnCashOrSecurities,5504000000.0,"5,504",Unit13,-6,,,2023-12-31,
+us-gaap:DerivativeFairValueOfDerivativeAsset,354000000.0,354,Unit13,-6,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeAssets,354000000.0,354,Unit13,-6,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+ibkr:DerivativeCollateralObligationToReturnCashOrSecurities,104000000.0,104,Unit13,-6,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeFairValueOfDerivativeAssetAmountOffsetAgainstCollateral,250000000.0,250,Unit13,-6,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeFairValueOfDerivativeAsset,60000000.0,60,Unit13,-6,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:DerivativeAssets,60000000.0,60,Unit13,-6,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:DerivativeFairValueOfDerivativeAssetAmountOffsetAgainstCollateral,60000000.0,60,Unit13,-6,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:DerivativeAssetSecuritiesPurchasedUnderAgreementsToResellSecuritiesBorrowedGross,41385000000.0,"41,385",Unit13,-6,,,2023-12-31,
+us-gaap:DerivativeAssetSecuritiesPurchasedUnderAgreementsToResellSecuritiesBorrowed,41385000000.0,"41,385",Unit13,-6,,,2023-12-31,
+ibkr:DerivativeAssetSecuritiesPurchasedUnderAgreementsToResellSecuritiesBorrowedCollateralObligationToReturnCashOrSecurities,40858000000.0,"40,858",Unit13,-6,,,2023-12-31,
+us-gaap:DerivativeAssetSecuritiesPurchasedUnderAgreementsToResellSecuritiesBorrowedAmountOffsetAgainstCollateral,527000000.0,527,Unit13,-6,,,2023-12-31,
+us-gaap:SecuritiesLoanedGross,11347000000.0,"11,347",Unit13,-6,,,2023-12-31,
+us-gaap:SecuritiesLoaned,11347000000.0,"11,347",Unit13,-6,,,2023-12-31,
+ibkr:SecuritiesLoanedCollateralRightToReclaimCashOrSecurities,10443000000.0,"10,443",Unit13,-6,,,2023-12-31,
+us-gaap:SecuritiesLoanedAmountOffsetAgainstCollateral,904000000.0,904,Unit13,-6,,,2023-12-31,
+us-gaap:DerivativeFairValueOfDerivativeLiability,104000000.0,104,Unit13,-6,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeLiabilities,104000000.0,104,Unit13,-6,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+ibkr:DerivativeCollateralRightToReclaimCashOrSecurities,104000000.0,104,Unit13,-6,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:OptionMember""}"
+us-gaap:DerivativeFairValueOfDerivativeLiability,5000000.0,5,Unit13,-6,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:DerivativeLiabilities,5000000.0,5,Unit13,-6,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:DerivativeFairValueOfDerivativeLiabilityAmountOffsetAgainstCollateral,5000000.0,5,Unit13,-6,,,2023-12-31,"{""us-gaap:DerivativeInstrumentRiskAxis"": ""us-gaap:ForeignExchangeForwardMember""}"
+us-gaap:DerivativeLiabilitySecuritiesSoldUnderAgreementsToResellSecuritiesLoanedGross,11456000000.0,"11,456",Unit13,-6,,,2023-12-31,
+us-gaap:DerivativeLiabilitySecuritiesSoldUnderAgreementsToResellSecuritiesLoaned,11456000000.0,"11,456",Unit13,-6,,,2023-12-31,
+ibkr:DerivativeLiabilitySecuritiesSoldUnderAgreementsToResellSecuritiesLoanedCollateralRightToReclaimCashOrSecurities,10547000000.0,"10,547",Unit13,-6,,,2023-12-31,
+us-gaap:DerivativeLiabilitySecuritiesSoldUnderAgreementsToResellSecuritiesLoanedAmountOffsetAgainstCollateral,909000000.0,909,Unit13,-6,,,2023-12-31,
+us-gaap:SecuritiesReserveDepositRequiredAndMade,21400000000.0,21.4,Unit13,-8,,,2024-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:SecuritiesReserveDepositRequiredAndMade,29600000000.0,29.6,Unit13,-8,,,2023-12-31,"{""us-gaap:FairValueByMeasurementBasisAxis"": ""us-gaap:EstimateOfFairValueFairValueDisclosureMember""}"
+us-gaap:SecuritiesLoaned,16215000000.0,"16,215",Unit13,-6,,,2024-12-31,"{""us-gaap:AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis"": ""us-gaap:MaturityOvernightMember"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:SecuritiesLoaned,16215000000.0,"16,215",Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:SecuritiesLoaned,33000000.0,33,Unit13,-6,,,2024-12-31,"{""us-gaap:AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis"": ""us-gaap:MaturityOvernightMember"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:BondsMember""}"
+us-gaap:SecuritiesLoaned,33000000.0,33,Unit13,-6,,,2024-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:BondsMember""}"
+us-gaap:SecuritiesLoaned,16248000000.0,"16,248",Unit13,-6,,,2024-12-31,"{""us-gaap:AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis"": ""us-gaap:MaturityOvernightMember""}"
+us-gaap:SecuritiesLoaned,16248000000.0,"16,248",Unit13,-6,,,2024-12-31,
+us-gaap:SecuritiesLoaned,11306000000.0,"11,306",Unit13,-6,,,2023-12-31,"{""us-gaap:AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis"": ""us-gaap:MaturityOvernightMember"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:SecuritiesLoaned,11306000000.0,"11,306",Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:CommonStockMember""}"
+us-gaap:SecuritiesLoaned,41000000.0,41,Unit13,-6,,,2023-12-31,"{""us-gaap:AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis"": ""us-gaap:MaturityOvernightMember"", ""us-gaap:FinancialInstrumentAxis"": ""us-gaap:BondsMember""}"
+us-gaap:SecuritiesLoaned,41000000.0,41,Unit13,-6,,,2023-12-31,"{""us-gaap:FinancialInstrumentAxis"": ""us-gaap:BondsMember""}"
+us-gaap:SecuritiesLoaned,11347000000.0,"11,347",Unit13,-6,,,2023-12-31,"{""us-gaap:AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis"": ""us-gaap:MaturityOvernightMember""}"
+us-gaap:SecuritiesLoaned,11347000000.0,"11,347",Unit13,-6,,,2023-12-31,
+ibkr:ReceivablesFromCustomerNet,64400000000.00001,64.4,Unit13,-8,,,2024-12-31,
+ibkr:ReceivablesFromCustomerNet,44500000000.0,44.5,Unit13,-8,,,2023-12-31,
+ibkr:SecuritiesLendingCollateralizedTransactions,134407000000.0,"134,407",Unit13,-6,,,2024-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:PermittedToRepledgeMember""}"
+ibkr:SecuritiesLendingCollateralizedTransactions,8342000000.0,"8,342",Unit13,-6,,,2024-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:RepledgedMember""}"
+ibkr:SecuritiesLendingCollateralizedTransactions,97210000000.0,"97,210",Unit13,-6,,,2023-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:PermittedToRepledgeMember""}"
+ibkr:SecuritiesLendingCollateralizedTransactions,8437000000.0,"8,437",Unit13,-6,,,2023-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:RepledgedMember""}"
+ibkr:AgreementsToResellCollateralizedTransactions,27988000000.0,"27,988",Unit13,-6,,,2024-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:PermittedToRepledgeMember""}"
+ibkr:AgreementsToResellCollateralizedTransactions,26678000000.0,"26,678",Unit13,-6,,,2024-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:RepledgedMember""}"
+ibkr:AgreementsToResellCollateralizedTransactions,35198000000.0,"35,198",Unit13,-6,,,2023-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:PermittedToRepledgeMember""}"
+ibkr:AgreementsToResellCollateralizedTransactions,34825000000.0,"34,825",Unit13,-6,,,2023-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:RepledgedMember""}"
+us-gaap:CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeFairValue,87809000000.0,"87,809",Unit13,-6,,,2024-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:PermittedToRepledgeMember""}"
+us-gaap:CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeFairValue,21465000000.0,"21,465",Unit13,-6,,,2024-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:RepledgedMember""}"
+us-gaap:CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeFairValue,54847000000.0,"54,847",Unit13,-6,,,2023-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:PermittedToRepledgeMember""}"
+us-gaap:CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeFairValue,17234000000.0,"17,234",Unit13,-6,,,2023-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:RepledgedMember""}"
+ibkr:CollateralizedTransactionsTotal,250204000000.0,"250,204",Unit13,-6,,,2024-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:PermittedToRepledgeMember""}"
+ibkr:CollateralizedTransactionsTotal,56485000000.0,"56,485",Unit13,-6,,,2024-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:RepledgedMember""}"
+ibkr:CollateralizedTransactionsTotal,187255000000.0,"187,255",Unit13,-6,,,2023-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:PermittedToRepledgeMember""}"
+ibkr:CollateralizedTransactionsTotal,60496000000.0,"60,496",Unit13,-6,,,2023-12-31,"{""srt:StatementScenarioAxis"": ""ibkr:RepledgedMember""}"
+ibkr:SegregatedSecuritiesPurchasedUnderAgreementsToResell,21400000000.0,21.4,Unit13,-8,,,2024-12-31,
+ibkr:SecuritiesAcquiredThroughAgreementsToResellShownAsRepledgedDepositedPercentage,0.8,80,Unit15,2,,,2024-12-31,
+ibkr:SegregatedSecuritiesPurchasedUnderAgreementsToResell,29600000000.0,29.6,Unit13,-8,,,2023-12-31,
+ibkr:SecuritiesAcquiredThroughAgreementsToResellShownAsRepledgedDepositedPercentage,0.85,85,Unit15,2,,,2023-12-31,
+ibkr:StockOwnedAndPledgedAsCollateralAmountEligibleToBeRepledgedByCounterparty,25000000.0,25,Unit13,-6,,,2024-12-31,"{""us-gaap:PledgedStatusAxis"": ""us-gaap:AssetPledgedAsCollateralWithRightMember"", ""us-gaap:RelatedPartyTransactionsByRelatedPartyAxis"": ""srt:AffiliatedEntityMember""}"
+ibkr:StockOwnedAndPledgedAsCollateralAmountEligibleToBeRepledgedByCounterparty,28000000.0,28,Unit13,-6,,,2023-12-31,"{""us-gaap:PledgedStatusAxis"": ""us-gaap:AssetPledgedAsCollateralWithRightMember"", ""us-gaap:RelatedPartyTransactionsByRelatedPartyAxis"": ""srt:AffiliatedEntityMember""}"
+ibkr:USForeignGovernmentObligationsOwnedAndPledgedAsCollateralAmountEligibleToBeRepledgedByCounterparty,52000000.0,52,Unit13,-6,,,2024-12-31,"{""us-gaap:PledgedStatusAxis"": ""us-gaap:AssetPledgedAsCollateralWithRightMember"", ""us-gaap:RelatedPartyTransactionsByRelatedPartyAxis"": ""srt:AffiliatedEntityMember""}"
+ibkr:USForeignGovernmentObligationsOwnedAndPledgedAsCollateralAmountEligibleToBeRepledgedByCounterparty,38000000.0,38,Unit13,-6,,,2023-12-31,"{""us-gaap:PledgedStatusAxis"": ""us-gaap:AssetPledgedAsCollateralWithRightMember"", ""us-gaap:RelatedPartyTransactionsByRelatedPartyAxis"": ""srt:AffiliatedEntityMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,77000000.0,77,Unit13,-6,,,2024-12-31,"{""us-gaap:PledgedStatusAxis"": ""us-gaap:AssetPledgedAsCollateralWithRightMember"", ""us-gaap:RelatedPartyTransactionsByRelatedPartyAxis"": ""srt:AffiliatedEntityMember""}"
+us-gaap:FinancialInstrumentsOwnedAtFairValue,66000000.0,66,Unit13,-6,,,2023-12-31,"{""us-gaap:PledgedStatusAxis"": ""us-gaap:AssetPledgedAsCollateralWithRightMember"", ""us-gaap:RelatedPartyTransactionsByRelatedPartyAxis"": ""srt:AffiliatedEntityMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,1230000000.0,"1,230",Unit13,-6,2024-01-01,2024-12-31,,"{""srt:StatementGeographicalAxis"": ""country:US""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,968000000.0,968,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:StatementGeographicalAxis"": ""country:US""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,931000000.0,931,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:StatementGeographicalAxis"": ""country:US""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,747000000.0,747,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:StatementGeographicalAxis"": ""us-gaap:NonUsMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,589000000.0,589,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:StatementGeographicalAxis"": ""us-gaap:NonUsMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,575000000.0,575,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:StatementGeographicalAxis"": ""us-gaap:NonUsMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,1977000000.0,"1,977",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,1557000000.0,"1,557",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,1506000000.0,"1,506",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,1697000000.0,"1,697",Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:CommissionsMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,1360000000.0,"1,360",Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:CommissionsMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,1322000000.0,"1,322",Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:CommissionsMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,71000000.0,71,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:MarketDataFeesMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,70000000.0,70,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:MarketDataFeesMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,76000000.0,76,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:MarketDataFeesMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,100000000.0,100,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:RiskExposureFeesMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,46000000.0,46,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:RiskExposureFeesMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,33000000.0,33,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:RiskExposureFeesMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,45000000.0,45,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:PaymentsForOrderFlowMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,31000000.0,31,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:PaymentsForOrderFlowMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,37000000.0,37,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:PaymentsForOrderFlowMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,28000000.0,28,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:FdicSweepFeesMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,19000000.0,19,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:FdicSweepFeesMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,10000000.0,10,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:FdicSweepFeesMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,36000000.0,36,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:OthersMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,31000000.0,31,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:OthersMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,28000000.0,28,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ProductOrServiceAxis"": ""ibkr:OthersMember""}"
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,1977000000.0,"1,977",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,1557000000.0,"1,557",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax,1506000000.0,"1,506",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:AccountsReceivableNet,31000000.0,31,Unit13,-6,,,2024-12-31,
+us-gaap:AccountsReceivableNet,26000000.0,26,Unit13,-6,,,2023-12-31,
+us-gaap:ContractWithCustomerAssetGross,0.0,no,Unit13,INF,,,2024-12-31,
+us-gaap:ContractWithCustomerAssetGross,0.0,no,Unit13,INF,,,2023-12-31,
+us-gaap:ContractWithCustomerLiability,0.0,no,Unit13,INF,,,2024-12-31,
+us-gaap:ContractWithCustomerLiability,0.0,no,Unit13,INF,,,2023-12-31,
+us-gaap:PrincipalTransactionsRevenue,127000000.0,127,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:PrincipalTransactionsRevenue,48000000.0,48,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:PrincipalTransactionsRevenue,-16000000.0,16,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:LossesFromCurrencyDiversificationStrategyNet,15000000.0,15,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:LossesFromCurrencyDiversificationStrategyNet,80000000.0,80,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:LossesFromCurrencyDiversificationStrategyNet,100000000.0,100,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:OtherOperatingIncomeNet,-52000000.0,52,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:OtherOperatingIncomeNet,21000000.0,21,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:OtherOperatingIncomeNet,9000000.0,9,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:OtherIncomeLoss,60000000.0,60,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:OtherIncomeLoss,-11000000.0,11,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:OtherIncomeLoss,-107000000.0,107,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:DefinedContributionPlanEmployerMatchingContributionPercent,0.5,50,Unit15,2,2024-01-01,2024-12-31,,
+us-gaap:DefinedContributionPlanEmployerMatchingContributionPercentOfMatch,0.1,10,Unit15,2,2024-01-01,2024-12-31,,
+us-gaap:DefinedContributionPlanCostRecognized,8000000.0,8,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:DefinedContributionPlanCostRecognized,7000000.0,7,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:DefinedContributionPlanCostRecognized,6000000.0,6,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:ShareBasedCompensationNumberOfSharesAvailableForGrant,40000000.0,40,Unit1,INF,,,2024-12-31,
+us-gaap:SharebasedCompensationArrangementBySharebasedPaymentAwardAwardVestingRightsPercentage,0.2,20,Unit15,2,2024-01-01,2024-12-31,,"{""srt:TitleOfIndividualAxis"": ""srt:DirectorMember"", ""us-gaap:StatementEquityComponentsAxis"": ""ibkr:StockIncentivePlanSharesMember"", ""us-gaap:VestingAxis"": ""us-gaap:ShareBasedCompensationAwardTrancheOneMember""}"
+ibkr:SharesGrantedExternalDirectors,40586.0,"40,586",Unit1,INF,2007-05-03,2024-12-31,,
+ibkr:ShareBasedCompensationSharesGranted,29332059.0,"29,332,059",Unit1,INF,2007-05-03,2021-12-31,,
+ibkr:FairValueShareBasedCompensationSIPSharesGranted,842000000.0,842,Unit13,-6,2007-05-03,2021-12-31,,
+ibkr:ShareBasedCompensationSharesGranted,180889.0,"180,889",Unit1,INF,2022-04-25,2022-04-25,,
+ibkr:FairValueShareBasedCompensationSIPSharesGranted,12000000.0,12,Unit13,-6,2022-04-25,2022-04-25,,
+ibkr:ShareBasedCompensationSharesGranted,1248105.0,"1,248,105",Unit1,INF,2022-01-01,2022-12-31,,
+ibkr:FairValueShareBasedCompensationSIPSharesGranted,91000000.0,91,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:ShareBasedCompensationSharesGranted,1257822.0,"1,257,822",Unit1,INF,2023-01-01,2023-12-31,,
+ibkr:FairValueShareBasedCompensationSIPSharesGranted,102000000.0,102,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:ShareBasedCompensationSharesGranted,617122.0,"617,122",Unit1,INF,2024-01-01,2024-12-31,,
+ibkr:FairValueShareBasedCompensationSIPSharesGranted,111000000.0,111,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:ShareBasedCompensationSharesGranted,32635997.0,"32,635,997",Unit1,INF,2007-05-03,2024-12-31,,
+ibkr:FairValueShareBasedCompensationSIPSharesGranted,1158000000.0,"1,158",Unit13,-6,2007-05-03,2024-12-31,,
+ibkr:StockIncentivePlanGrantedSharesAdjustment,952.0,952,Unit1,INF,2024-01-01,2024-12-31,,
+us-gaap:AllocatedShareBasedCompensationExpense,112000000.0,112,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:AllocatedShareBasedCompensationExpense,100000000.0,100,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:AllocatedShareBasedCompensationExpense,92000000.0,92,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:SIPFutureCompensationExpense,39000000.0,39,Unit13,-6,,,2024-12-31,
+ibkr:NetShares,4783810.0,"4,783,810",Unit1,INF,,,2021-12-31,
+ibkr:StockPlanCompensationSharesGranted,1428994.0,"1,428,994",Unit1,INF,2022-01-01,2022-12-31,,
+ibkr:SharesForfeited,179856.0,"179,856",Unit1,INF,2022-01-01,2022-12-31,,
+ibkr:SharesDistributed,1276186.0,"1,276,186",Unit1,INF,2022-01-01,2022-12-31,,
+ibkr:SharesDistributedIntrinsicValue,67000000.0,67,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:NetShares,4756761.0,"4,756,761",Unit1,INF,,,2022-12-31,
+ibkr:StockPlanCompensationSharesGranted,1257822.0,"1,257,822",Unit1,INF,2023-01-01,2023-12-31,,
+ibkr:SharesForfeited,20480.0,"20,480",Unit1,INF,2023-01-01,2023-12-31,,
+ibkr:SharesDistributed,1389032.0,"1,389,032",Unit1,INF,2023-01-01,2023-12-31,,
+ibkr:SharesDistributedIntrinsicValue,108000000.0,108,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:NetShares,4605071.0,"4,605,071",Unit1,INF,,,2023-12-31,
+ibkr:StockPlanCompensationSharesGranted,617122.0,"617,122",Unit1,INF,2024-01-01,2024-12-31,,
+ibkr:SharesForfeited,43021.0,"43,021",Unit1,INF,2024-01-01,2024-12-31,,
+ibkr:SharesDistributed,1349131.0,"1,349,131",Unit1,INF,2024-01-01,2024-12-31,,
+ibkr:SharesDistributedIntrinsicValue,161000000.0,161,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:NetShares,3830041.0,"3,830,041",Unit1,INF,,,2024-12-31,
+ibkr:StockIncentivePlanGrantedSharesAdjustment,952.0,952,Unit1,INF,2024-01-01,2024-12-31,,
+ibkr:SharesDistributedPostEmployment,1392895.0,"1,392,895",Unit1,INF,2007-05-03,2024-12-31,,
+us-gaap:CurrentFederalTaxExpenseBenefit,133000000.0,133,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:CurrentFederalTaxExpenseBenefit,104000000.0,104,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:CurrentFederalTaxExpenseBenefit,59000000.0,59,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:CurrentStateAndLocalTaxExpenseBenefit,22000000.0,22,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:CurrentStateAndLocalTaxExpenseBenefit,14000000.0,14,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:CurrentStateAndLocalTaxExpenseBenefit,8000000.0,8,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:CurrentForeignTaxExpenseBenefit,135000000.0,135,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:CurrentForeignTaxExpenseBenefit,109000000.0,109,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:CurrentForeignTaxExpenseBenefit,69000000.0,69,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:CurrentIncomeTaxExpenseBenefit,290000000.0,290,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:CurrentIncomeTaxExpenseBenefit,227000000.0,227,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:CurrentIncomeTaxExpenseBenefit,136000000.0,136,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:DeferredFederalIncomeTaxExpenseBenefit,8000000.0,8,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:DeferredFederalIncomeTaxExpenseBenefit,27000000.0,27,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:DeferredFederalIncomeTaxExpenseBenefit,21000000.0,21,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:DeferredStateAndLocalIncomeTaxExpenseBenefit,-9000000.0,9,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:DeferredStateAndLocalIncomeTaxExpenseBenefit,4000000.0,4,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:DeferredStateAndLocalIncomeTaxExpenseBenefit,4000000.0,4,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:DeferredForeignIncomeTaxExpenseBenefit,-1000000.0,1,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:DeferredForeignIncomeTaxExpenseBenefit,-1000000.0,1,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:DeferredForeignIncomeTaxExpenseBenefit,-5000000.0,5,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:DeferredIncomeTaxExpenseBenefit,-2000000.0,2,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:DeferredIncomeTaxExpenseBenefit,30000000.0,30,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:DeferredIncomeTaxExpenseBenefit,20000000.0,20,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncomeTaxExpenseBenefit,288000000.0,288,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncomeTaxExpenseBenefit,257000000.0,257,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncomeTaxExpenseBenefit,156000000.0,156,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:EffectiveIncomeTaxRateReconciliationAtFederalStatutoryIncomeTaxRate,0.21,21,Unit15,INF,2024-01-01,2024-12-31,,
+us-gaap:EffectiveIncomeTaxRateReconciliationAtFederalStatutoryIncomeTaxRate,0.21,21,Unit15,INF,2023-01-01,2023-12-31,,
+us-gaap:EffectiveIncomeTaxRateReconciliationAtFederalStatutoryIncomeTaxRate,0.21,21,Unit15,INF,2022-01-01,2022-12-31,,
+us-gaap:EffectiveIncomeTaxRateReconciliationAtFederalStatutoryIncomeTaxRate,0.21,21.0,Unit15,3,2024-01-01,2024-12-31,,
+us-gaap:EffectiveIncomeTaxRateReconciliationAtFederalStatutoryIncomeTaxRate,0.21,21.0,Unit15,3,2023-01-01,2023-12-31,,
+us-gaap:EffectiveIncomeTaxRateReconciliationAtFederalStatutoryIncomeTaxRate,0.21,21.0,Unit15,3,2022-01-01,2022-12-31,,
+ibkr:EffectiveIncomeTaxRateReconciliationStateLocalAndForeignIncomeTaxes,0.018000000000000002,1.8,Unit15,3,2024-01-01,2024-12-31,,
+ibkr:EffectiveIncomeTaxRateReconciliationStateLocalAndForeignIncomeTaxes,0.025,2.5,Unit15,3,2023-01-01,2023-12-31,,
+ibkr:EffectiveIncomeTaxRateReconciliationStateLocalAndForeignIncomeTaxes,0.021,2.1,Unit15,3,2022-01-01,2022-12-31,,
+ibkr:EffectiveIncomeTaxRateReconciliationTotalBeforeRateAttributableNoncontrollingInterest,0.228,22.8,Unit15,3,2024-01-01,2024-12-31,,
+ibkr:EffectiveIncomeTaxRateReconciliationTotalBeforeRateAttributableNoncontrollingInterest,0.23500000000000001,23.5,Unit15,3,2023-01-01,2023-12-31,,
+ibkr:EffectiveIncomeTaxRateReconciliationTotalBeforeRateAttributableNoncontrollingInterest,0.231,23.1,Unit15,3,2022-01-01,2022-12-31,,
+us-gaap:EffectiveIncomeTaxRateReconciliationMinorityInterestIncomeExpense,0.15,15.0,Unit15,3,2024-01-01,2024-12-31,,
+us-gaap:EffectiveIncomeTaxRateReconciliationMinorityInterestIncomeExpense,0.151,15.1,Unit15,3,2023-01-01,2023-12-31,,
+us-gaap:EffectiveIncomeTaxRateReconciliationMinorityInterestIncomeExpense,0.153,15.3,Unit15,3,2022-01-01,2022-12-31,,
+us-gaap:EffectiveIncomeTaxRateContinuingOperations,0.078,7.8,Unit15,3,2024-01-01,2024-12-31,,
+us-gaap:EffectiveIncomeTaxRateContinuingOperations,0.084,8.4,Unit15,3,2023-01-01,2023-12-31,,
+us-gaap:EffectiveIncomeTaxRateContinuingOperations,0.078,7.8,Unit15,3,2022-01-01,2022-12-31,,
+ibkr:DeferredTaxAssetsAcquisitionOfInterests,196000000.0,196,Unit13,-6,,,2024-12-31,
+ibkr:DeferredTaxAssetsAcquisitionOfInterests,197000000.0,197,Unit13,-6,,,2023-12-31,
+ibkr:DeferredTaxAssetsAcquisitionOfInterests,193000000.0,193,Unit13,-6,,,2022-12-31,
+us-gaap:DeferredTaxAssetsTaxDeferredExpenseCompensationAndBenefitsEmployeeCompensation,19000000.0,19,Unit13,-6,,,2024-12-31,
+us-gaap:DeferredTaxAssetsTaxDeferredExpenseCompensationAndBenefitsEmployeeCompensation,17000000.0,17,Unit13,-6,,,2023-12-31,
+us-gaap:DeferredTaxAssetsTaxDeferredExpenseCompensationAndBenefitsEmployeeCompensation,14000000.0,14,Unit13,-6,,,2022-12-31,
+us-gaap:DeferredTaxAssetsOther,35000000.0,35,Unit13,-6,,,2024-12-31,
+us-gaap:DeferredTaxAssetsOther,31000000.0,31,Unit13,-6,,,2023-12-31,
+us-gaap:DeferredTaxAssetsOther,34000000.0,34,Unit13,-6,,,2022-12-31,
+us-gaap:DeferredTaxAssetsGross,250000000.0,250,Unit13,-6,,,2024-12-31,
+us-gaap:DeferredTaxAssetsGross,245000000.0,245,Unit13,-6,,,2023-12-31,
+us-gaap:DeferredTaxAssetsGross,241000000.0,241,Unit13,-6,,,2022-12-31,
+ibkr:DeferredTaxLiabilitiesForeign,3000000.0,3,Unit13,-6,,,2024-12-31,
+ibkr:DeferredTaxLiabilitiesForeign,4000000.0,4,Unit13,-6,,,2023-12-31,
+ibkr:DeferredTaxLiabilitiesForeign,2000000.0,2,Unit13,-6,,,2022-12-31,
+us-gaap:DeferredTaxLiabilitiesOther,10000000.0,10,Unit13,-6,,,2024-12-31,
+us-gaap:DeferredTaxLiabilitiesOther,10000000.0,10,Unit13,-6,,,2023-12-31,
+us-gaap:DeferredTaxLiabilitiesOther,7000000.0,7,Unit13,-6,,,2022-12-31,
+us-gaap:DeferredIncomeTaxLiabilities,13000000.0,13,Unit13,-6,,,2024-12-31,
+us-gaap:DeferredIncomeTaxLiabilities,14000000.0,14,Unit13,-6,,,2023-12-31,
+us-gaap:DeferredIncomeTaxLiabilities,9000000.0,9,Unit13,-6,,,2022-12-31,
+us-gaap:DeferredTaxAssetsLiabilitiesNet,237000000.0,237,Unit13,-6,,,2024-12-31,
+us-gaap:DeferredTaxAssetsLiabilitiesNet,231000000.0,231,Unit13,-6,,,2023-12-31,
+us-gaap:DeferredTaxAssetsLiabilitiesNet,232000000.0,232,Unit13,-6,,,2022-12-31,
+us-gaap:DeferredTaxAssetsValuationAllowance,0.0,no,Unit13,INF,,,2024-12-31,
+us-gaap:DeferredTaxAssetsValuationAllowance,0.0,no,Unit13,INF,,,2023-12-31,
+ibkr:UndistributedAccumulatedEarningsOfForeignSubsidiaries,3200000000.0,3.2,Unit13,-8,,,2024-12-31,
+ibkr:UndistributedAccumulatedEarningsOfForeignSubsidiaries,2700000000.0,2.7,Unit13,-8,,,2023-12-31,
+ibkr:EarningsIndefinitelyReinvestedAbroadDueToRegulatoryAndOtherCapitalRequirements,3000000000.0,3.0,Unit13,-8,2024-01-01,2024-12-31,,
+ibkr:EstimatedDeferredTaxLiablityDueToHypotheticalRepatriationOfEarnings,42000000.0,42,Unit13,-6,,,2024-12-31,
+us-gaap:LiabilityForUncertainTaxPositionsNoncurrent,3000000.0,3,Unit13,-6,,,2024-12-31,
+us-gaap:OperatingLeaseWeightedAverageDiscountRatePercent,0.0392,3.92,Unit15,4,,,2024-12-31,
+us-gaap:RightOfUseAssetObtainedInExchangeForOperatingLeaseLiability,15000000.0,15,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:OperatingLeaseRightOfUseAsset,102000000.0,102,Unit13,-6,,,2024-12-31,
+us-gaap:OperatingLeaseRightOfUseAsset,120000000.0,120,Unit13,-6,,,2023-12-31,
+us-gaap:OperatingLeaseLiability,121000000.0,121,Unit13,-6,,,2024-12-31,
+us-gaap:OperatingLeaseLiability,143000000.0,143,Unit13,-6,,,2023-12-31,
+us-gaap:OperatingLeaseCost,34000000.0,34,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:OperatingLeaseCost,35000000.0,35,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:OperatingLeaseCost,32000000.0,32,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:VariableLeaseCost,6000000.0,6,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:VariableLeaseCost,6000000.0,6,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:VariableLeaseCost,4000000.0,4,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:LeaseCost,40000000.0,40,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:LeaseCost,41000000.0,41,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:LeaseCost,36000000.0,36,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:LesseeOperatingLeaseLiabilityPaymentsDueNextTwelveMonths,30000000.0,30,Unit13,-6,,,2024-12-31,
+us-gaap:LesseeOperatingLeaseLiabilityPaymentsDueYearTwo,27000000.0,27,Unit13,-6,,,2024-12-31,
+us-gaap:LesseeOperatingLeaseLiabilityPaymentsDueYearThree,20000000.0,20,Unit13,-6,,,2024-12-31,
+us-gaap:LesseeOperatingLeaseLiabilityPaymentsDueYearFour,18000000.0,18,Unit13,-6,,,2024-12-31,
+us-gaap:LesseeOperatingLeaseLiabilityPaymentsDueYearFive,17000000.0,17,Unit13,-6,,,2024-12-31,
+us-gaap:LesseeOperatingLeaseLiabilityPaymentsDueAfterYearFive,22000000.0,22,Unit13,-6,,,2024-12-31,
+us-gaap:LesseeOperatingLeaseLiabilityPaymentsDue,134000000.0,134,Unit13,-6,,,2024-12-31,
+us-gaap:LesseeOperatingLeaseLiabilityUndiscountedExcessAmount,13000000.0,13,Unit13,-6,,,2024-12-31,
+us-gaap:OperatingLeaseLiability,121000000.0,121,Unit13,-6,,,2024-12-31,
+us-gaap:LeaseholdImprovementsGross,28000000.0,28,Unit13,-6,,,2024-12-31,
+us-gaap:LeaseholdImprovementsGross,56000000.0,56,Unit13,-6,,,2023-12-31,
+us-gaap:MachineryAndEquipmentGross,67000000.0,67,Unit13,-6,,,2024-12-31,
+us-gaap:MachineryAndEquipmentGross,90000000.0,90,Unit13,-6,,,2023-12-31,
+us-gaap:FurnitureAndFixturesGross,15000000.0,15,Unit13,-6,,,2024-12-31,
+us-gaap:FurnitureAndFixturesGross,15000000.0,15,Unit13,-6,,,2023-12-31,
+us-gaap:PropertyPlantAndEquipmentGross,110000000.0,110,Unit13,-6,,,2024-12-31,
+us-gaap:PropertyPlantAndEquipmentGross,161000000.0,161,Unit13,-6,,,2023-12-31,
+us-gaap:AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment,51000000.0,51,Unit13,-6,,,2024-12-31,
+us-gaap:AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment,80000000.0,80,Unit13,-6,,,2023-12-31,
+us-gaap:PropertyPlantAndEquipmentNet,59000000.0,59,Unit13,-6,,,2024-12-31,
+us-gaap:PropertyPlantAndEquipmentNet,81000000.0,81,Unit13,-6,,,2023-12-31,
+us-gaap:CapitalizedComputerSoftwareGross,88000000.0,88,Unit13,-6,,,2024-12-31,
+us-gaap:CapitalizedComputerSoftwareGross,84000000.0,84,Unit13,-6,,,2023-12-31,
+us-gaap:FiniteLivedIntangibleAssetsGross,4000000.0,4,Unit13,-6,,,2024-12-31,
+us-gaap:FiniteLivedIntangibleAssetsGross,4000000.0,4,Unit13,-6,,,2023-12-31,
+us-gaap:FiniteLivedIntangibleAssetsAccumulatedAmortization,44000000.0,44,Unit13,-6,,,2024-12-31,
+us-gaap:FiniteLivedIntangibleAssetsAccumulatedAmortization,45000000.0,45,Unit13,-6,,,2023-12-31,
+us-gaap:FiniteLivedIntangibleAssetsNet,48000000.0,48,Unit13,-6,,,2024-12-31,
+us-gaap:FiniteLivedIntangibleAssetsNet,43000000.0,43,Unit13,-6,,,2023-12-31,
+ibkr:TotalPropertyEquipmentAndIntangibleAssetsNet,107000000.0,107,Unit13,-6,,,2024-12-31,
+ibkr:TotalPropertyEquipmentAndIntangibleAssetsNet,124000000.0,124,Unit13,-6,,,2023-12-31,
+us-gaap:DepreciationAmortizationAndAccretionNet,67000000.0,67,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:DepreciationAmortizationAndAccretionNet,65000000.0,65,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:DepreciationAmortizationAndAccretionNet,58000000.0,58,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:FiniteLivedIntangibleAssetsAmortizationExpenseNextTwelveMonths,26000000.0,26,Unit13,-6,,,2024-12-31,
+us-gaap:FiniteLivedIntangibleAssetsAmortizationExpenseYearTwo,16000000.0,16,Unit13,-6,,,2024-12-31,
+us-gaap:FiniteLivedIntangibleAssetsAmortizationExpenseYearThree,6000000.0,6,Unit13,-6,,,2024-12-31,
+us-gaap:LossContingencyDamagesAwardedValue,6600000.0,6.6,Unit13,-5,2021-09-07,2021-09-07,,"{""srt:LitigationCaseAxis"": ""ibkr:TradingTechnologiesMatterMember""}"
+us-gaap:LossContingencyDamagesSoughtValue,962400000.0,962.4,Unit13,-5,2021-09-07,2021-09-07,,"{""srt:LitigationCaseAxis"": ""ibkr:TradingTechnologiesMatterMember""}"
+us-gaap:LossContingencyDamagesAwardedValue,2100000.0,2.1,Unit13,-5,2022-01-11,2022-01-11,,"{""srt:LitigationCaseAxis"": ""ibkr:TradingTechnologiesMatterMember""}"
+us-gaap:LossContingencyDamagesAwardedValue,490232.0,"490,232",Unit13,0,2022-03-01,2022-03-31,,"{""srt:LitigationCaseAxis"": ""ibkr:TradingTechnologiesMatterMember""}"
+us-gaap:GuaranteesFairValueDisclosure,0.0,no,Unit13,-6,,,2024-12-31,
+us-gaap:GuaranteesFairValueDisclosure,0.0,No,Unit13,-6,,,2024-12-31,
+us-gaap:RevenuesNetOfInterestExpense,5185000000.0,"5,185",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:RevenuesNetOfInterestExpense,4340000000.0,"4,340",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:RevenuesNetOfInterestExpense,3067000000.0,"3,067",Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:TransactionBasedFees,364000000.0,364,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:TransactionBasedFees,308000000.0,308,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:TransactionBasedFees,254000000.0,254,Unit13,-6,2022-01-01,2022-12-31,,
+ibkr:NonTransactionBasedFees,83000000.0,83,Unit13,-6,2024-01-01,2024-12-31,,
+ibkr:NonTransactionBasedFees,78000000.0,78,Unit13,-6,2023-01-01,2023-12-31,,
+ibkr:NonTransactionBasedFees,70000000.0,70,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:OtherLaborRelatedExpenses,533000000.0,533,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:OtherLaborRelatedExpenses,486000000.0,486,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:OtherLaborRelatedExpenses,427000000.0,427,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:AdvertisingExpense,67000000.0,67,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:AdvertisingExpense,47000000.0,47,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:AdvertisingExpense,46000000.0,46,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:OtherNoninterestExpense,443000000.0,443,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:OtherNoninterestExpense,352000000.0,352,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:OtherNoninterestExpense,272000000.0,272,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:NoninterestExpense,1490000000.0,"1,490",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:NoninterestExpense,1271000000.0,"1,271",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:NoninterestExpense,1069000000.0,"1,069",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,3695000000.0,"3,695",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,3069000000.0,"3,069",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,1998000000.0,"1,998",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncomeTaxExpenseBenefit,288000000.0,288,Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncomeTaxExpenseBenefit,257000000.0,257,Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncomeTaxExpenseBenefit,156000000.0,156,Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:ProfitLoss,3407000000.0,"3,407",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:ProfitLoss,2812000000.0,"2,812",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:ProfitLoss,1842000000.0,"1,842",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:Assets,150142000000.0,"150,142",Unit13,-6,,,2024-12-31,"{""srt:ConsolidationItemsAxis"": ""us-gaap:OperatingSegmentsMember""}"
+us-gaap:Assets,128251000000.0,"128,251",Unit13,-6,,,2023-12-31,"{""srt:ConsolidationItemsAxis"": ""us-gaap:OperatingSegmentsMember""}"
+us-gaap:Assets,115143000000.0,"115,143",Unit13,-6,,,2022-12-31,"{""srt:ConsolidationItemsAxis"": ""us-gaap:OperatingSegmentsMember""}"
+us-gaap:RevenuesNetOfInterestExpense,3589000000.0,"3,589",Unit13,-6,2024-01-01,2024-12-31,,"{""srt:StatementGeographicalAxis"": ""country:US""}"
+us-gaap:RevenuesNetOfInterestExpense,3028000000.0,"3,028",Unit13,-6,2023-01-01,2023-12-31,,"{""srt:StatementGeographicalAxis"": ""country:US""}"
+us-gaap:RevenuesNetOfInterestExpense,2115000000.0,"2,115",Unit13,-6,2022-01-01,2022-12-31,,"{""srt:StatementGeographicalAxis"": ""country:US""}"
+us-gaap:RevenuesNetOfInterestExpense,1596000000.0,"1,596",Unit13,-6,2024-01-01,2024-12-31,,"{""srt:StatementGeographicalAxis"": ""us-gaap:NonUsMember""}"
+us-gaap:RevenuesNetOfInterestExpense,1312000000.0,"1,312",Unit13,-6,2023-01-01,2023-12-31,,"{""srt:StatementGeographicalAxis"": ""us-gaap:NonUsMember""}"
+us-gaap:RevenuesNetOfInterestExpense,952000000.0,952,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:StatementGeographicalAxis"": ""us-gaap:NonUsMember""}"
+us-gaap:RevenuesNetOfInterestExpense,5185000000.0,"5,185",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:RevenuesNetOfInterestExpense,4340000000.0,"4,340",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:RevenuesNetOfInterestExpense,3067000000.0,"3,067",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,2786000000.0,"2,786",Unit13,-6,2024-01-01,2024-12-31,,"{""srt:StatementGeographicalAxis"": ""country:US""}"
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,2316000000.0,"2,316",Unit13,-6,2023-01-01,2023-12-31,,"{""srt:StatementGeographicalAxis"": ""country:US""}"
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,1546000000.0,"1,546",Unit13,-6,2022-01-01,2022-12-31,,"{""srt:StatementGeographicalAxis"": ""country:US""}"
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,909000000.0,909,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:StatementGeographicalAxis"": ""us-gaap:NonUsMember""}"
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,753000000.0,753,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:StatementGeographicalAxis"": ""us-gaap:NonUsMember""}"
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,452000000.0,452,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:StatementGeographicalAxis"": ""us-gaap:NonUsMember""}"
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,3695000000.0,"3,695",Unit13,-6,2024-01-01,2024-12-31,,
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,3069000000.0,"3,069",Unit13,-6,2023-01-01,2023-12-31,,
+us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest,1998000000.0,"1,998",Unit13,-6,2022-01-01,2022-12-31,,
+us-gaap:ExcessCapital,12400000000.0,12.4,Unit13,-8,,,2024-12-31,
+ibkr:NetCapitalEligibleEquity,9450000000.0,"9,450",Unit13,-6,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:IBLLCMember""}"
+srt:MinimumNetCapitalRequiredForEntity1,1268000000.0,"1,268",Unit13,-6,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:IBLLCMember""}"
+us-gaap:ExcessCapital,8182000000.0,"8,182",Unit13,-6,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:IBLLCMember""}"
+ibkr:NetCapitalEligibleEquity,1427000000.0,"1,427",Unit13,-6,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:IbhkMember""}"
+srt:MinimumNetCapitalRequiredForEntity1,359000000.0,359,Unit13,-6,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:IbhkMember""}"
+us-gaap:ExcessCapital,1068000000.0,"1,068",Unit13,-6,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:IbhkMember""}"
+ibkr:NetCapitalEligibleEquity,1302000000.0,"1,302",Unit13,-6,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:IbieMember""}"
+srt:MinimumNetCapitalRequiredForEntity1,293000000.0,293,Unit13,-6,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:IbieMember""}"
+us-gaap:ExcessCapital,1009000000.0,"1,009",Unit13,-6,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:IbieMember""}"
+ibkr:NetCapitalEligibleEquity,2274000000.0,"2,274",Unit13,-6,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:OtherRegulatedOperatingCompaniesMember""}"
+srt:MinimumNetCapitalRequiredForEntity1,170000000.0,170,Unit13,-6,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:OtherRegulatedOperatingCompaniesMember""}"
+us-gaap:ExcessCapital,2104000000.0,"2,104",Unit13,-6,,,2024-12-31,"{""dei:LegalEntityAxis"": ""ibkr:OtherRegulatedOperatingCompaniesMember""}"
+ibkr:NetCapitalEligibleEquity,14453000000.0,"14,453",Unit13,-6,,,2024-12-31,
+srt:MinimumNetCapitalRequiredForEntity1,2090000000.0,"2,090",Unit13,-6,,,2024-12-31,
+us-gaap:ExcessCapital,12363000000.0,"12,363",Unit13,-6,,,2024-12-31,
+us-gaap:OtherAssets,44000000.0,44,Unit13,-6,,,2024-12-31,"{""us-gaap:RelatedPartyTransactionsByRelatedPartyAxis"": ""ibkr:DirectorsOfficersAndAffiliatesMember""}"
+us-gaap:OtherAssets,6000000.0,6,Unit13,-6,,,2023-12-31,"{""us-gaap:RelatedPartyTransactionsByRelatedPartyAxis"": ""ibkr:DirectorsOfficersAndAffiliatesMember""}"
+us-gaap:OtherLiabilities,1320000000.0,"1,320",Unit13,-6,,,2024-12-31,"{""us-gaap:RelatedPartyTransactionsByRelatedPartyAxis"": ""ibkr:DirectorsOfficersAndAffiliatesMember""}"
+us-gaap:OtherLiabilities,985000000.0,985,Unit13,-6,,,2023-12-31,"{""us-gaap:RelatedPartyTransactionsByRelatedPartyAxis"": ""ibkr:DirectorsOfficersAndAffiliatesMember""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,1000000.0,1,Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,6000000.0,6,Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:InvestmentsInAffiliatesSubsidiariesAssociatesAndJointVentures,4270000000.0,"4,270",Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:InvestmentsInAffiliatesSubsidiariesAssociatesAndJointVentures,3571000000.0,"3,571",Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:OtherAssetsBS,233000000.0,233,Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:OtherAssetsBS,230000000.0,230,Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:Assets,4504000000.0,"4,504",Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:Assets,3807000000.0,"3,807",Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:PayableToAffiliate,195000000.0,195,Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:PayableToAffiliate,209000000.0,209,Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:AccruedLiabilitiesCurrentAndNoncurrent,29000000.0,29,Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:AccruedLiabilitiesCurrentAndNoncurrent,14000000.0,14,Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:Liabilities,224000000.0,224,Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:Liabilities,223000000.0,223,Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:CommonStockParOrStatedValuePerShare,0.01,0.01,Unit14,INF,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockParOrStatedValuePerShare,0.01,0.01,Unit14,INF,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockParOrStatedValuePerShare,0.01,0.01,Unit14,INF,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockParOrStatedValuePerShare,0.01,0.01,Unit14,INF,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesAuthorized,1000000000.0,"1,000,000,000",Unit1,INF,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesAuthorized,1000000000.0,"1,000,000,000",Unit1,INF,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesIssued,109061059.0,"109,061,059",Unit1,INF,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesIssued,107178928.0,"107,178,928",Unit1,INF,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesOutstanding,108904613.0,"108,904,613",Unit1,INF,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesOutstanding,107045994.0,"107,045,994",Unit1,INF,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockValue,1000000.0,1,Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockValue,1000000.0,1,Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassAMember""}"
+us-gaap:CommonStockSharesOutstanding,100.0,100,Unit1,INF,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesOutstanding,100.0,100,Unit1,INF,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesIssued,100.0,100,Unit1,INF,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesIssued,100.0,100,Unit1,INF,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesAuthorized,100.0,100,Unit1,INF,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:CommonStockSharesAuthorized,100.0,100,Unit1,INF,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember"", ""us-gaap:StatementClassOfStockAxis"": ""us-gaap:CommonClassBMember""}"
+us-gaap:AdditionalPaidInCapital,1816000000.0,"1,816",Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:AdditionalPaidInCapital,1726000000.0,"1,726",Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:RetainedEarningsAccumulatedDeficit,2515000000.0,"2,515",Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:RetainedEarningsAccumulatedDeficit,1852000000.0,"1,852",Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:AccumulatedOtherComprehensiveIncomeLossTax,0.0,0,Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:AccumulatedOtherComprehensiveIncomeLossTax,0.0,0,Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:AccumulatedOtherComprehensiveIncomeLossNetOfTax,-45000000.0,45,Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:AccumulatedOtherComprehensiveIncomeLossNetOfTax,8000000.0,8,Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:TreasuryStockCommonShares,156446.0,"156,446",Unit1,INF,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:TreasuryStockCommonShares,133034.0,"133,034",Unit1,INF,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:TreasuryStockValue,7000000.0,7,Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:TreasuryStockValue,3000000.0,3,Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:StockholdersEquity,4280000000.0,"4,280",Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:StockholdersEquity,3584000000.0,"3,584",Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:LiabilitiesAndStockholdersEquity,4504000000.0,"4,504",Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:LiabilitiesAndStockholdersEquity,3807000000.0,"3,807",Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:OtherLiabilities,195000000.0,195,Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:OtherLiabilities,210000000.0,210,Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:IncomeLossBeforeEquityInIncomeOfSubsidiary,-12000000.0,12,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:IncomeLossBeforeEquityInIncomeOfSubsidiary,5000000.0,5,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:IncomeLossBeforeEquityInIncomeOfSubsidiary,4000000.0,4,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:UndistributedGainLossOfSubsidiaries,913000000.0,913,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:UndistributedGainLossOfSubsidiaries,737000000.0,737,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:UndistributedGainLossOfSubsidiaries,463000000.0,463,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:IncomeTaxExpenseBenefit,146000000.0,146,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:IncomeTaxExpenseBenefit,142000000.0,142,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:IncomeTaxExpenseBenefit,87000000.0,87,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:ProfitLoss,755000000.0,755,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:ProfitLoss,600000000.0,600,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:ProfitLoss,380000000.0,380,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic,755000000.0,755,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic,600000000.0,600,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic,380000000.0,380,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:OtherComprehensiveIncomeLossForeignCurrencyTransactionAndTranslationAdjustmentNetOfTax,-53000000.0,53,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:OtherComprehensiveIncomeLossForeignCurrencyTransactionAndTranslationAdjustmentNetOfTax,30000000.0,30,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:OtherComprehensiveIncomeLossForeignCurrencyTransactionAndTranslationAdjustmentNetOfTax,-26000000.0,26,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:ComprehensiveIncomeNetOfTax,702000000.0,702,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:ComprehensiveIncomeNetOfTax,630000000.0,630,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:ComprehensiveIncomeNetOfTax,354000000.0,354,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:ProfitLoss,755000000.0,755,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:ProfitLoss,600000000.0,600,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:ProfitLoss,380000000.0,380,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:UndistributedGainLossOfSubsidiaries,913000000.0,913,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:UndistributedGainLossOfSubsidiaries,737000000.0,737,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:UndistributedGainLossOfSubsidiaries,463000000.0,463,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:DeferredIncomeTaxExpenseBenefit,2000000.0,2,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:DeferredIncomeTaxExpenseBenefit,34000000.0,34,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:DeferredIncomeTaxExpenseBenefit,28000000.0,28,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:GainOnRemeasurementOfTaxReceivableAgreementLiability,-10000000.0,10,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:GainOnRemeasurementOfTaxReceivableAgreementLiability,7000000.0,7,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:GainOnRemeasurementOfTaxReceivableAgreementLiability,6000000.0,6,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:ChangesInOperatingAssetsAndLiabilities,64000000.0,64,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:ChangesInOperatingAssetsAndLiabilities,-33000000.0,33,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:ChangesInOperatingAssetsAndLiabilities,20000000.0,20,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:NetCashProvidedByUsedInOperatingActivities,-82000000.0,82,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:NetCashProvidedByUsedInOperatingActivities,-143000000.0,143,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:NetCashProvidedByUsedInOperatingActivities,-41000000.0,41,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:NetCashProvidedByUsedInInvestingActivities,246000000.0,246,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:NetCashProvidedByUsedInInvestingActivities,185000000.0,185,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:NetCashProvidedByUsedInInvestingActivities,127000000.0,127,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:NetCashProvidedByUsedInFinancingActivities,-116000000.0,116,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:NetCashProvidedByUsedInFinancingActivities,-67000000.0,67,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:NetCashProvidedByUsedInFinancingActivities,-59000000.0,59,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:EffectOfExchangeRateOnCashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,-53000000.0,53,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:EffectOfExchangeRateOnCashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,30000000.0,30,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:EffectOfExchangeRateOnCashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents,-26000000.0,26,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect,-5000000.0,5,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect,5000000.0,5,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect,1000000.0,1,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,6000000.0,6,Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,1000000.0,1,Unit13,-6,,,2022-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,1000000.0,1,Unit13,-6,,,2024-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,6000000.0,6,Unit13,-6,,,2023-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:CashAndCashEquivalentsAtCarryingValue,1000000.0,1,Unit13,-6,,,2022-12-31,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:InterestPaidNet,3000000.0,3,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:InterestPaidNet,2000000.0,2,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:InterestPaidNet,1000000.0,1,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:IncomeTaxesPaidNet,117000000.0,117,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:IncomeTaxesPaidNet,111000000.0,111,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:IncomeTaxesPaidNet,67000000.0,67,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+ibkr:NonCashDistributionFromSubsidiaries,1000000.0,1,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:ProceedsFromDividendsReceived,246000000.0,246,Unit13,-6,2024-01-01,2024-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:ProceedsFromDividendsReceived,185000000.0,185,Unit13,-6,2023-01-01,2023-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
+us-gaap:ProceedsFromDividendsReceived,128000000.0,128,Unit13,-6,2022-01-01,2022-12-31,,"{""srt:ConsolidatedEntitiesAxis"": ""srt:ParentCompanyMember""}"
