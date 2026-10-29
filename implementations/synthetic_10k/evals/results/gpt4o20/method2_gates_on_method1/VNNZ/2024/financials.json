@@ -1,0 +1,90 @@
+{
+  "balance_sheet": {
+    "assets": {
+      "cash_and_equivalents": 13825000000.0,
+      "accounts_receivable": 6373000000.0,
+      "inventories": 6797000000.0,
+      "other_current_assets": 1811000000.0,
+      "total_current_assets": 28806000000.0,
+      "property_plant_equipment_net": 49763000000.0,
+      "goodwill": 19058000000.0,
+      "other_non_current_assets": 2118000000.0,
+      "total_assets": 99745000000.0
+    },
+    "liabilities": {
+      "total_current_liabilities": 38635000000.0,
+      "long_term_debt": 9336000000.0,
+      "other_non_current_liabilities": 28264000000.0,
+      "total_liabilities": 76235000000.0,
+      "total_liabilities_and_stockholders_equity": 99745000000.0
+    },
+    "equity": {
+      "total_stockholders_equity": 23510000000.0
+    }
+  },
+  "income_statement": {
+    "operating_expenses": {
+      "cost_of_revenue": 30909000000.0,
+      "research_and_development": 2036000000.0,
+      "selling_general_administrative": 6292000000.0,
+      "other_operating_expenses": 2888000000.0
+    },
+    "revenues": 48137000000.0,
+    "gross_profit": 17228000000.0,
+    "operating_income": 6012000000.0,
+    "interest_expense": 420000000.0,
+    "pretax_income": 5592000000.0,
+    "income_tax_expense": 1186000000.0,
+    "net_income": 4406000000.0
+  },
+  "cash_flow_statement": {
+    "operating_activities": {
+      "net_income": 4406000000.0,
+      "depreciation_and_amortization": 785000000.0,
+      "changes_in_working_capital_and_other": 626000000.0,
+      "cash_from_operations": 5817000000.0
+    },
+    "investing_activities": {
+      "capital_expenditures": -823000000.0,
+      "other_investing_activities_net": -2959000000.0,
+      "cash_from_investing": -3782000000.0
+    },
+    "financing_activities": {
+      "net_change_in_long_term_debt": 1188000000.0,
+      "dividends_paid": -2397000000.0,
+      "share_repurchases_net_of_issuances": 961000000.0,
+      "cash_from_financing": -248000000.0,
+      "net_change_in_cash": 1787000000.0,
+      "cash_and_cash_equivalents_beginning_of_year": 12038000000.0,
+      "cash_and_cash_equivalents_end_of_year": 13825000000.0
+    },
+    "prior_year": {
+      "revenues_prior": 44567000000.0,
+      "cost_of_revenue_prior": 28726000000.0,
+      "gross_profit_prior": 15841000000.0,
+      "research_and_development_prior": 1912000000.0,
+      "selling_general_administrative_prior": 5812000000.0,
+      "other_operating_expenses_prior": 2674000000.0,
+      "operating_income_prior": 5443000000.0,
+      "interest_expense_prior": 367000000.0,
+      "pretax_income_prior": 5076000000.0,
+      "income_tax_expense_prior": 1142000000.0,
+      "net_income_prior": 3934000000.0,
+      "cash_and_equivalents_prior": 12038000000.0,
+      "accounts_receivable_prior": 5433000000.0,
+      "inventories_prior": 6101000000.0,
+      "other_current_assets_prior": 1241000000.0,
+      "total_current_assets_prior": 24813000000.0,
+      "property_plant_equipment_net_prior": 45832000000.0,
+      "goodwill_prior": 16890000000.0,
+      "other_non_current_assets_prior": 1877000000.0,
+      "total_assets_prior": 89412000000.0,
+      "total_current_liabilities_prior": 32118000000.0,
+      "long_term_debt_prior": 8148000000.0,
+      "other_non_current_liabilities_prior": 28606000000.0,
+      "total_liabilities_prior": 68872000000.0,
+      "total_stockholders_equity_prior": 20540000000.0,
+      "total_liabilities_and_stockholders_equity_prior": 89412000000.0
+    }
+  }
+}

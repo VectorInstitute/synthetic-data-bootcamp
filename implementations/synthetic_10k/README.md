@@ -139,6 +139,28 @@ How much of the tables each Item gets, and so how tightly it is tied to them:
 - **Item 7:** Method 1 has two years and precomputed changes, so its MD&A can compare years as real MD&As do. Method 2's single year can't, and the LLM has to work out any ratio itself.
 - **Item 8:** Method 1's tables are exact by construction. Method 2's depend on the LLM copying the JSON correctly, which likely explains part of its low trace rate on Gemini.
 
+## Build Day 2 result: which method per section
+
+Six batches were scored Item by Item against real 10-Ks with [`evals/section_scorecard.py`](evals/README.md#per-section-scorecard-choosing-a-method-per-item) and [`evals/compare_sets.py`](evals/README.md#compare-synthetic-sets-fidelity-utility-privacy): Method 1 and Method 2, each on Gemini 3 Flash (`gemini-3-flash-preview`, 20 companies), GPT-4o (20) and Claude Opus 5.5 (`claude-opus-5-5`; 20 for Method 1, 10 for Method 2). Results are in [`evals/results/day2_scorecard/`](evals/results/day2_scorecard/) (with a shareable `scorecard.html`), [`evals/results/day2_compare_sets/`](evals/results/day2_compare_sets/) and the per-run folders `evals/results/{gemini20,gpt4o20,opus20}/`.
+
+**Build on Method 1.** Its figures trace to the statements 99–100% of the time on every model. A RAG benchmark needs that, because a question's gold answer has to be the number in the statements. Method 2 writes the most realistic-looking text, but only 46–74% of its figures trace.
+
+| Item | Use | Why |
+|---|---|---|
+| 1 Business | Method 1 + Opus | 100% traced; the longest Method 1 text (0.56× real) with the closest vocabulary |
+| 1A Risk Factors | Method 1 + Gemini (Opus if budget allows) | Few figures, so realism decides; best vocabulary match among complete sets |
+| 1C Cybersecurity | Method 1 + Gemini | No figures; every set is near real length |
+| 7 MD&A | Method 1 + Opus (Gemini on a budget) | 99.5% traced and the most answerable fact questions (73 of 100) |
+| 8 Financial Statements | Method 1, any model | Rendered by code, so exact; Method 2's LLM-written Item 8 traces 23–76% |
+
+| | Gemini | GPT-4o | Opus |
+|---|---|---|---|
+| Method 1 companies passing its own validation | 8/20 | 0/20 (too short) | 19/20 |
+| Method 1 cost (20 companies) | Vector proxy | about $5 (proxy) | about $19 |
+| Method 2 cost | Vector proxy | Vector proxy | about $30–35 for 10; the content filter blocked 7 of 10 Item 8s |
+
+Real 10-Ks trace only 12–14% of their figures to their own XBRL headline numbers. The rest are segment, quarterly and per-share figures. So Method 2's lower score is partly real-like detail, but those figures have no checkable answer in a benchmark. Every set's copying from real filings is at or below the real baseline. Next for Method 1: less repetition across companies (Item 7 repeats 13–19% of 8-word sequences, against 2% in real filings) and longer sections.
+
 ## Evals
 
 [`evals/`](evals/README.md) runs each method's validator on the other method's filings, without changing either validator.
