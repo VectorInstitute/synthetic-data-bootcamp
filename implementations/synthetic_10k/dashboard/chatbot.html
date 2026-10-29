@@ -119,11 +119,23 @@
   .foot code { background: none; padding: 0; }
   .loading, .error { padding: 2rem 1rem; text-align: center; color: var(--ink-2); }
   .error { color: var(--critical); }
+
+  nav.sitenav { display: flex; gap: .25rem; flex-wrap: wrap; border-bottom: 1px solid var(--border); margin: 0 0 1.5rem; }
+  nav.sitenav a { font-size: .85rem; font-weight: 600; color: var(--ink-2); text-decoration: none; padding: .55rem .9rem .5rem; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  nav.sitenav a:hover { color: var(--ink-1); }
+  nav.sitenav a[aria-current="page"] { color: var(--ink-1); border-bottom-color: var(--series-1); }
 </style>
 </head>
 <body>
 
 <div class="page" id="app">
+
+  <nav class="sitenav" aria-label="Dashboard pages">
+    <a href="index.html">Results dashboard</a>
+    <a href="scorecard.html">Scorecard</a>
+    <a href="financial_method_comparison.html">Financial method comparison</a>
+    <a href="chatbot.html" aria-current="page">Chatbot</a>
+  </nav>
 
   <div class="hdr">
     <h1>SEC 10-K Synthetic Corpus: Chatbot</h1>
@@ -134,10 +146,6 @@
     <nav class="jump">
       <button id="tab-chat" class="active">Chat</button>
       <button id="tab-demo">Scenario analysis demo</button>
-      <span class="sep"></span>
-      <a href="index.html">&larr; Results dashboard</a>
-      <a href="scorecard.html">Scorecard &rarr;</a>
-      <a href="financial_method_comparison.html">Financial comparison &rarr;</a>
       <span class="sep"></span>
       <span class="pill neutral" id="status-pill"><span class="dot"></span><span id="status-text">connecting&hellip;</span></span>
     </nav>
