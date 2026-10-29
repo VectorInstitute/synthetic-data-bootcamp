@@ -94,6 +94,11 @@ main { max-width: 1800px; padding: 24px 30px 56px; margin: auto; }
 .jump a { font-size: .8rem; color: var(--ink-2); text-decoration: none; border: 1px solid var(--border); border-radius: 999px; padding: .3rem .8rem; white-space: nowrap; }
 .jump a:hover { color: var(--ink-1); border-color: var(--ink-muted); }
 
+nav.sitenav { display: flex; gap: .25rem; flex-wrap: wrap; border-bottom: 1px solid var(--border); margin: 0; padding: 0 30px; background: var(--panel); }
+nav.sitenav a { font-size: .85rem; font-weight: 600; color: var(--ink-2); text-decoration: none; padding: .7rem .9rem .65rem; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+nav.sitenav a:hover { color: var(--ink-1); }
+nav.sitenav a[aria-current="page"] { color: var(--ink-1); border-bottom-color: var(--series-1); }
+
 .controls {
   background: var(--panel);
   border: 1px solid var(--border);
