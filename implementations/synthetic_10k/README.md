@@ -41,7 +41,7 @@ These modules build on Method 2 and import the `method_2` package, so run them f
 | `evals/` | `step14_privacy_check.py`: distance of each fictional company's financials from its real template | `method_2/data/privacy_report.csv` |
 | `evals/` | `compare_sets.py`: fidelity, utility (retrieval) and privacy for several synthetic sets side by side, with `text-embedding-3-small` | `evals/results/compare_sets/comparison.md` |
 | `dashboard/` | `build_dashboard.py`: embeds the five result CSVs and vendored d3 into `template.html` | `dashboard/index.html` |
-| `dashboard/scorecard.html` | copy of `evals/results/day2_scorecard/scorecard.html` with links back to the dashboard; copy it again when the scorecard is rebuilt | linked from the dashboard's top nav |
+| `dashboard/scorecard.html` | built by `evals/scorecard_page.py` from `section_scorecard`'s scorecard.csv and `rag_answers`' summary.csv (styles in `dashboard/scorecard.css`); the day 2 version is kept as `dashboard/scorecard_day2.html` | linked from the dashboard's top nav |
 
 ```bash
 cd implementations/synthetic_10k
