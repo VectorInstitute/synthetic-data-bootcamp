@@ -192,8 +192,16 @@ def page(rows: list[dict], rag: dict[str, dict[str, dict]]) -> str:
 </head>
 <body>
 <div class="wrap">
+
+<nav class="sitenav" aria-label="Dashboard pages">
+  <a href="index.html">Results dashboard</a>
+  <a href="scorecard.html" aria-current="page">Scorecard</a>
+  <a href="scorecard_day2.html">Scorecard (Day 2)</a>
+  <a href="financial_method_comparison.html">Financial method comparison</a>
+  <a href="chatbot.html">Chatbot</a>
+</nav>
+
 <header>
-  <nav class="back"><a href="index.html">&larr; Results dashboard</a><a href="chatbot.html">Chatbot &rarr;</a><a href="scorecard_day2.html">Day 2 scorecard</a></nav>
   <span class="eyebrow">Vector Institute · Synthetic Data Bootcamp · Day 3 · Oct 29, 2026</span>
   <h1>Synthetic 10-K Scorecard</h1>
   <p class="lede">Six synthetic sets (two methods, three models) and a sample of real 10-Ks, asked the same ten financial questions per company and scored section by section.</p>
