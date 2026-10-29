@@ -71,12 +71,12 @@ sys.path.insert(0, str(ROOT))
 import numpy as np  # noqa: E402
 from method_2.step09_validate_filings import (  # noqa: E402
     check_real_company_leaks,
-    closest_match,
     extract_figures,
     load_real_companies,
     real_section_stats,
 )
 from method_2.utils import setup_logging, write_atomic  # noqa: E402
+from qa.fact_questions import make_questions, synthetic_facts  # noqa: E402
 from RAG import step11_make_qa as qa  # noqa: E402
 from RAG.chunks import Chunk, chunk_text  # noqa: E402
 from RAG.retrieval import (  # noqa: E402
@@ -403,16 +403,6 @@ def set_chunks(companies: list[Company]) -> list[Chunk]:
     return out
 
 
-def gold_chunk_ids(value: float, chunks: list[Chunk], *, is_percent: bool) -> list[str]:
-    """Every chunk that states `value`: a retriever that finds any of them has found the answer."""
-    ids = []
-    for chunk in chunks:
-        dollars, percents = extract_figures(chunk.text)
-        if any(closest_match(v, {value}, relative=not is_percent) for v, _ in (percents if is_percent else dollars)):
-            ids.append(chunk.chunk_id)
-    return ids
-
-
 def financial_fact_rows(
     source: str,
     ticker: str,
@@ -421,24 +411,21 @@ def financial_fact_rows(
     financials: dict,
     chunks: list[Chunk],
 ) -> list[dict]:
-    """step11's financial-fact and margin questions, for any company and its chunks."""
-    facts = []
-    for path, template, is_percent in qa.FINANCIAL_FACTS:
-        facts.append((qa.get_field(financials, path), template.format(name=name, fy=fy), is_percent))
-    income = financials.get("income_statement", {})
-    revenue = income.get("revenues")
-    for key, label in (("net_income", "net margin"), ("operating_income", "operating margin")):
-        if revenue and income.get(key) is not None:
-            facts.append((income[key] / revenue * 100, f"What was {name}'s {label} for fiscal {fy}?", True))
+    """The shared fact questions (qa.fact_questions) that have a stating chunk, as QA rows.
 
+    Retrieval evaluation needs a gold chunk, so unanswerable questions are left out
+    here; section_scorecard counts them as misses instead.
+    """
+    by_id = {c.chunk_id: c for c in chunks}
     rows = []
-    for value, question, is_percent in facts:
-        found = qa.find_figure_chunk(value, chunks, is_percent=is_percent) if value is not None else None
-        if found:
-            chunk, answer = found
-            row = qa.qa_row(source, ticker, fy, chunk.item, "factual", question, answer, chunk.chunk_id)
-            row["gold_chunk_ids"] = ";".join(gold_chunk_ids(value, chunks, is_percent=is_percent))
-            rows.append(row)
+    for q in make_questions(ticker, name, fy, synthetic_facts(financials), chunks):
+        if not q["gold_chunk_ids"]:
+            continue
+        chunk = by_id[q["gold_chunk_ids"].split(";")[0]]
+        answer = f"{q['answer']:.1f}%" if q["is_percent"] else f"${q['answer']:,.0f}"
+        row = qa.qa_row(source, ticker, fy, chunk.item, "factual", q["question"], answer, chunk.chunk_id)
+        row["gold_chunk_ids"] = q["gold_chunk_ids"]
+        rows.append(row)
     return rows
 
 
