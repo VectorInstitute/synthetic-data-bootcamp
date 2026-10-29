@@ -83,7 +83,15 @@ LABELS = {
     "net_margin": r"net (?:profit )?margin",
     "operating_margin": r"operating margin",
 }
+ANY_LABEL = re.compile(r"\b(?:" + "|".join(LABELS.values()) + r")\b", re.IGNORECASE)
 WINDOW = 120  # characters after a label in which its figure must appear
+SHARE_OF = re.compile(r"\bor\s+[\d.]+%,?\s+of\b", re.IGNORECASE)
+# A label followed by one of these names a slice of the fact ("revenues from customers
+# outside the United States", "net income attributable to noncontrolling interests").
+SUB_LINE_TAIL = re.compile(
+    r"\s+(?:from customers|outside|attributable|in the \w+ segment|by segment|from (?:our|the) \w+ segment)",
+    re.IGNORECASE,
+)
 # Words that may precede a headline label; anything else ("product", "cost of",
 # "segment") names a sub-line.
 HEADLINE_LEAD = {
@@ -253,7 +261,8 @@ def attached_figures(text: str, fact: str, *, is_percent: bool) -> list[tuple[li
     for line in text.splitlines():
         cells = table_cells(line)
         if cells is not None:
-            if not is_percent and len(cells) > 1 and label.fullmatch(cells[0].strip("*: ")):
+            percent_row = len(cells) > 2 and cells[2].startswith("%")
+            if not is_percent and len(cells) > 1 and not percent_row and label.fullmatch(cells[0].strip("*: ")):
                 v = to_float(cells[1])
                 if v is not None:
                     found.append(([v * 1e3, v * 1e6], line))
@@ -261,7 +270,13 @@ def attached_figures(text: str, fact: str, *, is_percent: bool) -> list[tuple[li
         for m in label.finditer(line):
             if not headline_label(line, m.start()):
                 continue
+            if SUB_LINE_TAIL.match(line, m.end()):
+                continue
             sentence = re.split(r"(?<=[.;])\s", line[m.end() : m.end() + WINDOW], maxsplit=1)[0]
+            # Stop at the next fact's label: a figure after it belongs to that fact.
+            sentence = ANY_LABEL.split(sentence, maxsplit=1)[0]
+            if SHARE_OF.search(sentence):  # "$X million, or 89%, of our total assets": a slice
+                continue
             v = first_percent(sentence) if is_percent else first_dollar(sentence)
             if v is not None:
                 found.append(([v], line[max(0, m.start() - 80) : m.end() + len(sentence)]))
