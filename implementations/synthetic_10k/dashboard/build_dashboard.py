@@ -2,7 +2,10 @@
 
 Input: dashboard/template.html, dashboard/vendor/d3.v7.9.0.min.js, plus the five
 result CSVs (data/validation_report.csv, qa_pairs.csv, retrieval_eval.csv,
-gap_report.csv, privacy_report.csv).
+gap_report.csv, privacy_report.csv) and one optional sixth, data/llm_judge_report.csv
+(evals/llm_judge.py's model-judged scores) -- optional because, unlike the other
+five, it needs a real API call rather than coming free with the rest of the
+pipeline; its card on the built page just renders empty until it's been run once.
 Output: dashboard/index.html.
 
 The template has no embedded data and loads d3 from a CDN -- opened directly, its
@@ -48,6 +51,12 @@ DATASETS = {
     "gap": "gap_report.csv",
     "privacy": "privacy_report.csv",
 }
+# Opt-in: needs a real API call (evals/llm_judge.py) rather than coming free with the
+# rest of the pipeline, so unlike DATASETS above its absence isn't a build error --
+# the dashboard just renders that one card empty until someone runs it.
+OPTIONAL_DATASETS = {
+    "judge": "llm_judge_report.csv",
+}
 
 D3_SCRIPT_TAG = '<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>'
 
@@ -55,6 +64,14 @@ D3_SCRIPT_TAG = '<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3
 def load_csv(filename: str) -> list[dict]:
     with open(DATA_DIR / filename, encoding="utf-8") as f:
         return list(csv.DictReader(f))
+
+
+def load_csv_optional(filename: str) -> list[dict]:
+    """Like load_csv, but a missing file is a warning, not a crash."""
+    if not (DATA_DIR / filename).exists():
+        logger.warning("%s not found; run `uv run python -m evals.llm_judge` to populate that card", filename)
+        return []
+    return load_csv(filename)
 
 
 def main() -> None:
@@ -67,6 +84,7 @@ def main() -> None:
 
     d3_source = VENDOR_D3_PATH.read_text(encoding="utf-8")
     data = {key: load_csv(filename) for key, filename in DATASETS.items()}
+    data.update({key: load_csv_optional(filename) for key, filename in OPTIONAL_DATASETS.items()})
 
     # `</script` inside a JSON string (or, in principle, the vendored d3 source)
     # would otherwise close this script tag early -- the HTML parser doesn't know

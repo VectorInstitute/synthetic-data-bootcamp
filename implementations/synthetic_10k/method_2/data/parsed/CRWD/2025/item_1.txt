@@ -1,0 +1,423 @@
+Overview
+
+Founded in 2011, CrowdStrike reinvented cybersecurity for the cloud and artificial intelligence (“AI”) era and transformed the way cybersecurity is delivered and experienced by customers. When we started CrowdStrike, cyberattackers had an asymmetric advantage over legacy cybersecurity products that could not keep pace with rapid changes in adversary tactics. We took a fundamentally different approach to solve this problem with the AI-native CrowdStrike Falcon cybersecurity platform – the first, true, cloud-native platform built with AI at the core, capable of harnessing vast amounts of security and enterprise data to deliver highly modular solutions through a single lightweight agent.
+
+The CrowdStrike Falcon platform is designed to be the definitive platform for cybersecurity consolidation, purpose-built to stop breaches. The platform’s single, lightweight agent collects and integrates data from across the enterprise, including endpoints, cloud workloads, identities, and third-party sources. We use this to train our AI to detect and prevent threats and drive workflow automation to give security teams machine speed advantage to stop adversaries. By consolidating and replacing legacy point products and fragmented platforms across key areas of security and IT, the Falcon platform delivers a unified, modern approach that increases capabilities, reduces complexity, and lowers costs – all while stopping breaches.
+
+We believe our approach has defined a new category called the Security Cloud, which has the power to transform the cybersecurity industry the same way the cloud has transformed the customer relationship management, human resources, and service management industries. Using cloud-scale AI, our Security Cloud enriches and correlates trillions of cybersecurity events per week with indicators of attack, threat intelligence, and enterprise data (including data from across endpoints, workloads, identities, DevOps, IT assets, and configurations) to create actionable data, identify shifts in adversary tactics, and automatically prevent threats in real-time across our customer base. The more data that is fed into our Falcon platform, the more intelligent our Security Cloud becomes, and the more our customers benefit, creating a powerful network effect that increases the overall value we provide.
+
+CrowdStrike: The Architectural Purpose Behind the Platform
+
+Our Falcon platform was purpose-built in the cloud to harness the power of data and AI to deliver the next generation of automated protection and provide threat hunters with the intelligence required to stop sophisticated attacks, including malware-free and fileless attacks. This approach has made CrowdStrike an industry leader in protection across endpoints, cloud workloads, identity and data (capable of protecting workloads across on-premise, virtualized, and cloud-based environments running on a variety of endpoints such as desktops, laptops, servers, virtual machines, cloud workloads, cloud containers, mobile, and IoT devices) and enables us to rapidly scale this best in class protection across new and emerging areas of enterprise risk.
+
+Today, we offer 29 cloud modules on our Falcon platform via a SaaS subscription-based model that spans multiple large markets, including corporate endpoint and cloud workload security, managed security services, security and vulnerability management, IT operations management, identity protection, next-generation security information and event management (“SIEM”) and log management, threat intelligence services, data protection, SaaS security posture management, Security Orchestration, Automation and Response (“SOAR”) and AI powered workflow automation, and securing generative AI workloads.
+
+Our Falcon platform is composed of tightly integrated, proprietary technologies that enable us to deliver superior protection and performance, while reducing complexity for our customers. Our Falcon platform consists of our easily deployed, intelligent lightweight agent, and our groundbreaking graph technology.
+
+Our single, lightweight-agent approach has changed how organizations experience cybersecurity, delivering protection without impacting the user, resources or productivity. With the lightweight agent installed on each endpoint and cloud workload, our Falcon platform automates detection and prevention capabilities in real time across our entire global customer base. This also enables our Falcon platform to intelligently ingest data once and stream high fidelity data back into the Security Cloud to be re-used for multiple use cases, continuously improve our Falcon platform’s AI algorithms and make its real-time decision-making faster and smarter to keep customers ahead of changing adversary tactics.
+
+4
+
+Table of Contents
+
+Our graph technology correlates and contextualizes the vast data of our Security Cloud so we can collect data once and reuse it repeatedly to deliver solutions that solve our customers’ biggest problems. The highly advanced graph technologies underpinning the Falcon platform include:
+
+•Our Threat Graph, which uses a combination of AI and behavioral pattern-matching techniques to correlate and analyze trillions of cybersecurity events, enriched with threat intelligence, and third-party data to identify and link threat activity together to automatically prevent threats in real time across CrowdStrike’s global customer base. This also provides customers with increased visibility of attacks for proactive threat hunting and timely detection and remediation of novel threats.
+
+•Our Intel Graph, which analyzes and correlates data and threat intelligence to visualize the connections between adversaries and attacks to help customers prioritize investigations and gain a deep understanding of the threat landscape. The latest intel on adversaries, tactics, techniques, and procedures is delivered seamlessly within the CrowdStrike Falcon platform and is mapped to the MITRE ATT&CK® framework.
+
+•Our Asset Graph, which dynamically monitors and tracks the complex interactions among assets, providing a single holistic view of the risks those assets pose. Asset Graph provides graph visualizations of the relationships among all assets such as devices, users, accounts, applications, cloud workloads and operations technology (“OT”), along with the rich context necessary for proper security hygiene and proactive security posture management to reduce risk in their organizations — without impacting IT.
+
+The Falcon platform was purpose-built with the foresight that the future of cybersecurity would need to be cloud-native and AI-driven. While AI is revolutionizing many technology fields, including cybersecurity solutions, to be truly effective, algorithms that enable AI depend on the quality and volume of data that trains them and the selection of the right differentiating features from that data.
+
+This is why we believe our Security Cloud and our cloud-native architecture creates a fundamental differentiator from our competitors. The expansive amount of high fidelity data crowdsourced and captured in our Security Cloud enables the continuous training of our algorithms. We call this cloud-scale AI. Our technology is uniquely effective because we not only have a massive amount of high fidelity data to continuously train our AI models but also because we couple that data with deep human cybersecurity expertise, which supports our industry-leading efficacy and low false positives.
+
+By analyzing and correlating information across our massive, crowdsourced dataset, we are able to deploy our AI algorithms at cloud-scale and build a more intelligent, effective solution to detect threats and stop breaches that on-premise, cloud-hosted and hybrid products cannot match due to the inherent architectural limitations those products have with respect to data storage and analysis. The more data that is fed into our Falcon platform, the more intelligent the Security Cloud becomes, and the more our customers benefit, creating a powerful network effect that increases the overall value we provide.
+
+Industry Background: The Trends Driving a Need for a New Approach to Security
+
+We believe there are a number of important trends that drive the need for a new approach to security. These include:
+
+•The Increasing Sophistication and Disruption of Cybersecurity Threats: Adversary sophistication continues to increase as militaries and intelligence services of well-funded nation-states, technically advanced criminal organizations and hackers advance their tactics. In addition, the commoditization of technologies like generative AI make it easier for low-skilled adversaries to move faster and launch more sophisticated attacks. This includes non-malware based attacks like social engineering that exploit user identities and credentials. These attacks are pervasive, targeting a broad range of industries including technology, transportation, healthcare, financial services, governments and political organizations, utility, retail, and public infrastructure. The number and scale of attacks continue to increase. The typical attack cycle starts with attackers attempting to penetrate endpoints to establish a beachhead. Once inside, adversaries steal and exploit legitimate credentials to escalate privileges, move laterally and progress and attack, often downloading malware or ransomware. At this stage in the threat lifecycle, the adversary is able to encrypt, destroy, or silently exfiltrate sensitive data.
+
+5
+
+Table of Contents
+
+•An Expanded Attack Surface Driven By Hybrid and Remote Workforces: Organizations everywhere are embracing digital transformation and are becoming more distributed as they adopt the cloud, increase workforce mobility, and grow their number of connected devices. They are adding more workloads to a myriad of different endpoints beyond the traditional cybersecurity perimeter, exposing an increasingly broad attack surface to adversaries. This trend accelerated significantly with the need to support an increasingly remote workforce in 2020 due to the COVID-19 pandemic and we believe this trend continues today.
+
+•A Growing Cyber Skills Gap: Trained cybersecurity professionals are in high demand, and organizations continue to face a dire shortage of talent to fill much needed cybersecurity positions. As a result, existing cybersecurity teams are often overwhelmed by the velocity of cyberattacks. Adversaries exploit this vacuum by continuing to accelerate their sophisticated attacks.
+
+•The Need to Reduce Complexity and Simplify Security Operations: Organizations are increasingly looking to reduce the complexity of their security and IT stack. Modern security requires fewer point products, fewer agents and technologies that consume fewer resources. Increasingly, organizations are looking to standardize on trusted platforms that deliver an immediate return on investment and lower total cost of ownership.
+
+Competitive Market: Existing Security Solutions Are Limited and Exacerbate Ongoing Trends:
+
+We believe the aforementioned trends are exacerbated by the architectural limitations of legacy cybersecurity products and fragmented platforms, which are characterized by:
+
+•On-Premise Security and Bolt-On Cloud Products That Lead to Constrained and Impacted Users: On-premise products are siloed, lack integration, and have limited ability to collect, process, and analyze vast amounts of data—attributes that are required to be effective in today’s increasingly dynamic threat landscape. Meanwhile, these solutions often require more agents on the endpoint as new capabilities are patchworked together, which can have a dramatic negative impact on user performance.
+
+Many on-premise vendors have tried to solve this problem by simply extending on-premise products to the cloud. Since their products were not purpose built to run in the cloud, traditional on-premise issues such as complex deployments, data silos, lack of integrations, limited scalability, and high maintenance costs continue to manifest. We believe that any product that was originally designed for on-premise deployments and migrated to the cloud cannot by definition be a cloud native solution.
+
+Some other vendors attempt to solve this problem by acquiring disparate products and stitching them together into fragmented platforms. This can force customers to focus on implementing integrations, not security outcomes and stopping the breach. The resulting complexity can impede workflows and slow down response time.
+
+•Legacy Signature-Based Products That Are Not Effective Against Unknown Threats: Signature-based products are designed to detect attacks that are already cataloged as previously identified threats. As a result, such products are fundamentally unable to prevent unknown threats resulting from shifts in attacker tradecraft. An attacker may be able to bypass a signature-based defense with just a slight modification to an existing attack. Many significant breaches seen in the last two decades have involved the failure of a legacy signature-based antivirus product to detect a previously unknown or modified version of a previously known attack.
+
+•Malware-Focused Products That Miss Sophisticated Attacks: Traditionally, organizations have focused on protecting their networks and endpoints against malware-based attacks. These attacks involve malware built for the specific purpose of performing malicious activities, stealing data, or destroying systems. Our 2024 Global Threat Report observed that over 70% of attacks comprise non-malware, hands-on-keyboard activity. Additionally, we found that eight out of 10 attacks involve compromised or stolen credentials, with these identity-based attacks easily able to bypass legacy approaches to protection. Therefore, a malware-centric defensive approach will leave the organization vulnerable to attacks that do not leverage malware.
+
+6
+
+Table of Contents
+
+•Application Whitelisting Products That Are Ineffective: Application whitelisting products resort to an “always allow” or “always block” policy on an endpoint to allow or prevent processes from executing. Whitelisting relies in part on manually creating and maintaining a complex list of rules, burdening end users and IT organizations. This does not prevent fileless attacks from exploiting legitimate whitelisted applications, compromising the integrity of the whitelisting product.
+
+•The Limitations of Legacy SIEMs: Originally designed years or even decades ago for a vastly different cybersecurity landscape, legacy SIEM solutions struggle to meet the demands of modern security operations. These systems lack the scalability to handle today’s data volumes and adversary speed, while escalating costs make centralized data collection and retention increasingly difficult. Poor scalability contributes to siloed, disjointed SOC architectures, forcing analysts to manually correlate data across multiple consoles, diverting time and resources from threat detection and response. Complex onboarding processes further delay time-to-value, requiring significant effort to integrate new data sources. As a result, legacy SIEMs hinder operational efficiency, limit visibility, and increase the risk of data breaches.
+
+CrowdStrike: Built for This Moment and the Future
+
+We believe that the cloud-native architecture of the Falcon platform and Security Cloud provides a sustainable advantage in addressing the needs of our customers as their businesses and the threat landscape continues to evolve.
+
+We offer our customers compelling business value that includes ease of adoption, rapid time-to-value, superior efficacy rates in detecting threats and preventing breaches, and reduced total cost of ownership by consolidating legacy, siloed, and multi-agent security products in a single solution. We also allow thinly-stretched security organizations to automate previously manual tasks, freeing them to focus on their most important objectives. With the Falcon platform, organizations can transform how they combat threats, transforming from slow, manual, and reactionary to fast, automated, and predictive, while gaining visibility across the threat lifecycle.
+
+Key benefits of our approach and the CrowdStrike Falcon platform include:
+
+•The Power of the Crowd: Our crowdsourced data enables every customer to benefit from contributing to the Security Cloud. As more high fidelity data is fed into our Security Cloud, our AI models continue to train and improve, increasing the overall efficacy of the Falcon platform. This unique data layer is powered and turned into action by three complementary graph databases (Threat Graph, Intel Graph, and Asset Graph) to put threats, adversaries, and assets into the context needed to make the rapid, informed decisions that stop breaches.
+
+•Driving AI Innovation and Security: We are a pioneer in leveraging AI to transform cybersecurity, combining AI for cybersecurity with cybersecurity for AI. The Falcon platform’s AI-native architecture uses advanced models and the power of the Security Cloud to detect and stop breaches, while innovations like Charlotte AI represent a significant advancement in agentic AI—delivering autonomous security decisions within customer-defined guardrails to triage detections, reduce noise, and accelerate response. Charlotte AI, powered by high-fidelity data and continual training, reduces routine investigation workloads, bridging critical skills gaps for stretched teams. As AI continues to evolve, CrowdStrike is driving the next generation of AI-powered agentic cybersecurity—enabling AI to act independently while ensuring human oversight and control. Beyond delivering AI-driven protection, we also secure the AI systems organizations depend on, helping customers safeguard generative AI applications, protect sensitive data, and mitigate the risks posed by AI misconfigurations and vulnerabilities. By advancing AI innovation and security, we empower organizations to stay ahead of adversaries, increase operational efficiency, and securely embrace the AI-driven future.
+
+•High Efficacy, Low False Positives: The vast telemetry of the Security Cloud and the best practices employed in continually training our AI models results in exceptionally high efficacy rates and low false positives, delivering proven performance in real-world scenarios.
+
+7
+
+Table of Contents
+
+•Consolidation of Siloed Products: Integrating and maintaining numerous security products creates blind spots that attackers can exploit, increases costs, and negatively impacts both end-user system performance and the experience of the security analyst. Our cloud-native platform gives customers a unified approach to address their most critical areas of risk seamlessly. We empower customers to rapidly deploy and scale industry leading technologies across Endpoint Security, Identity Protection, Cloud Security, Next-Gen SIEM and Modern Log Management, Data Protection, Exposure Management, IT Automation, ITSecOps and Risk, Threat Intelligence, and SaaS Security Posture Management from a single platform.
+
+•Reducing Agent Bloat: Our single intelligent lightweight agent enables frictionless deployment of our platform at scale, enabling customers to rapidly adopt our technology across any type of workload running on a variety of endpoints. The agent is non-intrusive to the end user, requires no reboots and continues to protect the endpoint and track activity even when offline. Through our single lightweight agent approach, customers can adopt multiple platform modules to address their critical areas of risk without burdening the endpoint with multiple agents. Legacy approaches often require multiple agents as they layer on new capabilities. This can severely impact user performance and create barriers to security.
+
+•Rapid Time to Value: Our cloud-native platform was built to rapidly scale industry leading protection across the entire enterprise, eliminating lengthy implementation periods and professional services engagements that next-gen and legacy competitors may require. Our single agent, collect once and re-use many times approach enables us to activate new modules in real time.
+
+•Elite Security Teams as a Force Multiplier: Adversaries are relentlessly innovating new forms of sophisticated attacks, bypassing traditional malware to exploit user credentials and identities. In this evolving landscape, automation and autonomous security are no longer sufficient on their own. Stopping today’s sophisticated attacks requires a combination of powerful automation and elite threat hunting. Falcon Complete provides a comprehensive monitoring, management, response, and remediation solution to our customers and is designed to bring enterprise level security to companies that may lack the resources or expertise to do so on their own.
+
+CrowdStrike Falcon OverWatch, part of CrowdStrike Counter Adversary Operations, combines world-class human intelligence from our elite security experts with the power of the Falcon platform. OverWatch is a force multiplier that extends the capabilities and improves the productivity of our customers’ security teams. Because our world-class team can see attacks across our entire customer base, their expertise is enhanced by their constant visibility into the threat landscape. Additionally, the insights of our OverWatch team can then be leveraged by the Falcon platform to further enhance its autonomous capabilities, creating a positive feedback loop for our customers.
+
+•Alleviating the Skills Shortage through Automation: CrowdStrike automates manual tasks to free security teams to focus on their most important job – stopping the breach. Our Falcon Fusion capability automates workflows to reduce the need to switch between different security tools and tasks, while our Falcon Insight XDR module provides a unified solution that enables security teams to rapidly and efficiently identify, hunt, and eliminate threats across multiple security domains using first and third party datasets.
+
+•Lower Total Cost of Ownership: Our cloud-native platform eliminates our customers’ need for initial or ongoing purchases of hardware and does not require their personnel to configure, implement or integrate disparate point products. Additionally, our comprehensive platform reduces overall personnel costs associated with ongoing maintenance, as well as the need for software patches and upgrades for separate products.
+
+Securing Identities and Data Across the Pillars of Modern Enterprise Security
+
+As modern attacks and adversaries grow more sophisticated, CrowdStrike believes that stopping breaches in the modern era requires security that delivers unified visibility and protection across three critical areas: Endpoint and Cloud workloads, Identity Threat Protection and Data Protection.
+
+8
+
+Table of Contents
+
+Approximately eighty percent of breaches today use stolen credentials and identities. Stopping these advanced attacks requires a holistic approach that delivers true end-to-end protection across workloads, identities, and data. CrowdStrike is able to natively enforce protection at the device layer, the identity layer, and the data layer, extending our bold vision for security by driving modern Defense in Depth to the enterprise.
+
+By delivering these powerful capabilities through a unified platform with a single agent, CrowdStrike is able to connect the endpoint and workload to user identity, and the data that is being used and accessed. Customers can see the full health and state of endpoints and workloads, in context with the identity that is using and accessing them, aligned with where data is being created, who is using it, where it flows and how it is protected. CrowdStrike delivers this through a unified platform experience. This is how CrowdStrike believes security should and must be delivered today to combat advanced adversaries and stop breaches in the modern era. This means security solutions that are easy to deploy, easy to manage, and highly effective.
+
+The CrowdStrike Falcon Platform: Built to Innovate and Scale
+
+Our platform approach allows us to rapidly innovate, build, and deploy highly integrated modules that address critical customer problems and access additional market opportunities. Our Falcon platform is composed of two tightly integrated proprietary technologies: our lightweight agent and our Security Cloud. Our cloud-delivered modules integrate seamlessly within the Falcon platform to provide customers with a unified set of cloud-delivered technologies across Endpoint Security, Identity Protection, Cloud Security, Next-Gen SIEM and Modern Log Management, Data Protection, Exposure Management, IT Automation, ITSecOps and Risk, Threat Intelligence, and SaaS Security Posture Management.
+
+The Falcon platform also encompasses recently acquired technologies where integration may be ongoing. We can rapidly and cost effectively develop and deliver additional cloud modules on our Falcon platform without the need for additional agents, and are expanding options for our new customers to test modules on a trial basis as well as offering in-application trials for existing customers. Our expanding set of open APIs and the Foundry app development platform allow customers and partners to build their own capabilities on top of the Falcon platform.
+
+Unifying data from our modules and customers into a single cloud infrastructure gives us significant advantages in developing and delivering innovative AI capabilities to detect and prevent threats, as well as improving user productivity and efficiency through cutting-edge generative AI systems such as our Charlotte AI module.
+
+CrowdStrike Falcon Platform: Unified Security Across Major Categories
+
+Our cloud-native Falcon platform integrates seamlessly with our single lightweight agent to deliver robust functionality across key areas of cybersecurity and IT operations. The Falcon platform delivers 29 cloud modules, enabling customers to address their most critical areas of risk with speed, confidence, and visibility through one unified platform. Key areas of focus include:
+
+Endpoint Security: The Falcon platform offers next-generation antivirus, endpoint detection and response (“EDR”) and extended detection and response (“XDR”) to defend against malware, fileless attacks, and advanced threats. With cross-domain telemetry and unified incident management, we enable organizations to detect, investigate, and respond to threats across the security stack efficiently and effectively.
+
+Cloud Security: CrowdStrike provides robust cloud security solutions to protect workloads, containers, and applications in real time. Our offerings include runtime protection, cloud security posture management, application security posture management and more to secure multi-cloud environments and enhance the resilience of cloud-native applications. By integrating seamlessly into developer workflows, we empower teams to shift security left and mitigate vulnerabilities before deployment.
+
+Exposure Management: CrowdStrike’s exposure management solutions unify data from multiple sources, including IT hygiene, vulnerability management, and external attack surface management. These capabilities allow organizations to predict attack paths, prioritize remediation efforts, and proactively reduce their risk exposure. Real-time insights and guided actions empower customers to address vulnerabilities before they can be exploited.
+
+9
+
+Table of Contents
+
+Managed Services Subscription: Falcon Complete Next-Gen Managed Detection and Response (“MDR”) delivers a comprehensive managed security service subscription that combines 24/7 expert monitoring, investigation, response, and remediation to stop breaches across the entire attack lifecycle. Delivered by CrowdStrike’s team of security experts and powered by the AI-native Falcon platform, it combines industry-leading endpoint protection and extends managed protection across cloud security, identity protection, asset visibility, and Next-Gen SIEM, with 24/7 managed threat hunting from Falcon Adversary OverWatch for a full-stack MDR service. Falcon Complete Next-Gen MDR is also backed by an underwritten limited warranty policy, underscoring our commitment to breach protection and customer confidence.
+
+Counter Adversary Operations: CrowdStrike’s Counter Adversary Operations include proactive threat hunting and intelligence capabilities. These solutions leverage the insights of elite security experts and the power of Threat Graph to identify and mitigate advanced threats, providing customers with actionable intelligence to strengthen their defenses.
+
+Identity Protection: Identity protection solutions from CrowdStrike safeguard against identity-based attacks with real-time detection, behavioral analytics, and policy enforcement. These capabilities provide visibility into anomalies and lateral movement, enabling organizations to defend their most critical assets.
+
+Next-Generation SIEM and Log Management: CrowdStrike’s Next-Gen SIEM and log management solutions deliver AI-driven detection, investigation, and response capabilities, alongside high-performance log management for any data source. This comprehensive approach enhances security operations and enables organizations to respond to threats with speed and precision.
+
+Generative AI: Innovations like Charlotte AI leverage generative AI and natural language processing to automate time-intensive tasks, enabling security analysts to work more efficiently. Charlotte AI transforms hours of routine investigation into minutes, addressing critical skills gaps and enhancing operational efficiency. Powered by the Falcon platform’s unique data advantage, Charlotte continues to evolve, delivering time savings and workflow automation to meet the demands of modern security operations.
+
+IT Automation: Falcon for IT converges security and IT operations, providing visibility into enterprise assets and enabling rapid resolution of issues. With generative AI workflows and automation capabilities, Falcon for IT empowers organizations to streamline IT processes, resolve operational challenges quickly, and maintain a secure and efficient infrastructure.
+
+SaaS Security: Adaptive Shield, a CrowdStrike company, delivers continuous monitoring and proactive risk mitigation for business-critical SaaS applications. With context and visibility, organizations can address risks from users, devices, and non-human identities.
+
+Data Protection: Falcon Data Protection prevents data theft by combining content with context, providing real-time visibility into sensitive data movement across endpoints, web applications, cloud drives, and USB storage devices. This modern approach empowers organizations to secure enterprise data without disrupting productivity, addressing the unique risks of the GenAI era.
+
+Application Development: The Falcon Foundry no-code application development platform allows customers to quickly create their own apps to solve custom security and IT use-cases with full access to CrowdStrike’s data, threat intelligence, automation, and cloud-scale infrastructure.
+
+Bringing CrowdStrike to the Market
+
+We primarily sell the Falcon platform through our direct sales team that leverages our network of channel partners to maximize effectiveness and scale. We have a low friction land-and-expand sales strategy. Key elements of our growth strategy include:
+
+•Growing Our Customer Base by Replacing Legacy and Other Endpoint Security Products. Given the limitations of existing legacy and other endpoint security products, many organizations are replacing their existing legacy and other endpoint security products with our Falcon platform. We will continue to invest in customer acquisition programs, including our channel partnerships and new programs, like our free trial program of Falcon Prevent that is easily downloaded from our website and AWS Marketplace.
+
+10
+
+Table of Contents
+
+•Further Penetrating Existing Customers. Our growth will depend in part on our ability to continue to expand our relationships with our customers by deploying on additional endpoints in their environment and cross-selling more cloud modules. When customers deploy our lightweight agent, they can easily add additional cloud modules. We also offer in-application trial usage of additional modules to cross-sell to existing customers. While some new customers initially deploy our Falcon platform broadly across the organization, others elect to deploy only in selected business units and later deploy on additional endpoints and subscribe to additional modules. Over time, we seek to deploy our solution enterprise-wide for all customers. The power of our land-and-expand strategy is evidenced by our 112% dollar-based net retention rate as of January 31, 2025.
+
+•Leveraging Our Falcon Platform to Enter New Markets. Because we leverage a single data model and open cloud architecture, we are uniquely positioned to continue innovating and rapidly deploying new cloud modules on our platform. For example, Falcon Discover includes use cases outside of security, such as application license management, AWS spend analysis, and asset inventory. Because our lightweight agent collects diverse endpoint data once for repeated use, we can expand our addressable market by rapidly adding new cloud modules that leverage this data. We intend to continue to develop new cloud modules for broader endpoint use cases.
+
+•Broadening Our Reach into New Customer Segments. While we initially targeted large sophisticated enterprises, we have expanded our go-to-market efforts to include customers of all sizes with a dedicated inside sales team focused on smaller organizations. We also released Falcon Complete in 2018, our turnkey solution that combines the most popular cloud modules of our Falcon platform with our remediation and response capabilities, to create a solution for customers with limited or no internal security expertise. As a result, we can sell our Falcon platform to the largest enterprises or smallest businesses with any level of security sophistication and budget. We continue to look for new ways to broaden our reach into new customer segments.
+
+•Broadening Our Reach into U.S. Public Sector Verticals. We continue to invest heavily in the acquisition of customers in the U.S. federal government as well as the state, local, and higher education verticals. Our platform is authorized by several federal agencies via the Federal Risk and Authorization Management Program (“FedRAMP”). Additionally, Department of Defense organizations can rely upon CrowdStrike’s Impact Level 5 provisional authorization to satisfy their cloud-based security requirements. To further meet the compliance demands of the government, customers can elect to deploy the Falcon platform in the AWS GovCloud. We have also successfully been embedded into several strategic government-wide cybersecurity programs and contracts, such as the Department of Homeland Security’s Continuous Diagnostics and Mitigation Approved Products List, which serves to provide federal agencies with innovative security tools. As a result, the Cybersecurity and Infrastructure Security Agency has leveraged a significant investment in our platform to support modernization efforts within the Federal Civilian Executive Branch. Further evidence of our progress into these critical markets is demonstrated by virtue of the fact that 25 of the 50 U.S. states have standardized on CrowdStrike’s platform at the enterprise level.
+
+•Expanding Our International Footprint. We are expanding our international operations and intend to invest globally to broaden our international footprint. We grew our international revenue from $967.5 million for fiscal 2024 to $1,270.7 million for fiscal 2025, representing an increase of 31%. We intend to grow our international customer base by increasing our investments in our overseas operations, including adding headcount in Europe, the Middle East, Asia-Pacific, including Japan, and expanding data centers overseas.
+
+•Extending Our Falcon Platform and Ecosystem. We designed our architecture to be open, interoperable, and highly extensible. We launched the CrowdStrike Marketplace, the first open cloud-based application PaaS for cybersecurity, which allows customers to purchase CrowdStrike products and provides an ecosystem of trusted partners and applications for our customers to choose from. We plan to continue investing in the CrowdStrike Store to empower our partners by making it easier to build applications and to enable our customers to more easily discover, try, and purchase additional cloud modules from both trusted partners and us.
+
+Technology
+
+We have designed an innovative architecture from the ground up to overcome the limitations of existing security products and deliver cloud-based solutions. The key design principles of our Falcon platform include:
+
+11
+
+Table of Contents
+
+Cloud Native Architecture. We built the Falcon platform entirely in and for the cloud, enabling collection and analysis of a massive, crowdsourced dataset from all of our customers to stop breaches. Our platform is designed to be redundant, resilient, and high-performing. Delivering security from the cloud enables agility, ease of use, and protection for workloads on a variety of endpoints wherever they are located. As customer adoption grows, the network effect of each additional endpoint added to the Falcon platform will amplify the breadth and depth of our dataset and intelligence.
+
+Falcon Agent. We designed an intelligent lightweight agent that is installed on each endpoint or cloud workload. This agent incorporates identification and prevention of known and unknown malware and fileless attacks using machine learning, AI, exploit blocking, and advanced behavioral techniques, to protect workloads across all endpoints while capturing and recording high fidelity endpoint data. Our agent is capable of acting autonomously and continues to collect data and protect workloads running on endpoints even when offline. The agent recommences transmitting data to our Falcon platform when the connection to the cloud has been re-established. Our lightweight agent is built to support Windows, Mac, and Linux operating systems. The agent is hardened against attacks and uses a combination of kernel and user-mode modules to collect and transmit high fidelity endpoint events as they take place on a system. It correlates these events using a local situational model on the endpoint, analyzes via agent-based AI models and is capable of taking a variety of preventative and responsive actions on the endpoint, either automatically or via human control. Events are streamed by the agent to the cloud in real time in order to be further analyzed in the Threat Graph, where additional correlation and AI algorithms can be applied. The agent is also capable of being remotely reconfigured in real time based on analytics in our cloud platform to collect and analyze different events or take other actions as risk and threat postures change.
+
+Threat Graph. Threat Graph is our proprietary, powerful, scalable, and dynamic graph database. Threat Graph continually looks for malicious activity by combining AI with behavioral pattern-matching techniques to look beyond file features and track the behaviors of every OS process and software program executed on an endpoint in a customer’s network environment. By applying powerful graph analytics and AI algorithms to cybersecurity, we enrich the data collected with our proprietary and third-party threat intelligence, such as adversary capabilities, motivations, attributions, and threat indicators. The graph data model allows our AI algorithms to identify relationships between events that are not directly related but which could indicate an attack that would otherwise remain undetected. We believe that our AI algorithms are advantaged by the rich proprietary dataset that we use to train them. Threat Graph provides customers with complete real time and historical visibility and insight into events occurring on their endpoints for hunting and searching, even if the endpoint is unreachable or no longer exists.
+
+Threat Graph also provides query and hunting capability over the full set of high-fidelity events collected in the graph. This correlated data, natively represented in a graph structure, enables new products and cloud modules to be created rapidly since the platform provides the visibility, collection, correlation, and actions over data as reusable building blocks. This collect-once, use repeatedly approach is the reason why we have been able to deliver new cloud modules covering IT hygiene and vulnerability management quickly and enables us to continue expanding the Falcon platform rapidly in the future.
+
+Intel Graph. Intel Graph analyzes and correlates massive amounts of data on adversaries, their victims and their tools, providing extraordinary insights into shifting adversary tactics and techniques, powering our adversary-focused approach with world-class threat intelligence.
+
+Asset Graph. Asset Graph dynamically monitors and tracks the complex interactions among enterprise entities, providing a single holistic view of the risks those assets pose. Asset Graph provides graph visualizations of the relationships among entities and assets such as devices, users, accounts, cloud workloads, along with the rich context necessary for proper security hygiene and proactive security posture management to reduce risk in their organizations.
+
+High Fidelity Data and Smart Filtering. The presence of a local graph model in our agent enables it to track the state of the machine in real time, perform rapid machine learning and behavioral analysis, and provide efficient event streaming to the cloud. We call this “smart filtering.” This allows us to keep performance overhead on the endpoint to a minimum, dramatically reduce the bandwidth required for agent-cloud communication, efficiently process large volumes of data, and separate signals from noise. The Falcon agent collects and analyzes unfiltered data with local machine learning and behavioral algorithms on the endpoint but only streams high fidelity endpoint events to the cloud to just send what is necessary for detection, prevention and investigation of attacks. This smart filtering architecture allows us to reduce network load for our customers. The Falcon platform collects an array of high fidelity endpoint events, such as code execution, network, file system and user activity. This information can be used for a variety of use cases beyond security, such as IT operations and vulnerability management.
+
+12
+
+Table of Contents
+
+Management Interface. The Falcon platform management interface gives customers an intuitive and informative view of their complete environment, with timely alerts and detailed search capabilities. We provide real-time endpoint and cloud workload visibility to allow customers to review details and respond to threats instantly and effectively, from anywhere, and maintain an index of these events for future use.
+
+APIs and Integrations. Our Falcon platform and architecture is built around a rich set of APIs that efficiently and effectively complement and expand a customer’s existing security infrastructure, such as security information event management, or SIEMs, intrusion prevention systems and intrusion detection systems. The platform includes streaming, query and batch APIs allowing customers and partners to integrate a variety of solutions seamlessly. It also includes rich management and control APIs. The platform allows third parties to develop additional cloud modules and features, furthering the power of the Falcon platform. By connecting existing security systems to the Falcon platform, we allow our customers to further leverage their security investments.
+
+Data Center Operations
+
+We have data center co-location facilities throughout the United States and in Europe, and we also utilize third-party data centers located in the United States and Europe. Our technology infrastructure, combined with select use of third-party resources, provides us with a distributed, resilient and scalable architecture on a global scale.
+
+Professional Services
+
+In addition to our Falcon platform and cloud modules, we also offer incident response, forensic investigatory, and breach recovery services; technical assessment and strategic advisory services; Next-Gen SEIM consulting; platform deployment and operational services; as well as training and certifications to assist organizations that have experienced a breach or who are assessing their security posture and ability to respond to breaches.
+
+•Incident Response, Forensics, and Recovery Services. Our incident response services typically begin by deploying our lightweight agent to a customer’s endpoints or cloud workloads to provide visibility in order to determine if an attacker is currently in the environment, what assets have been compromised, and how much damage has been done. In addition to enriching the response team’s understanding of the attack, the full suite of Falcon platform’s next-gen prevention capabilities, cloud security, exposure management, and identity protection offerings can also be leveraged to help to slow down and prevent an active attacker from moving at-will throughout a compromised customer’s environment, increasing the risk and potential damage to the customer. We also provide customized surgical recovery services by providing the tools and staffing to eject attackers out of the network, lock down credentials from further use, remediate impacted systems and ensure adversaries stay out. In addition to providing valuable breach remediation to our customers, our incident response services also act as a strong lead generation engine for our Falcon platform and cloud modules. After experiencing the benefits of our platform firsthand, many of our incident response customers become subscription customers.
+
+•Technical Assessment and Strategic Advisory Services. Our proactive security services include technical assessment services designed to help organizations understand their cyber maturity levels. These services include both endpoint and cloud workload compromise assessments, cybersecurity maturity assessments, security program in-depth assessments, service organization control assessments, IT hygiene assessments, and active directory security assessments. We also advise customers on readiness and preparation through the execution of table-top exercises, live fire exercises, red team/blue team assessments, and advanced adversary emulation exercises. We have also added AI red-teaming to help organizations understand where these models can have risk, where they can be exploited and where to take corrective security actions. All of these services are designed to evaluate our customers’ security profile so they can identify areas of vulnerability, secure their network, and improve their response if their defenses are breached. Our services also align to executive and board level cybersecurity training and awareness, including by helping public companies more confidently comply with public disclosure requirements relating to assessing, identifying and managing material cybersecurity risks, and reporting material cyber incidents. Our programs are designed to help organizations effectively achieve cybersecurity risk reduction objectives and to maximize investments.
+
+13
+
+Table of Contents
+
+•NextGen SIEM Professional Services. Our NG-SIEM professional services offer a comprehensive suite of deployment packages and ongoing support options designed to help organizations seamlessly implement and optimize the Falcon NG-SIEM platform. Our Essentials, Advanced, and Premium Deployment Packages provide standardized implementations that prioritize data ingestion aligned with critical use cases from the MITRE ATT&CK framework, ensuring maximum impact in detecting and responding to threats. For customers requiring deeper, hands-on expertise, we offer Resident Engineer Services in flexible durations of 3, 6, or 12 months supporting both NG-SIEM as well as LogScale. These experts embed directly with customer teams to provide tailored guidance, ongoing optimization, and support for evolving security needs. Our services are designed to accelerate time-to-value, enhance security posture, and ensure the long-term success of SIEM deployments within any organization.
+
+•Platform Deployment and Operational Services. Our deployment and operational services are designed to help customers maximize the value of their investment in the CrowdStrike Falcon platform. These services provide seamless deployment of Falcon modules across endpoint, cloud, identity, Next-Gen SIEM and many other modules ensuring rapid time-to-value and alignment to CrowdStrike’s recommended security configurations to prevent breaches. Our integration services focus on enabling customers to align Falcon modules with their existing security ecosystems, leveraging our APIs and Falcon Fusion SOAR automation for improved operational efficiency. Additionally, our operational services provide tailored guidance and best practices to optimize platform performance, streamline workflows, and address specific cybersecurity challenges. The goal of these services are to empower organizations to fully operationalize CrowdStrike’s solutions, enhance security posture, and achieve measurable outcomes in cyber risk reduction with the Falcon platform.
+
+•CrowdStrike University Training and Certification. We offer training and certification services to customers and partners on CrowdStrike technologies and cybersecurity topics to facilitate the adoption of CrowdStrike and to broaden and deepen their skills. CrowdStrike University is an online learning management system that organizes all CrowdStrike e-learning, instructor-led training and certification preparation courses in one place, providing a personalized learning experience for individuals who have an active training subscription. CrowdStrike currently offers proctored exam certifications through industry leading training partner Pearson Vue for its CrowdStrike Certified Falcon Administrator, CrowdStrike Certified Falcon Responder, CrowdStrike Certified Falcon Hunter, CrowdStrike Certified Cloud Specialist, and CrowdStrike Certified Identity Specialist programs. We provide comprehensive training and certification programs to empower customers and partners with the knowledge and skills needed to maximize the value of CrowdStrike technologies and strengthen their cybersecurity expertise. CrowdStrike University provides a centralized, online platform for accessing a wide range of training options including on-demand e-learning, instructor-led training, and certification preparation. Our offerings are designed to accommodate varying levels of proficiency from foundational concepts to advanced skills in threat detection, incident response, cloud security, intelligence and other proactive security operations aligned to the Falcon platform. Our CrowdStrike Certified Falcon Administrator, Responder, Hunter, Cloud Specialist, and Identity Specialist certifications validate the skillsets of our customers and partners to ensure they are properly equipped to operate the Falcon platform. Our training offerings provide a structured learning path to accelerate CrowdStrike adoption, drive operational success, and equip professionals with validated expertise in modern cybersecurity practices.
+
+Customers
+
+Some of the world’s largest enterprises, government organizations, and high-profile brands trust us to protect their business. As of January 31, 2025, we are trusted by more than 74,000 organizations, including our end customers and those of our Managed Security Service Providers (“MSSP”), worldwide. Historically, we and our channel partners have primarily sold to large organizations, but have increasingly focused on selling to small and medium-sized businesses, particularly through our trial-to-pay model. We engage our customers through our global customer and technical advisory boards in which we solicit feedback from our customers on a regular basis allowing us to understand their evolving needs. We have used this feedback to develop new cloud modules, such as Falcon FileVantage, and we intend to continue to develop new cloud modules based on our customer’s feedback. Our business is not dependent on any particular end customer.
+
+14
+
+Table of Contents
+
+Sales and Marketing
+
+Our sales and marketing organizations work together closely to drive market awareness, build a strong sales pipeline and cultivate customer relationships to drive revenue growth.
+
+Sales
+
+We primarily sell subscriptions to our Falcon platform and cloud modules through our world-class, global sales team, which is comprised of field sales and inside sales professionals who are segmented by a customer’s organizational size. Our sales team also leverages a powerful go-to-market sales motion with our vast ecosystem of channel and alliances partners. We also use our sales team to identify current customers who may be interested in free trials of additional cloud modules, which serves as a powerful driver of our land and expand model. By segmenting our sales teams, we can deploy a low-touch sales model that efficiently identifies prospective customers.
+
+Marketing
+
+Our marketing organization is focused on building our brand reputation, increasing the awareness and reputation of our platform, and driving customer demand. As part of these efforts, we deliver targeted content to demonstrate thought leadership in the security industry, including speaking engagements with the security industry’s foremost organizations to provide expert advice, issuing regular reports on the state of the industry, educating the public about cybersecurity threats, and identifying and naming adversary groups. We also engage in paid media, web marketing, industry and trade conferences (including our annual Fal.Con conference), analyst engagements, whitepaper development, demand generation via digital and web, and targeted displacement campaigns. We employ a wide range of digital programs, including search engine marketing, online and social media initiatives, and content syndication to increase traffic to our website and encourage prospective customers to sign up for a free trial of the Falcon platform. Additionally, we engage in joint marketing activities with our channel and technology alliance partners.
+
+Partnership Ecosystem
+
+We operate a partner-first go-to-market strategy to land new logos and expand in existing accounts. We partner with a diverse set of partners. We work with a wide array of go-to-market partners in our technology alliance partners to design go-to-market strategies that combine our platform with products or services provided by our technology alliance partners. These partner integrations deliver more secure solutions and an improved end user experience to their customers. Our technology alliance partnerships focus on security analytics, network and infrastructure security, threat platforms and orchestration, and automation. We launched the CrowdStrike Store, the first open cloud-based application PaaS for cybersecurity and the industry’s first unified security cloud ecosystem of trusted third-party applications. In addition, Falcon for AWS, available in the AWS Marketplace, allows customers to easily purchase and take advantage of the metered billing (pay-as-you-go) pricing option to scale their consumption as their business needs change.
+
+Research and Development
+
+Our research and development organizations are responsible for the design, architecture, operation and quality of our cloud native Falcon platform. In addition, the research and development organizations work closely with our customer success teams to promote customer satisfaction.
+
+Our success is a result of our continuous drive for innovation. Our internal team of security experts, researchers, intelligence analysts, and threat hunters continuously analyzes the evolving global threat landscape to develop products that defend against today’s most sophisticated and stealthy attacks and report on emerging security issues. We invest substantial resources in research and development to enhance our Falcon platform, and develop new cloud modules, features and functionality. We believe timely development of new, and enhancement of our existing products, services, and features is essential to maintaining our competitive position. We work closely with our customers and channel partners to gain valuable insight into their security management practices to assist us in designing new cloud modules and features that extend the capability of our platform. Our technical staff monitors and tests our software on a regular basis, and we also make our Falcon platform available for third-party validation. We also maintain a regular release process to update and enhance our existing solutions. In addition, we engage security consulting firms to perform periodic vulnerability analysis of our solutions.
+
+15
+
+Table of Contents
+
+Our research and development leadership team is located in Seattle, Washington and Sunnyvale, California. We also maintain research and development centers in Irvine, California, Minneapolis, Minnesota, Bucharest, Romania, Israel and India. We employ subject matter experts in a number of jurisdictions around the world. We plan to continue to dedicate significant resources to research and development.
+
+Competition
+
+We primarily compete with established and emerging security product vendors. While the market for traditional endpoint and IT operations solutions has historically been intensely competitive, we believe that the architecture of our cloud-native, single agent platform fundamentally differentiates us compared to both next-gen and legacy competitors in the security industry. Additionally, as we look to enter into adjacent markets and expand our total addressable market, we may face new competitors. However, we do not believe any of our competitors currently have a true platform offering equivalent to the Falcon platform, which can be leveraged to win in legacy markets and define new categories.
+
+Our competitors currently include the following by general category:
+
+•legacy antivirus product providers who offer a broad range of approaches and solutions including traditional signature-based antivirus protection;
+
+•alternative endpoint security providers who generally offer a mix of on-premises and cloud-hosted products that rely heavily on malware-only or application whitelisting techniques;
+
+•network security vendors who are supplementing their core perimeter-based offerings with endpoint or cloud security solutions;
+
+•cloud security vendors, including those who focus on public cloud infrastructure and services;
+
+•identity security vendors that seek to identify and secure user accounts and related activities;
+
+•professional service providers who offer cybersecurity response services; and
+
+•legacy SIEM vendors who offer a range of log management and security capabilities.
+
+We compete on the basis of a number of factors, including but not limited to our:
+
+•ability to offer a unified and modular platform that enables rapid innovation, scaling, and deployment;
+
+•ability to identify security threats and prevent security breaches;
+
+•ability to integrate with other participants in the security ecosystem;
+
+•time to value, price, and total cost of ownership;
+
+•brand awareness, reputation, and trust in the provider’s services;
+
+•strength of sales, marketing, and channel partner relationships;
+
+•customer support, incident response, and proactive services; and
+
+•ability to rapidly ingest and search both first and third-party data.
+
+Although certain of our competitors enjoy greater resources, recognition, deeper customer relationships, larger existing customer bases, or more mature intellectual property portfolios, we believe that we compete favorably with respect to these factors and that we are well positioned as a leading provider of endpoint and workload security solutions.
+
+16
+
+Table of Contents
+
+Intellectual Property
+
+We believe that our intellectual property rights are valuable and important to our business. We rely on trademarks, patents, copyrights, trade secrets, license agreements, intellectual property assignment agreements, confidentiality procedures, non-disclosure agreements, and employee non-disclosure and invention assignment agreements to establish and protect our proprietary rights. Though we rely in part upon these legal and contractual protections, we believe that factors such as the skills and ingenuity of our employees and the functionality and frequent enhancements to our solutions are larger contributors to our success in the marketplace.
+
+We continue to grow our global portfolio of intellectual property rights in connection with our products, services, research and development, and other activities to protect our proprietary technology relevant to our business. We file patent applications to protect our intellectual property and believe that the duration of our issued patents is sufficient when considering the expected lives of our products. We intend to continue pursuing additional intellectual property protection to the extent we believe it would be beneficial and cost-effective. Despite our efforts to protect our intellectual property rights, they may not be respected in the future or may be invalidated, circumvented, or challenged. Our industry is characterized by the existence of a large number of patents and frequent claims and related litigation based on allegations of patent infringement or other violations of intellectual property rights. We believe that competitors will try to develop products that are similar to ours and that may infringe our intellectual property rights. Our competitors or other third-parties may also claim that our security platform and other solutions infringe their intellectual property rights. In particular, some companies in our industry have extensive patent portfolios. From time to time, third parties have in the past and may in the future assert claims of infringement, misappropriation and other violations of intellectual property rights against us or our customers, with whom our agreements may obligate us to indemnify against these claims. Successful claims of infringement by a third party could prevent us from offering certain products or features, require us to develop alternate, non-infringing technology, which could require significant time and during which we could be unable to continue to offer our affected products or solutions, require us to obtain a license, which may not be available on reasonable terms or at all, or force us to pay substantial damages, royalties, or other fees. For additional information, see the section titled “Risk Factors—Risks Related to Intellectual Property, Legal, and Regulatory Matters—The success of our business depends in part on our ability to protect and enforce our intellectual property rights.”
+
+Backlog
+
+We enter into both single and multi-year subscription contracts for our solutions. We generally invoice our subscription customers at the beginning of the subscription term, or in some instances, such as in multi-year arrangements, in installments. Until we have the contractual right to invoice, these contract amounts are classified as backlog. They are not recorded in deferred revenue or elsewhere in our consolidated financial statements. As of January 31, 2025, we had backlog of approximately $2.8 billion. We expect backlog will change from period to period for several reasons, including the timing and duration of customer agreements, varying billing cycles of subscription agreements, and the timing and duration of customer renewals. Because revenue for any period is a function of revenue recognized from deferred revenue under contracts in existence at the beginning of the period, as well as contract renewals and new customer contracts during the period, backlog at the beginning of any period is not necessarily indicative of future revenue performance. We do not utilize backlog as a key management metric internally.
+
+Seasonality
+
+Given the annual budget approval process of many of our customers, we see seasonal patterns in our business. Net new ARR generation is typically greater in the second half of the year, particularly in the fourth quarter, as compared to the first half of the year. In addition, we also experience seasonality in our operating margin, typically with a lower margin in the first half of our fiscal year due to a step up in costs for payroll taxes and annual sales and marketing events. This also impacts the timing of operating cash flow.
+
+Human Capital Resources
+
+As of January 31, 2025, we had 10,118 full-time employees. We also engage temporary employees and consultants as needed to support our operations. None of our employees in the United States are represented by a labor union or subject to a collective bargaining agreement. In certain countries in which we operate, we are subject to local labor law requirements which may automatically make our employees subject to industry-wide collective bargaining agreements. We have not experienced any work stoppages, and we consider our relations with our employees to be good.
+
+17
+
+Table of Contents
+
+Attraction, Retention, and Talent Development
+
+Supporting our people is a foundational value for CrowdStrike. We believe the company’s success depends on our ability to attract, retain and develop employees. The skills, experience and industry knowledge of key employees significantly benefit our customers, operations and our overall company performance.
+
+Our talent sourcing is aligned to our organizational strategy to provide the expertise and skills needed to move our mission forward. We have created a high-performance talent model that pinpoints the top traits and qualities we look for in talent and that may already exist within the organization, then consistently use that model to develop interview questions, screen candidates, and make hiring decisions.
+
+CrowdStrike has always been a mission-focused organization. We hire and develop people based on their merits and alignment to our mission of stopping breaches. Our work requires us to consider problems from all angles. We believe that an open, collaborative environment strengthens our ability to build strong teams, serve our customers and drive innovation.
+
+To attract high performers, we have a team dedicated to building and promoting our employer brand focused on creating a strong employer value proposition, which includes:
+
+•Competitive pay and benefits
+
+•Flexible working arrangements
+
+•Role and task diversity
+
+•Professional development opportunities
+
+•Organizational reputation and culture
+
+We provide robust compensation and benefits programs to help meet the needs of our employees. In addition to base salary, these programs (which vary by country/region) include annual bonuses or commission plans, equity awards, an employee stock purchase plan, a 401(k) plan or pension schemes internationally, healthcare and insurance benefits, health savings and flexible spending accounts, paid time off, family leave, family care resources, flexible work schedules, adoption and infertility assistance, and employee assistance programs.
+
+We invest resources to develop the talent needed to remain a leader in cybersecurity. We deliver numerous training opportunities, provide rotational assignment opportunities, have expanded our focus on continuous learning and development, and ensure we manage performance, provide feedback, and develop talent.
+
+Distributed Workforce
+
+For CrowdStrike, the ability to work remotely or in a hybrid arrangement is a deliberate strategy that we believe fuels rapid innovation and helps us attract, hire and retain the best and brightest around the world, regardless of their specific location. Our culture is purpose-built around this ability, creating a competitive advantage for both the company and its customers and minimizing disruption from localized issues such as natural disasters, political events, or health emergencies.
+
+CrowdStrike has had a distributed workforce since its inception. While working remotely has its advantages, we also believe that building community and engagement happens at a faster pace when people can come together.
+
+Since the beginning, we recognized that creating high-functioning, effective remote and hybrid teams would require careful planning and system design to not only establish the culture but help it grow and evolve organically. We have designed our processes, systems, and teams so that most employees can perform their jobs without needing to be physically present in the same room or even in the same time zone. Part of supporting our remote and hybrid culture also involves actively encouraging personal well-being through initiatives, including wellness programs, engagement programs (speaker series, employee resource groups, gift exchanges, mentorship opportunities, virtual events, etc.), community outreach activities, recognition programs, and groups to connect people, no matter where they are geographically, with similar interests, life circumstances or backgrounds. We continue to find ways to bring our employees together to build community and camaraderie.
+
+18
+
+Table of Contents
+
+Our People and Core Values
+
+At CrowdStrike, we embrace the mantra of “One Team. One Fight.” Our global team is passionate about working together toward our mission to stop breaches, knowing they will be fully included, supported and valued along the way. We are Fanatical About the Customer, Relentlessly Focused on Innovation and believe that our Limitless Passion drives Unlimited Potential for every CrowdStriker. Our Core Values sum up our culture. We provide the support and resources needed to enable people to do their best work.
+
+Information about our Executive Officers
+
+The following table sets forth certain information with respect to our current executive officers as of March 10, 2025:
+
+Name | Age | Position
+
+George Kurtz | 54 | President, Chief Executive Officer and Director
+
+Burt W. Podbere | 59 | Chief Financial Officer
+
+Shawn Henry | 62 | Chief Security Officer
+
+Michael Sentonas | 51 | President
+
+There is no family relationship between any of our directors or executive officers and any other director or executive officer.
+
+George Kurtz - President, Chief Executive Officer, and Director
+
+Mr. Kurtz is one of our co-founders and has served as our President, Chief Executive Officer, and a member of our board of directors since November 2011. From October 2004 to October 2011, Mr. Kurtz served in executive roles at McAfee, Inc., a security technology company, including as Executive Vice President and Worldwide Chief Technology Officer from October 2009 to October 2011. In October 1999, Mr. Kurtz founded Foundstone, Inc., a security technology company, where he served as its Chief Executive Officer until it was acquired by McAfee, Inc. in October 2004. Since November 2017, he has also served as Chairman of the Board, and as President for the CrowdStrike Foundation, a nonprofit established to support the next generation of talent and research in cybersecurity and artificial intelligence through scholarships, grants, and other activities. He also served on the board of directors of Hewlett Packard Enterprise, an enterprise information technology company, from June 2019 to April 2023. Mr. Kurtz holds a B.S. in accounting from Seton Hall University. Mr. Kurtz also holds a CPA license from the State of New Jersey with an inactive status.
+
+Burt W. Podbere - Chief Financial Officer
+
+Mr. Podbere has served as our Chief Financial Officer since September 2015. From May 2014 to August 2015, Mr. Podbere served as Chief Financial Officer for OpenDNS, Inc. (acquired by Cisco in 2015), a cloud-delivered network security company, where he oversaw the finance function. From October 2011 to April 2014, he served as Chief Financial Officer for Net Optics, Inc. (acquired by Ixia in 2013), a manufacturer of network monitoring and intelligent access solutions for physical and virtual networks. Since November 2017, he has also served as Treasurer and as a board member for the CrowdStrike Foundation, a nonprofit established to support the next generation of talent and research in cybersecurity and artificial intelligence through scholarships, grants, and other activities. Mr. Podbere is a Chartered Accountant and holds a B.A. from McGill University.
+
+Shawn Henry - Chief Security Officer
+
+Mr. Henry has served as our Chief Security Officer since March 2012. From March 2012 to October 2022, Mr. Henry also served as President of CrowdStrike Services. Mr. Henry previously worked for the FBI from 1987 through March 2012, including most recently as Executive Assistant Director of the FBI’s Criminal, Cyber, Response and Services Branch. Since June 2016, Mr. Henry has served as a faculty member specializing in cybersecurity for the National Association of Corporate Directors, an organization providing training and education for private and public company directors. Mr. Henry previously served as a cybersecurity and national security analyst for NBC News. Since November 2021, Mr. Henry has served as a director of ShoulderUp Technology Acquisition Corp., a blank check company that completed its initial public offering in
+
+19
+
+Table of Contents
+
+November 2021. Mr. Henry also serves on the board of directors of CLEAR, a technology identity company, and served on the board of Global Cyber Alliance, a nonprofit organization dedicated to reducing cyber risk, from 2015 to December 2024. Additionally, Mr. Henry serves on the advisory boards of several organizations. Mr. Henry holds a B.B.A. from Hofstra University and an M.S. in criminal justice from Virginia Commonwealth University.
+
+Michael Sentonas - President
+
+Mr. Sentonas has served as our President since March 2023. Prior to being appointed President, Mr. Sentonas served as our Chief Technology Officer since February 2020, and as our Vice President, Technology Strategy from May 2016 to February 2020. Immediately prior to joining us, Mr. Sentonas served at McAfee Corp. from March 2004 to April 2016 in various positions, and finally as Chief Technology Officer – Security Connected from November 2013 to April 2016. Mr. Sentonas is a board member of the CrowdStrike Foundation, a nonprofit established to support the next generation of talent and research in cybersecurity and artificial intelligence through scholarships, grants, and other activities, and a member of the Forbes Technology Counsel, an organization for senior technology executives. He is an active public speaker on security issues and advises government and business communities on global and local cyber security threats. Mr. Sentonas holds a B.S. in computer science from Edith Cowan University, Western Australia.
+
+Corporate Information
+
+Our principal executive offices are located at 206 E. 9th Street, Suite 1400, Austin, Texas 78701 and our telephone number is (888) 512-8906. We are a holding company and all of our business operations are conducted through our subsidiaries, including CrowdStrike, Inc. Our website address is www.crowdstrike.com. Information contained on, or that can be accessed through, our website does not constitute part of this Annual Report on Form 10-K.
+
+Available Information
+
+Our Annual Report on Form 10-K, Quarterly Reports on Form 10-Q, Current Reports on Form 8-K, and amendments to these reports are filed with the SEC pursuant to Sections 13(a) and 15(d) of the Exchange Act. Such reports and other information filed or furnished by us with the SEC are available free of charge on our website at https://ir.crowdstrike.com/financial-information/sec-filings, as soon as reasonably practicable after we file such material with, or furnish it to, the SEC. The SEC maintains a website that contains the materials we file with or furnish to the SEC at www.sec.gov.
+
+20
+
+Table of Contents
