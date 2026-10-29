@@ -84,12 +84,18 @@ LABELS = {
     "operating_margin": r"operating margin",
 }
 ANY_LABEL = re.compile(r"\b(?:" + "|".join(LABELS.values()) + r")\b", re.IGNORECASE)
+FULL_DOLLARS = 100_000  # a bare table figure at least this big is in full dollars
+# "$4,049,858,186": a full-dollar figure with no unit word (two or more thousands groups).
+BARE_DOLLAR_RE = re.compile(
+    r"\$\s?\(?(\d{1,3}(?:,\d{3}){2,}(?:\.\d+)?)\)?(?!\s*(?:thousand|million|billion))",
+    re.IGNORECASE,
+)
 WINDOW = 120  # characters after a label in which its figure must appear
 SHARE_OF = re.compile(r"\bor\s+[\d.]+%,?\s+of\b", re.IGNORECASE)
 # A label followed by one of these names a slice of the fact ("revenues from customers
 # outside the United States", "net income attributable to noncontrolling interests").
 SUB_LINE_TAIL = re.compile(
-    r"\s+(?:from customers|outside|attributable|in the \w+ segment|by segment|from (?:our|the) \w+ segment)",
+    r"\s+(?:stream|base|from customers|outside|attributable|in the \w+ segment|by segment|from (?:our|the) \w+ segment)",
     re.IGNORECASE,
 )
 # Words that may precede a headline label; anything else ("product", "cost of",
@@ -151,12 +157,36 @@ def real_facts(xbrl: dict[str, float]) -> dict[str, float | None]:
     return with_margins(facts)
 
 
+def cell_readings(cell: str) -> list[float]:
+    """A table cell's dollar readings: in thousands and in millions (tables state their
+    unit in a header the row doesn't carry), plus as written for a figure big enough to
+    be in full dollars (Method 2's "$59,990,031").
+    """
+    v = to_float(cell.strip("*$ "))
+    if v is None:
+        return []
+    return [v * 1e3, v * 1e6] + ([v] if abs(v) >= FULL_DOLLARS else [])
+
+
+def dollar_readings(text: str) -> list[float]:
+    """Every dollar figure in `text`: prose with a unit word, bare full-dollar prose
+    ("$4,049,858,186"), and table cells in " | ", markdown or tab-separated rows.
+    """
+    values = [v for v, _ in extract_figures(text)[0]]
+    values += [v for m in BARE_DOLLAR_RE.finditer(text) if (v := to_float(m.group(1))) is not None]
+    for line in text.splitlines():
+        cells = table_cells(line)
+        if cells:
+            values += [r for cell in cells[1:] for r in cell_readings(cell)]
+    return values
+
+
 def stating_chunks(value: float, chunks: Iterable[Chunk], *, is_percent: bool) -> list[str]:
     """Ids of every chunk whose text states `value`."""
     ids = []
     for chunk in chunks:
-        dollars, percents = extract_figures(chunk.text)
-        if any(closest_match(v, {value}, relative=not is_percent) for v, _ in (percents if is_percent else dollars)):
+        found = [v for v, _ in extract_figures(chunk.text)[1]] if is_percent else dollar_readings(chunk.text)
+        if any(closest_match(v, {value}, relative=not is_percent) for v in found):
             ids.append(chunk.chunk_id)
     return ids
 
@@ -195,6 +225,13 @@ def make_questions(
     return rows
 
 
+def contextual(chunk: Chunk) -> str:
+    """The chunk as indexed: prefixed with its company, year and Item, so a question
+    naming the company can find that company's passage among look-alike ones.
+    """
+    return f"{chunk.company_name}, fiscal {chunk.fiscal_year}, Item {chunk.item}:\n{chunk.text}"
+
+
 def score(questions: list[dict], chunks: list[Chunk], k: int = K) -> dict[str, float | int | None]:
     """fact_coverage and fact_recall_at_k for `questions` searched over `chunks`.
 
@@ -204,7 +241,7 @@ def score(questions: list[dict], chunks: list[Chunk], k: int = K) -> dict[str, f
     if not questions:
         return {"n_questions": 0, "fact_coverage": None, f"fact_recall_at_{k}": None}
     ids = {c.chunk_id for c in chunks}
-    bm25 = Bm25Retriever([c.chunk_id for c in chunks], [c.text for c in chunks]) if chunks else None
+    bm25 = Bm25Retriever([c.chunk_id for c in chunks], [contextual(c) for c in chunks]) if chunks else None
     covered = hits = 0
     for q in questions:
         gold = {g for g in q["gold_chunk_ids"].split(";") if g in ids}
@@ -224,6 +261,9 @@ def first_percent(text: str) -> float | None:
 
 def first_dollar(text: str) -> float | None:
     m = PROSE_DOLLAR_RE.search(text)
+    bare = BARE_DOLLAR_RE.search(text)
+    if bare and (not m or bare.start() < m.start()):
+        return to_float(bare.group(1))
     if not m:
         return None
     amount = to_float(m.group(0)[: -len(m.group(1))])
@@ -243,10 +283,11 @@ def headline_label(line: str, start: int) -> bool:
 
 def table_cells(line: str) -> list[str] | None:
     """Cells of a " | " (synthetic) or tab-separated (real) table row, "$" cells dropped."""
-    sep = " | " if " | " in line else "\t" if "\t" in line else None
+    sep = "|" if " | " in line or line.lstrip().startswith("|") else "\t" if "\t" in line else None
     if sep is None:
         return None
-    return [c.strip() for c in line.split(sep) if c.strip() not in ("", "$")]
+    cells = [c.strip().strip("*").strip() for c in line.split(sep)]
+    return [c for c in cells if c not in ("", "$")]
 
 
 def attached_figures(text: str, fact: str, *, is_percent: bool) -> list[tuple[list[float], str]]:
@@ -263,9 +304,11 @@ def attached_figures(text: str, fact: str, *, is_percent: bool) -> list[tuple[li
         if cells is not None:
             percent_row = len(cells) > 2 and cells[2].startswith("%")
             if not is_percent and len(cells) > 1 and not percent_row and label.fullmatch(cells[0].strip("*: ")):
-                v = to_float(cells[1])
-                if v is not None:
-                    found.append(([v * 1e3, v * 1e6], line))
+                # Every value column: segment tables put the total last, comparative
+                # tables put prior years after the current one.
+                readings = [r for cell in cells[1:] for r in cell_readings(cell)]
+                if readings:
+                    found.append((readings, line))
             continue
         for m in label.finditer(line):
             if not headline_label(line, m.start()):
@@ -306,7 +349,7 @@ def correctness(
         allowed = {value}
         before = prior.get(fact)
         if before is not None:
-            allowed |= {before} if is_percent else {before, value - before}
+            allowed |= {before, value - before}
         for text in texts:
             for readings, context in attached_figures(text, fact, is_percent=is_percent):
                 ok = any(closest_match(v, allowed, relative=not is_percent) for v in readings)
