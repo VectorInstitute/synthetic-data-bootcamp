@@ -71,12 +71,12 @@ sys.path.insert(0, str(ROOT))
 import numpy as np  # noqa: E402
 from method_2.step09_validate_filings import (  # noqa: E402
     check_real_company_leaks,
-    closest_match,
     extract_figures,
     load_real_companies,
     real_section_stats,
 )
 from method_2.utils import setup_logging, write_atomic  # noqa: E402
+from qa.fact_questions import make_questions, synthetic_facts  # noqa: E402
 from RAG import step11_make_qa as qa  # noqa: E402
 from RAG.chunks import Chunk, chunk_text  # noqa: E402
 from RAG.retrieval import (  # noqa: E402
@@ -114,6 +114,7 @@ DEFAULT_OUT = HERE / "results" / "compare_sets"
 ITEMS = ["1", "1a", "1c", "7", "8"]
 TOP_VOCAB_SIZE = 3000
 SHINGLE = 8
+REAL_CHUNK_WORDS = 80  # target chunk size when a real Item has no blank lines (see pack_lines)
 COPY_THRESHOLD = 0.05
 PRIVACY_FIELDS = [
     "total_assets",
@@ -378,10 +379,42 @@ def real_gap_summary(real: RealCorpus) -> dict:
 # ---------- utility ----------
 
 
+def paragraphs(text: str) -> list[str]:
+    """Paragraphs of an Item: blank-line separated, or lines packed into ~80-word chunks
+    when the file has no blank lines (the parsed real filings), so a real Item isn't one
+    giant chunk.
+    """
+    paras = chunk_text(text)
+    if len(paras) == 1 and "\n" in paras[0]:
+        paras = pack_lines([line.strip() for line in paras[0].splitlines() if line.strip()])
+    return paras
+
+
+def pack_lines(lines: list[str], target_words: int = REAL_CHUNK_WORDS) -> list[str]:
+    """Join consecutive lines into chunks of about `target_words` words.
+
+    A parsed real filing has one line per paragraph or table row (median 5 words), so
+    single lines are too small to be a passage. Packing them gives chunks near the
+    size of a long synthetic paragraph (synthetic Item 7 paragraphs: median 24 words,
+    90th percentile 57). A line longer than the target stays a chunk of its own.
+    """
+    chunks, current, words = [], [], 0
+    for line in lines:
+        n = len(line.split())
+        if current and words + n > target_words:
+            chunks.append("\n".join(current))
+            current, words = [], 0
+        current.append(line)
+        words += n
+    if current:
+        chunks.append("\n".join(current))
+    return chunks
+
+
 def company_chunks(company_id: str, name: str, fy: int, paths: dict[str, Path], source: str) -> list[Chunk]:
     chunks = []
     for item, path in paths.items():
-        for i, para in enumerate(chunk_text(path.read_text(encoding="utf-8", errors="replace"))):
+        for i, para in enumerate(paragraphs(path.read_text(encoding="utf-8", errors="replace"))):
             chunks.append(
                 Chunk(f"{source[0]}:{company_id}_{fy}_{item}_{i}", company_id, name, fy, item, source, str(path), para),
             )
@@ -403,16 +436,6 @@ def set_chunks(companies: list[Company]) -> list[Chunk]:
     return out
 
 
-def gold_chunk_ids(value: float, chunks: list[Chunk], *, is_percent: bool) -> list[str]:
-    """Every chunk that states `value`: a retriever that finds any of them has found the answer."""
-    ids = []
-    for chunk in chunks:
-        dollars, percents = extract_figures(chunk.text)
-        if any(closest_match(v, {value}, relative=not is_percent) for v, _ in (percents if is_percent else dollars)):
-            ids.append(chunk.chunk_id)
-    return ids
-
-
 def financial_fact_rows(
     source: str,
     ticker: str,
@@ -421,24 +444,21 @@ def financial_fact_rows(
     financials: dict,
     chunks: list[Chunk],
 ) -> list[dict]:
-    """step11's financial-fact and margin questions, for any company and its chunks."""
-    facts = []
-    for path, template, is_percent in qa.FINANCIAL_FACTS:
-        facts.append((qa.get_field(financials, path), template.format(name=name, fy=fy), is_percent))
-    income = financials.get("income_statement", {})
-    revenue = income.get("revenues")
-    for key, label in (("net_income", "net margin"), ("operating_income", "operating margin")):
-        if revenue and income.get(key) is not None:
-            facts.append((income[key] / revenue * 100, f"What was {name}'s {label} for fiscal {fy}?", True))
+    """The shared fact questions (qa.fact_questions) that have a stating chunk, as QA rows.
 
+    Retrieval evaluation needs a gold chunk, so unanswerable questions are left out
+    here; section_scorecard counts them as misses instead.
+    """
+    by_id = {c.chunk_id: c for c in chunks}
     rows = []
-    for value, question, is_percent in facts:
-        found = qa.find_figure_chunk(value, chunks, is_percent=is_percent) if value is not None else None
-        if found:
-            chunk, answer = found
-            row = qa.qa_row(source, ticker, fy, chunk.item, "factual", question, answer, chunk.chunk_id)
-            row["gold_chunk_ids"] = ";".join(gold_chunk_ids(value, chunks, is_percent=is_percent))
-            rows.append(row)
+    for q in make_questions(ticker, name, fy, synthetic_facts(financials), chunks):
+        if not q["gold_chunk_ids"]:
+            continue
+        chunk = by_id[q["gold_chunk_ids"].split(";")[0]]
+        answer = f"{q['answer']:.1f}%" if q["is_percent"] else f"${q['answer']:,.0f}"
+        row = qa.qa_row(source, ticker, fy, chunk.item, "factual", q["question"], answer, chunk.chunk_id)
+        row["gold_chunk_ids"] = q["gold_chunk_ids"]
+        rows.append(row)
     return rows
 
 
