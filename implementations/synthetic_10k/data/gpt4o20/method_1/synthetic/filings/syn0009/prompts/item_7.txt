@@ -1,0 +1,254 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Torsel Software, Inc. (ticker TSOE)
+Sector: Information Technology
+Incorporated in: Delaware
+Headquarters: Princeton, New Jersey
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 28,000
+
+Torsel Software, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      24,213        21,422
+Cost of revenue                              13,334        11,813
+Gross profit                                 10,879         9,609
+Research and development                      2,620         2,375
+Selling, general and administrative           2,673         2,303
+Other operating expense                       1,453         1,285
+Operating income                              4,133         3,646
+Interest expense                                190           167
+Income before income taxes                    3,943         3,479
+Provision for income taxes                      442           364
+Net income                                    3,501         3,115
+
+Torsel Software, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            1,154           960
+Accounts receivable, net                             4,671         4,187
+Inventories                                          1,608         1,433
+Other current assets                                 3,185         2,821
+Total current assets                                10,618         9,401
+Property, plant and equipment, net                   2,477         2,180
+Goodwill                                             1,951         1,600
+Other non-current assets                            14,250        11,796
+Total assets                                        29,296        24,977
+Total current liabilities                            7,798         7,171
+Long-term debt                                       4,222         3,721
+Other non-current liabilities                        9,179         7,111
+Total liabilities                                   21,199        18,003
+Total stockholders' equity                           8,097         6,974
+Total liabilities and stockholders' equity          29,296        24,977
+
+Torsel Software, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             3,501
+Depreciation and amortization                            867
+Changes in working capital and other                   (346)
+Net cash provided by operating activities              4,022
+Purchases of property and equipment                    (472)
+Other investing activities, net                      (1,479)
+Net cash used in investing activities                (1,951)
+Net change in long-term debt                             501
+Dividends paid                                             0
+Share repurchases, net of issuances                  (2,378)
+Net cash used in financing activities                (1,877)
+Net change in cash and cash equivalents                  194
+Cash and cash equivalents, beginning of year             960
+Cash and cash equivalents, end of year                 1,154
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 13.0%
+Net income growth, fiscal 2024 versus 2023: 12.4%
+Operating income growth, fiscal 2024 versus 2023: 13.4%
+Gross margin, fiscal 2024: 44.9%
+Operating margin, fiscal 2024: 17.1%
+Net margin, fiscal 2024: 14.5%
+Effective tax rate, fiscal 2024: 11.2%
+Research and development as a share of revenue, fiscal 2024: 10.8%
+Selling, general and administrative as a share of revenue, fiscal 2024: 11.0%
+Gross margin, fiscal 2023: 44.9%
+Operating margin, fiscal 2023: 17.0%
+Net margin, fiscal 2023: 14.5%
+Effective tax rate, fiscal 2023: 10.5%
+Research and development as a share of revenue, fiscal 2023: 11.1%
+Selling, general and administrative as a share of revenue, fiscal 2023: 10.8%
+
+STYLE EXAMPLE: the start of Item 7 from a real Information Technology company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations
+The following discussion and analysis contains forward-looking statements within the meaning of the federal securities laws and should be read in conjunction with the disclosures we make concerning risks and other factors that may affect our business and operating results. You should read this information in conjunction with the Consolidated Financial Statements and the notes thereto included in Part II, Item 8, Financial Statements and Supplementary Data, of this Annual Report on Form 10-K. See also “Forward-Looking Statements” immediately prior to Part I, Item 1, Business, of this Annual Report on Form 10-K.
+Our Company
+We are a leading developer, manufacturer, and provider of data storage devices and solutions based on hard disk drive (“HDD”) technology. We leverage our capability in the HDD industry primarily for the cloud and hyperscale data center markets. HDDs are critical components in the worldwide data infrastructure market, powering the digital economy. HDDs provide reliable, cost-effective, high-capacity storage needs for a wide range of applications, ranging from cloud data centers, enterprise storage systems, edge computing, video surveillance to client and consumer.
+Our broad portfolio of technology and products addresses our customers’ storage needs through multiple end markets: “Cloud,” “Client” and “Consumer”. Cloud is comprised primarily of products for public or private cloud environments and enterprise customers. Through the Client end market, we provide our original equipment manufacturer (“OEM”) and channel customers a broad array of high-performance HDD solutions across desktop and notebooks. The Consumer end market provides a broad range of retail and other end-user products, which capitalize on the strength of our product brand recognition and vast points of presence around the world.
+Our fiscal year ends on the Friday nearest to June 30 and typically consists of 52 weeks. Approximately every five to six years, we report a 53-week fiscal year to align the fiscal year with the foregoing policy. Fiscal year 2026, ending on July 3, 2026 will be comprised of 53 weeks, with the first quarter consisting of 14 weeks. Fiscal years 2025, 2024, and 2023, which ended on June 27, 2025, June 28, 2024, and June 30, 2023, respectively, each comprised 52 weeks, with all quarters presented consisting of 13 weeks.
+Key Developments
+Separation of Business Units
+On February 21, 2025 (the “Separation Date”), we completed the separation of our HDD and Flash business units (the “Separation”) to create two independent public companies, with Western Digital focusing on our existing HDD business and Sandisk Corporation (“Sandisk”), formerly a wholly-owned subsidiary of the Company, holding the Flash business. We believe the Separation better positions each business unit to execute innovative technology and product development, capitalize on unique growth opportunities, extend respective leadership positions, operate more efficiently with distinct capital structures, and pursue capital allocation strategies that maximize long-term shareholder value. The Separation was effected through a pro rata distribution of 80.1% of the outstanding shares of Sandisk common stock to holders of the Company’s common stock as of February 12, 2025, the record date for the distribution. The Company did not issue fractional shares of Sandisk common stock in connection with the distribution. Sandisk is now an independent public company, and Sandisk common stock commenced trading “regular way” under the symbol “SNDK” on the Nasdaq Stock Market LLC (“Nasdaq”) on February 24, 2025, which was the next trading day following the distribution date. The Company continues to trade on Nasdaq under the symbol “WDC” following the Separation. Following the Separation, the Company no longer consolidates Sandisk within the Company’s financial results. As part of the Separation, the Company retained 28.8 million shares of Sandisk common stock, or a 19.9% stake. During the quarter ended June 27, 2025, the Company disposed of 21.3 million shares of Sandisk common stock, along with $4 million in cash, in a tax-free exchange for $800 million principal amount of the Company’s term loan A-3. The Company expects to monetize its remaining stake in Sandisk within one year from the Separation Date.
+Information provided herein is presented on a continuing operations basis to reflect the impact of the Separation. See Part II, Item 8, Note 3, Discontinued Operations, of the Notes to Consolidated Financial Statements included in this Annual Report on Form 10-K for additional information regarding the Separation.
+30
+Table of Contents
+Macroeconomic Conditions
+The United States has recently announced changes to its trade policy, including increasing tariffs on imports, in some cases significantly. Several of these recent tariff actions have been followed by announcements of limited exemptions and temporary pauses. These actions have caused substantial uncertainty and have also resulted in retaliatory measures on U.S. goods. Our business and results of operations were not materially impacted in fiscal 2025 as a result of the recent tariff actions. We are actively monitoring developments and plan to leverage tariff exemptions where possible and will take other actions as appropriate to offset any resulting increase in the cost of importing our products or the costs for materials or components in our products, including optimizing our supply chain, sourcing from alternative suppliers, or passing the costs to our customers through tariff surcharges, or increased prices. There can be no assurance that we will be able to successfully offset or mitigate any resulting increase in our costs. In addition, the impact of the tariff actions on our customers, retaliatory measures by other countries in response to U.S. trade policy and any resulting decline in consumer confidence, significant inflation and diminished expectations for the economy could reduce demand for our products and adversely affect our business, financial condition and results of operations. For additional information, please see Part I, Item 1A, Risk Factors, included in this Annual Report on Form 10-K.
+Operational Update
+In fiscal 2025, we saw an improvement in the supply and demand dynamic relative to the prior year, and we anticipate that digital transformation, including the AI data-cycle, will drive improved market conditions in the long term. However, macroeconomic factors such as tariffs, inflation, changes in interest rates, and recession concerns can affect demand for our products. As an example, in fiscal 2024, we and our industry experienced a supply-demand imbalance, which led to reduced shipments, negatively impacted pricing, and resulted in business realignment charges and charges for unabsorbed manufacturing overhead costs due to the underutilization of facilities as we temporarily scaled back production and took other actions to align our operations to the market at the time.
+We will continue to actively monitor developments impacting our business and may take future responsive actions that we determine to be in the best interest of our business and stakeholders.
+Capital Allocation Actions
+We have taken significant actions to deleverage our business and to initiate programs to return capital to our investors.
+In February 2025, in connection with the Separation, we amended the loan agreement governing our revolving credit facility maturing in January 2027 (the “2027 Revolving Credit Facility”) and Term Loan Facility (as defined below), dated as of January 7, 2022 (as amended, the “Loan Agreement”) to, among other changes, permit the Separation, provide for the issuance of a new $2.51 billion Term Loan A-3 maturing in January 2027 (the “Term Loan A-3”) in a noncash exchange to replace our previously existing Term Loan A-2 (the “Term Loan A-2” and, together with the Term Loan [...]
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+General
+
+Overview
+
+Torsel Software, Inc. ("we," "us," "our," or the "Company") is a prominent provider in the information technology sector, offering a comprehensive suite of software solutions designed to enhance business operations across various industries. Our headquarters are located in Princeton, New Jersey, and we are incorporated in Delaware. As of December 31, 2024, we employed approximately 28,000 individuals dedicated to delivering innovative technology solutions to our global customer base.
+
+Our business is structured around several key segments, each focusing on specific areas of technology and customer needs. We have achieved significant growth in fiscal year 2024, with total revenue reaching $24,213 million. Our commitment to research and development, customer-focused innovation, and strategic market engagement has positioned us as an industry leader in software development and services.
+
+Principal Products and Services
+
+Our product offerings are categorized into two primary segments: Enterprise Software Solutions and Cloud Services. Each segment addresses the distinct needs of our diverse customer base while leveraging our core technology competencies.
+
+Enterprise Software Solutions
+
+Our Enterprise Software Solutions segment provides a wide range of software products that enable businesses to optimize their operations, improve productivity, and drive growth. This segment includes enterprise resource planning (ERP) systems, customer relationship management (CRM) software, and supply chain management solutions. These products are designed to integrate seamlessly into our customers’ existing workflows, offering flexibility and scalability.
+
+Our ERP systems support businesses in managing their core processes, including finance, human resources, and procurement, while our CRM solutions help organizations enhance customer interactions and sales effectiveness. Our supply chain management tools enable efficient management of logistics, inventory, and demand forecasting, ensuring that businesses can respond swiftly to market changes.
+
+Cloud Services
+
+Our Cloud Services segment offers cloud-based platforms and infrastructure that empower businesses to operate with increased agility and reduced IT costs. These services include cloud storage, computing power, and software-as-a-service (SaaS) applications. Our cloud solutions are engineered to provide robust security, reliability, and scalability, catering to the diverse needs of enterprises ranging from small businesses to large multinational corporations.
+
+In addition to infrastructure and platform services, our Cloud Services segment provides advanced analytics and artificial intelligence capabilities, enabling customers to derive actionable insights from their data. This empowers them to make informed decisions and improve business outcomes.
+
+Customers
+
+Our customer base is diverse, spanning multiple industry sectors, including finance, healthcare, retail, manufacturing, and telecommunications. We serve both private and public sector clients, including government agencies, educational institutions, and non-profit organizations. Our software solutions are designed to meet the specific needs of each industry, ensuring that we deliver maximum value to our customers.
+
+Sales and Marketing
+
+Our sales and marketing strategy is focused on building strong relationships with our customers while expanding our market reach. We employ a multi-channel approach that includes direct sales teams, channel partners, and strategic alliances. Our marketing initiatives are designed to enhance brand awareness, generate leads, and support our sales efforts through targeted campaigns, events, and digital marketing.
+
+We invest in understanding our customers’ specific requirements and tailor our solutions to address their unique challenges. Our customer-centric approach has been instrumental in driving customer satisfaction and loyalty, contributing to our revenue growth.
+
+Competition
+
+The information technology sector is highly competitive, with numerous companies vying for market share. Our primary competitors include both large, established software providers and emerging technology firms. We differentiate ourselves through our comprehensive product offerings, commitment to innovation, and strong customer relationships.
+
+We compete based on several factors, including product functionality, performance, reliability, customer support, and total cost of ownership. Our ability to deliver integrated solutions that address the full spectrum of our customers’ needs is a key competitive advantage.
+
+Seasonality
+
+Our business does not experience significant seasonal fluctuations. However, certain factors, such as budget cycles of our enterprise customers and government fiscal year-end spending, can influence quarterly revenue patterns. We continuously monitor and adapt to these factors to optimize our sales and operational strategies.
+
+Intellectual Property
+
+Intellectual property is a critical asset for our business, and we are committed to protecting our proprietary technologies. We hold a portfolio of patents, trademarks, and copyrights that safeguard our innovations and brand identity. Our intellectual property strategy focuses on fostering innovation, securing market leadership, and mitigating competitive risks.
+
+We actively monitor the intellectual property landscape to ensure compliance and take appropriate actions to defend our rights. Our commitment to research and development supports the ongoing creation of new technologies and solutions, reinforcing our competitive position.
+
+Government Regulation
+
+As a provider of technology solutions, we are subject to various government regulations and industry standards. These regulations pertain to data protection, privacy, cybersecurity, and intellectual property rights. Compliance with these regulations is integral to our operations and customer trust.
+
+We maintain robust compliance programs and engage with regulatory bodies to stay informed of evolving requirements. Our policies and procedures are designed to ensure adherence to applicable laws and mitigate regulatory risks.
+
+Human Capital
+
+Our workforce is a key driver of our success, and we are committed to fostering an inclusive and supportive work environment. With approximately 28,000 employees, we prioritize talent development, diversity, and employee well-being. Our human capital strategy focuses on attracting top talent, providing opportunities for growth, and cultivating a culture of innovation and collaboration.
+
+We offer comprehensive training and development programs to enhance the skills and capabilities of our employees. Our commitment to diversity, equity, and inclusion is reflected in our recruitment practices and employee engagement initiatives.
+
+Available Information
+
+We provide access to our financial and operational information through various channels, including our corporate website and filings with the Securities and Exchange Commission (SEC). Stakeholders can access our annual reports, quarterly earnings releases, and other relevant documents to gain insights into our business performance and strategic initiatives.
+
+We are committed to transparency and timely communication with our investors, customers, and partners. Our Investor Relations team is available to address inquiries and provide information on our financial performance and business outlook.
+
+In conclusion, Torsel Software, Inc. is dedicated to delivering innovative technology solutions that drive customer success and create long-term value. Our strategic focus on product excellence, customer satisfaction, and operational efficiency underpins our continued growth and market leadership in the information technology sector.
+
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+Risks Related to Our Business and Industry
+
+Intense Competition Could Adversely Affect Our Market Position and Profitability
+
+The information technology sector is characterized by rapid technological advancements and intense competition. Our primary competitors include large, established software providers and emerging technology firms that may have more resources or innovative offerings. This competitive landscape may pressure us to reduce prices, invest heavily in research and development, and increase sales and marketing expenditures to maintain or enhance our market position. Failure to effectively compete could adversely affect our market share, profitability, and ability to attract and retain customers.
+
+Rapid Technological Changes May Outpace Our Ability to Innovate
+
+The technology industry is subject to rapid changes, with frequent introductions of new products and services. Our success depends on our ability to anticipate these changes and develop and incorporate new technologies into our offerings. If we fail to keep pace with technological advancements or if our innovations do not meet market demands, our competitive position could be weakened, potentially leading to a loss of revenue and market share.
+
+Dependence on Key Customers and Industry Verticals
+
+Our customer base spans multiple industry sectors, including finance, healthcare, retail, manufacturing, and telecommunications. A significant portion of our revenues is derived from key customers within these sectors. Any reduction in demand from these customers, due to economic downturns, regulatory changes, or shifts in industry focus, could adversely impact our financial performance. Additionally, consolidation within these industries could reduce the number of potential customers, further affecting our revenue streams.
+
+Risks Related to Operations
+
+Failure to Manage Growth Effectively Could Impact Our Operations
+
+We have experienced significant growth in recent years, and managing this growth effectively is critical to our continued success. Growth places a substantial strain on our operational, financial, and management resources. If we fail to manage our growth effectively, we may experience operational inefficiencies, reduced quality of service, and inability to capitalize on market opportunities, which could adversely affect our business and financial results.
+
+Challenges in Recruiting and Retaining Skilled Personnel
+
+Our success depends on our ability to attract, retain, and motivate qualified personnel, particularly in areas such as software development, sales, and management. The competition for skilled professionals in the technology sector is intense, and our ability to maintain a competitive edge is reliant on our workforce. If we are unable to hire and retain key employees or if significant numbers of our personnel leave the company, our operations and ability to achieve strategic objectives could be adversely affected.
+
+Increased Costs Related to Data Security and Privacy
+
+Data security and privacy are critical concerns for our customers and stakeholders. As cyber threats become more sophisticated, the costs associated with maintaining robust data security measures increase. A security breach or failure to protect sensitive customer data could result in significant reputational damage, legal liabilities, and financial losses. Additionally, evolving regulations regarding data protection could require us to incur additional costs to comply with new requirements, affecting our profitability.
+
+Risks Related to Financial Condition and Results
+
+Fluctuations in Foreign Currency Exchange Rates Could Impact Financial Results
+
+A portion of our revenue is derived from international operations, exposing us to risks associated with fluctuating foreign currency exchange rates. While we may employ hedging strategies to mitigate these risks, significant volatility in exchange rates could impact our financial results, affecting our revenue and profitability.
+
+Reliance on Third-Party Suppliers and Partners
+
+Our operations depend on third-party suppliers and partners for certain components, services, and technologies. Any disruption in the supply chain or failure of these parties to meet performance or quality standards could adversely impact our ability to deliver products and services to customers. This reliance also exposes us to risks related to potential increases in costs, which could affect our margins and financial performance.
+
+Risks Related to Legal and Regulatory Matters
+
+Compliance with Laws and Regulations Involves Costs and Risks
+
+As a provider of technology solutions, we are subject to various laws and regulations, including those related to data protection, privacy, cybersecurity, and intellectual property. Compliance with these regulations is complex and evolving, requiring ongoing investment in processes and controls. Non-compliance may result in substantial fines, legal liabilities, and reputational harm, adversely affecting our business and financial condition.
+
+Intellectual Property Infringement Claims Could Be Costly
+
+Intellectual property is a critical asset for our company, and we may face claims of infringement or challenges to our patents, trademarks, or copyrights. Defending against such claims can be costly and time-consuming, potentially diverting management attention from core business operations. If we are found to infringe on third-party intellectual property rights, we may be required to pay damages, alter our products, or obtain licenses, which could impact our financial performance and market position.
+
+Risks Related to General Economic Conditions
+
+Economic Uncertainty and Adverse Market Conditions
+
+Our business is affected by general economic conditions and market environments. Economic downturns, rising inflation rates, or geopolitical instability can reduce customer spending on technology solutions, affecting our revenues and profitability. Additionally, adverse market conditions can impact the availability of credit and financial stability, potentially affecting our liquidity and financial condition.
+
+Pandemic and Health Crises Impact on Business Operations
+
+Global pandemics and health crises, such as COVID-19, can have significant impacts on business operations, including disruptions to supply chains, reduced customer demand, and challenges in workforce management. Such events may require us to adapt our operations, invest in remote work capabilities, and manage increased health and safety compliance costs. The long-term effects of such health crises on the global economy and our business remain uncertain.
+
+In conclusion, Torsel Software, Inc. faces a range of risks that could materially affect our business operations, financial condition, and results. While we strive to mitigate these risks through strategic planning and risk management practices, some factors are beyond our control. Stakeholders are encouraged to consider these risks when evaluating our company and its future prospects.
+
+>>>
+
+TASK
+Write Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations for Torsel Software, Inc.'s annual report for the fiscal year ended 2024-12-31. Write MD&A with these parts: overview; results of operations comparing the current with the prior fiscal year line by line (revenue, cost of revenue and gross margin, each operating expense, operating income, interest expense, effective tax rate, net income), giving plausible qualitative drivers; liquidity and capital resources (cash, operating, investing and financing cash flows, capital expenditures, debt, dividends and share repurchases); and critical accounting estimates. Quote amounts and percentages exactly as they appear in the facts sheet. Do not include market risk disclosures; Item 7A covers them.
+Length: about 3000 words. Start with the line "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations" and output only the section text.

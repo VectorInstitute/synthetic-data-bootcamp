@@ -1,0 +1,108 @@
+{
+  "company_id": "syn0014",
+  "name": "Kator Minerals, Inc.",
+  "sector": "Materials",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 323.22,
+  "totals": {
+    "seconds": 322.68,
+    "prompt_tokens": 35910,
+    "completion_tokens": 34207,
+    "total_tokens": 70117,
+    "reasoning_tokens": 0,
+    "calls": 4
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1225,
+      "prompt_chars": 14394,
+      "words": 4134,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1222,
+      "prompt_chars": 25501,
+      "words": 4448,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1235,
+      "prompt_chars": 36393,
+      "words": 4331,
+      "attempts": 1,
+      "exemplar_overlap": 0.0041,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 550,
+      "exemplar_words": 935,
+      "prompt_chars": 42692,
+      "words": 632,
+      "attempts": 1,
+      "exemplar_overlap": 0.0095,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 96.5,
+      "prompt_tokens": 4369,
+      "completion_tokens": 9775,
+      "total_tokens": 14144,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4134,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 98.08,
+      "prompt_tokens": 7635,
+      "completion_tokens": 10246,
+      "total_tokens": 17881,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4448,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 110.08,
+      "prompt_tokens": 11198,
+      "completion_tokens": 12517,
+      "total_tokens": 23715,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4331,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 18.02,
+      "prompt_tokens": 12708,
+      "completion_tokens": 1669,
+      "total_tokens": 14377,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 632,
+      "issues": []
+    }
+  ]
+}

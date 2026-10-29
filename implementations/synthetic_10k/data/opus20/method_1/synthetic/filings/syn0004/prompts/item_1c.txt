@@ -1,0 +1,327 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Lonnov Software, Inc. (ticker LNON)
+Sector: Information Technology
+Incorporated in: Delaware
+Headquarters: Austin, Texas
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 163,900
+
+Lonnov Software, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      80,053        77,018
+Cost of revenue                              50,321        49,221
+Gross profit                                 29,732        27,797
+Research and development                     11,023        10,546
+Selling, general and administrative           2,402         2,310
+Other operating expense                           0             0
+Operating income                             16,307        14,941
+Interest expense                                504           482
+Income before income taxes                   15,803        14,459
+Provision for income taxes                    1,487         1,385
+Net income                                   14,316        13,074
+
+Lonnov Software, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                           20,933        19,316
+Accounts receivable, net                            14,410        13,507
+Inventories                                              0             0
+Other current assets                                15,146        14,067
+Total current assets                                50,489        46,890
+Property, plant and equipment, net                  12,443        12,316
+Goodwill                                             3,819         3,594
+Other non-current assets                            27,540        27,352
+Total assets                                        94,291        90,152
+Total current liabilities                           13,948        13,077
+Long-term debt                                      11,192        10,707
+Other non-current liabilities                        2,829         2,705
+Total liabilities                                   27,969        26,489
+Total stockholders' equity                          66,322        63,663
+Total liabilities and stockholders' equity          94,291        90,152
+
+Lonnov Software, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                            14,316
+Depreciation and amortization                          4,355
+Changes in working capital and other                   (376)
+Net cash provided by operating activities             18,295
+Purchases of property and equipment                  (1,577)
+Other investing activities, net                      (3,929)
+Net cash used in investing activities                (5,506)
+Net change in long-term debt                             485
+Dividends paid                                       (2,457)
+Share repurchases, net of issuances                  (9,200)
+Net cash used in financing activities               (11,172)
+Net change in cash and cash equivalents                1,617
+Cash and cash equivalents, beginning of year          19,316
+Cash and cash equivalents, end of year                20,933
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 3.9%
+Net income growth, fiscal 2024 versus 2023: 9.5%
+Operating income growth, fiscal 2024 versus 2023: 9.1%
+Gross margin, fiscal 2024: 37.1%
+Operating margin, fiscal 2024: 20.4%
+Net margin, fiscal 2024: 17.9%
+Effective tax rate, fiscal 2024: 9.4%
+Research and development as a share of revenue, fiscal 2024: 13.8%
+Selling, general and administrative as a share of revenue, fiscal 2024: 3.0%
+Gross margin, fiscal 2023: 36.1%
+Operating margin, fiscal 2023: 19.4%
+Net margin, fiscal 2023: 17.0%
+Effective tax rate, fiscal 2023: 9.6%
+Research and development as a share of revenue, fiscal 2023: 13.7%
+Selling, general and administrative as a share of revenue, fiscal 2023: 3.0%
+
+STYLE EXAMPLE: the start of Item 1C from a real Information Technology company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1C. CYBERSECURITY
+Cybersecurity Risk Management and Strategy
+We have developed and implemented a cybersecurity risk management program intended to protect the confidentiality, integrity, and availability of our critical systems and information. Our cybersecurity risk management program includes a cybersecurity incident response plan.
+We design and assess our program based on the National Institute of Standards and Technology Cybersecurity Framework (“NIST CSF”) and Secure Software Development Framework (“SSDF”). This does not imply that we meet any particular technical standards, specifications, or requirements; we use NIST CSF and SSDF as guides to help us identify, assess, and manage risks from cybersecurity threats relevant to our business.
+Cybersecurity risks are incorporated into our overall enterprise risk management program. Our Chief Trust Officer (“CTrO”) reports to our Chief Technology Officer and oversees our trust and overarching security strategy.
+44
+Our Chief Information Security Officer (“CISO”) reports to our CTrO and oversees the technical identification, assessment and management of cybersecurity risks relevant to our business.
+Our cybersecurity risk management program includes, among other elements:
+•Risk assessments designed to help identify material cybersecurity risks to our critical systems, information, products, services, and our broader enterprise IT environment.
+•A Security team, principally responsible for managing (1) our cybersecurity risk assessment processes, (2) our security controls, and (3) our response to cybersecurity incidents.
+•The use of external service providers, where appropriate, to assess, test, respond to or otherwise assist with aspects of our security controls, as well as maturity assessments of our cybersecurity program.
+•Implementation of new hire and annual data privacy and cybersecurity training of all employees, including senior management; annual role-based training for employees in specific incident response roles, as well as for employees with specific access to systems, devices, or locations, and targeted cybersecurity incident simulation training held on a recurring basis.
+•Incident response playbooks and standard operating procedures outlining procedures for detecting, responding to, and mitigating cybersecurity incidents. Depending on the nature and severity of an incident, responses may involve escalating notification to our Chief Executive Officer and our board of directors.
+•Post-incident reviews are conducted for major incidents, and to determine steps that may be taken to mitigate identified risks and reduce the likelihood of reoccurrence.
+•Internal policies designed to protect our systems and operations, including (1) a data classification and labelling standard to evaluate the confidentiality level of internal information, (2) a cloud continuity policy to address experience disruption for cloud customers, and (3) a business resilience policy to provide a framework for operations during and after disruption events.
+•A third-party risk management process for service providers, suppliers, and vendors. Such service providers are subject to risk tiering, security risk assessments, and recurring reviews, as applicable. When third-party provider incidents occur, we assess their materiality to our operations and investigate accordingly.
+We describe whether and how risks from identified cybersecurity threats, including as a result of any previous cybersecurity incidents, whether individually or in the aggregate, have materially affected or are reasonably likely to materially affect us, our business, and our results of operations in Part I, Item 1A in this Annual Report on Form 10-K, which disclosures are incorporated by reference herein.
+Cybersecurity Governance
+Our board of directors considers cybersecurity risk as part of its risk oversight function and has delegated to its audit committee (the “Audit Committee”) oversight of cybersecurity and other information technology risks. The Audit Committee oversees management’s implementation of our cybersecurity risk management program, and it reports to the full board of directors regarding its activities, including those related to cybersecurity. Our CTrO and CISO provide updates on significant risks to the Audit Committee quarterly and also provide updates to the full board of directors at least biannually. Outside of regular meetings, depending on the nature and severity of an incident, our CTrO and CISO will also inform the Audit Committee, Chief Executive Officer, and the rest of the board of directors of significant cybersecurity incidents.
+Our CTrO leads our Trust and Security organization, focusing on maintaining customer trust and overseeing the overall security posture of the company. The CTrO’s role involves managing cybersecurity risks and reviewing whether the company’s security practices align with customer expectations and industry standards. Our CISO leads our Security organization and is responsible for all security-related activities and controls at Atlassian. This includes defining the security strategy, developing, and enforcing security standards, and managing security technologies. The CISO also oversees security operations, incident response, and reviews compliance with legal and regulatory requirements. Our CTrO has served in his role since October 2023 and has extensive experience in the cybersecurity space, including previously serving as Chief Trust Officer of a large publicly-traded enterprise software company. Our CISO has served in his role since December 2024 and also has extensive experience in cybersecurity, including serving as Chief Information Security Officer of a large publicly-traded enterprise software company. Our CTrO and CISO oversee our efforts to prevent, detect, mitigate, and remediate cybersecurity risks and incidents through various means, which may include briefings from internal personnel, threat intelligence, and
+45
+other information obtained from governmental, public, or private sources, including external consultants engaged by us, and alerts and reports produced by security tools deployed in the IT environment.
+Within the Trust and Security organizations, we implement a structured approach to proactively manage cybersecurity risks. Our Security Governance, Risk and Compliance team monitors, assesses, and coordinates proactive identification and remediation efforts for cybersecurity risks impacting Atlassian. This team partners cross-functionally with others in the Security organization and individuals from our legal, internal audit, engineering, and product development teams. Our Security team includes individuals with experience across a broad range of cybersecurity areas, including, but not limited to: product security; cloud security; infrastructure security; security monitoring and incident response; identity and access management; vulnerability management; and governance, risk, and compliance.
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+OVERVIEW
+
+Lonnov Software, Inc. ("Lonnov," the "Company," "we," "us" or "our") is a global provider of enterprise software, cloud infrastructure and technology services. Organizations across industries use our offerings to modernize their information technology environments, run mission-critical workloads, protect their data and manage complex digital operations at scale. We were incorporated in the State of Delaware, and our corporate headquarters are located in Austin, Texas. Our common stock trades under the ticker symbol "LNON."
+
+Our offerings span the technology lifecycle of our customers. We help them plan and design their technology architectures, deploy and integrate software and cloud platforms, migrate legacy systems, and operate and secure their environments on an ongoing basis. We combine proprietary software platforms with a large, globally distributed services organization. This allows us to serve customers who want packaged software, customers who want fully managed outcomes, and customers who want a combination of the two.
+
+For the fiscal year ended December 31, 2024 ("fiscal 2024"), our total revenue was $80,053 million, an increase of 3.9% compared with the fiscal year ended December 31, 2023 ("fiscal 2023"). We believe the breadth of our portfolio, the recurring nature of a substantial portion of our revenue, and the long-standing relationships we maintain with large enterprise and public sector customers provide a durable foundation for the business.
+
+Enterprise technology environments have grown more complex. Organizations operate hybrid estates that combine on-premises data centers, multiple public cloud environments and a growing number of software-as-a-service applications. At the same time, they face higher expectations for cybersecurity and data protection, scarce specialized technical talent, and pressure to adopt artificial intelligence and advanced analytics in a responsible and cost-effective manner. We believe these trends increase demand for partners that can provide integrated platforms together with the engineering and operational capacity to implement and run them. Our strategy is to be that partner for the largest and most demanding organizations in the world.
+
+REPORTABLE SEGMENTS
+
+As of December 31, 2024, we managed our business through three operating and reportable segments, which are organized around the nature of the offerings we deliver and the way our chief operating decision maker evaluates performance and allocates resources:
+
+- Cloud and Data Platforms ("CDP"), which includes our hybrid cloud infrastructure software, data management and analytics platforms, and artificial intelligence development and deployment tools.
+- Enterprise Applications and Security ("EAS"), which includes our business applications, workflow automation software, identity and access management products, and threat detection and response solutions.
+- Managed and Professional Services ("MPS"), which includes consulting, systems integration, application development and maintenance, cloud migration, and outsourced infrastructure and application management services.
+
+The CDP segment focuses on the foundational software layers on which customers build and run their workloads. Its offerings are typically sold as subscriptions or consumption-based arrangements and are designed to operate consistently across customer data centers and third-party public cloud environments.
+
+The EAS segment focuses on software that supports specific business processes and on protecting the applications, users and data that underpin those processes. Its offerings are sold primarily as multi-year subscriptions, both as cloud-delivered services and as software deployed in customer environments.
+
+The MPS segment provides the people, processes and operational tooling that customers rely on to design, implement and run technology environments. Engagements range from discrete advisory and implementation projects to multi-year managed services agreements under which we assume operational responsibility for significant portions of a customer's technology estate. The MPS segment employs the majority of our workforce and accounts for a substantial portion of our cost of revenue, reflecting the labor-intensive nature of services delivery.
+
+Our segments work closely together. A significant portion of our largest customer relationships involves offerings from more than one segment, and we design our go-to-market approach to encourage customers to adopt integrated solutions. Additional information about our segments is included in Item 7, "Management's Discussion and Analysis of Financial Condition and Results of Operations," and in the notes to the consolidated financial statements in Item 8, "Financial Statements and Supplementary Data."
+
+PRINCIPAL PRODUCTS AND SERVICES
+
+Cloud and Data Platforms
+
+Our hybrid cloud platform gives customers a common control plane for provisioning, orchestrating and governing compute, storage and networking resources across private and public cloud environments. The platform includes container orchestration, virtualization management, policy-based automation and cost governance capabilities. Customers use it to standardize operations, reduce dependence on any single infrastructure provider, and move workloads between environments as business needs change.
+
+Our data management portfolio includes data integration, data cataloging, master data management and data quality tools, along with a cloud-native analytics engine that supports structured and unstructured data. These products help customers consolidate fragmented data sources, enforce governance and lineage requirements, and make trusted data available to analysts, applications and machine learning models.
+
+Our artificial intelligence tools allow customers to build, fine-tune, evaluate and deploy machine learning and generative models on their own data, inside environments they control. The tools include model lifecycle management, monitoring for model drift and performance, and guardrail capabilities intended to support responsible use. We have embedded these capabilities into many products across our portfolio, and we continue to expand them in response to customer demand.
+
+Enterprise Applications and Security
+
+Our enterprise applications automate and digitize core operational processes, including IT service management, field service management, procurement workflows, and human resources service delivery. The applications are built on a common low-code platform, so customers can extend standard functionality and build custom workflows without extensive software development.
+
+Our security portfolio includes identity governance, privileged access management, multi-factor authentication, endpoint and cloud workload protection, and a security analytics platform that correlates telemetry across customer environments to detect and prioritize threats. We also offer managed detection and response services in which our security operations personnel monitor customer environments and respond to incidents around the clock. These services are delivered in collaboration with our MPS segment.
+
+Managed and Professional Services
+
+Our consulting and systems integration practices advise customers on technology strategy, enterprise architecture, and operating model design. They also implement our own software as well as third-party platforms. Our application services teams develop, modernize, test and maintain custom and packaged applications. Our cloud migration services help customers assess application portfolios, plan migration waves, and move workloads to the target environments.
+
+Our managed services offerings include infrastructure management, application management, end-user computing support, network operations, and service desk operations. These engagements are generally governed by multi-year contracts with defined service levels. We deliver them through a combination of onshore, nearshore and offshore delivery centers, supported by our proprietary automation and operational analytics platforms. We increasingly use artificial intelligence to automate routine operational tasks, predict and prevent incidents, and improve the productivity of our delivery personnel.
+
+Revenue Models
+
+We generate revenue through software subscriptions, consumption-based cloud services, perpetual software licenses with associated support, time-and-materials and fixed-price professional services engagements, and multi-year managed services arrangements. A substantial portion of our revenue is recurring in nature, which we believe gives us good visibility into future results. Our revenue recognition policies are described in the notes to the consolidated financial statements in Item 8.
+
+STRATEGY
+
+Our strategy is designed to deepen our role as a long-term technology partner to the world's largest organizations. Its principal elements are as follows.
+
+Integrated Solutions. We intend to keep integrating our platforms with our services capabilities so that customers can buy outcomes rather than individual components. We believe customers increasingly want fewer, more strategic vendors that can take end-to-end accountability, and that our combination of proprietary software and delivery scale sets us apart.
+
+Innovation in Artificial Intelligence and Automation. We are investing in artificial intelligence across our portfolio, both as product capabilities we offer customers and as tools that make our own services delivery more efficient. In fiscal 2024, research and development expense represented 13.8% of revenue, compared with 13.7% in fiscal 2023. This reflects our continued commitment to product innovation.
+
+Hybrid and Multi-Cloud Neutrality. We design our platforms to run consistently across customer data centers and multiple public cloud providers. We believe this neutrality is valuable to customers seeking to avoid concentration risk, meet data residency requirements, and optimize costs.
+
+Operational Excellence. We continuously work to improve delivery productivity, the utilization of our workforce, and the efficiency of our operations. Our efforts include standardizing delivery methodologies, expanding automation, rationalizing facilities, and optimizing the geographic mix of our delivery resources.
+
+Disciplined Capital Allocation. We aim to balance investment in organic growth with selective acquisitions that add technology, talent or market access, while returning capital to stockholders through dividends and share repurchases.
+
+CUSTOMERS
+
+We serve a broad and diversified customer base that includes large multinational enterprises, mid-sized organizations, and government agencies at the national, state and local levels. Our customers operate in a wide range of industries, including financial services, insurance, healthcare and life sciences, manufacturing, retail and consumer goods, telecommunications, media, energy and utilities, transportation, and the public sector.
+
+Our largest customers typically purchase offerings from more than one of our segments and are often party to long-term master agreements under which they procure software and services over multiple years. We focus on building enduring relationships and expanding them over time through additional products, services and geographies. Many of our largest relationships have lasted well over a decade.
+
+No single customer accounted [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+Investing in our common stock involves risk. The risks and uncertainties described below are those we currently consider material to our business. Before making an investment decision, you should consider them carefully, together with the other information in this Annual Report on Form 10-K, including Item 7, "Management's Discussion and Analysis of Financial Condition and Results of Operations," and our consolidated financial statements and related notes in Item 8. Any of these risks could materially and adversely affect our business, financial condition, results of operations, cash flows or the trading price of our common stock. Additional risks that we do not currently know of, or that we currently consider immaterial, could also impair our business. Our actual results could differ materially from those expressed or implied in the forward-looking statements in this report as a result of the factors described below.
+
+Summary of Risk Factors
+
+The following summary highlights some of the principal risks we face. It is not complete, and you should read it together with the full discussion that follows.
+
+- We face intense competition across each of our segments, and pricing pressure or loss of market share could reduce our revenue and margins.
+- Our revenue growth has been moderate, and we may not be able to sustain or increase it.
+- Rapid advances in artificial intelligence could reduce demand for portions of our labor-based services, compress pricing, or require investments that do not generate adequate returns.
+- Our results depend on renewing and expanding multi-year relationships with large enterprise and public sector customers.
+- Fixed-price and managed services contracts expose us to cost overruns, service level penalties and early termination.
+- Our cost structure is labor-intensive, and we may be unable to attract and retain qualified personnel at acceptable cost.
+- A cybersecurity incident affecting our systems or the customer environments we operate could result in significant liability and reputational harm.
+- Interruptions in our cloud services or in the third-party infrastructure on which we rely could harm our customers and our business.
+- Our indebtedness and our capital return commitments reduce our financial flexibility.
+- Changes in tax laws, including the global minimum tax, could materially increase our effective tax rate.
+- Evolving regulation of data privacy, cybersecurity and artificial intelligence could increase our costs and limit the use of our offerings.
+- Adverse macroeconomic and geopolitical conditions could reduce technology spending by our customers.
+
+Risks Related to Our Business and Industry
+
+The markets in which we compete are intensely competitive, and failure to compete effectively could reduce our revenue, margins and market share.
+
+Each of our segments competes in a crowded and rapidly changing market. In Cloud and Data Platforms, we compete with large public cloud providers that bundle infrastructure, data and artificial intelligence services, with independent software vendors, and with open source projects that customers can adopt at little or no licensing cost. In Enterprise Applications and Security, we compete with large application vendors, specialized software-as-a-service providers and a growing number of well-funded security companies. In Managed and Professional Services, we compete with global consulting and outsourcing firms, offshore-based service providers, regional specialists and the internal technology departments of our customers. Many competitors have greater resources in particular markets, more established brands in specific product categories, or lower cost delivery models.
+
+Competitors may introduce products or services that are superior to ours, price their offerings more aggressively, bundle software with infrastructure or services in ways we cannot match, or consolidate to form larger and more capable rivals. Large customers frequently use competitive bidding when contracts come up for renewal, which can force us to accept lower prices or less favorable terms to retain business. If we cannot differentiate our offerings, maintain our pricing, or respond quickly to competitive developments, our revenue and operating margins could decline.
+
+Our revenue growth has been moderate, and we may not be able to sustain or accelerate it.
+
+Our revenue grew at a modest rate in fiscal 2024, reflecting the scale of our existing business, the mature character of certain services and software offerings, and the time required for newer cloud, data and artificial intelligence offerings to contribute meaningfully. Growth in our higher-margin software businesses may not be large enough to offset slower growth, or declines, in legacy services, perpetual license and support revenue. Customers may also delay or reduce discretionary projects, consolidate vendors, or bring work in-house.
+
+Because our revenue base is large, even significant new business may not produce a meaningful increase in our overall growth rate. If we cannot grow revenue, we may be unable to keep expanding operating income through productivity and cost discipline alone, and investors may view our prospects less favorably. That view could adversely affect the trading price of our common stock.
+
+Advances in artificial intelligence could disrupt demand for our services, compress pricing and require substantial investment with uncertain returns.
+
+Artificial intelligence, including generative models and autonomous software agents, is rapidly changing how software is built and how technology environments are operated. Much of our Managed and Professional Services revenue comes from labor-based activities, such as application development and maintenance, testing, service desk operations and infrastructure management, which customers increasingly expect to be automated. Customers may demand that productivity gains from automation be passed through to them as lower prices. They may also shift from time-and-materials arrangements to outcome-based pricing, or perform more work themselves with artificial intelligence tools offered by third parties. Any of these developments could reduce our services revenue faster than we can replace it.
+
+At the same time, we are investing significantly in artificial intelligence capabilities across our platforms and delivery operations. These investments may not produce products that achieve market acceptance. They may become obsolete as foundation models and competing tools evolve, or they may cost more than expected to develop and operate, including the cost of the computing capacity required to train and run models. If we fail to anticipate the direction of the technology, or if competitors with greater access to models, data or computing resources outpace us, our competitive position and results of operations could be harmed.
+
+Our business depends on renewing and expanding relationships with large customers, and the loss or reduction of significant relationships could harm our results.
+
+A substantial portion of our revenue comes from large enterprise and public sector customers under multi-year master agreements, subscriptions and managed services contracts. These customers generally have no obligation to renew when their contracts expire. Many contracts allow customers to reduce scope or terminate for convenience on relatively short notice, sometimes subject to termination fees that may not fully compensate us. Renewals frequently involve competitive procurements, price concessions and changes in scope.
+
+Our largest relationships often span more than one segment. As a result, dissatisfaction in one area, such as a security incident, a missed service level or a failed implementation, could affect our revenue across several segments at once. Mergers, divestitures, financial distress or changes in leadership at a large customer could also lead to reduced spending or the loss of the relationship. The loss of, or a significant reduction in business from, one or more of our largest customers could adversely affect our revenue, profitability and cash flows.
+
+Fixed-price, outcome-based and managed services contracts expose us to cost overruns, penalties and losses.
+
+Many of our professional services engagements and most of our managed services arrangements are priced on a fixed-fee, unit-price or outcome basis rather than on time and materials. To price these contracts, we must estimate the effort, staffing, technology and time required to deliver over multi-year terms. Our estimates may prove inaccurate because of unforeseen technical complexity, customer-caused delays, wage inflation, changes in scope or failures by subcontractors. When our costs exceed our estimates, our margins on those contracts decline, and in some cases we must record losses.
+
+Our managed services agreements also commonly include service level commitments with financial credits or penalties for underperformance. In addition, we often incur significant transition costs at the start of a contract that we recover only over its term. If a customer terminates early, if we fail to meet service levels, or if we cannot achieve the productivity improvements assumed in our pricing, our profitability could be materially reduced.
+
+Our transition toward subscription and consumption-based models may cause our results to fluctuate and may not be successful.
+
+We continue to shift our software business from perpetual licenses toward subscription and consumption-based arrangements. Under these models we recognize revenue over the contract term or as customers use our services, rather than largely at the outset. This can lower near-term revenue compared with perpetual license sales of similar value, and it makes our results more dependent on renewals and actual usage. Consumption-based revenue can be difficult to forecast because it depends on customer workloads, which may fall when customers optimize their cloud spending or face budget pressure.
+
+Delivering cloud-based services also requires us to invest in infrastructure and operations, or to pay third-party cloud providers, which can lower our gross margins on those offerings. If customers do not adopt our subscription and cloud offerings at the rate we expect, or if the cost to deliver them is higher than anticipated, our revenue growth [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+In this Management's Discussion and Analysis of Financial Condition and Results of Operations ("MD&A"), the terms "Lonnov," the "Company," "we," "us" and "our" refer to Lonnov Software, Inc. and its consolidated subsidiaries. Our fiscal year ends on December 31. References to "fiscal 2024" and "fiscal 2023" refer to the fiscal years ended December 31, 2024 and December 31, 2023, respectively.
+
+This MD&A explains our results of operations, financial condition and cash flows for fiscal 2024, and compares them with fiscal 2023. It should be read together with our consolidated financial statements and related notes in Item 8, "Financial Statements and Supplementary Data." Comparisons of fiscal 2023 with the preceding fiscal year are in Item 7 of our Annual Report on Form 10-K for fiscal 2023, previously filed with the Securities and Exchange Commission.
+
+This MD&A contains forward-looking statements that involve risks and uncertainties. Our actual results could differ materially from those anticipated. Factors that could cause or contribute to such differences include those discussed in Item 1A, "Risk Factors," and elsewhere in this report. Market risk disclosures are in Item 7A, "Quantitative and Qualitative Disclosures About Market Risk," and are not repeated here.
+
+Organization of This MD&A
+
+This MD&A is presented in the following parts:
+
+- Trends and Uncertainties. Developments and conditions that management believes have affected, or are reasonably likely to affect, our business, results and liquidity.
+- Overview. A summary of our business and the principal financial results for fiscal 2024.
+- Results of Operations. A comparison of fiscal 2024 with fiscal 2023 for each line of our consolidated statements of operations, with the principal factors behind the changes.
+- Liquidity and Capital Resources. Our sources and uses of cash, including operating, investing and financing cash flows, capital expenditures, indebtedness, dividends and share repurchases.
+- Critical Accounting Estimates. The accounting estimates that require the most significant judgment by management and that could materially affect our reported results.
+
+TRENDS AND UNCERTAINTIES
+
+Several conditions shaped our operating environment in fiscal 2024. We expect most of them to continue to influence our results.
+
+Customer Spending Patterns. Large enterprise and public sector customers continued to put technology investment ahead of many other categories of spending. However, they applied greater scrutiny to discretionary projects, particularly short-duration consulting and implementation work. Customers generally favored investments that promise measurable cost savings, stronger security or faster adoption of data and artificial intelligence capabilities. Longer approval cycles for new projects tempered growth in parts of our services business. In contrast, demand for multi-year managed services and subscription software that supports core operations remained comparatively steady.
+
+Artificial Intelligence. Customer interest in artificial intelligence, and particularly in generative models applied to enterprise data, grew substantially during the year. This creates opportunity for our Cloud and Data Platforms segment, whose data management, analytics and model lifecycle tools support these initiatives. It also creates opportunity for our Managed and Professional Services segment, which helps customers design and deploy such solutions. At the same time, customers increasingly expect productivity gains from automation to be reflected in pricing for labor-based services, as discussed in Item 1A. We are embedding artificial intelligence in our delivery operations, both to protect our services margins and to give customers the efficiencies they seek. We expect this dynamic to remain a significant influence on our services pricing and mix.
+
+Hybrid and Multi-Cloud Adoption. Customers continued to run workloads across their own data centers and several public cloud environments. Governance, cost management and data residency requirements are becoming more complex as a result. We believe this supports demand for our hybrid cloud platform and for cloud migration and operations services. Customers' efforts to optimize cloud spending, however, can reduce consumption-based revenue in particular periods.
+
+Cybersecurity. The frequency and sophistication of cyberattacks continued to rise, and regulators in several jurisdictions expanded disclosure and resilience requirements. Together, these factors sustained demand for our identity, threat detection and managed detection and response offerings. They also increased our own costs to secure the environments we operate for customers.
+
+Labor Costs and Workforce Productivity. Our cost structure remains labor-intensive. At December 31, 2024, we had about 163,900 employees. Wage pressure for specialized technical skills persisted, especially in cloud engineering, data science and security. Lower attrition and improved utilization in our delivery centers helped offset these pressures in fiscal 2024. Further improvements in workforce productivity will be important to sustaining our margins.
+
+Tax Environment. Many jurisdictions in which we operate have enacted, or are in the process of enacting, legislation implementing a global minimum tax framework. These rules began to apply to us in fiscal 2024 in certain jurisdictions and did not materially affect our effective tax rate for the year. Their effect in future periods will depend on further legislative action, administrative guidance, and the geographic mix of our earnings. They could increase our effective tax rate.
+
+Macroeconomic and Geopolitical Conditions. Interest rates, inflation, foreign currency movements and geopolitical tensions continued to affect customer confidence and the cost of operating our global delivery network. We cannot predict how these conditions will evolve. A deterioration could lead customers to defer or reduce technology investment.
+
+OVERVIEW
+
+Lonnov is a global provider of enterprise software, cloud infrastructure and technology services. We manage our business through three reportable segments: Cloud and Data Platforms ("CDP"), Enterprise Applications and Security ("EAS"), and Managed and Professional Services ("MPS"). Our revenue comes from software subscriptions, consumption-based cloud services, perpetual software licenses with associated support, professional services engagements, and multi-year managed services arrangements. A substantial portion of our revenue is recurring.
+
+Fiscal 2024 Financial Highlights
+
+- Revenue was $80,053 million, compared with $77,018 million in fiscal 2023, an increase of 3.9%.
+- Gross profit was $29,732 million, compared with $27,797 million in fiscal 2023. Gross margin improved to 37.1% from 36.1%.
+- Operating income was $16,307 million, compared with $14,941 million in fiscal 2023, an increase of 9.1%. Operating margin improved to 20.4% from 19.4%.
+- Net income was $14,316 million, compared with $13,074 million in fiscal 2023, an increase of 9.5%. Net margin improved to 17.9% from 17.0%.
+- Net cash provided by operating activities was $18,295 million.
+- We returned capital to stockholders through dividends of $2,457 million and share repurchases, net of issuances, of $9,200 million.
+- Cash and cash equivalents were $20,933 million at December 31, 2024, compared with $19,316 million at December 31, 2023.
+
+Fiscal 2024 was a year of modest revenue growth and meaningful margin expansion. Revenue growth came mainly from our software segments, where demand for data management, hybrid cloud, workflow automation and security offerings remained healthy. Growth in our services business was more moderate. Customers continued to renew and extend managed services agreements, but they were more selective about new discretionary consulting and implementation projects.
+
+Profitability grew faster than revenue. This reflected a favorable shift in mix toward higher-margin software, productivity gains in services delivery, and continued discipline over operating expenses. We also kept investing in innovation. Research and development expense rose in absolute terms and represented 13.8% of revenue, compared with 13.7% in fiscal 2023.
+
+RESULTS OF OPERATIONS
+
+The following table summarizes our consolidated results of operations for the periods presented.
+
+(in millions)                                FY2024        FY2023
+Revenue                                      80,053        77,018
+Cost of revenue                              50,321        49,221
+Gross profit                                 29,732        27,797
+Research and development                     11,023        10,546
+Selling, general and administrative           2,402         2,310
+Other operating expense                           0             0
+Operating income                             16,307        14,941
+Interest expense                              [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Lonnov Software, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 900 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

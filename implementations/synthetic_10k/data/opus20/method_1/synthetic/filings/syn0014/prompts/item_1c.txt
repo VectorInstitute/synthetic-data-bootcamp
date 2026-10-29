@@ -1,0 +1,313 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Kator Minerals, Inc. (ticker KRAT)
+Sector: Materials
+Incorporated in: Delaware
+Headquarters: Reston, Virginia
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 14,000
+
+Kator Minerals, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      11,823        10,379
+Cost of revenue                              11,097         9,823
+Gross profit                                    726           556
+Research and development                          0             0
+Selling, general and administrative             227           214
+Other operating expense                         709           623
+Operating income                              (210)         (281)
+Interest expense                                333           292
+Income before income taxes                    (543)         (573)
+Provision for income taxes                        0             0
+Net income                                    (543)         (573)
+
+Kator Minerals, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            1,223         1,143
+Accounts receivable, net                             1,148           984
+Inventories                                            869           793
+Other current assets                                 1,188         1,140
+Total current assets                                 4,428         4,060
+Property, plant and equipment, net                   7,613         7,061
+Goodwill                                             6,496         5,850
+Other non-current assets                             1,063           650
+Total assets                                        19,600        17,621
+Total current liabilities                            3,796         3,485
+Long-term debt                                       7,399         6,497
+Other non-current liabilities                          588           528
+Total liabilities                                   11,783        10,510
+Total stockholders' equity                           7,817         7,111
+Total liabilities and stockholders' equity          19,600        17,621
+
+Kator Minerals, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             (543)
+Depreciation and amortization                          1,062
+Changes in working capital and other                     110
+Net cash provided by operating activities                629
+Purchases of property and equipment                    (283)
+Other investing activities, net                      (2,417)
+Net cash used in investing activities                (2,700)
+Net change in long-term debt                             902
+Dividends paid                                             0
+Share repurchases, net of issuances                    1,249
+Net cash used in financing activities                  2,151
+Net change in cash and cash equivalents                   80
+Cash and cash equivalents, beginning of year           1,143
+Cash and cash equivalents, end of year                 1,223
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 13.9%
+Net income growth, fiscal 2024 versus 2023: 5.2%
+Operating income growth, fiscal 2024 versus 2023: 25.3%
+Gross margin, fiscal 2024: 6.1%
+Operating margin, fiscal 2024: -1.8%
+Net margin, fiscal 2024: -4.6%
+Effective tax rate, fiscal 2024: 0.0%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 1.9%
+Gross margin, fiscal 2023: 5.4%
+Operating margin, fiscal 2023: -2.7%
+Net margin, fiscal 2023: -5.5%
+Effective tax rate, fiscal 2023: 0.0%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 2.1%
+
+STYLE EXAMPLE: the start of Item 1C from a real Materials company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1C. Cybersecurity.
+Risk Management and Strategy
+We maintain a cyber risk management program designed to assess, identify, manage, mitigate and respond to cybersecurity threats and incidents. We seek to address material risks from cybersecurity threats through a cross-functional approach, and we utilize various processes to inform our identification, assessment and management of material risks from cybersecurity threats. Our cyber risk management program is integrated into our overall enterprise risk management (ERM) program. Cybersecurity risks are identified and assessed through our ERM program, which is designed to provide cross-functional executive insight across the business to identify and monitor risks, opportunities and emerging trends that can impact our strategic business objectives. The underlying controls of our cyber risk management program are based on recognized best practices and standards for cybersecurity and information technology, including the National Institute of Standards and Technology Cybersecurity Framework.
+We utilize dedicated internal and external cybersecurity personnel to focus on assessing, detecting, identifying, managing, preventing and responding to cybersecurity threats and incidents. Our approach to cybersecurity incorporates a layered portfolio of technology controls, including strategic partnerships for our cybersecurity platforms, documented policies and procedures, periodic end user training, including cybersecurity awareness training for employees and certain contractors, and dedicated resources to manage and monitor the evolving threat landscape, including through the gathering of actionable threat intelligence. We maintain and periodically evaluate and, as needed, update our information security policy and an incident response plan, which describes the processes we use to prepare for, detect, respond to and recover from a cybersecurity incident, including processes to assess severity, escalate, contain, investigate and remediate an incident, as well as to comply with potentially applicable legal and disclosure obligations.
+We regularly evaluate and assess the threat landscape and our security controls, including through audits and assessments, regular network and endpoint monitoring, vulnerability testing, penetration testing and tabletop exercises that include senior management. To assess the design and effectiveness of our cybersecurity controls, we engage with assessors, consultants, auditors and other third parties, including through independent third-party reviews of our information technology security program conducted on at least an annual basis. We also have processes to oversee and identify material cybersecurity risks associated with our use of third-party service providers, including utilizing safeguards to protect sensitive data, performing diligence on certain third parties that have access to our systems, data or facilities that store such systems or data, continually monitoring cybersecurity threat risks identified through such diligence and contracting to manage cybersecurity risks in specified ways such as requiring agreements to be subject to periodic cybersecurity audits.
+We have experienced targeted and non-targeted cybersecurity incidents in the past, including an incident in August 2023 that affected certain of our information systems and resulted in temporary disruptions to parts of our operations. However, prior cybersecurity incidents, including the August 2023 incident, have not materially affected us. Notwithstanding our cyber risk management program, we may not be successful in preventing or mitigating a cybersecurity incident that could materially affect us, including our business strategy, results of operations or financial condition. Refer to Item 1A. “Risk Factors” for further information on the risks we face from cybersecurity threats.
+Governance
+Our Senior Vice President and Chief Innovation Officer, who has served in various senior leadership roles in operational improvement and technology during his nearly 30-year tenure with us, leads our innovation and technology initiatives, corporate information systems and financial shared services. Our cybersecurity risk management and strategy processes described in “Risk Management and Strategy” above are led by our Chief Information Officer (CIO) and our Chief Information Security Officer (CISO). Our CIO and CISO each report to our Chief Innovation Officer. Our CIO is responsible for the strategy, deployment, operational effectiveness and risk management of our technology systems and operations. Our CIO has over 30 years of experience in technology, cybersecurity and risk management, including leading information and technology initiatives for companies in the mining and energy sectors as a partner and senior managing director at a global professional services public company specializing in information technology services and management consulting. Our CISO is responsible for protecting our global technology systems from cybersecurity incidents, which includes overseeing the deployment of cybersecurity controls, managing a team of cybersecurity professionals and reporting on cybersecurity matters to management and the Audit Committee of our Board. Our CISO has 30 years of experience in the technology and
+72
+Table of Contents
+cybersecurity industries, including 15 years serving as CISO for public companies. Our CISO is also a Certified Information Systems Security Professional.
+Our ERM management committee is responsible for providing input and oversight on our ERM program, including cybersecurity risks. Our ERM management committee is comprised of senior leaders, including our Chief Innovation Officer, with responsibility across operations and core business functions, and with a breadth of knowledge, influence and experience covering the risks we face. An annual report on our enterprise risks, including cybersecurity risks, is presented to the Audit Committee and/or the full Board of Directors (Board).
+While management is responsible for the day-to-day management of cybersecurity risks, our Board and its Audit Committee have ongoing oversight roles. The Audit Committee reviews and discusses with management, including reports from our Chief Innovation Officer, at least annually:
+•the adequacy and effectiveness of our information technology security processes and procedures,
+•the assessment of risks and threats to our information technology systems,
+•the internal controls regarding information technology security and cybersecurity, and
+•the steps management has taken to monitor and mitigate information technology security and cybersecurity risks.
+The Audit Committee also periodically receives reports on notable cybersecurity incidents and briefs the full Board on these matters.
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Overview
+
+Kator Minerals, Inc. ("Kator," the "Company," "we," "us" or "our") extracts, processes and distributes mineral-based materials. Our products are used in construction, infrastructure, manufacturing, agriculture and environmental applications. We operate a network of quarries, pits, mines, processing plants, distribution yards, rail terminals and port facilities. Through this network we supply crushed stone, sand and gravel, lime and limestone products, industrial and specialty minerals, and related processing and logistics services. Our customers range from public agencies and construction contractors to steel producers, glass and chemical manufacturers, utilities and agricultural distributors.
+
+For the fiscal year ended December 31, 2024, we generated total revenue of $11,823 million. Our business is built on long-lived mineral deposits located near the markets they serve. Our materials are heavy relative to their value, so transportation costs often determine how far a product can travel economically. We therefore manage our operations as a series of local and regional markets. Each market is supported by shared corporate functions, centralized procurement, common safety and environmental standards, and an integrated logistics organization.
+
+Kator was incorporated in Delaware and has its principal executive offices in Reston, Virginia. Our common stock trades under the ticker symbol "KRAT." Unless the context requires otherwise, references to Kator include its consolidated subsidiaries.
+
+Our Strategy
+
+Our strategy is to serve as a reliable, long-term source of essential minerals in the markets where we operate. We pursue this strategy in four main ways.
+
+Developing a durable reserve base. We seek to control mineral reserves of sufficient quality and quantity to support decades of production at our principal sites. We periodically acquire adjacent land or mineral rights, obtain permits for expansions, and reassess reserve estimates as geological information improves. Information about our mineral properties, including summary disclosure of mineral reserves and resources prepared in accordance with the applicable rules of the Securities and Exchange Commission ("SEC"), is included in Item 2, Properties.
+
+Integrating extraction, processing and delivery. We believe that combining resource ownership, processing and logistics improves our cost position, the consistency of our product quality, and the dependability of supply to our customers. Where economically justified, we own or contract for the rail cars, barges, trucks and terminal capacity needed to move products from our production sites to regional distribution points.
+
+Growing through disciplined acquisitions. Acquisitions have been an important part of our development. We evaluate businesses that extend our geographic footprint, add complementary product lines or deepen our reserve position in existing markets. During fiscal 2024, we completed acquisitions that broadened our operations in several regional markets. We are integrating these businesses into our operating, safety and reporting systems. We intend to keep evaluating acquisition opportunities and to apply consistent criteria for strategic fit, reserve quality, integration risk and expected returns.
+
+Improving operating efficiency. Our cost structure is heavily influenced by energy, labor, maintenance, freight and equipment utilization. We are pursuing initiatives to reduce these costs and to improve margins over time, including plant automation, preventive maintenance programs, fleet optimization, and consolidation of redundant facilities following acquisitions.
+
+Principal Products and Services
+
+Our principal products and services fall into the following categories.
+
+- Construction aggregates. These include crushed stone, sand and gravel, and recycled concrete and asphalt. They are used as base materials in highways, streets, bridges, airports, railroads, residential and commercial foundations, and drainage and erosion control projects. Aggregates are also the primary raw material in ready-mixed concrete, asphalt and precast concrete products.
+
+- Downstream construction materials. In certain markets we produce and sell ready-mixed concrete, asphalt mix and concrete block. These operations consume aggregates from our own quarries and let us participate in more of the construction value chain.
+
+- Lime and limestone products. These include high-calcium and dolomitic quicklime, hydrated lime, and ground and pulverized limestone. Customers use them in steelmaking, flue gas desulfurization at power plants, water and wastewater treatment, pulp and paper production, soil stabilization, chemical manufacturing and agriculture.
+
+- Industrial and specialty minerals. These include industrial sand, ground calcium carbonate, clays, feldspar and other processed minerals. They are sold to manufacturers of glass, ceramics, building products, coatings, plastics, filtration media and foundry products, and to the energy sector.
+
+- Processing, transportation and terminal services. These include rail and barge transportation, transloading, storage, blending and toll processing. We provide them both for our own products and, in certain locations, for third parties.
+
+Reportable Segments
+
+We manage our business through three reportable segments: Construction Materials, Industrial Minerals, and Logistics and Services. Our chief operating decision maker reviews segment performance and allocates resources accordingly. Financial information about our segments, including segment revenue and measures of segment profitability, is presented in Note 18, Segment Information, of the Notes to Consolidated Financial Statements in Item 8 of this Annual Report on Form 10-K.
+
+Construction Materials
+
+The Construction Materials segment is our largest segment by revenue. It consists of our aggregates operations and our downstream ready-mixed concrete, asphalt and concrete products businesses. The segment operates quarries, sand and gravel pits, and processing plants, along with associated distribution yards. Its locations are concentrated in metropolitan and fast-growing regional markets.
+
+Demand for this segment's products depends on public infrastructure spending, private non-residential construction and residential construction in each local market. Public infrastructure demand is supported by federal surface transportation programs and by state and local transportation funding. Those programs finance construction and maintenance of highways, bridges, transit systems and airports. Non-residential demand comes from projects such as warehouses, data centers, manufacturing facilities, energy projects and commercial buildings. Residential demand follows single-family and multi-family housing starts as well as land development activity.
+
+Aggregates are produced by drilling and blasting rock, then crushing, screening and washing it into graded products that meet customer and governmental specifications. Sand and gravel are typically extracted from unconsolidated deposits and then washed and screened. Because aggregates are costly to transport relative to their selling price, our quarries generally serve customers within a limited radius. Where rail, barge or ship transport is available, we can reach more distant markets. We believe the location, permitted status and remaining life of our reserves are significant competitive advantages, given the difficulty of obtaining permits for new quarries near population centers.
+
+Our downstream operations use aggregates produced by the segment. They supply finished materials directly to contractors on paving, site development and building projects. In certain markets the segment also performs paving and related construction services, primarily under public contracts.
+
+Industrial Minerals
+
+The Industrial Minerals segment produces lime, limestone products and specialty minerals. It operates lime kilns, grinding and milling facilities, hydrating plants and mineral processing plants. These facilities are generally located near high-purity mineral deposits or near major industrial customers.
+
+Lime is made by heating high-purity limestone in kilns to drive off carbon dioxide, producing quicklime. Some quicklime is then combined with water to produce hydrated lime. Our lime products serve as fluxing agents in steelmaking, reagents for removing sulfur dioxide and other pollutants from combustion emissions, pH control and softening agents in water treatment, and stabilizing agents in road construction. Our ground and pulverized limestone products are used as fillers and extenders in manufactured goods, as agricultural soil amendments, and in animal feed.
+
+Our specialty minerals are processed to tight chemical and physical specifications. Typical specifications cover particle size distribution, brightness, purity and moisture content. These products are often qualified by customers through extended testing. Once qualified, they tend to be supplied under multi-year agreements. Customers include manufacturers of glass, ceramics, roofing, coatings, plastics, rubber and filtration products, as well as foundries and certain energy sector users.
+
+The Industrial Minerals segment is more capital and energy intensive than our aggregates operations. Its results depend more heavily on the operating rates of the industrial customers it serves, particularly in steel, power generation and chemicals. Many of the segment's sales are made under supply contracts with volume commitments and price adjustment provisions linked to energy and other input costs.
+
+Logistics and Services
+
+The Logistics and Services segment manages the transportation, terminal and processing assets that link our production sites with customers. These assets include rail car fleets, rail-served terminals, barge loading facilities, port terminals and distribution yards. The segment moves products from both of our other segments to regional markets. It also provides transportation, transloading, storage and toll processing services to third parties on a contractual basis.
+
+We believe this integrated logistics capability lets us serve customers beyond the reach of truck-only delivery and keep supply steady during periods of peak demand. Through the same capability we can respond to shifts in regional demand by redirecting product among our facilities. Segment results depend on shipment volumes, terminal utilization, contract pricing, fuel costs and the performance of third-party rail and marine carriers.
+
+Mineral Reserves and Operating Footprint
+
+Our operations depend on access to economically recoverable mineral reserves. We own or lease the land and mineral rights at our quarries and mines. Leased properties are generally held under long-term leases or other agreements that let us extract minerals in exchange for royalties or other payments. We estimate reserves using geological data, drilling results, engineering studies and economic assumptions. Qualified persons, as defined under the SEC's mining property disclosure rules, prepare or review these estimates. Reserve estimates are subject to uncertainty and may be [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+Investing in our securities involves risk. The risks described below could materially and adversely affect our business, financial condition, results of operations, cash flows and the trading price of our common stock. Read them together with the other information in this Annual Report on Form 10-K, including Item 7, Management's Discussion and Analysis of Financial Condition and Results of Operations, and our consolidated financial statements and related notes in Item 8. Additional risks that we do not currently know of, or that we currently consider immaterial, may also impair our business. The order in which these risks appear does not indicate their relative likelihood or significance.
+
+Risks Related to Our Business and Industry
+
+Our results depend heavily on construction activity in the local and regional markets we serve, and a decline in that activity could reduce demand for our products.
+
+Our Construction Materials segment, our largest segment by revenue, sells aggregates, ready-mixed concrete, asphalt and concrete products. Demand for these products depends on public infrastructure, private non-residential and residential construction in each market where we operate. These sectors respond to interest rates, credit availability, population and employment trends, business investment decisions, housing affordability and general economic conditions. Our materials cannot be transported economically over long distances, so we cannot readily move volume from a weak market to a strong one. A downturn concentrated in one or more of our principal metropolitan or regional markets could therefore reduce our shipments, pricing and plant utilization even if national construction activity remains stable.
+
+Non-residential construction activity has recently been supported by projects such as warehouses, data centers, manufacturing facilities and energy installations. A slowdown in any of these project categories, or the cancellation or deferral of large projects in markets where we have concentrated operations, could reduce demand faster than we can adjust our cost structure. Weakness in residential construction would also reduce demand for aggregates and downstream products used in site development, foundations and paving.
+
+Reductions or delays in governmental funding for highways, bridges and other public infrastructure could adversely affect our sales.
+
+A substantial part of our construction-related demand comes from projects funded by federal surface transportation programs and by state and local transportation budgets. These programs depend on legislative authorization, annual appropriations, fuel tax and other dedicated revenue sources, and the fiscal condition of state and local governments. Federal programs may not be reauthorized when current authorizations expire, or may be reauthorized at lower funding levels or with different priorities. Delays in appropriations, budget shortfalls, competing spending priorities or changes in political leadership could defer or cancel projects in our markets. Public agencies may also face higher construction costs that reduce the amount of work their budgets support. Any of these developments could reduce volumes in our Construction Materials segment and the related transportation volumes handled by our Logistics and Services segment.
+
+Our Industrial Minerals segment depends on the operating rates of cyclical industrial customers, and structural changes in those industries could permanently reduce demand.
+
+Our lime, limestone and specialty mineral products are sold mainly to steel producers, electric utilities, chemical manufacturers, glass and ceramics producers, pulp and paper mills, and other industrial users. Many of these industries are cyclical. Reduced operating rates at customer facilities directly reduce the volumes they purchase under our supply agreements, many of which adjust with customer requirements. In addition, some demand rests on technologies and fuel sources that are changing. Retirements of coal-fired generating units reduce demand for lime and limestone used in flue gas desulfurization. Shifts in steelmaking technology, the closure or relocation of customer plants, and customers' substitution of alternative materials could permanently reduce demand for our products in particular regions. Because kilns and processing plants are capital intensive and located near specific deposits or customers, we may not be able to redeploy idled capacity, and we could be required to record impairment charges or incur closure costs.
+
+We face significant competition, and pricing pressure could further compress our already narrow margins.
+
+We compete with national, regional and local producers of aggregates, construction materials, lime and industrial minerals, as well as with transportation and terminal operators. In many local markets, competition depends on proximity to customers, product quality, service, reliability of supply and price. New entrants, the expansion of permitted reserves by competitors, imported materials delivered by water, and recycled or substitute materials could increase competitive pressure. Public construction work is generally awarded through competitive bidding, which can limit our ability to pass through cost increases on fixed-price contracts. Our gross margin is narrow relative to our revenue, so even modest declines in pricing or modest increases in costs that we cannot recover could have a disproportionate effect on our operating results.
+
+Weather conditions and seasonality cause our results to fluctuate and can reduce our profitability in any given period.
+
+Construction and many industrial activities slow during periods of cold, snow, heavy rainfall, flooding or extreme heat, and our sales volumes are typically lower in the winter months in many of our markets. Prolonged adverse weather during the peak construction season can defer or cancel shipments and projects. Because a large portion of our production costs, including depreciation, labor and maintenance, is fixed or semi-fixed, lower volumes reduce our margins. Drought conditions can restrict the water available for washing aggregates and for certain processing operations. Low water levels on inland waterways can limit barge loading capacity. Results for any quarter are therefore not necessarily indicative of results for a full year.
+
+Our acquisition strategy exposes us to integration, valuation and execution risks.
+
+Acquisitions are an important part of our strategy, and during fiscal 2024 we completed acquisitions that broadened our presence in several regional markets. Acquisitions involve risks that could prevent us from realizing the anticipated benefits, including:
+
+- difficulties integrating operations, safety programs, information systems, internal controls and personnel;
+- the diversion of management attention from existing operations;
+- the loss of key employees or customers of acquired businesses;
+- reserve quantities, permit status or asset condition that differ from our expectations;
+- environmental, reclamation, tax or other liabilities that were not identified during due diligence or are not covered by indemnities; and
+- conditions imposed by antitrust authorities, including required divestitures.
+
+We have funded recent acquisitions with a combination of cash on hand, borrowings and equity issuances. Future acquisitions may require us to incur additional debt or issue additional shares. If acquired businesses do not perform as expected, we may not generate returns sufficient to justify the price paid or to service the related financing, and we could be required to record impairment charges against the goodwill and other assets we recorded.
+
+Risks Related to Our Operations
+
+Increases in the cost of energy, fuel and other inputs could reduce our profitability, particularly given our narrow margins.
+
+Our operations consume large quantities of diesel fuel, electricity, natural gas, coal, petroleum coke, explosives, liquid asphalt, cement, steel, tires and replacement parts. Lime kilns in particular are energy intensive, and fuel represents a major component of lime production cost. Transportation by truck, rail and barge also depends on fuel prices. Prices for these inputs can be volatile and are affected by global commodity markets, geopolitical events, supply disruptions, regulatory changes and inflation. Many of our industrial supply contracts include price adjustment provisions linked to energy and other input costs, but these provisions may operate with a lag, may not cover all cost categories and may not fully offset cost increases. In our construction businesses, fixed-price bids and contracts limit our ability to recover cost increases during the term of a project. Our cost of revenue is high relative to our revenue, so unrecovered input cost inflation could quickly erode our gross profit.
+
+Our business depends on our ability to maintain and replenish permitted mineral reserves, and our reserve estimates may prove inaccurate.
+
+Our long-term viability depends on access to economically recoverable reserves of suitable quality at locations near our markets. Obtaining zoning approvals and permits for new quarries, mines and expansions has become increasingly difficult, time consuming and costly, especially near population centers. Local opposition, environmental review requirements, water management restrictions and land use changes may delay or prevent the development of new reserves or the expansion of existing sites. Some of our reserves are held under leases that may expire, may not be renewed on acceptable terms or may require increasing royalty payments.
+
+Our reserve estimates rest on geological data, engineering assumptions and economic factors, including prices, costs and expected recovery rates. These estimates involve inherent uncertainty. Actual mineral quality, quantity, recoverability or economic viability may differ materially from our estimates. Downward revisions could shorten the useful lives of our properties, increase depletion expense, trigger impairment charges and require us to acquire replacement reserves sooner and at greater cost than planned.
+
+We rely on third-party rail and marine carriers and on our own logistics assets, and disruptions to transportation could impair our ability to serve customers.
+
+Our integrated logistics network, managed largely through our Logistics and Services segment, depends on third-party railroads and marine carriers to move products from our production sites to terminals and customers. Rail service disruptions, labor disputes at carriers, congestion, car shortages, rate increases, [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+This Management's Discussion and Analysis of Financial Condition and Results of Operations ("MD&A") explains, from management's point of view, the factors that affected our financial performance and position in fiscal 2024 compared with fiscal 2023. Our fiscal year ends on December 31. Read this MD&A together with our audited consolidated financial statements and the related notes in Item 8, Financial Statements and Supplementary Data, of this Annual Report on Form 10-K. A comparison of fiscal 2023 with fiscal 2022 appears in the corresponding section of our Annual Report on Form 10-K for the fiscal year ended December 31, 2023.
+
+Several statements in this MD&A are forward-looking. They include statements about demand in our end markets, input costs, pricing, acquisition integration, capital spending, financing plans and the sufficiency of our liquidity. They reflect management's current expectations and involve risks and uncertainties, many of which we cannot control. Our actual results may differ materially from these statements. Factors that could cause such differences include those described in Item 1A, Risk Factors. Our business is affected by construction cycles, industrial operating rates, public funding, energy prices and weather, so results for a single year, or changes between years, may not predict future performance. We undertake no obligation to update any forward-looking statement except as required by law.
+
+Overview
+
+Business Overview
+
+Kator Minerals, Inc. extracts, processes and distributes mineral-based materials used in construction, infrastructure, manufacturing, agriculture and environmental applications. We operate a network of quarries, pits, mines, processing plants, lime kilns, distribution yards, rail terminals and port facilities. We manage the business through three reportable segments:
+
+- Construction Materials. Aggregates operations and downstream ready-mixed concrete, asphalt and concrete products businesses.
+- Industrial Minerals. Lime, limestone products and specialty minerals.
+- Logistics and Services. Transportation, terminal, storage and toll processing services.
+
+Our products are heavy relative to their selling price, and freight costs largely determine how far they can travel economically. We therefore run our operations as a portfolio of local and regional markets, supported by centralized procurement, shared safety and environmental standards, and an integrated logistics organization. Segment revenue and segment profitability measures appear in Note 18, Segment Information, of the Notes to Consolidated Financial Statements.
+
+Fiscal 2024 Highlights
+
+Fiscal 2024 brought substantial revenue growth, driven mainly by acquisitions and supported by pricing. Gross margin improved modestly. Profitability nevertheless remained below the level needed to cover our operating expenses and financing costs. Key results compared with fiscal 2023:
+
+- Revenue increased 13.9% to $11,823 million, from $10,379 million.
+- Gross profit increased to $726 million from $556 million. Gross margin rose to 6.1% from 5.4%.
+- Operating loss narrowed 25.3% to $210 million, from $281 million. Operating margin improved to negative 1.8% from negative 2.7%.
+- Interest expense increased to $333 million from $292 million, reflecting higher borrowings.
+- Net loss narrowed 5.2% to $543 million, from $573 million. Net margin improved to negative 4.6% from negative 5.5%.
+- Net cash provided by operating activities was $629 million. Depreciation and amortization was $1,062 million.
+- Net cash used in investing activities was $2,700 million. This consisted mainly of acquisition-related and other investing outflows of $2,417 million and purchases of property and equipment of $283 million.
+- We funded these investments with a net increase in long-term debt of $902 million, net proceeds from equity issuances (after repurchases) of $1,249 million, and operating cash flow. We paid no dividends.
+- Cash and cash equivalents were $1,223 million at year end, compared with $1,143 million a year earlier.
+
+Business Environment and Trends
+
+Demand in our Construction Materials segment depends on public infrastructure, private non-residential and residential construction in our local markets. In fiscal 2024, publicly funded highway, bridge and transit work, supported by federal surface transportation programs and state and local funding, gave a steady base of demand in many of our markets. Non-residential activity was mixed. Projects such as data centers, manufacturing facilities and energy installations supported shipments in certain regions, while other commercial construction categories were softer. Residential activity remained constrained in several markets by elevated mortgage rates and housing affordability pressures.
+
+In our Industrial Minerals segment, volumes depend on the operating rates of steel producers, electric utilities, chemical manufacturers and other industrial customers. Demand in fiscal 2024 was generally steady in water treatment, chemical and specialty applications. Demand tied to coal-fired power generation continued to face long-term pressure from unit retirements. Contractual price adjustment provisions tied to energy and other input costs partially offset cost changes, typically with a lag.
+
+Our cost structure remains heavily influenced by energy, labor, maintenance, freight and equipment utilization. Inflation in labor, repair parts and contracted services continued during fiscal 2024. Some energy inputs were less volatile than in prior periods. Because our cost of revenue is high relative to revenue, small changes in pricing or unit costs have a large effect on gross profit. Improving margins through pricing discipline, operating efficiency and the integration of acquired operations remains management's central financial priority.
+
+During fiscal 2024 we completed acquisitions that broadened our operations in several regional markets. These acquisitions added revenue and production capacity. They also increased depreciation, depletion and amortization, integration costs and interest expense. Integrating these businesses into our operating, safety, information and control systems continues into fiscal 2025.
+
+Results of Operations
+
+The following table summarizes our consolidated results of operations for the fiscal years indicated:
+
+(in millions)                                FY2024        FY2023
+Revenue                                      $11,823       $10,379
+Cost of revenue                               11,097         9,823
+Gross profit                                     726           556
+Research and development                           0             0
+Selling, general and administrative              227           214
+Other operating expense                          709           623
+Operating loss                                   (210)         (281)
+Interest expense                                 333           292
+Loss before income taxes                         (543)         (573)
+Provision for income taxes                         0             0
+Net loss                                         (543)         (573)
+
+Revenue
+
+Revenue increased 13.9% to $11,823 million in fiscal 2024, from $10,379 million in fiscal 2023. The largest contributor was revenue from businesses acquired in fiscal 2024, primarily in the Construction Materials segment and, to a lesser extent, the Industrial Minerals segment. Acquired operations also generated additional freight, terminal and transloading activity in the Logistics and Services segment.
+
+Organic pricing also contributed. We implemented price increases across most aggregates markets during the year, and downstream products such as ready-mixed concrete and asphalt mix generally carried higher average selling prices. Multi-year supply agreements in the Industrial Minerals segment repriced under their price adjustment provisions, partly reflecting earlier increases in energy and other input costs.
+
+Organic shipment volumes were mixed. Volumes tied to public infrastructure [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Kator Minerals, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 550 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

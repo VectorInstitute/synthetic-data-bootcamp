@@ -1,0 +1,26 @@
+{
+  "fictional_id": "AMED",
+  "fictional_name": "Riverton Energy Group, Inc.",
+  "fiscal_year": 2023,
+  "sector": "Industrials",
+  "sub_industry": "Aerospace & Defense",
+  "hq_state": "Arizona",
+  "template": {
+    "ticker": "AXON",
+    "fiscal_year": 2023
+  },
+  "financials": {
+    "total_assets": 4049858186,
+    "total_liabilities": 2380927011,
+    "stockholders_equity": 1668931175,
+    "revenues": 1982571143,
+    "net_income": 210544521,
+    "operating_income": 203907274
+  },
+  "cybersecurity": {
+    "framework": "the NIST Cybersecurity Framework and ISO/IEC 27001",
+    "oversight": "the Audit Committee of the Board of Directors",
+    "had_disclosed_incident": true,
+    "incident_summary": "a ransomware attempt on internal IT systems that was detected and contained before data was exfiltrated"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "company_id": "syn0005",
+  "name": "Merqua Land, Inc.",
+  "ticker": "MERQ",
+  "sector": "Real Estate",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "IL",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 9373,
+  "revenue_growth": -0.0223,
+  "employees": 16800,
+  "ratios": {
+    "gross_margin": 0.7886,
+    "operating_margin": 0.0239,
+    "sga_ratio": 0.1567,
+    "da_ratio": 0.1727,
+    "capex_ratio": 0.1056,
+    "tax_rate": 0.2315,
+    "asset_turnover": 0.1,
+    "equity_ratio": 0.5417,
+    "current_assets_ratio": 0.1238,
+    "current_ratio": 3.4343,
+    "cash_ratio": 0.0217,
+    "ppe_ratio": 0.5128,
+    "debt_ratio": 0.0504,
+    "receivables_ratio": 0.0846,
+    "goodwill_ratio": 0.0722,
+    "other_operating_cash_ratio": -0.0074
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 9373,
+        "cost_of_revenue": 7118,
+        "gross_profit": 2255,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 1469,
+        "other_operating_expense": 562,
+        "operating_income": 224,
+        "interest_expense": 213,
+        "pretax_income": 11,
+        "income_tax": 3,
+        "net_income": 8
+      },
+      "2023": {
+        "revenue": 9587,
+        "cost_of_revenue": 7273,
+        "gross_profit": 2314,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 1481,
+        "other_operating_expense": 575,
+        "operating_income": 258,
+        "interest_expense": 218,
+        "pretax_income": 40,
+        "income_tax": 9,
+        "net_income": 31
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 2034,
+        "receivables": 793,
+        "inventory": 0,
+        "total_current_assets": 4038,
+        "property_plant_and_equipment": 48065,
+        "goodwill": 6767,
+        "total_assets": 93730,
+        "total_current_liabilities": 1176,
+        "long_term_debt": 4724,
+        "total_equity": 50774,
+        "other_current_assets": 1211,
+        "other_noncurrent_assets": 34860,
+        "other_noncurrent_liabilities": 37056,
+        "total_liabilities": 42956,
+        "total_liabilities_and_equity": 93730
+      },
+      "2023": {
+        "cash": 2141,
+        "receivables": 808,
+        "inventory": 0,
+        "total_current_assets": 4213,
+        "property_plant_and_equipment": 48808,
+        "goodwill": 7349,
+        "total_assets": 98594,
+        "total_current_liabilities": 1225,
+        "long_term_debt": 4843,
+        "total_equity": 51981,
+        "other_current_assets": 1264,
+        "other_noncurrent_assets": 38224,
+        "other_noncurrent_liabilities": 40545,
+        "total_liabilities": 46613,
+        "total_liabilities_and_equity": 98594
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 8,
+        "depreciation_and_amortization": 1619,
+        "other_operating_items": -69,
+        "net_cash_from_operating_activities": 1558,
+        "capital_expenditures": -990,
+        "other_investing_activities": 659,
+        "net_cash_from_investing_activities": -331,
+        "net_change_in_long_term_debt": -119,
+        "dividends_paid": 0,
+        "share_repurchases_net": -1215,
+        "net_cash_from_financing_activities": -1334,
+        "net_change_in_cash": -107,
+        "cash_beginning_of_year": 2141,
+        "cash_end_of_year": 2034
+      }
+    }
+  }
+}

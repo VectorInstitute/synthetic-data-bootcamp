@@ -1,0 +1,111 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Zennov Medical, Inc. (ticker ZONE)
+Sector: Health Care
+Incorporated in: Delaware
+Headquarters: Denver, Colorado
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 2,700
+
+Zennov Medical, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                       2,264         2,093
+Cost of revenue                                 606           584
+Gross profit                                  1,658         1,509
+Research and development                        923           854
+Selling, general and administrative             124            87
+Other operating expense                           0             0
+Operating income                                611           568
+Interest expense                                 59            54
+Income before income taxes                      552           514
+Provision for income taxes                      166           149
+Net income                                      386           365
+
+Zennov Medical, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                               68            60
+Accounts receivable, net                               340           324
+Inventories                                            149           140
+Other current assets                                   240           224
+Total current assets                                   797           748
+Property, plant and equipment, net                     176           157
+Goodwill                                               490           449
+Other non-current assets                             1,614         1,443
+Total assets                                         3,077         2,797
+Total current liabilities                              710           658
+Long-term debt                                       1,321         1,201
+Other non-current liabilities                           88            63
+Total liabilities                                    2,119         1,922
+Total stockholders' equity                             958           875
+Total liabilities and stockholders' equity           3,077         2,797
+
+Zennov Medical, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                               386
+Depreciation and amortization                             62
+Changes in working capital and other                       3
+Net cash provided by operating activities                451
+Purchases of property and equipment                     (60)
+Other investing activities, net                        (200)
+Net cash used in investing activities                  (260)
+Net change in long-term debt                             120
+Dividends paid                                         (152)
+Share repurchases, net of issuances                    (151)
+Net cash used in financing activities                  (183)
+Net change in cash and cash equivalents                    8
+Cash and cash equivalents, beginning of year              60
+Cash and cash equivalents, end of year                    68
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 8.2%
+Net income growth, fiscal 2024 versus 2023: 5.8%
+Operating income growth, fiscal 2024 versus 2023: 7.6%
+Gross margin, fiscal 2024: 73.2%
+Operating margin, fiscal 2024: 27.0%
+Net margin, fiscal 2024: 17.0%
+Effective tax rate, fiscal 2024: 30.1%
+Research and development as a share of revenue, fiscal 2024: 40.8%
+Selling, general and administrative as a share of revenue, fiscal 2024: 5.5%
+Gross margin, fiscal 2023: 72.1%
+Operating margin, fiscal 2023: 27.1%
+Net margin, fiscal 2023: 17.4%
+Effective tax rate, fiscal 2023: 29.0%
+Research and development as a share of revenue, fiscal 2023: 40.8%
+Selling, general and administrative as a share of revenue, fiscal 2023: 4.2%
+
+STYLE EXAMPLE: the start of Item 1 from a real Health Care company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1.BUSINESS
+OVERVIEW
+We are a global biotechnology company that invests in scientific innovation to create transformative medicines for people with serious diseases, with a focus on specialty markets. We have seven approved medicines: five that treat the underlying cause of cystic fibrosis (“CF”), a life-threatening genetic disease, one that treats severe sickle cell disease (“SCD”) and transfusion dependent beta thalassemia (“TDT”), life shortening inherited blood disorders, and one that treats moderate-to-severe acute pain. Our clinical-stage pipeline includes programs in CF, SCD, beta thalassemia, acute and peripheral neuropathic pain, APOL1-mediated kidney disease, IgA nephropathy and other autoimmune renal diseases and cytopenias, type 1 diabetes, myotonic dystrophy type 1, and autosomal dominant polycystic kidney disease.
+Our goal in CF is to continue to extend our leadership by developing treatment regimens that will provide benefits to all people with CF. In December 2024, the U.S. Food and Drug Administration (the “FDA”) approved ALYFTREK (vanzacaftor/tezacaftor/deutivacaftor), our fifth medicine for people with CF. In addition to ALYFTREK, our marketed medicines that treat people with CF are TRIKAFTA/KAFTRIO (elexacaftor/tezacaftor/ivacaftor and ivacaftor), SYMDEKO/SYMKEVI (tezacaftor/ivacaftor and ivacaftor), ORKAMBI (lumacaftor/ivacaftor) and KALYDECO (ivacaftor). Collectively, our five marketed CF medicines are being used to treat nearly three quarters of the approximately 94,000 people with CF in the U.S., Europe, Australia, and Canada.
+Through approval of new medicines, label expansions, and expanded reimbursement, we are focused on increasing the number of people with CF who are eligible and able to receive our medicines. We are evaluating our current medicines in additional patient populations, including younger children, with the goal of having small molecule treatments for all people who have at least one mutation in their cystic fibrosis transmembrane conductance regulator (“CFTR”) gene that is responsive to our CFTR modulators. In December 2024, the FDA approved the expanded use of TRIKAFTA for treatment of people with CF. With this approval, 94 additional non-F508del CFTR mutations have been added to the TRIKAFTA label. We are evaluating VX-522, an investigational messenger ribonucleic acid (“mRNA”) therapeutic that we are developing in collaboration with Moderna, Inc. (“Moderna”) in a Phase 1/2 clinical trial in people with CF. The multiple ascending dose portion of the clinical trial is ongoing, and we expect to share data in the first half of 2025. VX-522 has the potential to benefit the more than 5,000 people with CF in the U.S., Canada, Europe and Australia who do not make full-length CFTR protein and therefore cannot benefit from CFTR modulators. In addition, we are continuing our research and development of additional CFTR modulators, with the aim of developing best-in-class medicines that can help more patients achieve normal levels of CFTR function, and we are investigating additional potential treatments for people with CF who do not make full-length CFTR protein and cannot benefit from CFTR modulators.
+In SCD and TDT, our goal is to eliminate vaso-occlusive crises (“VOCs”) (as well as vaso-occlusive organ damage) and transfusion dependence, respectively. Our marketed therapy is CASGEVY (exagamglogene autotemcel), an ex-vivo, non-viral CRISPR/Cas9 gene-edited cell therapy, which has been approved in the United States (“U.S.”), the European Union (“E.U.”), the United Kingdom (“U.K.”), the Kingdom of Saudi Arabia (“Saudi Arabia”), the Kingdom of Bahrain (“Bahrain”), the United Arab Emirates (the “UAE”), Canada and Switzerland for treatment of people 12 years of age and older with SCD or TDT. We estimate approximately 60,000 people with severe SCD or TDT are or could become eligible for CASGEVY in the U.S., Canada, Europe, Saudi Arabia and Bahrain. We are evaluating CASGEVY as a treatment for children 5 to 11 years of age with SCD or TDT in global Phase 3 clinical trials. We are progressing preclinical assets for gentler conditioning for CASGEVY, which could broaden the eligible patient population, and investigating small molecules for the potential treatment of SCD and TDT.
+In January 2025, the FDA approved JOURNAVX (suzetrigine), our selective non-opioid NaV1.8 pain signal inhibitor, for the treatment of moderate-to-severe acute pain. We have begun our commercial launch of JOURNAVX in eligible adults in the U.S. In addition, we are enrolling and dosing patients in a Phase 3 clinical trial evaluating suzetrigine for the treatment of diabetic peripheral neuropathy, a common form of peripheral neuropathic pain. We are enrolling and dosing patients in two Phase 2 clinical trials evaluating VX-993, a next-generation selective NaV1.8 pain signal inhibitor, for the treatment of acute pain and for the treatment of diabetic peripheral neuropathy. In December 2024, we announced results from a Phase 2 clinical trial evaluating suzetrigine in people with lumbosacral radiculopathy (“LSR”). Treatment with suzetrigine
+1
+demonstrated a statistically significant and clinically meaningful within-group reduction in pain and we plan to advance to pivotal development in LSR, pending discussions with regulators.
+The following chart sets forth our approved products, clinical-stage programs, and select pre-clinical programs:
+Beyond CF, SCD, TDT and pain, we are advancing programs across multiple disease areas and modalities, including:
+•APOL1-Mediated Kidney Disease. We are evaluating inaxaplin, our small molecule for the treatment of APOL1-mediated kidney disease (“AMKD”). We continue to enroll and dose people with AMKD in the Phase 3 portion of the global Phase 2/3 clinical trial.
+•IgA Nephropathy. We are developing povetacicept, a dual inhibitor of the B cell activating factor (“BAFF”) and a proliferation-inducing ligand (“APRIL”) pathways, as a potentially best-in-class approach to treat IgA nephropathy (“IgAN”), a serious progressive, autoimmune kidney disease that can lead to end-stage renal disease. We are enrolling and dosing patients in the Phase 3 clinical trial evaluating povetacicept in people with IgAN.
+•Type 1 Diabetes. Zimislecel, formerly known as VX-880, is an allogeneic stem-cell derived, fully differentiated islet cell therapy in pivotal development for the treatment of type 1 diabetes (“T1D”). We expect to complete enrollment and dosing in the Phase 3 portion of this Phase 1/2/3 clinical trial in 2025. Our second clinical program in T1D, VX-264, in which zimislecel is encapsulated in an immunoprotective device, is ongoing. We are also pursuing alternative approaches to immunosuppression that could be used with zimislecel, as well as hypoimmune cells.
+•Myotonic Dystrophy Type 1. We are exploring multiple approaches to address the underlying causal biology for myotonic dystrophy type 1 (“DM1”), including small molecules. We completed the single ascending dose portion of the global Phase 1/2 clinical trial evaluating VX-670, an oligonucleotide-based approach that we have in-licensed from Entrada Therapeutics, Inc. (“Entrada”). We are enrolling and dosing the multiple ascending dose portion of the trial, which will evaluate the safety and efficacy of VX-670.
+•Autosomal Dominant Polycystic Kidney Disease. We are nearing completion of a Phase 1 clinical trial in healthy volunteers evaluating VX-407, our first-in-class small molecule corrector that targets the underlying cause of autosomal dominant polycystic kidney disease (“ADPKD”) in people with a subset of variants in the PKD1 gene. We expect to advance VX-407 into a Phase 2 proof-of-concept study in people with ADPKD in 2025.
+•In addition to the programs listed above, we have additional research programs aimed at diseases that fit our research and development strategy and follow-on programs in our existing disease areas in accord with our serial innovation approach.
+2
+Our core strategy is to discover and develop innovative medicines by combining transformative advances in the understanding of human disease and the science of therapeutics to dramatically advance human health. That strategy focuses on validated targets that address causal human [...]
+>>>
+
+TASK
+Write Item 1. Business for Zennov Medical, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe the business: overview, principal products and services, two or three reportable segments described qualitatively, customers, sales and marketing, competition, seasonality, intellectual property, government regulation, human capital (state the number of employees from the facts sheet) and available information. The only dollar figure you may cite is total revenue.
+Length: about 2840 words. Start with the line "Item 1. Business" and output only the section text.

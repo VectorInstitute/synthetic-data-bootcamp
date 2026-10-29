@@ -1,0 +1,108 @@
+{
+  "company_id": "syn0009",
+  "name": "Torsel Software, Inc.",
+  "sector": "Information Technology",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 312.35,
+  "totals": {
+    "seconds": 311.91,
+    "prompt_tokens": 35259,
+    "completion_tokens": 33421,
+    "total_tokens": 68680,
+    "reasoning_tokens": 0,
+    "calls": 4
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1225,
+      "prompt_chars": 14417,
+      "words": 3912,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1039,
+      "prompt_chars": 24875,
+      "words": 4131,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1220,
+      "prompt_chars": 37099,
+      "words": 4306,
+      "attempts": 1,
+      "exemplar_overlap": 0.0036,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 723,
+      "prompt_chars": 42174,
+      "words": 1150,
+      "attempts": 1,
+      "exemplar_overlap": 0.0026,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 86.97,
+      "prompt_tokens": 4541,
+      "completion_tokens": 9035,
+      "total_tokens": 13576,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 3912,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 93.61,
+      "prompt_tokens": 7255,
+      "completion_tokens": 9629,
+      "total_tokens": 16884,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4131,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 99.72,
+      "prompt_tokens": 11063,
+      "completion_tokens": 11542,
+      "total_tokens": 22605,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4306,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 31.61,
+      "prompt_tokens": 12400,
+      "completion_tokens": 3215,
+      "total_tokens": 15615,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 1150,
+      "issues": []
+    }
+  ]
+}

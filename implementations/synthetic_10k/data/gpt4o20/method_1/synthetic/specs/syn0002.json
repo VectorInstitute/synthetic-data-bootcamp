@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0002",
+  "name": "Novix Aerospace, Inc.",
+  "ticker": "NOIX",
+  "sector": "Industrials",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "NJ",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 21485,
+  "revenue_growth": 0.0752,
+  "employees": 25300,
+  "ratios": {
+    "gross_margin": 0.314,
+    "operating_margin": 0.0937,
+    "sga_ratio": 0.0942,
+    "da_ratio": 0.0607,
+    "capex_ratio": 0.0185,
+    "tax_rate": 0.1774,
+    "asset_turnover": 0.6322,
+    "equity_ratio": 0.2669,
+    "current_assets_ratio": 0.2855,
+    "current_ratio": 1.2898,
+    "cash_ratio": 0.0128,
+    "ppe_ratio": 0.1203,
+    "debt_ratio": 0.1393,
+    "receivables_ratio": 0.1046,
+    "rd_ratio": 0.0618,
+    "inventory_ratio": 0.1261,
+    "goodwill_ratio": 0.4625,
+    "dividend_payout": 0.0917,
+    "other_operating_cash_ratio": -0.0121
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 21485,
+        "cost_of_revenue": 14831,
+        "gross_profit": 6654,
+        "research_and_development": 1328,
+        "selling_general_and_administrative": 2024,
+        "other_operating_expense": 1289,
+        "operating_income": 2013,
+        "interest_expense": 213,
+        "pretax_income": 1800,
+        "income_tax": 319,
+        "net_income": 1481
+      },
+      "2023": {
+        "revenue": 19982,
+        "cost_of_revenue": 13958,
+        "gross_profit": 6024,
+        "research_and_development": 1234,
+        "selling_general_and_administrative": 1805,
+        "other_operating_expense": 1199,
+        "operating_income": 1786,
+        "interest_expense": 187,
+        "pretax_income": 1599,
+        "income_tax": 286,
+        "net_income": 1313
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 435,
+        "receivables": 2247,
+        "inventory": 2709,
+        "total_current_assets": 7702,
+        "property_plant_and_equipment": 4088,
+        "goodwill": 15718,
+        "total_assets": 33984,
+        "total_current_liabilities": 5972,
+        "long_term_debt": 4734,
+        "total_equity": 9070,
+        "other_current_assets": 2311,
+        "other_noncurrent_assets": 6476,
+        "other_noncurrent_liabilities": 14208,
+        "total_liabilities": 24914,
+        "total_liabilities_and_equity": 33984
+      },
+      "2023": {
+        "cash": 393,
+        "receivables": 2145,
+        "inventory": 2477,
+        "total_current_assets": 7166,
+        "property_plant_and_equipment": 3618,
+        "goodwill": 14500,
+        "total_assets": 30627,
+        "total_current_liabilities": 5725,
+        "long_term_debt": 4161,
+        "total_equity": 8455,
+        "other_current_assets": 2151,
+        "other_noncurrent_assets": 5343,
+        "other_noncurrent_liabilities": 12286,
+        "total_liabilities": 22172,
+        "total_liabilities_and_equity": 30627
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 1481,
+        "depreciation_and_amortization": 1304,
+        "other_operating_items": -260,
+        "net_cash_from_operating_activities": 2525,
+        "capital_expenditures": -397,
+        "other_investing_activities": -1793,
+        "net_cash_from_investing_activities": -2190,
+        "net_change_in_long_term_debt": 573,
+        "dividends_paid": -136,
+        "share_repurchases_net": -730,
+        "net_cash_from_financing_activities": -293,
+        "net_change_in_cash": 42,
+        "cash_beginning_of_year": 393,
+        "cash_end_of_year": 435
+      }
+    }
+  }
+}

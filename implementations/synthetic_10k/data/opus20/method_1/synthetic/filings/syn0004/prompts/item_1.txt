@@ -1,0 +1,123 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Lonnov Software, Inc. (ticker LNON)
+Sector: Information Technology
+Incorporated in: Delaware
+Headquarters: Austin, Texas
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 163,900
+
+Lonnov Software, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      80,053        77,018
+Cost of revenue                              50,321        49,221
+Gross profit                                 29,732        27,797
+Research and development                     11,023        10,546
+Selling, general and administrative           2,402         2,310
+Other operating expense                           0             0
+Operating income                             16,307        14,941
+Interest expense                                504           482
+Income before income taxes                   15,803        14,459
+Provision for income taxes                    1,487         1,385
+Net income                                   14,316        13,074
+
+Lonnov Software, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                           20,933        19,316
+Accounts receivable, net                            14,410        13,507
+Inventories                                              0             0
+Other current assets                                15,146        14,067
+Total current assets                                50,489        46,890
+Property, plant and equipment, net                  12,443        12,316
+Goodwill                                             3,819         3,594
+Other non-current assets                            27,540        27,352
+Total assets                                        94,291        90,152
+Total current liabilities                           13,948        13,077
+Long-term debt                                      11,192        10,707
+Other non-current liabilities                        2,829         2,705
+Total liabilities                                   27,969        26,489
+Total stockholders' equity                          66,322        63,663
+Total liabilities and stockholders' equity          94,291        90,152
+
+Lonnov Software, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                            14,316
+Depreciation and amortization                          4,355
+Changes in working capital and other                   (376)
+Net cash provided by operating activities             18,295
+Purchases of property and equipment                  (1,577)
+Other investing activities, net                      (3,929)
+Net cash used in investing activities                (5,506)
+Net change in long-term debt                             485
+Dividends paid                                       (2,457)
+Share repurchases, net of issuances                  (9,200)
+Net cash used in financing activities               (11,172)
+Net change in cash and cash equivalents                1,617
+Cash and cash equivalents, beginning of year          19,316
+Cash and cash equivalents, end of year                20,933
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 3.9%
+Net income growth, fiscal 2024 versus 2023: 9.5%
+Operating income growth, fiscal 2024 versus 2023: 9.1%
+Gross margin, fiscal 2024: 37.1%
+Operating margin, fiscal 2024: 20.4%
+Net margin, fiscal 2024: 17.9%
+Effective tax rate, fiscal 2024: 9.4%
+Research and development as a share of revenue, fiscal 2024: 13.8%
+Selling, general and administrative as a share of revenue, fiscal 2024: 3.0%
+Gross margin, fiscal 2023: 36.1%
+Operating margin, fiscal 2023: 19.4%
+Net margin, fiscal 2023: 17.0%
+Effective tax rate, fiscal 2023: 9.6%
+Research and development as a share of revenue, fiscal 2023: 13.7%
+Selling, general and administrative as a share of revenue, fiscal 2023: 3.0%
+
+STYLE EXAMPLE: the start of Item 1 from a real Information Technology company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1. BUSINESS
+OVERVIEW
+Flex is the advanced, end-to-end manufacturing partner of choice that helps a diverse customer base design, build, deliver and manage innovative products that improve the world. Through the collective strength of a global workforce across approximately 30 countries with responsible, sustainable operations, Flex delivers technology innovation, supply chain, and manufacturing solutions to diverse industries and end markets. The Company's full suite of specialized capabilities includes design and engineering, supply chain, manufacturing, post-production and post-sale services, and proprietary products. Flex partners with customers across a diverse set of industries including data center, communications, enterprise, consumer, automotive, industrial, healthcare, industrial and power. As of March 31, 2025, Flex's two operating and reportable segments were as follows:
+•Flex Agility Solutions ("FAS"), which is comprised of the following end markets:
+◦Communications, Enterprise and Cloud ("CEC"), including data center, edge, and communications infrastructure
+◦Lifestyle, including appliances, floorcare, smart living, Heating, Ventilation and Air-Conditioning ("HVAC"), and power tools
+◦Consumer Devices, including mobile and high velocity consumer devices.
+•Flex Reliability Solutions ("FRS"), which is comprised of the following end markets:
+◦Industrial, including industrial devices, capital equipment, renewables, critical power, and embedded power.
+◦Automotive, including compute platforms, power electronics, motion, and interface
+◦Health Solutions, including medical devices, medical equipment, and drug delivery
+In fiscal year 2025, Flex formally introduced the next phase in its strategic evolution, its EMS + Products + Services approach. This hybrid model is focused on strengthening the Company’s core manufacturing and supply chain capabilities while expanding its portfolio of proprietary products and value-added services to maximize value creation for customers. To advance this approach, the Company completed several strategic acquisitions in fiscal year 2025 that enhance its differentiated portfolio to address critical data center customer challenges around power, heat and scale. These included the acquisitions of JetCool Technologies Inc. ("JetCool") to expand direct-to-chip liquid cooling capabilities and Crown Technical Systems ("Crown") to increase critical power capabilities while adding opportunities in grid modernization.
+On January 2, 2024, the Company completed its previously announced spin-off of its remaining interests in Nextracker Inc. ("Nextracker") to Flex shareholders on a pro-rata basis based on the number ordinary shares of Flex held by each
+3
+Table of Contents
+shareholder of Flex (the "Distribution") as of December 29, 2023, which was the record date of the Distribution, pursuant to the Agreement and Plan of Merger, dated as of February 7, 2023. The historical financial results and financial position of our former Nextracker business, which was previously reported as a separate operating and reportable segment, are presented as discontinued operations in the consolidated statements of operations. The historical statements of comprehensive income and cash flows and the balances related to stockholders’ equity have not been revised to reflect the effect of the Nextracker spin-off. See note 7 "Discontinued Operations" to the consolidated financial statements in Item 8, "Financial Statements and Supplementary Data" for further information.
+The FAS segment is optimized for speed to market, based on a highly flexible supply and manufacturing system. The FRS segment is optimized for longer product lifecycles requiring complex ramps with specialized production models and critical environments.
+Our customers include many of the world's leading data center, consumer products, healthcare, automotive, consumer products and industrial companies. We are focused on establishing long-term relationships with our customers and have been successful in expanding relationships to incorporate additional product lines and services.
+In fiscal year 2025, our ten largest customers accounted for approximately 44% of net sales. No customer accounted for greater than 10% of the Company's net sales in fiscal year 2025.
+Flex believes that long-term technology transitions and supply chain challenges are increasing complexity across the value chain, fueling demand for outsourcing partners with specialized services. In the data center sector, the rise of AI is pushing hyperscalers toward integrated solutions and comprehensive support from fewer suppliers. With our EMS + Products + Services approach, Flex has positioned the Company as the only outsourcing partner offering fully integrated racks, vertical services, and a complete power products portfolio from the grid to the chip. Additionally, Flex is continuously building toward a vision of the future of manufacturing through strategic investments and implementations that drive increasing optimization and productivity for us and our customers.
+Additionally, rising global uncertainty over the past few years including trade and tariff issues, increasing geopolitical unrest, and severe labor shortages are creating further complexity. The recent tariffs imposed by the current U.S. administration and retaliatory tariffs imposed by other countries are accelerating these trends. As a result, companies are rethinking their entire production strategies. We are seeing a global rebalancing in sourcing and production locations to maximize resiliency and decrease time to market. With sustainability as a continued area of focus, businesses are being held to a much higher standard for how and where their products are sourced and produced, and, increasingly, how they are serviced and disposed.
+These complexities are making it harder for companies to manage their own supply chains, manufacturing operations and products. They are looking for trusted partners to help them navigate this complex environment. We believe that only a few outsourcing providers have the right capabilities and scale to meet these challenges effectively and profitably. Flex is one of these partners.
+STRATEGY
+Our EMS + Products + Services strategy is centered upon enhancing our core manufacturing and supply chain capabilities while broadening our portfolio of proprietary products and value-added services, maximizing value creation for our customers and shareholders. We are actively investing in areas that strengthen our competitive positioning, whether through advanced product lifecycle capabilities, cutting-edge manufacturing and product technologies, or innovative processes and business methods.
+We are consistently advancing our expertise in factory automation, robotics, artificial intelligence, vertical integration, simulation, digital twins, and power, among other disruptive technologies, while reinforcing our positioning in the AI-centric data center ecosystem. We select ethical partners and integrate the supply chain so that our customers can operate efficiently and responsibly. We are committed to investing in our employees and communities.
+Customer Focus. We believe that building strong partnerships with our customers and delivering on our commitments strengthens trust and customer retention. We focus on delivering distinctive products and services in a cost-effective manner with fast time to market. We are highly collaborative and leverage our global system and processes to operate with speed and responsiveness to provide customers reliable and responsible solutions throughout the product lifecycle.
+Markets. We focus on companies that are leaders in their industry and value our superior capabilities in design and engineering, supply chain, manufacturing, post-production and post-sale services. We focus on high-growth industries and markets where we have distinctive competence and a compelling value proposition. In addition to our end-to-end services and power products for the data center, examples include investments in specific technologies and capabilities for automotive, healthcare, industrial, and consumer-related markets. Our market-focused approach to managing our business increases
+4
+Table of Contents
+customers' competitiveness by leveraging our deep vertical and cross-industry expertise, as well as global scale, regional presence, and agility to respond to changes in market dynamics.
+Operations and People. We continue to invest in maintaining a leadership position in our world-class manufacturing services and capabilities including automation, simulation tools, digitizing our factories, and implementing leading edge advanced manufacturing methodologies. We leverage our broad set of capabilities globally to provide a competitive advantage by minimizing logistics costs, manufacturing costs, and cycle times while increasing flexibility, responsiveness, and supply [...]
+>>>
+
+TASK
+Write Item 1. Business for Lonnov Software, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe the business: overview, principal products and services, two or three reportable segments described qualitatively, customers, sales and marketing, competition, seasonality, intellectual property, government regulation, human capital (state the number of employees from the facts sheet) and available information. The only dollar figure you may cite is total revenue.
+Length: about 3000 words. Start with the line "Item 1. Business" and output only the section text.

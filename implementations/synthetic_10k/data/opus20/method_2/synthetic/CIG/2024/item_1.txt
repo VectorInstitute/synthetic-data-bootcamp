@@ -1,0 +1,567 @@
+# PART I
+
+## Item 1. Business
+
+### Overview
+
+Crestline Energy Inc. ("Crestline," the "Company," "we," "us," or "our") is a Florida-headquartered designer, manufacturer, and marketer of electronic equipment, precision instruments, and related software and services for measuring, monitoring, testing, and controlling electrical energy. Our customers include electric utilities, grid operators, battery and electric vehicle manufacturers, renewable energy developers, semiconductor and power electronics companies, industrial processors, data center operators, research laboratories, and government agencies. Our products help these customers measure energy precisely, keep power systems safe and reliable, validate the performance of energy-conversion and energy-storage devices, and turn large volumes of electrical and environmental data into decisions.
+
+Despite the word "Energy" in our name, we are not an energy producer, and we do not own generation, transmission, or fuel assets. We are a technology company in the Electronic Equipment & Instruments industry. Our name reflects the markets we serve and the physical quantity our instruments measure. Across our portfolio, our core competency is the same: accurate, reliable, and secure measurement of electrical and related physical phenomena, delivered in rugged hardware and paired with software that makes the measurements useful.
+
+For fiscal 2024, our revenues were $7,425,482,275, or approximately $7.4 billion. We generate revenue from the sale of hardware instruments and systems, from embedded and standalone software, and from a growing base of services. These services include calibration, installation and commissioning, extended warranties, software subscriptions, data analytics, and managed monitoring.
+
+We organize our business into three reportable segments:
+
+- **Grid & Metering Solutions ("GMS").** This segment provides advanced metering instruments, grid-edge and substation sensors, power quality monitors, synchronized measurement devices, and the Crestline Meridian™ data and analytics platform. Its customers are utilities and grid operators.
+- **Test, Measurement & Power Electronics ("TMPE").** This segment provides battery cell, module, and pack test systems, power analyzers, programmable power sources and loads, high-voltage and insulation test equipment, and validation systems. Customers use these products to develop and manufacture electric vehicles, energy storage systems, inverters, chargers, and power semiconductors.
+- **Industrial Sensing & Controls ("ISC").** This segment provides process and environmental sensors, gas detection instruments, condition-monitoring systems, data acquisition hardware, and edge controllers. Its customers are industrial facilities, energy infrastructure operators, hydrogen and alternative-fuel producers, and mission-critical facilities such as data centers.
+
+Our segments share a common technology foundation in mixed-signal electronics, metrology, embedded firmware, secure communications, and data software. They also share common manufacturing, supply chain, quality, and corporate functions. We believe this shared foundation lets us develop products more efficiently, cross-sell to customers who buy from more than one segment, and apply innovations from one market to others.
+
+### Our History and Evolution
+
+Crestline began as a specialized supplier of electrical metering and measurement instruments to utilities in the southeastern United States. Our early reputation rested on the accuracy and durability of our meters and test equipment in demanding conditions, including the heat, humidity, salt air, and severe weather common to our home region. Over time, we added power quality monitoring, substation instrumentation, and portable field test equipment as utility customers asked us to help them understand more of their networks.
+
+As the electric power industry began to modernize, we invested in communications, firmware, and software so that our instruments could do more than record consumption. We developed networked meters, grid sensors, and head-end software that let utilities collect and act on data remotely. This shift from stand-alone instruments to connected systems became the basis of our present Grid & Metering Solutions segment and our Meridian platform.
+
+We later saw that the measurement techniques we had refined for utilities applied directly to a fast-growing group of customers: companies developing and manufacturing batteries, electric drivetrains, power converters, and renewable energy equipment. Through internal development and targeted acquisitions, we built a portfolio of power test and measurement products. That portfolio became our Test, Measurement & Power Electronics segment.
+
+Our Industrial Sensing & Controls segment grew from our experience with ruggedized sensing and data acquisition in utility substations and generating facilities. As industrial customers pursued efficiency, safety, emissions monitoring, and predictive maintenance, we extended our sensing and edge-computing capabilities to process industries, energy infrastructure, and mission-critical facilities.
+
+Throughout this evolution, we have stayed headquartered in Florida. We continue to operate significant engineering, manufacturing, and customer support functions in the state, alongside our facilities elsewhere in the United States and internationally.
+
+### Our Business Model
+
+We create value by combining four elements:
+
+1. **Precision hardware.** We design instruments, sensors, meters, test systems, and power electronics that deliver accurate, repeatable, and traceable measurements. Our hardware is built to operate for long service lives, often in harsh outdoor, industrial, or high-voltage environments.
+
+2. **Embedded intelligence.** Many of our products include processors, signal-processing algorithms, and firmware that analyze data at the point of measurement. This reduces the volume of raw data that must be transmitted, makes local control decisions possible, and supports cybersecurity features such as secure boot, authenticated firmware updates, and encrypted communications.
+
+3. **Software and analytics.** Our software products, led by the Meridian platform in GMS and our test automation and data management suites in TMPE and ISC, collect, store, visualize, and analyze measurement data. Customers increasingly buy our software on a subscription basis, either hosted by us or deployed in their own environments.
+
+4. **Lifecycle services.** We provide calibration, repair, installation, commissioning, training, technical support, extended warranties, and managed monitoring. Our instruments often remain in service for many years, and we seek to support them across that lifecycle.
+
+We sell this combination through direct sales teams, channel partners, distributors, systems integrators, and original equipment manufacturer relationships. In each case, our aim is to become embedded in the customer's operational, engineering, or production workflows. We believe that once our instruments, software, and data formats are deeply integrated, customers have strong reasons to keep standardizing on our platforms and to expand their use over time.
+
+Our revenue includes both project-based and recurring elements. Large utility metering deployments and battery production test line installations can be multi-year programs with significant upfront hardware shipments. Software subscriptions, calibration agreements, service contracts, and replacement and expansion orders tend to recur. We are working to increase the share of our revenue that comes from software and services. We believe this improves the predictability of our results and deepens customer relationships.
+
+### Industry Background and Market Opportunity
+
+We believe several long-term trends are increasing demand for the accurate measurement, monitoring, testing, and control of electrical energy.
+
+#### Grid Modernization and Reliability
+
+Electric grids in many developed markets were designed for one-way power flow from large central generating stations to passive consumers. Much of this infrastructure is aging, and grid operators face rising expectations for reliability, resilience, and affordability. Extreme weather, including the hurricanes and tropical storms that regularly affect our home state, has shown how valuable real-time visibility into grid conditions can be for fast restoration and storm hardening. Utilities are investing in advanced metering, distribution automation, substation modernization, and grid analytics to:
+
+- locate and isolate faults faster;
+- manage voltage and reduce losses;
+- detect theft and metering anomalies; and
+- plan capital investment more effectively.
+
+Regulators in many jurisdictions have approved or encouraged these investments. Many utilities now treat metering and sensing infrastructure as a platform that supports multiple operational programs, not as a single-purpose asset.
+
+#### Distributed Energy Resources and Two-Way Power Flow
+
+Distributed energy resources are spreading across the grid edge. These resources include rooftop and community solar, behind-the-meter batteries, electric vehicle chargers, and controllable loads. They introduce two-way power flows, rapid variability, and power quality challenges that legacy grid equipment was not designed to handle. Grid operators need granular, high-resolution, time-synchronized measurement to understand these dynamics, maintain stability, and orchestrate distributed resources. Many jurisdictions also require utilities to accurately measure energy exported to the grid, monitor interconnection compliance, and support new tariff structures such as time-of-use and demand-based pricing. All of these depend on capable metering and data systems.
+
+#### Electrification of Transportation and Industry
+
+Electrification of passenger vehicles, commercial fleets, buses, off-highway equipment, and industrial processes is driving large investment in batteries, electric drivetrains, power converters, and charging infrastructure. Each of these technologies requires extensive testing:
+
+- in research and development, to characterize performance and safety;
+- in manufacturing, to verify quality, perform formation and grading of battery cells, and screen out defects; and
+- in the field, to validate installations and diagnose problems.
+
+Battery manufacturing is especially test-intensive. Cells generally undergo formation cycling and testing before they are assembled into modules and packs, and modules and packs are tested again before shipment. As global battery manufacturing capacity expands, demand for production test systems that are accurate, energy-efficient, and scalable grows with it.
+
+#### Renewable Generation and Energy Storage
+
+Utility-scale solar, wind, and energy storage projects depend on power conversion equipment that must meet demanding grid interconnection requirements. Developers, equipment makers, and certification bodies need to test inverters and converters under a wide range of grid conditions, monitor plant performance, and verify compliance with interconnection standards. Energy storage systems require ongoing monitoring of battery health, thermal conditions, and safety-related parameters, including gas detection where applicable.
+
+#### Power Semiconductors and Advanced Power Electronics
+
+Wide-bandgap semiconductors are increasingly used in electric vehicles, chargers, renewable inverters, data center power supplies, and industrial drives. These devices switch faster and operate at higher voltages and temperatures than conventional silicon devices. Characterizing them, and validating the power electronics built around them, requires high-bandwidth, high-voltage, and high-precision measurement equipment.
+
+#### Data Centers and Mission-Critical Facilities
+
+Rapid growth in data center capacity, driven in part by cloud computing and artificial intelligence workloads, is increasing demand for electrical power and for tools that monitor and manage it. Data center operators need power quality monitoring, metering, environmental sensing, and condition monitoring to maintain uptime, manage efficiency, and plan capacity. The concentration of large electrical loads also creates new needs for coordination between data centers and the utilities that serve them.
+
+#### Industrial Efficiency, Safety, and Emissions Monitoring
+
+Industrial operators face pressure to reduce energy consumption, improve safety, extend asset life, and measure and report emissions. Continuous sensing and condition monitoring let operators replace calendar-based maintenance with predictive approaches, detect hazardous conditions, and document environmental performance. Emerging industries such as hydrogen production, carbon capture, and alternative fuels require specialized sensing and gas detection because of the properties of the materials involved.
+
+#### Cybersecurity and Data Integrity
+
+As grid and industrial assets become more connected, they become more exposed to cyber threats. Utilities, industrial operators, and governments increasingly require their technology suppliers to demonstrate secure product development practices, provide timely vulnerability management, and support secure-by-design architectures. Measurement data that drives billing, regulatory compliance, and operational control must be protected against tampering. We believe these requirements favor suppliers with mature security capabilities and long track records in critical infrastructure.
+
+Together, these trends create what we believe is a durable opportunity for companies that can deliver trusted measurement and control technology across the full energy value chain, from the laboratory to the factory floor to the grid edge.
+
+### Our Competitive Strengths
+
+We believe the following strengths distinguish us from our competitors.
+
+**Metrology heritage and measurement accuracy.** Our history in revenue-grade utility metering has instilled a culture of accuracy, traceability, and long-term stability across our portfolio. Customers rely on our measurements for billing, regulatory compliance, safety decisions, and product qualification, so accuracy and reliability are fundamental to our value proposition. We operate accredited calibration laboratories and maintain measurement traceability to recognized national standards.
+
+**Breadth across the energy value chain.** Few competitors serve utilities, battery and EV manufacturers, power electronics developers, and industrial operators with a common technology base. Our breadth lets us see how energy technologies move from development to deployment. For example, the same inverter platform that a customer validates on our test systems may later connect to a grid monitored by our sensors and meters. This perspective informs our product roadmaps and supports cross-segment selling.
+
+**Installed base and long customer relationships.** Our instruments and systems are installed at a large number of utility, manufacturing, and industrial sites, and many of our customer relationships span decades. Our installed base generates recurring demand for replacement units, expansions, upgrades, calibration, service, and software. It also gives us insight into customers' evolving needs.
+
+**Integrated hardware, firmware, and software.** We design the hardware, embedded firmware, and application software for our core products ourselves. This lets us optimize performance, security, and user experience across the stack, deliver new functionality through remote firmware updates, and offer data models that work consistently across product lines.
+
+**Ruggedness and reliability in demanding environments.** Our products are engineered for heat, humidity, corrosive atmospheres, electrical transients, vibration, and severe weather. Our Florida roots give us direct experience designing for hurricane-prone and coastal environments, and we apply that discipline to products deployed worldwide.
+
+**Security-focused product development.** We have invested in secure development lifecycle practices, product security testing, vulnerability disclosure and response processes, and security features embedded in our devices and software. We believe our security posture is increasingly a deciding factor for utility and critical-infrastructure customers.
+
+**Scale in manufacturing and supply chain.** Our scale supports investment in automated manufacturing, test, and quality systems, and gives us leverage with suppliers of electronic components, enclosures, and other materials. Our multi-site manufacturing footprint gives us flexibility to allocate production and mitigate regional disruptions.
+
+**Experienced, application-focused workforce.** Our engineers, application specialists, and field service personnel combine deep technical knowledge with an understanding of customers' operational realities. We believe this application expertise is difficult to replicate and is central to winning and keeping complex system deployments.
+
+### Our Strategy
+
+Our objective is to be the most trusted provider of measurement, monitoring, test, and control solutions for the electrified economy. We are pursuing this objective through the following strategic priorities.
+
+**Lead in grid-edge intelligence.** We intend to extend our position in advanced metering and grid sensing by building more computing capability, analytics, and distributed-energy-resource management functions into our devices and the Meridian platform. We aim to help utilities move from collecting data to acting on it in near real time, for example by detecting faults, flagging power quality problems, identifying unauthorized connections, and supporting coordination of distributed resources.
+
+**Capture the electrification test cycle.** In TMPE, we plan to keep developing energy-efficient, regenerative, and highly scalable test systems for battery cells, modules, and packs, as well as for electric drivetrains, chargers, and inverters. We aim to support customers from early research through high-volume manufacturing, so that a customer who standardizes on our platform in the laboratory can carry the same test methods and data infrastructure into production.
+
+**Expand software and recurring revenue.** We plan to grow subscription software, analytics, managed services, calibration, and lifecycle service offerings across all three segments. We are moving appropriate products to subscription and software-as-a-service models, adding data services that use our installed base, and offering performance-based service agreements where customers value outcomes over equipment ownership.
+
+**Advance industrial sensing for safety and decarbonization.** In ISC, we intend to grow our position in gas detection, emissions monitoring, condition monitoring, and edge control. We are focusing particularly on hydrogen, energy storage safety, data center infrastructure, and industrial facilities pursuing efficiency and emissions goals.
+
+**Drive operational excellence.** We continue to invest in manufacturing automation, design-for-manufacturability practices, supply chain resilience, and lean operations. Our goals are to improve margins, shorten lead times, and raise quality. We pursue dual sourcing of critical components where practical, regionalized manufacturing, and close collaboration with strategic suppliers.
+
+**Pursue disciplined acquisitions and partnerships.** We periodically evaluate acquisitions, investments, and partnerships that would add complementary technologies, extend us into adjacent markets, or expand our geographic reach. We evaluate these opportunities against strategic fit, technology differentiation, financial returns, and our ability to integrate them.
+
+**Develop and retain exceptional talent.** We aim to attract, develop, and retain engineers, software developers, application specialists, manufacturing professionals, and leaders who can carry out our strategy. We invest in training, technical career paths, and a culture built on accuracy, integrity, and customer focus.
+
+### Reportable Segments
+
+We manage our business through three reportable segments: Grid & Metering Solutions, Test, Measurement & Power Electronics, and Industrial Sensing & Controls. Our chief operating decision maker evaluates segment performance and allocates resources based on segment revenue and segment operating results. Financial information about our segments, including revenue and operating results, is presented in Note "Segment Information" to our consolidated financial statements in Item 8 of this Annual Report on Form 10-K and in Item 7, "Management's Discussion and Analysis of Financial Condition and Results of Operations." Our consolidated revenues for fiscal 2024 were $7,425,482,275.
+
+---
+
+### Grid & Metering Solutions
+
+#### Overview
+
+Our Grid & Metering Solutions segment provides utilities, municipal and cooperative electric systems, and grid operators with the instruments, communications capability, and software they need to measure energy, monitor grid conditions, and run their networks more efficiently and reliably. GMS is our original business and remains the foundation of our brand among utility customers.
+
+#### Products and Solutions
+
+**Advanced metering instruments.** Our Atlas™ Series of residential, commercial, and industrial electricity meters provides revenue-grade energy measurement together with interval data recording, power quality measurement, outage and restoration detection, and remote connect/disconnect capability. Atlas meters support multiple communications options, so utilities can deploy them on the network architecture that suits their territory. Higher-end commercial and industrial models add multi-channel measurement, extended power quality analysis, and support for complex tariffs. We also offer transformer-rated and specialty metering for large customers, generation interconnection points, and net-metered installations.
+
+**Grid-edge sensors and line monitors.** Our grid sensors can be mounted on distribution lines, transformers, and other grid assets. They measure current, voltage, temperature, and fault indicators, and provide visibility into parts of the distribution network that traditionally lacked instrumentation. Utilities use these sensors to pinpoint fault locations, detect overloaded equipment, track the effects of distributed energy resources, and support reliability programs.
+
+**Substation monitoring and synchronized measurement.** Our substation instrumentation includes power quality monitors, digital fault recorders, and synchronized measurement devices that record time-aligned electrical data across wide areas. Transmission operators and large utilities use these products to analyze disturbances, monitor system dynamics, verify protection performance, and meet regulatory reporting obligations.
+
+**Power quality monitoring.** Our Vantage™ power quality analyzers are available in permanently installed and portable form factors. They measure harmonics, voltage sags and swells, transients, flicker, and other disturbances. Utilities use them to resolve customer complaints and verify compliance. Large commercial and industrial customers, including data centers, use them to protect sensitive equipment and diagnose problems.
+
+**Communications and head-end systems.** We supply communications modules, gateways, and head-end software that collect data from our meters and sensors and send commands and firmware updates back to them. Our systems are designed to interoperate with common utility communications technologies and with third-party systems through standards-based interfaces.
+
+**Crestline Meridian platform.** Meridian is our grid data and analytics platform. It includes meter data management, grid analytics, outage analytics, revenue protection, load and voltage analytics, and distributed-energy-resource visibility applications. Meridian can be deployed in a customer's own data center or as a hosted, subscription-based service operated by us. It ingests data from our devices and, through open interfaces, from third-party devices and utility enterprise systems. Machine learning and statistical techniques within Meridian help utilities identify anomalies, predict equipment failure, and prioritize field work.
+
+**Field and laboratory test equipment.** We offer meter test boards, portable reference standards, and field test equipment that utilities use to verify meter accuracy, test installations, and comply with regulatory accuracy-testing programs.
+
+**Services.** GMS services include deployment project management, installation coordination, system integration, network design, managed network operations, software hosting, analytics services, training, and technical support. For large deployments we often take on project management for multi-year programs.
+
+#### Customers and End Markets
+
+GMS customers include investor-owned utilities, municipal utilities, rural electric cooperatives, public power authorities, transmission operators, and, internationally, distribution network operators and state-owned utilities. We also sell power quality and metering products to large commercial and industrial end users, data center operators, campuses, and engineering firms.
+
+Utility purchasing decisions often depend on regulatory approval of capital investment programs and may involve lengthy evaluation, pilot, and procurement processes. Once selected, a supplier may be engaged for a multi-year deployment followed by a long period of maintenance, replacement, and software support. Our installed base of meters and sensors creates continuing opportunities for software upgrades, analytics applications, and eventual replacement as technology and regulatory requirements change.
+
+#### Competitive Factors
+
+GMS competes on measurement accuracy, reliability, communications performance, cybersecurity, software functionality, interoperability, total cost of ownership, ability to execute large deployments, financial stability, and the strength of long-term customer relationships. Our competitors include large diversified industrial and electrical equipment companies, specialized metering and grid technology companies, and software providers focused on utility data and analytics. We believe our combination of metrology heritage, integrated hardware and software, security capability, and deployment experience positions us well.
+
+---
+
+### Test, Measurement & Power Electronics
+
+#### Overview
+
+Our Test, Measurement & Power Electronics segment provides test and measurement instruments and systems used to develop, validate, and manufacture batteries, electric vehicles, charging equipment, renewable energy converters, power semiconductors, and other power electronic devices. TMPE serves customers from early research and development through high-volume production.
+
+#### Products and Solutions
+
+**Battery test systems.** Our Helix™ battery test systems cycle, characterize, and validate battery cells, modules, and packs. Our product range includes:
+
+- *Research and development cyclers* that provide highly precise control and measurement for cell chemistry research, characterization, and life-cycle testing;
+- *Production formation and grading systems* that perform the initial charge and discharge cycles that activate battery cells during manufacturing, and that sort cells by measured performance;
+- *Module and pack test systems* that validate assembled battery modules and packs, including end-of-line testing in production environments; and
+- *Battery management system validation tools* that let developers test battery management electronics under simulated conditions.
+
+Many of our battery test systems use regenerative architectures that return energy discharged from batteries under test back to the facility's electrical system or to other channels. This reduces customers' energy consumption and cooling requirements. We believe regenerative efficiency, channel density, measurement accuracy, and system scalability are increasingly important to battery manufacturers expanding production capacity.
+
+**Programmable power sources and loads.** Our Pinnacle™ programmable power products include DC power supplies, bidirectional DC sources, regenerative electronic loads, AC power sources, and grid simulators. Customers use them to test inverters, chargers, onboard power electronics, motors, and other equipment. Grid simulators reproduce a wide range of grid conditions, including voltage and frequency variations and disturbances, so customers can verify that their equipment meets interconnection requirements.
+
+**Power analyzers and precision measurement.** Our power analyzers measure power, efficiency, harmonics, and related parameters in power conversion equipment and electric drivetrains. Customers use them for efficiency mapping, motor and inverter characterization, and certification testing. We also offer high-bandwidth current and voltage probes, data acquisition systems, and precision measurement accessories.
+
+**Electric vehicle and charging test.** We offer integrated test solutions for electric vehicle components and charging equipment, including charger conformance and interoperability test systems, emulators for vehicle and charger communications, and drivetrain test integration. These solutions help vehicle and charger makers verify that their products work reliably together and comply with applicable standards.
+
+**Power semiconductor characterization.** Our power device characterization systems help semiconductor manufacturers and power electronics designers measure the static and dynamic characteristics of power transistors, diodes, and modules, including wide-bandgap devices. Customers use them in device development, application engineering, and quality verification.
+
+**High-voltage and insulation test.** Our high-voltage test equipment includes hipot testers, insulation resistance testers, partial discharge measurement systems, and safety test instruments. Customers use these products to verify the electrical safety and insulation integrity of components and finished products, including battery packs, motors, cables, and electrical equipment.
+
+**Test automation software and data management.** Our test automation software lets customers define test sequences, control multiple instruments, acquire and analyze data, and manage large volumes of test results. In production environments, the software integrates with manufacturing execution systems and supports traceability. In research environments, it supports flexible test design and advanced analysis. We increasingly offer this software through subscription licenses and connected data services.
+
+**Turnkey test systems and integration services.** For complex applications, we design and deliver turnkey systems that combine our instruments, third-party equipment, fixtures, safety systems, and software. We provide application engineering, installation, commissioning, training, and ongoing support.
+
+#### Customers and End Markets
+
+TMPE customers include:
+
+- battery cell, module, and pack manufacturers;
+- automotive and commercial vehicle manufacturers and their suppliers;
+- charging equipment manufacturers;
+- solar inverter, wind converter, and energy storage system manufacturers;
+- power semiconductor companies;
+- consumer and industrial electronics manufacturers;
+- aerospace and defense contractors;
+- testing, inspection, and certification laboratories; and
+- universities and government research laboratories.
+
+Customer spending in this segment is influenced by investment cycles in battery manufacturing capacity, electric vehicle programs, renewable energy equipment, and semiconductor development. Large production test orders tied to new factories can be significant and may vary meaningfully in timing from period to period. Research and development spending tends to be steadier, though it is still affected by customers' budgets and broader economic conditions.
+
+#### Competitive Factors
+
+TMPE competes on measurement accuracy and precision, power range and channel density, regenerative efficiency, reliability, software capability, system integration expertise, application support, delivery lead times, global service coverage, and price. Our competitors include diversified test and measurement companies, specialized battery test equipment makers, power electronics test providers, and regional competitors, including competitors based in Asia that often compete aggressively on price in production test applications. We believe our measurement heritage, regenerative technology, software, and ability to support customers from laboratory to factory differentiate us.
+
+---
+
+### Industrial Sensing & Controls
+
+#### Overview
+
+Our Industrial Sensing & Controls segment provides sensors, gas detection instruments, condition-monitoring systems, data acquisition hardware, and edge controllers that help industrial and infrastructure operators monitor processes, protect people and assets, improve efficiency, and document environmental performance.
+
+#### Products and Solutions
+
+**Process and environmental sensors.** Our Strata™ sensor portfolio includes temperature, pressure, flow, level, humidity, and electrical sensors for industrial processes and infrastructure. Many models are rated for hazardous locations and harsh environments. Our sensors support both conventional analog interfaces and digital industrial communications protocols, so they integrate easily into existing control systems.
+
+**Gas detection.** Our Beacon™ gas detection products include fixed and portable detectors for combustible, toxic, and other hazardous gases. They are used in industrial facilities, energy infrastructure, battery energy storage installations, wastewater treatment, and hydrogen production, storage, and fueling applications. Hydrogen detection is an area of particular focus because hydrogen's physical properties pose distinct detection challenges.
+
+**Emissions and environmental monitoring.** We offer instruments and software that help industrial operators measure and report emissions and other environmental parameters. These products support customers' regulatory compliance and voluntary sustainability reporting.
+
+**Condition monitoring.** Our condition-monitoring systems track the health of rotating equipment, transformers, switchgear, cables, and other critical assets using vibration, thermal, electrical, and acoustic sensing. By detecting early signs of degradation, these systems help operators prevent unplanned outages and optimize maintenance.
+
+**Data acquisition and edge controllers.** Our ruggedized data acquisition systems and edge controllers collect data from sensors, run local analytics and control logic, and communicate securely with supervisory systems and cloud platforms. They are designed for remote and harsh sites such as pipelines, substations, renewable generation sites, and industrial plants.
+
+**Data center infrastructure monitoring.** We offer integrated monitoring for data centers that combines power metering, power quality analysis, environmental sensing, leak detection, and condition monitoring of electrical and cooling equipment. These products draw on capabilities from both our GMS and ISC segments.
+
+**Software and services.** ISC software includes device configuration tools, asset health dashboards, alarm management, and analytics applications, available on premises or as hosted subscriptions. Services include installation, calibration, maintenance, gas detector bump testing and calibration programs, and remote monitoring.
+
+#### Customers and End Markets
+
+ISC customers include chemical, petrochemical, and refining operators; oil and natural gas midstream companies; power generation facilities; water and wastewater utilities; manufacturers of food and beverages, pharmaceuticals, metals, and pulp and paper; hydrogen and alternative-fuel producers; battery energy storage developers and operators; data center operators; and engineering, procurement, and construction firms. We also sell through industrial distributors and systems integrators that serve smaller end users.
+
+#### Competitive Factors
+
+ISC competes on product performance, reliability, hazardous-area certifications, ease of integration, software capability, breadth of portfolio, service and calibration support, channel reach, and price. Competitors include large industrial automation companies, specialized sensor and gas detection manufacturers, and condition-monitoring specialists. We believe our ruggedized design expertise, our electrical measurement capability, and our ability to deliver integrated sensing and analytics position us well, particularly in electrical-asset monitoring, hydrogen safety, and energy storage safety.
+
+---
+
+### Software, Services, and Recurring Revenue
+
+Software and services are an increasingly important part of our business across all three segments. Our offerings include:
+
+- **Subscription software.** Hosted and on-premises subscriptions for Meridian, test automation and data management software, and industrial asset health and monitoring applications.
+- **Managed services.** Network operations, data management, and analytics delivered on behalf of utility and industrial customers, typically under multi-year agreements.
+- **Calibration services.** Calibration of our own instruments and, in some cases, third-party instruments, performed in our accredited laboratories or at customer sites.
+- **Maintenance, repair, and extended warranties.** Service plans that cover repair, replacement, preventive maintenance, and technical support beyond our standard warranty.
+- **Professional services.** Deployment management, system integration, custom application development, and training.
+
+We believe these offerings strengthen customer relationships, raise the lifetime value of our installed base, and give us better insight into how customers use our products. We are investing in cloud infrastructure, data security, customer success functions, and new analytics applications to support this part of our business.
+
+### Customers
+
+We serve a large and diverse customer base across utilities, transportation and automotive, battery and energy storage, renewable energy, semiconductors and electronics, industrial processing, data centers, research, and government.
+
+Some customers, particularly large utilities and battery manufacturers, may account for a meaningful share of a segment's revenue in a given period because of the size and timing of their deployments or capacity expansions. Our customer concentration can therefore vary from year to year. Information regarding any customer that accounted for a significant portion of our consolidated revenues, if applicable, is included in the notes to our consolidated financial statements in Item 8 of this Annual Report on Form 10-K.
+
+Many of our contracts with utilities and large industrial customers result from competitive procurement processes and may include detailed technical specifications, performance guarantees, service-level commitments, liquidated damages, and warranty obligations. Contracts with government agencies, including government-owned utilities, may be subject to public procurement rules and may permit the customer to terminate for convenience.
+
+### Sales, Marketing, and Distribution
+
+We sell our products and services through a combination of channels tailored to each segment and geography.
+
+**Direct sales.** We maintain direct sales organizations organized by segment, customer type, and region. Our direct sales teams focus on large utilities, major battery and vehicle manufacturers, large industrial operators, and other strategic accounts where purchasing decisions involve complex technical evaluations, multi-year programs, or significant integration. Direct sales personnel work closely with application engineers, solution architects, and project managers.
+
+**Channel partners and distributors.** We rely on electrical and industrial distributors, manufacturers' representatives, value-added resellers, and systems integrators to reach smaller utilities, industrial end users, laboratories, and customers in geographies where we have limited direct presence. Our channel partners provide local sales coverage, inventory, technical support, and integration services.
+
+**Original equipment manufacturers.** Some of our sensors, measurement modules, and power electronics are incorporated into other manufacturers' products, such as switchgear, energy storage systems, chargers, and industrial equipment.
+
+**Digital channels.** We use online configurators, technical content, webinars, and e-commerce for selected standard products and accessories to engage customers and support purchasing.
+
+Our marketing activities include participation in industry conferences and trade shows, technical publications and application notes, customer user groups, training programs, demonstration laboratories, and digital marketing. We take part in industry associations and standards development activities. We believe this participation helps us anticipate technical and regulatory change and builds our credibility with customers.
+
+We sell products in the United States and internationally. Our international operations expose us to risks including currency fluctuations, trade restrictions, tariffs, differing regulatory requirements, and geopolitical developments. Information about revenue by geographic area is included in the notes to our consolidated financial statements in Item 8 of this Annual Report on Form 10-K.
+
+### Research and Development
+
+Technology leadership is central to our competitive position. We conduct research and development to improve existing products, develop new products and platforms, and advance core technologies that serve multiple segments. Our principal research and development areas include:
+
+- **Precision analog and mixed-signal design.** High-accuracy measurement front ends, low-noise signal conditioning, and high-resolution data conversion.
+- **Power electronics.** Regenerative power conversion, high-efficiency topologies, wide-bandgap device integration, and thermal management.
+- **Embedded systems and firmware.** Real-time processing, edge analytics, secure boot and firmware update mechanisms, and device management.
+- **Communications.** Wired and wireless communications for utility and industrial networks, including interoperability with standards-based protocols.
+- **Software and data science.** Cloud and on-premises software platforms, data management, visualization, machine learning, and analytics applications.
+- **Sensing technologies.** Gas sensing, including hydrogen detection; condition-monitoring sensors; and sensing materials and packaging for harsh environments.
+- **Cybersecurity.** Product security architecture, cryptographic implementations, security testing, and vulnerability management.
+- **Metrology.** Calibration methods, reference standards, and measurement uncertainty analysis.
+
+Our research and development organization includes hardware, firmware, software, systems, and test engineers, as well as data scientists and product security specialists. Our engineering teams are located at our Florida headquarters and at engineering centers in other parts of the United States and in international locations. We also work with universities, national laboratories, standards bodies, and customers on collaborative research and early-stage development.
+
+We follow a structured product development process. It includes market and customer requirements definition, architecture and design reviews, design-for-manufacturability and design-for-test practices, security reviews, verification and validation testing, regulatory certification, and controlled product launch. We also manage our portfolio to retire legacy products in an orderly way while continuing to support the installed base.
+
+Our research and development expenses are discussed in Item 7, "Management's Discussion and Analysis of Financial Condition and Results of Operations," and presented in our consolidated financial statements in Item 8 of this Annual Report on Form 10-K.
+
+### Manufacturing, Supply Chain, and Sourcing
+
+#### Manufacturing
+
+We manufacture products at Company-operated facilities and also use contract manufacturers. Our facilities perform printed circuit board assembly, final assembly, system integration, calibration, and testing. Our Florida operations include manufacturing, calibration, and repair functions. We operate additional manufacturing sites elsewhere in the United States and internationally, and we use contract manufacturing partners for selected high-volume assemblies, subassemblies, and components.
+
+We use a regionalized manufacturing approach where practical, producing products near the customers who buy them. This approach is intended to:
+
+- shorten lead times;
+- reduce logistics costs;
+- mitigate tariff and trade risks; and
+- meet customer or regulatory requirements for domestic content where applicable.
+
+Some utility and government customers, and some programs that receive government funding, require domestic manufacturing or domestic content, and our U.S. manufacturing footprint helps us meet those requirements.
+
+Our manufacturing operations make extensive use of automated assembly, automated optical and electrical inspection, in-circuit and functional testing, and automated calibration. Revenue-grade meters and precision instruments go through calibration and accuracy verification before shipment. We keep investing in factory automation, manufacturing execution systems, and data-driven quality analytics to improve productivity and consistency.
+
+#### Supply Chain and Sourcing
+
+Our products contain a wide variety of components and materials, including:
+
+- semiconductors such as microcontrollers, processors, analog and mixed-signal integrated circuits, power semiconductors, memory, and communications chips;
+- passive components;
+- printed circuit boards;
+- displays;
+- batteries;
+- magnetics and transformers;
+- connectors and cables;
+- metal and plastic enclosures; and
+- sensing elements.
+
+We buy these materials from many suppliers worldwide. Some components, particularly certain semiconductors, sensing elements, and custom parts, come from single or limited sources.
+
+We manage supply chain risk through multiple measures:
+
+- qualifying alternative sources where practical;
+- designing products to accept alternative components;
+- maintaining strategic inventory of critical components;
+- entering longer-term supply agreements with key suppliers;
+- monitoring supplier financial and operational health; and
+- assessing geographic concentration risk.
+
+In past periods, the electronics industry has experienced component shortages, extended lead times, and price increases, especially for semiconductors. These conditions affected our ability to meet demand and our costs. Although supply conditions for many components have improved, we continue to monitor the risk of future shortages, trade restrictions, natural disasters, geopolitical events, and other disruptions.
+
+We expect our suppliers to comply with our supplier code of conduct. The code addresses labor and human rights, health and safety, environmental responsibility, ethics, and responsible sourcing of minerals. We conduct supplier assessments and audits as part of our supplier management program.
+
+#### Logistics and Business Continuity
+
+Because our headquarters and significant operations are in Florida, we are exposed to hurricanes and other severe weather. We maintain business continuity and disaster recovery plans covering our facilities, information systems, and supply chain. These plans include facility hardening, backup power, redundant data infrastructure, the ability to shift production among sites, and pre-positioned inventory. Our experience operating through severe weather also informs the design of products we sell to utilities for storm preparedness and restoration.
+
+### Quality Management
+
+Quality and reliability are fundamental to our reputation and to our customers' operations. We operate quality management systems at our manufacturing and service facilities that are certified to internationally recognized quality management standards. Where applicable, we maintain additional certifications required by our customers' industries, such as automotive-sector quality requirements for products sold into vehicle supply chains. Our calibration laboratories are accredited to internationally recognized standards for testing and calibration laboratory competence.
+
+Our quality practices include supplier quality management, incoming inspection, in-process and final testing, reliability testing, accelerated life testing, field failure analysis, corrective and preventive action processes, and continuous improvement programs. Product warranty terms vary by product and customer. Information about our warranty obligations is included in the notes to our consolidated financial statements in Item 8 of this Annual Report on Form 10-K.
+
+### Intellectual Property
+
+We rely on a combination of patents, trademarks, copyrights, trade secrets, confidentiality agreements, and contractual provisions to protect our proprietary technology and brands. We hold patents and pending patent applications in the United States and in other jurisdictions. They cover aspects of measurement circuitry, metering methods, power conversion and regenerative test architectures, battery test methods, sensing technologies, communications, cybersecurity, and software.
+
+We consider our patent portfolio valuable, but we do not believe our business as a whole depends materially on any single patent or group of related patents. We believe our competitive position depends more on our engineering expertise, the continuous improvement of our products, our installed base and customer relationships, our proprietary software and data models, and our know-how.
+
+Our trademarks include the Crestline name and logo and product names such as Meridian, Atlas, Vantage, Helix, Pinnacle, Strata, and Beacon. We register our principal trademarks in the United States and in selected other jurisdictions.
+
+We license certain technologies from third parties, including software, communications protocol stacks, and semiconductor intellectual property, and we include open-source software in some products under applicable license terms. We maintain policies and processes governing the use of third-party and open-source software.
+
+We protect trade secrets and confidential information through employee, contractor, and supplier confidentiality agreements, access controls, and information security measures. Despite these efforts, our intellectual property may be challenged, invalidated, circumvented, or misappropriated, and the laws of some countries may not protect intellectual property rights to the same extent as U.S. law. See Item 1A, "Risk Factors."
+
+### Backlog
+
+Our backlog consists of firm orders for products and services that we have not yet delivered or performed. Backlog includes multi-year utility metering and grid deployments, production battery test system orders, and long-term service and software subscription agreements. Because of the size and duration of certain programs, the timing of large orders, and customers' ability in some cases to reschedule or cancel orders, backlog at any particular date may not reliably indicate revenue for any future period. Information about our remaining performance obligations is included in the notes to our consolidated financial statements in Item 8 of this Annual Report on Form 10-K.
+
+### Seasonality and Cyclicality
+
+Our revenue and operating results can vary from quarter to quarter. Factors that contribute to this variability include:
+
+- the timing of large utility deployments and production test system orders;
+- customers' budget and capital spending cycles; and
+- the timing of regulatory approvals for utility investment programs.
+
+Many customers, particularly utilities and industrial operators, plan capital spending on an annual basis, and purchasing activity may be stronger in certain periods of their fiscal years. Field installation activity in some regions may be affected by weather, including winter conditions in northern markets and hurricane season in the southeastern United States and other coastal regions. Major storms can also temporarily shift utility customers' priorities toward restoration and away from planned deployments, while increasing longer-term interest in grid resilience.
+
+Parts of our business are cyclical. Demand in TMPE depends on investment cycles in battery manufacturing, electric vehicles, renewable energy equipment, and semiconductors, which can fluctuate significantly. Demand in ISC is influenced by industrial capital spending and by conditions in energy and process industries. Demand in GMS tends to be steadier because it is driven by regulated utility investment programs, but the timing of large programs can still vary.
+
+### Competition
+
+The markets for our products and services are highly competitive and are characterized by rapid technological change, evolving industry standards, and changing customer requirements. We compete with:
+
+- large, diversified multinational industrial, electrical equipment, and test and measurement companies with broad product portfolios, extensive resources, and global reach;
+- specialized companies focused on particular product categories, such as utility metering, grid analytics, battery test, power electronics test, gas detection, or condition monitoring;
+- software and cloud companies offering data platforms and analytics for utilities and industrial operators;
+- regional and low-cost manufacturers, particularly in Asia, that compete primarily on price; and
+- customers' internal engineering organizations, which may develop their own test systems or analytics capabilities.
+
+The principal competitive factors in our markets include:
+
+- measurement accuracy and reliability;
+- product performance and features;
+- breadth of product portfolio;
+- software and analytics capability;
+- cybersecurity;
+- interoperability and adherence to industry standards;
+- ability to execute large and complex deployments;
+- quality of application engineering, service, and support;
+- global presence;
+- delivery lead times;
+- brand reputation and customer relationships;
+- regulatory certifications;
+- total cost of ownership; and
+- price.
+
+We believe we compete favorably on these factors, particularly on accuracy, reliability, integration of hardware and software, security, application expertise, and the strength of our installed base and customer relationships. Some competitors, however, have greater financial, technical, marketing, or other resources than we do, broader product portfolios, or stronger positions in particular geographies or customer segments. Competition could result in price reductions, reduced margins, or loss of market share. See Item 1A, "Risk Factors."
+
+### Government Regulation
+
+Our operations and products are subject to a wide range of federal, state, local, and foreign laws and regulations. Compliance with these requirements has not had, and we do not currently expect it to have, a material adverse effect on our capital expenditures, earnings, or competitive position. However, laws and regulations change, and future changes could require significant expenditures or affect demand for our products. The following describes the principal areas of regulation affecting our business.
+
+#### Product Safety, Performance, and Certification
+
+Many of our products must meet safety, performance, and electromagnetic compatibility standards and obtain certifications from recognized testing laboratories or regulatory bodies before they can be sold. Revenue-grade electricity meters are subject to metrological accuracy and performance standards and, in many jurisdictions, to type approval, sealing, and periodic accuracy-testing requirements set by state utility commissions, national metrology authorities, or other regulators. Products used in hazardous locations, such as certain sensors and gas detectors, must hold certifications for use in explosive atmospheres. Equipment used in vehicle, charging, and grid interconnection applications may need to comply with applicable industry standards. Obtaining and maintaining these certifications requires significant time and expense, and changes in standards may require product modifications.
+
+#### Telecommunications and Radio Frequency Regulation
+
+Many of our metering, sensing, and communications products include radio transmitters or other communications technologies. These products are subject to regulation by the Federal Communications Commission in the United States and by comparable authorities in other countries. The regulations govern equipment authorization, radio frequency emissions, spectrum use, and related matters. Changes in spectrum allocation or regulatory requirements could affect the design, cost, or marketability of our communications products.
+
+#### Utility Regulation
+
+Although we are not a regulated utility, demand for our GMS products is significantly affected by regulation of the electric utility industry. Utility investment in metering, grid modernization, and analytics generally requires approval from state public utility commissions or comparable regulators, who assess whether the investment is prudent and recoverable through customer rates. Regulatory policy on grid modernization, distributed energy resources, interconnection, reliability standards, data access, and customer privacy can affect the timing and scale of utility investment. Transmission operators that use our synchronized measurement and monitoring products may be subject to mandatory reliability standards, including standards for disturbance monitoring and critical infrastructure protection.
+
+#### Export Controls and Economic Sanctions
+
+Some of our products, software, and technology are subject to U.S. export control laws and regulations, including the Export Administration Regulations, and to economic sanctions administered by the Office of Foreign Assets Control of the U.S. Department of the Treasury. Comparable regulations apply in other countries where we operate. These regulations may restrict or require licenses for exports, re-exports, and transfers of certain products, software, and technology to certain countries, end users, and end uses. They may also prohibit transactions with sanctioned persons and jurisdictions. Export controls on advanced electronics, semiconductors, and related technologies have expanded and may continue to change, which could affect our ability to sell certain products in some markets or to obtain certain components. We maintain a trade compliance program that includes classification, screening, licensing, and training.
+
+#### Tariffs and Trade Policy
+
+We import components and finished goods into the United States and other countries and export products from the United States. Tariffs, trade remedies, domestic content requirements, and other trade measures can raise our costs, affect our supply chain decisions, and influence the competitive landscape. In particular, tariffs on electronic components and products from certain countries have affected, and may continue to affect, our costs and those of our competitors. Some government incentive programs and procurement rules favor domestically manufactured products, which may benefit our U.S. operations while imposing documentation and compliance obligations.
+
+#### Environmental, Health, and Safety Regulation
+
+Our operations are subject to environmental, health, and safety laws and regulations governing air emissions, wastewater discharges, the handling, storage, and disposal of hazardous materials and wastes, workplace safety, and the cleanup of contaminated sites. Our products are subject to laws in many jurisdictions that restrict certain hazardous substances in electrical and electronic equipment, require registration and reporting of chemical substances, and impose product take-back, recycling, and labeling obligations for electronic equipment and batteries. We maintain environmental, health, and safety programs designed to comply with these requirements. We are not currently aware of any environmental liabilities that we expect to have a material adverse effect on our business. However, environmental laws can impose liability regardless of fault, and future discoveries or changes in law could result in material costs.
+
+#### Conflict Minerals
+
+We are subject to rules issued by the Securities and Exchange Commission ("SEC") that require disclosure regarding the use of certain minerals, commonly known as conflict minerals, that originate from the Democratic Republic of the Congo and adjoining countries. We conduct due diligence on the sources of these minerals in our supply chain and file the required reports with the SEC. These requirements, together with customer expectations for responsible sourcing, can increase our compliance costs and limit the pool of suppliers available to us.
+
+#### Anti-Corruption
+
+We are subject to the U.S. Foreign Corrupt Practices Act and to anti-corruption laws in other countries where we do business. These laws generally prohibit improper payments or offers of payments to government officials and other persons to obtain or retain business. Because many of our customers are government-owned utilities or agencies, and because we work with third-party sales agents and distributors in some markets, we maintain an anti-corruption compliance program. The program includes policies, training, due diligence on third parties, and internal controls.
+
+#### Data Privacy and Cybersecurity
+
+Our products and services, particularly our metering, software, and managed services offerings, may collect, process, or store data that can include personal information, such as consumer energy usage data. We are subject to data privacy and data protection laws and regulations in the United States and other jurisdictions. These include state consumer privacy laws, utility-specific data privacy rules adopted by state regulators, and comprehensive data protection laws in other countries. These laws govern the collection, use, disclosure, transfer, and security of personal information, and some impose significant penalties for non-compliance.
+
+We are also subject to, or contractually required to comply with, cybersecurity requirements for products and services sold to critical infrastructure operators and government agencies. These requirements are evolving rapidly. In various jurisdictions, they include product security requirements, vulnerability disclosure obligations, software bill of materials expectations, and incident reporting obligations. Our cybersecurity risk management program, governance, and strategy are described in Item 1C, "Cybersecurity."
+
+#### Government Contracting
+
+We sell certain products and services to federal, state, and local government agencies, government-owned utilities, and government research laboratories, either directly or through prime contractors. Government contracts are subject to procurement regulations that may include requirements for pricing disclosure, domestic sourcing, cybersecurity, and audit rights. They may also permit the government to terminate contracts for convenience. Failure to comply with these requirements could result in penalties, contract termination, or suspension or debarment from government contracting.
+
+#### Government Incentive Programs
+
+Demand for some of our products is influenced by government programs that support grid modernization, electric vehicle adoption, charging infrastructure, battery manufacturing, renewable energy, hydrogen, and energy efficiency. These programs include grants, loans, tax credits, and procurement mandates. Changes in these programs, including changes from new legislation, administrative action, or shifting political priorities, could affect the timing and level of customer investment in our end markets.
+
+### Sustainability
+
+Sustainability is closely tied to our business. Our products help customers measure and manage energy, integrate renewable generation and energy storage, accelerate electrification, improve industrial efficiency, and monitor emissions and safety. We believe accurate measurement is a prerequisite for effective management of energy and emissions, and that our technology supports the broader transition to a more efficient and electrified economy.
+
+Within our own operations, we focus on:
+
+- improving energy efficiency at our facilities;
+- reducing waste;
+- managing hazardous materials responsibly;
+- designing products for energy efficiency and longevity; and
+- supporting repair, refurbishment, and recycling.
+
+Our regenerative battery test and power test products are a direct example of our product-level efficiency efforts, because they recover energy that would otherwise be dissipated as heat. We also consider environmental attributes in product design, including material selection, recyclability, and energy consumption during use.
+
+We are monitoring evolving climate-related and sustainability disclosure requirements in the jurisdictions where we operate, and we continue to develop our processes for measuring and reporting relevant environmental metrics.
+
+### Human Capital
+
+#### Overview
+
+Our employees are essential to our success. Our workforce includes engineers, software developers, data scientists, metrologists, manufacturing and quality professionals, application specialists, field service technicians, sales and marketing professionals, and corporate staff. Our employees work at our Florida headquarters, at our other U.S. facilities, and in international locations. Some employees outside the United States are covered by collective bargaining agreements or works council arrangements, as is customary in certain countries. We believe our relationships with our employees and their representatives are good.
+
+#### Culture and Values
+
+Our culture is built on values that reflect our measurement heritage:
+
+- **Accuracy.** We hold ourselves to precise standards in our products and our work.
+- **Integrity.** We act honestly and ethically with customers, colleagues, suppliers, and communities.
+- **Reliability.** We do what we say we will do, and we build products and relationships that last.
+- **Customer focus.** We seek to understand and solve our customers' real-world problems.
+- **Collaboration.** We work across disciplines, segments, and geographies to deliver the best outcomes.
+
+Our Code of Business Conduct and Ethics applies to all employees, officers, and directors and sets out our expectations for ethical behavior. We provide regular training on the Code and maintain multiple channels, including an anonymous reporting option, for employees to raise concerns without fear of retaliation.
+
+#### Talent Acquisition and Development
+
+Competition for technical talent is intense, particularly for experienced engineers in power electronics, embedded systems, software, cybersecurity, and data science. We recruit through university relationships, internships and co-op programs, professional networks, and employee referrals. Our Florida headquarters and our other engineering centers give us access to diverse talent pools.
+
+We invest in employee development through:
+
+- technical training;
+- leadership development programs;
+- mentoring;
+- tuition assistance; and
+- dual career paths that let engineers and technical specialists advance without moving into people management.
+
+Our manufacturing and service organizations offer structured training and certification programs, including training in calibration, safety, and quality practices.
+
+#### Inclusion and Belonging
+
+We believe a workforce with varied backgrounds, experiences, and perspectives strengthens our ability to innovate and serve a global customer base. We seek to foster an inclusive environment where all employees can contribute and advance. Our efforts include broad recruiting outreach, employee resource groups, inclusive leadership training, and review of our talent processes for fairness. We comply with applicable equal employment opportunity laws in the jurisdictions where we operate.
+
+#### Compensation and Benefits
+
+We offer competitive compensation and benefits designed to attract, retain, and motivate employees. Depending on role and location, these may include:
+
+- base pay;
+- annual incentive programs;
+- sales incentives;
+- equity awards for eligible employees;
+- retirement savings plans;
+- health and wellness benefits;
+- paid time off;
+- parental leave; and
+- employee assistance programs.
+
+We periodically benchmark our compensation and benefits against relevant markets and review pay practices for fairness.
+
+#### Health and Safety
+
+Workplace health and safety is a priority, especially in our manufacturing facilities, calibration and high-voltage test laboratories, and field service operations, where employees may work with high voltages, high-energy batteries, hazardous materials, or in customer facilities and outdoor environments. We maintain health and safety management systems, provide safety training, conduct risk assessments and audits, investigate incidents, and pursue continuous improvement in safety performance. Our hurricane preparedness programs include employee safety communications, facility preparation, and support for employees affected by severe weather.
+
+#### Employee Engagement
+
+We seek employee feedback through engagement surveys, town halls, and other forums, and we use the results to inform actions that improve the employee experience. We support employee involvement in our communities, including volunteer programs and charitable giving, with a particular focus on science, technology, engineering, and mathematics education and on disaster relief and resilience in the communities where we operate.
+
+### Corporate Information
+
+Crestline Energy Inc. is incorporated and headquartered in Florida. Our principal executive offices are located at our corporate headquarters in Florida, and our telephone number and mailing address are listed on the cover page of this Annual Report on Form 10-K. References in this Annual Report on Form 10-K to "fiscal 2024" refer to our fiscal year 2024.
+
+### Available Information
+
+We file annual, quarterly, and current reports, proxy statements, and other information with the SEC. These filings are available to the public on the SEC's website at www.sec.gov. We make available free of charge on the investor relations section of our corporate website our Annual Reports on Form 10-K, Quarterly Reports on Form 10-Q, Current Reports on Form 8-K, and amendments to those reports filed or furnished under Section 13(a) or 15(d) of the Securities Exchange Act of 1934, as amended. These materials are posted as soon as reasonably practicable after we electronically file them with, or furnish them to, the SEC.
+
+Our investor relations website also provides our corporate governance materials, including our Corporate Governance Guidelines, the charters of the committees of our Board of Directors, and our Code of Business Conduct and Ethics. We intend to disclose any amendments to, or waivers from, our Code of Business Conduct and Ethics that apply to our principal executive officer, principal financial officer, principal accounting officer, or persons performing similar functions on our website, to the extent required by applicable SEC rules and stock exchange listing standards. We may also use our investor relations website to announce material information to investors and the public. Information on, or accessible through, our website is not incorporated by reference into this Annual Report on Form 10-K or any other report we file with the SEC, and any references to our website are intended to be inactive textual references only.

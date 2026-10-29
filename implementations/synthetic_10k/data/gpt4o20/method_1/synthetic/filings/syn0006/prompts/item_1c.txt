@@ -1,0 +1,378 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Selzenqua Semiconductor, Inc. (ticker SEQZ)
+Sector: Information Technology
+Incorporated in: Delaware
+Headquarters: Princeton, New Jersey
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 50,700
+
+Selzenqua Semiconductor, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      16,983        14,943
+Cost of revenue                              10,825         9,375
+Gross profit                                  6,158         5,568
+Research and development                      4,353         3,801
+Selling, general and administrative             509           455
+Other operating expense                           0            98
+Operating income                              1,296         1,214
+Interest expense                                455           406
+Income before income taxes                      841           808
+Provision for income taxes                      193           194
+Net income                                      648           614
+
+Selzenqua Semiconductor, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            2,211         2,023
+Accounts receivable, net                             2,965         2,544
+Inventories                                          4,273         3,836
+Other current assets                                 4,050         3,602
+Total current assets                                13,499        12,005
+Property, plant and equipment, net                   5,453         5,069
+Goodwill                                             2,404         2,092
+Other non-current assets                            28,215        25,523
+Total assets                                        49,571        44,689
+Total current liabilities                           12,583        11,622
+Long-term debt                                      10,108         9,020
+Other non-current liabilities                       15,018        13,048
+Total liabilities                                   37,709        33,690
+Total stockholders' equity                          11,862        10,999
+Total liabilities and stockholders' equity          49,571        44,689
+
+Selzenqua Semiconductor, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                               648
+Depreciation and amortization                            912
+Changes in working capital and other                   (447)
+Net cash provided by operating activities              1,113
+Purchases of property and equipment                    (795)
+Other investing activities, net                      (1,433)
+Net cash used in investing activities                (2,228)
+Net change in long-term debt                           1,088
+Dividends paid                                          (78)
+Share repurchases, net of issuances                      293
+Net cash used in financing activities                  1,303
+Net change in cash and cash equivalents                  188
+Cash and cash equivalents, beginning of year           2,023
+Cash and cash equivalents, end of year                 2,211
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 13.7%
+Net income growth, fiscal 2024 versus 2023: 5.5%
+Operating income growth, fiscal 2024 versus 2023: 6.8%
+Gross margin, fiscal 2024: 36.3%
+Operating margin, fiscal 2024: 7.6%
+Net margin, fiscal 2024: 3.8%
+Effective tax rate, fiscal 2024: 22.9%
+Research and development as a share of revenue, fiscal 2024: 25.6%
+Selling, general and administrative as a share of revenue, fiscal 2024: 3.0%
+Gross margin, fiscal 2023: 37.3%
+Operating margin, fiscal 2023: 8.1%
+Net margin, fiscal 2023: 4.1%
+Effective tax rate, fiscal 2023: 24.0%
+Research and development as a share of revenue, fiscal 2023: 25.4%
+Selling, general and administrative as a share of revenue, fiscal 2023: 3.0%
+
+STYLE EXAMPLE: the start of Item 1C from a real Information Technology company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1C - CYBERSECURITY
+RISK MANAGEMENT AND STRATEGY
+We host, collect, process, use, and retain large amounts of sensitive and personal data across an array of our own and third-party information systems. To help protect these systems and data, we have implemented a robust information security program that includes numerous administrative, technical, and physical safeguards. We strive to evolve our cyber defenses to help minimize impacts from cyber threats. In general, we seek to address cybersecurity risks through a cross-functional approach. This approach focuses on protecting business operations and preserving the confidentiality, integrity, and availability of systems and data by preventing and mitigating cybersecurity threats, as well as effectively responding to cybersecurity incidents when they occur.
+Our information security program includes:
+•Having designated information security personnel, led by our Chief Information Security and Fraud Prevention Officer (CISO), who has decades of relevant experience and also serves as Chief Information Officer. The CISO is supported primarily by our Cybersecurity, Compliance, Risk, and Fraud Team (CyberCRAFT), which consists of approximately 500 professionals as of July 31, 2025. In addition to bringing their current expertise to their roles, CyberCRAFT professionals have the ability to participate in our specialized training and development programs to further enhance their cybersecurity skill sets and cross-train on related capabilities. The CISO works closely with the Company’s internal legal team to oversee compliance with legal, regulatory and contractual security requirements;
+•Risk assessments designed to help identify and prioritize significant cybersecurity risks. Our process for identifying and assessing material risks from cybersecurity threats includes incorporation of an internally developed threat catalog and our tracking of trends for areas such as vulnerability management, our leverage of technical standards and guidance, input from our participation and collaboration with law enforcement and government initiatives, and our internal and vendor-supported threat intelligence initiatives. The cybersecurity risk assessment operates alongside our broader overall enterprise-wide risk assessment and management process, and key cybersecurity risks are presented to the Audit and Risk Committee in a manner that helps frame cybersecurity risks as part of a broader risk context;
+•Regular testing and assessments of our systems and controls to evaluate the information security program maturity and effectiveness using cybersecurity frameworks (such as ISO 27001, PCI DSS, and SOC 2) and to identify and address potential vulnerabilities—and as appropriate, we adjust our policies, standards, and processes based on testing and assessment results;
+•A vulnerability management program to determine the in-scope systems, patch systems based on criticality, and disclose potential vulnerabilities;
+•A cybersecurity incident response plan and scenario-specific playbooks for responding to various types of cybersecurity incidents;
+•Business continuity and disaster recovery plans to support more effective response and recovery efforts in the event of a significant cybersecurity incident or disruption;
+•The use of external service providers and consultants to assess or monitor the environment or otherwise assist with aspects of our cybersecurity controls;
+•Commercially available and customized security technologies and security and business controls to limit access to and use of such sensitive data;
+•A security awareness and training program for our employees and contractors, with role-based training for certain personnel and positions; and
+•A third-party risk management framework designed to monitor and address cybersecurity risks from various third parties (including vendors, service providers, and other contractors) that includes diligence regarding the third party’s cybersecurity capabilities and additional monitoring of certain third parties based on the results of diligence. In addition, we have established standard contractual terms and conditions regarding cybersecurity applicable to third parties, as well as further downstream parties, that may be tailored to the use case and sensitivity of any data or business processes involved.
+Additionally, we maintain cybersecurity insurance which may cover some or all of the potential losses from a cybersecurity incident. During the last fiscal year, we did not identify any risks from cybersecurity threats, including as a result of any previous cybersecurity incidents, that materially affected Intuit, including its business strategy, results of operations, or financial condition. However, we continue to face ongoing and increasing cybersecurity risks which may materially affect us in the
+Intuit Fiscal 2025 Form 10-K
+29
+Table of Contents
+future. Additional information on the cybersecurity risks is discussed in “Risk Factors” in Item 1A of Part I of this Annual Report, including without limitation the risk that “Security incidents, improper access to or disclosure of our data or customers’ data, or other cyberattacks on our systems could harm our reputation, business, and financial condition.”
+GOVERNANCE
+Management is responsible for the day-to-day administration of Intuit’s cybersecurity policies, processes, practices, and risk management. The Audit and Risk Committee of our Board of Directors provides primary oversight of cybersecurity risks and the Company’s efforts to mitigate those risks.
+MANAGEMENT OVERSIGHT
+As part of management oversight, our Chief Executive Officer (CEO) receives monthly updates from the CISO and representatives from CyberCRAFT. These updates provide a recurring overview of cybersecurity trends and status updates (e.g., security events, fraud detection, IT roadmap progress, follow-up from prior assessments, security awareness exercise results), as well as a more focused analysis on select cybersecurity topics for the month. Examples of prior topics include: recent cybersecurity legislation, cybersecurity incidents affecting external entities, and trends in cybersecurity controls and adoption. As part of our incident response processes, incidents are classified based on the incident’s characteristics. For certain risk-based classifications of incidents, the CEO and other members of the executive leadership team are also informed and contribute as part of our incident response processes.
+BOARD OVERSIGHT
+Our full Board of Directors provides ultimate oversight for the cybersecurity program, in addition to other significant risks of Intuit. The Board of Directors has delegated primary oversight of cybersecurity risks to the Audit and Risk Committee. On a quarterly basis, the CISO and CyberCRAFT specialists provide the Audit and Risk Committee with updates, metrics, and trends, such as the status of prior security events, existing and emerging threat landscapes, the results of audits or assessments, fraud prevention efforts, vulnerability detection and disclosure changes, and the status of projects to strengthen our security systems and improve incident readiness, and how these may affect broader enterprise risk management. Under our incident response processes’ risk-based escalation protocols, the CISO, or other management, escalates certain incidents to the chair of the Audit and Risk Committee, who may then involve the broader committee or the full Board of Directors, as appropriate.
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Selzenqua Semiconductor, Inc. (hereinafter referred to as "Selzenqua" or the "Company"), a Delaware corporation with headquarters in Princeton, New Jersey, operates within the Information Technology sector, focusing primarily on semiconductor technologies. As of the fiscal year ended December 31, 2024, Selzenqua reported total revenue of $16,983 million. The Company employs approximately 50,700 individuals and remains committed to advancing technology and innovation through its diverse product offerings and strategic business segments.
+
+Overview
+
+Selzenqua is a leading innovator in the semiconductor industry, developing and manufacturing high-performance semiconductor products and solutions. Our mission is to enable the digital transformation of industries through our cutting-edge technology and comprehensive product offerings. We provide a wide range of products that are critical to the functioning of various electronic devices, thereby playing a crucial role in the global technology ecosystem.
+
+Principal Products and Services
+
+Our principal product offerings include microprocessors, system-on-chip (SoC) solutions, and application-specific integrated circuits (ASICs). These products are designed to address the diverse needs of our customers across different sectors, including consumer electronics, automotive, telecommunications, and industrial applications. Selzenqua is dedicated to delivering high-performance, energy-efficient solutions that empower our customers to meet their technological and operational objectives.
+
+In addition to our semiconductor products, Selzenqua offers a suite of services that enhance the value of our technology offerings. These services include design support, customization, and technical consulting, which are intended to help our customers optimize the integration and performance of our products within their systems.
+
+Reportable Segments
+
+Selzenqua's operations are organized into three reportable segments: Consumer Electronics, Automotive and Industrial, and Communications Infrastructure.
+
+The Consumer Electronics segment focuses on providing semiconductor solutions for devices such as smartphones, tablets, and wearables. Our products in this segment are designed to deliver superior performance and power efficiency, addressing the growing demand for advanced functionality and longer battery life in consumer devices.
+
+The Automotive and Industrial segment caters to the specific needs of the automotive and industrial sectors, offering solutions that enable applications such as advanced driver-assistance systems (ADAS), electric vehicle powertrains, and industrial automation. Our products in this segment are engineered to meet the rigorous reliability and safety standards required by these industries.
+
+The Communications Infrastructure segment provides semiconductor solutions for network equipment and data centers. Our offerings in this segment are designed to support the increasing data throughput and connectivity demands of modern communication networks, enabling faster and more reliable data transmission.
+
+Customers
+
+Selzenqua serves a diverse customer base, including original equipment manufacturers (OEMs), contract manufacturers, and system integrators across various industries. Our customers range from global multinational corporations to small and medium-sized enterprises, reflecting the broad applicability and versatility of our semiconductor solutions.
+
+Sales and Marketing
+
+Selzenqua's sales and marketing strategy is focused on developing strong, long-term relationships with our customers and partners. We utilize a combination of direct sales and distribution channels, which allows us to efficiently reach a wide range of customers worldwide. Our global sales force is supported by regional offices and representatives, ensuring that we can provide localized support and expertise to our customers.
+
+We also engage in joint development programs with key customers to tailor our products to specific applications, thereby enhancing customer satisfaction and loyalty. Additionally, we participate in industry trade shows and conferences to showcase our latest innovations and engage with potential partners and customers.
+
+Competition
+
+The semiconductor industry is highly competitive, characterized by rapid technological advancements and evolving customer requirements. Selzenqua faces competition from both established semiconductor companies and emerging players. Key competitive factors include product performance, power efficiency, price, design capabilities, and customer support.
+
+Selzenqua differentiates itself through our commitment to innovation, quality, and customer-centric solutions. Our continuous investment in research and development enables us to maintain a competitive edge by delivering cutting-edge technology that meets the evolving needs of our customers.
+
+Seasonality
+
+Our business is subject to seasonal fluctuations, with variations in demand driven by factors such as consumer spending patterns, product launch cycles, and inventory management by our customers. Historically, demand for our products tends to be higher in the second half of the year, coinciding with the holiday season and new product introductions in the consumer electronics market.
+
+Intellectual Property
+
+Selzenqua's success is strongly tied to our ability to innovate and protect our intellectual property (IP). We have a robust portfolio of patents, trade secrets, and proprietary technologies that safeguard our innovations and provide us with a competitive advantage. Our IP strategy involves proactive patent filing, strategic licensing agreements, and vigilant enforcement of our IP rights to prevent unauthorized use by competitors.
+
+Government Regulation
+
+As a participant in the global semiconductor industry, Selzenqua is subject to a wide range of governmental regulations, including export control laws, environmental regulations, and labor laws. Compliance with these regulations is critical to our operations, and we have established comprehensive policies and procedures to ensure adherence to applicable laws and standards. We continuously monitor regulatory developments and engage with industry associations to stay informed of changes that may impact our business.
+
+Human Capital
+
+Our workforce, comprising approximately 50,700 employees, is a vital asset to Selzenqua's success. We are committed to fostering a diverse and inclusive work environment that supports innovation, collaboration, and professional growth. Our human capital strategies focus on attracting, developing, and retaining top talent through competitive compensation, comprehensive training programs, and career development opportunities.
+
+Available Information
+
+Selzenqua is committed to providing transparency and accessibility of information to our stakeholders. We regularly update our corporate website with the latest news, financial reports, and regulatory filings, including our annual report on Form 10-K. Stakeholders can access these resources to stay informed about our business operations, financial performance, and strategic initiatives. Additionally, we maintain open channels of communication with our investors, analysts, and the media to ensure that all parties have access to timely and accurate information regarding our company.
+
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+Our operations and financial results are subject to various risks and uncertainties, including those described below. You should consider carefully the risks and uncertainties described below, in addition to other information contained in this Annual Report on Form 10-K, including our consolidated financial statements and related notes. The risks and uncertainties described below are not the only ones we face. Additional risks and uncertainties that we are unaware of, or that we currently believe are not material, may also become important factors that adversely affect our business. If any of the following risks or others not specified below materialize, our business, financial condition, and results of operations could be materially and adversely affected.
+
+Risks Related to Our Industry
+
+Highly Competitive Industry Exposes Us to Market Share Loss
+
+The semiconductor industry is intensely competitive and characterized by rapid technological change, frequent new product introductions, and price erosion. Our ability to compete successfully depends on factors both within and outside our control, including the performance, quality, and price of our products, as well as the success of our new product development efforts. Competitors with larger financial resources may be able to offer lower prices, better customer support, or more comprehensive solutions, which could lead to a loss of market share and adversely affect our financial performance.
+
+Rapid Technological Changes May Render Our Products Obsolete
+
+Technological advancement in the semiconductor industry is rapid, and the pace of innovation continues to accelerate. Our success depends on our ability to develop new products and technologies and to enhance existing products to meet evolving customer demands and technological advancements. Failure to anticipate or respond to technological changes could result in decreased demand for our products, reduced revenue, and a loss of market share.
+
+Cyclicality in the Semiconductor Industry Could Impact Our Financial Results
+
+The semiconductor industry is subject to cyclical fluctuations, which can result in significant variations in demand for our products. Factors such as changes in consumer preferences, inventory corrections, and economic downturns can lead to reduced demand and excess capacity. These cyclical trends could adversely affect our sales and profitability, and prolonged downturns could impact our ability to invest in research and development or expand our operations.
+
+Risks Related to Our Operations
+
+Dependence on Key Customers and Concentration of Revenue
+
+A significant portion of our revenue is derived from a limited number of key customers. The loss of, or a significant reduction in orders from, one or more of these key customers could materially impact our financial results. Additionally, any adverse developments affecting these customers, such as financial difficulties or shifts in market strategy, could reduce our sales and negatively affect our business.
+
+Supply Chain Disruptions Could Hinder Our Production Capabilities
+
+Our operations rely on a complex global supply chain, including the procurement of raw materials and components from various suppliers. Disruptions to our supply chain due to geopolitical tensions, natural disasters, pandemics, or other factors could delay production schedules, increase costs, and limit our ability to meet customer demand, adversely affecting our financial performance.
+
+Manufacturing Challenges and Capacity Constraints
+
+As a semiconductor manufacturer, we face challenges related to maintaining efficient production processes and managing capacity constraints. If we are unable to effectively manage manufacturing operations or expand capacity in line with demand, we may experience production inefficiencies, increased costs, and delayed product deliveries, all of which could negatively impact our financial results.
+
+Cybersecurity Threats and Data Breaches
+
+Our operations rely on complex information technology systems that are vulnerable to cybersecurity threats, including data breaches, hacking, and other forms of cyber-attacks. A successful cyber-attack could result in the unauthorized access, theft, or destruction of critical data, potentially leading to financial losses, reputational damage, and legal liability.
+
+Risks Related to Financing and Capital Structure
+
+Interest Rate Fluctuations Could Impact Our Financial Obligations
+
+Our financial condition and results of operations may be affected by fluctuations in interest rates, as changes in rates can influence our borrowing costs and investment returns. An increase in interest rates could result in higher interest expenses, affecting our profitability and cash flow.
+
+Leverage and Indebtedness May Restrict Our Operational Flexibility
+
+We have substantial indebtedness, which could limit our ability to pursue strategic initiatives, such as investments, acquisitions, or other growth opportunities. High levels of debt may also require us to dedicate a significant portion of our cash flow to service interest and principal payments, reducing funds available for other operational needs.
+
+Dependence on Access to Capital Markets for Financing Needs
+
+Our ability to finance operations, pursue strategic initiatives, and meet financial obligations is dependent on access to capital markets. Adverse market conditions, changes in investor sentiment, or a deterioration of our financial condition could limit our access to capital, impairing our ability to achieve growth objectives or meet financial commitments.
+
+Risks Related to Legal and Regulatory Matters
+
+Compliance with Government Regulations and Trade Policies
+
+As a participant in the global semiconductor industry, we are subject to numerous governmental regulations, including export control laws, environmental regulations, and trade policies. Changes in these regulations, or our failure to comply, could result in increased costs, penalties, or restrictions on our operations, adversely impacting our business.
+
+Intellectual Property Infringement and Litigation
+
+Our success depends on our ability to protect our intellectual property (IP) and avoid infringing on the IP rights of others. IP litigation can be costly and time-consuming, and an adverse ruling could require us to pay damages, cease product offerings, or enter into licensing agreements, all of which could negatively impact our financial position.
+
+Environmental Regulations Could Increase Costs
+
+Compliance with environmental regulations is critical to our operations, and changes in these regulations could increase our compliance costs and liabilities. Failure to adhere to environmental laws could result in fines, penalties, or operational restrictions, adversely affecting our business and reputation.
+
+General Risks
+
+Global Economic Conditions May Impact Our Business
+
+Our operations and financial performance are influenced by global economic conditions, including changes in economic growth, inflation, and currency exchange rates. Economic downturns or instability in key markets could reduce consumer and business spending, negatively affecting demand for our products and services.
+
+Natural Disasters and Pandemics Could Disrupt Operations
+
+Our operations are susceptible to disruptions from natural disasters, pandemics, and other catastrophic events. Such events could interrupt production, supply chains, and distribution, leading to delays, increased costs, and reduced revenue. The ongoing impact of the COVID-19 pandemic exemplifies the potential for significant disruptions to our business operations.
+
+Retention and Recruitment of Key Personnel
+
+Our success is heavily dependent on our ability to attract, retain, and motivate highly skilled employees, including executives, engineers, and other technical personnel. Competition for talent in our industry is intense, and the inability to retain key personnel or attract qualified new employees could hinder our product development, operational efficiency, and overall business performance.
+
+Fluctuations in Foreign Currency Exchange Rates
+
+As we operate in multiple countries, our financial results can be significantly impacted by fluctuations in foreign currency exchange rates. Adverse changes in exchange rates could affect our reported revenues, expenses, and profitability, making it challenging to accurately predict future financial performance.
+
+Changes in Consumer Preferences and Demand
+
+Our business is influenced by changes in consumer preferences and demand for electronic devices and technology solutions. Rapid shifts in consumer behavior could affect the demand for our products, potentially leading to inventory excesses, price reductions, and decreased revenue. Adjusting to these changes requires agility and accurate market forecasting, which can be challenging in a rapidly evolving industry.
+
+In conclusion, while we strive to mitigate these risks through strategic planning, operational excellence, and a focus on innovation, the inherent uncertainties in our business environment may still have a substantial impact on our financial condition, results of operations, and future prospects. We continue to monitor these risks closely and adapt our strategies to navigate potential challenges effectively.
+
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+Overview
+
+The following discussion and analysis of Selzenqua Semiconductor, Inc.'s ("Selzenqua" or the "Company") financial condition and results of operations should be read in conjunction with the Company's Consolidated Financial Statements and related notes included elsewhere in this Annual Report on Form 10-K. This discussion contains forward-looking statements based on our current expectations, estimates, and projections about our business and industry, and actual results may differ materially from those expressed or implied by these forward-looking statements due to various factors, including those discussed under "Item 1A. Risk Factors."
+
+In fiscal 2024, Selzenqua experienced significant growth, with revenue reaching $16,983 million, representing a 13.7% increase from the prior fiscal year. This growth was driven by strong demand across our reportable segments, particularly in the Consumer Electronics and Communications Infrastructure sectors. Our strategic focus on innovation, customer-centric solutions, and operational efficiency has positioned us well in the competitive semiconductor market.
+
+Results of Operations
+
+Revenue
+
+Revenue for fiscal 2024 was $16,983 million, an increase of $2,040 million, or 13.7%, from $14,943 million in fiscal 2023. This growth was largely driven by increased sales in our Consumer Electronics and Communications Infrastructure segments. The Consumer Electronics segment benefited from the growing demand for advanced semiconductor solutions in smartphones and wearables, supported by new product launches and enhanced customer engagements. In the Communications Infrastructure segment, the ongoing expansion of data centers and network upgrades contributed significantly to revenue growth.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue for fiscal 2024 was $10,825 million, compared to $9,375 million in fiscal 2023, representing an increase of $1,450 million. This increase was primarily due to higher production volumes to meet increased demand, as well as inflationary pressures on raw materials and logistics. Despite these cost increases, Selzenqua maintained a strong focus on operational efficiencies and supply chain optimization.
+
+Gross profit for fiscal 2024 was $6,158 million, compared to $5,568 million in fiscal 2023, reflecting an increase of $590 million. Our gross margin decreased to 36.3% from 37.3% in the prior fiscal year. The decrease in gross margin was primarily attributable to the aforementioned cost pressures, partially offset by improved product mix and pricing strategies in key segments.
+
+Operating Expenses
+
+Research and Development
+
+Research and development (R&D) expenses were $4,353 million in fiscal 2024, up from $3,801 million in fiscal 2023, representing an increase of $552 million. This increase reflects our continued investment in innovation and technology leadership, focusing on the development of next-generation semiconductor technologies and solutions. R&D expenses as a percentage of revenue increased slightly to 25.6% in fiscal 2024, compared to 25.4% in fiscal 2023, underscoring our commitment to advancing our product offerings and maintaining a competitive edge in the market.
+
+Selling, General and Administrative
+
+Selling, general, and administrative (SG&A) expenses were $509 million in fiscal 2024, compared to $455 million in fiscal 2023, an increase of $54 million. This increase was primarily due to expanded sales and marketing efforts to support revenue growth, as well as investments in administrative infrastructure to enhance operational efficiency. Despite the increase in absolute terms, SG&A expenses as a percentage of revenue remained stable at 3.0% for both fiscal years, reflecting our focus on cost management and efficiency.
+
+Other Operating Expense
+
+In fiscal 2024, there were no other operating expenses, compared to $98 million in fiscal 2023. The absence of other operating expenses in fiscal 2024 is attributable to the non-recurrence of certain restructuring costs and one-time charges incurred in the prior year, which were associated with strategic realignment and optimization initiatives.
+
+Operating Income
+
+Operating income for fiscal 2024 was $1,296 million, up from $1,214 million in fiscal 2023, representing an increase of $82 million or 6.8%. The increase in operating income was primarily driven by revenue growth and effective cost management, partially offset by increased R&D and SG&A expenses. Our operating margin decreased slightly to 7.6% from 8.1% in the prior fiscal year, reflecting the impact of increased operating expenses.
+
+Interest Expense
+
+Interest expense for fiscal 2024 was $455 million, compared to $406 million in fiscal 2023, an increase of $49 million. This increase was primarily due to higher interest rates and increased borrowings to support strategic investments and capital expenditures. We continue to actively manage our debt portfolio to optimize interest costs and financial flexibility.
+
+Effective Tax Rate
+
+Our effective tax rate for fiscal 2024 was 22.9%, compared to 24.0% in fiscal 2023. The decrease in the effective tax rate was primarily due to changes in the geographic mix of earnings and the utilization of available tax credits. We remain focused on optimizing our global tax structure to support operational efficiency and enhance shareholder value.
+
+Net Income
+
+Net income for fiscal 2024 was $648 million, compared to $614 million in fiscal 2023, representing an increase of $34 million or 5.5%. The increase in net income reflects the strong operational performance and improved tax efficiency, partially offset by higher interest expenses and increased operating costs. Our net margin decreased slightly to 3.8% from 4.1% in the prior fiscal year, primarily due to increased interest expenses and operating costs.
+
+Liquidity and Capital Resources
+
+Cash and Cash Equivalents
+
+As of December 31, 2024, cash and cash equivalents were $2,211 million, compared to $2,023 million as of December 31, 2023. The increase in cash and cash equivalents reflects the net impact of our operating, investing, and financing activities during the fiscal year.
+
+Operating Activities
+
+Net cash provided by operating activities was $1,113 million in fiscal 2024. This reflects our strong operational performance and effective working capital management, despite increased costs and investments in R&D. Key drivers of operating cash flow included net income of $648 million and non-cash adjustments such as depreciation and amortization totaling $912 million, partially offset by changes in working capital and other items amounting to $(447) million.
+
+Investing Activities
+
+Net cash used in investing activities was $(2,228) million in fiscal 2024. Capital expenditures for property and equipment purchases totaled $(795) million, reflecting our continued investment in manufacturing capacity and technology infrastructure. Other investing activities, primarily related to strategic acquisitions and investments, resulted in a net cash outflow of $(1,433) million. These investments are aligned with our long-term growth strategy and are expected to enhance our competitive position in the market.
+
+Financing Activities
+
+Net cash provided by financing activities was $1,303 million in fiscal 2024. During the year, we raised $1,088 million through debt financing to support strategic initiatives and capital investments. We also returned $78 million to shareholders through dividends and utilized $293 million for net share repurchases, reflecting our commitment to enhancing shareholder value while maintaining financial flexibility.
+
+Capital Expenditures
+
+Capital expenditures totaled $(795) million in fiscal 2024, reflecting our ongoing investments in expanding manufacturing capacity and upgrading technology infrastructure. These expenditures are critical to supporting our growth trajectory and ensuring the efficient production of high-quality semiconductor solutions.
+
+Debt
+
+Our long-term debt increased to $10,108 million as of December 31, 2024, from $9,020 million as of December 31, 2023. The increase in debt levels was primarily due to additional borrowings to support strategic investments and capital expenditures. We remain committed to maintaining a balanced capital structure and optimizing our debt portfolio to ensure financial flexibility.
+
+Dividends and Share Repurchases
+
+In fiscal 2024, we paid dividends totaling $78 million, reflecting our commitment to returning capital to shareholders. Additionally, we conducted net share repurchases amounting to $293 million, optimizing our capital structure and enhancing shareholder value. These actions are part of our broader capital allocation strategy, which seeks to balance growth investments with shareholder returns.
+
+Critical Accounting Estimates
+
+Our consolidated financial statements are prepared in accordance with generally accepted accounting principles in the United States (GAAP), which require us to make estimates and assumptions that affect the reported amounts. Critical accounting estimates are those that involve a high degree of judgment and uncertainty, and could potentially result in materially different outcomes under different assumptions or conditions.
+
+Revenue Recognition
+
+Our revenue recognition policy requires judgment in determining the timing and amount of revenue to be recognized, particularly with respect to the identification of performance obligations, determination of transaction prices, and assessment of collectability. Changes in customer contracts, sales incentives, or market conditions could impact the amount and timing of revenue recognition.
+
+Inventory Valuation
+
+We regularly assess the valuation of our inventory to ensure it is stated at the lower of cost or net realizable value. This involves estimating the future demand for our products, considering factors such as technological changes, market conditions, and customer preferences. Changes in these estimates could result in inventory write-downs, affecting our financial results.
+
+Goodwill and Intangible Assets
+
+We assess the carrying value of goodwill and intangible assets for impairment annually, or more frequently if indicators of impairment arise. This requires judgment in estimating future cash flows, growth rates, and discount rates. Changes in market conditions or business performance could result in impairment charges, affecting our financial position and results of operations.
+
+Income Taxes
+
+Our income tax provisions involve significant judgment in determining the recognition and measurement of tax positions, including the assessment of uncertain tax positions and the valuation of deferred tax assets. Changes in tax laws, regulations, or interpretations, as well as changes in our geographic mix of earnings, could impact our effective tax rate and tax liabilities.
+
+In conclusion, Selzenqua's [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Selzenqua Semiconductor, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 810 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

@@ -1,0 +1,15 @@
+fictional_id,fiscal_year,check,item,status,detail
+XFC,2024,substantive,1,PASS,11185 words
+XFC,2024,length_vs_real,1,INFO,81965 chars vs real median 61281 chars (134%)
+XFC,2024,real_company_leak,1,PASS,none found
+XFC,2024,substantive,1a,PASS,12695 words
+XFC,2024,length_vs_real,1a,INFO,89921 chars vs real median 80672 chars (111%)
+XFC,2024,real_company_leak,1a,PASS,none found
+XFC,2024,substantive,1c,PASS,1060 words
+XFC,2024,length_vs_real,1c,INFO,7960 chars vs real median 6000 chars (133%)
+XFC,2024,real_company_leak,1c,PASS,none found
+XFC,2024,substantive,7,PASS,12669 words
+XFC,2024,length_vs_real,7,INFO,89210 chars vs real median 66970 chars (133%)
+XFC,2024,real_company_leak,7,PASS,none found
+XFC,2024,file_exists,8,FAIL,missing
+XFC,2024,numeric_consistency,7,FAIL,"141/195 figures traced; unmatched: 1.4149e+09 in '$1,414.9 million'; 6.9314e+09 in '$6,931.4 million'; 1.9788e+10 in '$19,788.0 million'; 2.8534e+09 in '$2,853.4 million'; 2.51654e+10 in '$25,165.4 million'; 1.4149e+09 in '$1,414.9 million'; 7.681e+08 in '$768.1 million'; 6.9314e+09 in '$6,931.4 million'; 6.28e+07 in '$62.8 million'; 1.0573e+09 in '$1,057.3 million'"

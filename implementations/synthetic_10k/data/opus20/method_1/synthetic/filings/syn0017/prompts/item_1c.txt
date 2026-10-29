@@ -1,0 +1,345 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Orris Aerospace, Inc. (ticker OSRR)
+Sector: Industrials
+Incorporated in: Delaware
+Headquarters: Columbus, Ohio
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 27,000
+
+Orris Aerospace, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      10,928        10,499
+Cost of revenue                               7,940         7,730
+Gross profit                                  2,988         2,769
+Research and development                        409           370
+Selling, general and administrative             676           557
+Other operating expense                           0             1
+Operating income                              1,903         1,841
+Interest expense                                 85            86
+Income before income taxes                    1,818         1,755
+Provision for income taxes                      355           362
+Net income                                    1,463         1,393
+
+Orris Aerospace, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                              401           375
+Accounts receivable, net                             1,175         1,158
+Inventories                                          2,194         2,036
+Other current assets                                   199           188
+Total current assets                                 3,969         3,757
+Property, plant and equipment, net                  10,560        10,128
+Goodwill                                             1,183         1,118
+Other non-current assets                               721         1,118
+Total assets                                        16,433        16,121
+Total current liabilities                            5,407         5,171
+Long-term debt                                       1,888         1,913
+Other non-current liabilities                        4,537         4,624
+Total liabilities                                   11,832        11,708
+Total stockholders' equity                           4,601         4,413
+Total liabilities and stockholders' equity          16,433        16,121
+
+Orris Aerospace, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             1,463
+Depreciation and amortization                            597
+Changes in working capital and other                     189
+Net cash provided by operating activities              2,249
+Purchases of property and equipment                    (304)
+Other investing activities, net                        (619)
+Net cash used in investing activities                  (923)
+Net change in long-term debt                            (25)
+Dividends paid                                         (314)
+Share repurchases, net of issuances                    (961)
+Net cash used in financing activities                (1,300)
+Net change in cash and cash equivalents                   26
+Cash and cash equivalents, beginning of year             375
+Cash and cash equivalents, end of year                   401
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 4.1%
+Net income growth, fiscal 2024 versus 2023: 5.0%
+Operating income growth, fiscal 2024 versus 2023: 3.4%
+Gross margin, fiscal 2024: 27.3%
+Operating margin, fiscal 2024: 17.4%
+Net margin, fiscal 2024: 13.4%
+Effective tax rate, fiscal 2024: 19.5%
+Research and development as a share of revenue, fiscal 2024: 3.7%
+Selling, general and administrative as a share of revenue, fiscal 2024: 6.2%
+Gross margin, fiscal 2023: 26.4%
+Operating margin, fiscal 2023: 17.5%
+Net margin, fiscal 2023: 13.3%
+Effective tax rate, fiscal 2023: 20.6%
+Research and development as a share of revenue, fiscal 2023: 3.5%
+Selling, general and administrative as a share of revenue, fiscal 2023: 5.3%
+
+STYLE EXAMPLE: the start of Item 1C from a real Industrials company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1C. CYBERSECURITY
+Our ability to attract and retain customers, efficiently operate our businesses, execute our DRIVE transformation, including Network 2.0, and compete effectively increasingly depends in part upon the sophistication, security, and reliability of our technology network, including our ability to provide features of service that are important to our customers, to protect our confidential business information and the information provided by our customers, and to maintain customer confidence in our ability to protect our systems and to provide services consistent with their expectations.
+-34-
+Cybersecurity Risk Management and Strategy
+FedEx has an information technology (“IT”) risk management process designed to identify and manage risk within its IT environment, including cybersecurity. The IT risk management process is based on an established framework for identification, measurement, and monitoring of cybersecurity and other risk areas and supplements our Enterprise Risk Management (“ERM”) process and framework. Our IT risk management, ERM, and compliance teams collaborate to regularly evaluate and manage cybersecurity-related risks using various tools and services. Leveraging components from multiple industry frameworks and best practices such as the International Organization for Standardization (“ISO”) 27001 and National Institute of Standards and Technology (“NIST”) standards, including the NIST Cybersecurity Framework, our cybersecurity program prioritizes governance, identification, protection, detection, response, and remediation measures.
+We regularly assess our cybersecurity program’s capabilities and tools to help us enhance reliability and scan our environment for vulnerabilities. Our IT risk management team, including our Corporate Vice President – Chief Information Security Officer (“CISO”), communicates with senior management on the cybersecurity risk posture of our IT assets, strives to ensure consistent risk remediation activities, and monitors the effectiveness of our IT-related controls. In addition, our internal audit team performs reviews of our information security organization to help ensure controls are operating effectively and as designed.
+Enterprise-wide information security training (including with respect to cybersecurity), supplemented by awareness programs, is crucial for risk reduction and safeguarding customer, employee, and company information. We provide training to employees and certain third-party contractors based on access to our network, risk, roles, policies, standards, and behaviors, which is updated to address emerging technology and security issues.
+We periodically engage with assessors, consultants, auditors, and other third parties to review and improve our cybersecurity program. Compliance with regulatory requirements involves regular third-party assessments. Our processes are also designed to address cybersecurity risks associated with third-party service providers, including risk assessment and due diligence during selection and oversight. Key third parties undergo regular assessments to gauge cybersecurity control effectiveness, with heightened review of those with access to non-public data.
+We regularly conduct table-top simulation exercises to test our cybersecurity incident response processes with the aim of enhancing effectiveness against evolving threats. Our incident response procedures guide our preparedness, detection, response, and recovery actions.
+In the last three fiscal years to date, we have not identified any risks from cybersecurity threats or become aware of any cybersecurity incidents that have materially affected or are reasonably likely to materially affect our business, results of operations, or financial condition.
+While we have significant security processes and initiatives in place, we may be unable to detect or prevent a breach or disruption in the future. For more information about cybersecurity-related risks, please see “Item 1A. “Risk Factors” of this Form 10-K.
+Cybersecurity Governance
+The FedEx Board of Directors has delegated to the Cyber and Technology Oversight Committee of the Board of Directors (“CyTOC”) responsibility for overseeing the company’s cyber and technology-related risks, including network security, information and digital security, data privacy and protection, and risks related to emerging technologies such as artificial intelligence and machine learning; the technologies, policies, processes, and practices for managing and mitigating such risks; and the company’s cyber incident response and recovery plan. The CyTOC also oversees the cybersecurity, cyber-resiliency, and technology aspects of the company’s business continuity and disaster recovery capabilities and contingency plans. Several of our Board members, including certain members of our CyTOC, have technological, digital, and/or cybersecurity experience.
+The CyTOC receives regular updates from our CISO and other members of management on risks related to these matters. Specific topics may include updates to FedEx’s cyber risks and threats, the status of existing or new strategies and associated projects intended to strengthen FedEx’s information security systems, assessments of FedEx’s cybersecurity program, risks associated with third-party service providers, and the emerging threat landscape. The CyTOC also receives regular updates on key metrics related to our cybersecurity-related risks. The results of the IT risk management process are also presented at least annually to the CyTOC. Additionally, members of the CyTOC participate in certain of the simulation exercises conducted by management. The Chair of the CyTOC briefs the full Board on certain of these matters. In addition, the Board periodically receives cybersecurity updates directly from management. Separately, through our ERM program, key enterprise risks, including with respect to cybersecurity, are communicated to the Board and its Audit and Finance Committee at least annually, and any significant changes to these risks are reported to the Board and its Audit and Finance Committee.
+Our CISO, who reports to the Chief Executive Officer, leads our information security team and has management responsibility for overseeing FedEx’s cybersecurity program, including assessing and managing material risks from cybersecurity threats. The CISO,
+-35-
+who has over 25 years of experience at FedEx and has received industry-recognized information security certifications, oversees an information security organization of more than 400 security, risk, and compliance professionals based in the U.S. and internationally across the FedEx enterprise. The leadership team of our information security organization has extensive experience in IT and cybersecurity and possess certifications in cybersecurity and related fields.
+The FedEx Data and Technology Risk Council (“DTRC”), which is sponsored by the CISO, oversees the execution of FedEx’s comprehensive IT risk management program. The DTRC, which receives quarterly reports on FedEx’s IT risk management, is responsible for assessing the overall risk framework on an annual basis, setting acceptable risk tolerance levels, approving risk prioritization and associated risk mitigation activities, and monitoring the changing risk landscape and posture.
+Both our CISO and other members of our cybersecurity leadership team participate in threat intelligence briefings provided by various government and industry entities. Our CISO reports to the Chief Executive Officer, and the FedEx Executive Committee oversees our business risk, with cybersecurity threat risks being a regular topic of discussion. Our cybersecurity incident response plan includes processes for communicating cybersecurity incidents to relevant levels of management, including the DTRC, Executive Committee, the CyTOC, and the full Board of Directors, as appropriate, and consideration of external reporting and disclosure requirements.
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Overview
+
+Orris Aerospace, Inc. ("Orris," the "Company," "we," "us" or "our") designs, engineers and manufactures structural assemblies, propulsion components and integrated systems for commercial aircraft, business and regional jets, military platforms and space launch vehicles. We also provide maintenance, repair and overhaul services, spare parts and engineering support for the fleets that carry our products. Our products are found on most of the major commercial airframe families in service today. Our components are designed into many of the defense and space programs operated by the United States government and allied nations.
+
+Orris was incorporated in the State of Delaware, and our corporate headquarters is located in Columbus, Ohio. We operate engineering centers, manufacturing plants and service facilities in North America, Europe and the Asia-Pacific region. For the fiscal year ended December 31, 2024, we reported total revenue of $10,928 million.
+
+Our business model rests on long-term participation in aircraft and engine programs. When we are selected as a supplier on a new platform, we typically invest in design, qualification, tooling and production capacity well before the platform enters service. In return, we often become the sole or primary source for the content we supply over a production life that can extend for decades. After an aircraft enters service, it requires periodic inspection, repair and replacement of parts. This generates aftermarket demand that continues long after original equipment production has ended. We believe the combination of original equipment content and recurring aftermarket activity provides a durable revenue base and visibility into future demand.
+
+Our Strategy
+
+Our objective is to be the partner of choice for airframe and engine manufacturers, operators and government customers that require complex, flight-critical hardware delivered on schedule and to exacting quality standards. We pursue this objective through the following priorities:
+
+- Operational excellence. We seek to improve safety, quality, delivery and cost performance across our factories through standardized production systems, lean manufacturing practices, automation and disciplined capital investment. Consistent execution supports our customers' production schedules and earns us opportunities on future programs.
+
+- Content growth on new and existing platforms. We work to expand the value of our content on each aircraft by offering larger integrated assemblies, additional systems and design-and-build capability, rather than build-to-print components alone.
+
+- Aftermarket expansion. We seek to capture a greater share of the service, repair and spare parts demand generated by our installed base. We do this by developing proprietary repair processes, obtaining regulatory approvals and building direct relationships with airline and military operators.
+
+- Technology leadership. We invest in advanced materials, composite and metallic manufacturing processes, thermal management and digital engineering tools that we believe will be required on next-generation aircraft and propulsion systems, including platforms designed to improve fuel efficiency and reduce emissions.
+
+- Balanced portfolio. We maintain a mix of commercial, defense and space business. Different demand cycles across these end markets help moderate the effect of a downturn in any single market on our overall results.
+
+- Disciplined capital allocation. We prioritize investments in our existing operations and programs. We also evaluate targeted acquisitions that broaden our capabilities or aftermarket reach, and we return capital to stockholders through dividends and share repurchases.
+
+Principal Products and Services
+
+We supply a broad range of products and services that fall into the following general categories:
+
+- Aerostructures. Fuselage sections, wing components, nacelles, thrust reverser structures, pylons, flight control surfaces, empennage assemblies and related subassemblies, produced in both metallic and composite materials.
+
+- Propulsion components. Precision-machined and fabricated engine components, including fan and compressor cases, combustor and turbine hardware, structural castings, exhaust systems and rotating and static parts made from high-temperature nickel, titanium and specialty alloys.
+
+- Engineered systems. Thermal management products, fluid conveyance assemblies, actuation components and environmental control subsystems for commercial and military aircraft.
+
+- Space and missile hardware. Structures, propulsion hardware and thermal protection components for launch vehicles, satellites and missile programs.
+
+- Aftermarket services. Component maintenance, repair and overhaul; spare parts; engineering and technical support; exchange and rotable pool programs; and long-term service agreements for commercial operators, lessors and military customers.
+
+Reportable Segments
+
+We manage our business through three reportable segments: Aerostructures, Propulsion Systems, and Aftermarket Services. Each segment has its own leadership team that is responsible for its operations, engineering and customer relationships. Segment results are reviewed regularly by our chief operating decision maker to assess performance and allocate resources. Financial information about our segments is presented in the Notes to the Consolidated Financial Statements included in Item 8 of this Annual Report on Form 10-K.
+
+Aerostructures
+
+The Aerostructures segment designs and manufactures large structural assemblies for commercial transports, business jets, regional aircraft and military platforms. Its principal products include fuselage sections, wing and empennage components, nacelle and thrust reverser assemblies, pylons and flight control surfaces. The segment holds positions on single-aisle and wide-body commercial aircraft programs as well as on rotorcraft and military transport platforms.
+
+Aerostructures operates under long-term supply agreements with airframe manufacturers. These agreements generally set pricing for a defined number of units or a defined period and are tied to the customer's production rate. Revenue in this segment therefore tracks commercial aircraft build rates closely. The segment's competitive position depends on its ability to manage large, capital-intensive assembly operations, to maintain tight dimensional and quality tolerances, and to support production rate changes by its customers. The segment has made significant investments in automated drilling and fastening, composite layup and curing, and large-scale assembly tooling.
+
+Propulsion Systems
+
+The Propulsion Systems segment produces engineered components and subsystems for commercial and military gas turbine engines, auxiliary power units and space propulsion systems. Products include engine cases, combustor and turbine components, structural castings, exhaust hardware, thermal management products and fluid conveyance assemblies. Many of these parts operate at extreme temperatures and pressures and are classified as flight-critical. Their production therefore requires extensive process qualification and certification.
+
+Engine manufacturers typically award propulsion content under life-of-program or multi-year agreements. Because certain components are consumed and replaced during engine shop visits, much of the segment's product portfolio also generates spare parts demand. The segment's capabilities include precision machining, investment casting, advanced welding and joining, specialty coatings and nondestructive inspection. Propulsion Systems also supplies hardware for military engine programs and for launch vehicle and in-space propulsion applications. This provides exposure to defense and space spending in addition to commercial air traffic.
+
+Aftermarket Services
+
+The Aftermarket Services segment supports the in-service fleet through component maintenance, repair and overhaul, the sale of spare parts, engineering and technical services, and long-term service agreements. Its customers include commercial airlines, aircraft lessors, cargo operators, business aviation operators, military services and other maintenance providers.
+
+Demand in this segment is driven principally by aircraft utilization, flight hours and cycles, the size and age of the installed fleet, and the timing of scheduled maintenance events. The segment benefits from proprietary repair procedures, regulatory repair station certifications and original equipment design authority on a substantial portion of the parts it services. Aftermarket Services operates repair stations and distribution facilities located near major airline hubs and military installations so that it can offer short turnaround times to its customers. We believe this segment provides a recurring revenue stream that is less dependent on new aircraft production than our original equipment businesses.
+
+Customers
+
+Our customers include large commercial airframe manufacturers, commercial and military engine manufacturers, business jet and rotorcraft manufacturers, airlines and lessors, defense prime contractors, space launch providers, and agencies of the United States government and allied governments.
+
+The commercial aerospace industry is highly concentrated. As a result, a relatively small number of airframe and engine manufacturers accounts for a significant portion of our revenue. The loss of, or a significant reduction in purchases by, any of these customers could have a material adverse effect on our business. Our relationships with our principal customers generally span many years and multiple programs. These relationships are typically governed by long-term agreements that define pricing, delivery and quality requirements and allocate responsibility for nonrecurring engineering and tooling costs.
+
+Sales to the United States government are made either directly or as a subcontractor to defense prime contractors. These sales are subject to the procurement regulations and audit rights described below under "Government Regulation." Government contracts may be terminated at the government's convenience. Funding for multi-year programs is subject to annual congressional appropriations.
+
+We sell to customers located in the United States and in many other countries. International sales are made primarily to airframe and engine manufacturers and airlines in Europe and the Asia-Pacific region, and to allied governments through direct commercial sales and foreign military sales arrangements.
+
+Sales and Marketing
+
+We market our products and services primarily through direct sales organizations that are aligned with our segments and with our largest customers. For our original equipment businesses, customer relationships are managed by dedicated program and account teams. These teams include business development, engineering, program management and contracts personnel who engage with customers throughout the life of a program, from early design studies and competitive proposals through production and sustainment.
+
+New program awards are typically pursued through competitive requests for proposal issued by airframe and engine manufacturers or by government agencies. The selection process often begins years before a new aircraft or engine enters service. Award decisions generally weigh technical [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+An investment in our securities involves risk. The risks and uncertainties described below are those we currently consider material to our business, financial condition, results of operations and cash flows. Any of them could cause our actual results to differ materially from our historical results or from the expectations expressed in forward-looking statements in this Annual Report on Form 10-K. They are not the only risks we face. Additional risks that we do not presently know of, or that we currently believe are immaterial, could also adversely affect us. You should read these risk factors together with the other information in this report, including Management's Discussion and Analysis of Financial Condition and Results of Operations and our Consolidated Financial Statements and related notes.
+
+Risks Related to Our Business and Industry
+
+Our results depend heavily on the commercial aerospace industry, which is cyclical and sensitive to conditions we cannot control.
+
+A large portion of our revenue comes from original equipment content and aftermarket services for commercial aircraft. Demand for new aircraft and for maintenance services depends on airline profitability, passenger and cargo traffic, fuel prices, the availability and cost of aircraft financing, fleet retirement decisions, and general economic conditions in the regions our customers serve. Historically, the industry has experienced sharp downturns triggered by recessions, terrorist attacks, public health emergencies, armed conflicts and fuel price shocks. These downturns have often been followed by order cancellations, deferred deliveries and reduced flight activity.
+
+Because our cost structure includes a substantial base of fixed manufacturing and engineering costs, a decline in volume can reduce our margins more than proportionally. A prolonged downturn in commercial aerospace could materially reduce our revenue, profitability and operating cash flow. It could also require us to restructure operations or record impairments of long-lived assets.
+
+Changes in the production rates of a small number of airframe and engine programs could significantly affect our revenue and profitability.
+
+Our Aerostructures and Propulsion Systems segments supply content to a limited number of high-volume commercial programs. Revenue in these segments tracks our customers' build rates closely. Our customers may reduce, pause or delay planned rate increases because of their own supply chain constraints, quality or certification issues, regulatory actions, labor disputes or weaker airline demand. Production pauses or rate reductions on a major program can leave us carrying excess inventory, underutilized capacity and workforce costs that we cannot quickly adjust.
+
+Conversely, rapid rate increases require us to add labor, tooling and supplier capacity ahead of revenue. If we are unable to execute these ramps efficiently, we may incur premium freight, overtime and expediting costs. We could also face contractual penalties or harm to customer relationships.
+
+We depend on a concentrated group of customers, and the loss of or a significant reduction in business from any of them could materially harm us.
+
+The commercial airframe and engine industries are dominated by a small number of manufacturers. As a result, a relatively small group of customers accounts for a significant share of our revenue. These customers have substantial negotiating leverage over pricing, payment terms, warranty provisions and the allocation of development costs. They may pursue vertical integration, dual sourcing or supplier consolidation strategies, any of which could reduce our share of future work.
+
+A customer's financial difficulties, a dispute with a customer, or the loss of a position on a major program could materially reduce our revenue and earnings. Such events could also result in impairment of the related tooling, capitalized costs or other program assets.
+
+Many of our long-term agreements are fixed-price, and cost overruns could cause losses.
+
+We perform a substantial portion of our work under multi-year agreements that fix the price per unit for a defined quantity or period. Our profitability under these arrangements depends on our ability to estimate accurately, and then control, labor hours, material costs, supplier pricing, learning-curve improvements and overhead absorption over the life of the agreement. Several developments could cause our actual costs to exceed our estimates:
+
+- Inflation in wages, energy and raw materials
+- Engineering changes or technical difficulties
+- Supplier failures
+- Lower-than-expected production volumes
+
+We recognize revenue on many of these contracts over time using estimates of total contract costs. When our estimates change, we may need to record cumulative adjustments that reduce previously recognized profit. When estimated costs exceed estimated revenue, we must record a forward loss provision for the full amount of the anticipated loss in the period it becomes evident. Such adjustments could be material to our results in any given period.
+
+We face significant competition, and pricing pressure could reduce our margins.
+
+We compete with large, diversified aerospace suppliers, specialized component manufacturers, low-cost producers in emerging markets, and the in-house capabilities of our customers. In the aftermarket, we also compete with independent repair providers and with suppliers of non-original equipment replacement parts approved by aviation regulators. These alternatives can be offered at lower prices than parts produced under original equipment design authority.
+
+Competitors may develop superior technologies, achieve lower costs or offer more favorable commercial terms. Customers routinely seek annual price reductions and greater supplier participation in development costs. If we cannot maintain our technical differentiation, cost competitiveness and delivery performance, we may lose program awards and aftermarket share or be forced to accept lower prices.
+
+Demand for our aftermarket services depends on fleet utilization and maintenance practices that may change.
+
+Our Aftermarket Services segment, and the spare parts portion of our Propulsion Systems segment, depend on aircraft flight hours, cycles and the timing of scheduled maintenance events. Reduced flight activity, early retirement of older aircraft that carry our content, or the deferral of shop visits by airlines seeking to conserve cash would reduce demand for our services and parts. The increasing use of used serviceable material from retired aircraft could also reduce that demand.
+
+Operators and lessors may also shift maintenance work to engine and airframe manufacturers under long-term service agreements that we do not participate in. In addition, newer aircraft and engine designs may require less frequent maintenance or fewer replacement parts. Any of these trends could reduce the recurring revenue that we expect our installed base to generate.
+
+Our defense and space business depends on government spending priorities that can change.
+
+A meaningful portion of our revenue comes from military and space programs funded by the United States government and allied governments, either directly or through prime contractors. Government budgets are subject to political negotiation, competing priorities, continuing resolutions, potential shutdowns and statutory spending limits. Specific programs on which we have content may be reduced, delayed or cancelled. Funding may also shift toward platforms or technologies in which we do not participate.
+
+The space launch market includes new entrants and programs with uncertain technical and financial prospects. The failure or delay of a launch program on which we supply hardware could reduce our revenue. It could also leave us with unrecovered investment.
+
+Our investments in new programs and technologies may not generate adequate returns.
+
+We invest significant amounts in research and development, design, qualification, tooling and production capacity, often years before a new platform enters service. Our recovery of these investments depends on several factors outside our control:
+
+- The platform's commercial success and production volumes over its life
+- The timing of certification and entry into service
+- Our continued status as a supplier on the program
+
+Development programs frequently encounter technical challenges, schedule delays and changes in customer requirements. These can increase our costs and defer revenue. If a program is cancelled, achieves lower volumes than expected, or experiences prolonged delays, we may not recover our investment and may be required to record impairments or losses.
+
+The aerospace industry's transition toward lower-emission aircraft and propulsion could change demand for our products.
+
+Airframe and engine manufacturers, airlines and regulators are pursuing reductions in aviation emissions. They are doing so through more efficient engines, new airframe configurations, sustainable aviation fuels, and hybrid-electric and hydrogen propulsion concepts. These developments may require materials, manufacturing processes and system architectures that differ from those in which we have historically specialized. They may also alter the mix and volume of components on future aircraft.
+
+The pace and direction of this transition are uncertain. If we fail to anticipate technological change, or invest in technologies that do not achieve market acceptance, our competitive position on next-generation platforms could weaken. In addition, regulations or taxes intended to curb aviation emissions could reduce air travel demand and, in turn, demand for our products and services.
+
+Risks Related to Our Operations
+
+Disruptions in our supply chain could prevent us from meeting customer commitments.
+
+We rely on suppliers for raw materials, forgings, castings, fasteners, electronic components and specialized processing services. Many of these suppliers are sole or limited sources that have been qualified to stringent aerospace standards. Qualifying replacements can take months or years. The aerospace supply base has experienced capacity constraints, labor shortages and financial stress in recent years, and certain suppliers have struggled to meet delivery schedules.
+
+A supplier's failure to deliver conforming material on time could interrupt our production and delay deliveries to our customers. Such a failure could also cause us to incur additional costs or contractual penalties. A significant supplier disruption could have a material adverse effect on [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+Overview
+
+The following discussion and analysis is intended to help readers understand the financial condition, results of operations and cash flows of Orris Aerospace, Inc. ("Orris," the "Company," "we," "us" or "our"). It should be read together with Item 1, "Business," Item 1A, "Risk Factors," and our Consolidated Financial Statements and the related notes included in Item 8 of this Annual Report on Form 10-K. This discussion contains forward-looking statements that involve risks and uncertainties. Our actual results could differ materially from those anticipated in these statements because of various factors, including those described in Item 1A.
+
+Orris designs, engineers and manufactures structural assemblies, propulsion components and integrated systems for commercial aircraft, business and regional jets, military platforms and space launch vehicles. We also provide maintenance, repair and overhaul services, spare parts and engineering support for the fleets that carry our products. We manage our business through three reportable segments:
+
+- Aerostructures, which designs and manufactures large structural assemblies, including fuselage sections, wing and empennage components, nacelle and thrust reverser assemblies, pylons and flight control surfaces.
+
+- Propulsion Systems, which produces engineered components and subsystems for commercial and military gas turbine engines, auxiliary power units and space propulsion systems.
+
+- Aftermarket Services, which supports the in-service fleet through component maintenance, repair and overhaul, spare parts sales, engineering and technical services, and long-term service agreements.
+
+We are incorporated in Delaware and headquartered in Columbus, Ohio. As of December 31, 2024, we employed about 27,000 people at engineering centers, manufacturing plants and service facilities in North America, Europe and the Asia-Pacific region.
+
+Our revenue is generated primarily under long-term agreements with airframe and engine manufacturers, defense prime contractors, government agencies, airlines and lessors. Original equipment revenue in our Aerostructures and Propulsion Systems segments is closely tied to our customers' production rates on the platforms where we hold content. Aftermarket revenue, whether in our Aftermarket Services segment or in the spare parts portion of Propulsion Systems, is driven principally by aircraft utilization, flight hours and cycles, fleet size and age, and the timing of scheduled maintenance events. Our defense and space business depends on government budget priorities and program funding.
+
+Business Environment in Fiscal 2024
+
+Commercial air travel demand remained healthy throughout fiscal 2024. Airline customers continued to operate their fleets at high utilization levels, and many operators extended the service lives of older aircraft while new aircraft deliveries remained below the levels originally planned by the airframe manufacturers. These conditions supported demand for spare parts and repair services across our installed base.
+
+Original equipment production across the industry continued to recover, although not uniformly. Supply chain constraints, labor availability and quality and certification matters affected the pace at which certain of our customers were able to raise production rates on major programs. As a result, our original equipment businesses operated under production schedules that changed during the year. In some cases we carried higher inventory to protect customer deliveries and to prepare for anticipated rate increases.
+
+Defense demand was stable to improving, supported by sustained procurement and sustainment activity on military aircraft and engine programs. Activity in launch vehicle and missile programs also continued. Inflation in wages, energy and certain raw materials moderated compared with the prior year but remained elevated relative to historical levels. This continued to pressure costs on fixed-price agreements, which we worked to offset through productivity initiatives, supplier negotiations and contractual pricing provisions where available.
+
+Fiscal 2024 Highlights
+
+- Revenue was $10,928 million, compared with $10,499 million in fiscal 2023, an increase of 4.1%.
+
+- Gross margin was 27.3%, compared with 26.4% in fiscal 2023.
+
+- Operating income was $1,903 million, compared with $1,841 million in fiscal 2023, an increase of 3.4%. Operating margin was 17.4%, compared with 17.5% in fiscal 2023.
+
+- Net income was $1,463 million, compared with $1,393 million in fiscal 2023, an increase of 5.0%.
+
+- Net cash provided by operating activities was $2,249 million.
+
+- We returned capital to stockholders through dividends paid of $314 million and share repurchases, net of issuances, of $961 million.
+
+Presentation of Results of Operations and Liquidity and Capital Resources
+
+The discussion below compares our results of operations and cash flows for the fiscal year ended December 31, 2024 with those for the fiscal year ended December 31, 2023. A comparison of fiscal 2023 with fiscal 2022 is included in Item 7 of our Annual Report on Form 10-K for the fiscal year ended December 31, 2023.
+
+Results of Operations
+
+The following table presents our consolidated results of operations for the periods indicated:
+
+(in millions)                                FY2024        FY2023
+Revenue                                      10,928        10,499
+Cost of revenue                               7,940         7,730
+Gross profit                                  2,988         2,769
+Research and development                        409           370
+Selling, general and administrative             676           557
+Other operating expense                           0             1
+Operating income                              1,903         1,841
+Interest expense                                 85            86
+Income before income taxes                    1,818         1,755
+Provision for income taxes                      355           362
+Net income                                    1,463         1,393
+
+The following table presents selected items as a percentage of revenue, together with our effective tax rate:
+
+                                                       FY2024        FY2023
+Gross margin                                            27.3%         26.4%
+Research and development                                 3.7%          3.5%
+Selling, general and administrative                      6.2%          5.3%
+Operating margin                                        17.4%         17.5%
+Net margin             [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Orris Aerospace, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 900 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

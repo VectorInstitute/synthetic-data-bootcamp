@@ -1,0 +1,122 @@
+{
+  "company_id": "syn0011",
+  "name": "Novmer Materials, Inc.",
+  "ticker": "NOMV",
+  "sector": "Materials",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "GA",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 20255,
+  "revenue_growth": 0.0616,
+  "employees": 65500,
+  "ratios": {
+    "gross_margin": 0.4716,
+    "operating_margin": 0.0177,
+    "sga_ratio": 0.141,
+    "da_ratio": 0.0346,
+    "capex_ratio": 0.0257,
+    "tax_rate": 0.2782,
+    "asset_turnover": 0.3283,
+    "equity_ratio": 0.6008,
+    "current_assets_ratio": 0.3472,
+    "current_ratio": 1.0666,
+    "cash_ratio": 0.1062,
+    "ppe_ratio": 0.5441,
+    "debt_ratio": 0.2998,
+    "receivables_ratio": 0.1589,
+    "inventory_ratio": 0.1348,
+    "goodwill_ratio": 0.2147,
+    "dividend_payout": 0.2772,
+    "other_operating_cash_ratio": 0.0446
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 20255,
+        "cost_of_revenue": 15825,
+        "gross_profit": 4430,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 2856,
+        "other_operating_expense": 1215,
+        "operating_income": 359,
+        "interest_expense": 689,
+        "pretax_income": -330,
+        "income_tax": 0,
+        "net_income": -330
+      },
+      "2023": {
+        "revenue": 19080,
+        "cost_of_revenue": 14858,
+        "gross_profit": 4222,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 2629,
+        "other_operating_expense": 1145,
+        "operating_income": 448,
+        "interest_expense": 652,
+        "pretax_income": -204,
+        "income_tax": 0,
+        "net_income": -204
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 6552,
+        "receivables": 3219,
+        "inventory": 2730,
+        "total_current_assets": 17859,
+        "property_plant_and_equipment": 33569,
+        "goodwill": 9242,
+        "total_assets": 61697,
+        "total_current_liabilities": 13858,
+        "long_term_debt": 15309,
+        "total_equity": 30679,
+        "other_current_assets": 5358,
+        "other_noncurrent_assets": 1027,
+        "other_noncurrent_liabilities": 1851,
+        "total_liabilities": 31018,
+        "total_liabilities_and_equity": 61697
+      },
+      "2023": {
+        "cash": 6313,
+        "receivables": 3057,
+        "inventory": 2585,
+        "total_current_assets": 17078,
+        "property_plant_and_equipment": 30712,
+        "goodwill": 9141,
+        "total_assets": 57947,
+        "total_current_liabilities": 13401,
+        "long_term_debt": 14499,
+        "total_equity": 28308,
+        "other_current_assets": 5123,
+        "other_noncurrent_assets": 1016,
+        "other_noncurrent_liabilities": 1739,
+        "total_liabilities": 29639,
+        "total_liabilities_and_equity": 57947
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": -330,
+        "depreciation_and_amortization": 701,
+        "other_operating_items": 903,
+        "net_cash_from_operating_activities": 1274,
+        "capital_expenditures": -521,
+        "other_investing_activities": -4025,
+        "net_cash_from_investing_activities": -4546,
+        "net_change_in_long_term_debt": 810,
+        "dividends_paid": 0,
+        "share_repurchases_net": 2701,
+        "net_cash_from_financing_activities": 3511,
+        "net_change_in_cash": 239,
+        "cash_beginning_of_year": 6313,
+        "cash_end_of_year": 6552
+      }
+    }
+  }
+}

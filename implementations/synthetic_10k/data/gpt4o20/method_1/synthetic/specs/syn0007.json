@@ -1,0 +1,120 @@
+{
+  "company_id": "syn0007",
+  "name": "Oral Communications, Inc.",
+  "ticker": "ORAL",
+  "sector": "Communication Services",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "VA",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 119056,
+  "revenue_growth": -0.085,
+  "employees": 205300,
+  "ratios": {
+    "gross_margin": 0.3348,
+    "operating_margin": 0.1933,
+    "sga_ratio": 0.1415,
+    "da_ratio": 0.1705,
+    "capex_ratio": 0.1676,
+    "tax_rate": 0.234,
+    "asset_turnover": 0.3758,
+    "equity_ratio": 0.3129,
+    "current_assets_ratio": 0.1245,
+    "current_ratio": 0.8091,
+    "cash_ratio": 0.0338,
+    "ppe_ratio": 0.2179,
+    "debt_ratio": 0.2365,
+    "receivables_ratio": 0.0846,
+    "goodwill_ratio": 0.0845,
+    "other_operating_cash_ratio": 0.0081
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 119056,
+        "cost_of_revenue": 79196,
+        "gross_profit": 39860,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 16846,
+        "other_operating_expense": 0,
+        "operating_income": 23014,
+        "interest_expense": 3372,
+        "pretax_income": 19642,
+        "income_tax": 4596,
+        "net_income": 15046
+      },
+      "2023": {
+        "revenue": 130116,
+        "cost_of_revenue": 87114,
+        "gross_profit": 43002,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 16973,
+        "other_operating_expense": 0,
+        "operating_income": 26029,
+        "interest_expense": 3576,
+        "pretax_income": 22453,
+        "income_tax": 5185,
+        "net_income": 17268
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 10708,
+        "receivables": 10072,
+        "inventory": 0,
+        "total_current_assets": 29686,
+        "property_plant_and_equipment": 69032,
+        "goodwill": 26770,
+        "total_assets": 316807,
+        "total_current_liabilities": 36690,
+        "long_term_debt": 74925,
+        "total_equity": 99129,
+        "other_current_assets": 8906,
+        "other_noncurrent_assets": 191319,
+        "other_noncurrent_liabilities": 106063,
+        "total_liabilities": 217678,
+        "total_liabilities_and_equity": 316807
+      },
+      "2023": {
+        "cash": 11340,
+        "receivables": 11045,
+        "inventory": 0,
+        "total_current_assets": 31978,
+        "property_plant_and_equipment": 71000,
+        "goodwill": 27200,
+        "total_assets": 335184,
+        "total_current_liabilities": 39805,
+        "long_term_debt": 79463,
+        "total_equity": 107332,
+        "other_current_assets": 9593,
+        "other_noncurrent_assets": 205006,
+        "other_noncurrent_liabilities": 108584,
+        "total_liabilities": 227852,
+        "total_liabilities_and_equity": 335184
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 15046,
+        "depreciation_and_amortization": 20299,
+        "other_operating_items": 964,
+        "net_cash_from_operating_activities": 36309,
+        "capital_expenditures": -19954,
+        "other_investing_activities": 10800,
+        "net_cash_from_investing_activities": -9154,
+        "net_change_in_long_term_debt": -4538,
+        "dividends_paid": 0,
+        "share_repurchases_net": -23249,
+        "net_cash_from_financing_activities": -27787,
+        "net_change_in_cash": -632,
+        "cash_beginning_of_year": 11340,
+        "cash_end_of_year": 10708
+      }
+    }
+  }
+}

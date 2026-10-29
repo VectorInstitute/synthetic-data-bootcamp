@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0016",
+  "name": "Zenaltal Foods, Inc.",
+  "ticker": "ZTLN",
+  "sector": "Consumer Staples",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "NJ",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 15185,
+  "revenue_growth": -0.0674,
+  "employees": 22700,
+  "ratios": {
+    "gross_margin": 0.3051,
+    "operating_margin": 0.0361,
+    "sga_ratio": 0.263,
+    "da_ratio": 0.0114,
+    "capex_ratio": 0.034,
+    "tax_rate": 0.2129,
+    "asset_turnover": 0.7162,
+    "equity_ratio": 0.3924,
+    "current_assets_ratio": 0.5238,
+    "current_ratio": 0.7744,
+    "cash_ratio": 0.0824,
+    "ppe_ratio": 0.1389,
+    "debt_ratio": 0.262,
+    "receivables_ratio": 0.0821,
+    "rd_ratio": 0.006,
+    "inventory_ratio": 0.0712,
+    "goodwill_ratio": 0.1127,
+    "dividend_payout": 0.8156,
+    "other_operating_cash_ratio": 0.0202
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 15185,
+        "cost_of_revenue": 10552,
+        "gross_profit": 4633,
+        "research_and_development": 91,
+        "selling_general_and_administrative": 3994,
+        "other_operating_expense": 0,
+        "operating_income": 548,
+        "interest_expense": 240,
+        "pretax_income": 308,
+        "income_tax": 66,
+        "net_income": 242
+      },
+      "2023": {
+        "revenue": 16282,
+        "cost_of_revenue": 11321,
+        "gross_profit": 4961,
+        "research_and_development": 128,
+        "selling_general_and_administrative": 4250,
+        "other_operating_expense": 188,
+        "operating_income": 395,
+        "interest_expense": 256,
+        "pretax_income": 139,
+        "income_tax": 29,
+        "net_income": 110
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 1747,
+        "receivables": 1247,
+        "inventory": 1081,
+        "total_current_assets": 5821,
+        "property_plant_and_equipment": 2945,
+        "goodwill": 2389,
+        "total_assets": 21202,
+        "total_current_liabilities": 7227,
+        "long_term_debt": 5341,
+        "total_equity": 7999,
+        "other_current_assets": 1746,
+        "other_noncurrent_assets": 10047,
+        "other_noncurrent_liabilities": 635,
+        "total_liabilities": 13203,
+        "total_liabilities_and_equity": 21202
+      },
+      "2023": {
+        "cash": 1764,
+        "receivables": 1321,
+        "inventory": 1115,
+        "total_current_assets": 6001,
+        "property_plant_and_equipment": 3190,
+        "goodwill": 2416,
+        "total_assets": 22245,
+        "total_current_liabilities": 7611,
+        "long_term_debt": 5690,
+        "total_equity": 8421,
+        "other_current_assets": 1801,
+        "other_noncurrent_assets": 10638,
+        "other_noncurrent_liabilities": 523,
+        "total_liabilities": 13824,
+        "total_liabilities_and_equity": 22245
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 242,
+        "depreciation_and_amortization": 173,
+        "other_operating_items": 307,
+        "net_cash_from_operating_activities": 722,
+        "capital_expenditures": -516,
+        "other_investing_activities": 790,
+        "net_cash_from_investing_activities": 274,
+        "net_change_in_long_term_debt": -349,
+        "dividends_paid": -197,
+        "share_repurchases_net": -467,
+        "net_cash_from_financing_activities": -1013,
+        "net_change_in_cash": -17,
+        "cash_beginning_of_year": 1764,
+        "cash_end_of_year": 1747
+      }
+    }
+  }
+}

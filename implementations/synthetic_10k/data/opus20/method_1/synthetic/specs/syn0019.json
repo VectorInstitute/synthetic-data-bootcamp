@@ -1,0 +1,122 @@
+{
+  "company_id": "syn0019",
+  "name": "Kaqua Brands, Inc.",
+  "ticker": "KUAQ",
+  "sector": "Consumer Discretionary",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "WA",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 10633,
+  "revenue_growth": -0.0445,
+  "employees": 21200,
+  "ratios": {
+    "gross_margin": 0.2762,
+    "operating_margin": 0.1802,
+    "sga_ratio": 0.051,
+    "da_ratio": 0.0225,
+    "capex_ratio": 0.0316,
+    "tax_rate": 0.2524,
+    "asset_turnover": 1.1009,
+    "equity_ratio": 0.5578,
+    "current_assets_ratio": 0.3968,
+    "current_ratio": 1.0525,
+    "cash_ratio": 0.0498,
+    "ppe_ratio": 0.404,
+    "debt_ratio": 0.4685,
+    "receivables_ratio": 0.025,
+    "inventory_ratio": 0.0,
+    "goodwill_ratio": 0.0367,
+    "dividend_payout": 0.4824,
+    "other_operating_cash_ratio": 0.006
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 10633,
+        "cost_of_revenue": 7696,
+        "gross_profit": 2937,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 542,
+        "other_operating_expense": 479,
+        "operating_income": 1916,
+        "interest_expense": 175,
+        "pretax_income": 1741,
+        "income_tax": 439,
+        "net_income": 1302
+      },
+      "2023": {
+        "revenue": 11128,
+        "cost_of_revenue": 8135,
+        "gross_profit": 2993,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 595,
+        "other_operating_expense": 419,
+        "operating_income": 1979,
+        "interest_expense": 183,
+        "pretax_income": 1796,
+        "income_tax": 470,
+        "net_income": 1326
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 481,
+        "receivables": 266,
+        "inventory": 0,
+        "total_current_assets": 1067,
+        "property_plant_and_equipment": 3902,
+        "goodwill": 354,
+        "total_assets": 9658,
+        "total_current_liabilities": 869,
+        "long_term_debt": 3880,
+        "total_equity": 4620,
+        "other_current_assets": 320,
+        "other_noncurrent_assets": 4335,
+        "other_noncurrent_liabilities": 289,
+        "total_liabilities": 5038,
+        "total_liabilities_and_equity": 9658
+      },
+      "2023": {
+        "cash": 508,
+        "receivables": 269,
+        "inventory": 0,
+        "total_current_assets": 1109,
+        "property_plant_and_equipment": 4109,
+        "goodwill": 368,
+        "total_assets": 9840,
+        "total_current_liabilities": 887,
+        "long_term_debt": 4068,
+        "total_equity": 4591,
+        "other_current_assets": 332,
+        "other_noncurrent_assets": 4254,
+        "other_noncurrent_liabilities": 294,
+        "total_liabilities": 5249,
+        "total_liabilities_and_equity": 9840
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 1302,
+        "depreciation_and_amortization": 239,
+        "other_operating_items": 64,
+        "net_cash_from_operating_activities": 1605,
+        "capital_expenditures": -336,
+        "other_investing_activities": 165,
+        "net_cash_from_investing_activities": -171,
+        "net_change_in_long_term_debt": -188,
+        "dividends_paid": -628,
+        "share_repurchases_net": -645,
+        "net_cash_from_financing_activities": -1461,
+        "net_change_in_cash": -27,
+        "cash_beginning_of_year": 508,
+        "cash_end_of_year": 481
+      }
+    }
+  }
+}

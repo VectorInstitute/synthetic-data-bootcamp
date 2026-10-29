@@ -1,0 +1,122 @@
+{
+  "company_id": "syn0014",
+  "name": "Kator Minerals, Inc.",
+  "ticker": "KRAT",
+  "sector": "Materials",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "VA",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 11823,
+  "revenue_growth": 0.1391,
+  "employees": 14000,
+  "ratios": {
+    "gross_margin": 0.5179,
+    "operating_margin": -0.0178,
+    "sga_ratio": 0.0192,
+    "da_ratio": 0.0898,
+    "capex_ratio": 0.0239,
+    "tax_rate": 0.228,
+    "asset_turnover": 0.6032,
+    "equity_ratio": 0.4864,
+    "current_assets_ratio": 0.2259,
+    "current_ratio": 0.9564,
+    "cash_ratio": 0.0624,
+    "ppe_ratio": 0.3884,
+    "debt_ratio": 0.4604,
+    "receivables_ratio": 0.0971,
+    "inventory_ratio": 0.0735,
+    "goodwill_ratio": 0.3314,
+    "dividend_payout": 0.3951,
+    "other_operating_cash_ratio": 0.0093
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 11823,
+        "cost_of_revenue": 11097,
+        "gross_profit": 726,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 227,
+        "other_operating_expense": 709,
+        "operating_income": -210,
+        "interest_expense": 333,
+        "pretax_income": -543,
+        "income_tax": 0,
+        "net_income": -543
+      },
+      "2023": {
+        "revenue": 10379,
+        "cost_of_revenue": 9823,
+        "gross_profit": 556,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 214,
+        "other_operating_expense": 623,
+        "operating_income": -281,
+        "interest_expense": 292,
+        "pretax_income": -573,
+        "income_tax": 0,
+        "net_income": -573
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 1223,
+        "receivables": 1148,
+        "inventory": 869,
+        "total_current_assets": 4428,
+        "property_plant_and_equipment": 7613,
+        "goodwill": 6496,
+        "total_assets": 19600,
+        "total_current_liabilities": 3796,
+        "long_term_debt": 7399,
+        "total_equity": 7817,
+        "other_current_assets": 1188,
+        "other_noncurrent_assets": 1063,
+        "other_noncurrent_liabilities": 588,
+        "total_liabilities": 11783,
+        "total_liabilities_and_equity": 19600
+      },
+      "2023": {
+        "cash": 1143,
+        "receivables": 984,
+        "inventory": 793,
+        "total_current_assets": 4060,
+        "property_plant_and_equipment": 7061,
+        "goodwill": 5850,
+        "total_assets": 17621,
+        "total_current_liabilities": 3485,
+        "long_term_debt": 6497,
+        "total_equity": 7111,
+        "other_current_assets": 1140,
+        "other_noncurrent_assets": 650,
+        "other_noncurrent_liabilities": 528,
+        "total_liabilities": 10510,
+        "total_liabilities_and_equity": 17621
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": -543,
+        "depreciation_and_amortization": 1062,
+        "other_operating_items": 110,
+        "net_cash_from_operating_activities": 629,
+        "capital_expenditures": -283,
+        "other_investing_activities": -2417,
+        "net_cash_from_investing_activities": -2700,
+        "net_change_in_long_term_debt": 902,
+        "dividends_paid": 0,
+        "share_repurchases_net": 1249,
+        "net_cash_from_financing_activities": 2151,
+        "net_change_in_cash": 80,
+        "cash_beginning_of_year": 1143,
+        "cash_end_of_year": 1223
+      }
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0020",
+  "name": "Drazennov Medical, Inc.",
+  "ticker": "DEVR",
+  "sector": "Health Care",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "MN",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 60579,
+  "revenue_growth": 0.0381,
+  "employees": 78900,
+  "ratios": {
+    "gross_margin": 0.742,
+    "operating_margin": 0.1319,
+    "sga_ratio": 0.118,
+    "da_ratio": 0.1226,
+    "capex_ratio": 0.0218,
+    "tax_rate": 0.2554,
+    "asset_turnover": 0.4148,
+    "equity_ratio": 0.2104,
+    "current_assets_ratio": 0.4911,
+    "current_ratio": 1.145,
+    "cash_ratio": 0.198,
+    "ppe_ratio": 0.0912,
+    "debt_ratio": 0.1271,
+    "receivables_ratio": 0.1427,
+    "rd_ratio": 0.1136,
+    "inventory_ratio": 0.1509,
+    "goodwill_ratio": 0.4883,
+    "dividend_payout": 0.1543,
+    "other_operating_cash_ratio": -0.0021
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 60579,
+        "cost_of_revenue": 34924,
+        "gross_profit": 25655,
+        "research_and_development": 6882,
+        "selling_general_and_administrative": 7148,
+        "other_operating_expense": 3635,
+        "operating_income": 7990,
+        "interest_expense": 835,
+        "pretax_income": 7155,
+        "income_tax": 1827,
+        "net_income": 5328
+      },
+      "2023": {
+        "revenue": 58356,
+        "cost_of_revenue": 33744,
+        "gross_profit": 24612,
+        "research_and_development": 6687,
+        "selling_general_and_administrative": 6853,
+        "other_operating_expense": 3501,
+        "operating_income": 7571,
+        "interest_expense": 751,
+        "pretax_income": 6820,
+        "income_tax": 1804,
+        "net_income": 5016
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 28917,
+        "receivables": 8645,
+        "inventory": 9141,
+        "total_current_assets": 66718,
+        "property_plant_and_equipment": 21220,
+        "goodwill": 52295,
+        "total_assets": 146044,
+        "total_current_liabilities": 58269,
+        "long_term_debt": 18562,
+        "total_equity": 30728,
+        "other_current_assets": 20015,
+        "other_noncurrent_assets": 5811,
+        "other_noncurrent_liabilities": 38485,
+        "total_liabilities": 115316,
+        "total_liabilities_and_equity": 146044
+      },
+      "2023": {
+        "cash": 26659,
+        "receivables": 8112,
+        "inventory": 8530,
+        "total_current_assets": 61859,
+        "property_plant_and_equipment": 20898,
+        "goodwill": 48618,
+        "total_assets": 136778,
+        "total_current_liabilities": 52885,
+        "long_term_debt": 16690,
+        "total_equity": 29229,
+        "other_current_assets": 18558,
+        "other_noncurrent_assets": 5403,
+        "other_noncurrent_liabilities": 37974,
+        "total_liabilities": 107549,
+        "total_liabilities_and_equity": 136778
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 5328,
+        "depreciation_and_amortization": 7427,
+        "other_operating_items": -127,
+        "net_cash_from_operating_activities": 12628,
+        "capital_expenditures": -1321,
+        "other_investing_activities": -7092,
+        "net_cash_from_investing_activities": -8413,
+        "net_change_in_long_term_debt": 1872,
+        "dividends_paid": -822,
+        "share_repurchases_net": -3007,
+        "net_cash_from_financing_activities": -1957,
+        "net_change_in_cash": 2258,
+        "cash_beginning_of_year": 26659,
+        "cash_end_of_year": 28917
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "balance_sheet": {
+    "assets": {
+      "cash_and_equivalents": 167160660,
+      "property_plant_equipment_net": 668621268,
+      "goodwill": 1556779528,
+      "intangible_assets_net": 489048923,
+      "other_assets": 57108420995,
+      "total_assets": 59990031374
+    },
+    "liabilities": {
+      "long_term_debt": 3588091206,
+      "other_liabilities": 43969075245,
+      "total_liabilities": 47557166451
+    },
+    "equity": {
+      "additional_paid_in_capital": 438460103,
+      "retained_earnings": 16942245075,
+      "accumulated_other_comprehensive_income": -1848086750,
+      "other_equity": -3099753505,
+      "total_stockholders_equity": 12432864923
+    }
+  },
+  "income_statement": {
+    "revenues": 2999501569,
+    "operating_expenses": {
+      "selling_general_administrative": 9934124419,
+      "other_operating_expenses": -10735306346
+    },
+    "interest_expense": 383529810,
+    "pretax_income": 3417153686,
+    "income_tax_expense": 717602274,
+    "net_income": 2699551412
+  },
+  "cash_flow_statement": {
+    "operating_activities": {
+      "net_income": 2699551412,
+      "depreciation_and_amortization": 640061918,
+      "changes_in_working_capital_and_other": 8007089253,
+      "cash_from_operations": 11346702583
+    },
+    "investing_activities": {
+      "capital_expenditures": -274391448,
+      "other_investing_activities": -7792946379,
+      "cash_from_investing": -8067337827
+    },
+    "financing_activities": {
+      "dividends_paid": 0,
+      "share_repurchases": -2741879459,
+      "other_financing_activities": -1355829498,
+      "cash_from_financing": -4097708957
+    },
+    "net_change_in_cash": -818344201
+  },
+  "generated_at": "2026-10-27T16:21:48+00:00"
+}

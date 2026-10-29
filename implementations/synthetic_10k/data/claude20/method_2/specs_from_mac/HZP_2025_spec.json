@@ -1,0 +1,33 @@
+{
+  "fictional_id": "HZP",
+  "fictional_name": "Stonegate Sciences Corp.",
+  "fiscal_year": 2025,
+  "sector": "Information Technology",
+  "sub_industry": "Application Software",
+  "hq_state": "New York",
+  "template": {
+    "ticker": "DDOG",
+    "fiscal_year": 2025
+  },
+  "financials": {
+    "total_assets": 4660714798,
+    "total_liabilities": 2128608089,
+    "stockholders_equity": 2532106709,
+    "revenues": 2711809418,
+    "net_income": 92544666,
+    "operating_income": -32849013
+  },
+  "cybersecurity": {
+    "framework": "the NIST Cybersecurity Framework and ISO/IEC 27001",
+    "oversight": "the Audit Committee of the Board of Directors",
+    "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "competitive_displacement",
+    "summary": "Stonegate Sciences experienced reduced usage from a significant customer during fiscal 2025 after that customer migrated a portion of its workloads to a competing observability vendor, contributing to the year's thin operating margin.",
+    "facts": {
+      "driver": "a significant customer migrated a portion of its workloads to a competing observability platform",
+      "response": "continued investment in platform capabilities and customer success to limit further displacement"
+    }
+  }
+}

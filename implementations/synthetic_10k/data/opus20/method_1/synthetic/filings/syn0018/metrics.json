@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0018",
+  "name": "Orzenka Midstream, Inc.",
+  "sector": "Energy",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 404.27,
+  "totals": {
+    "seconds": 403.72,
+    "prompt_tokens": 49338,
+    "completion_tokens": 43762,
+    "total_tokens": 93100,
+    "reasoning_tokens": 0,
+    "calls": 5
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1237,
+      "prompt_chars": 13933,
+      "words": 3682,
+      "attempts": 1,
+      "exemplar_overlap": 0.0019,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1223,
+      "prompt_chars": 25567,
+      "words": 4111,
+      "attempts": 1,
+      "exemplar_overlap": 0.0005,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1240,
+      "prompt_chars": 35751,
+      "words": 4326,
+      "attempts": 2,
+      "exemplar_overlap": 0.004,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 820,
+      "exemplar_words": 945,
+      "prompt_chars": 44826,
+      "words": 936,
+      "attempts": 1,
+      "exemplar_overlap": 0.0107,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 84.98,
+      "prompt_tokens": 4458,
+      "completion_tokens": 8606,
+      "total_tokens": 13064,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 3682,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 93.91,
+      "prompt_tokens": 7961,
+      "completion_tokens": 9754,
+      "total_tokens": 17715,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4111,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 105.25,
+      "prompt_tokens": 11429,
+      "completion_tokens": 11971,
+      "total_tokens": 23400,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4603,
+      "issues": [
+        "The section has 4603 words; keep it under 4500 (target 3000)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "claude-opus-5-5",
+      "seconds": 92.46,
+      "prompt_tokens": 11471,
+      "completion_tokens": 10844,
+      "total_tokens": 22315,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4326,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 27.12,
+      "prompt_tokens": 14019,
+      "completion_tokens": 2587,
+      "total_tokens": 16606,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 936,
+      "issues": []
+    }
+  ]
+}

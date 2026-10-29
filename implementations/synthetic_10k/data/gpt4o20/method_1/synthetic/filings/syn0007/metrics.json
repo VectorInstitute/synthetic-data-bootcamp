@@ -1,0 +1,211 @@
+{
+  "company_id": "syn0007",
+  "name": "Oral Communications, Inc.",
+  "sector": "Communication Services",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 119.05,
+  "totals": {
+    "seconds": 118.67,
+    "prompt_tokens": 44407,
+    "completion_tokens": 13355,
+    "total_tokens": 57762,
+    "reasoning_tokens": 0,
+    "calls": 10
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1227,
+      "prompt_chars": 14161,
+      "words": 858,
+      "attempts": 3,
+      "exemplar_overlap": 0.0,
+      "issues": [
+        "The section has 858 words; write at least 1800 (target 3000)."
+      ]
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1217,
+      "prompt_chars": 21007,
+      "words": 1011,
+      "attempts": 3,
+      "exemplar_overlap": 0.002,
+      "issues": [
+        "The section has 1011 words; write at least 2100 (target 3500)."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1421,
+      "prompt_chars": 29822,
+      "words": 1450,
+      "attempts": 3,
+      "exemplar_overlap": 0.0053,
+      "issues": [
+        "The section has 1450 words; write at least 1800 (target 3000)."
+      ]
+    },
+    "1C": {
+      "target_words": 570,
+      "exemplar_words": 875,
+      "prompt_chars": 36402,
+      "words": 617,
+      "attempts": 1,
+      "exemplar_overlap": 0.0065,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 12.34,
+      "prompt_tokens": 2870,
+      "completion_tokens": 1200,
+      "total_tokens": 4070,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 984,
+      "issues": [
+        "The section has 984 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 10.92,
+      "prompt_tokens": 2902,
+      "completion_tokens": 1050,
+      "total_tokens": 3952,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 883,
+      "issues": [
+        "The section has 883 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 9.08,
+      "prompt_tokens": 2902,
+      "completion_tokens": 1059,
+      "total_tokens": 3961,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 858,
+      "issues": [
+        "The section has 858 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 8.88,
+      "prompt_tokens": 3751,
+      "completion_tokens": 983,
+      "total_tokens": 4734,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 835,
+      "issues": [
+        "The section has 835 words; write at least 2100 (target 3500)."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 11.21,
+      "prompt_tokens": 3783,
+      "completion_tokens": 1404,
+      "total_tokens": 5187,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1203,
+      "issues": [
+        "The section has 1203 words; write at least 2100 (target 3500).",
+        "6% of the text repeats the style example word for word; rewrite it in your own words. Copied sentences include: \"Risk Factors\n\nInvesting in our securities involves risk....\"; \"In addition to the other information contained in this Annual Report on Form 10-K, you should consider the following ris...\"; \"Additional risks and uncertainties not presently known to us or that we currently believe not to be material may also ad...\""
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 10.39,
+      "prompt_tokens": 3873,
+      "completion_tokens": 1191,
+      "total_tokens": 5064,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1011,
+      "issues": [
+        "The section has 1011 words; write at least 2100 (target 3500)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 16.26,
+      "prompt_tokens": 5923,
+      "completion_tokens": 1890,
+      "total_tokens": 7813,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1465,
+      "issues": [
+        "The section has 1465 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 16.73,
+      "prompt_tokens": 5956,
+      "completion_tokens": 1954,
+      "total_tokens": 7910,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1466,
+      "issues": [
+        "The section has 1466 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 16.01,
+      "prompt_tokens": 5956,
+      "completion_tokens": 1912,
+      "total_tokens": 7868,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1450,
+      "issues": [
+        "The section has 1450 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 6.85,
+      "prompt_tokens": 6491,
+      "completion_tokens": 712,
+      "total_tokens": 7203,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 617,
+      "issues": []
+    }
+  ]
+}

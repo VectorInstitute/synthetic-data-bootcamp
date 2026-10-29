@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0009",
+  "name": "Torsel Software, Inc.",
+  "ticker": "TSOE",
+  "sector": "Information Technology",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "NJ",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 24213,
+  "revenue_growth": 0.1303,
+  "employees": 28000,
+  "ratios": {
+    "gross_margin": 0.5228,
+    "operating_margin": 0.1707,
+    "sga_ratio": 0.1104,
+    "da_ratio": 0.0358,
+    "capex_ratio": 0.0195,
+    "tax_rate": 0.1121,
+    "asset_turnover": 0.8265,
+    "equity_ratio": 0.2764,
+    "current_assets_ratio": 0.7019,
+    "current_ratio": 1.3616,
+    "cash_ratio": 0.0394,
+    "ppe_ratio": 0.012,
+    "debt_ratio": 0.1441,
+    "receivables_ratio": 0.1929,
+    "rd_ratio": 0.1082,
+    "inventory_ratio": 0.0664,
+    "goodwill_ratio": 0.0666,
+    "dividend_payout": 0.0,
+    "other_operating_cash_ratio": -0.0143
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 24213,
+        "cost_of_revenue": 13334,
+        "gross_profit": 10879,
+        "research_and_development": 2620,
+        "selling_general_and_administrative": 2673,
+        "other_operating_expense": 1453,
+        "operating_income": 4133,
+        "interest_expense": 190,
+        "pretax_income": 3943,
+        "income_tax": 442,
+        "net_income": 3501
+      },
+      "2023": {
+        "revenue": 21422,
+        "cost_of_revenue": 11813,
+        "gross_profit": 9609,
+        "research_and_development": 2375,
+        "selling_general_and_administrative": 2303,
+        "other_operating_expense": 1285,
+        "operating_income": 3646,
+        "interest_expense": 167,
+        "pretax_income": 3479,
+        "income_tax": 364,
+        "net_income": 3115
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 1154,
+        "receivables": 4671,
+        "inventory": 1608,
+        "total_current_assets": 10618,
+        "property_plant_and_equipment": 2477,
+        "goodwill": 1951,
+        "total_assets": 29296,
+        "total_current_liabilities": 7798,
+        "long_term_debt": 4222,
+        "total_equity": 8097,
+        "other_current_assets": 3185,
+        "other_noncurrent_assets": 14250,
+        "other_noncurrent_liabilities": 9179,
+        "total_liabilities": 21199,
+        "total_liabilities_and_equity": 29296
+      },
+      "2023": {
+        "cash": 960,
+        "receivables": 4187,
+        "inventory": 1433,
+        "total_current_assets": 9401,
+        "property_plant_and_equipment": 2180,
+        "goodwill": 1600,
+        "total_assets": 24977,
+        "total_current_liabilities": 7171,
+        "long_term_debt": 3721,
+        "total_equity": 6974,
+        "other_current_assets": 2821,
+        "other_noncurrent_assets": 11796,
+        "other_noncurrent_liabilities": 7111,
+        "total_liabilities": 18003,
+        "total_liabilities_and_equity": 24977
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 3501,
+        "depreciation_and_amortization": 867,
+        "other_operating_items": -346,
+        "net_cash_from_operating_activities": 4022,
+        "capital_expenditures": -472,
+        "other_investing_activities": -1479,
+        "net_cash_from_investing_activities": -1951,
+        "net_change_in_long_term_debt": 501,
+        "dividends_paid": 0,
+        "share_repurchases_net": -2378,
+        "net_cash_from_financing_activities": -1877,
+        "net_change_in_cash": 194,
+        "cash_beginning_of_year": 960,
+        "cash_end_of_year": 1154
+      }
+    }
+  }
+}
