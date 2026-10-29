@@ -84,6 +84,29 @@ LABELS = {
     "operating_margin": r"operating margin",
 }
 WINDOW = 120  # characters after a label in which its figure must appear
+# Words that may precede a headline label; anything else ("product", "cost of",
+# "segment") names a sub-line.
+HEADLINE_LEAD = {
+    "our",
+    "the",
+    "its",
+    "total",
+    "consolidated",
+    "company's",
+    "company’s",
+    "fiscal",
+    "annual",
+    "reported",
+    "while",
+    "with",
+    "as",
+    "and",
+    "where",
+}
+COMPARISON = re.compile(
+    r"compar|prior|previous|last year|increase|decrease|grew|declin|rose|fell|\bfrom\b|\bversus\b|\bvs\b",
+    re.IGNORECASE,
+)
 
 
 def find_leaf(d: dict, key: str) -> float | None:
@@ -199,36 +222,68 @@ def first_dollar(text: str) -> float | None:
     return amount * UNIT_SCALE[m.group(1).lower()] if amount is not None else None
 
 
-def attached_figures(text: str, fact: str, *, is_percent: bool) -> list[float]:
-    """Figures the text attaches to `fact`'s label: the first figure of the right kind
-    within WINDOW characters after the label in the same sentence, or a table row whose
-    label is the fact's label.
+def headline_label(line: str, start: int) -> bool:
+    """True if the label starting at `start` is the headline line, not a sub-line.
+
+    "product revenues", "cost of revenues", "segment net income" and the like name a
+    different figure, so the word before the label must be one of HEADLINE_LEAD (or a
+    year, or nothing).
+    """
+    before = re.findall(r"[\w'’]+", line[max(0, start - 30) : start])
+    return not before or before[-1].lower() in HEADLINE_LEAD or before[-1].isdigit()
+
+
+def table_cells(line: str) -> list[str] | None:
+    """Cells of a " | " (synthetic) or tab-separated (real) table row, "$" cells dropped."""
+    sep = " | " if " | " in line else "\t" if "\t" in line else None
+    if sep is None:
+        return None
+    return [c.strip() for c in line.split(sep) if c.strip() not in ("", "$")]
+
+
+def attached_figures(text: str, fact: str, *, is_percent: bool) -> list[tuple[list[float], str]]:
+    """Figures the text attaches to `fact`'s headline label, each as (readings, context).
+
+    Prose: the first figure of the right kind within WINDOW characters after the label
+    in the same sentence. Tables: a row whose first cell is the label. A table figure
+    has no unit, so it gets two readings (thousands and millions); prose has one.
     """
     label = re.compile(rf"\b(?:{LABELS[fact]})\b", re.IGNORECASE)
-    values = []
+    found = []
     for line in text.splitlines():
-        if " | " in line:
-            parts = [p.strip() for p in line.split(" | ")]
-            if label.fullmatch(parts[0].strip("*: ")) and not is_percent:
-                v = to_float(parts[1]) if len(parts) > 1 else None
+        cells = table_cells(line)
+        if cells is not None:
+            if not is_percent and len(cells) > 1 and label.fullmatch(cells[0].strip("*: ")):
+                v = to_float(cells[1])
                 if v is not None:
-                    values.append(v * 1e6)
+                    found.append(([v * 1e3, v * 1e6], line))
             continue
         for m in label.finditer(line):
-            tail = re.split(r"(?<=[.;])\s", line[m.end() : m.end() + WINDOW], maxsplit=1)[0]
-            v = first_percent(tail) if is_percent else first_dollar(tail)
+            if not headline_label(line, m.start()):
+                continue
+            sentence = re.split(r"(?<=[.;])\s", line[m.end() : m.end() + WINDOW], maxsplit=1)[0]
+            v = first_percent(sentence) if is_percent else first_dollar(sentence)
             if v is not None:
-                values.append(v)
-    return values
+                found.append(([v], line[max(0, m.start() - 80) : m.end() + len(sentence)]))
+    return found
 
 
 def correctness(
     texts: Iterable[str],
     facts: dict[str, float | None],
     prior: dict[str, float | None],
+    fy: int | None = None,
 ) -> tuple[int, int]:
-    """(correct, attached) label-attached figures in `texts` for one company."""
+    """(correct, attached) headline-label figures in `texts` for one company.
+
+    A figure is correct if it equals the fact's current value, or, when the prior year
+    is known, the prior value or the change. When the prior year is unknown (Method 2's
+    one-year statements, real filings without a prior XBRL row) a figure that doesn't
+    match the current value but sits in a comparison ("compared to", another year,
+    "increased by") can't be checked, so it is left out rather than counted wrong.
+    """
     correct = total = 0
+    other_year = re.compile(rf"\b(?!{fy}\b)(?:19|20)\d\d\b") if fy else re.compile(r"\b(?:19|20)\d\d\b")
     for fact, _, is_percent in QUESTIONS:
         value = facts.get(fact)
         if value is None:
@@ -238,9 +293,12 @@ def correctness(
         if before is not None:
             allowed |= {before} if is_percent else {before, value - before}
         for text in texts:
-            for v in attached_figures(text, fact, is_percent=is_percent):
+            for readings, context in attached_figures(text, fact, is_percent=is_percent):
+                ok = any(closest_match(v, allowed, relative=not is_percent) for v in readings)
+                if not ok and before is None and (COMPARISON.search(context) or other_year.search(context)):
+                    continue
                 total += 1
-                correct += closest_match(v, allowed, relative=not is_percent)
+                correct += ok
     return correct, total
 
 
