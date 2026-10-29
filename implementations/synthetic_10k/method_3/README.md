@@ -6,6 +6,31 @@ The original Method 1 and Method 2 files and saved results are not modified.
 
 ## Run the dashboard
 
+### One-file offline dashboard
+
+Open `../dashboard/financial_method_comparison.html` directly in a recent browser.
+It includes the charts, styles, 228 eligible real observations, and native-generated
+per-sector pools with complete synthetic statements. No server or internet is needed.
+
+The slider selects 20–2,000 samples per method from these **fixed embedded pools**.
+"Sampling seed" changes the selection; it does not execute the Python generators.
+Generation diagnostics describe the full embedded pools, not the resampled selection.
+Sector filters, plots, statement selection and exports all work inside the HTML file.
+
+Rebuild the snapshot from `implementations/synthetic_10k` when source data or generators change:
+
+```powershell
+python -m method_3.build_standalone
+```
+
+The default output is `dashboard/financial_method_comparison.html`, leaving the
+existing `dashboard/index.html` intact. The default pool contains 2,000 companies
+per method per sector, with generation seed 42. `--pool-size`, `--seed`, `--parsed`,
+and `--output` can be supplied to rebuild a different snapshot. Compression is embedded
+in the file; opening it requires browser support for `DecompressionStream('gzip')`.
+
+### Live Python generation dashboard
+
 All new code, dashboard assets, tests, documentation, and generated outputs live
 under `implementations/synthetic_10k/method_3/`. The existing methods and real input files remain
 read-only dependencies under `implementations/synthetic_10k/`.
@@ -25,7 +50,7 @@ powershell -File method_3/dashboard/start_dashboard.ps1
 
 The launcher checks the repository's `.venv`, the bundled Codex Python, and then
 the Python on PATH. It does not install anything into the global environment.
-The dashboard requires the local server; opening `index.html` directly cannot
+The live generation dashboard requires the local server; opening its source `index.html` directly cannot
 call the generator. The server only listens on 127.0.0.1. Stop it with Ctrl+C.
 
 Controls include industry, fixed random seed, and a slider for **20–2,000 companies

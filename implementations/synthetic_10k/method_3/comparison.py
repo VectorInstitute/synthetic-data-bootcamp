@@ -168,6 +168,7 @@ class ComparisonEngine:
         for i, sector in enumerate(schedule):
             for trial in range(300):
                 attempts += 1
+                reserved_before_attempt = set(taken)
                 spec = self.m1['sample_spec'](self.calibration, rng, taken=taken,
                     index=i + 1, fiscal_year=2025, sector=sector)
                 issues = self.accounting['check_statements'](spec['statements']) + self.accounting['check_plausibility'](spec['statements'])
@@ -177,6 +178,10 @@ class ComparisonEngine:
                         statements=spec['statements'], checks=[], input_drivers=spec['ratios']))
                     break
                 reasons.update(issues)
+                # Rejected financial profiles never become companies. Release
+                # their reserved names so a large sector pool cannot exhaust the
+                # finite native name vocabulary inside its unbounded name loop.
+                taken.intersection_update(reserved_before_attempt)
             else:
                 raise ValueError(f'Method 1 failed in {sector} after 300 consecutive attempts')
         return dict(id='method_1', label='Method 1 · Independent sampling', rows=output,

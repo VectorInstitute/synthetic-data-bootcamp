@@ -73,6 +73,21 @@ class GenerationTests(unittest.TestCase):
         changes = driver_adjustments({'log10_revenue': 10, 'rd_ratio': 0.004}, {}, {'rd_ratio': 0})
         self.assertEqual(changes['rd_ratio']['delta'], -0.004)
 
+    def test_rejected_profiles_do_not_exhaust_fictional_name_reservations(self):
+        original = self.engine.m1['sample_spec']
+        checks = self.engine.accounting['check_statements']
+        sizes = []
+        def record(*args, **kwargs):
+            sizes.append(len(kwargs['taken']))
+            return original(*args, **kwargs)
+        calls = [0]
+        def reject_first(statements):
+            calls[0] += 1
+            return ['forced rejection'] if calls[0] == 1 else checks(statements)
+        with patch.dict(self.engine.m1, {'sample_spec': record}), patch.dict(self.engine.accounting, {'check_statements': reject_first}):
+            self.engine._generate_m1(['Utilities'], 42)
+        self.assertEqual(sizes[0], sizes[1])
+
 
 if __name__ == '__main__':
     unittest.main()
