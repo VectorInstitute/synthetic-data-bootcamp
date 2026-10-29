@@ -40,7 +40,7 @@ sys.path.insert(0, str(ROOT))
 from method_1.narrative import UsageClient  # noqa: E402
 from method_2.step09_validate_filings import closest_match  # noqa: E402
 from method_2.utils import setup_logging  # noqa: E402
-from qa.fact_questions import make_questions, real_facts, synthetic_facts  # noqa: E402
+from qa.fact_questions import contextual, make_questions, real_facts, synthetic_facts  # noqa: E402
 from RAG.chunks import Chunk  # noqa: E402
 from RAG.retrieval import Bm25Retriever, SemanticRetriever, reciprocal_rank_fusion  # noqa: E402
 
@@ -95,7 +95,7 @@ def answer_all(
 ) -> list[dict]:
     """Retrieve, answer and score every question over one corpus."""
     by_id = {c.chunk_id: c for c in chunks}
-    ids, texts = list(by_id), [c.text for c in by_id.values()]
+    ids, texts = list(by_id), [contextual(c) for c in by_id.values()]
     bm25 = Bm25Retriever(ids, texts)
     semantic = SemanticRetriever(ids, texts)
 
