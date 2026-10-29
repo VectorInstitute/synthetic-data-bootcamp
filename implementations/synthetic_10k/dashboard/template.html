@@ -346,8 +346,11 @@
       <p>The corpus exists to build and evaluate a retrieval benchmark. Every QA pair has an exact
       answer and a gold passage — synthetic ones generated deterministically from each company's own
       financial statements and scenario facts (no model call, so the answer is guaranteed to be a
-      verbatim substring of its gold passage by construction), real ones hand-authored from a
-      6-company real-filing sample and checked against the actual text. Three retrievers — BM25, a
+      verbatim substring of its gold passage by construction); real ones mostly the same way now —
+      the same financial-fact templates, grounded in each real company's own extracted XBRL metrics
+      (method_1.build) and checked verbatim against the actual text — across every real company with
+      usable data, plus a small hand-authored set from 6 filings read closely for Phase 7's
+      model-judged review. Three retrievers — BM25, a
       real semantic embedding retriever, and their reciprocal-rank-fusion hybrid — are scored on
       recall@5, recall@10, MRR and nDCG@10. The question that actually matters for utility: if you
       picked a retriever using only the synthetic corpus, would you have picked the same one using
@@ -358,8 +361,8 @@
       <div class="card">
         <h3>Questions by source</h3>
         <div class="stat-row"><span class="big" id="qa-synthetic">—</span><span class="vs">synthetic</span></div>
-        <div class="stat-row"><span class="big" id="qa-real">—</span><span class="vs">real (6-company sample)</span></div>
-        <p class="note">Real: AEP, BEN, USB, CVS, NOC, CRWD.</p>
+        <div class="stat-row"><span class="big" id="qa-real">—</span><span class="vs">real</span></div>
+        <p class="note">Deterministic financial facts across every real company with usable metrics, plus a small hand-authored set from AEP, BEN, USB, CVS, NOC, CRWD.</p>
       </div>
       <div class="card">
         <h3>Questions by style</h3>
@@ -396,7 +399,7 @@
       </div>
       <div class="card span-2">
         <h3>Retriever comparison by experiment</h3>
-        <p class="note">Same 4 metrics, same 0&ndash;100% axis, three corpus scopes. <code>real_only</code> and <code>mixed</code> use the same 6-company real sample as the QA pairs above, not all 50 real companies &mdash; embedding the full real corpus would mean roughly 500,000 paragraphs.</p>
+        <p class="note">Same 4 metrics, same 0&ndash;100% axis, three corpus scopes. <code>real_only</code> and <code>mixed</code> use a seeded 15-company real sample (~120,000 paragraphs), not all ~50 real companies (~380,000 paragraphs) &mdash; bounded by memory in the development environment this was built in, not by runtime; see <code>RAG/step12_evaluate_retrievers.py</code>'s module docstring.</p>
         <div class="legend" id="retrieval-legend"></div>
         <div class="grid3" id="retrieval-charts"></div>
       </div>
@@ -543,7 +546,7 @@
   const METRICS = ['recall_at_5', 'recall_at_10', 'mrr', 'ndcg_at_10'];
   const METRIC_LABEL = { recall_at_5: 'R@5', recall_at_10: 'R@10', mrr: 'MRR', ndcg_at_10: 'nDCG@10' };
   const EXPERIMENTS = ['synthetic_only', 'real_only', 'mixed'];
-  const EXPERIMENT_LABEL = { synthetic_only: 'Synthetic only', real_only: 'Real only (6-co. sample)', mixed: 'Mixed' };
+  const EXPERIMENT_LABEL = { synthetic_only: 'Synthetic only', real_only: 'Real only (15-co. sample)', mixed: 'Mixed' };
 
   // ---------- derived aggregates over the raw validation/qa_pairs/privacy rows ----------
   function computeStructuralTotals(rows) {

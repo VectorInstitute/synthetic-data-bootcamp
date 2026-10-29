@@ -9,5 +9,5 @@ number_distribution,dollars_per_1k_words,1.48,4.02,
 number_distribution,percents_per_1k_words,1.75,3.09,
 number_distribution,median_dollar_magnitude_millions,429.0,2125.9,
 number_distribution,median_percent_value,100.0,23.8,
-bm25_score_distribution,median_top1_score,23.97,18.64,"n_real=12, n_synthetic=118; not directly comparable across corpora of different sizes, shape matters more than the absolute value"
-retriever_ranking_agreement,best_retriever_by_recall_at_10,bm25,bm25,"agrees: synthetic_only order ['bm25', 'hybrid_rrf', 'semantic'], real_only order ['bm25', 'hybrid_rrf', 'semantic']"
+bm25_score_distribution,median_top1_score,22.5,18.64,"n_real=549, n_synthetic=118; not directly comparable across corpora of different sizes, shape matters more than the absolute value"
+retriever_ranking_agreement,best_retriever_by_recall_at_10,hybrid_rrf,bm25,"disagrees: synthetic_only order ['bm25', 'hybrid_rrf', 'semantic'], real_only order ['hybrid_rrf', 'bm25', 'semantic']"

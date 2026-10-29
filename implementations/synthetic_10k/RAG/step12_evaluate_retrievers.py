@@ -2,12 +2,19 @@
 reciprocal-rank-fusion hybrid against data/qa_pairs.csv, across three corpus scopes
 (PLAN.md Phase 9): synthetic only, real only, and mixed.
 
-"Real" here means the same 6-company sample data/qa_pairs.csv's real questions come
-from (AEP, BEN, USB, CVS, NOC, CRWD) -- not all 50 real companies, which would mean
-embedding on the order of 500,000 paragraphs. Bounding it to the sample that already
-has hand-verified QA pairs keeps runtime to under a minute. See PLAN.md Phase 9 and
-RAG.retrieval's module docstring for the semantic retriever itself (fastembed +
-minishlab/potion-retrieval-32M, a static embedding model, not a transformer).
+"Real" here means a sample of REAL_CORPUS_SAMPLE_SIZE real companies (seeded,
+reproducible) drawn from every real company RAG.step11_make_qa generated
+deterministic financial-fact questions for (~49 companies) -- not the full set, and
+not the original 6-company hand-authored sample (AEP, BEN, USB, CVS, NOC, CRWD)
+either. The full real corpus is ~380,000 paragraphs; embedding and holding that in
+memory at once pushed this development sandbox (11GB total, shared with an active
+editor session) into swap and didn't finish in reasonable time even after fixing
+Bm25Retriever's own scalability bug (see RAG.retrieval's module docstring) -- a
+better-resourced machine could raise REAL_CORPUS_SAMPLE_SIZE or drop the sampling
+entirely. 15 companies (~115,000 paragraphs as of this writing) is still roughly 2x
+the original 6-company sample's size and, more importantly, draws its QA pairs from
+2.5x as many real companies using the same deterministic generation RAG.step11_make_qa
+uses for every synthetic company, rather than a small hand-picked set.
 
 Output: data/retrieval_eval.csv, one row per (experiment, retriever).
 
@@ -17,11 +24,12 @@ Run from implementations/synthetic_10k (after RAG.step11_make_qa):
 
 import csv
 import io
+import random
 
 from method_2.config import RAW_DIR
 from method_2.utils import setup_logging, write_atomic
 
-from RAG.chunks import Chunk, load_chunks
+from RAG.chunks import Chunk, INDEX_PATH, load_chunks
 from RAG.retrieval import (
     Bm25Retriever,
     SemanticRetriever,
@@ -35,11 +43,18 @@ from RAG.retrieval import (
 logger = setup_logging("evaluate_retrievers")
 
 QA_PATH = RAW_DIR.parent / "qa_pairs.csv"
+EMBEDDING_CACHE_DIR = RAW_DIR.parent / "embedding_cache"
+REAL_CORPUS_SAMPLE_SIZE = 15
+REAL_CORPUS_SEED = 7
+
+
+def real_sample_tickers() -> set[str]:
+    """Return a seeded, reproducible sample of real tickers (see module docstring)."""
+    with open(INDEX_PATH, encoding="utf-8") as f:
+        tickers = sorted({r["ticker"] for r in csv.DictReader(f) if r["source"] == "real"})
+    return set(random.Random(REAL_CORPUS_SEED).sample(tickers, min(REAL_CORPUS_SAMPLE_SIZE, len(tickers))))
 EVAL_PATH = RAW_DIR.parent / "retrieval_eval.csv"
 EVAL_FIELDS = ["experiment", "retriever", "n_questions", "recall_at_5", "recall_at_10", "mrr", "ndcg_at_10"]
-
-REAL_SAMPLE_TICKERS = {"AEP", "BEN", "USB", "CVS", "NOC", "CRWD"}
-
 
 def load_qa_pairs() -> list[dict]:
     with open(QA_PATH, encoding="utf-8") as f:
@@ -78,9 +93,10 @@ def load_corpus(experiment: str) -> list[Chunk]:
     """Load only the index rows this experiment needs (see module docstring)."""
     if experiment == "synthetic_only":
         return load_chunks(sources={"synthetic"})
+    tickers = real_sample_tickers()
     if experiment == "real_only":
-        return load_chunks(sources={"real"}, tickers=REAL_SAMPLE_TICKERS)
-    return load_chunks(sources={"synthetic"}) + load_chunks(sources={"real"}, tickers=REAL_SAMPLE_TICKERS)
+        return load_chunks(sources={"real"}, tickers=tickers)
+    return load_chunks(sources={"synthetic"}) + load_chunks(sources={"real"}, tickers=tickers)
 
 
 def run_experiment(experiment: str, all_qa: list[dict]) -> list[dict]:
@@ -94,16 +110,17 @@ def run_experiment(experiment: str, all_qa: list[dict]) -> list[dict]:
     chunk_ids = [c.chunk_id for c in chunks]
     texts = [c.text for c in chunks]
     logger.info("%s: embedding %d chunks for the semantic retriever", experiment, len(texts))
+    EMBEDDING_CACHE_DIR.mkdir(parents=True, exist_ok=True)
     bm25 = Bm25Retriever(chunk_ids, texts)
-    semantic = SemanticRetriever(chunk_ids, texts)
+    semantic = SemanticRetriever(chunk_ids, texts, cache_path=EMBEDDING_CACHE_DIR / f"retrieval_{experiment}.npz")
 
-    bm25_rankings, semantic_rankings, hybrid_rankings = {}, {}, {}
-    for q in qa_pairs:
-        b = bm25.rank(q["question"])
-        s = semantic.rank(q["question"])
-        bm25_rankings[q["qa_id"]] = b
-        semantic_rankings[q["qa_id"]] = s
-        hybrid_rankings[q["qa_id"]] = reciprocal_rank_fusion([b, s])
+    bm25_rankings = {q["qa_id"]: bm25.rank(q["question"]) for q in qa_pairs}
+    semantic_rankings = dict(
+        zip([q["qa_id"] for q in qa_pairs], semantic.rank_many([q["question"] for q in qa_pairs]), strict=True),
+    )
+    hybrid_rankings = {
+        qa_id: reciprocal_rank_fusion([bm25_rankings[qa_id], semantic_rankings[qa_id]]) for qa_id in bm25_rankings
+    }
 
     rows = []
     for name, rankings in [("bm25", bm25_rankings), ("semantic", semantic_rankings), ("hybrid_rrf", hybrid_rankings)]:

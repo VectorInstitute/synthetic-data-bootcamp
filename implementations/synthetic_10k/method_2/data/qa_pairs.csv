@@ -117,15 +117,552 @@ qa_0114,synthetic,XTE,2025,7,factual,"What was Harborview Partners Holdings, Inc
 qa_0115,synthetic,XTE,2025,8,factual,"What were Harborview Partners Holdings, Inc.'s total assets as of the end of fiscal 2025?","$71,347.1",XTE_2025_8_3
 qa_0116,synthetic,XTE,2025,7,factual,"What was Harborview Partners Holdings, Inc.'s net margin for fiscal 2025?",10.5%,XTE_2025_7_1
 qa_0117,synthetic,XTE,2025,7,factual,"What was Harborview Partners Holdings, Inc.'s operating margin for fiscal 2025?",10.9%,XTE_2025_7_1
-qa_0118,real,AEP,2025,1,factual,"How many employees did AEP's subsidiaries have as of December 31, 2025?","17,581 employees",AEP_2025_1_5
-qa_0119,real,AEP,2025,1,factual,"In what year was American Electric Power incorporated, and in which state?",incorporated under the laws of the State of New York in 1906,AEP_2025_1_2
-qa_0120,real,BEN,2024,7,factual,"What was Franklin Resources' total assets under management (AUM) at September 30, 2024?","$1,678.6 billion",BEN_2024_7_9
-qa_0121,real,BEN,2024,7,factual,How much did Franklin Resources' AUM growth reflect from the acquisition of Putnam Investments?,$148.3 billion from the acquisition of Putnam Investments,BEN_2024_7_9
-qa_0122,real,USB,2025,7,factual,How much net income did U.S. Bancorp earn in 2025 compared with 2024?,$7.6 billion in 2025 compared with $6.3 billion in 2024,USB_2025_7_2
-qa_0123,real,USB,2025,7,factual,"What was U.S. Bancorp's diluted earnings per common share in 2025, and how much did it increase from 2024?","$4.62 in 2025, representing a 21.9 percent increase",USB_2025_7_4
-qa_0124,real,CVS,2024,7,factual,"How many retail locations did CVS Health have as of December 31, 2024?","more than 9,000 retail locations",CVS_2024_7_2
-qa_0125,real,CVS,2024,7,factual,Approximately how many pharmacy benefits manager plan members did CVS Health serve?,approximately 90 million plan members,CVS_2024_7_2
-qa_0126,real,NOC,2025,7,factual,How much cash did Northrop Grumman receive for the sale of its Immersive Mission Solutions (IMS) operating unit?,$333 million in cash,NOC_2025_7_5
-qa_0127,real,NOC,2025,7,factual,When did Northrop Grumman complete the divestiture of its training services business?,"May 24, 2025",NOC_2025_7_3
-qa_0128,real,CRWD,2025,1,factual,In what year was CrowdStrike founded?,Founded in 2011,CRWD_2025_1_1
-qa_0129,real,CRWD,2025,7,factual,On what date does CrowdStrike's fiscal year end?,"fiscal years ended January 31, 2025",CRWD_2025_7_0
+qa_0118,real,ABNB,2023,7,factual,"What were Airbnb, Inc.'s total revenues for fiscal 2023?",$9.9 billion,ABNB_2023_7_6
+qa_0119,real,ABNB,2023,7,factual,"What was Airbnb, Inc.'s net income for fiscal 2023?",$4.8 billion,ABNB_2023_7_7
+qa_0120,real,ABNB,2024,7,factual,"What were Airbnb, Inc.'s total revenues for fiscal 2024?",$11.1 billion,ABNB_2024_7_17
+qa_0121,real,ABNB,2024,8,factual,"What was Airbnb, Inc.'s net income for fiscal 2024?","2,654",ABNB_2024_8_58
+qa_0122,real,ABNB,2024,7,factual,"What was Airbnb, Inc.'s operating margin for fiscal 2024?",23,ABNB_2024_7_71
+qa_0123,real,ABNB,2025,7,factual,"What were Airbnb, Inc.'s total revenues for fiscal 2025?",$12.2 billion,ABNB_2025_7_17
+qa_0124,real,ABNB,2025,7,factual,"What was Airbnb, Inc.'s net income for fiscal 2025?",$2.5 billion,ABNB_2025_7_18
+qa_0125,real,ABNB,2025,8,factual,"What was Airbnb, Inc.'s operating margin for fiscal 2025?",21.0,ABNB_2025_8_795
+qa_0126,real,AEE,2023,8,factual,What were Ameren Corporation's total revenues for fiscal 2023?,"7,500",AEE_2023_8_83
+qa_0127,real,AEE,2023,1A,factual,What was Ameren Corporation's net income for fiscal 2023?,"$1,162 million",AEE_2023_1A_12
+qa_0128,real,AEE,2023,8,factual,What were Ameren Corporation's total assets as of the end of fiscal 2023?,"40,830",AEE_2023_8_138
+qa_0129,real,AEE,2023,1,factual,What was Ameren Corporation's net margin for fiscal 2023?,15.4,AEE_2023_1_290
+qa_0130,real,AEE,2023,8,factual,What was Ameren Corporation's operating margin for fiscal 2023?,21,AEE_2023_8_177
+qa_0131,real,AEE,2024,8,factual,What were Ameren Corporation's total revenues for fiscal 2024?,"7,623",AEE_2024_8_83
+qa_0132,real,AEE,2024,7,factual,What was Ameren Corporation's net income for fiscal 2024?,"$1,182 million",AEE_2024_7_51
+qa_0133,real,AEE,2024,8,factual,What were Ameren Corporation's total assets as of the end of fiscal 2024?,"44,598",AEE_2024_8_136
+qa_0134,real,AEE,2024,7,factual,What was Ameren Corporation's operating margin for fiscal 2024?,20%,AEE_2024_7_627
+qa_0135,real,AEE,2025,8,factual,What were Ameren Corporation's total revenues for fiscal 2025?,"8,799",AEE_2025_8_83
+qa_0136,real,AEE,2025,1,factual,What was Ameren Corporation's net income for fiscal 2025?,"1,450",AEE_2025_1_213
+qa_0137,real,AEE,2025,8,factual,What were Ameren Corporation's total assets as of the end of fiscal 2025?,"48,476",AEE_2025_8_136
+qa_0138,real,AEE,2025,8,factual,What was Ameren Corporation's operating margin for fiscal 2025?,23,AEE_2025_8_1073
+qa_0139,real,AEP,2023,8,factual,What were AMERICAN ELECTRIC POWER CO INC.'s total revenues for fiscal 2023?,"18,982.3",AEP_2023_8_1072
+qa_0140,real,AEP,2023,1,factual,What was AMERICAN ELECTRIC POWER CO INC.'s net income for fiscal 2023?,$2.2 billion,AEP_2023_1_186
+qa_0141,real,AEP,2023,8,factual,What were AMERICAN ELECTRIC POWER CO INC.'s total assets as of the end of fiscal 2023?,"96,684.0",AEP_2023_8_1196
+qa_0142,real,AEP,2023,8,factual,What was AMERICAN ELECTRIC POWER CO INC.'s net margin for fiscal 2023?,11.6,AEP_2023_8_1087
+qa_0143,real,AEP,2023,8,factual,What was AMERICAN ELECTRIC POWER CO INC.'s operating margin for fiscal 2023?,18.9,AEP_2023_8_1132
+qa_0144,real,AEP,2024,8,factual,What were AMERICAN ELECTRIC POWER CO INC.'s total revenues for fiscal 2024?,"19,721.3",AEP_2024_8_1112
+qa_0145,real,AEP,2024,8,factual,What was AMERICAN ELECTRIC POWER CO INC.'s net income for fiscal 2024?,$3.0 billion,AEP_2024_8_81
+qa_0146,real,AEP,2024,8,factual,What were AMERICAN ELECTRIC POWER CO INC.'s total assets as of the end of fiscal 2024?,"103,078.0",AEP_2024_8_1236
+qa_0147,real,AEP,2024,8,factual,What was AMERICAN ELECTRIC POWER CO INC.'s net margin for fiscal 2024?,15.0,AEP_2024_8_2048
+qa_0148,real,AEP,2024,1,factual,What was AMERICAN ELECTRIC POWER CO INC.'s operating margin for fiscal 2024?,22%,AEP_2024_1_151
+qa_0149,real,AEP,2025,8,factual,What were AMERICAN ELECTRIC POWER CO INC.'s total revenues for fiscal 2025?,"21,876",AEP_2025_8_1164
+qa_0150,real,AEP,2025,8,factual,What was AMERICAN ELECTRIC POWER CO INC.'s net income for fiscal 2025?,"3,696",AEP_2025_8_851
+qa_0151,real,AEP,2025,8,factual,What were AMERICAN ELECTRIC POWER CO INC.'s total assets as of the end of fiscal 2025?,"114,460",AEP_2025_8_1290
+qa_0152,real,AEP,2025,1,factual,What was AMERICAN ELECTRIC POWER CO INC.'s net margin for fiscal 2025?,17,AEP_2025_1_138
+qa_0153,real,AFL,2023,7,factual,What were Aflac Incorporated's total revenues for fiscal 2023?,$18.7 billion,AFL_2023_7_20
+qa_0154,real,AFL,2023,7,factual,What was Aflac Incorporated's net income for fiscal 2023?,$4.7 billion,AFL_2023_7_20
+qa_0155,real,AFL,2023,8,factual,What were Aflac Incorporated's total assets as of the end of fiscal 2023?,"126,724",AFL_2023_8_158
+qa_0156,real,AFL,2023,7,factual,What was Aflac Incorporated's net margin for fiscal 2023?,25%,AFL_2023_7_860
+qa_0157,real,AFL,2024,7,factual,What were Aflac Incorporated's total revenues for fiscal 2024?,$18.9 billion,AFL_2024_7_20
+qa_0158,real,AFL,2024,7,factual,What was Aflac Incorporated's net income for fiscal 2024?,$5.4 billion,AFL_2024_7_20
+qa_0159,real,AFL,2024,8,factual,What were Aflac Incorporated's total assets as of the end of fiscal 2024?,"117,566",AFL_2024_8_151
+qa_0160,real,AFL,2024,8,factual,What was Aflac Incorporated's net margin for fiscal 2024?,28.97,AFL_2024_8_2142
+qa_0161,real,AFL,2025,7,factual,What were Aflac Incorporated's total revenues for fiscal 2025?,$17.2 billion,AFL_2025_7_20
+qa_0162,real,AFL,2025,7,factual,What was Aflac Incorporated's net income for fiscal 2025?,"3,646",AFL_2025_7_84
+qa_0163,real,AFL,2025,8,factual,What were Aflac Incorporated's total assets as of the end of fiscal 2025?,"116,470",AFL_2025_8_153
+qa_0164,real,AFL,2025,7,factual,What was Aflac Incorporated's net margin for fiscal 2025?,21.1,AFL_2025_7_405
+qa_0165,real,AIG,2023,7,factual,"What were American International Group, Inc.'s total revenues for fiscal 2023?","46,802",AIG_2023_7_357
+qa_0166,real,AIG,2023,7,factual,"What was American International Group, Inc.'s net income for fiscal 2023?","3,643",AIG_2023_7_381
+qa_0167,real,AIG,2023,7,factual,"What were American International Group, Inc.'s total assets as of the end of fiscal 2023?","539,306",AIG_2023_7_389
+qa_0168,real,AIG,2023,7,factual,"What was American International Group, Inc.'s net margin for fiscal 2023?",8,AIG_2023_7_499
+qa_0169,real,AIG,2024,7,factual,"What were American International Group, Inc.'s total revenues for fiscal 2024?","27,251",AIG_2024_7_281
+qa_0170,real,AIG,2024,7,factual,"What was American International Group, Inc.'s net income for fiscal 2024?","(1,404)",AIG_2024_7_299
+qa_0171,real,AIG,2024,7,factual,"What were American International Group, Inc.'s total assets as of the end of fiscal 2024?","161,322",AIG_2024_7_311
+qa_0172,real,AIG,2024,8,factual,"What was American International Group, Inc.'s net margin for fiscal 2024?",( 5 ),AIG_2024_8_515
+qa_0173,real,AIG,2025,7,factual,"What were American International Group, Inc.'s total revenues for fiscal 2025?","26,775",AIG_2025_7_220
+qa_0174,real,AIG,2025,7,factual,"What was American International Group, Inc.'s net income for fiscal 2025?","3,097",AIG_2025_7_234
+qa_0175,real,AIG,2025,8,factual,"What were American International Group, Inc.'s total assets as of the end of fiscal 2025?","161,254",AIG_2025_8_91
+qa_0176,real,AVGO,2023,7,factual,What were Broadcom Inc.'s total revenues for fiscal 2023?,"35,819",AVGO_2023_7_78
+qa_0177,real,AVGO,2023,7,factual,What was Broadcom Inc.'s net income for fiscal 2023?,"$14,189 million",AVGO_2023_7_154
+qa_0178,real,AVGO,2023,8,factual,What were Broadcom Inc.'s total assets as of the end of fiscal 2023?,"72,861",AVGO_2023_8_53
+qa_0179,real,AVGO,2023,8,factual,What was Broadcom Inc.'s operating margin for fiscal 2023?,45,AVGO_2023_8_415
+qa_0180,real,AVGO,2024,7,factual,What were Broadcom Inc.'s total revenues for fiscal 2024?,"51,574",AVGO_2024_7_84
+qa_0181,real,AVGO,2024,8,factual,What was Broadcom Inc.'s net income for fiscal 2024?,"5,895",AVGO_2024_8_105
+qa_0182,real,AVGO,2024,8,factual,What were Broadcom Inc.'s total assets as of the end of fiscal 2024?,"165,645",AVGO_2024_8_53
+qa_0183,real,AVGO,2024,8,factual,What was Broadcom Inc.'s operating margin for fiscal 2024?,26,AVGO_2024_8_541
+qa_0184,real,AVGO,2025,7,factual,What were Broadcom Inc.'s total revenues for fiscal 2025?,"63,887",AVGO_2025_7_83
+qa_0185,real,AVGO,2025,8,factual,What was Broadcom Inc.'s net income for fiscal 2025?,"23,126",AVGO_2025_8_103
+qa_0186,real,AVGO,2025,8,factual,What were Broadcom Inc.'s total assets as of the end of fiscal 2025?,"171,092",AVGO_2025_8_53
+qa_0187,real,AVGO,2025,1,factual,What was Broadcom Inc.'s net margin for fiscal 2025?,36%,AVGO_2025_1_97
+qa_0188,real,AVGO,2025,1,factual,What was Broadcom Inc.'s operating margin for fiscal 2025?,40%,AVGO_2025_1_71
+qa_0189,real,AXON,2023,7,factual,"What was Axon Enterprise, Inc.'s net income for fiscal 2023?",$174.2 million,AXON_2023_7_10
+qa_0190,real,AXON,2023,8,factual,"What were Axon Enterprise, Inc.'s total assets as of the end of fiscal 2023?","3,450",AXON_2023_8_741
+qa_0191,real,AXON,2023,7,factual,"What was Axon Enterprise, Inc.'s net margin for fiscal 2023?",11.1,AXON_2023_7_36
+qa_0192,real,AXON,2023,1,factual,"What was Axon Enterprise, Inc.'s operating margin for fiscal 2023?",10%,AXON_2023_1_25
+qa_0193,real,AXON,2024,7,factual,"What were Axon Enterprise, Inc.'s total revenues for fiscal 2024?",$2.1 billion,AXON_2024_7_4
+qa_0194,real,AXON,2024,7,factual,"What was Axon Enterprise, Inc.'s net income for fiscal 2024?",$377.0 million,AXON_2024_7_4
+qa_0195,real,AXON,2024,7,factual,"What were Axon Enterprise, Inc.'s total assets as of the end of fiscal 2024?","4,470",AXON_2024_7_28
+qa_0196,real,AXON,2024,7,factual,"What was Axon Enterprise, Inc.'s net margin for fiscal 2024?",18.3,AXON_2024_7_27
+qa_0197,real,AXON,2024,7,factual,"What was Axon Enterprise, Inc.'s operating margin for fiscal 2024?",2.8,AXON_2024_7_24
+qa_0198,real,AXON,2025,7,factual,"What were Axon Enterprise, Inc.'s total revenues for fiscal 2025?",$2.8 billion,AXON_2025_7_5
+qa_0199,real,AXON,2025,7,factual,"What was Axon Enterprise, Inc.'s net income for fiscal 2025?",$124.7 million,AXON_2025_7_5
+qa_0200,real,AXON,2025,8,factual,"What were Axon Enterprise, Inc.'s total assets as of the end of fiscal 2025?","6,999",AXON_2025_8_834
+qa_0201,real,AXON,2025,7,factual,"What was Axon Enterprise, Inc.'s net margin for fiscal 2025?",4.5,AXON_2025_7_29
+qa_0202,real,AXON,2025,7,factual,"What was Axon Enterprise, Inc.'s operating margin for fiscal 2025?",(2.2),AXON_2025_7_23
+qa_0203,real,AZO,2023,1A,factual,"What were AUTOZONE, INC's total revenues for fiscal 2023?",$17.5 billion,AZO_2023_1A_33
+qa_0204,real,AZO,2024,1A,factual,"What were AUTOZONE, INC's total revenues for fiscal 2024?",$18.5 billion,AZO_2024_1A_32
+qa_0205,real,AZO,2025,1A,factual,"What were AUTOZONE, INC's total revenues for fiscal 2025?",$18.9 billion,AZO_2025_1A_40
+qa_0206,real,AZO,2025,7,factual,"What was AUTOZONE, INC's net income for fiscal 2025?",$2.5 billion,AZO_2025_7_2
+qa_0207,real,AZO,2025,1A,factual,"What was AUTOZONE, INC's net margin for fiscal 2025?",13%,AZO_2025_1A_79
+qa_0208,real,AZO,2025,7,factual,"What was AUTOZONE, INC's operating margin for fiscal 2025?",19.1%,AZO_2025_7_36
+qa_0209,real,BALL,2023,1,factual,What were Ball Corp's total revenues for fiscal 2023?,$14.03 billion,BALL_2023_1_1
+qa_0210,real,BALL,2023,7,factual,What was Ball Corp's net income for fiscal 2023?,$711 million,BALL_2023_7_206
+qa_0211,real,BALL,2023,8,factual,What was Ball Corp's net margin for fiscal 2023?,5.25%,BALL_2023_8_700
+qa_0212,real,BALL,2024,1,factual,What were Ball Corporation's total revenues for fiscal 2024?,$11.80 billion,BALL_2024_1_1
+qa_0213,real,BALL,2024,7,factual,What was Ball Corporation's net income for fiscal 2024?,$4.00 billion,BALL_2024_7_190
+qa_0214,real,BALL,2025,1,factual,What were Ball Corporation's total revenues for fiscal 2025?,$13.16 billion,BALL_2025_1_1
+qa_0215,real,BALL,2025,7,factual,What was Ball Corporation's net income for fiscal 2025?,$915 million,BALL_2025_7_153
+qa_0216,real,BALL,2025,7,factual,What was Ball Corporation's net margin for fiscal 2025?,6.875%,BALL_2025_7_182
+qa_0217,real,BEN,2023,7,factual,"What were FRANKLIN RESOURCES, INC.'s total revenues for fiscal 2023?","7,849.4",BEN_2023_7_17
+qa_0218,real,BEN,2023,7,factual,"What was FRANKLIN RESOURCES, INC.'s net income for fiscal 2023?",882.8,BEN_2023_7_20
+qa_0219,real,BEN,2023,8,factual,"What were FRANKLIN RESOURCES, INC.'s total assets as of the end of fiscal 2023?","30,121.2",BEN_2023_8_123
+qa_0220,real,BEN,2023,7,factual,"What was FRANKLIN RESOURCES, INC.'s net margin for fiscal 2023?",11%,BEN_2023_7_102
+qa_0221,real,BEN,2024,7,factual,"What were FRANKLIN RESOURCES, INC.'s total revenues for fiscal 2024?","8,478.0",BEN_2024_7_19
+qa_0222,real,BEN,2024,7,factual,"What was FRANKLIN RESOURCES, INC.'s net income for fiscal 2024?",464.8,BEN_2024_7_22
+qa_0223,real,BEN,2024,7,factual,"What were FRANKLIN RESOURCES, INC.'s total assets as of the end of fiscal 2024?",$32.6 billion,BEN_2024_7_9
+qa_0224,real,BEN,2024,7,factual,"What was FRANKLIN RESOURCES, INC.'s net margin for fiscal 2024?",5.625%,BEN_2024_7_395
+qa_0225,real,BEN,2024,7,factual,"What was FRANKLIN RESOURCES, INC.'s operating margin for fiscal 2024?",4.750%,BEN_2024_7_395
+qa_0226,real,BEN,2025,7,factual,"What were FRANKLIN RESOURCES, INC.'s total revenues for fiscal 2025?","8,770.7",BEN_2025_7_18
+qa_0227,real,BEN,2025,7,factual,"What was FRANKLIN RESOURCES, INC.'s net income for fiscal 2025?",524.9,BEN_2025_7_21
+qa_0228,real,BEN,2025,8,factual,"What were FRANKLIN RESOURCES, INC.'s total assets as of the end of fiscal 2025?","32,368.3",BEN_2025_8_130
+qa_0229,real,BEN,2025,8,factual,"What was FRANKLIN RESOURCES, INC.'s net margin for fiscal 2025?",6.00%,BEN_2025_8_641
+qa_0230,real,CARR,2023,1,factual,What were CARRIER GLOBAL CORPORATION's total revenues for fiscal 2023?,$22.1 billion,CARR_2023_1_3
+qa_0231,real,CARR,2023,7,factual,What was CARRIER GLOBAL CORPORATION's net income for fiscal 2023?,"1,440",CARR_2023_7_33
+qa_0232,real,CARR,2023,8,factual,What were CARRIER GLOBAL CORPORATION's total assets as of the end of fiscal 2023?,"32,822",CARR_2023_8_106
+qa_0233,real,CARR,2024,1,factual,What were CARRIER GLOBAL CORPORATION's total revenues for fiscal 2024?,$22.5 billion,CARR_2024_1_4
+qa_0234,real,CARR,2024,7,factual,What was CARRIER GLOBAL CORPORATION's net income for fiscal 2024?,"5,604",CARR_2024_7_37
+qa_0235,real,CARR,2024,8,factual,What were CARRIER GLOBAL CORPORATION's total assets as of the end of fiscal 2024?,"37,403",CARR_2024_8_123
+qa_0236,real,CARR,2024,1,factual,What was CARRIER GLOBAL CORPORATION's net margin for fiscal 2024?,25%,CARR_2024_1_4
+qa_0237,real,CARR,2024,8,factual,What was CARRIER GLOBAL CORPORATION's operating margin for fiscal 2024?,11.64,CARR_2024_8_711
+qa_0238,real,CARR,2025,1,factual,What were CARRIER GLOBAL CORPORATION's total revenues for fiscal 2025?,$21.7 billion,CARR_2025_1_4
+qa_0239,real,CARR,2025,7,factual,What was CARRIER GLOBAL CORPORATION's net income for fiscal 2025?,"1,484",CARR_2025_7_34
+qa_0240,real,CARR,2025,8,factual,What were CARRIER GLOBAL CORPORATION's total assets as of the end of fiscal 2025?,"37,190",CARR_2025_8_121
+qa_0241,real,CARR,2025,7,factual,What was CARRIER GLOBAL CORPORATION's net margin for fiscal 2025?,7%,CARR_2025_7_134
+qa_0242,real,CARR,2025,1,factual,What was CARRIER GLOBAL CORPORATION's operating margin for fiscal 2025?,10%,CARR_2025_1_56
+qa_0243,real,CDNS,2023,1,factual,"What were CADENCE DESIGN SYSTEMS, INC.'s total revenues for fiscal 2023?","4,090",CDNS_2023_1_87
+qa_0244,real,CDNS,2023,7,factual,"What was CADENCE DESIGN SYSTEMS, INC.'s net income for fiscal 2023?",$1.05 billion,CDNS_2023_7_278
+qa_0245,real,CDNS,2024,1,factual,"What were CADENCE DESIGN SYSTEMS, INC.'s total revenues for fiscal 2024?","4,641",CDNS_2024_1_75
+qa_0246,real,CDNS,2024,8,factual,"What were CADENCE DESIGN SYSTEMS, INC.'s total assets as of the end of fiscal 2024?","9,061",CDNS_2024_8_664
+qa_0247,real,CDNS,2025,1,factual,"What were CADENCE DESIGN SYSTEMS, INC.'s total revenues for fiscal 2025?","5,297",CDNS_2025_1_77
+qa_0248,real,CDNS,2025,8,factual,"What were CADENCE DESIGN SYSTEMS, INC.'s total assets as of the end of fiscal 2025?","10,248",CDNS_2025_8_718
+qa_0249,real,CDNS,2025,8,factual,"What was CADENCE DESIGN SYSTEMS, INC.'s net margin for fiscal 2025?",21.0,CDNS_2025_8_676
+qa_0250,real,CEG,2023,7,factual,What were CONSTELLATION ENERGY CORPORATION's total revenues for fiscal 2023?,"24,918",CEG_2023_7_183
+qa_0251,real,CEG,2023,7,factual,What was CONSTELLATION ENERGY CORPORATION's net income for fiscal 2023?,"1,623",CEG_2023_7_148
+qa_0252,real,CEG,2023,8,factual,What were CONSTELLATION ENERGY CORPORATION's total assets as of the end of fiscal 2023?,"50,758",CEG_2023_8_197
+qa_0253,real,CEG,2023,7,factual,What was CONSTELLATION ENERGY CORPORATION's net margin for fiscal 2023?,6.51,CEG_2023_7_117
+qa_0254,real,CEG,2023,7,factual,What was CONSTELLATION ENERGY CORPORATION's operating margin for fiscal 2023?,6.51,CEG_2023_7_117
+qa_0255,real,CEG,2024,7,factual,What were CONSTELLATION ENERGY CORPORATION's total revenues for fiscal 2024?,"23,568",CEG_2024_7_175
+qa_0256,real,CEG,2024,7,factual,What was CONSTELLATION ENERGY CORPORATION's net income for fiscal 2024?,"3,749",CEG_2024_7_142
+qa_0257,real,CEG,2024,7,factual,What were CONSTELLATION ENERGY CORPORATION's total assets as of the end of fiscal 2024?,"52,898",CEG_2024_7_225
+qa_0258,real,CEG,2024,1,factual,What was CONSTELLATION ENERGY CORPORATION's net margin for fiscal 2024?,16%,CEG_2024_1_42
+qa_0259,real,CEG,2025,7,factual,What were CONSTELLATION ENERGY CORPORATION's total revenues for fiscal 2025?,"25,533",CEG_2025_7_179
+qa_0260,real,CEG,2025,7,factual,What was CONSTELLATION ENERGY CORPORATION's net income for fiscal 2025?,"2,319",CEG_2025_7_147
+qa_0261,real,CEG,2025,8,factual,What were CONSTELLATION ENERGY CORPORATION's total assets as of the end of fiscal 2025?,"57,249",CEG_2025_8_179
+qa_0262,real,CEG,2025,1,factual,What was CONSTELLATION ENERGY CORPORATION's net margin for fiscal 2025?,9%,CEG_2025_1_91
+qa_0263,real,CEG,2025,8,factual,What was CONSTELLATION ENERGY CORPORATION's operating margin for fiscal 2025?,11.91,CEG_2025_8_103
+qa_0264,real,COIN,2023,1A,factual,"What were Coinbase Global, Inc.'s total revenues for fiscal 2023?",$3.1 billion,COIN_2023_1A_277
+qa_0265,real,COIN,2023,7,factual,"What was Coinbase Global, Inc.'s net income for fiscal 2023?",95,COIN_2023_7_16
+qa_0266,real,COIN,2023,8,factual,"What were Coinbase Global, Inc.'s total assets as of the end of fiscal 2023?","205,287",COIN_2023_8_801
+qa_0267,real,COIN,2023,1A,factual,"What was Coinbase Global, Inc.'s net margin for fiscal 2023?",3%,COIN_2023_1A_551
+qa_0268,real,COIN,2023,7,factual,"What was Coinbase Global, Inc.'s operating margin for fiscal 2023?",(5),COIN_2023_7_125
+qa_0269,real,COIN,2024,8,factual,"What were Coinbase Global, Inc.'s total revenues for fiscal 2024?","6,582",COIN_2024_8_1298
+qa_0270,real,COIN,2024,7,factual,"What was Coinbase Global, Inc.'s net income for fiscal 2024?",$2.6 billion,COIN_2024_7_7
+qa_0271,real,COIN,2024,8,factual,"What were Coinbase Global, Inc.'s total assets as of the end of fiscal 2024?","22,376",COIN_2024_8_1156
+qa_0272,real,COIN,2024,7,factual,"What was Coinbase Global, Inc.'s operating margin for fiscal 2024?",35,COIN_2024_7_59
+qa_0273,real,COIN,2025,1A,factual,"What was Coinbase Global, Inc.'s net income for fiscal 2025?",$1.27 billion,COIN_2025_1A_335
+qa_0274,real,COIN,2025,8,factual,"What were Coinbase Global, Inc.'s total assets as of the end of fiscal 2025?","29,536",COIN_2025_8_967
+qa_0275,real,COIN,2025,1A,factual,"What was Coinbase Global, Inc.'s operating margin for fiscal 2025?",20%,COIN_2025_1A_629
+qa_0276,real,CRL,2023,1,factual,"What were CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s total revenues for fiscal 2023?",$4.1 billion,CRL_2023_1_15
+qa_0277,real,CRL,2023,7,factual,"What was CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s net income for fiscal 2023?",$474.6 million,CRL_2023_7_77
+qa_0278,real,CRL,2023,8,factual,"What were CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s total assets as of the end of fiscal 2023?","8,139",CRL_2023_8_523
+qa_0279,real,CRL,2023,1,factual,"What was CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s net margin for fiscal 2023?",11.5%,CRL_2023_1_147
+qa_0280,real,CRL,2023,7,factual,"What was CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s operating margin for fiscal 2023?",14.9%,CRL_2023_7_76
+qa_0281,real,CRL,2024,8,factual,"What were CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s total revenues for fiscal 2024?","4,020",CRL_2024_8_220
+qa_0282,real,CRL,2024,7,factual,"What was CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s net income for fiscal 2024?",$22.4 million,CRL_2024_7_257
+qa_0283,real,CRL,2024,8,factual,"What were CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s total assets as of the end of fiscal 2024?","7,507",CRL_2024_8_224
+qa_0284,real,CRL,2024,7,factual,"What was CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s net margin for fiscal 2024?",0.50%,CRL_2024_7_254
+qa_0285,real,CRL,2024,7,factual,"What was CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s operating margin for fiscal 2024?",5.6%,CRL_2024_7_81
+qa_0286,real,CRL,2025,1,factual,"What were CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s total revenues for fiscal 2025?",$4.0 billion,CRL_2025_1_15
+qa_0287,real,CRL,2025,7,factual,"What was CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s net income for fiscal 2025?",$144.6 million,CRL_2025_7_29
+qa_0288,real,CRL,2025,8,factual,"What were CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s total assets as of the end of fiscal 2025?","7,152",CRL_2025_8_642
+qa_0289,real,CRL,2025,8,factual,"What was CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s net margin for fiscal 2025?",( 3.5 ),CRL_2025_8_937
+qa_0290,real,CRL,2025,7,factual,"What was CHARLES RIVER LABORATORIES INTERNATIONAL, INC.'s operating margin for fiscal 2025?",0.6%,CRL_2025_7_90
+qa_0291,real,CRM,2023,7,factual,"What were Salesforce, Inc.'s total revenues for fiscal 2023?",$31.4 billion,CRM_2023_7_12
+qa_0292,real,CRM,2023,7,factual,"What was Salesforce, Inc.'s net income for fiscal 2023?",208,CRM_2023_7_108
+qa_0293,real,CRM,2023,8,factual,"What were Salesforce, Inc.'s total assets as of the end of fiscal 2023?","98,849",CRM_2023_8_72
+qa_0294,real,CRM,2024,7,factual,"What were Salesforce, Inc.'s total revenues for fiscal 2024?",$34.9 billion,CRM_2024_7_8
+qa_0295,real,CRM,2024,7,factual,"What was Salesforce, Inc.'s net income for fiscal 2024?","4,136",CRM_2024_7_104
+qa_0296,real,CRM,2024,8,factual,"What were Salesforce, Inc.'s total assets as of the end of fiscal 2024?","99,823",CRM_2024_8_72
+qa_0297,real,CRM,2024,7,factual,"What was Salesforce, Inc.'s net margin for fiscal 2024?",12,CRM_2024_7_104
+qa_0298,real,CRM,2025,7,factual,"What were Salesforce, Inc.'s total revenues for fiscal 2025?",$37.9 billion,CRM_2025_7_8
+qa_0299,real,CRM,2025,7,factual,"What was Salesforce, Inc.'s net income for fiscal 2025?","6,198",CRM_2025_7_87
+qa_0300,real,CRM,2025,8,factual,"What were Salesforce, Inc.'s total assets as of the end of fiscal 2025?","102,928",CRM_2025_8_73
+qa_0301,real,CRM,2025,7,factual,"What was Salesforce, Inc.'s operating margin for fiscal 2025?",19,CRM_2025_7_97
+qa_0302,real,CRWD,2023,7,factual,"What were CROWDSTRIKE HOLDINGS, INC.'s total revenues for fiscal 2023?","3,053",CRWD_2023_7_94
+qa_0303,real,CRWD,2023,8,factual,"What was CROWDSTRIKE HOLDINGS, INC.'s net income for fiscal 2023?",$89.8 million,CRWD_2023_8_442
+qa_0304,real,CRWD,2023,8,factual,"What were CROWDSTRIKE HOLDINGS, INC.'s total assets as of the end of fiscal 2023?","6,653",CRWD_2023_8_422
+qa_0305,real,CRWD,2023,8,factual,"What was CROWDSTRIKE HOLDINGS, INC.'s net margin for fiscal 2023?",3,CRWD_2023_8_166
+qa_0306,real,CRWD,2023,8,factual,"What was CROWDSTRIKE HOLDINGS, INC.'s operating margin for fiscal 2023?",0.15%,CRWD_2023_8_519
+qa_0307,real,CRWD,2024,8,factual,"What were CROWDSTRIKE HOLDINGS, INC.'s total revenues for fiscal 2024?","( 3,936 )",CRWD_2024_8_201
+qa_0308,real,CRWD,2024,8,factual,"What were CROWDSTRIKE HOLDINGS, INC.'s total assets as of the end of fiscal 2024?","8,695",CRWD_2024_8_230
+qa_0309,real,CSGP,2023,7,factual,"What were CoStar Group, Inc.'s total revenues for fiscal 2023?","2,455.0",CSGP_2023_7_65
+qa_0310,real,CSGP,2023,7,factual,"What was CoStar Group, Inc.'s net income for fiscal 2023?",374.7,CSGP_2023_7_79
+qa_0311,real,CSGP,2023,8,factual,"What were CoStar Group, Inc.'s total assets as of the end of fiscal 2023?","8,919.7",CSGP_2023_8_76
+qa_0312,real,CSGP,2023,8,factual,"What was CoStar Group, Inc.'s operating margin for fiscal 2023?",11.4,CSGP_2023_8_682
+qa_0313,real,CSGP,2024,7,factual,"What were CoStar Group, Inc.'s total revenues for fiscal 2024?","2,736.2",CSGP_2024_7_57
+qa_0314,real,CSGP,2024,7,factual,"What was CoStar Group, Inc.'s net income for fiscal 2024?",138.7,CSGP_2024_7_71
+qa_0315,real,CSGP,2024,8,factual,"What were CoStar Group, Inc.'s total assets as of the end of fiscal 2024?","9,256.8",CSGP_2024_8_75
+qa_0316,real,CSGP,2024,7,factual,"What was CoStar Group, Inc.'s net margin for fiscal 2024?",5,CSGP_2024_7_71
+qa_0317,real,CSGP,2024,1A,factual,"What was CoStar Group, Inc.'s operating margin for fiscal 2024?",0.125%,CSGP_2024_1A_159
+qa_0318,real,CSGP,2025,7,factual,"What were CoStar Group, Inc.'s total revenues for fiscal 2025?","3,247",CSGP_2025_7_73
+qa_0319,real,CSGP,2025,7,factual,"What was CoStar Group, Inc.'s net income for fiscal 2025?",7,CSGP_2025_7_87
+qa_0320,real,CSGP,2025,8,factual,"What were CoStar Group, Inc.'s total assets as of the end of fiscal 2025?","10,538",CSGP_2025_8_77
+qa_0321,real,CSGP,2025,1A,factual,"What was CoStar Group, Inc.'s net margin for fiscal 2025?",0.125%,CSGP_2025_1A_174
+qa_0322,real,CSGP,2025,7,factual,"What was CoStar Group, Inc.'s operating margin for fiscal 2025?",(2),CSGP_2025_7_82
+qa_0323,real,CVS,2023,7,factual,What were CVS HEALTH CORPORATION's total revenues for fiscal 2023?,"357,776",CVS_2023_7_35
+qa_0324,real,CVS,2023,7,factual,What was CVS HEALTH CORPORATION's net income for fiscal 2023?,"8,368",CVS_2023_7_52
+qa_0325,real,CVS,2023,8,factual,What were CVS HEALTH CORPORATION's total assets as of the end of fiscal 2023?,"249,728",CVS_2023_8_84
+qa_0326,real,CVS,2023,1,factual,What was CVS HEALTH CORPORATION's net margin for fiscal 2023?,(2.16%,CVS_2023_1_265
+qa_0327,real,CVS,2023,7,factual,What was CVS HEALTH CORPORATION's operating margin for fiscal 2023?,3.9%,CVS_2023_7_315
+qa_0328,real,CVS,2024,7,factual,What were CVS HEALTH CORPORATION's total revenues for fiscal 2024?,"372,809",CVS_2024_7_28
+qa_0329,real,CVS,2024,7,factual,What was CVS HEALTH CORPORATION's net income for fiscal 2024?,"4,586",CVS_2024_7_43
+qa_0330,real,CVS,2024,8,factual,What were CVS HEALTH CORPORATION's total assets as of the end of fiscal 2024?,"253,215",CVS_2024_8_80
+qa_0331,real,CVS,2024,7,factual,What was CVS HEALTH CORPORATION's net margin for fiscal 2024?,1,CVS_2024_7_323
+qa_0332,real,CVS,2024,1,factual,What was CVS HEALTH CORPORATION's operating margin for fiscal 2024?,2.10%,CVS_2024_1_249
+qa_0333,real,CVS,2025,7,factual,What were CVS HEALTH CORPORATION's total revenues for fiscal 2025?,"402,067",CVS_2025_7_28
+qa_0334,real,CVS,2025,7,factual,What was CVS HEALTH CORPORATION's net income for fiscal 2025?,"1,768",CVS_2025_7_46
+qa_0335,real,CVS,2025,8,factual,What were CVS HEALTH CORPORATION's total assets as of the end of fiscal 2025?,"253,538",CVS_2025_8_81
+qa_0336,real,CVS,2025,8,factual,What was CVS HEALTH CORPORATION's net margin for fiscal 2025?,0.3,CVS_2025_8_1408
+qa_0337,real,CVS,2025,7,factual,What was CVS HEALTH CORPORATION's operating margin for fiscal 2025?,1.3%,CVS_2025_7_242
+qa_0338,real,DDOG,2023,1A,factual,"What were Datadog, Inc.'s total revenues for fiscal 2023?","$2,128.4 million",DDOG_2023_1A_7
+qa_0339,real,DDOG,2023,7,factual,"What was Datadog, Inc.'s net income for fiscal 2023?",$48.6 million,DDOG_2023_7_8
+qa_0340,real,DDOG,2024,1A,factual,"What were Datadog, Inc.'s total revenues for fiscal 2024?","$2,684.3 million",DDOG_2024_1A_5
+qa_0341,real,DDOG,2024,7,factual,"What was Datadog, Inc.'s net income for fiscal 2024?",$183.7 million,DDOG_2024_7_9
+qa_0342,real,DDOG,2024,8,factual,"What was Datadog, Inc.'s net margin for fiscal 2024?",6.8,DDOG_2024_8_540
+qa_0343,real,DDOG,2025,1A,factual,"What were Datadog, Inc.'s total revenues for fiscal 2025?","$3,427.2 million",DDOG_2025_1A_6
+qa_0344,real,DDOG,2025,7,factual,"What was Datadog, Inc.'s net income for fiscal 2025?",$107.7 million,DDOG_2025_7_8
+qa_0345,real,DDOG,2025,1A,factual,"What was Datadog, Inc.'s net margin for fiscal 2025?",3%,DDOG_2025_1A_298
+qa_0346,real,DRI,2023,7,factual,"What were DARDEN RESTAURANTS, INC.'s total revenues for fiscal 2023?",$10.49 billion,DRI_2023_7_7
+qa_0347,real,DRI,2023,7,factual,"What was DARDEN RESTAURANTS, INC.'s net income for fiscal 2023?",$983.5 million,DRI_2023_7_9
+qa_0348,real,DRI,2023,8,factual,"What were DARDEN RESTAURANTS, INC.'s total assets as of the end of fiscal 2023?","10,241.5",DRI_2023_8_130
+qa_0349,real,DRI,2023,7,factual,"What was DARDEN RESTAURANTS, INC.'s net margin for fiscal 2023?",9.6,DRI_2023_7_180
+qa_0350,real,DRI,2024,7,factual,"What were DARDEN RESTAURANTS, INC.'s total revenues for fiscal 2024?",$11.39 billion,DRI_2024_7_5
+qa_0351,real,DRI,2024,7,factual,"What was DARDEN RESTAURANTS, INC.'s net income for fiscal 2024?",$1.03 billion,DRI_2024_7_7
+qa_0352,real,DRI,2024,7,factual,"What were DARDEN RESTAURANTS, INC.'s total assets as of the end of fiscal 2024?",$11.39 billion,DRI_2024_7_5
+qa_0353,real,DRI,2024,8,factual,"What was DARDEN RESTAURANTS, INC.'s net margin for fiscal 2024?",9.0,DRI_2024_8_204
+qa_0354,real,DRI,2024,8,factual,"What was DARDEN RESTAURANTS, INC.'s operating margin for fiscal 2024?",11.3,DRI_2024_8_294
+qa_0355,real,DRI,2025,7,factual,"What were DARDEN RESTAURANTS, INC.'s total revenues for fiscal 2025?",$12.08 billion,DRI_2025_7_5
+qa_0356,real,DRI,2025,7,factual,"What was DARDEN RESTAURANTS, INC.'s net income for fiscal 2025?",$1.05 billion,DRI_2025_7_7
+qa_0357,real,DRI,2025,8,factual,"What were DARDEN RESTAURANTS, INC.'s total assets as of the end of fiscal 2025?","12,587.0",DRI_2025_8_130
+qa_0358,real,DRI,2025,7,factual,"What was DARDEN RESTAURANTS, INC.'s net margin for fiscal 2025?",8.6%,DRI_2025_7_24
+qa_0359,real,DRI,2025,8,factual,"What was DARDEN RESTAURANTS, INC.'s operating margin for fiscal 2025?",11.2,DRI_2025_8_167
+qa_0360,real,DUK,2023,8,factual,What were DUKE ENERGY CORPORATION's total revenues for fiscal 2023?,"28,674",DUK_2023_8_4172
+qa_0361,real,DUK,2023,7,factual,What was DUKE ENERGY CORPORATION's net income for fiscal 2023?,"2,823",DUK_2023_7_385
+qa_0362,real,DUK,2023,8,factual,What were DUKE ENERGY CORPORATION's total assets as of the end of fiscal 2023?,"176,893",DUK_2023_8_238
+qa_0363,real,DUK,2023,7,factual,What was DUKE ENERGY CORPORATION's net margin for fiscal 2023?,10%,DUK_2023_7_46
+qa_0364,real,DUK,2024,8,factual,What were DUKE ENERGY CORPORATION's total revenues for fiscal 2024?,"30,050",DUK_2024_8_4626
+qa_0365,real,DUK,2024,7,factual,What was DUKE ENERGY CORPORATION's net income for fiscal 2024?,"4,542",DUK_2024_7_99
+qa_0366,real,DUK,2024,8,factual,What were DUKE ENERGY CORPORATION's total assets as of the end of fiscal 2024?,"186,343",DUK_2024_8_226
+qa_0367,real,DUK,2024,1,factual,What was DUKE ENERGY CORPORATION's net margin for fiscal 2024?,15%,DUK_2024_1_78
+qa_0368,real,DUK,2025,8,factual,What were DUKE ENERGY CORPORATION's total revenues for fiscal 2025?,"31,741",DUK_2025_8_4532
+qa_0369,real,DUK,2025,8,factual,What was DUKE ENERGY CORPORATION's net income for fiscal 2025?,"4,968",DUK_2025_8_142
+qa_0370,real,DUK,2025,8,factual,What were DUKE ENERGY CORPORATION's total assets as of the end of fiscal 2025?,"195,736",DUK_2025_8_208
+qa_0371,real,DUK,2025,1,factual,What was DUKE ENERGY CORPORATION's operating margin for fiscal 2025?,27%,DUK_2025_1_149
+qa_0372,real,F,2023,7,factual,What was Ford Motor Co's net income for fiscal 2023?,"$4,347 million",F_2023_7_57
+qa_0373,real,F,2023,7,factual,What was Ford Motor Co's net margin for fiscal 2023?,2.5%,F_2023_7_105
+qa_0374,real,F,2023,7,factual,What was Ford Motor Co's operating margin for fiscal 2023?,3%,F_2023_7_141
+qa_0375,real,F,2024,7,factual,What was Ford Motor Co's net income for fiscal 2024?,"$5,879 million",F_2024_7_58
+qa_0376,real,F,2024,7,factual,What was Ford Motor Co's net margin for fiscal 2024?,3.2%,F_2024_7_104
+qa_0377,real,F,2024,7,factual,What was Ford Motor Co's operating margin for fiscal 2024?,3%,F_2024_7_357
+qa_0378,real,F,2025,1,factual,What were Ford Motor Co's total revenues for fiscal 2025?,"187,426",F_2025_1_99
+qa_0379,real,F,2025,1,factual,What was Ford Motor Co's net income for fiscal 2025?,"8,212",F_2025_1_30
+qa_0380,real,F,2025,7,factual,What was Ford Motor Co's net margin for fiscal 2025?,negative 4.4%,F_2025_7_120
+qa_0381,real,F,2025,8,factual,What was Ford Motor Co's operating margin for fiscal 2025?,( 5.0 ),F_2025_8_554
+qa_0382,real,FAST,2023,1,factual,What were FASTENAL CO's total revenues for fiscal 2023?,"7,346.7",FAST_2023_1_7
+qa_0383,real,FAST,2023,7,factual,What was FASTENAL CO's net income for fiscal 2023?,"1,155.0",FAST_2023_7_22
+qa_0384,real,FAST,2023,8,factual,What were FASTENAL CO's total assets as of the end of fiscal 2023?,"4,462.9",FAST_2023_8_48
+qa_0385,real,FAST,2023,1,factual,What was FASTENAL CO's operating margin for fiscal 2023?,21%,FAST_2023_1_22
+qa_0386,real,FAST,2024,1,factual,What were FASTENAL CO's total revenues for fiscal 2024?,"7,546.0",FAST_2024_1_9
+qa_0387,real,FAST,2024,7,factual,What was FASTENAL CO's net income for fiscal 2024?,"1,150.6",FAST_2024_7_22
+qa_0388,real,FAST,2024,8,factual,What were FASTENAL CO's total assets as of the end of fiscal 2024?,"4,698.0",FAST_2024_8_48
+qa_0389,real,FAST,2024,7,factual,What was FASTENAL CO's net margin for fiscal 2024?,15%,FAST_2024_7_149
+qa_0390,real,FAST,2024,1,factual,What was FASTENAL CO's operating margin for fiscal 2024?,20%,FAST_2024_1_22
+qa_0391,real,FAST,2025,1,factual,What were FASTENAL CO's total revenues for fiscal 2025?,"8,201",FAST_2025_1_71
+qa_0392,real,FAST,2025,7,factual,What was FASTENAL CO's net income for fiscal 2025?,"1,258.4",FAST_2025_7_23
+qa_0393,real,FAST,2025,8,factual,What were FASTENAL CO's total assets as of the end of fiscal 2025?,"5,052.9",FAST_2025_8_56
+qa_0394,real,FAST,2025,7,factual,What was FASTENAL CO's operating margin for fiscal 2025?,20%,FAST_2025_7_136
+qa_0395,real,FIS,2023,1,factual,"What were Fidelity National Information Services, Inc.'s total revenues for fiscal 2023?","9,821",FIS_2023_1_34
+qa_0396,real,FIS,2023,8,factual,"What was Fidelity National Information Services, Inc.'s net income for fiscal 2023?","( 6,647 )",FIS_2023_8_148
+qa_0397,real,FIS,2023,8,factual,"What were Fidelity National Information Services, Inc.'s total assets as of the end of fiscal 2023?","55,105",FIS_2023_8_95
+qa_0398,real,FIS,2023,1A,factual,"What was Fidelity National Information Services, Inc.'s operating margin for fiscal 2023?",15%,FIS_2023_1A_113
+qa_0399,real,FIS,2024,1,factual,"What were Fidelity National Information Services, Inc.'s total revenues for fiscal 2024?","10,127",FIS_2024_1_39
+qa_0400,real,FIS,2024,8,factual,"What was Fidelity National Information Services, Inc.'s net income for fiscal 2024?","1,441",FIS_2024_8_118
+qa_0401,real,FIS,2024,8,factual,"What were Fidelity National Information Services, Inc.'s total assets as of the end of fiscal 2024?","33,784",FIS_2024_8_106
+qa_0402,real,FIS,2024,8,factual,"What was Fidelity National Information Services, Inc.'s operating margin for fiscal 2024?",17,FIS_2024_8_806
+qa_0403,real,FIS,2025,1,factual,"What were Fidelity National Information Services, Inc.'s total revenues for fiscal 2025?","10,677",FIS_2025_1_38
+qa_0404,real,FIS,2025,8,factual,"What was Fidelity National Information Services, Inc.'s net income for fiscal 2025?",385,FIS_2025_8_140
+qa_0405,real,FIS,2025,8,factual,"What were Fidelity National Information Services, Inc.'s total assets as of the end of fiscal 2025?","33,488",FIS_2025_8_90
+qa_0406,real,FIS,2025,8,factual,"What was Fidelity National Information Services, Inc.'s net margin for fiscal 2025?",3.6 %,FIS_2025_8_786
+qa_0407,real,GDDY,2023,1,factual,What were GoDaddy Inc.'s total revenues for fiscal 2023?,"$4,254 million",GDDY_2023_1_7
+qa_0408,real,GDDY,2023,1A,factual,What was GoDaddy Inc.'s net income for fiscal 2023?,"$1,376 million",GDDY_2023_1A_250
+qa_0409,real,GDDY,2023,8,factual,What were GoDaddy Inc.'s total assets as of the end of fiscal 2023?,"7,564.9",GDDY_2023_8_58
+qa_0410,real,GDDY,2023,7,factual,What was GoDaddy Inc.'s net margin for fiscal 2023?,32.3,GDDY_2023_7_55
+qa_0411,real,GDDY,2023,7,factual,What was GoDaddy Inc.'s operating margin for fiscal 2023?,12.9,GDDY_2023_7_49
+qa_0412,real,GDDY,2024,1,factual,What were GoDaddy Inc.'s total revenues for fiscal 2024?,"$4,573 million",GDDY_2024_1_95
+qa_0413,real,GDDY,2024,1A,factual,What was GoDaddy Inc.'s net income for fiscal 2024?,$937 million,GDDY_2024_1A_215
+qa_0414,real,GDDY,2024,8,factual,What were GoDaddy Inc.'s total assets as of the end of fiscal 2024?,"8,235.4",GDDY_2024_8_53
+qa_0415,real,GDDY,2024,7,factual,What was GoDaddy Inc.'s net margin for fiscal 2024?,20.5,GDDY_2024_7_55
+qa_0416,real,GDDY,2024,7,factual,What was GoDaddy Inc.'s operating margin for fiscal 2024?,19.5,GDDY_2024_7_49
+qa_0417,real,GDDY,2025,1,factual,What were GoDaddy Inc.'s total revenues for fiscal 2025?,"$4,951.1 million",GDDY_2025_1_101
+qa_0418,real,GDDY,2025,1A,factual,What was GoDaddy Inc.'s net income for fiscal 2025?,$875.0 million,GDDY_2025_1A_226
+qa_0419,real,GDDY,2025,8,factual,What were GoDaddy Inc.'s total assets as of the end of fiscal 2025?,"8,034.9",GDDY_2025_8_52
+qa_0420,real,GDDY,2025,7,factual,What was GoDaddy Inc.'s net margin for fiscal 2025?,17.7,GDDY_2025_7_59
+qa_0421,real,GDDY,2025,7,factual,What was GoDaddy Inc.'s operating margin for fiscal 2025?,22.8,GDDY_2025_7_53
+qa_0422,real,HCA,2023,1,factual,"What were HCA Healthcare, Inc.'s total revenues for fiscal 2023?","64,968",HCA_2023_1_81
+qa_0423,real,HCA,2023,7,factual,"What was HCA Healthcare, Inc.'s net income for fiscal 2023?",$5.242 billion,HCA_2023_7_10
+qa_0424,real,HCA,2023,7,factual,"What was HCA Healthcare, Inc.'s net margin for fiscal 2023?",7.9%,HCA_2023_7_11
+qa_0425,real,HCA,2024,1,factual,"What were HCA Healthcare, Inc.'s total revenues for fiscal 2024?","70,603",HCA_2024_1_80
+qa_0426,real,HCA,2024,7,factual,"What was HCA Healthcare, Inc.'s net income for fiscal 2024?",$5.760 billion,HCA_2024_7_8
+qa_0427,real,HCA,2024,7,factual,"What were HCA Healthcare, Inc.'s total assets as of the end of fiscal 2024?","60,056",HCA_2024_7_41
+qa_0428,real,HCA,2024,7,factual,"What was HCA Healthcare, Inc.'s net margin for fiscal 2024?",8.2,HCA_2024_7_143
+qa_0429,real,HCA,2025,1,factual,"What were HCA Healthcare, Inc.'s total revenues for fiscal 2025?","75,600",HCA_2025_1_82
+qa_0430,real,HCA,2025,7,factual,"What was HCA Healthcare, Inc.'s net income for fiscal 2025?",$6.784 billion,HCA_2025_7_8
+qa_0431,real,HCA,2025,1,factual,"What was HCA Healthcare, Inc.'s net margin for fiscal 2025?",9%,HCA_2025_1_116
+qa_0432,real,HIG,2023,7,factual,"What were THE HARTFORD FINANCIAL SERVICES GROUP, INC.'s total revenues for fiscal 2023?","24,527",HIG_2023_7_215
+qa_0433,real,HIG,2023,7,factual,"What was THE HARTFORD FINANCIAL SERVICES GROUP, INC.'s net income for fiscal 2023?","2,504",HIG_2023_7_56
+qa_0434,real,HIG,2023,1,factual,"What were THE HARTFORD FINANCIAL SERVICES GROUP, INC.'s total assets as of the end of fiscal 2023?",$76.8 billion,HIG_2023_1_18
+qa_0435,real,HIG,2023,7,factual,"What was THE HARTFORD FINANCIAL SERVICES GROUP, INC.'s net margin for fiscal 2023?",10%,HIG_2023_7_244
+qa_0436,real,HIG,2024,7,factual,"What were The Hartford Insurance Group, Inc.'s total revenues for fiscal 2024?","26,535",HIG_2024_7_184
+qa_0437,real,HIG,2024,7,factual,"What was The Hartford Insurance Group, Inc.'s net income for fiscal 2024?","3,111",HIG_2024_7_52
+qa_0438,real,HIG,2024,1,factual,"What were The Hartford Insurance Group, Inc.'s total assets as of the end of fiscal 2024?",$80.9 billion,HIG_2024_1_19
+qa_0439,real,HIG,2024,7,factual,"What was The Hartford Insurance Group, Inc.'s net margin for fiscal 2024?",11.7,HIG_2024_7_1678
+qa_0440,real,HIG,2025,7,factual,"What were The Hartford Insurance Group, Inc.'s total revenues for fiscal 2025?","28,368",HIG_2025_7_174
+qa_0441,real,HIG,2025,7,factual,"What was The Hartford Insurance Group, Inc.'s net income for fiscal 2025?","3,836",HIG_2025_7_51
+qa_0442,real,HIG,2025,1,factual,"What were The Hartford Insurance Group, Inc.'s total assets as of the end of fiscal 2025?",$86.0 billion,HIG_2025_1_19
+qa_0443,real,HIG,2025,7,factual,"What was The Hartford Insurance Group, Inc.'s net margin for fiscal 2025?",13.3,HIG_2025_7_1121
+qa_0444,real,HUM,2023,7,factual,What were HUMANA INC.'s total revenues for fiscal 2023?,"106,374",HUM_2023_7_77
+qa_0445,real,HUM,2023,7,factual,What was HUMANA INC.'s net income for fiscal 2023?,$2.5 billion,HUM_2023_7_34
+qa_0446,real,HUM,2023,8,factual,What were HUMANA INC.'s total assets as of the end of fiscal 2023?,"47,065",HUM_2023_8_17
+qa_0447,real,HUM,2023,1,factual,What was HUMANA INC.'s net margin for fiscal 2023?,2.1,HUM_2023_1_21
+qa_0448,real,HUM,2023,1,factual,What was HUMANA INC.'s operating margin for fiscal 2023?,3.9%,HUM_2023_1_141
+qa_0449,real,HUM,2024,7,factual,What were HUMANA INC.'s total revenues for fiscal 2024?,"117,761",HUM_2024_7_68
+qa_0450,real,HUM,2024,7,factual,What was HUMANA INC.'s net income for fiscal 2024?,$1.2 billion,HUM_2024_7_29
+qa_0451,real,HUM,2024,8,factual,What were HUMANA INC.'s total assets as of the end of fiscal 2024?,"46,479",HUM_2024_8_17
+qa_0452,real,HUM,2024,1,factual,What was HUMANA INC.'s net margin for fiscal 2024?,0.8,HUM_2024_1_23
+qa_0453,real,HUM,2024,7,factual,What was HUMANA INC.'s operating margin for fiscal 2024?,2.25%,HUM_2024_7_284
+qa_0454,real,HUM,2025,7,factual,What were HUMANA INC.'s total revenues for fiscal 2025?,"129,664",HUM_2025_7_64
+qa_0455,real,HUM,2025,8,factual,What was HUMANA INC.'s net income for fiscal 2025?,"1,188",HUM_2025_8_67
+qa_0456,real,HUM,2025,8,factual,What were HUMANA INC.'s total assets as of the end of fiscal 2025?,"48,909",HUM_2025_8_17
+qa_0457,real,HUM,2025,1,factual,What was HUMANA INC.'s net margin for fiscal 2025?,0.8,HUM_2025_1_22
+qa_0458,real,HUM,2025,7,factual,What was HUMANA INC.'s operating margin for fiscal 2025?,2.33,HUM_2025_7_39
+qa_0459,real,KEY,2023,7,factual,What were KeyCorp's total revenues for fiscal 2023?,"6,418",KEY_2023_7_343
+qa_0460,real,KEY,2023,8,factual,What was KeyCorp's net income for fiscal 2023?,964,KEY_2023_8_179
+qa_0461,real,KEY,2023,1,factual,What were KeyCorp's total assets as of the end of fiscal 2023?,$188.3 billion,KEY_2023_1_1
+qa_0462,real,KEY,2023,7,factual,What was KeyCorp's net margin for fiscal 2023?,15.0%,KEY_2023_7_218
+qa_0463,real,KEY,2024,7,factual,What were KeyCorp's total revenues for fiscal 2024?,"4,577",KEY_2024_7_559
+qa_0464,real,KEY,2024,8,factual,What was KeyCorp's net income for fiscal 2024?,160,KEY_2024_8_24
+qa_0465,real,KEY,2024,1,factual,What were KeyCorp's total assets as of the end of fiscal 2024?,$187.2 billion,KEY_2024_1_1
+qa_0466,real,KEY,2025,7,factual,What were KeyCorp's total revenues for fiscal 2025?,"$7,513 Million",KEY_2025_7_57
+qa_0467,real,KEY,2025,7,factual,What was KeyCorp's net income for fiscal 2025?,"1,835",KEY_2025_7_326
+qa_0468,real,KEY,2025,1,factual,What were KeyCorp's total assets as of the end of fiscal 2025?,$184.4 billion,KEY_2025_1_1
+qa_0469,real,LNT,2023,1,factual,What were ALLIANT ENERGY CORP's total revenues for fiscal 2023?,"4,067",LNT_2023_1_176
+qa_0470,real,LNT,2023,7,factual,What was ALLIANT ENERGY CORP's net income for fiscal 2023?,$703,LNT_2023_7_35
+qa_0471,real,LNT,2023,8,factual,What were ALLIANT ENERGY CORP's total assets as of the end of fiscal 2023?,"$ 21,237",LNT_2023_8_95
+qa_0472,real,LNT,2023,1,factual,What was ALLIANT ENERGY CORP's net margin for fiscal 2023?,17.7%,LNT_2023_1_119
+qa_0473,real,LNT,2024,1,factual,What were ALLIANT ENERGY CORP's total revenues for fiscal 2024?,"3,974",LNT_2024_1_197
+qa_0474,real,LNT,2024,7,factual,What was ALLIANT ENERGY CORP's net income for fiscal 2024?,$690,LNT_2024_7_38
+qa_0475,real,LNT,2024,8,factual,What were ALLIANT ENERGY CORP's total assets as of the end of fiscal 2024?,"$ 22,714",LNT_2024_8_95
+qa_0476,real,LNT,2025,8,factual,What were ALLIANT ENERGY CORP's total revenues for fiscal 2025?,"4,362",LNT_2025_8_43
+qa_0477,real,LNT,2025,7,factual,What was ALLIANT ENERGY CORP's net income for fiscal 2025?,$810,LNT_2025_7_44
+qa_0478,real,LNT,2025,1,factual,What were ALLIANT ENERGY CORP's total assets as of the end of fiscal 2025?,"25,122",LNT_2025_1_149
+qa_0479,real,LNT,2025,1,factual,What was ALLIANT ENERGY CORP's operating margin for fiscal 2025?,23.4%,LNT_2025_1_112
+qa_0480,real,MA,2023,7,factual,What were Mastercard Incorporated's total revenues for fiscal 2023?,"25,098",MA_2023_7_9
+qa_0481,real,MA,2023,7,factual,What was Mastercard Incorporated's net income for fiscal 2023?,"11,090",MA_2023_7_10
+qa_0482,real,MA,2023,8,factual,What were Mastercard Incorporated's total assets as of the end of fiscal 2023?,"42,448",MA_2023_8_121
+qa_0483,real,MA,2024,7,factual,What were Mastercard Incorporated's total revenues for fiscal 2024?,"28,167",MA_2024_7_9
+qa_0484,real,MA,2024,7,factual,What was Mastercard Incorporated's net income for fiscal 2024?,"12,874",MA_2024_7_15
+qa_0485,real,MA,2024,8,factual,What were Mastercard Incorporated's total assets as of the end of fiscal 2024?,"48,081",MA_2024_8_123
+qa_0486,real,MA,2025,7,factual,What were Mastercard Incorporated's total revenues for fiscal 2025?,"32,791",MA_2025_7_9
+qa_0487,real,MA,2025,7,factual,What was Mastercard Incorporated's net income for fiscal 2025?,"14,968",MA_2025_7_15
+qa_0488,real,MA,2025,8,factual,What were Mastercard Incorporated's total assets as of the end of fiscal 2025?,"54,157",MA_2025_8_121
+qa_0489,real,MA,2025,7,factual,What was Mastercard Incorporated's operating margin for fiscal 2025?,57.6,MA_2025_7_73
+qa_0490,real,MLM,2023,7,factual,"What were MARTIN MARIETTA MATERIALS, INC.'s total revenues for fiscal 2023?",$6.78 billion,MLM_2023_7_1
+qa_0491,real,MLM,2023,7,factual,"What was MARTIN MARIETTA MATERIALS, INC.'s net income for fiscal 2023?","1,169.4",MLM_2023_7_167
+qa_0492,real,MLM,2023,8,factual,"What were MARTIN MARIETTA MATERIALS, INC.'s total assets as of the end of fiscal 2023?","15,124.9",MLM_2023_8_120
+qa_0493,real,MLM,2023,7,factual,"What was MARTIN MARIETTA MATERIALS, INC.'s net margin for fiscal 2023?",17.2,MLM_2023_7_169
+qa_0494,real,MLM,2023,7,factual,"What was MARTIN MARIETTA MATERIALS, INC.'s operating margin for fiscal 2023?",23.5,MLM_2023_7_160
+qa_0495,real,MLM,2024,7,factual,"What were MARTIN MARIETTA MATERIALS, INC.'s total revenues for fiscal 2024?",$6.5 billion,MLM_2024_7_1
+qa_0496,real,MLM,2024,7,factual,"What was MARTIN MARIETTA MATERIALS, INC.'s net income for fiscal 2024?",$2.0 billion,MLM_2024_7_1
+qa_0497,real,MLM,2024,8,factual,"What were MARTIN MARIETTA MATERIALS, INC.'s total assets as of the end of fiscal 2024?","18,170",MLM_2024_8_117
+qa_0498,real,MLM,2025,7,factual,"What were MARTIN MARIETTA MATERIALS, INC.'s total revenues for fiscal 2025?",$6.2 billion,MLM_2025_7_1
+qa_0499,real,MLM,2025,7,factual,"What was MARTIN MARIETTA MATERIALS, INC.'s net income for fiscal 2025?","1,137",MLM_2025_7_144
+qa_0500,real,MLM,2025,8,factual,"What were MARTIN MARIETTA MATERIALS, INC.'s total assets as of the end of fiscal 2025?","18,711",MLM_2025_8_115
+qa_0501,real,MLM,2025,8,factual,"What was MARTIN MARIETTA MATERIALS, INC.'s net margin for fiscal 2025?",18.7,MLM_2025_8_874
+qa_0502,real,MLM,2025,7,factual,"What was MARTIN MARIETTA MATERIALS, INC.'s operating margin for fiscal 2025?",23.2%,MLM_2025_7_201
+qa_0503,real,MMM,2023,7,factual,What were 3M COMPANY's total revenues for fiscal 2023?,"32,878",MMM_2023_7_168
+qa_0504,real,MMM,2023,1,factual,What was 3M COMPANY's net income for fiscal 2023?,"(6,995)",MMM_2023_1_244
+qa_0505,real,MMM,2023,8,factual,What were 3M COMPANY's total assets as of the end of fiscal 2023?,"50,580",MMM_2023_8_108
+qa_0506,real,MMM,2024,7,factual,What were 3M COMPANY's total revenues for fiscal 2024?,"24,810",MMM_2024_7_140
+qa_0507,real,MMM,2024,7,factual,What was 3M COMPANY's net income for fiscal 2024?,$4.2 billion,MMM_2024_7_283
+qa_0508,real,MMM,2024,8,factual,What were 3M COMPANY's total assets as of the end of fiscal 2024?,"39,868",MMM_2024_8_125
+qa_0509,real,MMM,2025,7,factual,What were 3M COMPANY's total revenues for fiscal 2025?,"24,948",MMM_2025_7_20
+qa_0510,real,MMM,2025,8,factual,What was 3M COMPANY's net income for fiscal 2025?,"3,262",MMM_2025_8_59
+qa_0511,real,MMM,2025,8,factual,What were 3M COMPANY's total assets as of the end of fiscal 2025?,"37,733",MMM_2025_8_117
+qa_0512,real,MMM,2025,7,factual,What was 3M COMPANY's net margin for fiscal 2025?,13,MMM_2025_7_245
+qa_0513,real,MRK,2023,1,factual,"What were Merck & Co., Inc.'s total revenues for fiscal 2023?","60,115",MRK_2023_1_8
+qa_0514,real,MRK,2023,7,factual,"What was Merck & Co., Inc.'s net income for fiscal 2023?",365,MRK_2023_7_11
+qa_0515,real,MRK,2023,8,factual,"What was Merck & Co., Inc.'s net margin for fiscal 2023?",0.65%,MRK_2023_8_689
+qa_0516,real,MRK,2024,1,factual,"What were Merck & Co., Inc.'s total revenues for fiscal 2024?","64,168",MRK_2024_1_7
+qa_0517,real,MRK,2024,7,factual,"What was Merck & Co., Inc.'s net income for fiscal 2024?","17,117",MRK_2024_7_10
+qa_0518,real,MRK,2025,1,factual,"What were Merck & Co., Inc.'s total revenues for fiscal 2025?","65,011",MRK_2025_1_7
+qa_0519,real,MRK,2025,7,factual,"What was Merck & Co., Inc.'s net income for fiscal 2025?","18,254",MRK_2025_7_10
+qa_0520,real,NOC,2023,7,factual,What were NORTHROP GRUMMAN CORP /DE/'s total revenues for fiscal 2023?,"39,290",NOC_2023_7_40
+qa_0521,real,NOC,2023,7,factual,What was NORTHROP GRUMMAN CORP /DE/'s net income for fiscal 2023?,"2,056",NOC_2023_7_49
+qa_0522,real,NOC,2023,8,factual,What were NORTHROP GRUMMAN CORP /DE/'s total assets as of the end of fiscal 2023?,"46,544",NOC_2023_8_105
+qa_0523,real,NOC,2023,8,factual,What was NORTHROP GRUMMAN CORP /DE/'s net margin for fiscal 2023?,5,NOC_2023_8_548
+qa_0524,real,NOC,2024,7,factual,What were NORTHROP GRUMMAN CORP /DE/'s total revenues for fiscal 2024?,"41,033",NOC_2024_7_36
+qa_0525,real,NOC,2024,7,factual,What was NORTHROP GRUMMAN CORP /DE/'s net income for fiscal 2024?,"4,174",NOC_2024_7_44
+qa_0526,real,NOC,2024,8,factual,What were NORTHROP GRUMMAN CORP /DE/'s total assets as of the end of fiscal 2024?,"49,359",NOC_2024_8_84
+qa_0527,real,NOC,2024,1,factual,What was NORTHROP GRUMMAN CORP /DE/'s net margin for fiscal 2024?,10%,NOC_2024_1_141
+qa_0528,real,NOC,2025,7,factual,What were NORTHROP GRUMMAN CORP /DE/'s total revenues for fiscal 2025?,"41,954",NOC_2025_7_53
+qa_0529,real,NOC,2025,7,factual,What was NORTHROP GRUMMAN CORP /DE/'s net income for fiscal 2025?,"4,182",NOC_2025_7_62
+qa_0530,real,NOC,2025,8,factual,What were NORTHROP GRUMMAN CORP /DE/'s total assets as of the end of fiscal 2025?,"51,377",NOC_2025_8_87
+qa_0531,real,NOC,2025,7,factual,What was NORTHROP GRUMMAN CORP /DE/'s net margin for fiscal 2025?,10,NOC_2025_7_340
+qa_0532,real,NTRS,2023,7,factual,What were NORTHERN TRUST CORPORATION's total revenues for fiscal 2023?,"6,773.5",NTRS_2023_7_10
+qa_0533,real,NTRS,2023,7,factual,What was NORTHERN TRUST CORPORATION's net income for fiscal 2023?,"1,107.3",NTRS_2023_7_15
+qa_0534,real,NTRS,2023,1,factual,What were NORTHERN TRUST CORPORATION's total assets as of the end of fiscal 2023?,$150.3 billion,NTRS_2023_1_2
+qa_0535,real,NTRS,2023,7,factual,What was NORTHERN TRUST CORPORATION's net margin for fiscal 2023?,16.5,NTRS_2023_7_927
+qa_0536,real,NTRS,2024,7,factual,What were NORTHERN TRUST CORPORATION's total revenues for fiscal 2024?,"8,290.4",NTRS_2024_7_10
+qa_0537,real,NTRS,2024,7,factual,What was NORTHERN TRUST CORPORATION's net income for fiscal 2024?,2024,NTRS_2024_7_7
+qa_0538,real,NTRS,2024,1,factual,What were NORTHERN TRUST CORPORATION's total assets as of the end of fiscal 2024?,$154.9 billion,NTRS_2024_1_2
+qa_0539,real,NTRS,2024,7,factual,What was NORTHERN TRUST CORPORATION's net margin for fiscal 2024?,24.5,NTRS_2024_7_11
+qa_0540,real,NTRS,2025,7,factual,What were NORTHERN TRUST CORPORATION's total revenues for fiscal 2025?,"8,086.4",NTRS_2025_7_10
+qa_0541,real,NTRS,2025,7,factual,What was NORTHERN TRUST CORPORATION's net income for fiscal 2025?,"1,736.9",NTRS_2025_7_15
+qa_0542,real,NTRS,2025,1,factual,What were NORTHERN TRUST CORPORATION's total assets as of the end of fiscal 2025?,$176.4 billion,NTRS_2025_1_2
+qa_0543,real,NTRS,2025,7,factual,What was NORTHERN TRUST CORPORATION's net margin for fiscal 2025?,21.3,NTRS_2025_7_533
+qa_0544,real,OXY,2023,7,factual,What were Occidental Petroleum Corporation's total revenues for fiscal 2023?,"28,257",OXY_2023_7_310
+qa_0545,real,OXY,2023,7,factual,What was Occidental Petroleum Corporation's net income for fiscal 2023?,"4,696",OXY_2023_7_323
+qa_0546,real,OXY,2023,8,factual,What were Occidental Petroleum Corporation's total assets as of the end of fiscal 2023?,"74,008",OXY_2023_8_95
+qa_0547,real,OXY,2024,7,factual,What were Occidental Petroleum Corporation's total revenues for fiscal 2024?,"26,725",OXY_2024_7_300
+qa_0548,real,OXY,2024,7,factual,What was Occidental Petroleum Corporation's net income for fiscal 2024?,"3,078",OXY_2024_7_315
+qa_0549,real,OXY,2024,8,factual,What were Occidental Petroleum Corporation's total assets as of the end of fiscal 2024?,"85,445",OXY_2024_8_99
+qa_0550,real,OXY,2025,7,factual,What were Occidental Petroleum Corporation's total revenues for fiscal 2025?,"21,593",OXY_2025_7_280
+qa_0551,real,OXY,2025,7,factual,What was Occidental Petroleum Corporation's net income for fiscal 2025?,"2,369",OXY_2025_7_294
+qa_0552,real,OXY,2025,8,factual,What were Occidental Petroleum Corporation's total assets as of the end of fiscal 2025?,"84,186",OXY_2025_8_93
+qa_0553,real,OXY,2025,8,factual,What was Occidental Petroleum Corporation's net margin for fiscal 2025?,11,OXY_2025_8_443
+qa_0554,real,PHM,2023,1,factual,What were PULTEGROUP INC/MI/'s total revenues for fiscal 2023?,$16.1 billion,PHM_2023_1_4
+qa_0555,real,PHM,2023,7,factual,What was PULTEGROUP INC/MI/'s net income for fiscal 2023?,$2.6 billion,PHM_2023_7_300
+qa_0556,real,PHM,2023,1,factual,What were PULTEGROUP INC/MI/'s total assets as of the end of fiscal 2023?,$16.1 billion,PHM_2023_1_4
+qa_0557,real,PHM,2023,7,factual,What was PULTEGROUP INC/MI/'s net margin for fiscal 2023?,16%,PHM_2023_7_80
+qa_0558,real,PHM,2024,1,factual,What were PULTEGROUP INC/MI/'s total revenues for fiscal 2024?,$17.9 billion,PHM_2024_1_4
+qa_0559,real,PHM,2024,7,factual,What was PULTEGROUP INC/MI/'s net income for fiscal 2024?,$3.1 billion,PHM_2024_7_302
+qa_0560,real,PHM,2024,7,factual,What was PULTEGROUP INC/MI/'s net margin for fiscal 2024?,17%,PHM_2024_7_187
+qa_0561,real,PHM,2025,1,factual,"What were PULTEGROUP, INC.'s total revenues for fiscal 2025?",$17.3 billion,PHM_2025_1_4
+qa_0562,real,PHM,2025,7,factual,"What was PULTEGROUP, INC.'s net income for fiscal 2025?",$2.2 billion,PHM_2025_7_299
+qa_0563,real,PHM,2025,1,factual,"What were PULTEGROUP, INC.'s total assets as of the end of fiscal 2025?",$17.9 billion,PHM_2025_1_4
+qa_0564,real,PHM,2025,7,factual,"What was PULTEGROUP, INC.'s net margin for fiscal 2025?",13%,PHM_2025_7_182
+qa_0565,real,PNW,2023,7,factual,What were PINNACLE WEST CAPITAL CORPORATION's total revenues for fiscal 2023?,"4,696",PNW_2023_7_212
+qa_0566,real,PNW,2023,7,factual,What was PINNACLE WEST CAPITAL CORPORATION's net income for fiscal 2023?,$523.1 million,PNW_2023_7_153
+qa_0567,real,PNW,2023,8,factual,What were PINNACLE WEST CAPITAL CORPORATION's total assets as of the end of fiscal 2023?,"( 24,744 )",PNW_2023_8_777
+qa_0568,real,PNW,2023,7,factual,What was PINNACLE WEST CAPITAL CORPORATION's net margin for fiscal 2023?,11.2%,PNW_2023_7_148
+qa_0569,real,PNW,2024,7,factual,What were PINNACLE WEST CAPITAL CORPORATION's total revenues for fiscal 2024?,"5,125",PNW_2024_7_186
+qa_0570,real,PNW,2024,7,factual,What was PINNACLE WEST CAPITAL CORPORATION's net income for fiscal 2024?,$624 million,PNW_2024_7_283
+qa_0571,real,PNW,2024,7,factual,What were PINNACLE WEST CAPITAL CORPORATION's total assets as of the end of fiscal 2024?,$26 billion,PNW_2024_7_5
+qa_0572,real,PNW,2024,1,factual,What was PINNACLE WEST CAPITAL CORPORATION's net margin for fiscal 2024?,12.1%,PNW_2024_1_29
+qa_0573,real,PNW,2025,7,factual,What were PINNACLE WEST CAPITAL CORPORATION's total revenues for fiscal 2025?,"5,340",PNW_2025_7_139
+qa_0574,real,PNW,2025,7,factual,What was PINNACLE WEST CAPITAL CORPORATION's net income for fiscal 2025?,635,PNW_2025_7_226
+qa_0575,real,PNW,2025,1,factual,What were PINNACLE WEST CAPITAL CORPORATION's total assets as of the end of fiscal 2025?,$30 billion,PNW_2025_1_2
+qa_0576,real,PNW,2025,1,factual,What was PINNACLE WEST CAPITAL CORPORATION's operating margin for fiscal 2025?,20%,PNW_2025_1_243
+qa_0577,real,QCOM,2023,7,factual,What were QUALCOMM INC/DE's total revenues for fiscal 2023?,$35.8 billion,QCOM_2023_7_11
+qa_0578,real,QCOM,2023,7,factual,What was QUALCOMM INC/DE's net income for fiscal 2023?,$7.2 billion,QCOM_2023_7_11
+qa_0579,real,QCOM,2023,8,factual,What were QUALCOMM INC/DE's total assets as of the end of fiscal 2023?,"51,040",QCOM_2023_8_43
+qa_0580,real,QCOM,2023,8,factual,What was QUALCOMM INC/DE's net margin for fiscal 2023?,20,QCOM_2023_8_657
+qa_0581,real,QCOM,2024,7,factual,What were QUALCOMM INC/DE's total revenues for fiscal 2024?,$39.0 billion,QCOM_2024_7_9
+qa_0582,real,QCOM,2024,7,factual,What was QUALCOMM INC/DE's net income for fiscal 2024?,$10.1 billion,QCOM_2024_7_9
+qa_0583,real,QCOM,2024,8,factual,What were QUALCOMM INC/DE's total assets as of the end of fiscal 2024?,"55,154",QCOM_2024_8_43
+qa_0584,real,QCOM,2025,7,factual,What were QUALCOMM INC/DE's total revenues for fiscal 2025?,$44.3 billion,QCOM_2025_7_9
+qa_0585,real,QCOM,2025,7,factual,What was QUALCOMM INC/DE's net income for fiscal 2025?,$5.5 billion,QCOM_2025_7_9
+qa_0586,real,QCOM,2025,8,factual,What were QUALCOMM INC/DE's total assets as of the end of fiscal 2025?,"50,143",QCOM_2025_8_42
+qa_0587,real,QCOM,2025,8,factual,What was QUALCOMM INC/DE's operating margin for fiscal 2025?,28,QCOM_2025_8_110
+qa_0588,real,RDDT,2024,7,factual,"What were Reddit, Inc.'s total revenues for fiscal 2024?",$1.3 billion,RDDT_2024_7_7
+qa_0589,real,RDDT,2024,7,factual,"What was Reddit, Inc.'s net income for fiscal 2024?",$484.3 million,RDDT_2024_7_10
+qa_0590,real,RDDT,2025,7,factual,"What were Reddit, Inc.'s total revenues for fiscal 2025?",$2.2 billion,RDDT_2025_7_7
+qa_0591,real,RDDT,2025,7,factual,"What was Reddit, Inc.'s net income for fiscal 2025?",$529.7 million,RDDT_2025_7_10
+qa_0592,real,RDDT,2025,7,factual,"What was Reddit, Inc.'s net margin for fiscal 2025?",24%,RDDT_2025_7_35
+qa_0593,real,RDDT,2025,7,factual,"What was Reddit, Inc.'s operating margin for fiscal 2025?",20%,RDDT_2025_7_60
+qa_0594,real,ROP,2023,7,factual,"What were ROPER TECHNOLOGIES, INC.'s total revenues for fiscal 2023?","6,177.8",ROP_2023_7_48
+qa_0595,real,ROP,2023,8,factual,"What was ROPER TECHNOLOGIES, INC.'s net income for fiscal 2023?","$1,381 million",ROP_2023_8_28
+qa_0596,real,ROP,2023,8,factual,"What were ROPER TECHNOLOGIES, INC.'s total assets as of the end of fiscal 2023?","28,167.5",ROP_2023_8_55
+qa_0597,real,ROP,2023,7,factual,"What was ROPER TECHNOLOGIES, INC.'s operating margin for fiscal 2023?",28.2,ROP_2023_7_66
+qa_0598,real,ROP,2024,7,factual,"What were ROPER TECHNOLOGIES, INC.'s total revenues for fiscal 2024?","7,039.2",ROP_2024_7_47
+qa_0599,real,ROP,2024,8,factual,"What was ROPER TECHNOLOGIES, INC.'s net income for fiscal 2024?","1,542.7",ROP_2024_8_53
+qa_0600,real,ROP,2024,8,factual,"What were ROPER TECHNOLOGIES, INC.'s total assets as of the end of fiscal 2024?","31,334.7",ROP_2024_8_60
+qa_0601,real,ROP,2024,7,factual,"What was ROPER TECHNOLOGIES, INC.'s net margin for fiscal 2024?",22%,ROP_2024_7_22
+qa_0602,real,ROP,2024,7,factual,"What was ROPER TECHNOLOGIES, INC.'s operating margin for fiscal 2024?",28.4,ROP_2024_7_64
+qa_0603,real,ROP,2025,7,factual,"What were ROPER TECHNOLOGIES, INC.'s total revenues for fiscal 2025?","7,902.5",ROP_2025_7_45
+qa_0604,real,ROP,2025,8,factual,"What was ROPER TECHNOLOGIES, INC.'s net income for fiscal 2025?","1,536.3",ROP_2025_8_100
+qa_0605,real,ROP,2025,8,factual,"What were ROPER TECHNOLOGIES, INC.'s total assets as of the end of fiscal 2025?","34,577.0",ROP_2025_8_60
+qa_0606,real,RSG,2023,1,factual,"What were REPUBLIC SERVICES, INC.'s total revenues for fiscal 2023?","17,200",RSG_2023_1_63
+qa_0607,real,RSG,2023,7,factual,"What was REPUBLIC SERVICES, INC.'s net income for fiscal 2023?","$1,731.0 million",RSG_2023_7_40
+qa_0608,real,RSG,2023,8,factual,"What were REPUBLIC SERVICES, INC.'s total assets as of the end of fiscal 2023?","31,410.1",RSG_2023_8_71
+qa_0609,real,RSG,2023,1,factual,"What was REPUBLIC SERVICES, INC.'s net margin for fiscal 2023?",10%,RSG_2023_1_111
+qa_0610,real,RSG,2023,8,factual,"What was REPUBLIC SERVICES, INC.'s operating margin for fiscal 2023?",16.0,RSG_2023_8_561
+qa_0611,real,RSG,2024,7,factual,"What was REPUBLIC SERVICES, INC.'s net income for fiscal 2024?",2023,RSG_2024_7_27
+qa_0612,real,RSG,2024,8,factual,"What were REPUBLIC SERVICES, INC.'s total assets as of the end of fiscal 2024?","32,402",RSG_2024_8_70
+qa_0613,real,RSG,2024,1,factual,"What was REPUBLIC SERVICES, INC.'s net margin for fiscal 2024?",11%,RSG_2024_1_172
+qa_0614,real,RSG,2025,7,factual,"What was REPUBLIC SERVICES, INC.'s net income for fiscal 2025?","2,119",RSG_2025_7_333
+qa_0615,real,RSG,2025,8,factual,"What were REPUBLIC SERVICES, INC.'s total assets as of the end of fiscal 2025?","34,366",RSG_2025_8_70
+qa_0616,real,RSG,2025,1,factual,"What was REPUBLIC SERVICES, INC.'s net margin for fiscal 2025?",11%,RSG_2025_1_164
+qa_0617,real,RSG,2025,7,factual,"What was REPUBLIC SERVICES, INC.'s operating margin for fiscal 2025?",17.5%,RSG_2025_7_204
+qa_0618,real,STX,2023,7,factual,What were Seagate Technology Holdings plc's total revenues for fiscal 2023?,$7.4 billion,STX_2023_7_9
+qa_0619,real,STX,2023,7,factual,What was Seagate Technology Holdings plc's net income for fiscal 2023?,(529),STX_2023_7_38
+qa_0620,real,STX,2023,8,factual,What were Seagate Technology Holdings plc's total assets as of the end of fiscal 2023?,"7,556",STX_2023_8_45
+qa_0621,real,STX,2023,8,factual,What was Seagate Technology Holdings plc's net margin for fiscal 2023?,( 7 ),STX_2023_8_371
+qa_0622,real,STX,2024,7,factual,What were Seagate Technology Holdings plc's total revenues for fiscal 2024?,$6.6 billion,STX_2024_7_11
+qa_0623,real,STX,2024,7,factual,What was Seagate Technology Holdings plc's net income for fiscal 2024?,335,STX_2024_7_33
+qa_0624,real,STX,2024,8,factual,What were Seagate Technology Holdings plc's total assets as of the end of fiscal 2024?,"7,739",STX_2024_8_44
+qa_0625,real,STX,2024,7,factual,What was Seagate Technology Holdings plc's operating margin for fiscal 2024?,7,STX_2024_7_42
+qa_0626,real,SW,2024,7,factual,What were Smurfit Westrock plc's total revenues for fiscal 2024?,"$21,109 million",SW_2024_7_62
+qa_0627,real,SW,2024,7,factual,What was Smurfit Westrock plc's net income for fiscal 2024?,$319 million,SW_2024_7_65
+qa_0628,real,SW,2024,8,factual,What were Smurfit Westrock plc's total assets as of the end of fiscal 2024?,"$ 43,759",SW_2024_8_85
+qa_0629,real,SW,2024,8,factual,What was Smurfit Westrock plc's net margin for fiscal 2024?,1.5 %,SW_2024_8_1538
+qa_0630,real,SW,2024,7,factual,What was Smurfit Westrock plc's operating margin for fiscal 2024?,4.9%,SW_2024_7_433
+qa_0631,real,SW,2025,7,factual,What were Smurfit Westrock plc's total revenues for fiscal 2025?,"$31,179 million",SW_2025_7_41
+qa_0632,real,SW,2025,7,factual,What was Smurfit Westrock plc's net income for fiscal 2025?,$699 million,SW_2025_7_47
+qa_0633,real,SW,2025,8,factual,What were Smurfit Westrock plc's total assets as of the end of fiscal 2025?,"$ 45,157",SW_2025_8_111
+qa_0634,real,SW,2025,8,factual,What was Smurfit Westrock plc's net margin for fiscal 2025?,2,SW_2025_8_215
+qa_0635,real,SW,2025,7,factual,What was Smurfit Westrock plc's operating margin for fiscal 2025?,5.438%,SW_2025_7_460
+qa_0636,real,TXT,2023,1,factual,What were Textron Inc.'s total revenues for fiscal 2023?,$13.7 billion,TXT_2023_1_1
+qa_0637,real,TXT,2023,8,factual,What was Textron Inc.'s net income for fiscal 2023?,922,TXT_2023_8_52
+qa_0638,real,TXT,2023,8,factual,What were Textron Inc.'s total assets as of the end of fiscal 2023?,"16,856",TXT_2023_8_97
+qa_0639,real,TXT,2023,8,factual,What was Textron Inc.'s net margin for fiscal 2023?,6.5%,TXT_2023_8_817
+qa_0640,real,TXT,2024,1,factual,What were Textron Inc.'s total revenues for fiscal 2024?,$13.7 billion,TXT_2024_1_1
+qa_0641,real,TXT,2024,8,factual,What was Textron Inc.'s net income for fiscal 2024?,825,TXT_2024_8_51
+qa_0642,real,TXT,2024,8,factual,What were Textron Inc.'s total assets as of the end of fiscal 2024?,"16,838",TXT_2024_8_96
+qa_0643,real,TXT,2024,7,factual,What was Textron Inc.'s net margin for fiscal 2024?,6%,TXT_2024_7_13
+qa_0644,real,XOM,2023,8,factual,What were Exxon Mobil Corporation's total revenues for fiscal 2023?,"344,582",XOM_2023_8_17
+qa_0645,real,XOM,2023,7,factual,What was Exxon Mobil Corporation's net income for fiscal 2023?,"36,010",XOM_2023_7_63
+qa_0646,real,XOM,2023,7,factual,What were Exxon Mobil Corporation's total assets as of the end of fiscal 2023?,"376,317",XOM_2023_7_98
+qa_0647,real,XOM,2023,7,factual,What was Exxon Mobil Corporation's net margin for fiscal 2023?,10.5,XOM_2023_7_165
+qa_0648,real,XOM,2024,8,factual,What were Exxon Mobil Corporation's total revenues for fiscal 2024?,"349,585",XOM_2024_8_12
+qa_0649,real,XOM,2024,7,factual,What was Exxon Mobil Corporation's net income for fiscal 2024?,"33,680",XOM_2024_7_63
+qa_0650,real,XOM,2024,7,factual,What were Exxon Mobil Corporation's total assets as of the end of fiscal 2024?,"453,475",XOM_2024_7_98
+qa_0651,real,XOM,2024,7,factual,What was Exxon Mobil Corporation's net margin for fiscal 2024?,9.6,XOM_2024_7_177
+qa_0652,real,XOM,2025,8,factual,What were Exxon Mobil Corporation's total revenues for fiscal 2025?,"332,238",XOM_2025_8_19
+qa_0653,real,XOM,2025,7,factual,What was Exxon Mobil Corporation's net income for fiscal 2025?,"28,844",XOM_2025_7_62
+qa_0654,real,XOM,2025,7,factual,What were Exxon Mobil Corporation's total assets as of the end of fiscal 2025?,"448,980",XOM_2025_7_98
+qa_0655,real,AEP,2025,1,factual,"How many employees did AEP's subsidiaries have as of December 31, 2025?","17,581 employees",AEP_2025_1_5
+qa_0656,real,AEP,2025,1,factual,"In what year was American Electric Power incorporated, and in which state?",incorporated under the laws of the State of New York in 1906,AEP_2025_1_2
+qa_0657,real,BEN,2024,7,factual,"What was Franklin Resources' total assets under management (AUM) at September 30, 2024?","$1,678.6 billion",BEN_2024_7_9
+qa_0658,real,BEN,2024,7,factual,How much did Franklin Resources' AUM growth reflect from the acquisition of Putnam Investments?,$148.3 billion from the acquisition of Putnam Investments,BEN_2024_7_9
+qa_0659,real,USB,2025,7,factual,How much net income did U.S. Bancorp earn in 2025 compared with 2024?,$7.6 billion in 2025 compared with $6.3 billion in 2024,USB_2025_7_2
+qa_0660,real,USB,2025,7,factual,"What was U.S. Bancorp's diluted earnings per common share in 2025, and how much did it increase from 2024?","$4.62 in 2025, representing a 21.9 percent increase",USB_2025_7_4
+qa_0661,real,CVS,2024,7,factual,"How many retail locations did CVS Health have as of December 31, 2024?","more than 9,000 retail locations",CVS_2024_7_2
+qa_0662,real,CVS,2024,7,factual,Approximately how many pharmacy benefits manager plan members did CVS Health serve?,approximately 90 million plan members,CVS_2024_7_2
+qa_0663,real,NOC,2025,7,factual,How much cash did Northrop Grumman receive for the sale of its Immersive Mission Solutions (IMS) operating unit?,$333 million in cash,NOC_2025_7_5
+qa_0664,real,NOC,2025,7,factual,When did Northrop Grumman complete the divestiture of its training services business?,"May 24, 2025",NOC_2025_7_3
+qa_0665,real,CRWD,2025,1,factual,In what year was CrowdStrike founded?,Founded in 2011,CRWD_2025_1_1
+qa_0666,real,CRWD,2025,7,factual,On what date does CrowdStrike's fiscal year end?,"fiscal years ended January 31, 2025",CRWD_2025_7_0

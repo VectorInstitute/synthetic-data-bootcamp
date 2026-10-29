@@ -9,13 +9,26 @@ method_2.step09_validate_filings already uses for the numeric-consistency gate (
 financial-fact question's answer is guaranteed to be a verbatim substring of its
 gold chunk by construction, not by a separate check).
 
-Real questions (6 companies): hand-authored from a short, grep-verified excerpt of
-each filing (not the whole filing -- some run to 100,000+ words), matching the
-template-ticker/fiscal-year sample Phase 7's model-judged review already used
-(method_2.step09_validate_filings's docstring). Each answer is checked against the
-actual chunked text before being written out; the script hard-fails if one isn't
-found verbatim, which is what PLAN.md Phase 9 means by "check that each answer span
-appears in the text."
+Real questions, two sources:
+- Deterministic financial facts (real_financial_qa_rows), across every real
+  company/year that has both chunked text and extracted metrics -- not a small
+  sample. Metrics come from method_2/data/parsed/{ticker}/{fy}/metadata.json
+  (method_1.build's XBRL extraction, see implementations/synthetic_10k/method_1),
+  grounded the same way and with the same four templates as the synthetic facts
+  below, so the real and synthetic sides of a retrieval-utility comparison are
+  asking the same kinds of questions under the same grounding rule, not a tiny
+  hand-picked set next to a large generated one.
+- A small hand-authored sample (real_qa_rows, REAL_QA), kept for qualitative
+  (non-financial) question diversity -- things like employee counts or acquisition
+  details that aren't in the extracted XBRL metrics. From a short, grep-verified
+  excerpt of each filing (not the whole filing -- some run to 100,000+ words),
+  matching the template-ticker/fiscal-year sample Phase 7's model-judged review
+  already used (method_2.step09_validate_filings's docstring).
+
+Either way, each answer is checked against the actual chunked text before being
+written out; a question is only emitted when its value is found verbatim (the hand-
+authored path hard-fails if one isn't), which is what PLAN.md Phase 9 means by
+"check that each answer span appears in the text."
 
 A known simplification: each question records exactly one gold_chunk_id, even on
 the rare case where the same figure is restated in more than one chunk (e.g. both a
@@ -40,7 +53,7 @@ import json
 import re
 from typing import Any
 
-from method_2.config import RAW_DIR
+from method_2.config import PARSED_DIR, RAW_DIR
 from method_2.step09_validate_filings import (
     SCENARIO_ANCHOR_FACT,
     SCENARIO_KEYWORDS,
@@ -435,16 +448,84 @@ def real_qa_rows(chunks: list[Chunk]) -> list[dict]:
     return rows
 
 
+# Same four standard facts as FINANCIAL_FACTS, read from metadata.json's flat
+# "metrics" schema (method_1.build's XBRL extraction) instead of financials.json's
+# nested one -- the two pipelines store the same concepts under different shapes.
+REAL_FINANCIAL_FACTS = [
+    ("revenue", "What were {name}'s total revenues for fiscal {fy}?", False),
+    ("net_income", "What was {name}'s net income for fiscal {fy}?", False),
+    ("total_assets", "What were {name}'s total assets as of the end of fiscal {fy}?", False),
+]
+
+
+def real_financial_qa_rows(real_chunks: list[Chunk]) -> list[dict]:
+    """Deterministic financial-fact questions for every real company/year with
+    usable metrics, grounded exactly like synthetic_qa_rows: a question is only
+    emitted if its value is found verbatim in that company's own chunked text.
+
+    Metrics come from method_2/data/parsed/{ticker}/{fy}/metadata.json (extracted
+    XBRL facts via method_1.build), not hand-authored. This is what makes the real
+    and synthetic sides of the retrieval-utility comparison comparable: the same
+    question templates and the same grounding rule, scaled to every real company
+    that has both chunked text and extracted metrics -- not a 6-company sample.
+    """
+    by_company: dict[tuple[str, int], list[Chunk]] = {}
+    for c in real_chunks:
+        by_company.setdefault((c.ticker, c.fiscal_year), []).append(c)
+
+    rows = []
+    for (ticker, fy), company_chunks in sorted(by_company.items()):
+        meta_path = PARSED_DIR / ticker / str(fy) / "metadata.json"
+        if not meta_path.exists():
+            continue
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        metrics, name = meta.get("metrics", {}), meta.get("company", ticker)
+
+        for key, template, is_percent in REAL_FINANCIAL_FACTS:
+            value = metrics.get(key)
+            if value is None:
+                continue
+            found = find_figure_chunk(float(value), company_chunks, is_percent=is_percent)
+            if found:
+                chunk, answer = found
+                rows.append(
+                    qa_row("real", ticker, fy, chunk.item, "factual", template.format(name=name, fy=fy), answer, chunk.chunk_id),
+                )
+
+        revenue = metrics.get("revenue")
+        net_income, operating_income = metrics.get("net_income"), metrics.get("operating_income")
+        if revenue:
+            if net_income is not None:
+                found = find_figure_chunk(net_income / revenue * 100, company_chunks, is_percent=True)
+                if found:
+                    chunk, answer = found
+                    question = f"What was {name}'s net margin for fiscal {fy}?"
+                    rows.append(qa_row("real", ticker, fy, chunk.item, "factual", question, answer, chunk.chunk_id))
+            if operating_income is not None:
+                found = find_figure_chunk(operating_income / revenue * 100, company_chunks, is_percent=True)
+                if found:
+                    chunk, answer = found
+                    question = f"What was {name}'s operating margin for fiscal {fy}?"
+                    rows.append(qa_row("real", ticker, fy, chunk.item, "factual", question, answer, chunk.chunk_id))
+    return rows
+
+
 def main() -> None:
-    """Build data/qa_pairs.csv from the synthetic corpus and a 6-company real sample."""
+    """Build data/qa_pairs.csv: deterministic facts across every synthetic company
+    and every real company/year with usable metrics, plus a small hand-authored
+    real sample kept for qualitative (non-financial) question diversity.
+    """
     synthetic_chunks = load_chunks(sources={"synthetic"})
 
     rows = []
     for spec_path in sorted(SYNTHETIC_DIR.glob("*/*/spec.json")):
         rows.extend(synthetic_qa_rows(spec_path, synthetic_chunks))
 
+    all_real_chunks = load_chunks(sources={"real"})
+    rows.extend(real_financial_qa_rows(all_real_chunks))
+
     real_sample_tickers = {ticker for ticker, *_ in REAL_QA}
-    real_chunks = load_chunks(sources={"real"}, tickers=real_sample_tickers)
+    real_chunks = [c for c in all_real_chunks if c.ticker in real_sample_tickers]
     rows.extend(real_qa_rows(real_chunks))
 
     for i, row in enumerate(rows):
