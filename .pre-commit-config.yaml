@@ -1,6 +1,6 @@
 # Generated data and eval outputs for the synthetic 10-K methods (raw SEC filings,
 # model outputs, reports) are kept byte-for-byte as produced.
-exclude: '^implementations/synthetic_10k/(method_[12]/data|evals/results|evals/samples|dashboard/vendor)/'
+exclude: '^implementations/synthetic_10k/(data|method_[12]/data|evals/results|evals/samples|dashboard/vendor)/'
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0  # Use the ref you want to point at

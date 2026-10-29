@@ -10,6 +10,7 @@ synthetic_10k/
   RAG/            retrieval benchmark and chatbot over the synthetic + real corpus (built on Method 2)
   evals/          cross-method validation scripts, the gap and privacy reports, results
   dashboard/      self-contained results dashboard and the chatbot UI (built on Method 2)
+  data/           one folder per generated batch: data/<batch>/{method_1, method_2, evals}
   run_batch.sh    one batch from both methods with the same model and sections, plus evals
 ```
 
@@ -141,7 +142,7 @@ How much of the tables each Item gets, and so how tightly it is tied to them:
 
 ## Build Day 2 result: which method per section
 
-Six batches were scored Item by Item against real 10-Ks with [`evals/section_scorecard.py`](evals/README.md#per-section-scorecard-choosing-a-method-per-item) and [`evals/compare_sets.py`](evals/README.md#compare-synthetic-sets-fidelity-utility-privacy): Method 1 and Method 2, each on Gemini 3 Flash (`gemini-3-flash-preview`, 20 companies), GPT-4o (20) and Claude Opus 5.5 (`claude-opus-5-5`; 20 for Method 1, 10 for Method 2). Results are in [`evals/results/day2_scorecard/`](evals/results/day2_scorecard/) (with a shareable `scorecard.html`), [`evals/results/day2_compare_sets/`](evals/results/day2_compare_sets/) and the per-run folders `evals/results/{gemini20,gpt4o20,opus20}/`.
+Six batches were scored Item by Item against real 10-Ks with [`evals/section_scorecard.py`](evals/README.md#per-section-scorecard-choosing-a-method-per-item) and [`evals/compare_sets.py`](evals/README.md#compare-synthetic-sets-fidelity-utility-privacy): Method 1 and Method 2, each on Gemini 3 Flash (`gemini-3-flash-preview`, 20 companies), GPT-4o (20) and Claude Opus 5.5 (`claude-opus-5-5`; 20 for Method 1, 10 for Method 2). Results are in [`evals/results/day2_scorecard/`](evals/results/day2_scorecard/) (with a shareable `scorecard.html`), [`evals/results/day2_compare_sets/`](evals/results/day2_compare_sets/) and the per-batch eval folders `data/{gemini20,gpt4o20,opus20}/evals/`.
 
 **Build on Method 1.** Its figures trace to the statements 99–100% of the time on every model. A RAG benchmark needs that, because a question's gold answer has to be the number in the statements. Method 2 writes the most realistic-looking text, but only 46–74% of its figures trace.
 
@@ -169,7 +170,7 @@ Real 10-Ks trace only 12–14% of their figures to their own XBRL headline numbe
 |---|---|---|---|---|---|
 | Method 2's step09 | its own 20 companies | 360 | 260 (+100 info) | 0 | [report](method_2/data/validation_report.csv) |
 | Method 2's step09 | Method 1's 2 showcase filings | 36 | 22 (+10 info) | 4 | [report](evals/results/method2_gates_on_method1_showcase/validation_report.csv) |
-| Method 1's checks | Method 2's 20 companies | 400 (+100 skipped) | 375 | 25 | [report](evals/results/method1_checks_on_method2_claude20/validation_report.csv) |
+| Method 1's checks | Method 2's 20 companies | 400 (+100 skipped) | 375 | 25 | [report](data/claude20/evals/method1_checks_on_method2/validation_report.csv) |
 
 None of the failures is a defect in a filing. Each one comes from a difference in what the two validators expect:
 

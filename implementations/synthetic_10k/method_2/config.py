@@ -14,7 +14,7 @@ PARSED_DIR = PROJECT_DIR / "data" / "parsed"
 COMPANYFACTS_DIR = PROJECT_DIR / "data" / "companyfacts"
 LOG_DIR = PROJECT_DIR / "logs"
 # Where steps 06-09 write and read fictional companies. Set SYNTHETIC_DIR to keep a new
-# batch apart from the committed 20 companies, e.g. data/runs/gemini20/synthetic.
+# batch apart from the committed 20 companies, e.g. data/gemini20/method_2/synthetic.
 SYNTHETIC_DIR = Path(os.environ.get("SYNTHETIC_DIR") or PROJECT_DIR / "data" / "synthetic").resolve()
 
 PLACEHOLDER = "FILL_IN"

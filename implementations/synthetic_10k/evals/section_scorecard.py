@@ -50,8 +50,8 @@ suggested pick).
 Run from implementations/synthetic_10k, in the repo's uv environment:
     uv run python -m evals.section_scorecard
     uv run python -m evals.section_scorecard \
-        --set m1_gemini=method_1/data/runs/gemini20/synthetic/filings \
-        --set m2_gemini=method_2/data/runs/gemini20/synthetic --out evals/results/NAME
+        --set m1_gemini=data/gemini20/method_1/synthetic/filings \
+        --set m2_gemini=data/gemini20/method_2/synthetic --out evals/results/NAME
 """
 
 import argparse

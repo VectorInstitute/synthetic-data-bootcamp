@@ -22,9 +22,10 @@
 #   M1_DATA  Method 1's parsed corpus with calibration.json      (default data/sec10k)
 #
 # Outputs:
-#   method_1/data/runs/$RUN/synthetic/filings/*/filing.html   Method 1's batch
-#   method_2/data/runs/$RUN/synthetic/*/*/item_*.txt         Method 2's batch
-#   evals/results/$RUN/                                            all eval reports
+# Outputs all go to one folder per batch, data/$RUN/:
+#   data/$RUN/method_1/synthetic/filings/*/filing.html   Method 1's batch
+#   data/$RUN/method_2/synthetic/*/*/item_*.txt          Method 2's batch
+#   data/$RUN/evals/                                     all eval reports
 set -euo pipefail
 
 RUN=${RUN:-gemini20}
@@ -38,9 +39,9 @@ ITEMS=(1 1A 1C 7 8)
 REPO=$(pwd)
 HERE="$REPO/implementations/synthetic_10k"
 M1_DATA=$(realpath "${M1_DATA:-data/sec10k}")
-M1_RUN="$HERE/method_1/data/runs/$RUN"
-M2_RUN="$HERE/method_2/data/runs/$RUN"
-RESULTS="$HERE/evals/results/$RUN"
+M1_RUN="$HERE/data/$RUN/method_1"
+M2_RUN="$HERE/data/$RUN/method_2"
+RESULTS="$HERE/data/$RUN/evals"
 
 # Make the proxy key in a repo-root .env visible to both methods.
 if [[ -f "$REPO/.env" ]]; then set -a; source "$REPO/.env"; set +a; fi
