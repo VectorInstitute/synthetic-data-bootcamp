@@ -403,7 +403,7 @@ def set_rows(name: str, companies: list[Company], real: RealItems, seed: int) ->
         for c, t in docs:
             a, b = traced_share(t, c.financials)
             traced, total = traced + a, total + b
-            a, b = correctness([t], *facts[c.company_id])
+            a, b = correctness([t], *facts[c.company_id], c.fiscal_year)
             correct, attached = correct + a, attached + b
         all_correct, all_attached = all_correct + correct, all_attached + attached
         real_words = real.median_words.get(item)
@@ -474,7 +474,7 @@ def real_rows(
         traced = total = correct = attached = 0
         traced_docs = 0
         for f, t in docs:
-            a, b = correctness([t], *facts[(f.ticker, f.fiscal_year)])
+            a, b = correctness([t], *facts[(f.ticker, f.fiscal_year)], f.fiscal_year)
             correct, attached = correct + a, attached + b
             current = metrics.get((f.ticker, f.fiscal_year))
             if not current:
