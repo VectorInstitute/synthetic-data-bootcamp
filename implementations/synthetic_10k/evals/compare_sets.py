@@ -378,10 +378,20 @@ def real_gap_summary(real: RealCorpus) -> dict:
 # ---------- utility ----------
 
 
+def paragraphs(text: str) -> list[str]:
+    """Paragraphs of an Item: blank-line separated, or one per line when the file has no
+    blank lines (the parsed real filings), so a real Item isn't one giant chunk.
+    """
+    paras = chunk_text(text)
+    if len(paras) == 1 and "\n" in paras[0]:
+        paras = [line.strip() for line in paras[0].splitlines() if line.strip()]
+    return paras
+
+
 def company_chunks(company_id: str, name: str, fy: int, paths: dict[str, Path], source: str) -> list[Chunk]:
     chunks = []
     for item, path in paths.items():
-        for i, para in enumerate(chunk_text(path.read_text(encoding="utf-8", errors="replace"))):
+        for i, para in enumerate(paragraphs(path.read_text(encoding="utf-8", errors="replace"))):
             chunks.append(
                 Chunk(f"{source[0]}:{company_id}_{fy}_{item}_{i}", company_id, name, fy, item, source, str(path), para),
             )
