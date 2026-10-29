@@ -114,6 +114,7 @@ DEFAULT_OUT = HERE / "results" / "compare_sets"
 ITEMS = ["1", "1a", "1c", "7", "8"]
 TOP_VOCAB_SIZE = 3000
 SHINGLE = 8
+REAL_CHUNK_WORDS = 80  # target chunk size when a real Item has no blank lines (see pack_lines)
 COPY_THRESHOLD = 0.05
 PRIVACY_FIELDS = [
     "total_assets",
@@ -379,13 +380,35 @@ def real_gap_summary(real: RealCorpus) -> dict:
 
 
 def paragraphs(text: str) -> list[str]:
-    """Paragraphs of an Item: blank-line separated, or one per line when the file has no
-    blank lines (the parsed real filings), so a real Item isn't one giant chunk.
+    """Paragraphs of an Item: blank-line separated, or lines packed into ~80-word chunks
+    when the file has no blank lines (the parsed real filings), so a real Item isn't one
+    giant chunk.
     """
     paras = chunk_text(text)
     if len(paras) == 1 and "\n" in paras[0]:
-        paras = [line.strip() for line in paras[0].splitlines() if line.strip()]
+        paras = pack_lines([line.strip() for line in paras[0].splitlines() if line.strip()])
     return paras
+
+
+def pack_lines(lines: list[str], target_words: int = REAL_CHUNK_WORDS) -> list[str]:
+    """Join consecutive lines into chunks of about `target_words` words.
+
+    A parsed real filing has one line per paragraph or table row (median 5 words), so
+    single lines are too small to be a passage. Packing them gives chunks near the
+    size of a long synthetic paragraph (synthetic Item 7 paragraphs: median 24 words,
+    90th percentile 57). A line longer than the target stays a chunk of its own.
+    """
+    chunks, current, words = [], [], 0
+    for line in lines:
+        n = len(line.split())
+        if current and words + n > target_words:
+            chunks.append("\n".join(current))
+            current, words = [], 0
+        current.append(line)
+        words += n
+    if current:
+        chunks.append("\n".join(current))
+    return chunks
 
 
 def company_chunks(company_id: str, name: str, fy: int, paths: dict[str, Path], source: str) -> list[Chunk]:
