@@ -49,7 +49,7 @@ def render_html(snapshot):
     app = app.replace('Loading failed. Check the local server.', 'Loading failed. Use a recent browser with gzip decompression support.')
     encoded = json.dumps(snapshot, ensure_ascii=False, allow_nan=False, separators=(',', ':')).replace('<', '\\u003c')
     scripts = '<script type="application/json" id="embedded-financial-data">' + encoded + '</script>\n'
-    for name in ['vendor/d3.v7.9.0.min.js', 'statistics.js', 'standalone.js']:
+    for name in ['vendor/d3.v7.9.0.min.js', 'statistics.js', 'evaluation.js', 'standalone.js']:
         scripts += inline_script((ASSETS / name).read_text(encoding='utf-8'))
     scripts += inline_script(app)
     return page.replace('</body>', scripts + '\n</body>')

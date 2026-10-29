@@ -1,5 +1,30 @@
 # Verification — 2026-10-28
 
+## Standalone HTML — 2026-10-29
+
+- Added `dashboard/financial_method_comparison.html` (53,726,478 bytes). Existing
+  `dashboard/index.html` and `template.html` are unchanged.
+- All CSS, D3, application code, source metadata and compressed financial pools are
+  embedded. Four executable inline scripts compile successfully; no external asset
+  references or live API requests remain.
+- Contains 10 sector pools, each with 2,000 companies per native financial method;
+  the real reference contains 228 eligible filings. Pools were generated with seed 42.
+- Actual-artifact Node checks decoded embedded data and verified default 200 samples
+  per method, 2,000 Utilities samples per method, unique IDs, stored statements and
+  accounting results, fixed real reference and reproducible sampling seeds.
+- 36 Python tests passed (new functionality plus original parser/spec/calibration
+  suites); 4 JavaScript tests passed. The full narrative collection was attempted but
+  is blocked in the current checkout by missing `anthropic` dependency. No narrative
+  generation is needed for this standalone financial dashboard.
+- Browser preview is unverified for this artifact: Browser Use disallows `file://`
+  URLs. No alternate browser or indirect preview was used to circumvent that policy.
+  Open the saved HTML directly in a recent browser for the local-file visual check.
+- The standalone UI explicitly labels fixed-pool resampling, sampling seed and pool
+  generation diagnostics. It does not claim to execute Python on slider changes.
+- A large Utilities pool exposed finite native name reservations consumed by rejected
+  profiles. The comparison adapter now releases those reservations (original source
+  unchanged); a reproducing regression failed before and passed after the fix.
+
 ## Relocation requested by user
 
 All new files are consolidated under `implementations/synthetic_10k/method_3/`;
@@ -55,6 +80,34 @@ regressions pass: 43 Python tests and 2 JavaScript tests passed after this reloc
   the delivered local URL was verified in browser. No firewall/network settings changed.
 
 ## Limits
+
+### Dashboard metric extension (2026-10-29)
+
+- Follow-up visual: added per-method real/synthetic scatter overlays for all 15
+  selectable ratio pairs, full-data least-squares lines, shared axes, Pearson
+  coefficients, selected-pair similarity and observed counts. Circles/dashed lines
+  identify real data and diamonds/solid lines identify synthetic data. Plotted
+  points are capped at 500 per population; fits and scores use all complete pairs.
+  Rebuilt the standalone HTML with the original embedded pools. Nine Node tests
+  pass, including finite fitted coefficients and score agreement with the pair
+  evaluation on actual pools at slider bounds in every sector. Local-file browser
+  rendering remains unverified under the existing preview restriction.
+
+- Added JavaScript KSComplement, numeric Column Pair Trends (Pearson similarity),
+  and feature-subset DCR with a uniform numeric random-baseline protection score.
+  UI exposes formulas, features, valid counts, per-column/per-pair detail and privacy
+  limitations. JSON exports include results and settings. Existing generators are
+  unchanged; original embedded sample banks and generation timestamp are preserved.
+- Rebuilt `dashboard/financial_method_comparison.html` with inline evaluation code;
+  the existing local API server also serves the new evaluation module.
+- Eight Node tests passed, including tests on actual delivered HTML: all inline
+  JavaScript compiles, no API calls remain, and embedded pools evaluate at 20 and
+  2,000 samples for all ten sectors and the pooled selection. Twenty Method 3 Python
+  tests passed with the bundled Python runtime and workspace-local pytest temp path.
+- Independent read-only metric/integration review found no critical or important
+  issues. `git diff --check` passed; original Method 1/2 sources have no changes.
+- Local-file browser rendering is not verified: the app's browser blocks file URLs.
+  No alternate-browser or HTTP workaround was used to bypass that restriction.
 
 In-sample comparison, not held-out validation. No learned multi-year dynamics. Optional
 zeros and missing-value policies are modeling choices. Native gates differ, and their

@@ -13,6 +13,9 @@ class StandaloneTests(unittest.TestCase):
         self.assertIn('Sampling seed', page)
         self.assertIn('Resample', page)
         self.assertIn('fixed embedded pools', page)
+        self.assertIn('Column Pair Trends', page)
+        self.assertIn('DCR baseline protection', page)
+        self.assertIn('root.FinancialEvaluation=api', page)
         self.assertNotIn('</script><script>unsafe</script>', page)
         self.assertIn('\\u003c/script>', page)
 

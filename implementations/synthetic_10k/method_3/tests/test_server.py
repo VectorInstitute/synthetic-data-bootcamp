@@ -12,6 +12,7 @@ class ServerTests(unittest.TestCase):
 
     def test_static_paths_cannot_escape_dashboard(self):
         self.assertEqual(static_file('/').name, 'index.html')
+        self.assertEqual(static_file('/evaluation.js').name, 'evaluation.js')
         for path in ('/../method_2/config.yaml', '/method_3/server.py', '/.env'):
             self.assertIsNone(static_file(path))
 

@@ -5,6 +5,9 @@ const SECTORS={'Information Technology':'Information Technology','Health Care':'
 const COLORS=['#4264ce','#c27a2b','#16836a','#64748b'];
 const CORR=['operating_margin','net_margin','asset_turnover','equity_ratio','cash_ratio','rd_ratio'];
 const SHORT=['Op.','Net','Turn.','Eq.','Cash','R&D'];
+const PRIVACY_FEATURES=['revenue','asset_turnover','operating_margin','equity_ratio','cash_ratio'];
+const score=x=>S.finite(x)?`${(100*x).toFixed(1)}%`:'N/A';
+const distance=x=>S.finite(x)?x.toPrecision(4):'N/A';
 let current=null, requestId=0, controller=null, timer=null;
 const picks={};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -12,6 +15,7 @@ const num=x=>S.finite(x)?x.toLocaleString('en-US',{maximumFractionDigits:2}):'Mi
 function fmt(value,key){if(!S.finite(value))return 'Missing';const type=METRICS[key]?.[1];if(type==='ratio')return `${(100*value).toFixed(1)}%`;if(type==='times')return `${value.toFixed(2)}×`;if(type==='money'){const a=Math.abs(value);return a>=1e9?`$${(value/1e9).toFixed(2)}B`:a>=1e6?`$${(value/1e6).toFixed(1)}M`:`$${num(value)}`;}return num(value);}
 function options(el,selected){el.innerHTML=Object.entries(METRICS).map(([k,v])=>`<option value="${k}">${v[0]}</option>`).join('');el.value=selected;}
 options($('metric'),'net_margin');options($('scatterX'),'asset_turnover');options($('scatterY'),'operating_margin');
+CORR.forEach((a,i)=>CORR.slice(i+1).forEach(b=>{const o=document.createElement('option');o.value=`${a}|${b}`;o.textContent=`${METRICS[a][0]} × ${METRICS[b][0]}`;$('trendPair').append(o);}));
 function groups(){return [...current.methods,{id:'real',label:'Real reports',rows:current.real}];}
 function cards(left,right,draw){$(left).replaceChildren();$(right).replaceChildren();groups().forEach((g,i)=>{const card=document.createElement('div');card.className='card';card.style.setProperty('--series',COLORS[i]);$(i===3?right:left).append(card);draw(card,g,i);});}
 function tooltip(event,text){const box=$('tooltip');box.textContent=text;box.hidden=false;box.style.left=`${Math.min(event.clientX+12,innerWidth-300)}px`;box.style.top=`${Math.max(5,Math.min(event.clientY+12,innerHeight-100))}px`;}
@@ -90,11 +94,75 @@ function sourcePanel(){
   </ul><details><summary>Joint model: sector samples, missing values and fallbacks</summary>${modelDetails}</details>
   <details><summary>All excluded records</summary>${tableHtml(Object.fromEntries(p.excluded.map(r=>[r.ticker,r.reason])))}</details>`;
 }
+function drawPairTrends(){
+ const [a,b]=$('trendPair').value.split('|');
+ const complete=rows=>rows.filter(r=>S.finite(r.metrics[a])&&S.finite(r.metrics[b]));
+ const datasets=groups().map(g=>complete(g.rows));
+ const x=d3.scaleLinear().domain(paddedDomain(datasets.flat().map(r=>r.metrics[a]))).range([48,282]);
+ const y=d3.scaleLinear().domain(paddedDomain(datasets.flat().map(r=>r.metrics[b]))).range([190,44]);
+ const reference=current.real,realColor='#243b64';
+ cards('syntheticTrends','realTrends',(card,g,i)=>{
+  if(i===3){const fit=FinancialEvaluation.pairTrend(reference,reference,a,b).real;card.innerHTML=`<h3>Real reference · selected pair</h3><p>${METRICS[a][0]} × ${METRICS[b][0]}</p><div class="diagnostic-row"><span>Pearson r</span><strong>${fit.r===null?'N/A':fit.r.toFixed(3)}</strong></div><div class="diagnostic-row"><span>Complete observations</span><strong>${fit.n}/${reference.length}</strong></div><small>Dark circles and dashed lines in each comparison show this same real population. Colored diamonds and solid lines show the corresponding synthetic method. Missing values are excluded. A line is unavailable when X is constant or fewer than two complete observations exist.</small>`;return;}
+  const pair=FinancialEvaluation.pairTrend(reference,g.rows,a,b);
+  card.innerHTML=`<h3>${esc(g.label)} · Real vs. synthetic</h3><div class="stats"><span>Pair correlation similarity <strong>${score(pair.score)}</strong></span></div>`;
+  const svg=svgFrame(card,300,246).attr('aria-label',`${g.label}: real versus synthetic ${METRICS[a][0]} and ${METRICS[b][0]}, correlation similarity ${score(pair.score)}`);
+  const clipId=`trend-clip-${g.id}`;
+  svg.append('defs').append('clipPath').attr('id',clipId).append('rect').attr('x',48).attr('y',44).attr('width',234).attr('height',146);
+  svg.append('g').attr('class','grid').attr('transform','translate(48,0)').call(d3.axisLeft(y).ticks(4).tickSize(-234).tickFormat('')).call(g=>g.select('.domain').remove());
+  const plot=svg.append('g').attr('clip-path',`url(#${clipId})`);
+  [[datasets[3],pair.real,realColor,true],[datasets[i],pair.synthetic,COLORS[i],false]].forEach(([rows,fit,color,isReal])=>{
+   const shown=rows.filter((_,j)=>j%Math.max(1,Math.ceil(rows.length/500))===0);
+   const dots=plot.append('g').selectAll('path').data(shown).join('path').attr('d',d3.symbol().type(isReal?d3.symbolCircle:d3.symbolDiamond).size(isReal?13:18)).attr('transform',r=>`translate(${x(r.metrics[a])},${y(r.metrics[b])})`).attr('fill',color).attr('opacity',.48);
+   hover(dots,r=>`${isReal?'Real':g.label} · ${r.name}\n${METRICS[a][0]} ${fmt(r.metrics[a],a)}\n${METRICS[b][0]} ${fmt(r.metrics[b],b)}`);
+   if(fit.slope!==null){plot.append('path').attr('d',d3.line()(fit.extent.map(v=>[x(v),y(fit.intercept+fit.slope*v)]))).attr('fill','none').attr('stroke',color).attr('stroke-width',2).attr('stroke-dasharray',isReal?'5,3':null);}
+  });
+  svg.append('g').attr('class','axis').attr('transform','translate(0,190)').call(d3.axisBottom(x).ticks(4).tickFormat(v=>fmt(v,a)));
+  svg.append('g').attr('class','axis').attr('transform','translate(48,0)').call(d3.axisLeft(y).ticks(4).tickFormat(v=>fmt(v,b)));
+  svg.append('text').attr('x',165).attr('y',231).attr('text-anchor','middle').attr('font-size',10).attr('fill','#617084').text(METRICS[a][0]);
+  svg.append('text').attr('transform','translate(11,117) rotate(-90)').attr('text-anchor','middle').attr('font-size',10).attr('fill','#617084').text(METRICS[b][0]);
+  [[realColor,'Real',true],[COLORS[i],'Synthetic',false]].forEach(([color,label,isReal],j)=>{
+   const legend=svg.append('g').attr('transform',`translate(${53+j*112},20)`);
+   legend.append('line').attr('x1',0).attr('x2',20).attr('stroke',color).attr('stroke-width',2).attr('stroke-dasharray',isReal?'5,3':null);
+   legend.append('path').attr('d',d3.symbol().type(isReal?d3.symbolCircle:d3.symbolDiamond).size(20)).attr('transform','translate(10,0)').attr('fill',color);
+   legend.append('text').attr('x',26).attr('y',3).attr('font-size',10).attr('fill',color).text(label);
+  });
+  card.insertAdjacentHTML('beforeend',`<div class="metric-details">Pearson r · real ${pair.real.r===null?'N/A':pair.real.r.toFixed(3)} / synthetic ${pair.synthetic.r===null?'N/A':pair.synthetic.r.toFixed(3)}<br>Complete observations · real ${pair.real.n}/${reference.length} / synthetic ${pair.synthetic.n}/${g.rows.length}</div>`);
+ });
+}
+function drawEvaluation(){
+ const quality=current.methods.map(m=>{
+  const columns=FinancialEvaluation.quality(current.real,m.rows,Object.keys(METRICS));
+  const pairs=FinancialEvaluation.quality(current.real,m.rows,CORR);
+  return {columnShapes:columns.columnShapes,columns:columns.columns,pairTrends:pairs.pairTrends,pairs:pairs.pairs};
+ });
+ const privacy=FinancialEvaluation.privacy(current.real,current.methods.map(m=>m.rows),PRIVACY_FEATURES,current.seed);
+ // Keep the exported JSON auditable with feature sets, coverage, distances and settings.
+ current.evaluation={implementation:'JavaScript; documented SDMetrics formulas on stated numeric subsets',scope:'In-sample; current sector and selected synthetic samples',qualityFeatures:Object.keys(METRICS),pairFeatures:CORR,privacyFeatures:PRIVACY_FEATURES,baselineSeed:current.seed,baselineMissingPolicy:'Uniform observed numeric ranges; no missing values',overfittingProtection:null,privacy,methods:current.methods.map((m,i)=>({id:m.id,...quality[i]}))};
+ cards('syntheticQuality','realQuality',(card,g,i)=>{
+  if(i===3){card.innerHTML='<h3>Real reference · evaluation scope</h3><p>All scores compare the selected synthetic sample to these fixed real reports.</p><p>Column coverage varies with missing disclosures; pair counts use complete observations.</p><small>Select a sector above to inspect within-sector fidelity. Pooled correlations can reflect differences between sectors. All comparisons are in-sample; small real sectors can produce unstable scores.</small>';return;}
+  const q=quality[i],validCols=q.columns.filter(x=>x.score!==null).length,validPairs=q.pairs.filter(x=>x.score!==null).length;
+  card.innerHTML=`<h3>${esc(g.label)}</h3><div class="diagnostic-row"><span>Mean KSComplement</span><strong>${score(q.columnShapes)}</strong></div><small>${validCols}/${q.columns.length} comparable columns</small><div class="diagnostic-row"><span>Column Pair Trends</span><strong>${score(q.pairTrends)}</strong></div><small>${validPairs}/${q.pairs.length} comparable pairs · Pearson</small><details><summary>KSComplement by column</summary><div class="table-wrap"><table><thead><tr><th>Column</th><th>Score</th><th>Valid real / synth.</th></tr></thead><tbody>${q.columns.map(x=>`<tr><td>${METRICS[x.key][0]}</td><td>${score(x.score)}</td><td>${x.realN} / ${x.syntheticN}</td></tr>`).join('')}</tbody></table></div></details><details><summary>Column Pair Trends · all pairs</summary><div class="table-wrap"><table><thead><tr><th>Pair</th><th>Score</th><th>r real / synth.</th><th>n real / synth.</th></tr></thead><tbody>${q.pairs.map(x=>`<tr><td>${METRICS[x.a][0]} × ${METRICS[x.b][0]}</td><td>${score(x.score)}</td><td>${x.realR===null?'N/A':x.realR.toFixed(3)} / ${x.syntheticR===null?'N/A':x.syntheticR.toFixed(3)}</td><td>${x.realN} / ${x.syntheticN}</td></tr>`).join('')}</tbody></table></div></details>`;
+ });
+ const all=[...privacy.methods,privacy.reference],domain=paddedDomain(all.flatMap(x=>x.distances));
+ const x=d3.scaleLinear().domain(domain).range([39,257]),bin=d3.bin().domain(domain).thresholds(d3.range(1,19).map(i=>domain[0]+i*(domain[1]-domain[0])/19));
+ const bins=all.map(d=>bin(d.distances)),y=d3.scaleLinear().domain([0,(d3.max(bins,(bs,i)=>d3.max(bs,b=>b.length/(all[i].distances.length||1)))||1)*1.08]).range([149,12]);
+ cards('syntheticPrivacy','realPrivacy',(card,g,i)=>{
+  const d=all[i];card.innerHTML=`<h3>${i===3?'Real → other real (self excluded)':`${esc(g.label)} → real`}</h3>`;
+  if(d.distances.length){
+   const svg=svgFrame(card,270,180).attr('aria-label',`${g.label} distance to closest real record`);
+   const bars=svg.append('g').selectAll('rect').data(bins[i]).join('rect').attr('x',b=>x(b.x0)+.8).attr('width',b=>Math.max(0,x(b.x1)-x(b.x0)-1.6)).attr('y',b=>y(b.length/d.distances.length)).attr('height',b=>y(0)-y(b.length/d.distances.length)).attr('fill',COLORS[i]).attr('opacity',.8);
+   hover(bars,b=>`DCR ${distance(b.x0)} – ${distance(b.x1)}\n${b.length} records · ${score(b.length/d.distances.length)}`);
+   svg.append('g').attr('class','axis').attr('transform','translate(0,149)').call(d3.axisBottom(x).ticks(3).tickFormat(d3.format('.2g')));
+   svg.append('g').attr('class','axis').attr('transform','translate(39,0)').call(d3.axisLeft(y).ticks(3).tickFormat(d3.format('.0%')));
+  }else card.insertAdjacentHTML('beforeend','<p class="empty">DCR unavailable: no varying reference features or too few other real records.</p>');
+  card.insertAdjacentHTML('beforeend',`<div class="diagnostic-row"><span>Median DCR</span><strong>${distance(d.median)}</strong></div><div class="diagnostic-row"><span>5th percentile / minimum</span><strong>${distance(d.p05)} / ${distance(d.minimum)}</strong></div><div class="diagnostic-row"><span>Zero-distance feature matches</span><strong>${score(d.zeroFraction)}</strong></div>${i<3?`<div class="diagnostic-row"><span>DCR baseline protection</span><strong>${score(d.score)}</strong></div><small>Uniform baseline median: ${distance(d.baselineMedian)} · ${g.rows.length} random rows</small>`:'<small>Leave-one-out distances use the same feature scaling. This is not a held-out privacy test.</small>'}<p class="metric-details">Active features: ${privacy.features.length}/${PRIVACY_FEATURES.length}${privacy.excluded.length?` · Excluded: ${privacy.excluded.map(k=>METRICS[k][0]).join(', ')}`:''}. Missingness contributes to distance. Higher DCR can also reflect unrealistic outliers.</p>`);
+ });
+}
 function render(){const n=current.n;$('syntheticCount').textContent=`${n.toLocaleString()} per method`;$('realCount').textContent=`${current.real.length} reports`;$('scopeLabel').textContent=`${current.sector==='all'?'All mapped non-financial sectors':SECTORS[current.sector]||current.sector} · Real reference: ${current.real.length} fixed reports · Period-end years: ${current.provenance.period_years.join(' / ')}`;
  $('correlationScope').textContent=current.sector==='all'?' Sectors are pooled here; select a sector to inspect within-sector relationships.':' Within-sector relationships are shown.';
  $('methodHeadings').innerHTML=current.methods.map((m,i)=>`<div class="method-card" style="--series:${COLORS[i]}"><h3>${m.label}</h3><strong>${m.rows.length.toLocaleString()}</strong><span> companies</span><p>${['Independent sector quantiles + original accounting engine','Scale and perturb a real financial profile','Empirical marginals + regularized joint dependence'][i]}</p></div>`).join('');
  $('realHeading').innerHTML=`<div class="method-card" style="--series:${COLORS[3]}"><h3>SEC 10-K · Real reference</h3><strong>${current.real.length}</strong><span> reports</span><p>Fitting and comparison use the same real observations</p></div>`;
- drawHistograms();drawScatter();drawCorrelations();drawStatements();drawDiagnostics();sourcePanel();}
+ drawHistograms();drawScatter();drawCorrelations();drawPairTrends();drawEvaluation();drawStatements();drawDiagnostics();sourcePanel();}
 function busy(value){document.body.classList.toggle('pending',value);$('workspace').setAttribute('aria-busy',String(value));$('downloadCsv').disabled=value||!current;$('downloadJson').disabled=value||!current;}
 async function generate(){const id=++requestId;if(controller)controller.abort();controller=new AbortController();busy(true);$('error').hidden=true;$('status').textContent='Generating and checking three sets of statements…';const n=Number($('sampleCount').value),seed=Number($('seed').value),sector=$('sector').value;const start=performance.now();try{const response=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({n,seed,sector}),signal:controller.signal});const result=await response.json();if(!response.ok)throw new Error(result.error||'Generation failed');if(id!==requestId)return;current=result;render();busy(false);$('status').textContent=`Updated · ${((performance.now()-start)/1000).toFixed(1)} s · seed ${seed}`;}catch(error){if(error.name==='AbortError'||id!==requestId)return;current=null;busy(false);$('error').hidden=false;$('error').textContent=`${error.message}. Adjust the settings and generate again.`;$('status').textContent='Generation incomplete';$('workspace').setAttribute('aria-busy','false');$('workspace').style.opacity='.35';}finally{if(current)$('workspace').style.opacity='';}}
 function schedule(){clearTimeout(timer);requestId++;if(controller)controller.abort();busy(true);$('status').textContent='Settings changed; generation pending…';timer=setTimeout(generate,450);}
@@ -102,6 +170,7 @@ $('sampleCount').addEventListener('input',()=>{$('countLabel').textContent=Numbe
 $('sector').addEventListener('change',schedule);$('seed').addEventListener('change',schedule);$('regenerate').addEventListener('click',()=>{clearTimeout(timer);generate();});
 $('metric').addEventListener('change',()=>{if(current)drawHistograms();});$('logScale').addEventListener('change',()=>{if(current)drawHistograms();});
 for(const id of ['scatterX','scatterY'])$(id).addEventListener('change',()=>{if(current)drawScatter();});$('statement').addEventListener('change',()=>{if(current)drawStatements();});
+$('trendPair').addEventListener('change',()=>{if(current)drawPairTrends();});
 $('sourceToggle').addEventListener('click',()=>{const open=$('source').hidden;$('source').hidden=!open;$('sourceToggle').setAttribute('aria-expanded',String(open));});
 function download(text,type,name){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),5000);}
 $('downloadJson').addEventListener('click',()=>{if(current)download(JSON.stringify(current,null,2),'application/json',`financial-comparison-${current.n}-seed${current.seed}.json`);});

@@ -29,6 +29,7 @@ def parse_controls(body):
 def static_file(path):
     allowed = {'/': DASHBOARD / 'index.html', '/app.js': DASHBOARD / 'app.js',
                '/style.css': DASHBOARD / 'style.css', '/statistics.js': DASHBOARD / 'statistics.js',
+               '/evaluation.js': DASHBOARD / 'evaluation.js',
                '/vendor/d3.js': DASHBOARD / 'vendor/d3.v7.9.0.min.js'}
     return allowed.get(path)
 

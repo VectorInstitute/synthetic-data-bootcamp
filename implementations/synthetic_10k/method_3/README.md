@@ -138,9 +138,34 @@ downstream benchmark utility. No superiority claim is hardcoded into the page.
 
 ## Tests
 
+The standalone HTML also includes KSComplement for the 16 displayed financial
+metrics and numeric Column Pair Trends for the 15 unique pairs of six ratios in
+the correlation matrix. The latter uses Pearson correlation similarity; missing
+or constant pairs are unavailable and coverage is shown. These are JavaScript
+implementations of the documented SDMetrics formulas on explicit feature subsets,
+not an SDMetrics QualityReport run. Each method has expandable per-column and
+per-pair results; JSON exports retain evaluation details.
+
+Column Pair Trends also has a selectable overlay plot for each method: real circles
+and synthetic diamonds, separate least-squares lines, shared axes, selected-pair
+similarity, Pearson coefficients and complete-observation counts. The selector
+covers the same 15 ratio pairs as the aggregate. Each population displays at most
+500 points; all complete observations contribute to the fitted lines and scores.
+
+Privacy diagnostics show range-normalized mean-absolute DCR on revenue, asset
+turnover, operating margin, equity/assets and cash/assets. Constant/unobserved real
+features are excluded; missing-to-observed distances are 1 and two missing values
+match at 0. A shared seeded uniform baseline draws observed numeric ranges without
+missing values; its median DCR provides a capped median-ratio protection score.
+The real panel uses leave-one-out distances. Zero distance only means a match on
+the active feature subset. These are closeness diagnostics, not privacy guarantees;
+there is no independent held-out set to assess overfitting protection. Higher DCR
+can reflect unrealistic records. Sample count and sector changes recalculate all
+metrics; real reference data stays fixed within the chosen sector.
+
 ```powershell
 python -m unittest discover -s method_3/tests -v
-node --test method_3/dashboard/statistics.test.cjs
+node --test method_3/dashboard/statistics.test.cjs method_3/dashboard/standalone.test.cjs method_3/dashboard/evaluation.test.cjs method_3/dashboard/artifact-evaluation.test.cjs
 ```
 
 Tests cover reproducibility, dependence, tied/constant/missing columns, exact fiscal
