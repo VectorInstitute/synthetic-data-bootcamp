@@ -1,0 +1,349 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Selzennov Materials, Inc. (ticker SOLV)
+Sector: Materials
+Incorporated in: Delaware
+Headquarters: Charlotte, North Carolina
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 18,000
+
+Selzennov Materials, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      14,240        13,521
+Cost of revenue                              11,829        11,290
+Gross profit                                  2,411         2,231
+Research and development                          0             0
+Selling, general and administrative             365           378
+Other operating expense                         854           811
+Operating income                              1,192         1,042
+Interest expense                                697           665
+Income before income taxes                      495           377
+Provision for income taxes                      112            91
+Net income                                      383           286
+
+Selzennov Materials, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            3,038         2,831
+Accounts receivable, net                             2,952         2,905
+Inventories                                          1,820         1,778
+Other current assets                                 3,347         3,219
+Total current assets                                11,157        10,733
+Property, plant and equipment, net                  14,342        13,990
+Goodwill                                             9,821         9,575
+Other non-current assets                             5,296         4,633
+Total assets                                        40,616        38,931
+Total current liabilities                            4,910         4,579
+Long-term debt                                      15,480        14,781
+Other non-current liabilities                        1,219         1,169
+Total liabilities                                   21,609        20,529
+Total stockholders' equity                          19,007        18,402
+Total liabilities and stockholders' equity          40,616        38,931
+
+Selzennov Materials, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                               383
+Depreciation and amortization                            698
+Changes in working capital and other                     105
+Net cash provided by operating activities              1,186
+Purchases of property and equipment                    (779)
+Other investing activities, net                      (1,121)
+Net cash used in investing activities                (1,900)
+Net change in long-term debt                             699
+Dividends paid                                         (116)
+Share repurchases, net of issuances                      338
+Net cash used in financing activities                    921
+Net change in cash and cash equivalents                  207
+Cash and cash equivalents, beginning of year           2,831
+Cash and cash equivalents, end of year                 3,038
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 5.3%
+Net income growth, fiscal 2024 versus 2023: 33.9%
+Operating income growth, fiscal 2024 versus 2023: 14.4%
+Gross margin, fiscal 2024: 16.9%
+Operating margin, fiscal 2024: 8.4%
+Net margin, fiscal 2024: 2.7%
+Effective tax rate, fiscal 2024: 22.6%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 2.6%
+Gross margin, fiscal 2023: 16.5%
+Operating margin, fiscal 2023: 7.7%
+Net margin, fiscal 2023: 2.1%
+Effective tax rate, fiscal 2023: 24.1%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 2.8%
+
+STYLE EXAMPLE: the start of Item 1C from a real Materials company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1C. CYBERSECURITY
+We maintain a cybersecurity program that is aligned with our business and focused on managing risks to our Company. As described below, we have established policies, standards, processes and practices for assessing, identifying and managing material risks from cybersecurity threats, which are integrated into our overall risk management program and governance structure.
+We use various controls, technologies and other processes designed to identify, protect against, detect, respond to and mitigate cybersecurity risks, in alignment with the National Institute of Standards and Technology (NIST) Cybersecurity Framework 2.0. These include, but are not limited to, internal reporting, monitoring and detection tools, threat intelligence and general and role-based training. We also maintain third-party management processes to identify and manage the cybersecurity risks associated with third-party service providers. We periodically evaluate and improve the effectiveness of our cybersecurity program internally and by engaging with consultants and other third-party advisors to conduct reviews and assessments of our program. These periodic assessments and reviews may include penetration and vulnerability testing, simulations, table-tops and other exercises.
+Overseeing the assessment and management of our exposure to various risks, including cybersecurity, is a key oversight responsibility for the Board of Directors. We have an enterprise risk management (ERM) program that includes the processes used to identify, assess and manage our most significant enterprise risks and uncertainties that could materially impact the long-term health of the Company or prevent the achievement of strategic objectives. These risks are identified, measured, monitored and managed across key risk categories, which include the consideration of cybersecurity risks. Our chief financial officer (CFO) facilitates the Company’s ERM program, which includes a formal assessment of the Company’s risk environment at least once per year. The ERM program also facilitates the incorporation of risk assessment and evaluation into the strategic planning process and the provision of regular reports to senior management, including our CEO. The Audit Committee assists the Board with its oversight of both the ERM program and cybersecurity risk, providing regular reports to the Board. Our CFO reviews the ERM program with the Audit Committee at least once per year, including reviewing existing risks and significant emerging risks across the Company’s key risk categories. In reviewing specific threats and risks with the Board, senior management may incorporate reports from consultants and other third-party advisors.
+Our Chief Information Security Officer (CISO) leads our global cybersecurity program and is responsible for management of our cybersecurity risks. Our CISO reports to our CFO. Our CISO has served in that position since 2022 and has relevant
+16
+Table of Contents
+experience in cybersecurity leadership positions, including prior experience as CISO of a public company. The Audit Committee regularly reviews our risk exposures relating to cybersecurity with our CISO and CFO, including review of the state of the Company’s cybersecurity and emerging cybersecurity developments and threats and the steps management has taken to monitor and mitigate such exposures. Our CISO manages a team of cybersecurity professionals with expertise and experience in information security.
+Our CISO is informed of cybersecurity incidents by the cybersecurity team’s security operations center, which is generally responsible for monitoring the prevention, detection, mitigation and remediation of cybersecurity incidents. We have an established process governing our assessment, response and notifications internally and externally upon the occurrence of a cybersecurity incident, including for our evaluation of materiality. Depending on the nature and severity of an incident, this process provides for escalating notification to our CEO and Board of Directors.
+Despite our efforts to prevent cybersecurity threats and incidents, our systems may be affected by damage or interruption resulting from, among other causes, cyber attacks, security breaches, power outages, system failures or malware (including ransomware and other programs that operate with malicious intent). Disruptions to these systems may impair our ability to conduct business and have a material adverse effect on our business, results of operations and financial condition. Despite the security measures we have in place, our facilities and systems and those of third parties we rely on or do business with, may be vulnerable to cyber attacks, security breaches, malware (including ransomware and other programs that operate with malicious intent), power outages, system failures, acts of vandalism, human or technical errors, or other similar events or disruptions. Any such event involving the misappropriation, loss or other unauthorized disclosure of information, whether impacting us or third parties we rely on or do business with, could result in losses, damage our reputation or relationships with customers and suppliers, expose us to the risks of litigation, regulatory action and liability, disrupt our operations and have a material adverse effect on our business, results of operations and financial condition.
+To date, we have not experienced a cybersecurity threat or incident that has had a material adverse affect on our business, results of operations and financial condition. We, and third parties we do business with, have experienced cybersecurity attacks and incidents in the past, some of which have resulted in unauthorized access to our information and systems, and other disruptions to our business operations, and we could in the future experience similar incidents. See Risk Factors in Item 1A for additional information on cybersecurity risks.
+17
+Table of Contents
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+General Development of Business
+
+Selzennov Materials, Inc. ("Selzennov" or the "Company") was incorporated in Delaware and maintains its headquarters in Charlotte, North Carolina. As a leading entity in the materials sector, Selzennov operates with a fiscal year ending on December 31. The consolidated financial statements include the activities of both domestic and international operations, adhering to U.S. GAAP (accounting principles generally accepted in the United States of America). The Company's operations span across multiple geographical regions, reflecting Selzennov's commitment to meeting the diverse needs of its global customer base.
+
+Narrative Description of Business
+
+General
+
+Selzennov Materials, Inc. is a prominent provider of advanced materials solutions, catering to various industries worldwide. With annual revenues of $14,240 million for the fiscal year ended December 31, 2024, Selzennov is dedicated to supplying high-quality products and services that enhance the operational efficiency and sustainability of its customers. Employing approximately 18,000 individuals, Selzennov's workforce is integral to the Company's ongoing success and innovation.
+
+Principal Products and Services
+
+Selzennov specializes in the production and distribution of a wide array of materials that serve critical functions in industrial applications. The Company's portfolio includes specialty chemicals, performance materials, and other advanced solutions designed to meet the stringent demands of sectors such as automotive, construction, electronics, and more. By leveraging cutting-edge technology and a deep understanding of market requirements, Selzennov delivers products that contribute to the improved performance and longevity of its customers' operations.
+
+Reportable Segments
+
+The operations of Selzennov are organized into distinct reportable segments, each tailored to address specific market needs and opportunities. These segments include:
+
+1. Performance Materials
+
+The Performance Materials segment focuses on the development and supply of high-performance materials that are essential in enhancing product durability and efficiency. This segment serves a diverse range of industries, including automotive, aerospace, and electronics. By providing materials that withstand extreme conditions, Selzennov supports its customers in achieving superior product performance.
+
+2. Specialty Chemicals
+
+The Specialty Chemicals segment is dedicated to the production of chemical solutions that optimize industrial processes. These chemicals are utilized in various applications, from improving manufacturing efficiencies to ensuring environmental compliance. The segment's offerings are critical in addressing the evolving regulatory and performance requirements of industries such as manufacturing, water treatment, and energy.
+
+3. Advanced Solutions
+
+The Advanced Solutions segment encompasses innovative products and services that facilitate the transition to more sustainable and efficient industrial practices. This segment offers tailored solutions that aid customers in reducing their environmental footprint while maintaining operational excellence. Key industries served include renewable energy, sustainable construction, and eco-friendly manufacturing.
+
+Customers
+
+Selzennov serves a broad spectrum of customers, ranging from multinational corporations to small enterprises. The Company's customer base spans industries such as automotive, aerospace, construction, electronics, energy, and more. By maintaining strong relationships with its customers, Selzennov ensures that its products and services align with their evolving needs and strategic objectives.
+
+Sales and Marketing
+
+Selzennov employs a comprehensive sales and marketing strategy that focuses on understanding and addressing the unique requirements of its customers. The Company's sales team is composed of highly skilled professionals who possess deep industry knowledge and technical expertise. Through direct sales channels, strategic partnerships, and digital platforms, Selzennov effectively reaches its target markets and communicates the value of its offerings.
+
+Competition
+
+Selzennov operates in a highly competitive environment, facing competition from both domestic and international companies. The Company differentiates itself through its commitment to quality, innovation, and customer service. By continuously investing in research and development, Selzennov remains at the forefront of technological advancements, enabling it to offer superior products and solutions that meet the demanding needs of its customers.
+
+Seasonality
+
+The demand for Selzennov's products and services can be subject to seasonal fluctuations, particularly in industries such as construction and agriculture. The Company proactively manages its production schedules and inventory levels to accommodate these variations in demand, ensuring consistent supply and service to its customers throughout the year.
+
+Intellectual Property
+
+Selzennov places significant emphasis on protecting its intellectual property, which is crucial to maintaining its competitive advantage. The Company holds a portfolio of patents, trademarks, and trade secrets that safeguard its innovative technologies and proprietary processes. Selzennov actively monitors and enforces its intellectual property rights to prevent unauthorized use and infringement.
+
+Government Regulation
+
+Selzennov's operations are subject to a wide range of government regulations, including environmental, health and safety, and chemical management standards. The Company is committed to compliance with all applicable laws and regulations, ensuring that its products and processes meet the highest standards of safety and environmental stewardship. Selzennov collaborates with regulatory authorities to stay informed of emerging requirements and proactively adapts its operations to align with evolving regulatory landscapes.
+
+Human Capital
+
+The Company's workforce of approximately 18,000 employees is a cornerstone of its success. Selzennov values diversity, inclusivity, and professional development, fostering a work environment that encourages innovation and collaboration. The Company invests in training and development programs to enhance the skills and capabilities of its employees, ensuring they are equipped to meet the challenges of a dynamic industry.
+
+Available Information
+
+Selzennov Materials, Inc. makes available, free of charge, its annual report on Form 10-K, quarterly reports on Form 10-Q, current reports on Form 8-K, and amendments to those reports filed or furnished pursuant to Section 13(a) or 15(d) of the Securities Exchange Act of 1934, as soon as reasonably practicable after such documents are electronically filed with, or furnished to, the Securities and Exchange Commission. These documents are accessible through the Company's website and the SEC's EDGAR database.
+
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+This section highlights the significant risks that could adversely affect Selzennov Materials, Inc. ("Selzennov" or the "Company"). These risks are not the only ones the Company faces and are not listed in order of importance. Additional risks not presently known to us or that we currently consider immaterial may also adversely affect our business, financial condition, operating results, and cash flows. Potential investors should carefully consider these risks before investing in our securities.
+
+Risks Related to the Business and Industry
+
+Volatility in Raw Material Costs
+
+The cost of raw materials significantly affects our financial performance. Selzennov relies on a stable supply of specialty chemicals and performance materials to manufacture its products. Fluctuations in the prices of these raw materials, driven by changes in global supply and demand, geopolitical tensions, or natural disasters, could lead to increased production costs that we may not be able to pass on to our customers. Such cost variations could materially impact our profit margins and financial results.
+
+Intense Competition in the Materials Sector
+
+The materials sector is highly competitive, with numerous companies vying for market share. Selzennov faces competition from both established players and new entrants in the industry. Competitors may offer products at lower prices or develop superior technologies, which could erode our market position. Our ability to maintain a competitive edge depends on our capacity to innovate, maintain product quality, and respond swiftly to market changes.
+
+Dependence on Key Customers
+
+A significant portion of our revenue is derived from a limited number of key customers across industries such as automotive, aerospace, and electronics. The loss of any major customer, or a significant reduction in orders from them, could adversely impact our sales and profitability. Additionally, if these customers experience financial difficulties or changes in demand for their products, it could have a ripple effect on our operations.
+
+Risks Related to Operations
+
+Operational Disruptions
+
+Selzennov's manufacturing operations are subject to risks of disruption due to equipment failure, industrial accidents, natural disasters, or other unforeseen events. Such disruptions could result in production delays, increased costs, and an inability to meet customer demands. Operational inefficiencies or prolonged downtime could significantly affect our ability to generate revenue and maintain market reputation.
+
+Supply Chain Constraints
+
+Our operations are heavily dependent on a complex global supply chain. Disruptions in the supply chain, whether due to transportation issues, supplier insolvency, or geopolitical factors, could lead to shortages of essential components and materials. These constraints may result in increased costs and delays in production, adversely affecting our ability to fulfill customer orders on time.
+
+Environmental and Safety Compliance
+
+As a materials company, Selzennov must adhere to stringent environmental and safety regulations. Non-compliance with these regulations could result in significant fines, penalties, or legal liabilities. Additionally, changes in environmental laws or increased enforcement could lead to higher costs for compliance and operational adjustments. Our commitment to environmental stewardship is critical not only for legal compliance but also for maintaining our corporate reputation.
+
+Risks Related to Financing and Capital Structure
+
+High Levels of Debt
+
+Selzennov's financial stability is influenced by its level of indebtedness. Our substantial long-term debt obligations require significant cash flow for interest and principal payments. High debt levels may limit our ability to invest in growth opportunities, respond to market changes, or withstand economic downturns. Additionally, any downgrades in our credit ratings could increase borrowing costs and restrict access to capital.
+
+Interest Rate Fluctuations
+
+Changes in interest rates can significantly impact our financial results. As a company with considerable debt, increases in interest rates could lead to higher interest expenses, affecting our profitability and cash flows. Additionally, fluctuations in interest rates could impact the valuation of our financial instruments and overall financial position.
+
+Liquidity Constraints
+
+Our ability to meet financial obligations and pursue strategic investments depends on maintaining adequate liquidity. Factors such as unanticipated capital expenditures, changes in working capital requirements, or disruptions in cash flow could strain our liquidity position. Limited access to capital markets or unfavorable borrowing conditions could further exacerbate these constraints.
+
+Risks Related to Legal and Regulatory Matters
+
+Compliance with International Trade Laws
+
+Selzennov operates in multiple jurisdictions, subjecting us to various international trade laws and regulations. Non-compliance with these laws, whether related to tariffs, export controls, or trade sanctions, could result in substantial fines and operational restrictions. Changes in trade policies or the imposition of new tariffs could disrupt our supply chain and affect the competitiveness of our products in global markets.
+
+Intellectual Property Protection
+
+Our success depends on the protection of our intellectual property, including patents, trademarks, and trade secrets. Unauthorized use or infringement of our intellectual property could erode our competitive advantage and result in financial losses. Defending our intellectual property rights can be costly and may not always be successful, potentially affecting our market position and profitability.
+
+Litigation Risks
+
+Selzennov, like other companies in the materials sector, is subject to litigation risks related to product liability, environmental claims, and contractual disputes. Legal proceedings can be time-consuming and costly, with uncertain outcomes that could adversely affect our financial condition. An unfavorable ruling or settlement could result in substantial liabilities and harm our reputation.
+
+General Risks
+
+Economic Uncertainty
+
+Macroeconomic factors, such as inflation, recession, or currency fluctuations, can influence consumer demand and industrial activity, impacting Selzennov's financial performance. Economic uncertainty may lead to reduced spending by our customers and increased volatility in raw material prices. Our ability to adapt to changing economic conditions is crucial for sustaining growth and profitability.
+
+Technological Advancements
+
+Rapid advancements in technology could render our existing products and processes obsolete. To remain competitive, Selzennov must continuously invest in research and development to innovate and improve its product offerings. Failure to keep pace with technological changes could result in a loss of market share and diminished financial performance.
+
+Risks from Climate Change
+
+Climate change poses direct and indirect risks to our operations. Extreme weather events, regulatory changes related to emissions, and shifts in market preferences towards sustainable products could impact our business. Selzennov's commitment to environmental sustainability requires ongoing adaptation to mitigate climate-related risks and capitalize on opportunities in the transition to a low-carbon economy.
+
+Human Capital Risks
+
+Our success is heavily reliant on our workforce. Maintaining good relations with employees and managing labor costs are vital to our operations. Labor disputes, strikes, or difficulties in attracting and retaining skilled personnel could disrupt our business activities and affect productivity. Investments in employee development and engagement are critical to sustaining our competitive advantage.
+
+In conclusion, while Selzennov Materials, Inc. remains committed to mitigating these risks through strategic planning and proactive management, no assurance can be given that these efforts will be successful. Investors should carefully consider these risks, along with other information in this report, before making any investment decisions.
+
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+The following Management’s Discussion and Analysis of Financial Condition and Results of Operations of Selzennov Materials, Inc. (“Selzennov” or the “Company”) should be read in conjunction with the consolidated financial statements of the Company and the accompanying notes to the consolidated financial statements. This discussion covers the fiscal years ended December 31, 2024, and December 31, 2023.
+
+Overview
+
+In fiscal year 2024, Selzennov Materials, Inc. experienced a solid performance amid evolving market conditions within the materials sector. The Company reported revenue growth of 5.3%, reflecting a strong demand across its diversified portfolio, particularly in the Performance Materials and Specialty Chemicals segments. The growth in revenue was supported by strategic initiatives aimed at enhancing operational efficiency and expanding market reach. Despite challenges such as increased raw material costs and competitive pressures, Selzennov maintained a robust financial position, evidenced by an increase in net income by 33.9% over the prior year.
+
+The Company’s focus on maintaining competitive pricing and optimizing its supply chain contributed to an improved operating income. Such strategic measures allowed Selzennov to navigate the complexities of the global materials market effectively. Additionally, the Company continued to advance its commitment to sustainability and innovation, which are pivotal to its long-term growth strategy.
+
+Results of Operations
+
+Revenue
+
+For the fiscal year ended December 31, 2024, Selzennov recorded revenue of $14,240 million, compared to $13,521 million in fiscal 2023, representing an increase of 5.3%. This growth was driven by higher sales volumes across key segments, underpinned by robust demand in the automotive and electronics industries. Moreover, the Company’s strategic expansion into emerging markets contributed positively to the revenue trajectory.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue for fiscal 2024 was $11,829 million, up from $11,290 million in fiscal 2023. This increase in cost was primarily attributable to the rising prices of raw materials and logistical expenses. Despite the increase in costs, Selzennov’s gross profit improved to $2,411 million from $2,231 million in the previous year. Consequently, the gross margin for fiscal 2024 stood at 16.9%, a slight improvement from 16.5% in fiscal 2023. The margin improvement was achieved through strategic cost management initiatives and operational efficiencies.
+
+Selling, General and Administrative Expenses
+
+Selling, general and administrative expenses decreased to $365 million in fiscal 2024 from $378 million in fiscal 2023. This reduction was largely due to the Company’s ongoing efforts to streamline administrative processes and optimize workforce deployment. As a percentage of revenue, these expenses decreased from 2.8% in fiscal 2023 to 2.6% in fiscal 2024, reflecting enhanced operational efficiencies.
+
+Other Operating Expenses
+
+Other operating expenses increased from $811 million in fiscal 2023 to $854 million in fiscal 2024. The increase was primarily due to higher depreciation expenses associated with recent investments in manufacturing infrastructure and technology upgrades. These investments are part of Selzennov’s strategy to bolster production capabilities and ensure long-term competitiveness.
+
+Operating Income
+
+Operating income for fiscal 2024 was $1,192 million, representing a 14.4% increase from $1,042 million in fiscal 2023. The improvement in operating income was driven by higher gross margins and effective cost management strategies. The operating margin for fiscal 2024 was 8.4%, compared to 7.7% in fiscal 2023, indicating a stronger operational performance.
+
+Interest Expense
+
+Interest expense increased to $697 million in fiscal 2024 from $665 million in fiscal 2023. The increase in interest expense was primarily due to higher average debt levels during the year, as the Company financed strategic capital investments aimed at enhancing its production and technological capabilities.
+
+Effective Tax Rate
+
+The provision for income taxes was $112 million for fiscal 2024, compared to $91 million in fiscal 2023. The effective tax rate decreased to 22.6% in fiscal 2024 from 24.1% in fiscal 2023. This reduction in the effective tax rate was primarily due to tax planning strategies and the utilization of available tax credits.
+
+Net Income
+
+Net income for fiscal 2024 increased to $383 million, from $286 million in fiscal 2023, reflecting a growth of 33.9%. The improvement in net income was driven by higher operating income and a lower effective tax rate. The net margin improved to 2.7% in fiscal 2024 from 2.1% in the prior year, underscoring the Company’s enhanced profitability.
+
+Liquidity and Capital Resources
+
+Cash and Cash Equivalents
+
+Selzennov’s cash and cash equivalents increased to $3,038 million as of December 31, 2024, from $2,831 million at the end of fiscal 2023. The increase in cash reserves was primarily the result of strong operating cash flows and prudent financial management.
+
+Operating Activities
+
+Net cash provided by operating activities was $1,186 million for fiscal 2024. This was driven by robust net income and effective working capital management, which included optimized inventory levels and efficient accounts receivable collections.
+
+Investing Activities
+
+Net cash used in investing activities amounted to $1,900 million in fiscal 2024. This was primarily due to capital expenditures of $779 million for property and equipment purchases, as well as other strategic investments amounting to $1,121 million. These investments were focused on enhancing production capacity and technological advancements to support future growth.
+
+Financing Activities
+
+Net cash used in financing activities totaled $921 million in fiscal 2024. This included a net increase in long-term debt of $699 million, dividend payments of $116 million, and share repurchases net of issuances amounting to $338 million. The Company’s capital allocation strategy reflects its commitment to returning value to shareholders while maintaining financial flexibility.
+
+Capital Expenditures
+
+Selzennov’s capital expenditures for fiscal 2024 were $779 million. These expenditures were directed towards expanding manufacturing capabilities and upgrading technology infrastructure, which are critical to meeting increased demand and improving operational efficiencies.
+
+Debt
+
+As of December 31, 2024, Selzennov’s long-term debt stood at $15,480 million, compared to $14,781 million at the end of fiscal 2023. The increase in debt was primarily used to finance capital investments and strategic initiatives. The Company continues to manage its debt portfolio prudently to optimize its capital structure and maintain liquidity.
+
+Dividends and Share Repurchases
+
+During fiscal 2024, Selzennov paid dividends totaling $116 million and engaged in share repurchases net of issuances amounting to $338 million. These actions reflect the Company’s commitment to delivering shareholder value through an effective capital return strategy.
+
+Critical Accounting Estimates
+
+The preparation of Selzennov’s financial statements in conformity with U.S. GAAP requires management to make estimates and assumptions that affect the reported amounts of assets, liabilities, revenue, and expenses. Significant estimates and judgments are necessary in several areas, including:
+
+- Impairment of Goodwill: Selzennov periodically assesses the recoverability of goodwill. This involves estimating the future cash flows of the reporting units and determining the fair value. Changes in market conditions or assumptions used in the evaluation could lead to impairment charges.
+
+- Inventory Valuation: The Company values inventories at the lower of cost or net realizable value. Estimating net realizable values involves judgments about future demand, pricing trends, and market conditions. These estimates are critical for ensuring accurate financial reporting.
+
+- Income Taxes: Selzennov's income tax expense and related liabilities are based on current tax laws and regulations. The measurement of deferred tax assets and liabilities involves judgment regarding the likelihood of realization of tax benefits and the timing of future taxable income.
+
+- Contingent Liabilities: The Company may be involved in legal proceedings, claims, and regulatory matters. Estimating the outcomes and potential financial impacts of these contingencies requires significant judgment and could affect financial results.
+
+Selzennov continues to monitor and refine its accounting estimates and judgments to ensure accurate and reliable financial reporting. Management believes that the estimates and assumptions used are reasonable and appropriate; however, actual results may differ from these estimates, which could impact the Company's financial condition and results of operations.
+
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Selzennov Materials, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 900 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

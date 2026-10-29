@@ -1,0 +1,204 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Lonnov Software, Inc. (ticker LNON)
+Sector: Information Technology
+Incorporated in: Delaware
+Headquarters: Austin, Texas
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 163,900
+
+Lonnov Software, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      80,053        77,018
+Cost of revenue                              50,321        49,221
+Gross profit                                 29,732        27,797
+Research and development                     11,023        10,546
+Selling, general and administrative           2,402         2,310
+Other operating expense                           0             0
+Operating income                             16,307        14,941
+Interest expense                                504           482
+Income before income taxes                   15,803        14,459
+Provision for income taxes                    1,487         1,385
+Net income                                   14,316        13,074
+
+Lonnov Software, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                           20,933        19,316
+Accounts receivable, net                            14,410        13,507
+Inventories                                              0             0
+Other current assets                                15,146        14,067
+Total current assets                                50,489        46,890
+Property, plant and equipment, net                  12,443        12,316
+Goodwill                                             3,819         3,594
+Other non-current assets                            27,540        27,352
+Total assets                                        94,291        90,152
+Total current liabilities                           13,948        13,077
+Long-term debt                                      11,192        10,707
+Other non-current liabilities                        2,829         2,705
+Total liabilities                                   27,969        26,489
+Total stockholders' equity                          66,322        63,663
+Total liabilities and stockholders' equity          94,291        90,152
+
+Lonnov Software, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                            14,316
+Depreciation and amortization                          4,355
+Changes in working capital and other                   (376)
+Net cash provided by operating activities             18,295
+Purchases of property and equipment                  (1,577)
+Other investing activities, net                      (3,929)
+Net cash used in investing activities                (5,506)
+Net change in long-term debt                             485
+Dividends paid                                       (2,457)
+Share repurchases, net of issuances                  (9,200)
+Net cash used in financing activities               (11,172)
+Net change in cash and cash equivalents                1,617
+Cash and cash equivalents, beginning of year          19,316
+Cash and cash equivalents, end of year                20,933
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 3.9%
+Net income growth, fiscal 2024 versus 2023: 9.5%
+Operating income growth, fiscal 2024 versus 2023: 9.1%
+Gross margin, fiscal 2024: 37.1%
+Operating margin, fiscal 2024: 20.4%
+Net margin, fiscal 2024: 17.9%
+Effective tax rate, fiscal 2024: 9.4%
+Research and development as a share of revenue, fiscal 2024: 13.8%
+Selling, general and administrative as a share of revenue, fiscal 2024: 3.0%
+Gross margin, fiscal 2023: 36.1%
+Operating margin, fiscal 2023: 19.4%
+Net margin, fiscal 2023: 17.0%
+Effective tax rate, fiscal 2023: 9.6%
+Research and development as a share of revenue, fiscal 2023: 13.7%
+Selling, general and administrative as a share of revenue, fiscal 2023: 3.0%
+
+STYLE EXAMPLE: the start of Item 1A from a real Information Technology company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1A. RISK FACTORS
+A description of the risks and uncertainties associated with our business is set forth below. You should carefully consider such risks and uncertainties, together with the other information contained in this Annual Report on Form 10-K, and in our other public filings. If any such risks and uncertainties actually occur, our business, financial condition or results of operations could differ materially from the plans, projections, and other forward-looking statements included elsewhere in this Annual Report on Form 10-K and in our other public filings. In addition, if any of the following risks and uncertainties, or if any other risks and uncertainties, actually occur, our business, financial condition, or results of operations could be harmed substantially.
+13
+Risk Factor Summary
+Our business is subject to numerous risks and uncertainties, including those highlighted in this section titled “Risk Factors” and summarized below. We have various categories of risks, including risks related to our business and industry, risks related to information technology, intellectual property, data security and privacy, risks related to legal, regulatory, accounting, and tax matters, risks related to ownership of our Class A Common Stock, risks related to our indebtedness, and general risks, which are discussed more fully below. As a result, this risk factor summary does not contain all of the information that may be important to you, and you should read this risk factor summary together with the more detailed discussion of risks and uncertainties set forth following this summary, as well as elsewhere in this Annual Report on Form 10-K. These risks include, but are not limited to, the following:
+•Our historical rapid growth makes it difficult to evaluate our future prospects, and we may not be able to sustain our revenue growth rate or achieve profitability in the future.
+•The continuing global economic and geopolitical volatility, and measures taken in response, could harm our business and results of operations.
+•The markets in which we participate are intensely competitive, and if we do not compete effectively, our business, results of operations, and financial condition could be harmed.
+•Our AI offerings and investments may not be successful, which could adversely affect our business or financial results.
+•We may encounter challenges as we continue to transition our business to focus on Cloud offerings.
+•Our business depends on our customers renewing their subscriptions and purchasing additional licenses or subscriptions from us, and any decline in our customer retention or expansion could harm our future results of operations.
+•If we are not able to develop or package new apps, agents and enhancements to our existing offerings that achieve market acceptance and that keep pace with technological developments, our business and results of operations could be harmed.
+•We invest significantly in research and development, and to the extent our research and development investments do not translate into new offerings or material enhancements to our current offerings, or if we do not use those investments efficiently, our business and results of operations would be harmed.
+•If we fail to effectively manage our growth, our business and results of operations could be harmed.
+•We may encounter challenges as we develop our sales force and sales strategy.
+•Our business model for our low-touch customers is based in part on a high volume of transactions and organic expansion. If this model is not effective, our business and results of operations could be harmed.
+•If our security controls are compromised, leading to unauthorized or inappropriate access to customer data, our products could be perceived as insecure, and such perception may result in the loss of existing customers, hinder our ability to attract new ones, and expose us to significant liabilities.
+•Interruptions or performance problems associated with our technology and infrastructure could harm our business and results of operations.
+•Real or perceived errors, failures, vulnerabilities, or bugs in our offerings or in the apps on Atlassian Marketplace could harm our business and results of operations.
+•Privacy concerns and laws, as well as evolving regulation of cloud computing, AI apps and services, cross-border data transfer restrictions, and other domestic or foreign regulations may limit the use and adoption of our services and adversely affect our business and results of operation.
+•Our quarterly results have fluctuated in the past and may fluctuate significantly in the future and may not fully reflect the underlying performance of our business.
+•We recognize certain revenue streams over the term of our subscription contracts. Consequently, downturns in new sales may not be immediately reflected in our results of operations and may be difficult to discern.
+•Seasonality may cause fluctuations in our revenue.
+•Our current and future indebtedness may limit our flexibility in obtaining additional financing and in pursuing other business opportunities or operating activities.
+•Our global operations and structure subject us to potentially adverse tax consequences.
+•Our development and use of AI technologies may expose us to operational, legal, regulatory, reputational and other risks that may adversely affect our business.
+•The dual class structure of our common stock has the effect of concentrating voting control with certain stockholders, in particular, our Co-Founders and their affiliates, which will limit our other stockholders’ ability to influence the outcome of important transactions, including a change in control.
+Risks Related to Our Business and Industry
+14
+Our historical rapid growth makes it difficult to evaluate our future prospects, and we may not be able to sustain our revenue growth rate or achieve profitability in the future.
+We have experienced rapid growth in recent years and our historical growth rate should not be considered indicative of our future performance and may decline in the future. This rapid growth also makes it more challenging to evaluate our future prospects. Our revenue growth rate has fluctuated in prior periods and, in future periods, our revenue could grow more slowly than it has in the past or decline for a number of reasons, including any reduction in demand for our apps, agents and platforms; increase in competition; challenges relating to collecting accounts receivable or collection periods; seasonality in the timing of our sales; the duration of our sales contracts; limitations on our ability to, or any decision not to, increase pricing, slower than anticipated adoption of or migration to our Cloud offerings; failure to capitalize on growth opportunities; contraction in our overall market; or impact from broader macroeconomic factors. We make assumptions regarding the risks and uncertainties associated with our growth as we plan and operate our business. If our assumptions are incorrect or change, or if we do not address risks successfully, our operating and financial results could differ materially from our expectations, our growth rates may slow, and our business would suffer.
+In addition, we expect our expenses to increase substantially in the near term, particularly as we continue to make significant investments in research and development and technology infrastructure for our Cloud offerings, expand our operations globally and develop new apps, agents and features for, and enhancements of, our existing apps and agents, including our AI offerings. As a result of these significant investments, and in particular stock-based compensation associated with our growth, we have not in the past and may not in the future be able to achieve profitability as determined under U.S. generally accepted accounting principles (“GAAP”). The additional expenses we will incur may not lead to sufficient additional revenue to maintain historical revenue growth rates and achieve profitability.
+The continuing global economic and geopolitical volatility, and [...]
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+OVERVIEW
+
+Lonnov Software, Inc. ("Lonnov," the "Company," "we," "us" or "our") is a global provider of enterprise software, cloud infrastructure and technology services. Organizations across industries use our offerings to modernize their information technology environments, run mission-critical workloads, protect their data and manage complex digital operations at scale. We were incorporated in the State of Delaware, and our corporate headquarters are located in Austin, Texas. Our common stock trades under the ticker symbol "LNON."
+
+Our offerings span the technology lifecycle of our customers. We help them plan and design their technology architectures, deploy and integrate software and cloud platforms, migrate legacy systems, and operate and secure their environments on an ongoing basis. We combine proprietary software platforms with a large, globally distributed services organization. This allows us to serve customers who want packaged software, customers who want fully managed outcomes, and customers who want a combination of the two.
+
+For the fiscal year ended December 31, 2024 ("fiscal 2024"), our total revenue was $80,053 million, an increase of 3.9% compared with the fiscal year ended December 31, 2023 ("fiscal 2023"). We believe the breadth of our portfolio, the recurring nature of a substantial portion of our revenue, and the long-standing relationships we maintain with large enterprise and public sector customers provide a durable foundation for the business.
+
+Enterprise technology environments have grown more complex. Organizations operate hybrid estates that combine on-premises data centers, multiple public cloud environments and a growing number of software-as-a-service applications. At the same time, they face higher expectations for cybersecurity and data protection, scarce specialized technical talent, and pressure to adopt artificial intelligence and advanced analytics in a responsible and cost-effective manner. We believe these trends increase demand for partners that can provide integrated platforms together with the engineering and operational capacity to implement and run them. Our strategy is to be that partner for the largest and most demanding organizations in the world.
+
+REPORTABLE SEGMENTS
+
+As of December 31, 2024, we managed our business through three operating and reportable segments, which are organized around the nature of the offerings we deliver and the way our chief operating decision maker evaluates performance and allocates resources:
+
+- Cloud and Data Platforms ("CDP"), which includes our hybrid cloud infrastructure software, data management and analytics platforms, and artificial intelligence development and deployment tools.
+- Enterprise Applications and Security ("EAS"), which includes our business applications, workflow automation software, identity and access management products, and threat detection and response solutions.
+- Managed and Professional Services ("MPS"), which includes consulting, systems integration, application development and maintenance, cloud migration, and outsourced infrastructure and application management services.
+
+The CDP segment focuses on the foundational software layers on which customers build and run their workloads. Its offerings are typically sold as subscriptions or consumption-based arrangements and are designed to operate consistently across customer data centers and third-party public cloud environments.
+
+The EAS segment focuses on software that supports specific business processes and on protecting the applications, users and data that underpin those processes. Its offerings are sold primarily as multi-year subscriptions, both as cloud-delivered services and as software deployed in customer environments.
+
+The MPS segment provides the people, processes and operational tooling that customers rely on to design, implement and run technology environments. Engagements range from discrete advisory and implementation projects to multi-year managed services agreements under which we assume operational responsibility for significant portions of a customer's technology estate. The MPS segment employs the majority of our workforce and accounts for a substantial portion of our cost of revenue, reflecting the labor-intensive nature of services delivery.
+
+Our segments work closely together. A significant portion of our largest customer relationships involves offerings from more than one segment, and we design our go-to-market approach to encourage customers to adopt integrated solutions. Additional information about our segments is included in Item 7, "Management's Discussion and Analysis of Financial Condition and Results of Operations," and in the notes to the consolidated financial statements in Item 8, "Financial Statements and Supplementary Data."
+
+PRINCIPAL PRODUCTS AND SERVICES
+
+Cloud and Data Platforms
+
+Our hybrid cloud platform gives customers a common control plane for provisioning, orchestrating and governing compute, storage and networking resources across private and public cloud environments. The platform includes container orchestration, virtualization management, policy-based automation and cost governance capabilities. Customers use it to standardize operations, reduce dependence on any single infrastructure provider, and move workloads between environments as business needs change.
+
+Our data management portfolio includes data integration, data cataloging, master data management and data quality tools, along with a cloud-native analytics engine that supports structured and unstructured data. These products help customers consolidate fragmented data sources, enforce governance and lineage requirements, and make trusted data available to analysts, applications and machine learning models.
+
+Our artificial intelligence tools allow customers to build, fine-tune, evaluate and deploy machine learning and generative models on their own data, inside environments they control. The tools include model lifecycle management, monitoring for model drift and performance, and guardrail capabilities intended to support responsible use. We have embedded these capabilities into many products across our portfolio, and we continue to expand them in response to customer demand.
+
+Enterprise Applications and Security
+
+Our enterprise applications automate and digitize core operational processes, including IT service management, field service management, procurement workflows, and human resources service delivery. The applications are built on a common low-code platform, so customers can extend standard functionality and build custom workflows without extensive software development.
+
+Our security portfolio includes identity governance, privileged access management, multi-factor authentication, endpoint and cloud workload protection, and a security analytics platform that correlates telemetry across customer environments to detect and prioritize threats. We also offer managed detection and response services in which our security operations personnel monitor customer environments and respond to incidents around the clock. These services are delivered in collaboration with our MPS segment.
+
+Managed and Professional Services
+
+Our consulting and systems integration practices advise customers on technology strategy, enterprise architecture, and operating model design. They also implement our own software as well as third-party platforms. Our application services teams develop, modernize, test and maintain custom and packaged applications. Our cloud migration services help customers assess application portfolios, plan migration waves, and move workloads to the target environments.
+
+Our managed services offerings include infrastructure management, application management, end-user computing support, network operations, and service desk operations. These engagements are generally governed by multi-year contracts with defined service levels. We deliver them through a combination of onshore, nearshore and offshore delivery centers, supported by our proprietary automation and operational analytics platforms. We increasingly use artificial intelligence to automate routine operational tasks, predict and prevent incidents, and improve the productivity of our delivery personnel.
+
+Revenue Models
+
+We generate revenue through software subscriptions, consumption-based cloud services, perpetual software licenses with associated support, time-and-materials and fixed-price professional services engagements, and multi-year managed services arrangements. A substantial portion of our revenue is recurring in nature, which we believe gives us good visibility into future results. Our revenue recognition policies are described in the notes to the consolidated financial statements in Item 8.
+
+STRATEGY
+
+Our strategy is designed to deepen our role as a long-term technology partner to the world's largest organizations. Its principal elements are as follows.
+
+Integrated Solutions. We intend to keep integrating our platforms with our services capabilities so that customers can buy outcomes rather than individual components. We believe customers increasingly want fewer, more strategic vendors that can take end-to-end accountability, and that our combination of proprietary software and delivery scale sets us apart.
+
+Innovation in Artificial Intelligence and Automation. We are investing in artificial intelligence across our portfolio, both as product capabilities we offer customers and as tools that make our own services delivery more efficient. In fiscal 2024, research and development expense represented 13.8% of revenue, compared with 13.7% in fiscal 2023. This reflects our continued commitment to product innovation.
+
+Hybrid and Multi-Cloud Neutrality. We design our platforms to run consistently across customer data centers and multiple public cloud providers. We believe this neutrality is valuable to customers seeking to avoid concentration risk, meet data residency requirements, and optimize costs.
+
+Operational Excellence. We continuously work to improve delivery productivity, the utilization of our workforce, and the efficiency of our operations. Our efforts include standardizing delivery methodologies, expanding automation, rationalizing facilities, and optimizing the geographic mix of our delivery resources.
+
+Disciplined Capital Allocation. We aim to balance investment in organic growth with selective acquisitions that add technology, talent or market access, while returning capital to stockholders through dividends and share repurchases.
+
+CUSTOMERS
+
+We serve a broad and diversified customer base that includes large multinational enterprises, mid-sized organizations, and government agencies at the national, state and local levels. Our customers operate in a wide range of industries, including financial services, insurance, healthcare and life sciences, manufacturing, retail and consumer goods, telecommunications, media, energy and utilities, transportation, and the public sector.
+
+Our largest customers typically purchase offerings from more than one of our segments and are often party to long-term master agreements under which they procure software and services over multiple years. We focus on building enduring relationships and expanding them over time through additional products, services and geographies. Many of our largest relationships have lasted well over a decade.
+
+No single customer accounted [...]
+>>>
+
+TASK
+Write Item 1A. Risk Factors for Lonnov Software, Inc.'s annual report for the fiscal year ended 2024-12-31. List the material risks, grouped under sub-headings (for example risks related to the business and industry, to operations, to financing and capital structure, to legal and regulatory matters, and general risks). Each risk starts with a one-sentence heading line, followed by one or two paragraphs. Make the risks specific to this company's sector, cost structure and balance sheet. Do not quote dollar amounts or percentages; describe exposures in words, as real risk factors do.
+Length: about 3500 words. Start with the line "Item 1A. Risk Factors" and output only the section text.

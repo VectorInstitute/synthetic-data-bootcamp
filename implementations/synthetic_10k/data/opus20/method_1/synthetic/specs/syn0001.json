@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0001",
+  "name": "Talven Therapeutics, Inc.",
+  "ticker": "TANL",
+  "sector": "Health Care",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "GA",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 251691,
+  "revenue_growth": 0.143,
+  "employees": 852000,
+  "ratios": {
+    "gross_margin": 0.2924,
+    "operating_margin": 0.0961,
+    "sga_ratio": 0.1421,
+    "da_ratio": 0.0079,
+    "capex_ratio": 0.0162,
+    "tax_rate": 0.2021,
+    "asset_turnover": 2.0142,
+    "equity_ratio": 0.4469,
+    "current_assets_ratio": 0.3147,
+    "current_ratio": 4.8214,
+    "cash_ratio": 0.022,
+    "ppe_ratio": 0.185,
+    "debt_ratio": 0.1781,
+    "receivables_ratio": 0.1246,
+    "rd_ratio": 0.0542,
+    "inventory_ratio": 0.0788,
+    "goodwill_ratio": 0.3978,
+    "dividend_payout": 0.1805,
+    "other_operating_cash_ratio": 0.015
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 251691,
+        "cost_of_revenue": 178097,
+        "gross_profit": 73594,
+        "research_and_development": 13642,
+        "selling_general_and_administrative": 35764,
+        "other_operating_expense": 0,
+        "operating_income": 24188,
+        "interest_expense": 1001,
+        "pretax_income": 23187,
+        "income_tax": 4686,
+        "net_income": 18501
+      },
+      "2023": {
+        "revenue": 220202,
+        "cost_of_revenue": 155371,
+        "gross_profit": 64831,
+        "research_and_development": 11808,
+        "selling_general_and_administrative": 30626,
+        "other_operating_expense": 517,
+        "operating_income": 21880,
+        "interest_expense": 908,
+        "pretax_income": 20972,
+        "income_tax": 4480,
+        "net_income": 16492
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 1904,
+        "receivables": 21719,
+        "inventory": 13735,
+        "total_current_assets": 39324,
+        "property_plant_and_equipment": 23117,
+        "goodwill": 49708,
+        "total_assets": 124958,
+        "total_current_liabilities": 8156,
+        "long_term_debt": 22255,
+        "total_equity": 55844,
+        "other_current_assets": 1966,
+        "other_noncurrent_assets": 12809,
+        "other_noncurrent_liabilities": 38703,
+        "total_liabilities": 69114,
+        "total_liabilities_and_equity": 124958
+      },
+      "2023": {
+        "cash": 1857,
+        "receivables": 19973,
+        "inventory": 12391,
+        "total_current_assets": 36022,
+        "property_plant_and_equipment": 20620,
+        "goodwill": 46078,
+        "total_assets": 112906,
+        "total_current_liabilities": 7319,
+        "long_term_debt": 20169,
+        "total_equity": 48663,
+        "other_current_assets": 1801,
+        "other_noncurrent_assets": 10186,
+        "other_noncurrent_liabilities": 36755,
+        "total_liabilities": 64243,
+        "total_liabilities_and_equity": 112906
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 18501,
+        "depreciation_and_amortization": 1988,
+        "other_operating_items": 3775,
+        "net_cash_from_operating_activities": 24264,
+        "capital_expenditures": -4077,
+        "other_investing_activities": -10906,
+        "net_cash_from_investing_activities": -14983,
+        "net_change_in_long_term_debt": 2086,
+        "dividends_paid": -3339,
+        "share_repurchases_net": -7981,
+        "net_cash_from_financing_activities": -9234,
+        "net_change_in_cash": 47,
+        "cash_beginning_of_year": 1857,
+        "cash_end_of_year": 1904
+      }
+    }
+  }
+}

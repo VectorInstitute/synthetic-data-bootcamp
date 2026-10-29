@@ -1,0 +1,183 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Lonnov Software, Inc. (ticker LNON)
+Sector: Information Technology
+Incorporated in: Delaware
+Headquarters: Austin, Texas
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 163,900
+
+Lonnov Software, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      80,053        77,018
+Cost of revenue                              50,321        49,221
+Gross profit                                 29,732        27,797
+Research and development                     11,023        10,546
+Selling, general and administrative           2,402         2,310
+Other operating expense                           0             0
+Operating income                             16,307        14,941
+Interest expense                                504           482
+Income before income taxes                   15,803        14,459
+Provision for income taxes                    1,487         1,385
+Net income                                   14,316        13,074
+
+Lonnov Software, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                           20,933        19,316
+Accounts receivable, net                            14,410        13,507
+Inventories                                              0             0
+Other current assets                                15,146        14,067
+Total current assets                                50,489        46,890
+Property, plant and equipment, net                  12,443        12,316
+Goodwill                                             3,819         3,594
+Other non-current assets                            27,540        27,352
+Total assets                                        94,291        90,152
+Total current liabilities                           13,948        13,077
+Long-term debt                                      11,192        10,707
+Other non-current liabilities                        2,829         2,705
+Total liabilities                                   27,969        26,489
+Total stockholders' equity                          66,322        63,663
+Total liabilities and stockholders' equity          94,291        90,152
+
+Lonnov Software, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                            14,316
+Depreciation and amortization                          4,355
+Changes in working capital and other                   (376)
+Net cash provided by operating activities             18,295
+Purchases of property and equipment                  (1,577)
+Other investing activities, net                      (3,929)
+Net cash used in investing activities                (5,506)
+Net change in long-term debt                             485
+Dividends paid                                       (2,457)
+Share repurchases, net of issuances                  (9,200)
+Net cash used in financing activities               (11,172)
+Net change in cash and cash equivalents                1,617
+Cash and cash equivalents, beginning of year          19,316
+Cash and cash equivalents, end of year                20,933
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 3.9%
+Net income growth, fiscal 2024 versus 2023: 9.5%
+Operating income growth, fiscal 2024 versus 2023: 9.1%
+Gross margin, fiscal 2024: 37.1%
+Operating margin, fiscal 2024: 20.4%
+Net margin, fiscal 2024: 17.9%
+Effective tax rate, fiscal 2024: 9.4%
+Research and development as a share of revenue, fiscal 2024: 13.8%
+Selling, general and administrative as a share of revenue, fiscal 2024: 3.0%
+Gross margin, fiscal 2023: 36.1%
+Operating margin, fiscal 2023: 19.4%
+Net margin, fiscal 2023: 17.0%
+Effective tax rate, fiscal 2023: 9.6%
+Research and development as a share of revenue, fiscal 2023: 13.7%
+Selling, general and administrative as a share of revenue, fiscal 2023: 3.0%
+
+STYLE EXAMPLE: the start of Item 1A from a real Information Technology company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1A. RISK FACTORS
+A description of the risks and uncertainties associated with our business is set forth below. You should carefully consider such risks and uncertainties, together with the other information contained in this Annual Report on Form 10-K, and in our other public filings. If any such risks and uncertainties actually occur, our business, financial condition or results of operations could differ materially from the plans, projections, and other forward-looking statements included elsewhere in this Annual Report on Form 10-K and in our other public filings. In addition, if any of the following risks and uncertainties, or if any other risks and uncertainties, actually occur, our business, financial condition, or results of operations could be harmed substantially.
+13
+Risk Factor Summary
+Our business is subject to numerous risks and uncertainties, including those highlighted in this section titled “Risk Factors” and summarized below. We have various categories of risks, including risks related to our business and industry, risks related to information technology, intellectual property, data security and privacy, risks related to legal, regulatory, accounting, and tax matters, risks related to ownership of our Class A Common Stock, risks related to our indebtedness, and general risks, which are discussed more fully below. As a result, this risk factor summary does not contain all of the information that may be important to you, and you should read this risk factor summary together with the more detailed discussion of risks and uncertainties set forth following this summary, as well as elsewhere in this Annual Report on Form 10-K. These risks include, but are not limited to, the following:
+•Our historical rapid growth makes it difficult to evaluate our future prospects, and we may not be able to sustain our revenue growth rate or achieve profitability in the future.
+•The continuing global economic and geopolitical volatility, and measures taken in response, could harm our business and results of operations.
+•The markets in which we participate are intensely competitive, and if we do not compete effectively, our business, results of operations, and financial condition could be harmed.
+•Our AI offerings and investments may not be successful, which could adversely affect our business or financial results.
+•We may encounter challenges as we continue to transition our business to focus on Cloud offerings.
+•Our business depends on our customers renewing their subscriptions and purchasing additional licenses or subscriptions from us, and any decline in our customer retention or expansion could harm our future results of operations.
+•If we are not able to develop or package new apps, agents and enhancements to our existing offerings that achieve market acceptance and that keep pace with technological developments, our business and results of operations could be harmed.
+•We invest significantly in research and development, and to the extent our research and development investments do not translate into new offerings or material enhancements to our current offerings, or if we do not use those investments efficiently, our business and results of operations would be harmed.
+•If we fail to effectively manage our growth, our business and results of operations could be harmed.
+•We may encounter challenges as we develop our sales force and sales strategy.
+•Our business model for our low-touch customers is based in part on a high volume of transactions and organic expansion. If this model is not effective, our business and results of operations could be harmed.
+•If our security controls are compromised, leading to unauthorized or inappropriate access to customer data, our products could be perceived as insecure, and such perception may result in the loss of existing customers, hinder our ability to attract new ones, and expose us to significant liabilities.
+•Interruptions or performance problems associated with our technology and infrastructure could harm our business and results of operations.
+•Real or perceived errors, failures, vulnerabilities, or bugs in our offerings or in the apps on Atlassian Marketplace could harm our business and results of operations.
+•Privacy concerns and laws, as well as evolving regulation of cloud computing, AI apps and services, cross-border data transfer restrictions, and other domestic or foreign regulations may limit the use and adoption of our services and adversely affect our business and results of operation.
+•Our quarterly results have fluctuated in the past and may fluctuate significantly in the future and may not fully reflect the underlying performance of our business.
+•We recognize certain revenue streams over the term of our subscription contracts. Consequently, downturns in new sales may not be immediately reflected in our results of operations and may be difficult to discern.
+•Seasonality may cause fluctuations in our revenue.
+•Our current and future indebtedness may limit our flexibility in obtaining additional financing and in pursuing other business opportunities or operating activities.
+•Our global operations and structure subject us to potentially adverse tax consequences.
+•Our development and use of AI technologies may expose us to operational, legal, regulatory, reputational and other risks that may adversely affect our business.
+•The dual class structure of our common stock has the effect of concentrating voting control with certain stockholders, in particular, our Co-Founders and their affiliates, which will limit our other stockholders’ ability to influence the outcome of important transactions, including a change in control.
+Risks Related to Our Business and Industry
+14
+Our historical rapid growth makes it difficult to evaluate our future prospects, and we may not be able to sustain our revenue growth rate or achieve profitability in the future.
+We have experienced rapid growth in recent years and our historical growth rate should not be considered indicative of our future performance and may decline in the future. This rapid growth also makes it more challenging to evaluate our future prospects. Our revenue growth rate has fluctuated in prior periods and, in future periods, our revenue could grow more slowly than it has in the past or decline for a number of reasons, including any reduction in demand for our apps, agents and platforms; increase in competition; challenges relating to collecting accounts receivable or collection periods; seasonality in the timing of our sales; the duration of our sales contracts; limitations on our ability to, or any decision not to, increase pricing, slower than anticipated adoption of or migration to our Cloud offerings; failure to capitalize on growth opportunities; contraction in our overall market; or impact from broader macroeconomic factors. We make assumptions regarding the risks and uncertainties associated with our growth as we plan and operate our business. If our assumptions are incorrect or change, or if we do not address risks successfully, our operating and financial results could differ materially from our expectations, our growth rates may slow, and our business would suffer.
+In addition, we expect our expenses to increase substantially in the near term, particularly as we continue to make significant investments in research and development and technology infrastructure for our Cloud offerings, expand our operations globally and develop new apps, agents and features for, and enhancements of, our existing apps and agents, including our AI offerings. As a result of these significant investments, and in particular stock-based compensation associated with our growth, we have not in the past and may not in the future be able to achieve profitability as determined under U.S. generally accepted accounting principles (“GAAP”). The additional expenses we will incur may not lead to sufficient additional revenue to maintain historical revenue growth rates and achieve profitability.
+The continuing global economic and geopolitical volatility, and [...]
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+OVERVIEW
+
+Lonnov Software, Inc. ("Lonnov" or the "Company"), headquartered in Austin, Texas, is a leading player in the information technology sector, primarily engaged in developing innovative software solutions that empower organizations to streamline their operations and enhance productivity. Incorporated in Delaware, Lonnov operates with a robust global presence, providing a comprehensive suite of software products and services that cater to a diverse range of industries. For the fiscal year ended December 31, 2024, Lonnov reported revenue of $80,053 million, reflecting its significant market presence and ongoing commitment to innovation and customer satisfaction.
+
+PRINCIPAL PRODUCTS AND SERVICES
+
+Lonnov Software offers a broad array of software products and services designed to meet the evolving needs of modern enterprises. Our product portfolio includes enterprise resource planning (ERP) solutions, customer relationship management (CRM) systems, cloud computing platforms, and artificial intelligence (AI) driven analytics tools. These products are designed to integrate seamlessly into existing IT infrastructures, providing scalable and adaptable solutions that support business growth.
+
+In addition to our software offerings, Lonnov provides a range of services, including consulting, implementation, training, and support services. Our consulting services help organizations identify and implement the most effective software solutions to address their unique challenges. Implementation services ensure a smooth transition to our software solutions, while our training programs are designed to maximize user proficiency and adoption. We also offer comprehensive support services to maintain optimal system performance and address any technical issues that may arise.
+
+REPORTABLE SEGMENTS
+
+Lonnov operates through two primary reportable segments: Enterprise Solutions and Cloud Services.
+
+Enterprise Solutions: This segment focuses on delivering comprehensive software solutions tailored to the specific needs of large and medium-sized enterprises. Our Enterprise Solutions segment includes ERP and CRM systems that enable organizations to manage their resources efficiently and improve customer engagement. We leverage advanced analytics and AI technologies to provide actionable insights that drive informed decision-making.
+
+Cloud Services: In response to the growing demand for flexible and scalable IT infrastructure, our Cloud Services segment offers a range of cloud-based solutions, including infrastructure as a service (IaaS), platform as a service (PaaS), and software as a service (SaaS). These solutions allow businesses to leverage cloud computing capabilities to enhance operational efficiency, reduce costs, and innovate rapidly. Our cloud offerings are supported by robust security measures and compliance with industry standards, ensuring data integrity and confidentiality.
+
+CUSTOMERS
+
+Lonnov serves a diverse customer base spanning various industries, including finance, healthcare, retail, manufacturing, and telecommunications. Our customers range from small and medium-sized enterprises to large multinational corporations. We are committed to fostering strong and enduring relationships with our customers by delivering high-quality products and services that meet their evolving needs.
+
+SALES AND MARKETING
+
+Our sales and marketing strategy is centered around understanding customer needs and delivering tailored solutions that address those needs effectively. We employ a direct sales force complemented by strategic partnerships with resellers and systems integrators to expand our market reach. Our marketing efforts focus on building brand awareness, generating demand, and nurturing customer relationships through targeted campaigns, industry events, and digital marketing initiatives.
+
+COMPETITION
+
+Lonnov operates in a highly competitive industry characterized by rapid technological advancements and evolving customer demands. We face competition from other major software companies, as well as emerging technology firms offering innovative solutions. Our competitive advantage lies in our ability to deliver integrated, flexible, and scalable solutions that meet the specific needs of our customers. We continuously invest in research and development to maintain our technological edge and expand our product offerings.
+
+SEASONALITY
+
+Our business is subject to seasonal fluctuations, with a higher concentration of sales occurring in the fourth fiscal quarter. This trend is driven by customer budgeting cycles and the timing of software license renewals. While seasonality impacts our revenue distribution throughout the year, we focus on maintaining a steady pipeline of projects and opportunities to mitigate its effects.
+
+INTELLECTUAL PROPERTY
+
+Lonnov's success is largely attributed to our robust portfolio of intellectual property, which includes patents, copyrights, trademarks, and trade secrets. We protect our innovations through a combination of legal mechanisms and proactive strategies to safeguard our proprietary technologies. Our commitment to intellectual property protection ensures that we maintain a competitive advantage in the marketplace and continue to deliver cutting-edge solutions to our customers.
+
+GOVERNMENT REGULATION
+
+As a global software provider, Lonnov is subject to various governmental regulations and industry standards that affect our operations. We comply with data protection and privacy regulations, such as the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA). Additionally, we adhere to export control regulations and industry-specific compliance standards to ensure the lawful distribution and use of our products and services.
+
+HUMAN CAPITAL
+
+Our workforce, comprising approximately 163,900 employees, is our most valuable asset. We are committed to fostering a diverse and inclusive work environment that encourages innovation, collaboration, and professional development. We invest in our employees through comprehensive training programs, competitive compensation packages, and a range of benefits designed to attract and retain top talent. Our human capital strategy is aligned with our business objectives and supports our goal of delivering exceptional value to our customers and shareholders.
+
+AVAILABLE INFORMATION
+
+Lonnov is dedicated to maintaining transparency and providing stakeholders with timely and accurate information. Our annual reports, quarterly filings, and other financial disclosures are available on our corporate website and through the Securities and Exchange Commission's Electronic Data Gathering, Analysis, and Retrieval (EDGAR) system. We are committed to open communication and regularly engage with investors, analysts, and other stakeholders to provide updates on our performance, strategy, and outlook.
+
+In conclusion, Lonnov Software, Inc. remains a leader in the information technology sector, driven by our commitment to innovation, customer satisfaction, and operational excellence. Through our diverse range of software products and services, we empower organizations to achieve their business goals and navigate the complexities of the modern digital landscape. As we look to the future, we remain focused on expanding our market presence, enhancing our product offerings, and delivering sustainable value to our customers and shareholders.
+
+>>>
+
+TASK
+Write Item 1A. Risk Factors for Lonnov Software, Inc.'s annual report for the fiscal year ended 2024-12-31. List the material risks, grouped under sub-headings (for example risks related to the business and industry, to operations, to financing and capital structure, to legal and regulatory matters, and general risks). Each risk starts with a one-sentence heading line, followed by one or two paragraphs. Make the risks specific to this company's sector, cost structure and balance sheet. Do not quote dollar amounts or percentages; describe exposures in words, as real risk factors do.
+Length: about 3500 words. Start with the line "Item 1A. Risk Factors" and output only the section text.

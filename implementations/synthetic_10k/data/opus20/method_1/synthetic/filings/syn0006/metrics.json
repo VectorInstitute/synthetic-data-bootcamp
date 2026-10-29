@@ -1,0 +1,139 @@
+{
+  "company_id": "syn0006",
+  "name": "Selzenqua Semiconductor, Inc.",
+  "sector": "Information Technology",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 513.7,
+  "totals": {
+    "seconds": 512.95,
+    "prompt_tokens": 58814,
+    "completion_tokens": 56246,
+    "total_tokens": 115060,
+    "reasoning_tokens": 0,
+    "calls": 6
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1231,
+      "prompt_chars": 14516,
+      "words": 3855,
+      "attempts": 1,
+      "exemplar_overlap": 0.002,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1227,
+      "prompt_chars": 25480,
+      "words": 4069,
+      "attempts": 1,
+      "exemplar_overlap": 0.0005,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1262,
+      "prompt_chars": 37009,
+      "words": 4463,
+      "attempts": 3,
+      "exemplar_overlap": 0.0015,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 810,
+      "exemplar_words": 1053,
+      "prompt_chars": 46529,
+      "words": 967,
+      "attempts": 1,
+      "exemplar_overlap": 0.0062,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 89.71,
+      "prompt_tokens": 4429,
+      "completion_tokens": 9023,
+      "total_tokens": 13452,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 3855,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 96.15,
+      "prompt_tokens": 7488,
+      "completion_tokens": 9996,
+      "total_tokens": 17484,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4069,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 102.8,
+      "prompt_tokens": 10948,
+      "completion_tokens": 11890,
+      "total_tokens": 22838,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4645,
+      "issues": [
+        "The section has 4645 words; keep it under 4500 (target 3000).",
+        "These percentages are not in the facts sheet; use only the derived percentages given: 50 percent."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "claude-opus-5-5",
+      "seconds": 98.4,
+      "prompt_tokens": 11022,
+      "completion_tokens": 11537,
+      "total_tokens": 22559,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4544,
+      "issues": [
+        "The section has 4544 words; keep it under 4500 (target 3000)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 3,
+      "model": "claude-opus-5-5",
+      "seconds": 98.0,
+      "prompt_tokens": 10990,
+      "completion_tokens": 11215,
+      "total_tokens": 22205,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4463,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 27.89,
+      "prompt_tokens": 13937,
+      "completion_tokens": 2585,
+      "total_tokens": 16522,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 967,
+      "issues": []
+    }
+  ]
+}

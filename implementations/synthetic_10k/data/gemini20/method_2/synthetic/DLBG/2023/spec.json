@@ -1,0 +1,25 @@
+{
+  "fictional_id": "DLBG",
+  "fictional_name": "Ironwood Resources Corp.",
+  "fiscal_year": 2023,
+  "sector": "Financials",
+  "sub_industry": "Asset Management & Custody Banks",
+  "hq_state": "Illinois",
+  "template": {
+    "ticker": "NTRS",
+    "fiscal_year": 2023
+  },
+  "financials": {
+    "total_assets": 160771991387,
+    "total_liabilities": 146654991211,
+    "stockholders_equity": 14117000176,
+    "revenues": 8038599569,
+    "net_income": 2299536868
+  },
+  "cybersecurity": {
+    "framework": "the NIST Cybersecurity Framework and ISO/IEC 27001",
+    "oversight": "the Audit Committee of the Board of Directors",
+    "had_disclosed_incident": true,
+    "incident_summary": "a contained phishing-related account compromise affecting a limited number of employee accounts"
+  }
+}

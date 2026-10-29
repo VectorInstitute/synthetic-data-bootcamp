@@ -1,0 +1,213 @@
+{
+  "company_id": "syn0020",
+  "name": "Drazennov Medical, Inc.",
+  "sector": "Health Care",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 124.72,
+  "totals": {
+    "seconds": 124.29,
+    "prompt_tokens": 44072,
+    "completion_tokens": 14702,
+    "total_tokens": 58774,
+    "reasoning_tokens": 0,
+    "calls": 10
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1220,
+      "prompt_chars": 14032,
+      "words": 1016,
+      "attempts": 3,
+      "exemplar_overlap": 0.0,
+      "issues": [
+        "The section has 1016 words; write at least 1800 (target 3000)."
+      ]
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1226,
+      "prompt_chars": 21586,
+      "words": 971,
+      "attempts": 3,
+      "exemplar_overlap": 0.0021,
+      "issues": [
+        "The section has 971 words; write at least 2100 (target 3500)."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1216,
+      "prompt_chars": 28666,
+      "words": 1716,
+      "attempts": 3,
+      "exemplar_overlap": 0.0528,
+      "issues": [
+        "The section has 1716 words; write at least 1800 (target 3000).",
+        "5% of the text repeats the style example word for word; rewrite it in your own words. Copied sentences include: \"Management's Discussion and Analysis of Financial Condition and Results of Operations\n\nYou should read the following dis...\"; \"This discussion contains forward-looking statements that involve risks and uncertainties....\"; \"Our actual results could differ materially from those discussed below....\"; \"Factors that could cause or contribute to such differences include, but are not limited to, those identified below and t...\""
+      ]
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 544,
+      "prompt_chars": 34786,
+      "words": 787,
+      "attempts": 1,
+      "exemplar_overlap": 0.0012,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 9.39,
+      "prompt_tokens": 2975,
+      "completion_tokens": 1114,
+      "total_tokens": 4089,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 891,
+      "issues": [
+        "The section has 891 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 9.22,
+      "prompt_tokens": 3007,
+      "completion_tokens": 1145,
+      "total_tokens": 4152,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 947,
+      "issues": [
+        "The section has 947 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 9.69,
+      "prompt_tokens": 3007,
+      "completion_tokens": 1256,
+      "total_tokens": 4263,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1016,
+      "issues": [
+        "The section has 1016 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 14.78,
+      "prompt_tokens": 4026,
+      "completion_tokens": 1507,
+      "total_tokens": 5533,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1258,
+      "issues": [
+        "The section has 1258 words; write at least 2100 (target 3500)."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 11.57,
+      "prompt_tokens": 4059,
+      "completion_tokens": 1374,
+      "total_tokens": 5433,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1166,
+      "issues": [
+        "The section has 1166 words; write at least 2100 (target 3500)."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 10.11,
+      "prompt_tokens": 4059,
+      "completion_tokens": 1148,
+      "total_tokens": 5207,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 971,
+      "issues": [
+        "The section has 971 words; write at least 2100 (target 3500)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 15.87,
+      "prompt_tokens": 5454,
+      "completion_tokens": 2050,
+      "total_tokens": 7504,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1591,
+      "issues": [
+        "The section has 1591 words; write at least 1800 (target 3000).",
+        "6% of the text repeats the style example word for word; rewrite it in your own words. Copied sentences include: \"Management's Discussion and Analysis of Financial Condition and Results of Operations\n\nYou should read the following dis...\"; \"This discussion contains forward-looking statements that involve risks and uncertainties....\"; \"Our actual results could differ materially from those discussed below....\"; \"Factors that could cause or contribute to such differences include, but are not limited to, those identified below and t...\""
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 16.59,
+      "prompt_tokens": 5587,
+      "completion_tokens": 1922,
+      "total_tokens": 7509,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1443,
+      "issues": [
+        "The section has 1443 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 18.23,
+      "prompt_tokens": 5487,
+      "completion_tokens": 2206,
+      "total_tokens": 7693,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1716,
+      "issues": [
+        "The section has 1716 words; write at least 1800 (target 3000).",
+        "5% of the text repeats the style example word for word; rewrite it in your own words. Copied sentences include: \"Management's Discussion and Analysis of Financial Condition and Results of Operations\n\nYou should read the following dis...\"; \"This discussion contains forward-looking statements that involve risks and uncertainties....\"; \"Our actual results could differ materially from those discussed below....\"; \"Factors that could cause or contribute to such differences include, but are not limited to, those identified below and t...\""
+      ]
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 8.84,
+      "prompt_tokens": 6411,
+      "completion_tokens": 980,
+      "total_tokens": 7391,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 787,
+      "issues": []
+    }
+  ]
+}

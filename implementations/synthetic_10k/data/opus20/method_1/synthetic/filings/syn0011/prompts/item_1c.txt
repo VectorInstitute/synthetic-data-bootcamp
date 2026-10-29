@@ -1,0 +1,390 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Novmer Materials, Inc. (ticker NOMV)
+Sector: Materials
+Incorporated in: Delaware
+Headquarters: Atlanta, Georgia
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 65,500
+
+Novmer Materials, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      20,255        19,080
+Cost of revenue                              15,825        14,858
+Gross profit                                  4,430         4,222
+Research and development                          0             0
+Selling, general and administrative           2,856         2,629
+Other operating expense                       1,215         1,145
+Operating income                                359           448
+Interest expense                                689           652
+Income before income taxes                    (330)         (204)
+Provision for income taxes                        0             0
+Net income                                    (330)         (204)
+
+Novmer Materials, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            6,552         6,313
+Accounts receivable, net                             3,219         3,057
+Inventories                                          2,730         2,585
+Other current assets                                 5,358         5,123
+Total current assets                                17,859        17,078
+Property, plant and equipment, net                  33,569        30,712
+Goodwill                                             9,242         9,141
+Other non-current assets                             1,027         1,016
+Total assets                                        61,697        57,947
+Total current liabilities                           13,858        13,401
+Long-term debt                                      15,309        14,499
+Other non-current liabilities                        1,851         1,739
+Total liabilities                                   31,018        29,639
+Total stockholders' equity                          30,679        28,308
+Total liabilities and stockholders' equity          61,697        57,947
+
+Novmer Materials, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             (330)
+Depreciation and amortization                            701
+Changes in working capital and other                     903
+Net cash provided by operating activities              1,274
+Purchases of property and equipment                    (521)
+Other investing activities, net                      (4,025)
+Net cash used in investing activities                (4,546)
+Net change in long-term debt                             810
+Dividends paid                                             0
+Share repurchases, net of issuances                    2,701
+Net cash used in financing activities                  3,511
+Net change in cash and cash equivalents                  239
+Cash and cash equivalents, beginning of year           6,313
+Cash and cash equivalents, end of year                 6,552
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 6.2%
+Net income growth, fiscal 2024 versus 2023: -61.8%
+Operating income growth, fiscal 2024 versus 2023: -19.9%
+Gross margin, fiscal 2024: 21.9%
+Operating margin, fiscal 2024: 1.8%
+Net margin, fiscal 2024: -1.6%
+Effective tax rate, fiscal 2024: 0.0%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 14.1%
+Gross margin, fiscal 2023: 22.1%
+Operating margin, fiscal 2023: 2.3%
+Net margin, fiscal 2023: -1.1%
+Effective tax rate, fiscal 2023: 0.0%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 13.8%
+
+STYLE EXAMPLE: the start of Item 1C from a real Materials company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1C. Cybersecurity.
+Risk Management and Strategy
+We maintain a cyber risk management program designed to assess, identify, manage, mitigate and respond to cybersecurity threats and incidents. We seek to address material risks from cybersecurity threats through a cross-functional approach, and we utilize various processes to inform our identification, assessment and management of material risks from cybersecurity threats. Our cyber risk management program is integrated into our overall enterprise risk management (ERM) program. Cybersecurity risks are identified and assessed through our ERM program, which is designed to provide cross-functional executive insight across the business to identify and monitor risks, opportunities and emerging trends that can impact our strategic business objectives. The underlying controls of our cyber risk management program are based on recognized best practices and standards for cybersecurity and information technology, including the National Institute of Standards and Technology Cybersecurity Framework.
+We utilize dedicated internal and external cybersecurity personnel to focus on assessing, detecting, identifying, managing, preventing and responding to cybersecurity threats and incidents. Our approach to cybersecurity incorporates a layered portfolio of technology controls, including strategic partnerships for our cybersecurity platforms, documented policies and procedures, periodic end user training, including cybersecurity awareness training for employees and certain contractors, and dedicated resources to manage and monitor the evolving threat landscape, including through the gathering of actionable threat intelligence. We maintain and periodically evaluate and, as needed, update our information security policy and an incident response plan, which describes the processes we use to prepare for, detect, respond to and recover from a cybersecurity incident, including processes to assess severity, escalate, contain, investigate and remediate an incident, as well as to comply with potentially applicable legal and disclosure obligations.
+We regularly evaluate and assess the threat landscape and our security controls, including through audits and assessments, regular network and endpoint monitoring, vulnerability testing, penetration testing and tabletop exercises that include senior management. To assess the design and effectiveness of our cybersecurity controls, we engage with assessors, consultants, auditors and other third parties, including through independent third-party reviews of our information technology security program conducted on at least an annual basis. We also have processes to oversee and identify material cybersecurity risks associated with our use of third-party service providers, including utilizing safeguards to protect sensitive data, performing diligence on certain third parties that have access to our systems, data or facilities that store such systems or data, continually monitoring cybersecurity threat risks identified through such diligence and contracting to manage cybersecurity risks in specified ways such as requiring agreements to be subject to periodic cybersecurity audits.
+We have experienced targeted and non-targeted cybersecurity incidents in the past, including an incident in August 2023 that affected certain of our information systems and resulted in temporary disruptions to parts of our operations. However, prior cybersecurity incidents, including the August 2023 incident, have not materially affected us. Notwithstanding our cyber risk management program, we may not be successful in preventing or mitigating a cybersecurity incident that could materially affect us, including our business strategy, results of operations or financial condition. Refer to Item 1A. “Risk Factors” for further information on the risks we face from cybersecurity threats.
+Governance
+Our Senior Vice President and Chief Innovation Officer, who has served in various senior leadership roles in operational improvement and technology during his nearly 30-year tenure with us, leads our innovation and technology initiatives, corporate information systems and financial shared services. Our cybersecurity risk management and strategy processes described in “Risk Management and Strategy” above are led by our Chief Information Officer (CIO) and our Chief Information Security Officer (CISO). Our CIO and CISO each report to our Chief Innovation Officer. Our CIO is responsible for the strategy, deployment, operational effectiveness and risk management of our technology systems and operations. Our CIO has over 30 years of experience in technology, cybersecurity and risk management, including leading information and technology initiatives for companies in the mining and energy sectors as a partner and senior managing director at a global professional services public company specializing in information technology services and management consulting. Our CISO is responsible for protecting our global technology systems from cybersecurity incidents, which includes overseeing the deployment of cybersecurity controls, managing a team of cybersecurity professionals and reporting on cybersecurity matters to management and the Audit Committee of our Board. Our CISO has 30 years of experience in the technology and
+72
+Table of Contents
+cybersecurity industries, including 15 years serving as CISO for public companies. Our CISO is also a Certified Information Systems Security Professional.
+Our ERM management committee is responsible for providing input and oversight on our ERM program, including cybersecurity risks. Our ERM management committee is comprised of senior leaders, including our Chief Innovation Officer, with responsibility across operations and core business functions, and with a breadth of knowledge, influence and experience covering the risks we face. An annual report on our enterprise risks, including cybersecurity risks, is presented to the Audit Committee and/or the full Board of Directors (Board).
+While management is responsible for the day-to-day management of cybersecurity risks, our Board and its Audit Committee have ongoing oversight roles. The Audit Committee reviews and discusses with management, including reports from our Chief Innovation Officer, at least annually:
+•the adequacy and effectiveness of our information technology security processes and procedures,
+•the assessment of risks and threats to our information technology systems,
+•the internal controls regarding information technology security and cybersecurity, and
+•the steps management has taken to monitor and mitigate information technology security and cybersecurity risks.
+The Audit Committee also periodically receives reports on notable cybersecurity incidents and briefs the full Board on these matters.
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Overview
+
+Novmer Materials, Inc. ("Novmer," the "Company," "we," "us" or "our") supplies construction materials, engineered building products and specialty minerals. Our customers build, maintain and renovate infrastructure, commercial and industrial facilities, and residential communities. In fiscal 2024, which ended December 31, 2024, we generated total revenue of $20,255 million.
+
+Our business rests on long-lived, strategically located mineral reserves and manufacturing facilities. We combine these assets with technical know-how, logistics networks and close relationships with customers in the communities we serve. We extract, process, manufacture and deliver materials that are essential to modern construction. Many of these materials are heavy and costly to transport relative to their value. As a result, local market position, proximity to customers and dependable supply are central to how we compete.
+
+We serve customers in the following end markets:
+
+- Public infrastructure, including highways, streets, bridges, airports, rail, water and wastewater systems.
+- Non-residential construction, including industrial, manufacturing, warehouse, data center, energy, healthcare, education and commercial projects.
+- Residential construction, including new single-family and multi-family housing as well as repair and remodeling activity.
+
+Demand across these end markets is shaped by public funding levels, private investment, interest rates, population growth, household formation and general economic conditions. The mix of these factors varies across our geographic markets.
+
+Our strategy has four parts:
+
+- Strengthen our position in our core local markets through disciplined operations and customer service.
+- Expand our portfolio of higher-value engineered products.
+- Invest in reserves, plants and logistics assets that support long-term growth.
+- Pursue acquisitions that complement our existing footprint and can be integrated efficiently.
+
+During fiscal 2024, we continued to invest in property, plant and equipment and to pursue complementary acquisitions. Our objective is to broaden our geographic reach and deepen our product offering in markets where we see attractive long-term demand.
+
+Novmer Materials, Inc. was incorporated in Delaware. Our corporate headquarters is in Atlanta, Georgia. Our common stock trades under the ticker symbol "NOMV."
+
+Principal Products and Services
+
+We organize our offerings into three broad categories that together cover a large part of the construction value chain.
+
+Construction Materials
+
+Our construction materials business produces:
+
+- Crushed stone, sand and gravel, which together make up construction aggregates.
+- Cement and supplementary cementitious materials.
+- Ready-mixed concrete.
+- Asphalt mix.
+
+Aggregates are the primary raw material for concrete and asphalt and are also used as base material for roads, building foundations and railroad ballast. Cement is the binding agent in concrete. We supply it in bulk and in bags to concrete producers, contractors and distributors. Our ready-mixed concrete and asphalt operations use our own aggregates and cement wherever practical. This vertical integration helps secure supply, improve plant utilization and capture value across successive stages of production. In many markets we also provide paving and related construction services, mainly for public road agencies and private developers.
+
+Engineered Building Products
+
+Our engineered building products business designs and manufactures products for both above-ground and below-ground construction applications, including:
+
+- Precast and prestressed concrete structures.
+- Concrete and polymer pipe.
+- Drainage and stormwater management systems.
+- Utility vaults and enclosures.
+- Architectural and structural masonry.
+- Building envelope components.
+
+Many of these products are engineered to customer or project specifications. Our technical staff frequently work with engineers, architects and contractors during the design phase to recommend solutions that cut installation time, improve durability or meet regulatory and performance requirements. This business also includes a range of products sold through distribution channels to professional contractors and, to a lesser extent, to do-it-yourself consumers. These include pavers, retaining wall systems and packaged concrete mixes.
+
+Specialty Minerals
+
+Our specialty minerals business extracts and processes industrial minerals for applications that require consistent chemical and physical properties. Products include:
+
+- Lime and limestone-based products.
+- Industrial sands.
+- Ground and precipitated calcium carbonate.
+- Other mineral fillers and additives.
+
+These products are used in steelmaking, environmental remediation, flue gas treatment, water treatment, glass manufacturing, paper and packaging, plastics, paints and coatings, and agriculture. Sales in this business depend more on reliable quality, technical service and long-term supply arrangements than on construction cycles. This provides a measure of diversification against the cyclicality of our construction-oriented businesses.
+
+Reportable Segments
+
+We manage our operations through three reportable segments: Construction Materials, Engineered Products and Specialty Minerals. Each segment is overseen by its own leadership team. Our chief operating decision maker reviews each segment's performance and allocates resources among them. Financial information about our reportable segments is presented in the notes to our consolidated financial statements included elsewhere in this Annual Report on Form 10-K.
+
+Construction Materials Segment
+
+The Construction Materials segment operates quarries, sand and gravel pits, cement plants, ready-mixed concrete plants and asphalt plants. These are supported by a network of rail, barge and truck distribution terminals. This segment is our most asset-intensive business. Its performance depends heavily on:
+
+- The quality, quantity and location of our mineral reserves.
+- The efficiency of our extraction and processing operations.
+- The cost of energy, fuel and freight.
+
+We seek to keep a reserve position that supports operations for many years at current production levels in each local market. Permitting new reserves is often lengthy, complex and uncertain, which can create significant barriers to entry. Revenue in this segment is closely tied to public infrastructure spending and to commercial and residential construction volumes in the regions where we operate. Pricing is set mostly at the local level and reflects supply and demand conditions, transportation costs and the competitive landscape in each market.
+
+Engineered Products Segment
+
+The Engineered Products segment manufactures precast concrete, pipe, drainage, utility infrastructure, masonry and building envelope products at plants generally located near major metropolitan areas and growth corridors. Value in this segment comes from three sources:
+
+- Engineering and design capabilities.
+- Manufacturing quality and consistency.
+- On-time delivery to project sites, often coordinated closely with construction schedules.
+
+A substantial portion of this segment's sales is linked to specific projects and governed by project specifications. Specifications can be influenced by early collaboration with designers and owners. The segment also includes branded products sold through home improvement retailers, building supply dealers and landscape distributors. Demand drivers include water and stormwater infrastructure investment, utility and telecommunications expansion, non-residential construction and residential activity, including repair and remodeling.
+
+Specialty Minerals Segment
+
+The Specialty Minerals segment mines and processes high-purity mineral deposits. It manufactures lime, industrial sand and calcium carbonate products for a diverse group of industrial customers. Many customers buy under multi-year supply agreements, and some of our facilities are located next to or near customer plants. Success in this segment depends on:
+
+- Access to high-quality deposits.
+- Process technology and product consistency.
+- Energy efficiency, since lime production in particular is energy intensive.
+- The ability to offer technical support that helps customers optimize their own processes.
+
+End markets for this segment include steel, environmental services, water treatment, glass, paper and packaging, plastics and agriculture.
+
+Customers
+
+Our customer base is broad and diverse. It includes:
+
+- Federal, state and local governmental agencies and the contractors that perform public works projects for them.
+- General contractors, subcontractors and specialty contractors.
+- Commercial, industrial and residential developers and homebuilders.
+- Ready-mixed concrete producers, precast producers and other building materials manufacturers.
+- Building materials distributors, dealers and home improvement retailers.
+- Utilities and telecommunications companies.
+- Industrial manufacturers in the steel, glass, paper, chemical and agricultural sectors.
+
+In our Construction Materials and Engineered Products segments, most customers buy for specific projects. Purchases are typically made under purchase orders or short-term contracts for an individual project, although some larger customers place recurring orders throughout the year. Public infrastructure work is generally awarded through competitive bidding by our contractor customers. We then supply materials to the winning bidders under quoted prices that may be fixed for the duration of a project. In the Specialty Minerals segment, a larger share of revenue is generated under longer-term supply agreements. These agreements may include provisions for price adjustments tied to energy or other input costs.
+
+No single customer accounted for a material portion of our consolidated revenue in fiscal 2024. We believe our broad base of customers across end markets and regions reduces our dependence on any single customer or project. However, the loss of certain large customers could have a meaningful effect on the results of individual operations or local markets.
+
+Sales and Marketing
+
+We sell our products mainly through our own direct sales organization. It is structured around local markets, customer types and product lines. Our sales professionals maintain long-standing relationships with contractors, developers, engineers, architects, public agencies and industrial customers. Because construction materials are typically sourced locally, our local sales and operations teams have significant autonomy to respond quickly to customer needs, quote prices, schedule deliveries and coordinate with project managers.
+
+In our Engineered Products segment, we supplement direct sales with technical sales and engineering support teams. These teams work with project designers to develop specifications and recommend product solutions. They also provide design assistance, product data, installation guidance and field support. For branded products sold through retail and distribution channels, we use dedicated account management teams, merchandising programs and promotional activities to support sell-through. In the Specialty Minerals segment, our sales personnel typically have technical backgrounds. They work with customer operations staff to tailor product characteristics to specific process requirements.
+
+We deliver products using a combination of:
+
+- Company-operated truck fleets and third-party haulers.
+- Rail and barge transportation.
+- A network of [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+Our business, financial condition, results of operations and cash flows are subject to a number of risks and uncertainties, many of which are beyond our control. Investors should consider the risks described below together with the other information in this Annual Report on Form 10-K, including our consolidated financial statements and the related notes. These are not the only risks we face. Additional risks that we do not currently know of, or that we currently consider immaterial, could also adversely affect us. If any of these risks occurs, the trading price of our common stock could decline.
+
+Risks Related to Our Business and Industry
+
+Demand for our products is cyclical and depends on construction activity, which can decline sharply during economic downturns.
+
+Most of our revenue comes from materials and products used in public infrastructure, non-residential construction and residential construction. Activity in each of these end markets rises and falls with broader economic conditions. Construction spending has historically fallen significantly during recessions, during periods of tight credit and when business and consumer confidence weakens. A slowdown in any major end market or region we serve could reduce our shipment volumes and pricing. Because a large share of our cost base is fixed, lower volumes reduce plant utilization and absorption of fixed costs, so profitability can decline faster than revenue.
+
+We cannot predict when the construction cycle will turn, how long a downturn will last or how deep it will be. Our operating margin is already thin. As a result, a decline in construction demand of even moderate size could materially increase our net losses and reduce the cash we generate from operations.
+
+A reduction or delay in government funding for infrastructure could reduce demand for our construction materials and engineered products.
+
+A significant portion of our Construction Materials and Engineered Products sales supports highway, bridge, airport, transit, water and wastewater projects funded by federal, state and local governments. Public infrastructure spending depends on legislative appropriations, multi-year federal transportation authorizations, state fuel tax and other dedicated revenues, municipal bond markets and the budget condition of the agencies that award work. Funding programs may expire, be extended only temporarily, be reduced or be redirected to other priorities. State and local budget shortfalls, political disagreements, government shutdowns or changes in administration could delay project lettings or cancel planned work.
+
+Even when funds are appropriated, the timing of contract awards and construction starts can lag for extended periods because of planning, permitting, environmental review and labor or contractor capacity constraints. Any reduction, delay or uncertainty in public funding could reduce our volumes in affected markets and adversely affect our results of operations.
+
+Higher interest rates, tighter credit and weaker housing conditions could reduce private construction activity.
+
+Residential construction, including new single-family and multi-family housing and repair and remodeling, depends heavily on mortgage rates, home affordability, household formation and consumer confidence. Non-residential projects such as warehouses, manufacturing plants, data centers, office and retail buildings depend on the availability and cost of financing, occupancy and rental trends, and the expected return on new investment. When interest rates rise or lenders tighten standards, developers and homebuilders may postpone or cancel projects. Changes in the pace of investment in specific sectors, such as data centers, energy facilities or advanced manufacturing, could also cause sudden shifts in regional demand. Any sustained weakness in private construction could adversely affect sales in our Construction Materials and Engineered Products segments.
+
+We operate in highly competitive local markets, and competitive pressure could limit our ability to maintain or raise prices.
+
+Construction materials are generally sold in local markets, and in each of them we compete with national and regional building materials producers, vertically integrated contractors and smaller independent operators. In cement, we also compete with imported product, which can enter coastal and river-served markets at prices that reflect excess capacity, currency movements or subsidies abroad. In engineered building products, we compete with manufacturers of alternative materials such as plastic, steel and composite pipe and structures, and with producers that may have lower cost structures in certain regions. In specialty minerals, we compete on quality, technical service and delivered cost with domestic and foreign producers.
+
+New capacity, aggressive pricing by competitors, consolidation among our customers or the entry of new participants into a local market could reduce our market share or force us to lower prices. Because our margins are narrow, our ability to recover cost increases through pricing is especially important to our results. If we cannot do so, our operating income could decline further.
+
+Our results are affected by weather and seasonality, which can cause significant variation in quarterly and annual performance.
+
+Construction activity in most of our markets is lower in winter months and during periods of heavy rain, flooding, extreme heat or other severe weather. Prolonged periods of adverse weather can delay or cancel projects, reduce shipments and increase operating costs. They can also shift volumes between periods in ways that make our results difficult to predict. Because our plants and equipment carry substantial fixed costs throughout the year, weather-driven volume shortfalls can have a disproportionate effect on our profitability and liquidity in a given quarter or year.
+
+Increases in the cost or disruptions in the supply of energy, fuel and other inputs could reduce our margins.
+
+Our operations consume large quantities of energy. Cement kilns and lime kilns require significant amounts of coal, natural gas, petroleum coke and alternative fuels, as well as electricity. Our quarries, plants and delivery fleets consume diesel fuel. We also purchase raw materials and consumables, including liquid asphalt, cement, admixtures, steel reinforcement, resins, explosives, repair parts and tires. Prices for many of these inputs are volatile and are influenced by global commodity markets, geopolitical events, weather, regulatory changes and supply disruptions.
+
+Cost of revenue represents the large majority of our revenue, and it grew faster than revenue in fiscal 2024. Our gross margin therefore narrowed. In much of our Construction Materials and Engineered Products business, prices are quoted in advance or fixed for the duration of a project, and we may be unable to pass through cost increases on a timely basis. Although some Specialty Minerals supply agreements include energy or input cost adjustment provisions, these provisions may not fully or promptly offset our cost increases. Any significant increase in input costs, or any interruption in supply, could materially and adversely affect our results of operations.
+
+Our growth strategy depends in part on acquisitions, which involve significant risks and may not deliver the benefits we expect.
+
+We have made substantial investments in acquisitions and other investing activities to broaden our geographic footprint and product offering, and we expect to continue to pursue acquisitions that complement our existing operations. Acquisitions involve numerous risks, including:
+
+- Paying more than an acquired business is ultimately worth, or overestimating the reserves, demand or synergies associated with it.
+- Difficulties integrating operations, information systems, safety practices, personnel and customer relationships.
+- Assuming unknown or contingent liabilities, including environmental, reclamation, product liability or tax liabilities.
+- Diversion of management attention from existing operations.
+- Regulatory review that may delay a transaction, impose conditions or require divestitures.
+- Increased indebtedness or dilution to stockholders used to fund the transaction.
+
+We may not be able to identify suitable acquisition candidates or complete transactions on acceptable terms. Acquisitions we complete may not perform as anticipated. If acquired businesses fail to meet our expectations, we may record impairment charges and our results of operations and financial condition could be adversely affected.
+
+Demand for our specialty minerals depends on the performance of a limited number of industrial end markets.
+
+Our Specialty Minerals segment sells lime, industrial sand, calcium carbonate and other mineral products to customers in steelmaking, environmental services, water treatment, glass, paper and packaging, plastics and agriculture. Some of these industries are themselves cyclical or are undergoing structural change. Examples include declining demand for certain paper grades, changes in steelmaking technology, and shifts in power generation that affect demand for flue gas treatment products. The closure, idling or relocation of a customer facility that we supply from a nearby plant could leave that plant without a comparable alternative customer. If demand in these end markets weakens, or if key customers reduce their purchases or do not renew supply agreements, our Specialty Minerals results could decline.
+
+Risks Related to Our Operations
+
+Our business depends on our ability to secure, permit and maintain sufficient mineral reserves near our markets.
+
+Our Construction Materials and Specialty Minerals segments depend on access to economically recoverable reserves of aggregates, limestone, industrial sand and other minerals located close to customers. Because these materials are heavy and costly to transport, reserves that are far from demand may have limited economic value. Obtaining zoning approvals and permits for new quarries, or for expansion of existing sites, is frequently time-consuming, expensive and uncertain. It may also face opposition from local communities, environmental organizations and governmental authorities.
+
+Over time, urban growth, changes in land use regulation and restrictions on mining near residential areas, waterways or protected habitats may limit our ability to replenish reserves. Estimates of reserve quantity and quality are based on geological interpretation and assumptions that may prove inaccurate. If we cannot [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+This discussion explains the financial condition and results of operations of Novmer Materials, Inc. for the fiscal year ended December 31, 2024. Please read it with our consolidated financial statements and related notes in Item 8 of this Annual Report on Form 10-K, and with the risk factors in Item 1A.
+
+Some statements in this discussion are forward-looking. They reflect our current expectations and involve risks and uncertainties, so actual results could differ materially. Unless otherwise noted, all references to "fiscal 2024" and "fiscal 2023" refer to the fiscal years ended December 31, 2024 and December 31, 2023, respectively. Our comparison of fiscal 2023 with the preceding fiscal year appears in Part II, Item 7 of our Annual Report on Form 10-K for fiscal 2023.
+
+This Item is organized as follows:
+
+- Overview
+- Fiscal 2024 Highlights
+- Results of Operations
+- Liquidity and Capital Resources
+- Critical Accounting Estimates
+
+Overview
+
+Novmer supplies construction materials, engineered building products and specialty minerals. Our customers build, maintain and renovate infrastructure, commercial and industrial facilities, and residential communities. We operate through three reportable segments:
+
+- Construction Materials, which produces aggregates, cement, ready-mixed concrete and asphalt mix, and in many markets provides paving and related construction services.
+- Engineered Products, which designs and manufactures precast and prestressed concrete structures, pipe, drainage and stormwater systems, utility vaults, masonry and building envelope components, and branded products sold through distribution channels.
+- Specialty Minerals, which extracts and processes lime, industrial sands, calcium carbonate and other mineral fillers and additives for industrial customers.
+
+Our results depend mainly on three things. The first is construction activity in the local and regional markets we serve. That activity is driven by public infrastructure funding, private non-residential investment and residential construction. The second is our ability to price our products to recover changes in energy, freight, labor and raw material costs. The third is the efficiency and utilization of our largely fixed-cost network of quarries, plants and distribution assets. Our Specialty Minerals segment supplies industrial end markets, often under multi-year supply agreements, which partly offsets the cyclicality of our construction-oriented businesses.
+
+Our business is capital intensive and seasonal. Shipments are typically lower in the winter months and during periods of adverse weather, so quarterly results vary. Over the longer term, our strategy has four parts:
+
+- Strengthen our position in our core local markets.
+- Expand our portfolio of higher-value engineered products.
+- Invest in reserves, plants and logistics assets.
+- Pursue acquisitions that complement our existing footprint.
+
+At December 31, 2024, we employed about 65,500 people.
+
+Fiscal 2024 Highlights
+
+- Revenue was $20,255 million in fiscal 2024, an increase of 6.2% from $19,080 million in fiscal 2023. Growth reflected pricing actions across our segments, contributions from businesses we acquired, and steady demand in public infrastructure and several non-residential sectors. These factors were partly offset by softer residential activity in certain markets.
+- Gross profit was $4,430 million, compared with $4,222 million in fiscal 2023. Gross margin narrowed to 21.9% from 22.1% because cost of revenue grew faster than revenue.
+- Operating income was $359 million, a decrease of 19.9% from $448 million in fiscal 2023. Operating margin was 1.8%, compared with 2.3%. Higher selling, general and administrative expense and higher other operating expense, including costs to integrate acquired businesses, more than offset the increase in gross profit.
+- Interest expense rose to $689 million from $652 million because average borrowings were higher.
+- Net loss was $330 million, compared with a net loss of $204 million in fiscal 2023. This represents a decrease in net income of 61.8%.
+- Net cash provided by operating activities was $1,274 million. Net cash used in investing activities was $4,546 million, mainly for acquisitions and other investments. Net cash provided by financing activities was $3,511 million, reflecting net equity proceeds and additional long-term borrowings.
+- Cash and cash equivalents were $6,552 million at December 31, 2024, compared with $6,313 million at December 31, 2023.
+
+Results of Operations
+
+The following table summarizes our consolidated results of operations for fiscal 2024 and fiscal 2023.
+
+(in millions, except percentages)          FY2024        FY2023
+Revenue                                    $20,255       $19,080
+Cost of revenue                             15,825        14,858
+Gross profit                                 4,430         4,222
+  Gross margin                               21.9%         22.1%
+Research and development                         0             0
+Selling, general and administrative          2,856         2,629
+  As a percent of revenue                    14.1%         13.8%
+Other operating expense                      1,215         1,145
+Operating income                               359           448
+  Operating margin                            1.8%          2.3%
+Interest expense                               689           652
+Loss before income taxes                       (330)         (204)
+Provision for income taxes                       0             0
+  Effective tax rate                          0.0%          0.0%
+Net loss                                       (330)         (204)
+  Net loss as a percent of revenue            1.6%          1.1%
+
+Fiscal 2024 Compared With Fiscal 2023
+
+Revenue
+
+Revenue increased 6.2% to $20,255 million in fiscal 2024 from $19,080 million in fiscal 2023. Several factors drove the increase.
+
+In Construction Materials, we implemented price increases across aggregates, cement, ready-mixed concrete and asphalt to recover higher operating costs. Shipments to public infrastructure projects remained steady as federal, state and local highway, bridge and water programs continued to move from appropriation into construction. Demand from non-residential projects, particularly data centers, energy facilities, manufacturing plants and warehouses in several growth corridors, also supported volumes. Residential-related shipments were softer in a number of markets, where elevated mortgage rates and affordability pressures weighed on new single-family and multi-family starts.
+
+In Engineered Products, revenue benefited from demand for drainage, stormwater, utility and precast products used in infrastructure and utility expansion projects. Pricing actions also contributed. Sales of branded products through retail and distribution channels were affected by moderating repair and remodeling activity.
+
+In Specialty Minerals, revenue reflected price adjustments under supply agreements, including energy-related adjustment provisions, and stable demand from environmental, water treatment and agricultural customers. Weakness in certain paper and packaging and steel-related applications partly offset these gains.
+
+Businesses acquired during fiscal 2024 and late in fiscal 2023 contributed incremental revenue in each segment, [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Novmer Materials, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 900 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

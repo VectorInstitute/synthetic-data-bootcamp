@@ -1,0 +1,246 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Novmer Materials, Inc. (ticker NOMV)
+Sector: Materials
+Incorporated in: Delaware
+Headquarters: Atlanta, Georgia
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 65,500
+
+Novmer Materials, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      20,255        19,080
+Cost of revenue                              15,825        14,858
+Gross profit                                  4,430         4,222
+Research and development                          0             0
+Selling, general and administrative           2,856         2,629
+Other operating expense                       1,215         1,145
+Operating income                                359           448
+Interest expense                                689           652
+Income before income taxes                    (330)         (204)
+Provision for income taxes                        0             0
+Net income                                    (330)         (204)
+
+Novmer Materials, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            6,552         6,313
+Accounts receivable, net                             3,219         3,057
+Inventories                                          2,730         2,585
+Other current assets                                 5,358         5,123
+Total current assets                                17,859        17,078
+Property, plant and equipment, net                  33,569        30,712
+Goodwill                                             9,242         9,141
+Other non-current assets                             1,027         1,016
+Total assets                                        61,697        57,947
+Total current liabilities                           13,858        13,401
+Long-term debt                                      15,309        14,499
+Other non-current liabilities                        1,851         1,739
+Total liabilities                                   31,018        29,639
+Total stockholders' equity                          30,679        28,308
+Total liabilities and stockholders' equity          61,697        57,947
+
+Novmer Materials, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             (330)
+Depreciation and amortization                            701
+Changes in working capital and other                     903
+Net cash provided by operating activities              1,274
+Purchases of property and equipment                    (521)
+Other investing activities, net                      (4,025)
+Net cash used in investing activities                (4,546)
+Net change in long-term debt                             810
+Dividends paid                                             0
+Share repurchases, net of issuances                    2,701
+Net cash used in financing activities                  3,511
+Net change in cash and cash equivalents                  239
+Cash and cash equivalents, beginning of year           6,313
+Cash and cash equivalents, end of year                 6,552
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 6.2%
+Net income growth, fiscal 2024 versus 2023: -61.8%
+Operating income growth, fiscal 2024 versus 2023: -19.9%
+Gross margin, fiscal 2024: 21.9%
+Operating margin, fiscal 2024: 1.8%
+Net margin, fiscal 2024: -1.6%
+Effective tax rate, fiscal 2024: 0.0%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 14.1%
+Gross margin, fiscal 2023: 22.1%
+Operating margin, fiscal 2023: 2.3%
+Net margin, fiscal 2023: -1.1%
+Effective tax rate, fiscal 2023: 0.0%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 13.8%
+
+STYLE EXAMPLE: the start of Item 1A from a real Materials company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1A.	Risk Factors
+Many of the factors that affect our business and operations involve risk and uncertainty. The factors described below are some of the risks that could materially negatively affect our business, financial condition, results of operations and cash flows.
+Industry Specific Risk Factors
+Overcapacity in the global steel industry could increase the level of steel imports into the United States, which may negatively affect our business, results of operations, financial condition and cash flows.
+Global steel production overcapacity continues to be an ongoing risk to Nucor and the entire steel industry. The OECD has estimated that global steel production overcapacity could grow to 710 million tons in 2025, with additional capacity expected to come online over the next few years. China continues to be a significant contributor to excess steelmaking capacity, producing more than one billion tons of steel in each of the past five years, despite experiencing slower economic growth. Chinese steel producers are also investing in new steelmaking capacity in several countries in southeast Asia and Africa.
+During periods of global economic weakness, the effects of this overcapacity are amplified because of weaker global demand for steel and steel products. Steel manufacturers in non-market economies, such as China, tend not to adjust their production levels in line with regional demand and instead export significant amounts of steel and steel products at prices that can be at or below their costs of production. In countries with non-market economies, the steel industry is often subsidized or owned in whole or in part by the government, which can provide these producers with cost advantages or cause their production decisions to be driven by political or social factors rather than price and demand signals. Surplus output from steel producers in these countries can flow into the U.S. market. These exports to the U.S. can result in downward pressure on realized steel prices for Nucor, adversely affecting our business, results of operations, financial condition and cash flows.
+In 2018, a 25% tariff or quota limits were imposed under the first Trump Administration under Section 232 of the Trade Expansion Act on all imported steel products for an indefinite period of time. However, over time the Section 232 measures were weakened through country exemptions, quota arrangements and individual product exclusions. As a result, the Section 232 program’s coverage narrowed significantly since its initial implementation, with duties eventually applicable to less than 20% of total import volumes. If the Section 232 or other import tariffs, quotas or duties expire or if others are further relaxed or repealed, or if relatively higher U.S. steel prices or a stronger U.S. dollar make it attractive for foreign steelmakers to export their steel products to the United States, despite the presence of import tariffs, quotas or duties, the resurgence of substantial imports of foreign steel could create downward pressure on U.S. steel prices.
+Most recently, on February 10, 2025, President Trump issued an executive order reimposing Section 232 25% tariffs on steel imports from all sources, ending country and product exemptions, and broadening the application of the tariffs to fabricated steel products. This order is scheduled to go into effect on March 12, 2025. There can be no assurance as to when or if Section 232 or other import tariffs, quotas or other duties may be enacted, enforced, extended, modified or terminated in the future.
+Our industry is cyclical and both recessions and prolonged periods of slow economic growth may negatively affect our business, results of operations, financial condition and cash flows.
+Demand for most of our products is cyclical in nature and sensitive to general economic conditions. Our business supports cyclical industries, such as the construction, energy, metals service centers,
+19
+appliance and automotive industries. As a result, downturns in the U.S. economy or any of these industries could materially adversely affect our results of operations, financial condition and cash flows.
+We are unable to predict the duration of current economic conditions or the magnitude or timing of changes in economic activity. Future economic downturns, prolonged slow growth or stagnation in the economy, a sector-specific slowdown in one of our key end-use markets, such as nonresidential construction, or changes in inflation could materially adversely affect our business, results of operations, financial condition and cash flows, especially in light of the capital-intensive nature of our business.
+Competition from other steel producers, imports or alternative materials may negatively affect our business, results of operations, financial condition and cash flows.
+We face ongoing competition from other steel producers and imports that compete with our products on price, quality and service. The markets for our products are highly competitive and a number of firms, domestic and foreign, participate in the steel, steel products and raw materials markets. Depending on a variety of factors, including the cost and availability of raw materials, energy, technology, labor, transportation and capital costs, currency exchange rates, government subsidies of foreign steel producers and other global political and economic factors, our business may be materially adversely affected by more intense competitive forces.
+In many applications, steel competes with other materials, such as concrete, aluminum, plastics, composites and wood. Increased use or availability of these materials in substitution for steel products could have a material adverse effect on prices and demand for our steel products.
+Our business requires substantial capital investment and maintenance expenditures, and our capital resources may not be adequate to provide for all of our cash requirements.
+Our business requires substantial expenditures for routine maintenance and to remain competitive. For the three-year period ended December 31, 2024, our total capital expenditures were approximately $7.46 billion. In the last three years we announced various substantial capital projects that we expect will increase production capacity, increase the efficiency of our operations and enhance our product offerings. Although we expect requirements for our business needs, including the funding of capital expenditures, debt service for financings and any contingencies, will be financed by internally generated funds, short-term commercial paper issuances, offerings of our debt securities or from borrowings under our $1.75 billion unsecured revolving credit facility, we cannot guarantee that this will be the case. Additional acquisitions, increases in interest rates or unforeseen events could require financing from additional sources.
+Changes in the availability and cost of electricity and natural gas are subject to volatile market conditions which may negatively affect our business, results of operations, financial condition and cash flows.
+Our steel mills are large consumers of electricity and natural gas. In addition, our DRI facilities are also large consumers of natural gas. We rely upon third parties for our supply of energy resources consumed in the manufacture of our products. The prices for and availability of electricity and natural gas can be volatile. They are often affected by weather, political, regulatory and economic factors beyond our control, and we may be unable to raise the price of our products to offset increased energy costs. Disruptions, including physical or information systems related issues, that impact the supply of our energy resources could temporarily impair our ability to manufacture our products for our customers. Increases in our energy costs that are not similarly applicable to our competitors' operations could materially adversely affect our business, results of operations, financial condition and cash flows.
+20
+Our business and results of operations may be negatively affected by volatility in steel prices and [...]
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Overview
+
+Novmer Materials, Inc. ("Novmer," the "Company," "we," "us" or "our") supplies construction materials, engineered building products and specialty minerals. Our customers build, maintain and renovate infrastructure, commercial and industrial facilities, and residential communities. In fiscal 2024, which ended December 31, 2024, we generated total revenue of $20,255 million.
+
+Our business rests on long-lived, strategically located mineral reserves and manufacturing facilities. We combine these assets with technical know-how, logistics networks and close relationships with customers in the communities we serve. We extract, process, manufacture and deliver materials that are essential to modern construction. Many of these materials are heavy and costly to transport relative to their value. As a result, local market position, proximity to customers and dependable supply are central to how we compete.
+
+We serve customers in the following end markets:
+
+- Public infrastructure, including highways, streets, bridges, airports, rail, water and wastewater systems.
+- Non-residential construction, including industrial, manufacturing, warehouse, data center, energy, healthcare, education and commercial projects.
+- Residential construction, including new single-family and multi-family housing as well as repair and remodeling activity.
+
+Demand across these end markets is shaped by public funding levels, private investment, interest rates, population growth, household formation and general economic conditions. The mix of these factors varies across our geographic markets.
+
+Our strategy has four parts:
+
+- Strengthen our position in our core local markets through disciplined operations and customer service.
+- Expand our portfolio of higher-value engineered products.
+- Invest in reserves, plants and logistics assets that support long-term growth.
+- Pursue acquisitions that complement our existing footprint and can be integrated efficiently.
+
+During fiscal 2024, we continued to invest in property, plant and equipment and to pursue complementary acquisitions. Our objective is to broaden our geographic reach and deepen our product offering in markets where we see attractive long-term demand.
+
+Novmer Materials, Inc. was incorporated in Delaware. Our corporate headquarters is in Atlanta, Georgia. Our common stock trades under the ticker symbol "NOMV."
+
+Principal Products and Services
+
+We organize our offerings into three broad categories that together cover a large part of the construction value chain.
+
+Construction Materials
+
+Our construction materials business produces:
+
+- Crushed stone, sand and gravel, which together make up construction aggregates.
+- Cement and supplementary cementitious materials.
+- Ready-mixed concrete.
+- Asphalt mix.
+
+Aggregates are the primary raw material for concrete and asphalt and are also used as base material for roads, building foundations and railroad ballast. Cement is the binding agent in concrete. We supply it in bulk and in bags to concrete producers, contractors and distributors. Our ready-mixed concrete and asphalt operations use our own aggregates and cement wherever practical. This vertical integration helps secure supply, improve plant utilization and capture value across successive stages of production. In many markets we also provide paving and related construction services, mainly for public road agencies and private developers.
+
+Engineered Building Products
+
+Our engineered building products business designs and manufactures products for both above-ground and below-ground construction applications, including:
+
+- Precast and prestressed concrete structures.
+- Concrete and polymer pipe.
+- Drainage and stormwater management systems.
+- Utility vaults and enclosures.
+- Architectural and structural masonry.
+- Building envelope components.
+
+Many of these products are engineered to customer or project specifications. Our technical staff frequently work with engineers, architects and contractors during the design phase to recommend solutions that cut installation time, improve durability or meet regulatory and performance requirements. This business also includes a range of products sold through distribution channels to professional contractors and, to a lesser extent, to do-it-yourself consumers. These include pavers, retaining wall systems and packaged concrete mixes.
+
+Specialty Minerals
+
+Our specialty minerals business extracts and processes industrial minerals for applications that require consistent chemical and physical properties. Products include:
+
+- Lime and limestone-based products.
+- Industrial sands.
+- Ground and precipitated calcium carbonate.
+- Other mineral fillers and additives.
+
+These products are used in steelmaking, environmental remediation, flue gas treatment, water treatment, glass manufacturing, paper and packaging, plastics, paints and coatings, and agriculture. Sales in this business depend more on reliable quality, technical service and long-term supply arrangements than on construction cycles. This provides a measure of diversification against the cyclicality of our construction-oriented businesses.
+
+Reportable Segments
+
+We manage our operations through three reportable segments: Construction Materials, Engineered Products and Specialty Minerals. Each segment is overseen by its own leadership team. Our chief operating decision maker reviews each segment's performance and allocates resources among them. Financial information about our reportable segments is presented in the notes to our consolidated financial statements included elsewhere in this Annual Report on Form 10-K.
+
+Construction Materials Segment
+
+The Construction Materials segment operates quarries, sand and gravel pits, cement plants, ready-mixed concrete plants and asphalt plants. These are supported by a network of rail, barge and truck distribution terminals. This segment is our most asset-intensive business. Its performance depends heavily on:
+
+- The quality, quantity and location of our mineral reserves.
+- The efficiency of our extraction and processing operations.
+- The cost of energy, fuel and freight.
+
+We seek to keep a reserve position that supports operations for many years at current production levels in each local market. Permitting new reserves is often lengthy, complex and uncertain, which can create significant barriers to entry. Revenue in this segment is closely tied to public infrastructure spending and to commercial and residential construction volumes in the regions where we operate. Pricing is set mostly at the local level and reflects supply and demand conditions, transportation costs and the competitive landscape in each market.
+
+Engineered Products Segment
+
+The Engineered Products segment manufactures precast concrete, pipe, drainage, utility infrastructure, masonry and building envelope products at plants generally located near major metropolitan areas and growth corridors. Value in this segment comes from three sources:
+
+- Engineering and design capabilities.
+- Manufacturing quality and consistency.
+- On-time delivery to project sites, often coordinated closely with construction schedules.
+
+A substantial portion of this segment's sales is linked to specific projects and governed by project specifications. Specifications can be influenced by early collaboration with designers and owners. The segment also includes branded products sold through home improvement retailers, building supply dealers and landscape distributors. Demand drivers include water and stormwater infrastructure investment, utility and telecommunications expansion, non-residential construction and residential activity, including repair and remodeling.
+
+Specialty Minerals Segment
+
+The Specialty Minerals segment mines and processes high-purity mineral deposits. It manufactures lime, industrial sand and calcium carbonate products for a diverse group of industrial customers. Many customers buy under multi-year supply agreements, and some of our facilities are located next to or near customer plants. Success in this segment depends on:
+
+- Access to high-quality deposits.
+- Process technology and product consistency.
+- Energy efficiency, since lime production in particular is energy intensive.
+- The ability to offer technical support that helps customers optimize their own processes.
+
+End markets for this segment include steel, environmental services, water treatment, glass, paper and packaging, plastics and agriculture.
+
+Customers
+
+Our customer base is broad and diverse. It includes:
+
+- Federal, state and local governmental agencies and the contractors that perform public works projects for them.
+- General contractors, subcontractors and specialty contractors.
+- Commercial, industrial and residential developers and homebuilders.
+- Ready-mixed concrete producers, precast producers and other building materials manufacturers.
+- Building materials distributors, dealers and home improvement retailers.
+- Utilities and telecommunications companies.
+- Industrial manufacturers in the steel, glass, paper, chemical and agricultural sectors.
+
+In our Construction Materials and Engineered Products segments, most customers buy for specific projects. Purchases are typically made under purchase orders or short-term contracts for an individual project, although some larger customers place recurring orders throughout the year. Public infrastructure work is generally awarded through competitive bidding by our contractor customers. We then supply materials to the winning bidders under quoted prices that may be fixed for the duration of a project. In the Specialty Minerals segment, a larger share of revenue is generated under longer-term supply agreements. These agreements may include provisions for price adjustments tied to energy or other input costs.
+
+No single customer accounted for a material portion of our consolidated revenue in fiscal 2024. We believe our broad base of customers across end markets and regions reduces our dependence on any single customer or project. However, the loss of certain large customers could have a meaningful effect on the results of individual operations or local markets.
+
+Sales and Marketing
+
+We sell our products mainly through our own direct sales organization. It is structured around local markets, customer types and product lines. Our sales professionals maintain long-standing relationships with contractors, developers, engineers, architects, public agencies and industrial customers. Because construction materials are typically sourced locally, our local sales and operations teams have significant autonomy to respond quickly to customer needs, quote prices, schedule deliveries and coordinate with project managers.
+
+In our Engineered Products segment, we supplement direct sales with technical sales and engineering support teams. These teams work with project designers to develop specifications and recommend product solutions. They also provide design assistance, product data, installation guidance and field support. For branded products sold through retail and distribution channels, we use dedicated account management teams, merchandising programs and promotional activities to support sell-through. In the Specialty Minerals segment, our sales personnel typically have technical backgrounds. They work with customer operations staff to tailor product characteristics to specific process requirements.
+
+We deliver products using a combination of:
+
+- Company-operated truck fleets and third-party haulers.
+- Rail and barge transportation.
+- A network of [...]
+>>>
+
+TASK
+Write Item 1A. Risk Factors for Novmer Materials, Inc.'s annual report for the fiscal year ended 2024-12-31. List the material risks, grouped under sub-headings (for example risks related to the business and industry, to operations, to financing and capital structure, to legal and regulatory matters, and general risks). Each risk starts with a one-sentence heading line, followed by one or two paragraphs. Make the risks specific to this company's sector, cost structure and balance sheet. Do not quote dollar amounts or percentages; describe exposures in words, as real risk factors do.
+Length: about 3500 words. Start with the line "Item 1A. Risk Factors" and output only the section text.

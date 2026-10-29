@@ -1,0 +1,122 @@
+{
+  "company_id": "syn0003",
+  "name": "Selzennov Materials, Inc.",
+  "ticker": "SOLV",
+  "sector": "Materials",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "NC",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 14240,
+  "revenue_growth": 0.0532,
+  "employees": 18000,
+  "ratios": {
+    "gross_margin": 0.2888,
+    "operating_margin": 0.0837,
+    "sga_ratio": 0.0256,
+    "da_ratio": 0.049,
+    "capex_ratio": 0.0547,
+    "tax_rate": 0.2264,
+    "asset_turnover": 0.3506,
+    "equity_ratio": 0.5609,
+    "current_assets_ratio": 0.3787,
+    "current_ratio": 1.8957,
+    "cash_ratio": 0.0748,
+    "ppe_ratio": 0.3531,
+    "debt_ratio": 0.4568,
+    "receivables_ratio": 0.2073,
+    "inventory_ratio": 0.1278,
+    "goodwill_ratio": 0.2418,
+    "dividend_payout": 0.3041,
+    "other_operating_cash_ratio": 0.0074
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 14240,
+        "cost_of_revenue": 11829,
+        "gross_profit": 2411,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 365,
+        "other_operating_expense": 854,
+        "operating_income": 1192,
+        "interest_expense": 697,
+        "pretax_income": 495,
+        "income_tax": 112,
+        "net_income": 383
+      },
+      "2023": {
+        "revenue": 13521,
+        "cost_of_revenue": 11290,
+        "gross_profit": 2231,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 378,
+        "other_operating_expense": 811,
+        "operating_income": 1042,
+        "interest_expense": 665,
+        "pretax_income": 377,
+        "income_tax": 91,
+        "net_income": 286
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 3038,
+        "receivables": 2952,
+        "inventory": 1820,
+        "total_current_assets": 11157,
+        "property_plant_and_equipment": 14342,
+        "goodwill": 9821,
+        "total_assets": 40616,
+        "total_current_liabilities": 4910,
+        "long_term_debt": 15480,
+        "total_equity": 19007,
+        "other_current_assets": 3347,
+        "other_noncurrent_assets": 5296,
+        "other_noncurrent_liabilities": 1219,
+        "total_liabilities": 21609,
+        "total_liabilities_and_equity": 40616
+      },
+      "2023": {
+        "cash": 2831,
+        "receivables": 2905,
+        "inventory": 1778,
+        "total_current_assets": 10733,
+        "property_plant_and_equipment": 13990,
+        "goodwill": 9575,
+        "total_assets": 38931,
+        "total_current_liabilities": 4579,
+        "long_term_debt": 14781,
+        "total_equity": 18402,
+        "other_current_assets": 3219,
+        "other_noncurrent_assets": 4633,
+        "other_noncurrent_liabilities": 1169,
+        "total_liabilities": 20529,
+        "total_liabilities_and_equity": 38931
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 383,
+        "depreciation_and_amortization": 698,
+        "other_operating_items": 105,
+        "net_cash_from_operating_activities": 1186,
+        "capital_expenditures": -779,
+        "other_investing_activities": -1121,
+        "net_cash_from_investing_activities": -1900,
+        "net_change_in_long_term_debt": 699,
+        "dividends_paid": -116,
+        "share_repurchases_net": 338,
+        "net_cash_from_financing_activities": 921,
+        "net_change_in_cash": 207,
+        "cash_beginning_of_year": 2831,
+        "cash_end_of_year": 3038
+      }
+    }
+  }
+}

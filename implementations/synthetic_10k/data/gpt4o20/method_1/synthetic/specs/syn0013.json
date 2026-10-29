@@ -1,0 +1,122 @@
+{
+  "company_id": "syn0013",
+  "name": "Draor Midstream, Inc.",
+  "ticker": "DRAR",
+  "sector": "Energy",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "WA",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 134874,
+  "revenue_growth": 0.0718,
+  "employees": 202000,
+  "ratios": {
+    "gross_margin": 0.0838,
+    "operating_margin": 0.0538,
+    "sga_ratio": 0.0202,
+    "da_ratio": 0.1689,
+    "capex_ratio": 0.0949,
+    "tax_rate": 0.2069,
+    "asset_turnover": 0.161,
+    "equity_ratio": 0.1852,
+    "current_assets_ratio": 0.0855,
+    "current_ratio": 1.1571,
+    "cash_ratio": 0.0384,
+    "ppe_ratio": 0.7472,
+    "debt_ratio": 0.2594,
+    "receivables_ratio": 0.0963,
+    "inventory_ratio": 0.0356,
+    "goodwill_ratio": 0.0282,
+    "dividend_payout": 0.3035,
+    "other_operating_cash_ratio": -0.0176
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 134874,
+        "cost_of_revenue": 123572,
+        "gross_profit": 11302,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 2724,
+        "other_operating_expense": 1322,
+        "operating_income": 7256,
+        "interest_expense": 9779,
+        "pretax_income": -2523,
+        "income_tax": 0,
+        "net_income": -2523
+      },
+      "2023": {
+        "revenue": 125839,
+        "cost_of_revenue": 114074,
+        "gross_profit": 11765,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 2942,
+        "other_operating_expense": 3427,
+        "operating_income": 5396,
+        "interest_expense": 9592,
+        "pretax_income": -4196,
+        "income_tax": 0,
+        "net_income": -4196
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 32169,
+        "receivables": 12988,
+        "inventory": 4802,
+        "total_current_assets": 71369,
+        "property_plant_and_equipment": 625949,
+        "goodwill": 23624,
+        "total_assets": 837727,
+        "total_current_liabilities": 61680,
+        "long_term_debt": 217306,
+        "total_equity": 155147,
+        "other_current_assets": 21410,
+        "other_noncurrent_assets": 116785,
+        "other_noncurrent_liabilities": 403594,
+        "total_liabilities": 682580,
+        "total_liabilities_and_equity": 837727
+      },
+      "2023": {
+        "cash": 29449,
+        "receivables": 12241,
+        "inventory": 4377,
+        "total_current_assets": 65810,
+        "property_plant_and_equipment": 598107,
+        "goodwill": 23088,
+        "total_assets": 791785,
+        "total_current_liabilities": 56889,
+        "long_term_debt": 213156,
+        "total_equity": 147292,
+        "other_current_assets": 19743,
+        "other_noncurrent_assets": 104780,
+        "other_noncurrent_liabilities": 374448,
+        "total_liabilities": 644493,
+        "total_liabilities_and_equity": 791785
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": -2523,
+        "depreciation_and_amortization": 22780,
+        "other_operating_items": -2374,
+        "net_cash_from_operating_activities": 17883,
+        "capital_expenditures": -12800,
+        "other_investing_activities": -16891,
+        "net_cash_from_investing_activities": -29691,
+        "net_change_in_long_term_debt": 4150,
+        "dividends_paid": 0,
+        "share_repurchases_net": 10378,
+        "net_cash_from_financing_activities": 14528,
+        "net_change_in_cash": 2720,
+        "cash_beginning_of_year": 29449,
+        "cash_end_of_year": 32169
+      }
+    }
+  }
+}

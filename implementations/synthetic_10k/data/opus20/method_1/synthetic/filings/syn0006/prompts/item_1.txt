@@ -1,0 +1,122 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Selzenqua Semiconductor, Inc. (ticker SEQZ)
+Sector: Information Technology
+Incorporated in: Delaware
+Headquarters: Princeton, New Jersey
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 50,700
+
+Selzenqua Semiconductor, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      16,983        14,943
+Cost of revenue                              10,825         9,375
+Gross profit                                  6,158         5,568
+Research and development                      4,353         3,801
+Selling, general and administrative             509           455
+Other operating expense                           0            98
+Operating income                              1,296         1,214
+Interest expense                                455           406
+Income before income taxes                      841           808
+Provision for income taxes                      193           194
+Net income                                      648           614
+
+Selzenqua Semiconductor, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            2,211         2,023
+Accounts receivable, net                             2,965         2,544
+Inventories                                          4,273         3,836
+Other current assets                                 4,050         3,602
+Total current assets                                13,499        12,005
+Property, plant and equipment, net                   5,453         5,069
+Goodwill                                             2,404         2,092
+Other non-current assets                            28,215        25,523
+Total assets                                        49,571        44,689
+Total current liabilities                           12,583        11,622
+Long-term debt                                      10,108         9,020
+Other non-current liabilities                       15,018        13,048
+Total liabilities                                   37,709        33,690
+Total stockholders' equity                          11,862        10,999
+Total liabilities and stockholders' equity          49,571        44,689
+
+Selzenqua Semiconductor, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                               648
+Depreciation and amortization                            912
+Changes in working capital and other                   (447)
+Net cash provided by operating activities              1,113
+Purchases of property and equipment                    (795)
+Other investing activities, net                      (1,433)
+Net cash used in investing activities                (2,228)
+Net change in long-term debt                           1,088
+Dividends paid                                          (78)
+Share repurchases, net of issuances                      293
+Net cash used in financing activities                  1,303
+Net change in cash and cash equivalents                  188
+Cash and cash equivalents, beginning of year           2,023
+Cash and cash equivalents, end of year                 2,211
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 13.7%
+Net income growth, fiscal 2024 versus 2023: 5.5%
+Operating income growth, fiscal 2024 versus 2023: 6.8%
+Gross margin, fiscal 2024: 36.3%
+Operating margin, fiscal 2024: 7.6%
+Net margin, fiscal 2024: 3.8%
+Effective tax rate, fiscal 2024: 22.9%
+Research and development as a share of revenue, fiscal 2024: 25.6%
+Selling, general and administrative as a share of revenue, fiscal 2024: 3.0%
+Gross margin, fiscal 2023: 37.3%
+Operating margin, fiscal 2023: 8.1%
+Net margin, fiscal 2023: 4.1%
+Effective tax rate, fiscal 2023: 24.0%
+Research and development as a share of revenue, fiscal 2023: 25.4%
+Selling, general and administrative as a share of revenue, fiscal 2023: 3.0%
+
+STYLE EXAMPLE: the start of Item 1 from a real Information Technology company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1.	Business
+Oracle provides products and services that address enterprise information technology (IT) needs. Our products and services include enterprise applications and infrastructure offerings that are delivered worldwide through a variety of flexible and interoperable IT deployment models. These models include on-premise, cloud-based and hybrid deployments. It is an important element of our corporate strategy to provide choice and flexibility to Oracle customers as to when and how they deploy Oracle applications and infrastructure technologies. We believe that offering customers broad, comprehensive, flexible and interoperable deployment models for Oracle applications and infrastructure technologies is important to our growth strategy and better addresses customer needs relative to our competitors, many of whom provide fewer offerings, more restrictive deployment models and less flexibility for customers transitioning to cloud-based IT environments.
+Oracle Cloud Applications (OCA) and Oracle Cloud Infrastructure (OCI, collectively with OCA, Oracle Cloud Services) offerings provide comprehensive and integrated applications and infrastructure services, enabling our customers to choose the best option that meets their specific business needs. Oracle Cloud Services integrate IT components in a cloud-based IT environment that Oracle deploys and manages for customers and is accessible by utilizing common web browsers via a broad spectrum of devices. Oracle Cloud Services are designed to be:
+•
+rapidly deployable to enable customers shorter time to innovation;
+•
+intuitive for casual and experienced users;
+•
+easily maintainable to reduce upgrade, integration and testing work;
+•
+connectable among differing deployment models to enable interoperability and extensibility to easily move workloads among the Oracle Cloud and other IT environments;
+•
+cost-effective by lowering upfront customer investments and implementing usage-based resource consumption costs; and
+•
+highly secure, standards-based and reliable.
+Oracle cloud license and on-premise license deployment offerings include Oracle Applications, Oracle Database and Oracle Middleware software offerings, among others, which customers deploy using IT infrastructure from the Oracle Cloud or their own IT environments. Substantially all customers opt to purchase license support contracts when they purchase an Oracle license.
+Oracle hardware products include Oracle Engineered Systems, servers, storage and industry-specific products, among others. Customers generally opt to purchase hardware support contracts when they purchase Oracle hardware products.
+Oracle also offers professional services to assist our customers and partners to maximize the performance of their investments in Oracle products and services.
+Our customers include businesses of many sizes, government agencies, educational institutions and resellers that we market and sell to directly through our worldwide sales force or indirectly through the Oracle Partner Network. Using Oracle technologies, our customers build, deploy, run, manage and support their internal and external products, services and business operations, including, for example, an artificial intelligence (AI) product company that uses OCI to build and serve generative AI models; a global technology company that uses multiple OCI compute and data services to power its logistics and mobile application offerings; a multinational financial institution that runs its banking applications using Oracle Exadata Cloud@Customer; and a global consumer products company that leverages Oracle Fusion Cloud Enterprise Resource Planning (ERP) for its accounting processes, risk management, supply chain and financial planning functions.
+Our investments in, and innovation with respect to, Oracle products and services that we offer through our three businesses (cloud and license, hardware and services businesses, described further below) are another important element of our corporate strategy. In fiscal 2025, 2024 and 2023, we invested $9.9 billion, $8.9 billion and $8.6 billion, respectively, in research and development to enhance our existing portfolio of offerings and to develop new
+3
+Table of Contents
+technologies and services. We have a deep understanding as to how applications and infrastructure technologies interact and function with one another, including using OCI to power our OCA, which we and our customers use to run internal business processes. We focus our development efforts on improving the performance, security, reliability, operation, integration and cost-effectiveness of our offerings relative to our competitors; facilitating the ease with which organizations are able to deploy, use, manage and maintain our offerings; and incorporating emerging technologies, such as AI, within our offerings to enable leaner business processes, automation and innovation.
+After an initial purchase of Oracle products and services, our customers can continue to benefit from our offerings, research and development efforts and deep IT expertise by electing to purchase and renew Oracle support offerings for their license and hardware deployments, which may include product enhancements that we periodically deliver to our products, and by renewing their Oracle Cloud Services contracts with us.
+Our selective and active acquisition program is another important element of our corporate strategy. We believe that our acquisitions enhance the products and services that we can offer to customers, expand our customer base, provide greater scale to accelerate innovation, grow our revenues and earnings and increase stockholder value. We have invested billions of dollars over time to acquire a number of companies, products, services and technologies that add to, are complementary to, or have otherwise enhanced our existing offerings. We expect to continue to acquire companies, products, services and technologies as suitable opportunities arise to further our corporate strategy.
+We have three businesses: cloud and license; hardware; and services. Each business is comprised of a single operating segment. Item 7 Management’s Discussion and Analysis of Financial Condition and Results of Operations and Note 13 of Notes to Consolidated Financial Statements, both included elsewhere in this Annual Report, provide additional information related to our businesses and operating segments.
+Oracle Corporation was incorporated in 2005 as a Delaware corporation and is the successor to operations originally begun in June 1977.
+Oracle Applications and Infrastructure Technologies
+Oracle applications and infrastructure technologies, including database and middleware software as well as enterprise applications, virtualization, clustering, large-scale systems management and related infrastructure products and services, are based upon industry standards and are designed to be enterprise-grade, reliable, scalable and secure. These technologies are the building blocks of Oracle Cloud Services, our partners’ cloud services and our customers’ cloud IT environments. Oracle applications and infrastructure offerings are marketed and sold through our cloud and license and hardware businesses, and are delivered through the Oracle Cloud or a variety of flexible and interoperable IT deployment models, including cloud-based, hybrid and on-premise deployments.
+We believe that our Oracle Cloud Services offerings represent opportunities for us to continue to expand our cloud and license business. We believe that our customers increasingly recognize the value of access to the latest versions of Oracle cloud-based applications and infrastructure capabilities via a lower cost, rapidly deployable, flexible and interoperable services model that Oracle provisions, manages, upgrades and maintains on our customers’ behalf. We believe that we can market and sell our Oracle Cloud Services offerings together to help new and existing customers migrate their extensive installed base of on-premise and cloud-based applications and infrastructure technologies to the Oracle Cloud and we believe we are in the early stages of what we expect will be a material migration of our existing Oracle customer base from on-premise applications and infrastructure products and services to the Oracle Cloud. During the past three fiscal years, customers with annual license support contracts that migrated to the Oracle Cloud contributed to the increase in annualized cloud services revenue by $4.3 billion. In addition, we also believe we can market our Oracle Cloud Services offerings to a broader ecosystem of small and medium-sized businesses, non-IT lines of business purchasers, developers and partners due to the highly available, intuitive design, ease-of-access, low [...]
+>>>
+
+TASK
+Write Item 1. Business for Selzenqua Semiconductor, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe the business: overview, principal products and services, two or three reportable segments described qualitatively, customers, sales and marketing, competition, seasonality, intellectual property, government regulation, human capital (state the number of employees from the facts sheet) and available information. The only dollar figure you may cite is total revenue.
+Length: about 3000 words. Start with the line "Item 1. Business" and output only the section text.

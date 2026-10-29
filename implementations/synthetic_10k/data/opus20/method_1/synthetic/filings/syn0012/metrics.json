@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0012",
+  "name": "Venzen Industries, Inc.",
+  "sector": "Industrials",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 447.2,
+  "totals": {
+    "seconds": 446.59,
+    "prompt_tokens": 47864,
+    "completion_tokens": 47610,
+    "total_tokens": 95474,
+    "reasoning_tokens": 0,
+    "calls": 5
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1224,
+      "prompt_chars": 14960,
+      "words": 3888,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1221,
+      "prompt_chars": 25473,
+      "words": 5215,
+      "attempts": 1,
+      "exemplar_overlap": 0.0012,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1217,
+      "prompt_chars": 37331,
+      "words": 3825,
+      "attempts": 2,
+      "exemplar_overlap": 0.0036,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 779,
+      "prompt_chars": 45284,
+      "words": 1085,
+      "attempts": 1,
+      "exemplar_overlap": 0.0009,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 96.07,
+      "prompt_tokens": 4593,
+      "completion_tokens": 9265,
+      "total_tokens": 13858,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 3888,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 121.19,
+      "prompt_tokens": 7482,
+      "completion_tokens": 12581,
+      "total_tokens": 20063,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 5215,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 113.96,
+      "prompt_tokens": 11067,
+      "completion_tokens": 13104,
+      "total_tokens": 24171,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4848,
+      "issues": [
+        "The section has 4848 words; keep it under 4500 (target 3000)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "claude-opus-5-5",
+      "seconds": 86.18,
+      "prompt_tokens": 11109,
+      "completion_tokens": 9924,
+      "total_tokens": 21033,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 3825,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 29.19,
+      "prompt_tokens": 13613,
+      "completion_tokens": 2736,
+      "total_tokens": 16349,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 1085,
+      "issues": []
+    }
+  ]
+}

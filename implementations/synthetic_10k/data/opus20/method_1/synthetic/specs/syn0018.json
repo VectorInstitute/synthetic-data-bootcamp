@@ -1,0 +1,122 @@
+{
+  "company_id": "syn0018",
+  "name": "Orzenka Midstream, Inc.",
+  "ticker": "ORZA",
+  "sector": "Energy",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "AZ",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 52746,
+  "revenue_growth": 0.151,
+  "employees": 177300,
+  "ratios": {
+    "gross_margin": 0.6813,
+    "operating_margin": 0.3996,
+    "sga_ratio": 0.0249,
+    "da_ratio": 0.0822,
+    "capex_ratio": 0.1175,
+    "tax_rate": 0.2371,
+    "asset_turnover": 0.306,
+    "equity_ratio": 0.2309,
+    "current_assets_ratio": 0.4308,
+    "current_ratio": 0.5582,
+    "cash_ratio": 0.0583,
+    "ppe_ratio": 0.7521,
+    "debt_ratio": 0.494,
+    "receivables_ratio": 0.1253,
+    "inventory_ratio": 0.0201,
+    "goodwill_ratio": 0.1664,
+    "dividend_payout": 0.2709,
+    "other_operating_cash_ratio": 0.0054
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 52746,
+        "cost_of_revenue": 27191,
+        "gross_profit": 25555,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 1313,
+        "other_operating_expense": 3165,
+        "operating_income": 21077,
+        "interest_expense": 3832,
+        "pretax_income": 17245,
+        "income_tax": 4089,
+        "net_income": 13156
+      },
+      "2023": {
+        "revenue": 45826,
+        "cost_of_revenue": 23802,
+        "gross_profit": 22024,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 1095,
+        "other_operating_expense": 2750,
+        "operating_income": 18179,
+        "interest_expense": 3302,
+        "pretax_income": 14877,
+        "income_tax": 3552,
+        "net_income": 11325
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 10049,
+        "receivables": 6609,
+        "inventory": 1060,
+        "total_current_assets": 25312,
+        "property_plant_and_equipment": 129641,
+        "goodwill": 15677,
+        "total_assets": 172373,
+        "total_current_liabilities": 45346,
+        "long_term_debt": 85152,
+        "total_equity": 39801,
+        "other_current_assets": 7594,
+        "other_noncurrent_assets": 1743,
+        "other_noncurrent_liabilities": 2074,
+        "total_liabilities": 132572,
+        "total_liabilities_and_equity": 172373
+      },
+      "2023": {
+        "cash": 8785,
+        "receivables": 5785,
+        "inventory": 956,
+        "total_current_assets": 22181,
+        "property_plant_and_equipment": 111941,
+        "goodwill": 13577,
+        "total_assets": 149208,
+        "total_current_liabilities": 38324,
+        "long_term_debt": 73377,
+        "total_equity": 34708,
+        "other_current_assets": 6655,
+        "other_noncurrent_assets": 1509,
+        "other_noncurrent_liabilities": 2799,
+        "total_liabilities": 114500,
+        "total_liabilities_and_equity": 149208
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 13156,
+        "depreciation_and_amortization": 4336,
+        "other_operating_items": 285,
+        "net_cash_from_operating_activities": 17777,
+        "capital_expenditures": -6198,
+        "other_investing_activities": -14027,
+        "net_cash_from_investing_activities": -20225,
+        "net_change_in_long_term_debt": 11775,
+        "dividends_paid": -3564,
+        "share_repurchases_net": -4499,
+        "net_cash_from_financing_activities": 3712,
+        "net_change_in_cash": 1264,
+        "cash_beginning_of_year": 8785,
+        "cash_end_of_year": 10049
+      }
+    }
+  }
+}

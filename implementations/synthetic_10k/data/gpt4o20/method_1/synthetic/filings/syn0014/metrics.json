@@ -1,0 +1,210 @@
+{
+  "company_id": "syn0014",
+  "name": "Kator Minerals, Inc.",
+  "sector": "Materials",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 113.54,
+  "totals": {
+    "seconds": 113.15,
+    "prompt_tokens": 43703,
+    "completion_tokens": 13472,
+    "total_tokens": 57175,
+    "reasoning_tokens": 0,
+    "calls": 10
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1225,
+      "prompt_chars": 14394,
+      "words": 865,
+      "attempts": 3,
+      "exemplar_overlap": 0.0,
+      "issues": [
+        "The section has 865 words; write at least 1800 (target 3000)."
+      ]
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1222,
+      "prompt_chars": 20737,
+      "words": 1188,
+      "attempts": 3,
+      "exemplar_overlap": 0.0008,
+      "issues": [
+        "The section has 1188 words; write at least 2100 (target 3500)."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1235,
+      "prompt_chars": 29519,
+      "words": 1545,
+      "attempts": 3,
+      "exemplar_overlap": 0.0273,
+      "issues": [
+        "The section has 1545 words; write at least 1800 (target 3000)."
+      ]
+    },
+    "1C": {
+      "target_words": 550,
+      "exemplar_words": 935,
+      "prompt_chars": 38348,
+      "words": 549,
+      "attempts": 1,
+      "exemplar_overlap": 0.0239,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 7.35,
+      "prompt_tokens": 2772,
+      "completion_tokens": 1015,
+      "total_tokens": 3787,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 831,
+      "issues": [
+        "The section has 831 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 9.26,
+      "prompt_tokens": 2804,
+      "completion_tokens": 1070,
+      "total_tokens": 3874,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 860,
+      "issues": [
+        "The section has 860 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 9.37,
+      "prompt_tokens": 2804,
+      "completion_tokens": 1057,
+      "total_tokens": 3861,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 865,
+      "issues": [
+        "The section has 865 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 10.26,
+      "prompt_tokens": 3833,
+      "completion_tokens": 1249,
+      "total_tokens": 5082,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1005,
+      "issues": [
+        "The section has 1005 words; write at least 2100 (target 3500)."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 11.18,
+      "prompt_tokens": 3866,
+      "completion_tokens": 1221,
+      "total_tokens": 5087,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 992,
+      "issues": [
+        "The section has 992 words; write at least 2100 (target 3500)."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 11.91,
+      "prompt_tokens": 3865,
+      "completion_tokens": 1414,
+      "total_tokens": 5279,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1188,
+      "issues": [
+        "The section has 1188 words; write at least 2100 (target 3500)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 16.93,
+      "prompt_tokens": 5621,
+      "completion_tokens": 1906,
+      "total_tokens": 7527,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1478,
+      "issues": [
+        "The section has 1478 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 14.92,
+      "prompt_tokens": 5654,
+      "completion_tokens": 1928,
+      "total_tokens": 7582,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1557,
+      "issues": [
+        "The section has 1557 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 15.92,
+      "prompt_tokens": 5654,
+      "completion_tokens": 1975,
+      "total_tokens": 7629,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1545,
+      "issues": [
+        "The section has 1545 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 6.05,
+      "prompt_tokens": 6830,
+      "completion_tokens": 637,
+      "total_tokens": 7467,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 549,
+      "issues": []
+    }
+  ]
+}

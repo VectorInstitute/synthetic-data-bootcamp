@@ -1,0 +1,297 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Torsel Software, Inc. (ticker TSOE)
+Sector: Information Technology
+Incorporated in: Delaware
+Headquarters: Princeton, New Jersey
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 28,000
+
+Torsel Software, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      24,213        21,422
+Cost of revenue                              13,334        11,813
+Gross profit                                 10,879         9,609
+Research and development                      2,620         2,375
+Selling, general and administrative           2,673         2,303
+Other operating expense                       1,453         1,285
+Operating income                              4,133         3,646
+Interest expense                                190           167
+Income before income taxes                    3,943         3,479
+Provision for income taxes                      442           364
+Net income                                    3,501         3,115
+
+Torsel Software, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            1,154           960
+Accounts receivable, net                             4,671         4,187
+Inventories                                          1,608         1,433
+Other current assets                                 3,185         2,821
+Total current assets                                10,618         9,401
+Property, plant and equipment, net                   2,477         2,180
+Goodwill                                             1,951         1,600
+Other non-current assets                            14,250        11,796
+Total assets                                        29,296        24,977
+Total current liabilities                            7,798         7,171
+Long-term debt                                       4,222         3,721
+Other non-current liabilities                        9,179         7,111
+Total liabilities                                   21,199        18,003
+Total stockholders' equity                           8,097         6,974
+Total liabilities and stockholders' equity          29,296        24,977
+
+Torsel Software, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             3,501
+Depreciation and amortization                            867
+Changes in working capital and other                   (346)
+Net cash provided by operating activities              4,022
+Purchases of property and equipment                    (472)
+Other investing activities, net                      (1,479)
+Net cash used in investing activities                (1,951)
+Net change in long-term debt                             501
+Dividends paid                                             0
+Share repurchases, net of issuances                  (2,378)
+Net cash used in financing activities                (1,877)
+Net change in cash and cash equivalents                  194
+Cash and cash equivalents, beginning of year             960
+Cash and cash equivalents, end of year                 1,154
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 13.0%
+Net income growth, fiscal 2024 versus 2023: 12.4%
+Operating income growth, fiscal 2024 versus 2023: 13.4%
+Gross margin, fiscal 2024: 44.9%
+Operating margin, fiscal 2024: 17.1%
+Net margin, fiscal 2024: 14.5%
+Effective tax rate, fiscal 2024: 11.2%
+Research and development as a share of revenue, fiscal 2024: 10.8%
+Selling, general and administrative as a share of revenue, fiscal 2024: 11.0%
+Gross margin, fiscal 2023: 44.9%
+Operating margin, fiscal 2023: 17.0%
+Net margin, fiscal 2023: 14.5%
+Effective tax rate, fiscal 2023: 10.5%
+Research and development as a share of revenue, fiscal 2023: 11.1%
+Selling, general and administrative as a share of revenue, fiscal 2023: 10.8%
+
+STYLE EXAMPLE: the start of Item 7 from a real Information Technology company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations
+The following discussion and analysis contains forward-looking statements within the meaning of the federal securities laws and should be read in conjunction with the disclosures we make concerning risks and other factors that may affect our business and operating results. You should read this information in conjunction with the Consolidated Financial Statements and the notes thereto included in Part II, Item 8, Financial Statements and Supplementary Data, of this Annual Report on Form 10-K. See also “Forward-Looking Statements” immediately prior to Part I, Item 1, Business, of this Annual Report on Form 10-K.
+Our Company
+We are a leading developer, manufacturer, and provider of data storage devices and solutions based on hard disk drive (“HDD”) technology. We leverage our capability in the HDD industry primarily for the cloud and hyperscale data center markets. HDDs are critical components in the worldwide data infrastructure market, powering the digital economy. HDDs provide reliable, cost-effective, high-capacity storage needs for a wide range of applications, ranging from cloud data centers, enterprise storage systems, edge computing, video surveillance to client and consumer.
+Our broad portfolio of technology and products addresses our customers’ storage needs through multiple end markets: “Cloud,” “Client” and “Consumer”. Cloud is comprised primarily of products for public or private cloud environments and enterprise customers. Through the Client end market, we provide our original equipment manufacturer (“OEM”) and channel customers a broad array of high-performance HDD solutions across desktop and notebooks. The Consumer end market provides a broad range of retail and other end-user products, which capitalize on the strength of our product brand recognition and vast points of presence around the world.
+Our fiscal year ends on the Friday nearest to June 30 and typically consists of 52 weeks. Approximately every five to six years, we report a 53-week fiscal year to align the fiscal year with the foregoing policy. Fiscal year 2026, ending on July 3, 2026 will be comprised of 53 weeks, with the first quarter consisting of 14 weeks. Fiscal years 2025, 2024, and 2023, which ended on June 27, 2025, June 28, 2024, and June 30, 2023, respectively, each comprised 52 weeks, with all quarters presented consisting of 13 weeks.
+Key Developments
+Separation of Business Units
+On February 21, 2025 (the “Separation Date”), we completed the separation of our HDD and Flash business units (the “Separation”) to create two independent public companies, with Western Digital focusing on our existing HDD business and Sandisk Corporation (“Sandisk”), formerly a wholly-owned subsidiary of the Company, holding the Flash business. We believe the Separation better positions each business unit to execute innovative technology and product development, capitalize on unique growth opportunities, extend respective leadership positions, operate more efficiently with distinct capital structures, and pursue capital allocation strategies that maximize long-term shareholder value. The Separation was effected through a pro rata distribution of 80.1% of the outstanding shares of Sandisk common stock to holders of the Company’s common stock as of February 12, 2025, the record date for the distribution. The Company did not issue fractional shares of Sandisk common stock in connection with the distribution. Sandisk is now an independent public company, and Sandisk common stock commenced trading “regular way” under the symbol “SNDK” on the Nasdaq Stock Market LLC (“Nasdaq”) on February 24, 2025, which was the next trading day following the distribution date. The Company continues to trade on Nasdaq under the symbol “WDC” following the Separation. Following the Separation, the Company no longer consolidates Sandisk within the Company’s financial results. As part of the Separation, the Company retained 28.8 million shares of Sandisk common stock, or a 19.9% stake. During the quarter ended June 27, 2025, the Company disposed of 21.3 million shares of Sandisk common stock, along with $4 million in cash, in a tax-free exchange for $800 million principal amount of the Company’s term loan A-3. The Company expects to monetize its remaining stake in Sandisk within one year from the Separation Date.
+Information provided herein is presented on a continuing operations basis to reflect the impact of the Separation. See Part II, Item 8, Note 3, Discontinued Operations, of the Notes to Consolidated Financial Statements included in this Annual Report on Form 10-K for additional information regarding the Separation.
+30
+Table of Contents
+Macroeconomic Conditions
+The United States has recently announced changes to its trade policy, including increasing tariffs on imports, in some cases significantly. Several of these recent tariff actions have been followed by announcements of limited exemptions and temporary pauses. These actions have caused substantial uncertainty and have also resulted in retaliatory measures on U.S. goods. Our business and results of operations were not materially impacted in fiscal 2025 as a result of the recent tariff actions. We are actively monitoring developments and plan to leverage tariff exemptions where possible and will take other actions as appropriate to offset any resulting increase in the cost of importing our products or the costs for materials or components in our products, including optimizing our supply chain, sourcing from alternative suppliers, or passing the costs to our customers through tariff surcharges, or increased prices. There can be no assurance that we will be able to successfully offset or mitigate any resulting increase in our costs. In addition, the impact of the tariff actions on our customers, retaliatory measures by other countries in response to U.S. trade policy and any resulting decline in consumer confidence, significant inflation and diminished expectations for the economy could reduce demand for our products and adversely affect our business, financial condition and results of operations. For additional information, please see Part I, Item 1A, Risk Factors, included in this Annual Report on Form 10-K.
+Operational Update
+In fiscal 2025, we saw an improvement in the supply and demand dynamic relative to the prior year, and we anticipate that digital transformation, including the AI data-cycle, will drive improved market conditions in the long term. However, macroeconomic factors such as tariffs, inflation, changes in interest rates, and recession concerns can affect demand for our products. As an example, in fiscal 2024, we and our industry experienced a supply-demand imbalance, which led to reduced shipments, negatively impacted pricing, and resulted in business realignment charges and charges for unabsorbed manufacturing overhead costs due to the underutilization of facilities as we temporarily scaled back production and took other actions to align our operations to the market at the time.
+We will continue to actively monitor developments impacting our business and may take future responsive actions that we determine to be in the best interest of our business and stakeholders.
+Capital Allocation Actions
+We have taken significant actions to deleverage our business and to initiate programs to return capital to our investors.
+In February 2025, in connection with the Separation, we amended the loan agreement governing our revolving credit facility maturing in January 2027 (the “2027 Revolving Credit Facility”) and Term Loan Facility (as defined below), dated as of January 7, 2022 (as amended, the “Loan Agreement”) to, among other changes, permit the Separation, provide for the issuance of a new $2.51 billion Term Loan A-3 maturing in January 2027 (the “Term Loan A-3”) in a noncash exchange to replace our previously existing Term Loan A-2 (the “Term Loan A-2” and, together with the Term Loan [...]
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+General
+
+Overview
+
+Torsel Software, Inc. (together with its consolidated subsidiaries, "Torsel," the "Company," "we," "our" or "us") is a global provider of enterprise software, data infrastructure and industry-specific technology solutions. Organizations of all sizes use our products to run core business processes, manage and secure their information, and deploy computing workloads across on-premises, private cloud and public cloud environments. Our offerings include subscription software delivered as a service, term and perpetual software licenses, integrated hardware and software systems, and related maintenance, support, consulting, implementation and managed services.
+
+We serve customers in a broad range of industries, including financial services, healthcare and life sciences, manufacturing, retail and consumer goods, energy and utilities, telecommunications, and the public sector. Our customers depend on our products for mission-critical functions such as financial management, supply chain planning, customer engagement, data management, analytics, identity and access management, and the operation of regulated industry workflows. Many of our customers have used our products for many years. They often expand their use of our portfolio over time by adding users, workloads and additional products, or by moving existing deployments to our cloud-delivered offerings.
+
+For the fiscal year ended December 31, 2024 ("fiscal 2024"), our total revenue was $24,213 million, an increase of 13.0% compared with the fiscal year ended December 31, 2023 ("fiscal 2023"). We manage our business through three reportable segments: Enterprise Cloud Applications, Data and Infrastructure Platforms, and Industry Solutions and Services. Each segment is described below.
+
+Torsel was incorporated in the State of Delaware. Our principal executive offices are located in Princeton, New Jersey. As of December 31, 2024, we employed about 28,000 people worldwide. Our common stock is listed under the ticker symbol "TSOE."
+
+Corporate Background
+
+Torsel began as a developer of financial and operational software for large enterprises. Over time we have broadened our portfolio through internal development and through a series of acquisitions of complementary businesses and technologies. These acquisitions added capabilities in data management, security, analytics and vertical industry applications, and they extended our presence in geographic markets outside North America. We have also reshaped our business from one centered on perpetual licenses and on-premises maintenance into one in which subscription and cloud-delivered offerings make up a growing share of our customer relationships. We expect to continue to pursue selective acquisitions, investments and partnerships that complement our product roadmap, expand our addressable markets or speed up our development of new technologies, including artificial intelligence and machine learning ("AI/ML") capabilities.
+
+Industry Trends
+
+Several long-term trends affecting enterprise information technology drive demand for our products and services:
+
+- Continued migration to cloud and hybrid architectures. Enterprises are moving workloads to public and private cloud environments, but many keep significant on-premises infrastructure for regulatory, performance, cost or data-sovereignty reasons. Customers increasingly seek software that runs consistently across these environments and can be managed through a common set of tools.
+
+- Adoption of AI/ML. Organizations are adding predictive analytics, generative AI and automation to business processes. These capabilities raise demand for high-quality, well-governed data and for platforms that can train, deploy and monitor AI/ML models securely and at scale.
+
+- Growth in data volumes and complexity. The amount of data that enterprises generate, store and analyze continues to grow. This creates demand for data management, integration, storage optimization and analytics solutions.
+
+- Heightened security and compliance requirements. Cybersecurity threats keep growing in frequency and sophistication, and data protection and privacy regulation continues to expand across jurisdictions. Customers are prioritizing investments in identity management, data security, resilience and auditability.
+
+- Industry-specific digital transformation. Regulated and operationally complex industries increasingly want software built for their particular workflows, data models and compliance obligations, rather than general-purpose tools that require extensive customization.
+
+We believe our portfolio is well positioned to address these trends. However, our business remains subject to risks and uncertainties, including changes in customer information technology budgets, macroeconomic conditions, competitive pricing pressure, the pace of technological change and disruptions in the supply of components used in our integrated systems. These and other risks are discussed in Item 1A, "Risk Factors."
+
+Our Strategy
+
+Our strategy is to be a long-term technology partner to our customers by delivering secure, interoperable and industry-relevant software that helps them operate more efficiently and make better decisions. The key elements of our strategy are to:
+
+- Expand our cloud-delivered offerings and help existing customers move from on-premises deployments to subscription and software-as-a-service models at a pace that suits their operational and regulatory needs.
+
+- Embed AI/ML capabilities across our applications and platforms, with an emphasis on governance, transparency and data security.
+
+- Deepen our industry-specific solutions in markets where specialized functionality, regulatory knowledge and domain expertise set us apart from competitors.
+
+- Grow our relationships with existing customers by cross-selling complementary products across our segments.
+
+- Extend our ecosystem of channel partners, systems integrators, cloud infrastructure providers and independent software vendors to widen our reach and improve customer outcomes.
+
+- Maintain disciplined investment in research and development, while pursuing operational efficiency and responsible capital allocation.
+
+Principal Products and Services
+
+We offer an integrated portfolio of software, systems and services. Our principal categories of offerings are as follows.
+
+Subscription and Cloud Services. These offerings include software-as-a-service applications hosted in our data centers or on third-party cloud infrastructure, together with subscription-based platform and infrastructure software that customers may deploy in their own environments or in public clouds. Subscription arrangements typically run for one to several years, and many customers renew at the end of each term.
+
+Software Licenses. We continue to license certain software products on a term or perpetual basis, particularly to customers whose regulatory, security or operational needs call for on-premises deployment.
+
+Maintenance and Support. Customers that license our software usually buy maintenance and support agreements. These agreements give them access to software updates, upgrades, security patches and technical support.
+
+Integrated Systems. For certain data infrastructure and industry applications, we offer engineered systems that combine our software with servers, storage and networking hardware. These systems are pre-configured and tuned for specific workloads, and they include hardware appliances for data protection, high-performance analytics and edge computing in industrial and retail settings.
+
+Professional and Managed Services. We provide consulting, implementation, systems integration, training and managed services that help customers deploy, configure, operate and optimize our products. Many of these services are delivered together with our systems integrator partners.
+
+Reportable Segments
+
+Enterprise Cloud Applications
+
+Our Enterprise Cloud Applications segment provides software applications that support core business functions in large and mid-sized organizations. The segment's portfolio includes:
+
+- Financial management applications covering general ledger, accounts payable and receivable, financial close, consolidation, treasury, tax and regulatory reporting.
+
+- Enterprise resource planning and supply chain applications for procurement, inventory management, demand and supply planning, order management, logistics and manufacturing operations.
+
+- Human capital management applications covering core human resources, payroll, workforce planning, talent management and employee experience.
+
+- Customer engagement applications supporting sales force automation, service management, marketing automation and commerce.
+
+- Planning and performance management applications for budgeting, forecasting, scenario modeling and management reporting.
+
+We deliver these applications mainly as software-as-a-service offerings, although some customers still run them on-premises under license and maintenance arrangements. We are adding AI/ML capabilities throughout the segment's applications, including intelligent document processing, anomaly detection in financial transactions, demand forecasting, automated reconciliation and conversational assistants that help users complete tasks and query enterprise data. Customers of this segment include multinational corporations, mid-sized enterprises and public sector organizations.
+
+Data and Infrastructure Platforms
+
+Our Data and Infrastructure Platforms segment provides software and integrated systems that help organizations store, manage, integrate, analyze, protect and secure their data across hybrid and multi-cloud environments. The segment's portfolio includes:
+
+- Database and data management software, including transactional and analytical databases, data integration and data quality tools, and data catalog and governance solutions.
+
+- Analytics and AI/ML platforms that let data scientists and business analysts prepare data and build, deploy and monitor models.
+
+- Hybrid cloud infrastructure software, including virtualization, container orchestration, workload automation and IT operations management tools.
+
+- Security software, including identity and access management, privileged access management, data encryption, security information and event management, and threat detection and response.
+
+- Data protection and resilience solutions, including backup, recovery, archiving and disaster recovery, offered as software, as cloud services and as purpose-built appliances.
+
+Customers of this segment are mainly enterprise IT organizations, chief information security officers, data and analytics teams, and managed service providers that build services on our platforms. Many of the segment's offerings are designed to work with the major public cloud infrastructure providers and with heterogeneous on-premises environments. We believe that interoperability is a key buying criterion for our customers.
+
+Industry Solutions and Services
+
+Our Industry Solutions and Services segment provides vertical software applications, integrated systems and professional services tailored to the needs of specific industries. Its principal industry focus areas include:
+
+- Financial services, including core banking support, risk and compliance management, regulatory reporting, insurance policy administration and claims management.
+
+- Healthcare and life sciences, including clinical and administrative workflow software, revenue cycle management, clinical trial management and quality and regulatory compliance solutions.
+
+- Manufacturing and industrial, including manufacturing execution systems, asset performance management, product lifecycle management and edge computing systems for factory and field operations.
+
+- Retail and consumer goods, including store operations, point-of-service systems, merchandising and assortment planning, and omnichannel fulfillment.
+
+- Public sector, including [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+An investment in our common stock involves a high degree of risk. You should consider the risks and uncertainties described below carefully, together with the other information in this Annual Report on Form 10-K. That information includes Item 7, "Management's Discussion and Analysis of Financial Condition and Results of Operations," and our consolidated financial statements and related notes. Any of these risks could materially and adversely affect our business, financial condition, results of operations, cash flows and the trading price of our common stock. The risks described below are not the only ones we face. Additional risks that we do not presently know of, or that we currently consider immaterial, could also impair our business.
+
+Risks Related to Our Business and Industry
+
+We face intense competition across each of our segments, and if we do not compete effectively, our revenue and margins could decline.
+
+The markets for enterprise applications, data management, infrastructure software, security software and industry-specific solutions are highly competitive, fragmented and changing rapidly. Our competitors include:
+
+- large diversified technology companies;
+- public cloud infrastructure providers that bundle database, analytics, security and AI/ML services with their computing capacity;
+- specialized software-as-a-service vendors that focus on a single application category or industry;
+- providers of open source software and related commercial support;
+- systems integrators and outsourcing firms that develop competing solutions; and
+- the internal IT departments of our customers.
+
+Some of these competitors have greater financial, technical, marketing and distribution resources than we do. Some have larger installed bases in particular markets, and some can offer products at low or no cost by subsidizing them through other lines of business.
+
+Public cloud infrastructure providers in particular can integrate native data and security services tightly into their platforms. This could reduce demand for the interoperable, multi-environment offerings that are central to our Data and Infrastructure Platforms segment. Competitive pressure could force us to lower prices, extend payment terms, offer more favorable contractual terms or increase spending on sales and marketing. Any of these could reduce our revenue, gross margin and operating margin.
+
+Our ongoing transition toward subscription and cloud-delivered offerings may adversely affect our revenue, margins and cash flows in the near term, and may not succeed.
+
+We are shifting our business from perpetual licenses and on-premises maintenance toward subscription and software-as-a-service arrangements. Under subscription arrangements, revenue is generally recognized over the contract term rather than at the point of sale. As existing customers migrate, our reported revenue in a given period may grow more slowly than our bookings, or may decline, even when underlying customer demand is healthy.
+
+Delivering cloud services also requires us to fund data center capacity, third-party hosting, security operations and service delivery personnel. These costs are recorded in cost of revenue, and they may not be offset fully by subscription pricing, particularly during periods of migration. If customers move to our cloud offerings more slowly than we expect, choose a competitor's cloud offering instead, or negotiate migration pricing that is less favorable than their existing license and maintenance terms, our results of operations could be harmed.
+
+If we fail to develop, integrate and commercialize AI/ML capabilities that customers value, or if our use of AI/ML creates legal, ethical or reputational harm, our business could suffer.
+
+Embedding AI/ML capabilities across our applications and platforms is a key element of our strategy. The field is evolving rapidly. Competitors with greater access to computing capacity, proprietary models or training data may introduce capabilities faster or at lower cost than we can. Developing and operating AI/ML features requires significant investment in research and development, specialized talent and computing resources, and these investments may not generate commensurate revenue.
+
+AI/ML models may also produce output that is inaccurate, biased or inappropriate, or that infringes the rights of third parties. Errors of this kind in applications used for financial reporting, healthcare workflows, credit decisions or other regulated functions could expose us to claims, regulatory scrutiny and loss of customer trust. Laws and regulations governing the development and use of AI are emerging in many jurisdictions, and they may impose transparency, testing, documentation or other obligations that increase our costs or limit the features we can offer.
+
+Reductions or delays in customer information technology spending, including as a result of adverse macroeconomic conditions, could reduce demand for our products and services.
+
+Our revenue depends on the information technology budgets of enterprises and public sector organizations. Economic slowdowns, inflation, elevated interest rates, financial market volatility, geopolitical tensions and industry-specific downturns can cause customers to delay purchasing decisions, reduce the scope of new projects, seek price concessions or decline to renew. Large implementation projects and integrated systems purchases tend to be especially discretionary, so demand for our professional services and hardware-based offerings may be more volatile than demand for our recurring subscription and maintenance offerings.
+
+Because our customers are concentrated in industries such as financial services, healthcare, manufacturing, retail and the public sector, conditions affecting one or more of these industries could have a disproportionate impact on us.
+
+Our growth depends substantially on customers renewing their subscription and maintenance agreements and expanding their use of our products.
+
+A significant portion of our revenue comes from recurring subscription, maintenance and support arrangements. Customers have no obligation to renew these agreements after their terms expire, and they may renew for fewer users, fewer products, shorter terms or lower prices. Customers may also reduce their maintenance coverage on older on-premises products, replace our products with competing solutions, or consolidate vendors as part of cost reduction initiatives.
+
+Our strategy relies heavily on cross-selling complementary products across our segments. If customers do not expand their deployments as we anticipate, our revenue growth could slow. In addition, because the costs of acquiring a new customer are generally incurred up front, lower renewal and expansion rates could reduce our profitability.
+
+Our cost structure includes a substantial component of hardware, hosting and services costs, which makes our margins sensitive to changes in revenue mix and input costs.
+
+Our offerings include integrated systems that combine our software with servers, storage and networking hardware, as well as professional and managed services that are delivered largely by our own personnel and subcontractors. As a result, our cost of revenue makes up a larger share of revenue than it does for software companies that sell primarily subscription and license products. Our gross margin depends on the relative mix of software, cloud services, hardware and services that we sell in any period. A shift toward lower-margin hardware or services revenue, increases in component, hosting, energy or labor costs, or pricing pressure on our higher-margin software offerings could reduce our gross margin and operating income.
+
+Risks Related to Our Operations
+
+Cybersecurity incidents, vulnerabilities in our products or breaches of our systems could expose sensitive data, disrupt our operations and severely harm our reputation.
+
+We develop, host and support software that customers use to process financial transactions, protected health information, personal data, intellectual property and other highly sensitive information. Our cloud services, internal systems and supply chain are frequent targets of sophisticated attackers, including organized criminal groups and state-sponsored actors. Threats include ransomware, credential theft, social engineering, insider misconduct and attacks that exploit vulnerabilities in our code or in third-party and open source components embedded in our products.
+
+Because many of our offerings are themselves security, identity and data protection products, a breach affecting us or our products could be particularly damaging to customer confidence. A successful attack could lead to unauthorized access to customer data, service outages, ransom payments, regulatory investigations and penalties, contractual liability, litigation and significant remediation costs. Our insurance coverage may be insufficient to cover these losses, and coverage may not remain available on acceptable terms. We may also be unable to detect, contain or remediate an incident promptly, and disclosure obligations may require us to report incidents before their full scope is known.
+
+Interruptions or performance problems in the data centers and third-party cloud infrastructure on which our services depend could impair our ability to deliver our offerings.
+
+We deliver our cloud services from data centers that we operate and from facilities and infrastructure provided by third-party cloud infrastructure providers and colocation vendors. These facilities are vulnerable to damage or interruption from power loss, telecommunications failures, natural disasters, fires, cyberattacks, human error, capacity constraints and similar events. We do not control the operations of third-party facilities, and those providers may change their pricing, terms or service levels, or may compete with us.
+
+Many of our customers depend on our applications for mission-critical functions. Any significant interruption could therefore trigger service-level credits, contract terminations, claims for damages and lasting damage to our reputation. Errors, defects or failed updates in our software or integrated systems could have similar consequences.
+
+Disruptions in our supply chain for integrated systems, or excess and obsolete inventory, could harm our revenue and results of operations.
+
+Our integrated systems depend on processors, memory, storage devices, networking components and other hardware obtained from a limited number of suppliers and contract manufacturers. Some of these components come from a single source. Supply constraints, trade restrictions, tariffs, geopolitical events, logistics disruptions or supplier financial difficulties could delay shipments, increase our costs or prevent us from [...]
+>>>
+
+TASK
+Write Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations for Torsel Software, Inc.'s annual report for the fiscal year ended 2024-12-31. Write MD&A with these parts: overview; results of operations comparing the current with the prior fiscal year line by line (revenue, cost of revenue and gross margin, each operating expense, operating income, interest expense, effective tax rate, net income), giving plausible qualitative drivers; liquidity and capital resources (cash, operating, investing and financing cash flows, capital expenditures, debt, dividends and share repurchases); and critical accounting estimates. Quote amounts and percentages exactly as they appear in the facts sheet. Do not include market risk disclosures; Item 7A covers them.
+Length: about 3000 words. Start with the line "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations" and output only the section text.

@@ -1,0 +1,108 @@
+{
+  "company_id": "syn0002",
+  "name": "Novix Aerospace, Inc.",
+  "sector": "Industrials",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 332.46,
+  "totals": {
+    "seconds": 331.92,
+    "prompt_tokens": 37191,
+    "completion_tokens": 34855,
+    "total_tokens": 72046,
+    "reasoning_tokens": 0,
+    "calls": 4
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1236,
+      "prompt_chars": 14509,
+      "words": 4072,
+      "attempts": 1,
+      "exemplar_overlap": 0.0034,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1229,
+      "prompt_chars": 25681,
+      "words": 4697,
+      "attempts": 1,
+      "exemplar_overlap": 0.0004,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1312,
+      "prompt_chars": 37953,
+      "words": 4301,
+      "attempts": 1,
+      "exemplar_overlap": 0.0021,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 1157,
+      "prompt_chars": 42749,
+      "words": 1136,
+      "attempts": 1,
+      "exemplar_overlap": 0.0009,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 98.29,
+      "prompt_tokens": 4588,
+      "completion_tokens": 10018,
+      "total_tokens": 14606,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4072,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 104.15,
+      "prompt_tokens": 7805,
+      "completion_tokens": 10605,
+      "total_tokens": 18410,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4697,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 99.38,
+      "prompt_tokens": 11965,
+      "completion_tokens": 11331,
+      "total_tokens": 23296,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4301,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 30.1,
+      "prompt_tokens": 12833,
+      "completion_tokens": 2901,
+      "total_tokens": 15734,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 1136,
+      "issues": []
+    }
+  ]
+}

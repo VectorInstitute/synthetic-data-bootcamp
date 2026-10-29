@@ -1,0 +1,188 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Novqua Retail, Inc. (ticker NQVU)
+Sector: Consumer Discretionary
+Incorporated in: Delaware
+Headquarters: New York, New York
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 57,400
+
+Novqua Retail, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      51,238        51,976
+Cost of revenue                              36,205        36,235
+Gross profit                                 15,033        15,741
+Research and development                          0             0
+Selling, general and administrative           7,804         7,963
+Other operating expense                       3,074         3,119
+Operating income                              4,155         4,659
+Interest expense                                420           413
+Income before income taxes                    3,735         4,246
+Provision for income taxes                      658           748
+Net income                                    3,077         3,498
+
+Novqua Retail, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            2,896         3,008
+Accounts receivable, net                             1,457         1,549
+Inventories                                          2,554         2,764
+Other current assets                                   364           384
+Total current assets                                 7,271         7,705
+Property, plant and equipment, net                   4,158         4,146
+Goodwill                                               135           142
+Other non-current assets                            55,881        56,837
+Total assets                                        67,445        68,830
+Total current liabilities                            5,682         6,248
+Long-term debt                                       9,341         9,181
+Other non-current liabilities                       28,101        28,269
+Total liabilities                                   43,124        43,698
+Total stockholders' equity                          24,321        25,132
+Total liabilities and stockholders' equity          67,445        68,830
+
+Novqua Retail, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             3,077
+Depreciation and amortization                          1,455
+Changes in working capital and other                   1,219
+Net cash provided by operating activities              5,751
+Purchases of property and equipment                  (1,240)
+Other investing activities, net                        (895)
+Net cash used in investing activities                (2,135)
+Net change in long-term debt                             160
+Dividends paid                                       (2,179)
+Share repurchases, net of issuances                  (1,709)
+Net cash used in financing activities                (3,728)
+Net change in cash and cash equivalents                (112)
+Cash and cash equivalents, beginning of year           3,008
+Cash and cash equivalents, end of year                 2,896
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: -1.4%
+Net income growth, fiscal 2024 versus 2023: -12.0%
+Operating income growth, fiscal 2024 versus 2023: -10.8%
+Gross margin, fiscal 2024: 29.3%
+Operating margin, fiscal 2024: 8.1%
+Net margin, fiscal 2024: 6.0%
+Effective tax rate, fiscal 2024: 17.6%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 15.2%
+Gross margin, fiscal 2023: 30.3%
+Operating margin, fiscal 2023: 9.0%
+Net margin, fiscal 2023: 6.7%
+Effective tax rate, fiscal 2023: 17.6%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 15.3%
+
+STYLE EXAMPLE: the start of Item 1A from a real Consumer Discretionary company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1A. Risk Factors (Continued)
+Operational information systems, security systems, vehicles, and services could be affected by cybersecurity incidents, ransomware attacks, and other disruptions and impact Ford, Ford Credit, their suppliers, and dealers. We rely on information technology networks and information systems, including in-vehicle systems and mobile devices, some of which are managed by suppliers, some of which are provided by third-party service providers, and some of which ultimately rely on other services provided to these third parties by unaffiliated service providers, to process, transmit, and store electronic information that is important to the operation of our business, our vehicles, and the services we offer. Despite devoting significant resources to our cybersecurity program, we are at risk for interruptions, outages, and compromises of: (i) operational information systems (including business, financial, accounting, product development, consumer receivables, data processing, or manufacturing processes); (ii) facility security systems; and/or (iii) in-vehicle systems or mobile devices, whether caused by a ransomware or other cybersecurity incident, security breach, or other reason (e.g., a natural disaster, fire, acts of terrorism or war, or an overburdened infrastructure system). Such incidents could materially disrupt operational information systems; result in loss or unwilling publication of trade secrets or other proprietary or competitively sensitive information; compromise the privacy of personal information of consumers, employees, or others; jeopardize the security of our facilities; disrupt or degrade service or our operations; affect the performance of in-vehicle systems or services we offer; and/or impact the safety of our vehicles. This risk exposure rises as we continue to develop and produce vehicles with increased connectivity. Moreover, we, our suppliers, service providers, and dealers have been the target of cybersecurity incidents and such threats are continuing and evolving, which may cause cybersecurity incidents to be more difficult to detect for periods of time. Our networks and in-vehicle systems, sharing similar architectures, could also be impacted by, or a cybersecurity incident may result from, the negligence or misconduct of insiders or third parties who have access to our networks and systems. We employ capabilities, processes, and other security measures we believe are reasonably designed to detect, reduce, and mitigate the risk of cybersecurity incidents, and have requirements for our suppliers and service providers to do the same; however, we may not be aware of all vulnerabilities or might not accurately assess the risks of incidents, and such preventative measures cannot provide absolute security and may not be sufficient in all circumstances or mitigate all potential risks, including potential production disruption or the loss or disclosure of sensitive information. Moreover, a cybersecurity incident could harm our reputation, cause customers to lose trust in our security measures, and/or subject us to regulatory actions or litigation, which may result in fines, penalties, judgments, or injunctions, and a cybersecurity incident involving us or one of our suppliers or service providers could impact our production, internal operations, business strategy, results of operations, financial condition, or our ability to deliver products and services to our customers.
+To facilitate access to the raw materials and other components necessary for the production of electric vehicles, Ford has entered into and may, in the future, enter into multi-year commitments to raw material and other suppliers that subject Ford to risks associated with lower future demand for such items as well as costs that fluctuate and are difficult to accurately forecast. We have announced plans to significantly increase our electric vehicle production volumes; however, our ability to produce higher volumes of electric vehicles is dependent upon the availability of raw materials and other components necessary for the production of batteries, e.g., lithium, cobalt, and nickel, among others. As described above under “Ford is highly dependent on its suppliers to deliver components in accordance with Ford’s production schedule and specifications, and a shortage of or inability to timely acquire key components or raw materials can disrupt Ford’s production of vehicles,” to facilitate our access to such raw materials, we have entered into and we may, in the future, enter into offtake agreements and other long-term purchase contracts. Such agreements obligate us, subject to certain conditions such as quality or minimum output, to purchase a certain percentage or minimum amount of output from raw material suppliers over an agreed upon period of time pursuant to agreed upon purchase price mechanisms that are typically based on the market price of the material at the time of delivery.
+Unlike our standard arrangements with suppliers, under multi-year offtake agreements and other long-term purchase contracts, the risks associated with lower-than-expected electric vehicle production volumes or changes in battery technology that reduce the need for certain raw materials, batteries, or their components are borne by Ford rather than our suppliers. In the event we do not purchase the materials or components pursuant to the terms of these agreements, we may nevertheless be obligated to pay the purchase price or otherwise compensate the supplier in an amount determined by the contract or reimburse the supplier for costs or losses it incurs. We have incurred and we may continue to incur such charges. This may be the case even if the supplier finds another purchaser, as we may be responsible for the costs of finding the new purchaser as well as any lost revenue attributable to the replacement purchaser paying a lower price than required under the pricing mechanism in our agreement.
+As a result of the competition for and limited availability of the raw materials needed for our electric vehicle business, the costs of such materials are difficult to accurately forecast as they may fluctuate during the term of the offtake agreements and other long-term purchase contracts based on market conditions. Accordingly, we may be subject to increases in the prices we pay for those raw materials, and our ability to recoup such costs through increased pricing to our customers may be limited. As a result, our margins, results of operations, financial condition, and reputation may be adversely impacted by commitments we make pursuant to offtake agreements and other long-term purchase contracts.
+22
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+General
+
+Novqua Retail, Inc., a Delaware corporation headquartered in New York, New York, is a multi-format retailer of apparel, footwear, accessories, beauty and home merchandise in the United States and selected international markets. In this report, "Novqua," the "Company," "we," "us" and "our" refer to Novqua Retail, Inc. and its consolidated subsidiaries unless the context indicates otherwise. Our common stock trades under the ticker symbol NQVU.
+
+We serve a broad base of customers through full-line department stores, value-oriented outlet stores and digital storefronts that include websites and mobile applications. Our assortments combine nationally recognized brands, designer collaborations and proprietary labels that we develop and source ourselves. We aim to give customers a curated selection of current fashion and everyday essentials at competitive prices, in a convenient and engaging shopping environment, through whichever channel they prefer.
+
+For the fiscal year ended December 31, 2024, our consolidated revenue was $51,238 million. In this Annual Report on Form 10-K, "fiscal 2024" refers to the fiscal year ended December 31, 2024, and "fiscal 2023" refers to the fiscal year ended December 31, 2023. Unless otherwise noted, all information in this Item 1 is presented as of December 31, 2024.
+
+Our Mission and Strategic Priorities
+
+Our mission is to be the destination customers trust for style, quality and value at every stage of life. The following priorities guide our strategy:
+
+- Curated, relevant assortments. We balance well-known national brands with proprietary labels. National brands draw customer traffic and build credibility. Proprietary labels let us differentiate our offering and manage product quality, design and cost.
+
+- Connected shopping experience. We operate our store fleet and digital platforms as an integrated network. Customers can browse online and buy in store, buy online and pick up at a store or curbside, return digital purchases to physical locations, and receive orders shipped from stores or fulfillment centers.
+
+- Customer loyalty and personalization. We use our loyalty program, co-branded payment offerings and first-party customer data to understand preferences, tailor marketing and reward frequent shoppers.
+
+- Disciplined operations. We continue to invest in inventory planning, supply chain modernization and store productivity to improve in-stock levels, reduce markdowns and control operating costs.
+
+- Responsible capital allocation. We seek to fund investment in our stores, technology and supply chain while returning capital to stockholders through dividends and share repurchases, consistent with our financial policies.
+
+Principal Products and Services
+
+We sell merchandise across several major categories. The relative importance of each category differs by segment and banner.
+
+Women's apparel and accessories. This is our largest merchandise category. It includes career, casual, contemporary, active and occasion apparel, as well as intimates, handbags, small leather goods, jewelry, watches and seasonal accessories.
+
+Men's and children's apparel. We offer tailored clothing, sportswear, denim, activewear and outerwear for men, and apparel, sleepwear and school essentials for infants, children and young adults.
+
+Footwear. We carry dress, casual, athletic and seasonal footwear for women, men and children, sourced from leading national brands and our own labels.
+
+Beauty. Our beauty departments offer prestige and mass cosmetics, fragrance, skin care, hair care and personal care products. Many full-line stores provide counter-based consultations and complimentary services.
+
+Home and lifestyle. We offer bedding, bath, tabletop, kitchen essentials, small appliances, decorative accessories and seasonal décor, along with selected furniture and gift merchandise sold primarily through digital channels.
+
+Proprietary labels. We design, source and market a portfolio of proprietary labels across apparel, footwear, accessories and home, including our Novqua Essentials, Novqua Studio and Novqua Home collections. These labels generally carry higher merchandise margins than comparable national brand products. They also give customers good value and set our assortment apart from those of competitors.
+
+Services. We also provide alterations, gift registry, personal styling appointments, gift wrapping, delivery and installation for selected home products, and gift card programs. In addition, we earn revenue from a co-branded and private label credit card program operated with an unaffiliated financial institution, from licensed departments operated by third parties within our stores, and from a curated third-party marketplace on our digital platform.
+
+Reportable Segments
+
+We manage our business and report our results through three reportable segments: Full-Line Stores, Value Stores, and Digital Commerce. Our chief operating decision maker reviews operating results and allocates resources at the segment level. Additional financial information about our segments is included in Item 7, "Management's Discussion and Analysis of Financial Condition and Results of Operations," and in the Notes to Consolidated Financial Statements included in Item 8 of this report.
+
+Full-Line Stores
+
+The Full-Line Stores segment includes our department stores operating under the Novqua banner. These stores are located mainly in regional shopping centers, lifestyle centers and urban districts across the United States. They offer our broadest assortment of national brands, designer collections and proprietary labels in women's, men's and children's apparel, footwear, beauty, accessories and home. Store formats range from flagship locations in major metropolitan markets to smaller-footprint stores designed for community centers and suburban trade areas.
+
+Within this segment, we continue to invest in the in-store experience. Initiatives include refreshed fixtures and visual presentation, expanded beauty and footwear departments, dedicated areas for online order pickup and returns, and mobile point-of-sale technology that lets associates complete transactions anywhere on the selling floor. Full-line stores also serve as fulfillment points for digital orders. This improves delivery speed and makes greater use of store inventory.
+
+Value Stores
+
+The Value Stores segment includes our Novqua Outlet banner. These stores offer branded and proprietary-label merchandise at prices generally below those found in our full-line stores. Their merchandise mix combines product made specifically for the outlet channel, opportunistic purchases from vendors and clearance merchandise transferred from other segments. Novqua Outlet stores are typically located in off-mall strip centers, power centers and outlet centers, and generally have lower occupancy and operating costs than full-line locations.
+
+The Value Stores segment broadens our reach to value-conscious customers and provides an efficient channel for managing excess inventory across the enterprise. Assortments change frequently, which encourages repeat visits. We are expanding our presence in this segment through selective new store openings and relocations to centers we believe offer favorable demographics and traffic.
+
+Digital Commerce
+
+The Digital Commerce segment includes sales generated through our websites and mobile applications, including novqua.com and the Novqua mobile app, as well as our third-party marketplace. Digital Commerce offers an extended assortment, including sizes, colors and categories not carried in every store, and serves as our primary channel for furniture and other large home products.
+
+Digital orders are fulfilled through a network of dedicated fulfillment centers and through ship-from-store and same-day pickup capabilities in our physical locations. We continue to invest in site and app functionality, search and product discovery, personalized recommendations, payment options and delivery speed. Our marketplace lets carefully selected third-party sellers offer complementary merchandise on our platform, which broadens our assortment without requiring us to hold the related inventory.
+
+Customers
+
+We serve a broad and diverse customer base across a wide range of ages, income levels and geographic markets. Our core customer is a style-conscious, value-aware shopper who often buys for herself and her household and who shops across both physical and digital channels. Customers who shop with us through more than one channel generally spend more and visit more frequently than single-channel customers, and increasing the number of these multichannel customers is a central focus of our strategy.
+
+Our business is not dependent on any single customer or small group of customers, and no individual customer accounted for a material portion of our revenue in fiscal 2024 or fiscal 2023. Most of our sales are paid for with cash, debit cards, third-party credit cards, our co-branded and private label credit cards, digital wallets and buy-now-pay-later offerings provided by third parties.
+
+Sales and Marketing
+
+Our marketing seeks to build brand awareness, drive traffic to stores and digital platforms, and deepen engagement with existing customers. Our marketing mix combines brand advertising, promotional events and personalized communications delivered through the following channels:
+
+- digital media, including paid search, social media, display advertising, influencer and creator partnerships, and affiliate programs;
+- owned channels, including email, text messaging, push notifications and our websites and mobile applications;
+- traditional media, including broadcast, streaming video, audio and out-of-home advertising, used primarily around key seasonal events; and
+- in-store marketing, including visual merchandising, signage, events and associate-led clienteling.
+
+Loyalty program. Our Novqua Rewards program lets members earn points on qualifying purchases and redeem them for rewards, and gives them member-only offers, early access to events and other benefits. Higher program tiers are available to our most engaged customers, including holders of our co-branded and private label credit cards. Program data helps us understand customer preferences, personalize communications and measure the effectiveness of our marketing investments.
+
+Credit card program. Under a long-term agreement with an unaffiliated financial institution, we offer co-branded and private label credit cards. The financial institution owns the cardholder accounts, extends credit and bears the related credit risk. We receive payments under the agreement based in part on the performance of the card portfolio, and we use the program to reward and retain loyal customers.
+
+Retail media. We also operate a retail media business that lets brand partners advertise to our customers across our digital properties and in-store screens, using aggregated and privacy-protective audience insights.
+
+Merchandising, [...]
+>>>
+
+TASK
+Write Item 1A. Risk Factors for Novqua Retail, Inc.'s annual report for the fiscal year ended 2024-12-31. List the material risks, grouped under sub-headings (for example risks related to the business and industry, to operations, to financing and capital structure, to legal and regulatory matters, and general risks). Each risk starts with a one-sentence heading line, followed by one or two paragraphs. Make the risks specific to this company's sector, cost structure and balance sheet. Do not quote dollar amounts or percentages; describe exposures in words, as real risk factors do.
+Length: about 3500 words. Start with the line "Item 1A. Risk Factors" and output only the section text.

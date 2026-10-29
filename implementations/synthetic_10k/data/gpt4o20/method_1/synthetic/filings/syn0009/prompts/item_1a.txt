@@ -1,0 +1,177 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Torsel Software, Inc. (ticker TSOE)
+Sector: Information Technology
+Incorporated in: Delaware
+Headquarters: Princeton, New Jersey
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 28,000
+
+Torsel Software, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      24,213        21,422
+Cost of revenue                              13,334        11,813
+Gross profit                                 10,879         9,609
+Research and development                      2,620         2,375
+Selling, general and administrative           2,673         2,303
+Other operating expense                       1,453         1,285
+Operating income                              4,133         3,646
+Interest expense                                190           167
+Income before income taxes                    3,943         3,479
+Provision for income taxes                      442           364
+Net income                                    3,501         3,115
+
+Torsel Software, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            1,154           960
+Accounts receivable, net                             4,671         4,187
+Inventories                                          1,608         1,433
+Other current assets                                 3,185         2,821
+Total current assets                                10,618         9,401
+Property, plant and equipment, net                   2,477         2,180
+Goodwill                                             1,951         1,600
+Other non-current assets                            14,250        11,796
+Total assets                                        29,296        24,977
+Total current liabilities                            7,798         7,171
+Long-term debt                                       4,222         3,721
+Other non-current liabilities                        9,179         7,111
+Total liabilities                                   21,199        18,003
+Total stockholders' equity                           8,097         6,974
+Total liabilities and stockholders' equity          29,296        24,977
+
+Torsel Software, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             3,501
+Depreciation and amortization                            867
+Changes in working capital and other                   (346)
+Net cash provided by operating activities              4,022
+Purchases of property and equipment                    (472)
+Other investing activities, net                      (1,479)
+Net cash used in investing activities                (1,951)
+Net change in long-term debt                             501
+Dividends paid                                             0
+Share repurchases, net of issuances                  (2,378)
+Net cash used in financing activities                (1,877)
+Net change in cash and cash equivalents                  194
+Cash and cash equivalents, beginning of year             960
+Cash and cash equivalents, end of year                 1,154
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 13.0%
+Net income growth, fiscal 2024 versus 2023: 12.4%
+Operating income growth, fiscal 2024 versus 2023: 13.4%
+Gross margin, fiscal 2024: 44.9%
+Operating margin, fiscal 2024: 17.1%
+Net margin, fiscal 2024: 14.5%
+Effective tax rate, fiscal 2024: 11.2%
+Research and development as a share of revenue, fiscal 2024: 10.8%
+Selling, general and administrative as a share of revenue, fiscal 2024: 11.0%
+Gross margin, fiscal 2023: 44.9%
+Operating margin, fiscal 2023: 17.0%
+Net margin, fiscal 2023: 14.5%
+Effective tax rate, fiscal 2023: 10.5%
+Research and development as a share of revenue, fiscal 2023: 11.1%
+Selling, general and administrative as a share of revenue, fiscal 2023: 10.8%
+
+STYLE EXAMPLE: the start of Item 1A from a real Information Technology company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1A. Risk Factors
+20
+culture, effectively manage and monitor our people and operations, effectively communicate our core values, policies and procedures, strategies and goals, and motivate, engage and retain our people, particularly given our world-wide operations, rate of new hires, and the significant percentage of our employees who have the option to work remotely. The size and scope of our operations increase the possibility that we will have employees who engage in unlawful or fraudulent activity, or otherwise expose us to unacceptable business risks, despite our efforts to train them and maintain internal controls to prevent such instances. For example, employee misconduct could involve the improper use of sensitive or confidential information entrusted to us, or obtained inappropriately, or the failure to comply with legislation or regulations regarding the protection of sensitive or confidential information, including personal data and proprietary information. Furthermore, the inappropriate use of social networking sites and unapproved technologies, such as public-facing, free AI tools, by our employees could result in breaches of confidentiality, unauthorized disclosure of non-public company information or damage to our reputation. If we do not continue to develop and implement the right processes and tools to manage our enterprise and instill our culture and core values into all of our employees, our ability to compete successfully and achieve our business objectives could be impaired. In addition, from time to time, we have made, and may continue to make, changes to our operating model, including how we are organized, as the needs and size of our business change, and if we do not successfully implement the changes or operate effectively under any new operating model, including the Reinvention Services change effective September 1, 2025, our business and results of operation may be negatively impacted.
+We might not be successful at acquiring, investing in or integrating businesses, entering into joint ventures or divesting businesses.
+We expect to continue pursuing strategic acquisitions, investments and joint ventures to enhance or add to our skills and capabilities or offerings of solutions and services, or to enable us to expand in certain geographic and other markets. We have in the past and may again in the future increase the amount of capital invested in such opportunities. These acquisitions and other transactions and investments involve challenges and risks, such as that we may not succeed in completing targeted transactions, including as a result of the market becoming increasingly competitive, or achieve desired results of operations. To the extent that we increase the capital invested in such opportunities, the risks associated with such investments, further described below, also increase.
+Furthermore, we face risks in successfully integrating any businesses we might acquire, and these risks may be magnified by the size and number of transactions we have executed. Ongoing business may be disrupted, and our management’s attention may be diverted by acquisition, investment, transition or integration activities. In addition, we might need to dedicate additional management and other resources, and our organizational structure could make it difficult for us to efficiently integrate acquired businesses into our ongoing operations and assimilate and retain employees of those businesses into our culture and operations. The loss of key executives, employees, customers, suppliers, vendors and other business partners of businesses we acquire may adversely impact the value of the assets, operations or businesses. Furthermore, acquisitions or joint ventures may result in significant costs and expenses, including those related to retention payments, equity compensation, severance pay, early retirement costs, intangible asset amortization and asset impairment charges, enhancing controls, procedures and policies including those related to financial reporting, disclosure, and cyber and information security, assumed litigation and other liabilities, and legal, accounting and financial advisory fees, which could negatively affect our profitability as these costs and expenses grow along with the increased capital invested in such acquisitions and joint ventures. We may have difficulties as a result of entering into new markets where we have limited or no direct prior experience or where competitors may have stronger market positions.
+In some cases, we have failed to, and may in the future fail to fully realize the expected benefits or strategic objectives of any acquisition, investment or joint venture we undertake. We might not achieve our expected return on investment or may lose money. We may be adversely impacted by liabilities that we assume from a company we acquire or in which we invest, including from that company’s known and unknown obligations, intellectual property or other assets, terminated employees, current or former clients or other third parties. In addition, we may fail to identify or adequately assess the magnitude of certain liabilities, shortcomings or other circumstances prior to acquiring, investing in or partnering with a company, including potential exposure to regulatory sanctions or liabilities resulting from an acquisition target’s previous activities, or from an acquisition’s controls related to financial reporting, disclosure, and cyber and information security environment. The number of transactions we execute annually may increase this risk. If any of these circumstances occurs, they could result in unexpected regulatory or legal exposure, including litigation with new or existing clients, unfavorable accounting treatment, unexpected increases in taxes or other adverse effects on our relationships with clients and our business. In addition, we have a lesser degree of control over the business operations of the joint ventures and businesses in which we have made minority investments or in which we have acquired less than 100% of the equity. This lesser degree of control may expose us to additional reputational, financial, legal, compliance or operational risks. Litigation, indemnification claims and other unforeseen claims and liabilities may arise from the acquisition or operation of acquired businesses. For example, we may face litigation or other claims as a result of certain terms and conditions of the acquisition agreement, such as earnout payments or closing working capital adjustments. Alternatively, shareholder litigation may arise as a result of proposed acquisitions. If we are unable to complete the number and kind of investments for which we plan, or if we are inefficient or unsuccessful at integrating acquired businesses into our operations, we may not be able to achieve our planned rates of growth or improve our market share, profitability or competitive position in specific markets or services.
+Table of Contents
+ACCENTURE 2025 FORM 10-K
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+General
+
+Overview
+
+Torsel Software, Inc. ("we," "us," "our," or the "Company") is a prominent provider in the information technology sector, offering a comprehensive suite of software solutions designed to enhance business operations across various industries. Our headquarters are located in Princeton, New Jersey, and we are incorporated in Delaware. As of December 31, 2024, we employed approximately 28,000 individuals dedicated to delivering innovative technology solutions to our global customer base.
+
+Our business is structured around several key segments, each focusing on specific areas of technology and customer needs. We have achieved significant growth in fiscal year 2024, with total revenue reaching $24,213 million. Our commitment to research and development, customer-focused innovation, and strategic market engagement has positioned us as an industry leader in software development and services.
+
+Principal Products and Services
+
+Our product offerings are categorized into two primary segments: Enterprise Software Solutions and Cloud Services. Each segment addresses the distinct needs of our diverse customer base while leveraging our core technology competencies.
+
+Enterprise Software Solutions
+
+Our Enterprise Software Solutions segment provides a wide range of software products that enable businesses to optimize their operations, improve productivity, and drive growth. This segment includes enterprise resource planning (ERP) systems, customer relationship management (CRM) software, and supply chain management solutions. These products are designed to integrate seamlessly into our customers’ existing workflows, offering flexibility and scalability.
+
+Our ERP systems support businesses in managing their core processes, including finance, human resources, and procurement, while our CRM solutions help organizations enhance customer interactions and sales effectiveness. Our supply chain management tools enable efficient management of logistics, inventory, and demand forecasting, ensuring that businesses can respond swiftly to market changes.
+
+Cloud Services
+
+Our Cloud Services segment offers cloud-based platforms and infrastructure that empower businesses to operate with increased agility and reduced IT costs. These services include cloud storage, computing power, and software-as-a-service (SaaS) applications. Our cloud solutions are engineered to provide robust security, reliability, and scalability, catering to the diverse needs of enterprises ranging from small businesses to large multinational corporations.
+
+In addition to infrastructure and platform services, our Cloud Services segment provides advanced analytics and artificial intelligence capabilities, enabling customers to derive actionable insights from their data. This empowers them to make informed decisions and improve business outcomes.
+
+Customers
+
+Our customer base is diverse, spanning multiple industry sectors, including finance, healthcare, retail, manufacturing, and telecommunications. We serve both private and public sector clients, including government agencies, educational institutions, and non-profit organizations. Our software solutions are designed to meet the specific needs of each industry, ensuring that we deliver maximum value to our customers.
+
+Sales and Marketing
+
+Our sales and marketing strategy is focused on building strong relationships with our customers while expanding our market reach. We employ a multi-channel approach that includes direct sales teams, channel partners, and strategic alliances. Our marketing initiatives are designed to enhance brand awareness, generate leads, and support our sales efforts through targeted campaigns, events, and digital marketing.
+
+We invest in understanding our customers’ specific requirements and tailor our solutions to address their unique challenges. Our customer-centric approach has been instrumental in driving customer satisfaction and loyalty, contributing to our revenue growth.
+
+Competition
+
+The information technology sector is highly competitive, with numerous companies vying for market share. Our primary competitors include both large, established software providers and emerging technology firms. We differentiate ourselves through our comprehensive product offerings, commitment to innovation, and strong customer relationships.
+
+We compete based on several factors, including product functionality, performance, reliability, customer support, and total cost of ownership. Our ability to deliver integrated solutions that address the full spectrum of our customers’ needs is a key competitive advantage.
+
+Seasonality
+
+Our business does not experience significant seasonal fluctuations. However, certain factors, such as budget cycles of our enterprise customers and government fiscal year-end spending, can influence quarterly revenue patterns. We continuously monitor and adapt to these factors to optimize our sales and operational strategies.
+
+Intellectual Property
+
+Intellectual property is a critical asset for our business, and we are committed to protecting our proprietary technologies. We hold a portfolio of patents, trademarks, and copyrights that safeguard our innovations and brand identity. Our intellectual property strategy focuses on fostering innovation, securing market leadership, and mitigating competitive risks.
+
+We actively monitor the intellectual property landscape to ensure compliance and take appropriate actions to defend our rights. Our commitment to research and development supports the ongoing creation of new technologies and solutions, reinforcing our competitive position.
+
+Government Regulation
+
+As a provider of technology solutions, we are subject to various government regulations and industry standards. These regulations pertain to data protection, privacy, cybersecurity, and intellectual property rights. Compliance with these regulations is integral to our operations and customer trust.
+
+We maintain robust compliance programs and engage with regulatory bodies to stay informed of evolving requirements. Our policies and procedures are designed to ensure adherence to applicable laws and mitigate regulatory risks.
+
+Human Capital
+
+Our workforce is a key driver of our success, and we are committed to fostering an inclusive and supportive work environment. With approximately 28,000 employees, we prioritize talent development, diversity, and employee well-being. Our human capital strategy focuses on attracting top talent, providing opportunities for growth, and cultivating a culture of innovation and collaboration.
+
+We offer comprehensive training and development programs to enhance the skills and capabilities of our employees. Our commitment to diversity, equity, and inclusion is reflected in our recruitment practices and employee engagement initiatives.
+
+Available Information
+
+We provide access to our financial and operational information through various channels, including our corporate website and filings with the Securities and Exchange Commission (SEC). Stakeholders can access our annual reports, quarterly earnings releases, and other relevant documents to gain insights into our business performance and strategic initiatives.
+
+We are committed to transparency and timely communication with our investors, customers, and partners. Our Investor Relations team is available to address inquiries and provide information on our financial performance and business outlook.
+
+In conclusion, Torsel Software, Inc. is dedicated to delivering innovative technology solutions that drive customer success and create long-term value. Our strategic focus on product excellence, customer satisfaction, and operational efficiency underpins our continued growth and market leadership in the information technology sector.
+
+>>>
+
+TASK
+Write Item 1A. Risk Factors for Torsel Software, Inc.'s annual report for the fiscal year ended 2024-12-31. List the material risks, grouped under sub-headings (for example risks related to the business and industry, to operations, to financing and capital structure, to legal and regulatory matters, and general risks). Each risk starts with a one-sentence heading line, followed by one or two paragraphs. Make the risks specific to this company's sector, cost structure and balance sheet. Do not quote dollar amounts or percentages; describe exposures in words, as real risk factors do.
+Length: about 3500 words. Start with the line "Item 1A. Risk Factors" and output only the section text.

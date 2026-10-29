@@ -1,0 +1,547 @@
+# ITEM 1. BUSINESS
+
+## Cautionary Note Regarding Forward-Looking Statements
+
+This Annual Report on Form 10-K, including this Item 1, contains forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995. Forward-looking statements include statements about our strategy, future operations, products and services, competitive position, regulatory environment, technology investments, and the markets in which we operate. Words such as "anticipate," "believe," "continue," "could," "estimate," "expect," "intend," "may," "plan," "potential," "seek," "should," "target," "will," "would," and similar expressions are intended to identify forward-looking statements, although not all forward-looking statements contain these identifying words.
+
+Forward-looking statements are based on management's current expectations and assumptions and are subject to risks, uncertainties, and other factors that could cause actual results to differ materially from those expressed or implied. These factors include those described under Item 1A, "Risk Factors," and Item 7, "Management's Discussion and Analysis of Financial Condition and Results of Operations." Forward-looking statements speak only as of the date of this report. Except as required by law, we undertake no obligation to update or revise any forward-looking statement, whether as a result of new information, future events, or otherwise.
+
+Unless the context indicates otherwise, references in this report to "Stonegate," the "Company," "we," "us," and "our" refer to Stonegate Networks Group, Inc. and its consolidated subsidiaries. References to "fiscal 2023" or "2023" refer to our fiscal year ended December 31, 2023.
+
+---
+
+## Overview
+
+Stonegate Networks Group, Inc. is a global provider of payment processing, transaction infrastructure, and financial technology services. We enable merchants, financial institutions, corporations, governments, and technology platforms to accept, issue, move, and manage money across physical, digital, and embedded channels. Our technology sits at the center of the commerce ecosystem, connecting the parties to a transaction and providing the authorization, clearing, settlement, risk management, data, and value-added services that allow payments to occur securely, reliably, and at scale.
+
+We are headquartered in New York, New York. For fiscal 2023, we generated total revenues of $34.2 billion ($34,182 million).
+
+Our business is built on three foundational capabilities:
+
+- **Scale processing infrastructure.** We operate high-availability, redundant processing platforms that handle card-present, card-not-present, account-to-account, real-time, and batch payment flows. Our platforms are engineered to operate continuously, to absorb peak demand periods, and to recover rapidly from disruption.
+
+- **Distribution and client relationships.** We serve clients ranging from small and micro-merchants to multinational enterprises, and from community financial institutions to large global banks. We reach these clients through direct sales forces, financial institution referral and joint marketing relationships, independent sales organizations, independent software vendors, and technology integrators.
+
+- **Data, risk, and value-added services.** Because we participate in a large volume of transactions across many industries and geographies, we are positioned to deliver fraud prevention, risk scoring, analytics, loyalty, reconciliation, and reporting tools that help clients make better decisions and improve outcomes for their customers.
+
+We organize our operations into three reportable segments: **Merchant Solutions**, **Issuer and Network Services**, and **Enterprise and Banking Payments**. Certain enterprise-wide functions, along with activities not allocated to our reportable segments, are reported in **Corporate and Other**. Additional information regarding our segments is included in Item 7 and in the notes to our consolidated financial statements included in Item 8 of this report.
+
+### Our Mission
+
+Our mission is to make moving money simple, secure, and accessible for every business and every consumer we touch. We believe that a payment is not only the final step in a commercial interaction but also a source of insight, a point of connection between a business and its customer, and a foundation on which broader financial services can be built. We seek to deliver infrastructure that clients can trust and software that clients find easy to use.
+
+### How We Generate Revenue
+
+We generate revenue primarily from fees charged for processing transactions and for providing related services. Our revenue streams generally include:
+
+- **Transaction-based fees**, which may be calculated as a percentage of the value of the transactions we process, as a fixed fee per transaction, or as a combination of both;
+- **Account-based and subscription fees**, including fees charged per active card account, per merchant location, per device, or per software license;
+- **Value-added service fees**, including fees for fraud and risk management, tokenization, analytics, loyalty programs, chargeback management, currency conversion, and data services;
+- **Hardware and equipment revenue**, including the sale or lease of point-of-sale terminals, payment devices, and related peripherals;
+- **Professional services fees**, including implementation, conversion, consulting, customization, and managed services; and
+- **Card production and fulfillment fees**, including fees for physical card manufacturing, personalization, and distribution.
+
+In certain arrangements, our reported revenue includes amounts we pass through to third parties, such as interchange fees remitted to card issuers and assessments remitted to payment networks, depending on whether we act as principal or agent in the arrangement. Our revenue recognition policies are described in the notes to our consolidated financial statements.
+
+---
+
+## Industry Background
+
+The global payments industry encompasses the systems, networks, institutions, and technologies through which value is transferred between consumers, businesses, and governments. The industry has evolved substantially over recent decades and continues to change rapidly as a result of technological innovation, shifts in consumer behavior, regulatory developments, and new market entrants.
+
+### The Payment Value Chain
+
+A typical card-based transaction involves several participants:
+
+- **Consumers or cardholders**, who use payment credentials, whether physical cards, digital wallets, tokens stored on devices, or credentials stored with a merchant, to purchase goods and services;
+- **Merchants**, who accept payment for goods and services and who may operate in physical stores, online, through mobile applications, or through a combination of channels;
+- **Acquirers and merchant processors**, which enable merchants to accept payments, route transaction data for authorization, and facilitate settlement of funds into merchant accounts;
+- **Payment networks**, which establish the rules, standards, and infrastructure through which transactions are routed between acquirers and issuers;
+- **Issuers and issuer processors**, which provide payment credentials to cardholders, authorize transactions, manage cardholder accounts, and bear credit or funding risk on transactions; and
+- **Technology and software providers**, which supply point-of-sale systems, e-commerce platforms, gateways, fraud tools, and other components that interact with the payment flow.
+
+Beyond card transactions, the payments landscape includes automated clearing house transfers, wire transfers, real-time payments, digital wallet transfers, account-to-account payments, bill payment, payroll disbursements, cross-border remittances, and other forms of money movement. Many of these flows are converging, and clients increasingly expect a single provider to support multiple payment types through unified technology and reporting.
+
+### Key Industry Trends
+
+We believe several long-term trends are shaping the industry and creating opportunities for providers with scale, technology, and distribution:
+
+**Continued migration from cash and paper to electronic payments.** Consumers and businesses around the world continue to shift spending and settlement activity from cash and checks toward cards, digital wallets, and electronic transfers. This shift is supported by the convenience, security, and record-keeping benefits of electronic payments, by growth in digital commerce, and by public policy initiatives promoting financial inclusion and transparency.
+
+**Growth of digital and omnichannel commerce.** Businesses increasingly sell across physical stores, websites, mobile applications, social platforms, and marketplaces. Consumers expect seamless experiences that allow them to browse, buy, pick up, return, and pay across channels. Merchants require payment solutions that unify these channels and provide consolidated data and reconciliation.
+
+**Integration of payments into software.** Businesses increasingly select payment providers through the software they use to run their operations, including point-of-sale systems, practice management software, enterprise resource planning systems, booking platforms, and vertical-specific applications. Software providers seek to embed payments into their offerings to improve customer experience and generate additional revenue, creating demand for flexible, developer-friendly payment infrastructure.
+
+**Real-time and account-to-account payments.** The availability of real-time payment rails in many markets is enabling instant settlement for consumers and businesses and creating new use cases for disbursements, bill payment, and commerce. Financial institutions and corporates require connectivity, orchestration, liquidity management, and fraud tools to participate effectively in these systems.
+
+**Modernization of financial institution technology.** Many banks, credit unions, and other financial institutions operate legacy core and card systems that are costly to maintain and slow to adapt. These institutions are seeking cloud-capable, modular, and API-driven platforms that can accelerate product launches, improve digital experiences, and reduce operating costs.
+
+**Rising importance of security, fraud prevention, and identity.** As payment volume shifts to digital channels, fraud, account takeover, and cyber threats have grown in sophistication. Clients increasingly require advanced risk tools, including machine learning-based fraud scoring, tokenization, authentication, and identity verification.
+
+**Expanding regulatory expectations.** Regulators around the world continue to expand requirements relating to consumer protection, data privacy, operational resilience, anti-money laundering, sanctions compliance, and the oversight of third-party service providers. Compliance capabilities have become an important factor in client selection of payment partners.
+
+---
+
+## Our Competitive Strengths
+
+We believe the following strengths differentiate us in the market:
+
+**Breadth of capabilities across the payment lifecycle.** We participate on both the acceptance side and the issuing side of the payment ecosystem and provide enterprise money-movement solutions that span multiple payment rails. This breadth enables us to offer clients integrated solutions, to identify cross-selling opportunities, and to use insights from one part of our business to improve products in another.
+
+**Scale and operating leverage.** Our processing platforms handle a large volume of transactions, which allows us to spread fixed technology, security, and compliance costs across a broad base of activity. Scale also supports our investment capacity, allowing us to fund continued platform modernization and product development.
+
+**Resilient, secure infrastructure.** We have invested over many years in redundant data centers, network connectivity, cybersecurity, and disaster recovery capabilities. Our clients rely on us for mission-critical services, and we believe our operating track record is a significant factor in winning and retaining business.
+
+**Diversified client base and distribution.** We serve clients of many sizes across numerous industries and geographies, and we reach them through multiple channels. We believe this diversification reduces our dependence on any single client, industry, channel, or region and supports the stability of our revenue.
+
+**Long-standing financial institution relationships.** We have relationships with many financial institutions that use our issuer processing, card services, and enterprise payment products, and many of which refer merchant clients to us. These relationships often involve multi-year contracts and deep technical integration.
+
+**Data and risk expertise.** The information generated by the transactions we process, used in accordance with applicable law and our contractual obligations, supports our fraud prevention, risk management, and analytics offerings. We believe our risk models benefit from the breadth of transaction patterns we observe.
+
+**Experienced management and culture of execution.** Our leadership team brings experience across payments, banking, technology, and regulated industries. We emphasize disciplined execution, operational excellence, and accountability throughout our organization.
+
+---
+
+## Our Strategy
+
+Our strategy is designed to extend our position as a trusted provider of payment infrastructure while growing in higher-value software, data, and embedded finance offerings. The key elements of our strategy are described below.
+
+### Grow With Small and Mid-Sized Businesses Through Integrated Commerce
+
+Small and mid-sized businesses represent a large and diverse market that increasingly seeks integrated solutions combining payment acceptance with business management software. We intend to continue expanding our integrated commerce offerings, including our cloud-based point-of-sale platform, online store tools, invoicing, appointment scheduling, inventory management, and working capital access delivered through partners. We seek to increase the number of software features each client uses, which we believe improves client retention and expands revenue per client.
+
+### Expand Embedded Payments and Platform Partnerships
+
+We intend to grow our relationships with independent software vendors, marketplaces, and platforms that embed payments into their offerings. We provide these partners with application programming interfaces, software development kits, onboarding and underwriting tools, sub-merchant management, split-funding, and payout capabilities. We believe embedded payments represent one of the most attractive growth opportunities in our industry, and we are investing in developer experience, partner enablement, and vertical-specific features to compete effectively for these relationships.
+
+### Win and Expand Enterprise Relationships
+
+Large merchants and corporations require global acceptance, sophisticated payment orchestration, local payment methods, and advanced risk and data capabilities. We intend to continue strengthening our enterprise offering by expanding our coverage of payment methods, improving authorization performance, enhancing cross-border capabilities, and providing unified reporting and reconciliation across channels and geographies.
+
+### Modernize Issuer and Banking Platforms
+
+We are investing in next-generation, cloud-capable issuer processing and banking platforms designed to give financial institutions and fintech clients greater flexibility and speed. Our modernization program emphasizes modular architecture, open APIs, configurable product constructs, and real-time data access. We intend to migrate existing clients to modernized platforms over time while using these capabilities to win new clients, including digital banks and non-bank card program managers.
+
+### Lead in Real-Time and Account-to-Account Payments
+
+We intend to expand our connectivity to real-time payment systems and to build orchestration, fraud, liquidity, and request-for-payment capabilities that help financial institutions and corporates use these rails effectively. We believe account-to-account payments will complement card payments in many use cases, and we seek to provide clients with a single platform for managing both.
+
+### Invest in Data, Risk, and Intelligence
+
+We intend to continue developing products that use advanced analytics and machine learning to reduce fraud, improve authorization rates, support credit decisioning, and deliver business insights. We emphasize responsible data use, privacy by design, and model governance in the development and deployment of these products.
+
+### Pursue Disciplined Capital Allocation
+
+We seek to allocate capital in a manner that supports long-term value creation, including investments in organic product development and technology, strategic acquisitions and partnerships that expand our capabilities or market access, and the return of capital to shareholders when appropriate. We evaluate acquisitions based on strategic fit, integration risk, and expected returns.
+
+### Drive Operational Excellence
+
+We are pursuing initiatives to simplify our technology estate, consolidate legacy platforms, automate manual processes, and improve the efficiency of our operations. We believe these initiatives will improve client experience, reduce operational risk, and create capacity for reinvestment in growth.
+
+---
+
+## Our Segments
+
+### Merchant Solutions
+
+Our Merchant Solutions segment provides businesses of all sizes with the ability to accept payments in physical stores, online, in mobile applications, and through integrated software. Our clients range from sole proprietors and small local businesses to regional chains, national retailers, and multinational enterprises.
+
+#### Products and Services
+
+**Payment acceptance and processing.** We provide merchant acquiring and processing services that enable merchants to accept credit cards, debit cards, prepaid cards, digital wallets, and alternative payment methods. Our services include authorization, routing, capture, clearing, and settlement, along with funding of merchant accounts. We support card-present transactions using chip, contactless, and magnetic-stripe technologies, as well as card-not-present transactions through e-commerce gateways and in-app integrations.
+
+**Stonegate Commerce Point.** Our cloud-based point-of-sale platform combines payment acceptance hardware with software for managing sales, inventory, employees, customer relationships, and reporting. The platform is offered in configurations tailored to retail, restaurant, and service businesses and supports a marketplace of third-party applications that extend its functionality. Merchants can manage their business through a web dashboard and a mobile application, and they can add online ordering, gift cards, loyalty programs, and other capabilities as their needs evolve.
+
+**Stonegate Gateway and E-Commerce Services.** Our payment gateway enables online and mobile merchants to accept payments through hosted payment pages, embedded checkout components, and direct API integration. We provide support for stored credentials, recurring billing, network tokenization, multiple currencies, local payment methods, and authentication protocols designed to reduce fraud while minimizing friction for legitimate customers.
+
+**Integrated and Embedded Payments.** Through our Stonegate Connect program, independent software vendors and platforms embed our payment capabilities into their applications. We provide partners with tools for merchant onboarding, identity verification, underwriting, transaction monitoring, payouts, and reporting, and we offer flexible commercial models, including revenue-sharing and wholesale pricing arrangements. We serve partners across a wide range of verticals, including hospitality, healthcare, education, nonprofit, field services, property management, fitness, automotive, and professional services.
+
+**Enterprise Acceptance.** For large merchants, we provide global acquiring, payment orchestration, intelligent routing, account updater services, network token management, and consolidated reporting across channels and regions. Our enterprise team works with clients to optimize authorization rates, reduce processing costs, and design payment experiences tailored to their business.
+
+**Value-Added Services.** We offer merchants a range of services that complement payment processing, including:
+
+- fraud screening and chargeback management;
+- point-to-point encryption and tokenization designed to reduce merchant exposure to sensitive card data;
+- dynamic currency conversion and multi-currency pricing;
+- gift card and loyalty programs;
+- data analytics and benchmarking dashboards;
+- payment security compliance support tools;
+- access to working capital and business financing products offered through third-party lenders; and
+- payroll, invoicing, and business management integrations.
+
+**Hardware and Devices.** We offer a portfolio of countertop, portable, mobile, and self-service payment devices, as well as point-of-sale stations and peripherals. We source hardware from third-party manufacturers and provide device management, deployment, repair, and replacement services.
+
+#### Distribution
+
+We reach merchant clients through multiple channels:
+
+- **Direct sales**, including field sales teams, inside sales teams, and enterprise relationship managers;
+- **Financial institution partners**, which refer merchant clients to us under referral, revenue-sharing, or joint venture arrangements and which may brand our products under their names;
+- **Independent sales organizations and agents**, which market our services to merchants in exchange for commissions or residual payments;
+- **Independent software vendors and platforms**, which embed our services into their offerings; and
+- **Digital self-service channels**, through which merchants can sign up, activate, and manage their accounts online.
+
+We believe our multi-channel distribution model allows us to reach a broad range of merchants efficiently and to adapt our go-to-market approach to the needs of different client segments.
+
+#### Merchant Risk Management
+
+In our merchant acquiring business, we may be financially liable for chargebacks and other losses if a merchant is unable or unwilling to satisfy its obligations, for example, if a merchant ceases operations after accepting payment for goods or services it does not deliver. We manage this exposure through underwriting at onboarding, ongoing transaction monitoring, reserve requirements, delayed funding, contractual protections, and periodic portfolio reviews. Our risk teams use automated rules and models, supplemented by human review, to identify unusual activity, potential fraud, and prohibited business types. We also perform know-your-customer and sanctions screening consistent with applicable law and network rules.
+
+#### Sponsorship and Network Membership
+
+Payment network rules generally require that merchant acquiring activities be conducted by or under the sponsorship of a member financial institution. Where we are not ourselves a direct member, we rely on sponsor bank relationships to access the networks. We maintain relationships with multiple sponsor banks in certain markets to support continuity and flexibility.
+
+---
+
+### Issuer and Network Services
+
+Our Issuer and Network Services segment provides technology and services that enable banks, credit unions, retailers, fintech companies, and other organizations to issue and manage credit, debit, prepaid, and commercial card programs. We also provide network services, including debit network connectivity, ATM processing, and transaction routing.
+
+#### Products and Services
+
+**Issuer Processing.** Our issuer processing platforms provide the core functions required to operate card programs, including account setup and maintenance, authorization processing, transaction posting, statement generation, interest and fee calculation, payment processing, rewards accrual, and dispute management. Clients may use our platforms in a fully processed model, in which we operate the platform on their behalf, or through licensing arrangements in certain cases.
+
+**Stonegate Card Platform.** Our modernized, cloud-capable issuing platform allows clients to design and launch card products using configurable product constructs and API-based integration. The platform supports virtual card issuance, real-time controls, instant provisioning to digital wallets, and real-time event notifications. It is designed to serve both established financial institutions seeking to modernize their card operations and emerging fintech and embedded finance providers launching new programs.
+
+**Debit and Network Services.** We provide debit processing, including signature and PIN debit authorization and routing, ATM driving and monitoring, surcharge-free ATM network access, and gateway connectivity to payment networks. We also provide services that help institutions comply with debit routing requirements.
+
+**Card Production and Fulfillment.** We manufacture, personalize, and distribute physical payment cards, including chip-enabled, contactless, and metal or alternative-material cards. Our card production facilities operate under rigorous physical and logical security standards and are certified by applicable payment networks. We also provide card carrier design, mailing, and instant issuance solutions that allow institutions to print cards at branch locations.
+
+**Fraud and Risk Solutions for Issuers.** We provide real-time fraud scoring, authorization strategy tools, case management, and alerts that help issuers detect and prevent fraud while reducing false declines. Our risk models use machine learning techniques and are informed by transaction patterns observed across our issuing and acquiring businesses, subject to applicable legal and contractual restrictions.
+
+**Customer Engagement and Digital Services.** We offer digital banking and mobile card management tools, cardholder alerts, card controls, rewards and loyalty platforms, and contact center services. These offerings help issuers enhance the cardholder experience, increase engagement, and differentiate their products.
+
+**Commercial Card Solutions.** We support corporate card, purchasing card, travel card, and virtual card programs for issuers serving business clients. Our commercial card capabilities include hierarchical account structures, spend controls, expense data enrichment, and integration with corporate expense and procurement systems.
+
+**Credit and Analytics Services.** We provide portfolio analytics, credit decisioning support, collections tools, and consulting services that help issuers manage risk and profitability.
+
+#### Clients
+
+Our issuer clients include large national and regional banks, community banks, credit unions, retailers operating private-label and co-brand programs, fintech companies, and program managers. Issuer processing relationships are typically governed by multi-year agreements and involve significant technical integration, which we believe contributes to client retention. However, the loss of a large issuer client, or the migration of a client's portfolio to an in-house or competing platform, can affect our results, and such events may occur at contract renewal or as a result of client consolidation.
+
+#### Platform Conversions
+
+Converting a card portfolio to a new processing platform is a complex undertaking that requires substantial planning, testing, data migration, and coordination with the client, payment networks, and other third parties. We maintain dedicated conversion and implementation teams and established methodologies designed to manage these projects. Revenue associated with new client conversions may be realized over time as portfolios are migrated and as account activity ramps.
+
+---
+
+### Enterprise and Banking Payments
+
+Our Enterprise and Banking Payments segment provides money-movement, treasury, and banking technology solutions to financial institutions, corporations, and public sector entities. This segment includes our account-to-account payment, real-time payment, bill payment, disbursement, cross-border, and core banking-related offerings.
+
+#### Products and Services
+
+**Stonegate Treasury Rail.** Our payment hub and orchestration platform enables financial institutions and corporations to originate, receive, route, and manage payments across multiple rails, including automated clearing house, wire, real-time payment, and card networks. The platform provides payment validation, sanctions screening integration, liquidity monitoring, exception handling, and consolidated reporting.
+
+**Real-Time Payments Connectivity.** We provide financial institutions with connectivity to real-time payment systems, along with fraud monitoring, request-for-payment, and message translation services. Our offerings are designed to allow institutions of all sizes to participate in real-time payments without building and maintaining their own direct connections.
+
+**Bill Payment and Presentment.** We provide electronic bill presentment and payment services that allow consumers and businesses to view and pay bills through financial institution digital banking channels, biller websites, mobile applications, and walk-in locations. Our biller-direct solutions help utilities, telecommunications providers, insurers, healthcare providers, and government agencies collect payments efficiently across channels.
+
+**Disbursements and Payouts.** We help businesses and governments send payments to consumers, employees, contractors, and other recipients through a variety of methods, including push-to-card, real-time transfers, automated clearing house transfers, prepaid cards, and digital wallets. Common use cases include insurance claims, payroll, gig-economy earnings, refunds, rebates, and government benefits.
+
+**Cross-Border Payments.** We provide cross-border payment services, including foreign exchange, multi-currency accounts, and international payouts, to financial institutions and corporate clients. We work with correspondent banks and local payment partners to facilitate delivery of funds in multiple countries.
+
+**Banking Technology.** We provide software and services that support financial institution operations, including digital banking platforms, account opening and onboarding, deposit and lending processing integrations, and data services. We focus on interoperability with clients' existing core systems and on enabling clients to modernize incrementally.
+
+**Corporate Payments and Receivables.** We offer accounts payable automation, virtual card payment programs, receivables matching, and lockbox and remittance processing services that help corporations improve working capital, reduce manual processes, and strengthen controls.
+
+#### Clients
+
+Clients of our Enterprise and Banking Payments segment include financial institutions of all sizes, large and mid-sized corporations, billers, insurers, healthcare organizations, payroll providers, digital platforms, and federal, state, and local government agencies. Many of these relationships involve long-term agreements and deep integration with client systems.
+
+---
+
+### Corporate and Other
+
+Corporate and Other includes enterprise-wide functions that are not allocated to our reportable segments, such as certain executive management, finance, legal, compliance, human resources, and corporate technology costs, as well as businesses or activities that do not meet the criteria for separate reporting. Corporate and Other may also include costs associated with acquisitions, integration, restructuring, and other items that management does not consider in evaluating segment performance.
+
+---
+
+## Technology, Infrastructure, and Operations
+
+### Processing Platforms
+
+Our business depends on the continuous availability, performance, and security of our processing platforms. We operate a combination of company-managed data centers and capacity provided by third-party cloud and colocation providers. Our critical platforms are designed with redundancy at multiple levels, including power, network, compute, and storage, and with geographically separated recovery capabilities intended to allow us to continue operations in the event of a localized disruption.
+
+We continue to modernize our technology estate. Our modernization priorities include:
+
+- migrating appropriate workloads to cloud infrastructure while maintaining controls appropriate for regulated payment environments;
+- decomposing legacy monolithic applications into modular services with well-defined APIs;
+- consolidating duplicative platforms resulting from historical acquisitions;
+- adopting automated testing, deployment, and monitoring practices to improve software quality and release velocity; and
+- improving real-time data access and analytics across our platforms.
+
+Platform modernization involves significant investment and execution risk, and we manage these programs through formal governance, phased migration plans, and close coordination with clients.
+
+### Network Connectivity
+
+We maintain connectivity to global and regional card networks, debit networks, automated clearing house operators, real-time payment systems, and financial institution partners. We use multiple telecommunications carriers and diverse routing paths to reduce the risk of connectivity disruptions.
+
+### Product Development
+
+Our product and engineering organizations design, build, and maintain our software platforms and client-facing products. We use agile development methodologies and organize teams around products and platforms to promote accountability and speed. We supplement our internal capabilities with third-party development partners and with acquired technologies. We regularly gather client feedback through advisory boards, user research, and account management relationships to inform our product roadmaps.
+
+### Client Operations and Support
+
+We provide client support through contact centers, digital self-service tools, dedicated relationship managers, and technical support teams. Our operations functions include merchant onboarding, account servicing, dispute and chargeback processing, settlement and funding, reconciliation, and card fulfillment. We operate support and operations centers in multiple locations to provide coverage across time zones and to support business continuity.
+
+### Business Continuity and Disaster Recovery
+
+We maintain business continuity and disaster recovery programs designed to enable the resumption of critical operations following disruptive events, including natural disasters, pandemics, power outages, cyberattacks, and failures of third-party providers. Our programs include risk assessments, documented recovery plans, alternate processing sites, workforce continuity arrangements, and regular testing. We also assess the resilience of critical third-party providers as part of our vendor risk management program.
+
+---
+
+## Information Security and Cybersecurity
+
+Protecting the confidentiality, integrity, and availability of the data entrusted to us is fundamental to our business. We process sensitive information, including payment card data, bank account information, and personal information of consumers and business clients, and we are a frequent target of attempted cyberattacks.
+
+Our information security program is designed to identify, protect against, detect, respond to, and recover from cybersecurity threats. Key elements include:
+
+- **Governance.** Our information security program is led by our Chief Information Security Officer, who reports to senior management and provides regular updates to the Board of Directors and its designated committee responsible for risk oversight.
+- **Security architecture.** We employ layered security controls, including network segmentation, encryption of data in transit and at rest, tokenization, multi-factor authentication, privileged access management, and endpoint protection.
+- **Threat detection and response.** We operate security monitoring capabilities that analyze activity across our environment, and we maintain incident response plans and teams that are tested through exercises and simulations.
+- **Vulnerability management.** We conduct vulnerability scanning, penetration testing, and secure code reviews, and we maintain processes for prioritizing and remediating identified vulnerabilities.
+- **Third-party risk management.** We assess the security practices of vendors and partners that access our systems or data, and we include security requirements in our contracts.
+- **Compliance with industry standards.** We maintain compliance with the Payment Card Industry Data Security Standard and other applicable security standards, and we undergo periodic independent assessments.
+- **Workforce awareness.** We provide security awareness training to employees and contractors and conduct periodic phishing simulations.
+
+Despite these measures, no security program can eliminate all risk. Additional information regarding cybersecurity risk management, strategy, and governance is included in Item 1C, "Cybersecurity," and related risks are described in Item 1A, "Risk Factors."
+
+---
+
+## Enterprise Risk Management
+
+We maintain an enterprise risk management framework designed to identify, assess, monitor, and mitigate the principal risks facing our business, including strategic, operational, technology, cybersecurity, credit, fraud, compliance, legal, and reputational risks. Our framework is structured around three lines of defense:
+
+- **First line**, consisting of our business and operating units, which own and manage risks arising from their activities;
+- **Second line**, consisting of independent risk management and compliance functions, which establish policies, provide oversight and challenge, and monitor risk levels against defined appetites; and
+- **Third line**, consisting of our internal audit function, which provides independent assurance to management and the Audit Committee of the Board of Directors.
+
+Our Board of Directors oversees risk through its committees, and management risk committees review significant risk matters on a regular basis.
+
+---
+
+## Sales, Marketing, and Partnerships
+
+We market our products and services through a combination of direct and indirect channels tailored to the needs of each client segment.
+
+**Direct sales.** Our enterprise and financial institution sales teams pursue large, complex opportunities, often involving lengthy evaluation processes, competitive requests for proposals, and negotiated contracts. Our small and mid-sized business sales teams use field, inside, and digital approaches to acquire merchant clients efficiently.
+
+**Financial institution partnerships.** Many financial institutions refer their business customers to us for merchant services and other payment solutions. These relationships may take the form of referral agreements, revenue-sharing arrangements, or joint ventures, and they provide us with access to the institutions' business client bases.
+
+**Independent sales organizations and agents.** We work with independent sales organizations and agents that market our merchant services, particularly to small businesses. We maintain partner onboarding, monitoring, and compliance programs designed to promote appropriate sales practices.
+
+**Software and platform partners.** We partner with independent software vendors, technology platforms, and system integrators that embed or resell our services. We support these partners through developer documentation, sandbox environments, certification programs, partner managers, and co-marketing initiatives.
+
+**Brand and digital marketing.** We invest in brand awareness, digital marketing, content, events, and thought leadership to generate demand and support our sales channels.
+
+---
+
+## Clients
+
+We serve a large and diverse client base. Our clients include merchants of all sizes across retail, restaurant, hospitality, travel, healthcare, education, professional services, government, and many other industries; financial institutions, including banks, credit unions, and non-bank financial companies; corporations; billers; software platforms; and public sector entities. We believe this diversity reduces our exposure to any single client, industry, or economic sector.
+
+Although no single client accounted for a material portion of our consolidated revenues for fiscal 2023, certain large clients and partners are significant to individual products or segments, and the loss of, or a significant reduction in business from, such clients or partners could adversely affect our results. Consolidation among financial institutions and merchants can also affect our client relationships, either positively, where a client that uses our services acquires another institution, or negatively, where a client is acquired by an institution that uses a competing provider or in-house systems.
+
+---
+
+## Seasonality
+
+Our revenues and results of operations are affected by seasonal patterns in consumer and business spending. In our Merchant Solutions and Issuer and Network Services segments, transaction volumes generally increase during the holiday shopping season in the fourth quarter and are generally lower in the first quarter following the holiday period. Certain verticals, such as travel, hospitality, and education, have their own seasonal patterns. Bill payment and disbursement volumes in our Enterprise and Banking Payments segment may also fluctuate based on billing cycles, tax seasons, government benefit schedules, and other calendar-related factors. Card production and fulfillment activity may vary based on reissuance cycles and the timing of client programs. As a result, results for any interim period are not necessarily indicative of results for a full year.
+
+---
+
+## Competition
+
+The payments and financial technology industry is highly competitive and is characterized by rapid technological change, evolving client expectations, new market entrants, and pricing pressure. We compete with a wide range of companies, including:
+
+- large, diversified payment processors and financial technology companies that offer acquiring, issuing, and banking technology services;
+- financial institutions that provide merchant acquiring, issuer processing, or treasury services directly to their customers, or that develop such capabilities in-house;
+- payment networks that offer processing, value-added services, and account-to-account capabilities;
+- technology companies, including large technology platforms, that offer digital wallets, payment acceptance, embedded finance, or cloud infrastructure;
+- software-led payment providers and payment facilitators focused on small businesses or particular verticals;
+- developer-focused online payment companies;
+- independent software vendors that build their own payment capabilities;
+- specialized providers of fraud, risk, tokenization, analytics, loyalty, and card production services;
+- core banking and digital banking technology vendors; and
+- providers of alternative payment methods, including account-to-account and buy-now-pay-later solutions.
+
+We compete on the basis of a number of factors, including:
+
+- reliability, availability, and security of services;
+- breadth and quality of product offerings and features;
+- ease of integration, implementation, and use;
+- pricing and total cost of ownership;
+- quality of client service and support;
+- strength of distribution and partner relationships;
+- ability to support multiple channels, payment types, and geographies;
+- data and analytics capabilities;
+- speed of innovation and time to market;
+- reputation, brand, and financial strength; and
+- compliance capabilities and regulatory standing.
+
+Some of our competitors have greater financial, technical, or marketing resources, larger client bases in particular segments, or more established brands in particular markets. Others are smaller, more focused, or able to move more quickly in adopting new technologies or business models. Competitive pressures may require us to reduce prices, increase investment, or modify our products and services. We believe our breadth of capabilities, scale, infrastructure, distribution, and client relationships position us to compete effectively, but we cannot be certain that we will maintain or improve our competitive position.
+
+---
+
+## Intellectual Property
+
+Our success depends in part on our proprietary technology and intellectual property. We rely on a combination of patents, trademarks, copyrights, trade secrets, confidentiality procedures, and contractual provisions to establish and protect our intellectual property rights. We own or have rights to a portfolio of trademarks, service marks, and domain names, including the Stonegate name and logo and the names of many of our products, in the United States and other jurisdictions. We also hold patents and pending patent applications related to aspects of our payment processing, security, fraud detection, and software technologies.
+
+We license certain technology, software, and content from third parties and incorporate open-source software into certain products. We maintain policies and procedures governing the use of open-source software and the protection of our proprietary information, and we require employees, contractors, and partners with access to proprietary information to enter into confidentiality and invention assignment agreements, as appropriate.
+
+Although we believe our intellectual property rights are important to our business, we do not believe that any single patent, trademark, or license is material to our business as a whole. Third parties may challenge our intellectual property rights, and we may be subject to claims that our products infringe the rights of others. Related risks are described in Item 1A.
+
+---
+
+## Government Regulation and Payment Network Rules
+
+We operate in a highly regulated environment and are subject to a wide range of laws, regulations, and industry requirements in the United States and in other jurisdictions in which we do business. These requirements are subject to change and to evolving interpretation, and regulators continue to increase their focus on payments, financial technology, data privacy, consumer protection, and third-party providers to financial institutions. Failure to comply with applicable laws, regulations, or network rules could result in fines, penalties, restrictions on our business, litigation, damage to our reputation, or the loss of clients. The following is a summary of significant regulatory matters affecting our business; it is not a complete description of all applicable requirements.
+
+### Supervision by Banking Regulators
+
+As a provider of technology services to financial institutions, we are subject to examination by federal banking agencies under the Bank Service Company Act and related authorities. The Federal Financial Institutions Examination Council and its member agencies periodically examine significant technology service providers to assess their risk management, information security, audit, development and acquisition, and support and delivery practices. Examination findings are shared with our financial institution clients. In addition, our financial institution clients are required by their regulators to oversee their third-party relationships, and interagency guidance on third-party risk management imposes expectations that flow through to us via contractual requirements, client audits, and due diligence reviews.
+
+### Money Transmission and Payments Licensing
+
+Certain of our subsidiaries hold money transmitter licenses or similar authorizations in U.S. states and territories in which such licensing is required for the payment services they offer, and we are subject to supervision and examination by state regulatory authorities. These licenses impose requirements relating to net worth, permissible investments, surety bonding, reporting, recordkeeping, and examination. Outside the United States, certain of our subsidiaries hold licenses or registrations as payment institutions, electronic money institutions, or similar entities, and are subject to oversight by financial regulators in those jurisdictions. Regulatory approval may be required for changes in control of licensed entities.
+
+### Anti-Money Laundering, Counter-Terrorist Financing, and Sanctions
+
+We are subject to anti-money laundering and counter-terrorist financing laws and regulations, including, in the United States, the Bank Secrecy Act, as amended by the USA PATRIOT Act, and related regulations. Where applicable, these laws require us to maintain risk-based compliance programs that include policies and procedures, internal controls, a designated compliance officer, employee training, independent testing, customer due diligence, and suspicious activity monitoring and reporting. We are also subject to economic and trade sanctions programs administered by the U.S. Department of the Treasury's Office of Foreign Assets Control and to similar sanctions regimes in other jurisdictions, which restrict dealings with certain countries, territories, entities, and individuals. We have implemented screening and monitoring processes designed to support compliance with these requirements. Our financial institution clients and sponsor banks also impose anti-money laundering and sanctions requirements on us by contract.
+
+### Anti-Corruption
+
+We are subject to the U.S. Foreign Corrupt Practices Act and to other anti-bribery and anti-corruption laws in jurisdictions where we operate, which generally prohibit improper payments to government officials and others for the purpose of obtaining or retaining business. We maintain an anti-corruption compliance program that includes policies, training, due diligence on third parties, and internal controls.
+
+### Consumer Protection
+
+Although we generally do not provide financial products directly to consumers, many of the products and services we provide to clients are subject to consumer protection laws and regulations, and we may be directly subject to some of these requirements. Relevant U.S. laws and regulations include the Electronic Fund Transfer Act and Regulation E, the Truth in Lending Act and Regulation Z, the Fair Credit Reporting Act, the Equal Credit Opportunity Act, the Fair Debt Collection Practices Act, laws prohibiting unfair, deceptive, or abusive acts or practices, and state consumer protection laws. The Consumer Financial Protection Bureau has authority to regulate consumer financial products and services and to supervise certain service providers to covered persons. The Federal Trade Commission also has authority to enforce laws against unfair or deceptive practices, including with respect to merchant services. Our clients often require us to support their compliance with these laws, including through product functionality, disclosures, error resolution processes, and recordkeeping.
+
+### Debit Interchange and Routing Regulation
+
+The Dodd-Frank Wall Street Reform and Consumer Protection Act and the Federal Reserve's Regulation II regulate debit card interchange fees for certain issuers and require that issuers enable debit transactions to be processed over at least two unaffiliated networks, and prohibit issuers and networks from restricting a merchant's ability to choose among available networks for routing. These requirements, including interpretations and amendments that apply to card-not-present transactions, affect the economics of debit card transactions for our issuer and merchant clients and the routing decisions we support. Regulators and legislators have also considered proposals that would further regulate interchange fees or routing for debit and credit card transactions, and the adoption of such proposals could affect our business and the businesses of our clients.
+
+### Privacy and Data Protection
+
+We collect, process, store, and transmit personal information and are subject to a growing number of privacy and data protection laws. In the United States, these include the Gramm-Leach-Bliley Act and its implementing regulations, which govern the use, disclosure, and safeguarding of nonpublic personal information held by financial institutions and their service providers; state comprehensive privacy laws, including the California Consumer Privacy Act as amended; state data breach notification laws; and state cybersecurity regulations, including the cybersecurity regulation of the New York State Department of Financial Services, which applies to certain covered entities. Outside the United States, we are subject to laws such as the European Union's General Data Protection Regulation, the United Kingdom's data protection regime, and similar laws in other jurisdictions, which impose requirements relating to lawful processing, individual rights, data transfers, breach notification, and accountability, and which provide for significant penalties for noncompliance. Data localization requirements in some jurisdictions may require us to store or process certain data within those jurisdictions.
+
+We maintain a privacy program that includes policies, data inventories, privacy impact assessments, contractual protections, training, and governance. Changes in privacy laws, including new restrictions on cross-border data transfers or on the use of data for analytics and artificial intelligence, could affect our ability to offer certain products or require changes to our operations.
+
+### Artificial Intelligence and Automated Decisioning
+
+Laws and regulatory guidance relating to artificial intelligence, machine learning, and automated decision-making are developing rapidly in the United States and other jurisdictions. These requirements may address transparency, fairness, explainability, data governance, and model risk management, and they may apply to our fraud, risk, credit, and analytics products. We maintain model governance practices designed to address the development, validation, monitoring, and use of models, and we continue to monitor legal developments in this area.
+
+### Operational Resilience
+
+Regulators in the United States and in other jurisdictions have increased their focus on the operational resilience of financial institutions and their critical service providers. In the European Union, the Digital Operational Resilience Act establishes requirements for information and communications technology risk management by financial entities and creates an oversight framework for critical third-party technology providers. Similar initiatives are under development or in effect in other jurisdictions. These requirements may impose additional obligations on us directly or through our clients.
+
+### European Payment Services Regulation
+
+Our operations in the European Economic Area and the United Kingdom are subject to payment services regulation, including requirements relating to licensing, safeguarding of client funds, strong customer authentication, transparency, and access to payment accounts. The European Union's Interchange Fee Regulation caps interchange fees on certain consumer card transactions and imposes requirements relating to the separation of network and processing activities. Proposed revisions to European payment services regulation and initiatives relating to instant payments may affect our business.
+
+### Escheat and Unclaimed Property
+
+We are subject to unclaimed property laws in the United States and other jurisdictions, which require us to remit to government authorities certain funds that remain unclaimed for specified periods. We maintain processes to identify and report unclaimed property.
+
+### Tax Information Reporting
+
+We are subject to tax information reporting obligations, including requirements to report certain payment card and third-party network transactions processed on behalf of merchants. Changes in reporting thresholds and requirements may affect our operations and the operations of our clients.
+
+### Prepaid Access and Gift Cards
+
+Our prepaid and gift card offerings are subject to federal and state laws governing prepaid access, including rules relating to fees, expiration dates, disclosures, and anti-money laundering obligations.
+
+### Telephone and Electronic Communications
+
+Certain marketing and client communications activities are subject to laws regulating telephone calls, text messages, and electronic mail, including the Telephone Consumer Protection Act and the CAN-SPAM Act.
+
+### Payment Network Rules and Industry Standards
+
+Although payment network rules are not government regulations, they have a significant effect on our business. As a processor and, in some cases, a member or service provider of card networks, we are subject to network rules that govern, among other things, merchant and issuer registration, transaction processing, data security, chargebacks and disputes, fees, marketing, branding, and permissible activities. Networks may modify their rules and fees at any time, and they may impose fines or other penalties for noncompliance, including on us for the conduct of our merchants or partners. We are also subject to industry standards, including the Payment Card Industry Data Security Standard, and to operating rules governing automated clearing house and real-time payment systems.
+
+### Other Laws
+
+We are subject to numerous other laws and regulations, including those relating to taxation, employment, competition, accessibility, environmental matters, export controls, and securities. Changes in any of these laws, or in their interpretation or enforcement, could affect our business.
+
+---
+
+## Human Capital
+
+### Our People
+
+Our employees are central to our ability to serve clients, innovate, and execute our strategy. We employ a global workforce that includes technology and engineering professionals, product managers, sales and relationship managers, client support and operations specialists, risk and compliance professionals, card production personnel, and corporate staff. Our workforce is located across the United States and in international locations where we serve clients or operate technology and operations centers. We also engage contractors and third-party service providers to supplement our workforce in certain areas.
+
+### Culture and Values
+
+We seek to foster a culture grounded in integrity, client focus, accountability, collaboration, and continuous improvement. Our Code of Conduct sets forth expectations for ethical behavior and compliance with laws and policies, and all employees are required to complete periodic training and to certify their adherence to the Code. We maintain channels, including an anonymous ethics hotline, through which employees and others can raise concerns without fear of retaliation.
+
+### Talent Acquisition and Development
+
+We compete for talent in a demanding labor market, particularly for technology, engineering, cybersecurity, data science, and risk management professionals. We recruit through a variety of channels, including university partnerships, early-career programs, professional networks, and employee referrals. We invest in employee development through technical training, leadership development programs, mentorship, tuition assistance, and internal mobility programs that allow employees to grow their careers across our businesses.
+
+### Compensation and Benefits
+
+We seek to provide competitive and equitable compensation and benefits. Our total rewards programs include base salary, cash incentives, equity awards for eligible employees, retirement savings plans, health and wellness benefits, paid time off, parental leave, and employee assistance programs. We periodically review our compensation practices, including with respect to pay equity, and make adjustments as appropriate.
+
+### Inclusion and Belonging
+
+We believe that a workforce with a variety of backgrounds and perspectives strengthens our ability to understand and serve our clients and communities. We support employee resource groups, inclusive hiring practices, and leadership programs designed to build an inclusive workplace where employees can contribute fully.
+
+### Health, Safety, and Flexibility
+
+We are committed to providing safe and healthy work environments. Our card production and operations facilities maintain safety programs appropriate to their activities. We offer flexible work arrangements for many roles, combining in-office collaboration with remote work where consistent with business needs, client commitments, and security requirements.
+
+### Employee Engagement
+
+We conduct periodic employee engagement surveys and use the results to identify areas for improvement. Our leadership team communicates with employees through town halls, internal communications, and team meetings, and we encourage employee feedback and dialogue.
+
+### Board Oversight
+
+The Compensation and Human Capital Committee of our Board of Directors oversees our human capital strategy, including compensation, talent development, succession planning, and culture.
+
+---
+
+## Corporate Responsibility and Sustainability
+
+We believe that operating responsibly is integral to our long-term success. Our corporate responsibility priorities include:
+
+- **Financial inclusion.** We seek to expand access to digital payments and financial tools for small businesses and underserved communities, including through simplified onboarding, affordable products, and partnerships with community organizations and mission-driven financial institutions.
+- **Data responsibility.** We are committed to protecting the data entrusted to us and to using data in ways that respect privacy and comply with applicable law.
+- **Environmental stewardship.** We are working to reduce the environmental impact of our operations, including through energy efficiency initiatives in our data centers and facilities, the consolidation of infrastructure, responsible management of hardware and electronic waste, and the use of recycled and alternative materials in card manufacturing where feasible.
+- **Community engagement.** We support the communities in which we operate through charitable giving, employee volunteer programs, and matching gift programs.
+- **Governance and ethics.** We maintain governance structures, policies, and controls designed to promote ethical conduct, accountability, and transparency.
+
+The Nominating and Corporate Governance Committee of our Board of Directors oversees our corporate responsibility programs and related disclosures.
+
+---
+
+## Acquisitions and Strategic Investments
+
+We have historically grown our business both organically and through acquisitions, and we expect to continue to evaluate acquisitions, joint ventures, and strategic investments that complement our capabilities, expand our distribution, or provide entry into attractive markets. We have also, from time to time, divested businesses that we determined were no longer aligned with our strategy. Integrating acquired businesses involves combining technology platforms, operations, personnel, and cultures, and requires significant management attention. We maintain integration management practices designed to capture expected benefits while maintaining service quality for clients. Information regarding acquisitions and divestitures completed during the periods presented, if any, is included in the notes to our consolidated financial statements.
+
+---
+
+## Properties
+
+Our principal executive offices are located in New York, New York. We also lease or own office facilities, data centers, operations centers, client support centers, and card production facilities in the United States and in other countries. We believe that our facilities are suitable and adequate for our current needs and that additional or alternative space will be available on commercially reasonable terms as needed. Additional information regarding our properties is included in Item 2, "Properties."
+
+---
+
+## Legal Proceedings
+
+From time to time, we are involved in legal proceedings, claims, regulatory examinations, inquiries, and investigations arising in the ordinary course of our business, including matters relating to contracts, intellectual property, employment, consumer protection, privacy, and compliance with payment network rules. Information regarding legal proceedings is included in Item 3, "Legal Proceedings," and in the notes to our consolidated financial statements.
+
+---
+
+## Corporate Information
+
+Stonegate Networks Group, Inc. is a corporation with principal executive offices located in New York, New York. Our business has been built over time through organic development of processing, software, and services capabilities and through the acquisition and integration of complementary businesses.
+
+## Available Information
+
+Our website address is included on the cover page of this Annual Report on Form 10-K. We make available free of charge on or through the investor relations section of our website our Annual Reports on Form 10-K, Quarterly Reports on Form 10-Q, Current Reports on Form 8-K, proxy statements, and amendments to those reports filed or furnished pursuant to Section 13(a) or 15(d) of the Securities Exchange Act of 1934, as amended, as soon as reasonably practicable after we electronically file such material with, or furnish it to, the Securities and Exchange Commission (the "SEC"). The SEC maintains a website that contains reports, proxy and information statements, and other information regarding issuers that file electronically with the SEC.
+
+We also make available on our website our Corporate Governance Guidelines, the charters of the committees of our Board of Directors, and our Code of Conduct. We intend to disclose any amendments to, or waivers from, our Code of Conduct that are required to be disclosed under SEC rules or applicable stock exchange listing standards by posting such information on our website.
+
+We may use our website, investor relations pages, and official social media channels as a means of disclosing material information and for complying with our disclosure obligations under Regulation FD. Investors should monitor these channels in addition to our press releases, SEC filings, and public conference calls and webcasts. The information contained on, or accessible through, our website is not incorporated by reference into this Annual Report on Form 10-K or any other report or document we file with the SEC, and any references to our website are intended to be inactive textual references only.

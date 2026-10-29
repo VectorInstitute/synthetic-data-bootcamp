@@ -1,0 +1,175 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Oral Communications, Inc. (ticker ORAL)
+Sector: Communication Services
+Incorporated in: Delaware
+Headquarters: Reston, Virginia
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 205,300
+
+Oral Communications, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                     119,056       130,116
+Cost of revenue                              79,196        87,114
+Gross profit                                 39,860        43,002
+Research and development                          0             0
+Selling, general and administrative          16,846        16,973
+Other operating expense                           0             0
+Operating income                             23,014        26,029
+Interest expense                              3,372         3,576
+Income before income taxes                   19,642        22,453
+Provision for income taxes                    4,596         5,185
+Net income                                   15,046        17,268
+
+Oral Communications, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                           10,708        11,340
+Accounts receivable, net                            10,072        11,045
+Inventories                                              0             0
+Other current assets                                 8,906         9,593
+Total current assets                                29,686        31,978
+Property, plant and equipment, net                  69,032        71,000
+Goodwill                                            26,770        27,200
+Other non-current assets                           191,319       205,006
+Total assets                                       316,807       335,184
+Total current liabilities                           36,690        39,805
+Long-term debt                                      74,925        79,463
+Other non-current liabilities                      106,063       108,584
+Total liabilities                                  217,678       227,852
+Total stockholders' equity                          99,129       107,332
+Total liabilities and stockholders' equity         316,807       335,184
+
+Oral Communications, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                            15,046
+Depreciation and amortization                         20,299
+Changes in working capital and other                     964
+Net cash provided by operating activities             36,309
+Purchases of property and equipment                 (19,954)
+Other investing activities, net                       10,800
+Net cash used in investing activities                (9,154)
+Net change in long-term debt                         (4,538)
+Dividends paid                                             0
+Share repurchases, net of issuances                 (23,249)
+Net cash used in financing activities               (27,787)
+Net change in cash and cash equivalents                (632)
+Cash and cash equivalents, beginning of year          11,340
+Cash and cash equivalents, end of year                10,708
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: -8.5%
+Net income growth, fiscal 2024 versus 2023: -12.9%
+Operating income growth, fiscal 2024 versus 2023: -11.6%
+Gross margin, fiscal 2024: 33.5%
+Operating margin, fiscal 2024: 19.3%
+Net margin, fiscal 2024: 12.6%
+Effective tax rate, fiscal 2024: 23.4%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 14.1%
+Gross margin, fiscal 2023: 33.0%
+Operating margin, fiscal 2023: 20.0%
+Net margin, fiscal 2023: 13.3%
+Effective tax rate, fiscal 2023: 23.1%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 13.0%
+
+STYLE EXAMPLE: the start of Item 1A from a real Communication Services company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1A. Risk Factors.
+Investing in our securities involves risk. In addition to the other information contained in this Annual Report on Form 10-K, you should consider the following risk factors before investing in our securities. Additional risks and uncertainties not presently known to us or that we currently believe not to be material may also adversely impact our business, results of operations, financial position and cash flows.
+Risks Related to Our Business and Industry
+Our businesses operate in highly competitive industries and if we are unable to compete effectively, our business, financial condition and results of operations could suffer.
+The media and entertainment industries in which we compete for viewers, distribution and advertising are highly competitive. See the discussion under “Business – Competition” that appears above. We face increased competitive pressure for talent, content, audiences, subscribers, service providers, advertising spending and production infrastructure. We compete with a broad range of companies engaged in media, entertainment and communications services, some of whom have interests in multiple media and entertainment businesses that are often vertically integrated, all vying for consumer time, attention and discretionary spending. In addition, the composition of our competitors has evolved with the entrance of new market participants, including companies in adjacent sectors with significant financial, marketing and other resources, greater efficiencies of scale, fewer regulatory burdens and more competitive pricing. Such competitors could also have preferential access to important technologies, customer data or other competitive information. Our competitors may also consolidate or enter into business combinations or alliances that strengthen their competitive positions.
+Our ability to compete successfully depends on a number of factors, including our ability to consistently acquire and produce high quality content and our ability to identify and successfully execute strategies and partnerships to distribute our content amidst a rapidly evolving competitive landscape. In addition, new technology, including generative artificial intelligence (“AI”), is evolving rapidly and our ability to compete could be adversely affected if our competitors gain an advantage by using such technologies. There can be no assurance that we will be able to compete successfully in the future against existing or new competitors, or that competition in the marketplace will not have an adverse effect on our business, financial condition or results of operations.
+Our advertising revenues have been, and may continue to be, adversely impacted by several factors, including the changing landscape of television advertising spending and advertising market conditions.
+We derive substantial revenues from the sale of advertising, and a continuing decline in advertising revenues could have a material adverse effect on our business, financial condition or results of operations.
+Shifting consumer preferences toward streaming services and other digital products and the increasing number of entertainment choices has intensified audience fragmentation and reduced content viewership through traditional linear distribution models. This has changed the landscape of traditional television advertising spending, prompting advertisers to shift their strategies, and ultimately advertising spend, toward streaming services and other digital products to reach target audiences. In addition, a number of other streaming services with larger subscriber bases and greater household penetration have recently introduced ad-supported tiers. The increase of digital advertising available in the marketplace, due to both the introduction of ad-supported tiers in competing streaming services and the expansion of free ad-supported television (“FAST”) products, has increased, and is expected to continue to increase, the competition we face for advertising expenditures for both our traditional linear networks and the ad-supported tiers in our streaming services, and has also limited our ability to demand higher rates for our linear and digital advertising inventory or even the same rates that we previously charged for our advertising inventory prior to the surge in digital advertising. There can be no assurance that we can successfully navigate the evolving streaming and digital advertising market or that the advertising revenues we generate in that market will replace the declines in advertising revenues generated from our traditional linear business.
+The advertising market is also sensitive to general economic conditions and consumer buying patterns. Financial instability or a general decline in economic conditions in the U.S. and other countries where our content is distributed could adversely affect the spending priorities of our advertising partners who might reduce their spending, which could result in a decrease in advertising rates and volume and in our overall advertising revenues. Natural and other disasters, pandemics, acts of terrorism, political uncertainty or hostilities could also lead to a reduction in domestic and international advertising expenditures, which could also have an adverse effect on our advertising revenues.
+Our advertising revenues are also dependent on our ability to measure viewership and audience engagement across all platforms and in all geographic regions. Although audience measurement systems have evolved and improved to capture the viewership of programming across multiple platforms, they still do not fully capture all viewership across streaming and other digital platforms and advertisers may not be willing to pay advertising rates based on the viewership that is not being measured. In certain geographic regions, our ability to fully capture viewership information may be limited by local laws and regulations.
+13
+As further discussed in other parts of this Item 1a. Risk Factors, our ability to generate advertising revenue is also dependent on our ability to compete in highly competitive, rapidly evolving industries, our ability to respond to changes in consumer behavior and our ability to consistently achieve audience acceptance of our content and brands.
+Changes in consumer behavior, as well as evolving technologies and distribution models, may negatively affect our business, financial condition or results of operations.
+Our success depends on our ability to anticipate and adapt to changes in consumer behavior and shifting content consumption patterns. The ways in which viewers consume content, and technology and distribution models in the media and entertainment industries, continue to evolve, and new distribution platforms, as well as increased competition from new entrants and emerging technologies, have added to the complexity of maintaining predictable revenues. Technological advancements have empowered consumers to seek more control over how they consume content and have affected the options available to advertisers for reaching target audiences. This trend has impacted certain traditional distribution models, as demonstrated by industry-wide declines in cable ratings, declines in subscribers to the traditional cable bundle, the development of alternative distribution platforms for content, and reduced theatergoing.
+Declines in linear television viewership are expected to continue and possibly accelerate, which could adversely affect our advertising and distribution revenues. In order to respond to this decline, changing consumer behavior, increasing preferences to consume content on demand, and changes in content distribution models in the media and entertainment industries, we have invested in, developed and launched streaming services including Max and discovery+. We have incurred and will likely continue to incur significant costs to develop and market our streaming services, including costs related to international expansion, technological enhancements, and subscriber acquisition. There can be no assurance, however, that consumers and advertisers will embrace our offerings, that subscribers will activate or renew a subscription, particularly given the significant number of streaming services in the marketplace, or that our DTC business or other strategies we implement will be as successful or as profitable as our traditional linear television business.
+The film industry has also been impacted by shifting consumer preferences and technological innovation, including, among other things, consumer preferences for viewing [...]
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Oral Communications, Inc. (the "Company," "we," "us," or "our") is a leading provider of communication services, offering a comprehensive range of products and services designed to meet the diverse needs of our customers. Incorporated in Delaware and headquartered in Reston, Virginia, we operate predominantly within the United States, serving a broad customer base that includes both individual consumers and businesses.
+
+Overview
+
+In fiscal year 2024, Oral Communications, Inc. generated total revenue of $119,056 million. As a key player in the Communication Services sector, our focus is on providing innovative and reliable communication solutions that enhance connectivity for our customers. Our offerings include a variety of communication services such as voice, data, and internet services.
+
+Principal Products and Services
+
+Our service portfolio is designed to facilitate seamless communication experiences. The principal products and services include:
+
+- Voice Services: We offer a range of voice communication services, which include traditional landline telephony as well as VoIP (Voice over Internet Protocol) services. These services cater to both residential and commercial customers, ensuring high-quality voice communication.
+
+- Data and Internet Services: Our data services encompass high-speed internet access and data transmission solutions. We provide reliable broadband services that support the increasing demand for data-driven applications and streaming services.
+
+- Integrated Communication Solutions: For business customers, we offer integrated communication solutions that combine voice, data, and internet services. These solutions are tailored to enhance business productivity and efficiency.
+
+Segments
+
+Oral Communications, Inc. operates through three primary reportable segments, each focusing on distinct aspects of our business operations:
+
+- Consumer Services: This segment focuses on providing communication services to individual consumers. Our consumer services include voice and internet offerings, with an emphasis on delivering high-speed connectivity and superior customer service. We continuously invest in network infrastructure to enhance the quality and reliability of our services.
+
+- Business Solutions: The Business Solutions segment caters to small, medium, and large enterprises, offering a suite of communication products that are essential for business operations. Our offerings include advanced data solutions, voice services, and customized communication packages designed to meet specific business needs.
+
+- Wholesale and Carrier Services: This segment provides communication services to other telecommunications carriers and service providers. By leveraging our extensive network infrastructure, we offer wholesale voice and data services that enable other carriers to expand their reach and improve service offerings.
+
+Customers
+
+Our customer base is diverse, spanning multiple sectors and demographics. We serve individual consumers seeking reliable residential communication services and businesses across various industries that require robust communication solutions. Additionally, we collaborate with other telecommunications providers through our wholesale services, enhancing their service capabilities.
+
+Sales and Marketing
+
+Our marketing strategy is centered on understanding customer needs and delivering value-driven communication solutions. We employ a multi-channel approach, utilizing direct sales, digital marketing, and partnerships to reach and engage our target audiences. Our customer service teams are dedicated to providing exceptional support, ensuring customer satisfaction and fostering long-term relationships.
+
+Competition
+
+The communication services industry is highly competitive, with several established players and new entrants vying for market share. We face competition from traditional telecommunications companies as well as emerging digital service providers. Our competitive advantage lies in our extensive network infrastructure, innovative service offerings, and commitment to customer service excellence.
+
+Seasonality
+
+Our business is subject to certain seasonal trends, with variations in customer demand typically observed in line with economic cycles and technological advancements. While the demand for communication services generally remains stable, periods of economic uncertainty can influence consumer spending and business investment in communication infrastructure.
+
+Intellectual Property
+
+Oral Communications, Inc. holds a portfolio of intellectual property, including trademarks, patents, and proprietary technologies that support our service offerings. Our intellectual property is integral to maintaining our competitive edge and ensuring the continued innovation of our product and service lines.
+
+Government Regulation
+
+The communication services industry is subject to extensive regulation by federal, state, and local authorities. Regulatory compliance is a critical aspect of our operations, impacting areas such as service offerings, pricing, and customer privacy. We work closely with regulatory bodies to ensure adherence to applicable laws and regulations, maintaining the highest standards of operational integrity.
+
+Human Capital
+
+As of December 31, 2024, Oral Communications, Inc. employed approximately 205,300 people. Our workforce is our most valuable asset, driving innovation, customer satisfaction, and operational excellence. We are committed to fostering a diverse and inclusive workplace, providing our employees with opportunities for professional growth and development.
+
+Available Information
+
+We are committed to transparency and timely communication with our stakeholders. Our website provides access to a wide range of information, including financial reports, press releases, and updates on company initiatives. Stakeholders can access our Annual Report on Form 10-K, quarterly reports on Form 10-Q, and current reports on Form 8-K, along with other filings made with the U.S. Securities and Exchange Commission (SEC), through the SEC's website or our investor relations page.
+
+In conclusion, Oral Communications, Inc. remains focused on delivering high-quality communication services that meet the evolving needs of our customers. Through strategic investments, operational excellence, and a commitment to innovation, we aim to drive long-term value for our stakeholders and maintain our position as a leader in the communication services industry.
+
+>>>
+
+TASK
+Write Item 1A. Risk Factors for Oral Communications, Inc.'s annual report for the fiscal year ended 2024-12-31. List the material risks, grouped under sub-headings (for example risks related to the business and industry, to operations, to financing and capital structure, to legal and regulatory matters, and general risks). Each risk starts with a one-sentence heading line, followed by one or two paragraphs. Make the risks specific to this company's sector, cost structure and balance sheet. Do not quote dollar amounts or percentages; describe exposures in words, as real risk factors do.
+Length: about 3500 words. Start with the line "Item 1A. Risk Factors" and output only the section text.

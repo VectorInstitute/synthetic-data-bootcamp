@@ -1,0 +1,385 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Draor Midstream, Inc. (ticker DRAR)
+Sector: Energy
+Incorporated in: Delaware
+Headquarters: Seattle, Washington
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 202,000
+
+Draor Midstream, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                     134,874       125,839
+Cost of revenue                             123,572       114,074
+Gross profit                                 11,302        11,765
+Research and development                          0             0
+Selling, general and administrative           2,724         2,942
+Other operating expense                       1,322         3,427
+Operating income                              7,256         5,396
+Interest expense                              9,779         9,592
+Income before income taxes                  (2,523)       (4,196)
+Provision for income taxes                        0             0
+Net income                                  (2,523)       (4,196)
+
+Draor Midstream, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                           32,169        29,449
+Accounts receivable, net                            12,988        12,241
+Inventories                                          4,802         4,377
+Other current assets                                21,410        19,743
+Total current assets                                71,369        65,810
+Property, plant and equipment, net                 625,949       598,107
+Goodwill                                            23,624        23,088
+Other non-current assets                           116,785       104,780
+Total assets                                       837,727       791,785
+Total current liabilities                           61,680        56,889
+Long-term debt                                     217,306       213,156
+Other non-current liabilities                      403,594       374,448
+Total liabilities                                  682,580       644,493
+Total stockholders' equity                         155,147       147,292
+Total liabilities and stockholders' equity         837,727       791,785
+
+Draor Midstream, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                           (2,523)
+Depreciation and amortization                         22,780
+Changes in working capital and other                 (2,374)
+Net cash provided by operating activities             17,883
+Purchases of property and equipment                 (12,800)
+Other investing activities, net                     (16,891)
+Net cash used in investing activities               (29,691)
+Net change in long-term debt                           4,150
+Dividends paid                                             0
+Share repurchases, net of issuances                   10,378
+Net cash used in financing activities                 14,528
+Net change in cash and cash equivalents                2,720
+Cash and cash equivalents, beginning of year          29,449
+Cash and cash equivalents, end of year                32,169
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 7.2%
+Net income growth, fiscal 2024 versus 2023: 39.9%
+Operating income growth, fiscal 2024 versus 2023: 34.5%
+Gross margin, fiscal 2024: 8.4%
+Operating margin, fiscal 2024: 5.4%
+Net margin, fiscal 2024: -1.9%
+Effective tax rate, fiscal 2024: 0.0%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 2.0%
+Gross margin, fiscal 2023: 9.3%
+Operating margin, fiscal 2023: 4.3%
+Net margin, fiscal 2023: -3.3%
+Effective tax rate, fiscal 2023: 0.0%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 2.3%
+
+STYLE EXAMPLE: the start of Item 1C from a real Energy company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1C. Cybersecurity
+Chevron’s business and proprietary information, information technology (IT) and operational technology (OT) networks are essential to its success. The company’s cybersecurity program is designed to protect its information assets and operations from external and internal cyber threats by identifying and appropriately managing and mitigating risks while ensuring business resiliency. This program is integrated within the company’s Enterprise Risk Management (ERM) process, which is the company’s systematic approach to identifying, managing and assessing major risks and safeguards, including cybersecurity risks. Chevron uses a risk-based information security process aligned with the National Institute of Standards and Technology (NIST) Cybersecurity Framework to identify, prioritize and mitigate cyber risks.
+The company’s worldwide team of cybersecurity professionals undertakes a range of preemptive activities to protect its people, assets and reputation globally. The company also leverages internal and external resources to monitor cybersecurity threats to its systems and networks and to understand the broader threat environment. The company seeks to remove exploitable weaknesses in its systems or devices before they become a threat. Chevron security experts use automated threat intelligence feeds to increase vulnerability awareness, taking action to mitigate the highest risks. The company’s cybersecurity guardrails, which are high-level design requirements expected to be built into any new digital solutions being deployed, are also updated on an ongoing basis to align with changes in industry standards and the evolving threat environment.
+Chevron’s cyber risk management process includes testing and risk assessments of technologies, third-party suppliers, and its IT and OT networks. These assessments ensure that our focus is on the highest priorities to maintain the security of our company’s assets. To further protect the company’s systems and data, Chevron’s cybersecurity organization has threat intelligence capabilities to monitor security breaches impacting third-party suppliers. As third-party risks increase, the company’s approach to third-party supplier risk management and qualification continues to evolve, including the ongoing expansion of its current supplier risk management program beyond IT vendors to other high-risk, third-party vendors.
+Chevron’s Chief Information Officer (CIO) oversees Chevron’s broader IT program, which includes the company’s cybersecurity program and its ability to remediate and recover from a cybersecurity incident to minimize business and operational impacts. Chevron’s CIO joined Chevron in 2024, bringing more than 20 years of experience leading global innovation initiatives in digital, data, full supply chains, vehicle commerce, energy, and IT operations for technology and automotive companies. Chevron’s Chief Information Security Officer (CISO) reports to the CIO and leads a global cybersecurity team.
+27
+Table of Contents
+Chevron operates four Cyber Intelligence Centers around the world, some co-located with critical assets, with cyber professionals who monitor and respond to cyber threats 24 hours a day, 365 days a year, to limit the scope and impact of cyber incidents in its networks. The cybersecurity organization provides the IT leadership, which includes Chevron’s CIO, with regular cybersecurity operations reports detailing prevention, detection, mitigation and remediation efforts associated with cyber incidents, both on Chevron’s networks and third-party supplier networks. The leadership of the cybersecurity organization has authority to mobilize a cross-functional cyber incident response team, including outside cybersecurity experts, to drive mitigation and remediation actions. Status updates on incidents are provided to senior management and to the Board, as appropriate.
+The company’s dedicated cyber risk organization meets regularly with business units to raise cyber risk awareness and keep diverse cybersecurity skill sets connected across the enterprise. Chevron has invested in broad cybersecurity awareness and required training to educate those with access to Chevron’s networks on company policy and best practices. The company conducts regular phishing tests to train and assess its workforce’s ability to identify malicious emails.
+Chevron’s Corporate Audit Department has a dedicated team responsible for IT and information security (including cybersecurity) audits. Chevron also leverages external resources to reinforce its cybersecurity capabilities. On a regular basis, external consultants provide a maturity assessment of the company’s cybersecurity program.
+The company’s approach to managing risks, including cybersecurity risks, is embedded within the enterprise Operational Excellence (OE) Management System (OEMS). The OEMS provides a systematic process that enables the company to manage risk and implement safeguards and foster a culture of learning across different focus areas for Chevron’s business, including cybersecurity. The company’s Business Continuity Planning OE Process, a component of the OEMS, is designed to prepare Chevron to continue operations during an unplanned event or disruption, which aligns with its OE objective to prevent high-consequence security and cybersecurity incidents. Chevron works to identify critical business processes and dependent IT applications and document the processes for continuing operations without IT systems. Cross-functional teams also conduct regular multidisciplinary exercises to test and improve response plans.
+The Board provides oversight of Chevron’s cybersecurity program, receives reports from management on cybersecurity risks in connection with Chevron’s operations and projects, and also reviews cybersecurity risks as part of the company’s broader annual ERM process. In support of the Board’s oversight of the company’s policies and processes with respect to risk management and the company’s major financial risk exposures, including cybersecurity, the Audit Committee meets with Chevron’s CISO and CIO at least twice a year to review cybersecurity risks and implications, including the results of independent third-party assessments. The CISO and CIO present cybersecurity matters to the Board of Directors at least annually. The CISO and CIO also provide new Board members with a cybersecurity briefing as part of the onboarding process.
+To date, the company has not experienced a cybersecurity threat or incident that has materially affected or is reasonably likely to materially affect the company, including its business strategy, results of operations or financial condition; however, the company has experienced and will continue to experience cyber incidents of varying degrees. Despite the cybersecurity measures that the company is taking to mitigate such risks, there can be no guarantee that such measures will be sufficient to protect the company’s systems, information, intellectual property and other assets from significant harm and that future cybersecurity incidents will not have a material adverse effect on the company or its results of operations or financial condition or cause reputational or other harm to the company. Refer to Item 1A. Risk Factors on pages 21 through 22 for further discussion of cyberattacks and the associated risks to Chevron’s business.
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Overview
+
+Draor Midstream, Inc. ("Draor," the "Company," "we," "us" or "our") is an integrated midstream energy company headquartered in Seattle, Washington. We own and operate a network of infrastructure assets that connect producers of crude oil, natural gas and natural gas liquids ("NGLs") with refiners, petrochemical manufacturers, local distribution companies, power generators, marketers and export facilities. Our business includes gathering, compressing, treating, processing, fractionating, transporting, storing, terminaling and marketing hydrocarbons and refined petroleum products. Our assets are located in the principal producing basins and demand centers of the United States, and we provide services under a mix of fee-based, cost-of-service, percentage-of-proceeds and commodity-sensitive arrangements.
+
+For the fiscal year ended December 31, 2024, we reported total revenue of $134,874 million, an increase of 7.2% compared with the prior fiscal year. At December 31, 2024, we employed about 202,000 people.
+
+Draor Midstream, Inc. is incorporated in the State of Delaware. Our common stock trades under the ticker symbol "DRAR." In this report, references to fiscal 2024 are to the fiscal year ended December 31, 2024, and references to fiscal 2023 are to the fiscal year ended December 31, 2023.
+
+Our Strategy
+
+Our strategy is to own and operate a large, interconnected and diversified portfolio of midstream assets that generates durable cash flows across commodity price cycles. We pursue this strategy by:
+
+- Prioritizing safe, reliable and environmentally responsible operations across all of our facilities and pipeline systems.
+- Expanding the reach of our systems through capital-efficient, demand-driven projects that are generally supported by long-term customer commitments.
+- Integrating our services along the hydrocarbon value chain so that a molecule entering our gathering systems can be processed, transported, stored and delivered to market on Draor-owned infrastructure.
+- Increasing the share of our revenue earned under fee-based and contracted arrangements, while managing the commodity price exposure that remains in certain processing and marketing activities.
+- Maintaining financial discipline in capital allocation, balance sheet management and operating cost control.
+- Advancing lower-emission operating practices and evaluating infrastructure opportunities associated with the evolving energy mix, including carbon capture and transportation, renewable natural gas and hydrogen blending.
+
+Principal Products and Services
+
+We provide midstream services and market energy commodities. Our principal products and services include:
+
+Natural gas gathering and processing. We gather natural gas from wellheads and central delivery points through low- and high-pressure gathering lines, compress the gas, remove impurities such as water, carbon dioxide and hydrogen sulfide, and process it to extract NGLs. Residue gas is delivered to intrastate and interstate pipelines, and extracted NGLs move to fractionation facilities.
+
+Crude oil gathering and transportation. We gather crude oil and condensate from producing leases by pipeline and truck and deliver these volumes to our long-haul pipelines, storage terminals and third-party connections that serve refining and export markets.
+
+NGL fractionation, transportation and storage. We transport raw NGL mix to fractionation facilities, where we separate it into purity products, including ethane, propane, normal butane, isobutane and natural gasoline. We store these products in underground caverns and above-ground facilities and deliver them to petrochemical, refining, heating and export customers.
+
+Natural gas transmission and storage. We transport natural gas over long distances through interstate and intrastate pipeline systems and provide firm and interruptible storage services in depleted reservoirs and salt caverns. These services allow customers to balance supply and demand and to manage price volatility.
+
+Refined products and terminaling. We operate pipelines, marine docks, rail facilities and truck racks that receive, store, blend and deliver gasoline, diesel, jet fuel and other refined products.
+
+Commodity marketing. We purchase and sell natural gas, NGLs, crude oil and refined products, mainly to optimize the use of our asset base, capture location, quality and time spreads, and provide supply and logistics solutions to our customers.
+
+Because a significant portion of our revenue reflects the gross value of commodities that we purchase and resell, our reported revenue and cost of revenue move with commodity prices, and changes in reported revenue do not necessarily correspond to changes in the volumes we handle or the margins we earn.
+
+Reportable Segments
+
+We manage our business through three reportable segments: Gathering and Processing; Transmission and Storage; and Liquids Logistics and Marketing. Our chief operating decision maker evaluates segment performance and allocates resources primarily on the basis of segment operating results. For additional segment information, see the Notes to Consolidated Financial Statements included in Item 8 of this report.
+
+Gathering and Processing
+
+The Gathering and Processing segment is the point at which most hydrocarbons enter our system. This segment owns and operates natural gas and crude oil gathering systems, compressor stations, treating facilities and cryogenic and refrigeration processing plants in several of the most active onshore producing regions of the United States, including oil-weighted shale basins and gas-weighted shale and tight-sand plays.
+
+The segment's results depend largely on the volumes our producer customers deliver, which in turn depend on their drilling and completion activity, the productivity of their wells and the commodity price environment. We seek to reduce volume risk through acreage dedications, minimum volume commitments and demand charges. A portion of our processing revenue is earned under percentage-of-proceeds and keep-whole arrangements, which expose the segment to changes in natural gas and NGL prices. We manage this exposure through contract structure and, in some cases, through hedging activities.
+
+During fiscal 2024, the segment focused on connecting new well pads, debottlenecking existing processing capacity and improving plant reliability and recovery rates. We also continued to reduce emissions by electrifying compression where feasible, replacing high-bleed pneumatic devices and expanding our leak detection and repair programs.
+
+Transmission and Storage
+
+The Transmission and Storage segment owns and operates interstate and intrastate natural gas pipeline systems and associated storage facilities. These systems connect supply basins with consuming markets, including local distribution companies in large metropolitan areas, gas-fired power generation plants, industrial facilities and liquefied natural gas ("LNG") export terminals along the coast.
+
+Most of this segment's revenue comes from firm transportation and storage service agreements under which customers pay reservation charges for reserved capacity, whether or not they use it, together with usage charges for volumes actually moved or stored. Rates for our interstate systems are subject to regulation by the Federal Energy Regulatory Commission ("FERC"), and many of our contracts have multi-year terms. As a result, this segment's cash flows are generally less sensitive to commodity prices and short-term changes in volumes than those of our other segments.
+
+The segment's growth opportunities include expansions and laterals that serve new power generation load, industrial demand and export capacity, as well as modernization projects that improve system integrity, efficiency and environmental performance. We also evaluate opportunities to blend hydrogen and to transport renewable natural gas on portions of our network, subject to technical, commercial and regulatory considerations.
+
+Liquids Logistics and Marketing
+
+The Liquids Logistics and Marketing segment includes our crude oil, NGL and refined products pipelines, our fractionation complexes, our underground and above-ground storage, our marine, rail and truck terminals, and our commodity marketing activities.
+
+This segment provides transportation, fractionation, storage and terminaling services under fee-based agreements, including long-term take-or-pay and throughput-and-deficiency contracts, as well as tariff-based services on common carrier pipelines. Our marketing activities purchase commodities from producers, processors and other market participants and resell them to refiners, petrochemical companies, wholesalers, retailers and export buyers. Marketing results depend on regional price differentials, product quality spreads, storage economics and the availability of transportation capacity, and they can vary significantly from period to period.
+
+Our integrated position allows us to offer customers a single counterparty for gathering, processing, fractionation, storage, transportation and export logistics. We believe this integration improves asset utilization across our system and supports customer retention.
+
+Customers
+
+Our customer base is broad and includes:
+
+- Independent and integrated crude oil and natural gas producers, which use our gathering, processing and transportation services.
+- Local distribution companies and municipal utilities, which contract for firm transportation and storage to serve residential and commercial demand.
+- Electric generators, including operators of gas-fired combined cycle and peaking plants.
+- Refiners, which purchase crude oil and use our pipelines and terminals to receive feedstocks and distribute finished products.
+- Petrochemical manufacturers, which purchase ethane, propane and other NGLs as feedstocks.
+- Wholesalers, retailers and distributors of propane and refined products.
+- LNG exporters, international commodity buyers and trading companies.
+
+Many of our customer relationships are long-standing and are governed by multi-year contracts. No single customer accounted for a level of revenue in fiscal 2024 that we believe would have a material adverse effect on our consolidated results of operations if that customer were lost. We monitor counterparty credit risk closely and, where appropriate, require letters of credit, parental guarantees, prepayments or other forms of credit support.
+
+Sales and Marketing
+
+We market our services through commercial teams organized by segment, basin and product line. These teams work directly with producers, end users and marketers to structure gathering and processing agreements, transportation and storage contracts, and commodity purchase and sale arrangements. Our commercial staff is supported by engineering, scheduling, risk management and regulatory personnel who evaluate project economics, system capacity and contract terms.
+
+New capacity on our regulated pipelines is generally offered through open seasons conducted in accordance with applicable FERC requirements, and capacity is allocated among shippers on a non-discriminatory basis. On our common carrier liquids [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+An investment in our securities involves a high degree of risk. You should carefully consider the risks described below, together with the other information in this report, including Management's Discussion and Analysis of Financial Condition and Results of Operations and our Consolidated Financial Statements and related notes. Any of these risks could materially and adversely affect our business, financial condition, results of operations, cash flows and the trading price of our common stock. The risks described below are not the only ones we face. Additional risks not presently known to us, or that we currently consider immaterial, may also impair our business.
+
+Risks Related to Our Business and Industry
+
+Changes in the prices of crude oil, natural gas, NGLs and refined products can significantly affect our revenue, margins and cash flows.
+
+A substantial portion of our reported revenue reflects the gross value of commodities that we purchase and resell through our marketing activities. As a result, our revenue and cost of revenue move closely with commodity prices, and the spread between them is narrow relative to the size of either line. In fiscal 2024, cost of revenue grew faster than revenue, and gross profit and gross margin declined compared with fiscal 2023 despite higher reported revenue. Because the spread is narrow, small changes in purchase costs, sales prices, transportation costs or product quality differentials can have a disproportionate effect on our gross profit and operating income.
+
+Commodity prices are volatile and are determined by factors outside our control. These factors include domestic and global supply and demand, the production decisions of major oil-producing nations, the level of domestic drilling and completion activity, weather, storage inventories, the availability of pipeline and export capacity, government policies affecting production or trade, armed conflicts and political instability, the pace of adoption of alternative energy sources, and general economic conditions. Sustained low or volatile prices could reduce the volumes delivered to our systems, compress our marketing spreads, lower the value of commodities we retain under certain processing contracts and increase the risk that our customers fail to perform.
+
+Our results depend on the drilling and production activity of producers in the basins we serve, which we do not control.
+
+Our gathering, processing, fractionation and liquids transportation businesses rely on producers continuing to drill and complete wells connected to our systems. Production from any individual well declines over time, so maintaining or increasing throughput requires a continuing program of new well connections. Producers' decisions to drill depend on commodity prices, their access to capital, their cost structures, the productivity of their acreage, regulatory requirements and their own strategic priorities, including pressure from investors to return capital rather than reinvest in growth.
+
+Acreage dedications and minimum volume commitments mitigate, but do not eliminate, this exposure. Dedications do not obligate producers to drill, and minimum volume commitments expire, may be renegotiated, or may be uncollectible if the counterparty experiences financial distress. A sustained reduction in drilling activity in one or more of our core basins could reduce throughput across several of our segments at the same time, because volumes that enter our gathering systems also feed our processing plants, fractionation complexes and downstream pipelines.
+
+Our percentage-of-proceeds, keep-whole and marketing arrangements expose us to direct commodity price and spread risk.
+
+A portion of our Gathering and Processing segment revenue is earned under percentage-of-proceeds and keep-whole arrangements, under which our compensation varies with the value of natural gas and NGLs. Under keep-whole arrangements, we may bear the cost of replacing the heating value of NGLs extracted from the gas stream, which can be unprofitable when NGL prices are low relative to natural gas prices. Our Liquids Logistics and Marketing segment captures location, quality and time spreads that can narrow or disappear because of new pipeline capacity, changes in regional supply and demand, or market dislocations.
+
+Our hedging activities may not be effective in offsetting these exposures. Hedges may cover only a portion of our volumes, may not correlate precisely with the prices we realize, may require us to post collateral that reduces our liquidity, and may prevent us from benefiting fully from favorable price movements. Our risk management policies may not detect or prevent unauthorized trading or positions that exceed approved limits, which could result in significant losses.
+
+We may be unable to renew or replace expiring contracts on favorable terms, or at all.
+
+Many of our transportation, storage, gathering and processing agreements have fixed terms. When these contracts expire, customers may elect not to renew, may seek to reduce contracted capacity, or may demand lower rates, shorter terms or fewer volume commitments. Our ability to recontract depends on the availability of competing infrastructure, the supply and demand outlook in the relevant markets, the creditworthiness and strategic plans of our customers, and regulatory constraints on our rates. If we recontract at lower rates or with less firm capacity, or if capacity remains unsubscribed, our revenue and cash flows could decline even if our operating costs do not.
+
+We face significant competition, which could reduce our volumes, rates and margins.
+
+We compete with other midstream companies, integrated energy companies, producer-owned gathering and processing systems, private equity-backed developers and marketing and trading firms. Some competitors have greater financial resources, lower costs of capital, newer assets or access to supply sources that we lack. Competition is based on rates, service quality, system reliability, interconnectivity, available capacity and the ability to offer integrated services. New pipelines and processing plants built by competitors in our core basins, or alternative transportation methods such as rail and truck, could divert volumes from our systems and pressure our rates and marketing margins.
+
+We are exposed to the credit risk of our customers and other counterparties.
+
+Our customers include producers, marketers, refiners, petrochemical manufacturers, utilities, power generators and exporters, many of whom are themselves exposed to commodity price volatility. Some of our customers are highly leveraged or have below-investment-grade credit ratings. During periods of low prices or tight credit markets, customers may be unable to pay amounts owed, may seek to reject or renegotiate contracts in bankruptcy proceedings, or may be unable to provide adequate credit support. Our accounts receivable and other current assets are significant, and losses from counterparty nonperformance, including counterparties to our hedging and marketing transactions, could adversely affect our results and liquidity.
+
+Long-term changes in energy demand, including the transition to lower-carbon energy sources, could reduce demand for our services and the useful lives of our assets.
+
+Government policies, technological developments, investor preferences and consumer behavior are encouraging greater energy efficiency and the use of renewable energy, electrification and other alternatives to hydrocarbons. Over time, these trends could reduce demand for crude oil, natural gas, NGLs and refined products, lower the volumes moving through our systems, shorten the economic lives of our pipelines, plants and terminals, and increase the risk of asset impairments. Our property, plant and equipment represents the large majority of our total assets, and much of it has long expected service lives. Our efforts to develop infrastructure related to carbon capture, renewable natural gas and hydrogen are at an early stage. They may not generate returns comparable to our existing businesses or offset declines in our traditional services.
+
+Our growth and expansion projects may not be completed on schedule or within budget, and may not generate expected returns.
+
+We invest significant capital in new pipelines, processing plants, fractionators, storage and export facilities and in expansions of existing systems. In fiscal 2024, our capital expenditures and other investing outflows significantly exceeded our cash provided by operating activities. These projects are subject to risks that include permitting delays, legal challenges, landowner opposition, cost inflation for steel, equipment and labor, contractor performance, supply chain disruptions, adverse weather and changes in customer demand after we commit capital. Projects often require years to complete, and revenue generally does not begin until they are placed in service. If we experience cost overruns or delays, or if contracted volumes fail to materialize, we may not recover our investment, and our leverage could increase without a corresponding increase in cash flow.
+
+Risks Related to Our Operations
+
+Our operations are subject to hazards that could result in personal injury, loss of life, environmental damage and significant financial loss, and our insurance may not be adequate.
+
+Our pipelines, processing plants, fractionators, storage caverns, terminals and marine facilities handle flammable, explosive and toxic substances under high pressure. These operations involve risks of fires, explosions, ruptures, leaks, releases of hydrogen sulfide and other hazardous materials, cavern failures, equipment malfunctions, vehicle and vessel accidents and other incidents. Such events could result in injury or death, damage to property and natural resources, evacuation of nearby communities, regulatory penalties, litigation, suspension of operations and lasting damage to our reputation and relationships with regulators and communities.
+
+We do not insure against every risk, and our insurance is subject to deductibles, retentions, sublimits and exclusions. Insurance coverage for certain risks, including pollution, named windstorms and cyber incidents, has become more costly and more limited, and we may choose to self-insure a larger portion of these risks. An uninsured or underinsured event could have a material adverse effect on our financial [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+This discussion should be read together with our Consolidated Financial Statements and the related notes in Item 8 of this report. It explains the principal factors that affected our results of operations, financial condition and cash flows for fiscal 2024 compared with fiscal 2023.
+
+This discussion contains forward-looking statements. These statements are based on management's current expectations about future events, operating conditions and financial performance, and they involve risks and uncertainties. Actual outcomes may differ materially from those we anticipate. Factors that could cause such differences include, among others, those described in Item 1A, Risk Factors.
+
+Unless otherwise indicated, all amounts are in U.S. dollars. References to fiscal 2024 and fiscal 2023 mean the fiscal years ended December 31, 2024 and December 31, 2023, respectively.
+
+Overview
+
+Draor Midstream, Inc. is an integrated midstream energy company headquartered in Seattle, Washington. Our infrastructure links producers of crude oil, natural gas and NGLs with refiners, petrochemical manufacturers, utilities, power generators, marketers and export facilities. We report our operations in three segments:
+
+- Gathering and Processing.
+- Transmission and Storage.
+- Liquids Logistics and Marketing.
+
+We earn revenue under several types of arrangements. These include fee-based contracts, cost-of-service contracts, percentage-of-proceeds contracts and commodity-sensitive contracts. We also earn revenue from the purchase and resale of commodities through our marketing activities.
+
+A significant portion of our reported revenue reflects the gross value of commodities we buy and sell. As a result, revenue and cost of revenue tend to move together with commodity prices, and the spread between them is narrow relative to the size of either line. For this reason, management focuses on the following measures in evaluating our performance:
+
+- Gross profit.
+- Operating income.
+- Cash flows from operations.
+- Asset utilization and throughput.
+
+Reported revenue alone is not a reliable guide to the volumes we handle or the margins we earn.
+
+Our business is capital intensive. Property, plant and equipment, net, was $625,949 million at December 31, 2024, which represents the large majority of our total assets of $837,727 million. We finance our asset base with a combination of internally generated cash, long-term debt and equity. Interest expense is therefore a significant component of our cost structure.
+
+Fiscal 2024 Highlights
+
+- Revenue was $134,874 million, an increase of 7.2% from $125,839 million in fiscal 2023.
+- Gross profit was $11,302 million, compared with $11,765 million in fiscal 2023. Gross margin declined to 8.4% from 9.3%.
+- Operating income was $7,256 million, an increase of 34.5% from $5,396 million in fiscal 2023. Operating margin improved to 5.4% from 4.3%.
+- Net loss was $2,523 million, compared with a net loss of $4,196 million in fiscal 2023, an improvement of 39.9%.
+- Net cash provided by operating activities was $17,883 million.
+- Purchases of property and equipment totaled $12,800 million. Other investing activities, net, used an additional $16,891 million.
+- We received net proceeds from equity issuances, net of share repurchases, of $10,378 million. Long-term debt increased by a net $4,150 million.
+- Cash and cash equivalents were $32,169 million at December 31, 2024, compared with $29,449 million at the end of fiscal 2023.
+
+Business Environment
+
+Fiscal 2024 was marked by continued volatility in commodity prices and regional price differentials. Producer activity varied across the basins we serve. In our oil-weighted basins, sustained drilling and completion programs supported throughput on our gathering and processing systems and on our downstream liquids pipelines and fractionation facilities. In our gas-weighted regions, some producers moderated activity in response to lower natural gas prices during parts of the year, which tempered volume growth in those areas.
+
+Demand for firm natural gas transportation and storage remained solid. This demand was supported by several sources:
+
+- Power generation load.
+- Industrial consumption.
+- Feed gas requirements of coastal LNG export terminals.
+
+Our marketing results were affected by narrower location and quality spreads in certain markets. These narrower spreads resulted from new third-party pipeline capacity and changes in regional supply and demand balances.
+
+Cost pressures continued in several areas, including labor, equipment, materials and contracted services. We responded with procurement initiatives, operating efficiency programs and reductions in overhead. Higher interest rates also increased the cost of the floating-rate portion of our borrowings and of new debt we issued during the year.
+
+Results of Operations
+
+The following discussion compares our consolidated results for fiscal 2024 with those for fiscal 2023.
+
+Revenue
+
+Revenue was $134,874 million in fiscal 2024, compared with $125,839 million in fiscal 2023, an increase of 7.2%. The increase reflected several factors:
+
+- Higher volumes of NGLs, crude oil and natural gas sold through our marketing activities, as greater throughput on our systems allowed us to purchase and resell more product.
+- Higher average realized prices for certain NGL purity products and refined products during portions of the year.
+- Increased fee-based revenue from gathering, processing and fractionation, driven by new well connections and the full-year contribution of capacity placed in service during fiscal 2023.
+- Contractual escalations and recontracting activity on our transmission and storage systems.
+
+These increases were partially offset by lower average realized natural gas prices in certain regions, which reduced the gross value of natural gas sold.
+
+Because much of our revenue reflects the gross value of commodities, the increase in revenue does not by itself indicate a proportional increase in profitability. Changes in commodity prices generally affect revenue and cost of revenue in similar amounts. They have a smaller net effect on gross profit, except where we retain commodity exposure under percentage-of-proceeds, keep-whole or marketing arrangements.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue was $123,572 million in fiscal 2024, compared with $114,074 million in fiscal 2023. Cost of revenue includes the following:
+
+- The cost of commodities purchased for resale.
+- Operating and maintenance expenses for our pipelines, plants and terminals.
+- Fuel and power costs.
+- Property taxes.
+- Depreciation and amortization, which was $22,780 million in fiscal 2024.
+
+Cost of revenue increased primarily because of higher volumes of commodities purchased through our marketing activities. Additional contributors were:
+
+- Higher operating and maintenance costs associated with an expanded asset base.
+- Inflation in labor, materials and contracted services.
+- Higher depreciation resulting from capital projects placed in service and assets added during the year.
+
+Gross profit was $11,302 million in fiscal 2024, compared with $11,765 million in fiscal 2023. Gross margin declined to 8.4% from 9.3%. Gross profit declined despite higher revenue because cost of revenue grew faster than revenue. The principal reasons were:
+
+- Narrower marketing spreads. New pipeline capacity reduced price differentials between certain supply basins and demand centers, which compressed the margins we earned on purchase-and-resale transactions.
+- Lower commodity-sensitive processing margins. Lower natural gas and NGL prices in parts of the year reduced the value of the commodities we retain under percentage-of-proceeds and keep-whole arrangements.
+- Higher operating costs and depreciation. Expenses associated with newly constructed and acquired assets increased ahead of the full ramp-up of volumes on some of those assets.
+
+These factors were partially offset by higher fee-based gathering, processing, fractionation and transportation revenue, which carries a higher margin than our marketing activities.
+
+Research and Development
+
+We do not report research and development expense as a separate line item. We recorded no research and development expense in fiscal 2024 or fiscal 2023, and such expense was 0.0% of revenue in both years.
+
+Costs related to technology, operational improvements and our evaluation of lower-carbon infrastructure, such as carbon capture, renewable natural gas and hydrogen blending, are included in cost of revenue, selling, general and administrative expense or capital expenditures, as appropriate. These costs are classified based on their nature.
+
+Selling, General and Administrative
+
+Selling, general and administrative expense was $2,724 million in fiscal 2024, compared with $2,942 million in fiscal 2023. As a percentage of revenue, it declined to 2.0% from 2.3%. The decrease reflected several factors:
+
+- Benefits of organizational streamlining and cost reduction initiatives implemented in late fiscal 2023 and during fiscal 2024.
+- Lower professional and consulting fees.
+- Reduced spending on certain information technology projects that were completed in the prior year.
+- Lower incentive compensation expense, consistent with our financial performance relative to internal targets.
+
+These reductions were partially offset by wage inflation and higher insurance premiums.
+
+Other Operating Expense
+
+Other operating expense was $1,322 million in fiscal 2024, compared with $3,427 million in fiscal 2023. This line includes items that are not part of our recurring operating costs, such as:
+
+- Impairments of long-lived assets and equity method investments.
+- Losses on the disposition of assets.
+- Write-offs of capitalized project costs.
+- Restructuring charges.
+- Accruals for legal and environmental matters.
+
+The decrease was primarily attributable to lower impairment charges. In fiscal 2023, we recorded impairments related to certain gathering and processing assets in regions with declining producer activity, and we wrote off development costs for projects we decided not to pursue. In fiscal 2024, impairment charges and project write-offs were substantially lower. Restructuring costs were also lower than in the prior year, because the organizational changes initiated in fiscal 2023 were largely complete.
+
+Operating Income
+
+Operating income was $7,256 million in fiscal 2024, compared with $5,396 million in fiscal 2023, an increase of 34.5%. Operating margin improved to 5.4% from 4.3%.
+
+The improvement was driven by lower other operating expense and lower selling, general and administrative expense. Together, these more than offset the decline in gross profit.
+
+By segment, [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Draor Midstream, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 900 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.
