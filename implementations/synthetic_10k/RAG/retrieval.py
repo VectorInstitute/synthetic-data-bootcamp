@@ -51,11 +51,11 @@ import os
 import re
 import sqlite3
 import time
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import numpy as np
-from rank_bm25 import BM25Okapi
 
 
 TOKEN_RE = re.compile(r"[a-z0-9]+")
@@ -208,21 +208,77 @@ def _normalize(vectors: np.ndarray) -> np.ndarray:
 
 
 class Bm25Retriever:
-    """Thin wrapper around rank_bm25.BM25Okapi, keyed by chunk_id."""
+    """Okapi BM25 (k1=1.5, b=0.75, epsilon=0.25 -- rank_bm25.BM25Okapi's own defaults
+    and exact formula), scored via a per-term inverted index instead of rank_bm25's
+    own get_scores, which loops through every document's frequency dict in pure
+    Python for every query token. That's fine at the ~1,300-chunk synthetic-corpus
+    scale this was first built for, but doesn't finish in reasonable time once a
+    corpus reaches real_only/mixed's ~380,000-document scale (confirmed: a single
+    real_only run of 549 queries hadn't finished BM25 scoring alone after 8+ minutes
+    of steady single-core CPU use). An inverted index only touches the (typically
+    small) set of documents actually containing each query term, rather than every
+    document in the corpus. Produces the same scores as rank_bm25.BM25Okapi to
+    floating-point rounding -- verified directly against it, not just by formula.
+    """
+
+    K1, B, EPSILON = 1.5, 0.75, 0.25
 
     def __init__(self, chunk_ids: list[str], texts: list[str]) -> None:
         self.chunk_ids = chunk_ids
-        self._bm25 = BM25Okapi([tokenize(t) for t in texts])
+        n = len(texts)
+        doc_len = np.empty(n, dtype=np.float64)
+        postings: dict[str, list[tuple[int, int]]] = {}
+        doc_freq: dict[str, int] = {}
+        for i, text in enumerate(texts):
+            tokens = tokenize(text)
+            doc_len[i] = len(tokens)
+            for term, tf in Counter(tokens).items():
+                postings.setdefault(term, []).append((i, tf))
+                doc_freq[term] = doc_freq.get(term, 0) + 1
+        self._n = n
+        self.avgdl = float(doc_len.mean()) if n else 0.0
+        denom_base = self.K1 * (1 - self.B + self.B * doc_len / self.avgdl) if self.avgdl else np.zeros(n)
+        self._postings = {
+            term: (
+                np.array([p[0] for p in plist], dtype=np.int64),
+                np.array([p[1] for p in plist], dtype=np.float64),
+                denom_base[[p[0] for p in plist]],
+            )
+            for term, plist in postings.items()
+        }
+
+        idf: dict[str, float] = {}
+        negative = []
+        for term, freq in doc_freq.items():
+            value = math.log(n - freq + 0.5) - math.log(freq + 0.5)
+            idf[term] = value
+            if value < 0:
+                negative.append(term)
+        average_idf = (sum(idf.values()) / len(idf)) if idf else 0.0
+        for term in negative:
+            idf[term] = self.EPSILON * average_idf
+        self._idf = idf
+
+    def _scores(self, query: str) -> np.ndarray:
+        score = np.zeros(self._n, dtype=np.float64)
+        for term, count in Counter(tokenize(query)).items():
+            posting = self._postings.get(term)
+            if posting is None:
+                continue
+            idxs, tf, denom_base = posting
+            contribution = self._idf[term] * (tf * (self.K1 + 1)) / (tf + denom_base)
+            score[idxs] += count * contribution
+        return score
 
     def rank(self, query: str) -> list[str]:
         """Return chunk_ids sorted best-first for `query`."""
-        scores = self._bm25.get_scores(tokenize(query))
+        scores = self._scores(query)
         order = np.argsort(-scores)
         return [self.chunk_ids[i] for i in order]
 
     def top_score(self, query: str) -> float:
         """Return the best (unbounded) BM25 score for `query`, or 0.0 for an empty corpus."""
-        scores = self._bm25.get_scores(tokenize(query))
+        scores = self._scores(query)
         return float(max(scores)) if len(scores) else 0.0
 
 
