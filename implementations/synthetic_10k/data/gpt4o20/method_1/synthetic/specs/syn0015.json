@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0015",
+  "name": "Zennov Medical, Inc.",
+  "ticker": "ZONE",
+  "sector": "Health Care",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "CO",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 2264,
+  "revenue_growth": 0.0815,
+  "employees": 2700,
+  "ratios": {
+    "gross_margin": 0.7323,
+    "operating_margin": 0.2699,
+    "sga_ratio": 0.0549,
+    "da_ratio": 0.0272,
+    "capex_ratio": 0.0267,
+    "tax_rate": 0.3011,
+    "asset_turnover": 0.7358,
+    "equity_ratio": 0.3114,
+    "current_assets_ratio": 0.3218,
+    "current_ratio": 1.1223,
+    "cash_ratio": 0.0222,
+    "ppe_ratio": 0.0361,
+    "debt_ratio": 0.4292,
+    "receivables_ratio": 0.1502,
+    "rd_ratio": 0.4076,
+    "inventory_ratio": 0.0659,
+    "goodwill_ratio": 0.1592,
+    "dividend_payout": 0.3941,
+    "other_operating_cash_ratio": 0.0014
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 2264,
+        "cost_of_revenue": 606,
+        "gross_profit": 1658,
+        "research_and_development": 923,
+        "selling_general_and_administrative": 124,
+        "other_operating_expense": 0,
+        "operating_income": 611,
+        "interest_expense": 59,
+        "pretax_income": 552,
+        "income_tax": 166,
+        "net_income": 386
+      },
+      "2023": {
+        "revenue": 2093,
+        "cost_of_revenue": 584,
+        "gross_profit": 1509,
+        "research_and_development": 854,
+        "selling_general_and_administrative": 87,
+        "other_operating_expense": 0,
+        "operating_income": 568,
+        "interest_expense": 54,
+        "pretax_income": 514,
+        "income_tax": 149,
+        "net_income": 365
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 68,
+        "receivables": 340,
+        "inventory": 149,
+        "total_current_assets": 797,
+        "property_plant_and_equipment": 176,
+        "goodwill": 490,
+        "total_assets": 3077,
+        "total_current_liabilities": 710,
+        "long_term_debt": 1321,
+        "total_equity": 958,
+        "other_current_assets": 240,
+        "other_noncurrent_assets": 1614,
+        "other_noncurrent_liabilities": 88,
+        "total_liabilities": 2119,
+        "total_liabilities_and_equity": 3077
+      },
+      "2023": {
+        "cash": 60,
+        "receivables": 324,
+        "inventory": 140,
+        "total_current_assets": 748,
+        "property_plant_and_equipment": 157,
+        "goodwill": 449,
+        "total_assets": 2797,
+        "total_current_liabilities": 658,
+        "long_term_debt": 1201,
+        "total_equity": 875,
+        "other_current_assets": 224,
+        "other_noncurrent_assets": 1443,
+        "other_noncurrent_liabilities": 63,
+        "total_liabilities": 1922,
+        "total_liabilities_and_equity": 2797
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 386,
+        "depreciation_and_amortization": 62,
+        "other_operating_items": 3,
+        "net_cash_from_operating_activities": 451,
+        "capital_expenditures": -60,
+        "other_investing_activities": -200,
+        "net_cash_from_investing_activities": -260,
+        "net_change_in_long_term_debt": 120,
+        "dividends_paid": -152,
+        "share_repurchases_net": -151,
+        "net_cash_from_financing_activities": -183,
+        "net_change_in_cash": 8,
+        "cash_beginning_of_year": 60,
+        "cash_end_of_year": 68
+      }
+    }
+  }
+}

@@ -1,0 +1,431 @@
+Overview
+
+We are a global technology leader that designs, develops and supplies a broad range of semiconductor and infrastructure software solutions. Our over 60-year history of innovation dates back to our diverse origins from AT&T/Bell Labs, Lucent and Hewlett-Packard Company, and evolved with LSI Corporation, Broadcom Corporation, Brocade Communications Systems LLC, CA, Inc., Symantec Enterprise Security, and VMware, Inc. (“VMware”). Over the years, we have assembled a large team of semiconductor and software design engineers around the world. We maintain design, product and software development engineering resources at locations in the U.S., Asia, Europe and Israel, providing us with engineering expertise worldwide. We combine global scale, engineering depth, broad product portfolio diversity, superior execution and operational focus to deliver category-leading semiconductor and infrastructure software solutions.
+
+We develop semiconductor devices with a focus on complex digital and mixed signal complementary metal oxide semiconductor (“CMOS”) based devices and analog III-V based products. We offer thousands of products that are used in end products such as enterprise and data center networking, including artificial intelligence (“AI”) networking and connectivity, home connectivity, set-top boxes (“STB”), broadband access, telecommunication equipment, smartphones and base stations, data center servers and storage systems, factory automation, power generation and alternative energy systems, and electronic displays. We differentiate ourselves through our high-performance design and integration capabilities and focus on developing semiconductor products for target markets where we believe we can earn attractive margins.
+
+Our infrastructure software solutions help enterprises simplify their information technology (“IT”) environments so they can increase business velocity and flexibility, and enable customers to plan, develop, deliver, automate, manage, and secure applications across mainframe, distributed, edge, mobile, and private and hybrid cloud platforms. Many of the largest companies in the world, including most of the Fortune 500, and many government agencies rely on our software solutions to help manage and secure their on-premises and hybrid cloud environments, private cloud infrastructure and AI data centers. Our portfolio of industry-leading infrastructure and security software is designed to modernize, optimize, and secure the most complex private and hybrid cloud environments, enabling scalability, agility, automation, insights, resiliency and security, making it easy for customers to run their mission-critical workloads. We also offer mission-critical fibre channel storage area networking (“FC SAN”) products and related software in the form of modules, switches and subsystems incorporating multiple semiconductor products.
+
+On November 22, 2023, we acquired VMware in a cash-and-stock transaction (the “VMware Merger”), in which VMware stockholders received, in aggregate, approximately $30.8 billion in cash and 544 million shares of Broadcom common stock (on a split adjusted basis) with a fair value of $53.4 billion. We funded the cash portion of the VMware Merger consideration with net proceeds from the issuance of $30.4 billion in term loans under a credit agreement that we entered into on August 15, 2023, as well as cash on hand. Following the VMware Merger, we sold VMware’s end-user computing business to KKR & Co. Inc. for cash consideration of $3.5 billion, after working capital adjustments. With the VMware Merger, we have bolstered our infrastructure software solutions and are able to offer our customers a greater capacity to address complex IT infrastructure issues.
+
+Business Strategy
+
+Our strategy is focused on technology leadership and category-leading semiconductor and infrastructure software solutions delivering a comprehensive suite of innovative infrastructure technology products to the world’s leading business and government customers. We seek to achieve this through strategic acquisitions of businesses and technologies, as well as extensive internal research and development, to ensure our products retain their technology market leadership. This strategy results in a robust business model designed to drive diversified and sustainable operating and financial results.
+
+Products and Markets
+
+Semiconductor Solutions
+
+Semiconductors are made by imprinting a network of electronic components onto a semiconductor wafer. These devices are designed to perform various functions such as processing, amplifying and selectively filtering electronic signals, controlling electronic system functions and processing, and transmitting and storing data. Our digital and mixed signal products are based on silicon wafers with CMOS transistors offering fast switching speeds and low power consumption, which are both critical design factors for the markets we serve. We also offer analog products, which are based on III-V semiconductor materials that have higher electrical conductivity than silicon, and thus tend to have better performance characteristics in radio frequency (“RF”), and optoelectronic applications. III-V refers to elements from the 3rd and 5th groups in the periodic table of chemical elements. Examples of these materials used in our products are gallium arsenide (“GaAs”) and indium phosphide (“InP”).
+
+3
+
+Table of Contents
+
+Our product portfolio ranges from discrete devices to complex sub-systems that include multiple device types and may also incorporate firmware for interfacing between analog and digital systems. In some cases, our products include mechanical hardware that interfaces with optoelectronic or capacitive sensors. We focus on markets that require high quality, leading technology and integrated performance characteristics of our products. The table below presents our key semiconductor product families and their major end markets and applications.
+
+Major End Markets | Major Applications | Key Product Offerings
+
+Networking | • Data Center, Service Provider, and Enterprise Networking | • Ethernet switching and routing silicon
+
+• Custom silicon solutions
+
+• Optical and copper PHYs
+
+• Fiber optic transmitter and receiver components
+
+Wireless | • Mobile Device Connectivity | • RF front end modules and filters
+
+• Wi-Fi, Bluetooth, GPS/GNSS SoCs
+
+• Custom touch controllers
+
+• Inductive charging ASICs
+
+Storage | • Servers and Storage Systems | • SAS and RAID controllers and adapters
+
+• PCIe switches
+
+• Fibre channel host bus adapters
+
+• Ethernet NIC
+
+• HDD and SSD | • Read channel based SoCs; Custom flash controllers
+
+• Preamplifiers
+
+Broadband | • STB and Broadband Access | • STB SoCs
+
+• DSL/PON gateways
+
+• DOCSIS cable modem and networking infrastructure
+
+• DSLAM/PON optical line termination
+
+• Wi-Fi access point SoCs
+
+Industrial | • Factory Automation, Renewable Energy and Automotive Electronics | • Optocouplers
+
+• Industrial fiber optics
+
+• Industrial and medical sensors
+
+• Motion control encoders and subsystems
+
+• Light emitting diodes
+
+• Ethernet PHYs, switch ICs and camera microcontrollers
+
+Data Center, Service Provider, and Enterprise Networking Solutions. We provide semiconductor solutions for managing the movement of data in data center, service provider, and enterprise networking applications. Our products offer an enhanced, open, standards-based Ethernet network interface card (“NIC”) and switching solution to resolve connectivity bottlenecks in data centers, particularly in AI data centers where compute bandwidth and cluster sizes grow rapidly.
+
+•Ethernet Switching & Routing: Ethernet is a ubiquitous interconnection technology that enables high-performance and cost-effective networking infrastructure. We offer a broad set of Ethernet switching and routing products that are optimized for AI data center, service provider and enterprise networks. In the data center market, our high capacity, low latency, switching silicon supports advanced protocols around virtualization and multi-pathing. Our Ethernet switching fabric technologies provide the ability to build highly scalable flat networks supporting tens of thousands of servers. Our service provider switch portfolio enables carrier networks to support prioritized delivery of data traffic in the wireless backhaul, access, aggregation and core of their networks. For enterprise networks, we offer product families with secure, encrypted switching capabilities and support lower power modes that comply with industry standards around energy efficient Ethernet.
+
+•Custom Silicon Solutions: We provide advanced technology and intellectual property (“IP”) platforms for customers to design and develop application specific integrated circuits (“ASICs”) targeting AI and high-performance computing, networking and storage applications. Our custom silicon provides the platform to integrate embedded logic, memory, serializer/deserializer (“SerDes”) technology, IP cores and processor cores. ASICs are custom products built to individual customers specifications.
+
+•Physical Layer Devices: These devices, also referred to as PHYs, are transceivers that enable the reception and transmission of Ethernet data packets over a physical medium such as copper wire or optical fibers. Our high
+
+4
+
+Table of Contents
+
+performance Ethernet transceivers are built upon a proprietary digital signal processing communication architecture optimized for high-speed network connections and support the latest standards and advanced features, such as energy efficient Ethernet, data encryption and time synchronization. We also offer a range of automotive Ethernet products, including PHYs, switches and camera microcontrollers, to meet growing consumer demand for in-vehicle connectivity and smart vision.
+
+•Fiber Optic Components: We supply a wide array of optical components to the Ethernet networking, storage, and access, metro- and long-haul telecommunication markets. Our optical components enable the high speed reception and transmission of data through optical fibers.
+
+Mobile Device Connectivity Solutions. We provide a broad variety of RF semiconductor devices, wireless connectivity solutions, custom touch controllers and inductive charging solutions for the wireless market.
+
+•RF Semiconductor Devices: Our RF semiconductor devices selectively filter, as well as amplify and route, RF signals. Filters enable modern wireless communication systems to support a large number of subscribers simultaneously by ensuring that the multiple transmissions and receptions of voice and data streams do not interfere with each other. We were among the first to deliver commercial film bulk acoustic resonator (“FBAR”) filters that offer technological advantages over competing filter technologies, to allow mobile handsets to function more efficiently in today's congested RF spectrum. FBAR technology has a significant market share within the cellular handset market. Our RF products include multi-chip module front-end modules that integrate transmit/receive switching and filtering functions for multiple frequency bands, filter modules and discrete filters, all using our proprietary FBAR technology.
+
+Our expertise in FBAR technology, amplifier design, and module integration enables us to offer industry-leading performance in cellular RF transceiver applications.
+
+•Connectivity Solutions: Our connectivity solutions include discrete and integrated Wi-Fi and Bluetooth solutions, and global positioning system/global navigation satellite system (“GPS/GNSS”) receivers, designed for use in mobile devices including smartphones, tablets and wearable products.
+
+Wi-Fi allows devices on a local area network to communicate wirelessly, adding the convenience of mobility to the utility of high-speed data networks. We offer a family of high performance, low power Wi-Fi chipsets. Bluetooth is a low power technology that enables direct connectivity between devices. We offer Bluetooth silicon and software solutions that enable manufacturers to easily and cost-effectively add Bluetooth functionality. These solutions include combination chips that offer integrated Wi-Fi and Bluetooth functionality, which provides significant performance advantages over discrete solutions.
+
+We also offer a family of GPS, assisted-GPS and GNSS semiconductor products, software and data services. These products are part of a broader location platform that leverages a broad range of communications technologies, including Wi-Fi, Bluetooth and GPS, to provide more accurate location and navigation capabilities.
+
+•Custom Touch Controllers: Our touch controllers process signals from touch screens in mobile handsets and tablets.
+
+•Inductive Charging ASICs: Our custom inductive charging ASIC devices offer high efficiency and are highly integrated solutions for mobile and wearable devices.
+
+Servers and Storage System Solutions. We provide semiconductor solutions for enabling secure movement of digital data to and from host machines, such as servers, personal computers and storage systems, to the underlying storage devices, such as hard disk drives (“HDD”) and solid-state drives (“SSD”).
+
+•SAS, RAID & PCIe Products: We provide serial attached small computer system interface (SAS) and redundant array of independent disks (RAID) controller and adapter solutions to server and storage system original equipment manufacturers (“OEMs”). These solutions enable secure and high-speed data transmission between a host computer, such as a server, and storage peripheral devices, such as HDD, SSD and optical disk drives and disk and tape-based storage systems. Some of these solutions are delivered as stand-alone semiconductors, typically as a controller. Other solutions are delivered as circuit boards, known as adapter products, which incorporate our semiconductors onto a circuit board with other features. RAID technology is a critical part of our server storage connectivity solutions as it provides protection against the loss of critical data resulting from HDD failures.
+
+We also provide interconnect semiconductors that support the peripheral component interconnect express (“PCIe”) communication standards. PCIe is the primary interconnection mechanism inside computing systems today.
+
+•Fibre Channel Products: We provide fibre channel host bus adapters, which connect host computers such as servers to FC SANs.
+
+•Ethernet NIC Controllers: Our Ethernet NIC controllers are designed for high-performance virtualization, intelligent flow processing, secure data center connectivity, and machine learning.
+
+5
+
+Table of Contents
+
+•HDD & SSD Solutions: We provide read channel-based system-on-chip (“SoC”) and preamplifiers to HDD OEMs. These are the critical chips required to read, write and protect data. An HDD SoC is an integrated circuit (“IC”) that combines the functionality of a read channel, serial interface, memory and a hard disk controller in a small, high-performance, low-power and cost-effective package. Read channels convert analog signals that are generated by reading the stored data on the physical media into digital signals.
+
+In addition, we sell preamplifiers, which are complex, high speed, mixed signal devices that enable writing and reading data to and from the HDD heads. The preamplifier interfaces with the SoC to provide the electronics data path in a HDD.
+
+We also provide custom flash controllers to SSD OEMs. An SSD stores data in flash memory instead of on a hard disk, providing high speed access to the data. Flash controllers manage the underlying flash memory in SSDs, performing critical functions such as reading and writing data to and from the flash memory and performing error correction, wear leveling and bad block management.
+
+Broadband Solutions. We provide semiconductor solutions for enabling STBs and broadband access applications.
+
+•Set-Top Box: We offer complete SoC platform solutions for cable, satellite, Internet Protocol television, over-the-top and terrestrial STBs. Our products enable global service providers to introduce new and enhanced technologies and services in STBs, including transcoding, digital video recording functionality, higher definition video processing, increased networking capabilities, and more tuners to enable faster channel change and more simultaneous recordings. We are also enabling service providers in deploying High Efficiency Video Coding (“HEVC”), a video compression format that is a successor to the H.264/MPEG-4 format. HEVC enables ultra-high definition (“Ultra HD”) services by effectively doubling the capacity of existing networks to deploy new or existing content. Our families of STB solutions support the complete range of resolutions, from standard definition to high definition to Ultra HD.
+
+•Broadband Access: We offer complete SoC platform solutions for digital subscriber line (“DSL”), cable, passive optical networking (“PON”) and wireless local area network for both consumer premise equipment (“CPE”) and central office (“CO”) deployments. Our CPE devices are used in broadband modems, residential gateways and Wi-Fi access points and routers. Our CO devices, including DSL Access Multiplexer (“DSLAM”), cable modem termination systems and PON optical line termination medium access controllers, are empowering modern operator broadband infrastructure. Our products enable global service providers to continue deploying next generation broadband access technologies across multiple standards, including G.fast, Data Over Cable Service Interface Specifications (“DOCSIS”), PON and Wi-Fi to provide more bandwidth and faster speeds to consumers.
+
+Factory Automation, Renewable Energy and Automotive Electronic Solutions. We provide a broad variety of products for the general industrial and automotive markets, including optocouplers, industrial fiber optics, industrial and medical sensors, motion encoders, light emitting diode devices, and Ethernet ICs. Our industrial products are used in a diverse set of applications, spanning industrial automation, power generation and distribution systems, medical systems and equipment, defense and aerospace, and vehicle subsystems including those used in electric vehicle powertrain, infotainment and advanced driver assistance systems.
+
+Infrastructure Software
+
+Our infrastructure software solutions offer customers greater choice and flexibility to build, run, manage, connect and protect applications and data at scale across data center and private and hybrid cloud environments.
+
+6
+
+Table of Contents
+
+The table below presents our software portfolios and their key offerings.
+
+Software Portfolio | Portfolio Description | Key Portfolio Offerings
+
+Private Cloud | • Cloud infrastructure that is ubiquitous, flexible, and integrated across on-premises, edge, public and partner clouds | • VMware Cloud Foundation
+
+• VMware Cloud Foundation Edge
+
+• VMware vSphere Foundation
+
+• Private AI
+
+• Live Recovery
+
+• Telco Cloud Platform
+
+Tanzu | • Comprehensive solutions for application development operations and optimization | • Tanzu Platform
+
+• Tanzu Data Solutions
+
+• Tanzu CloudHealth
+
+• Tanzu Labs
+
+VeloCloud | • Comprehensive software-defined network solutions that enable enterprise edge connectivity and performance over Internet, fixed wireless access and satellite while simplifying deployments and reducing costs | • SD-WAN and SASE
+
+• VeloRAIN
+
+• Fixed Wireless Access
+
+Application Networking and Security | • Comprehensive software-defined solutions featuring lateral security that protects VCF application traffic from malware and ransomware, and application load balancing with the only plug-and-play app delivery and security solution for VCF private cloud | • Lateral Security Firewall
+
+• Advanced Threat Protection
+
+• Advanced Load Balancing
+
+Mainframe Software | • DevOps, AIOps, Security, Workload Automation, Data Management, Foundational Software Solutions, and Beyond Code programs | • Operational Analytics & Management
+
+• Workload Automation
+
+• Database & Data Management
+
+• Application Development & Testing
+
+• Identity & Access Management
+
+• Compliance & Data Protection
+
+• Security Insights
+
+• Beyond Code programs
+
+Distributed Software | • Solutions that optimize the planning, development and delivery of business critical services | • ValueOps
+
+• DevOps
+
+• AIOps
+
+Enterprise Security | • Comprehensive cybersecurity and compliance solutions that secure against threats and compliance risks by protecting users and data on any app, device, or network | • Endpoint Security
+
+• Network Security
+
+• Information Security
+
+• Application Security
+
+• Identity Security
+
+FC SAN Management | • Solutions that transform current storage networks with autonomous SAN capabilities | • Fibre Channel Switch
+
+Payment Security | • Arcot payment authentication network powered by 3-D Secure | • Payment Security Suite
+
+Private Cloud Software Portfolio. Our private cloud infrastructure software delivers public cloud scale and agility with private cloud security, resilience and performance, and low overall total cost of ownership. Our VMware software supports customers’ digital innovation with faster infrastructure modernization, a unified cloud experience and better platform security and cyber resiliency. The full portfolio is available directly from Broadcom, resellers and distributors, hyperscale cloud providers, value-added OEMs and VMware cloud service provider partners. VMware Cloud Foundation (“VCF”) provides license portability, which enables customers to purchase subscriptions of VCF software and move their VCF environments between on-premises data centers and supported cloud endpoints. Advanced services for Private AI provide customers with the benefits of AI without having to compromise control of data, privacy, and compliance by bringing the AI model to customers’ data.
+
+•VCF: VCF delivers integrated, enterprise-class compute, networking, storage, management, and security across any environment. VCF includes native Kubernetes to support both virtual machines and containerized workloads on a single platform, enables advanced AI and machine learning workloads at enterprise scale and offers integrated data services capabilities. Our solutions enhance our customers’ ability to continuously optimize performance and costs, protect the
+
+7
+
+Table of Contents
+
+business from threats and enable the business to focus on outcomes instead of operations through advanced observability and insights.
+
+•VMware Cloud Foundation Edge: The edge compute stack designed to deliver frictionless management of edge apps and infrastructure across many sites with limited resources. It efficiently manages infrastructure and applications at dispersed sites.
+
+•vSphere Foundation IT Infrastructure Optimization: vSphere Foundation supports modern IT requirements by boosting operational efficiency, elevating security and supercharging workload performance, all in support of accelerating innovation.
+
+•Private AI: This solution enables organizations to use generative AI technologies while addressing privacy and compliance needs of the organization.
+
+•Live Recovery: This solution helps organizations combat the evolving threat landscape through solutions and technologies that enable organizational resilience through rapid recovery of applications, data and critical business services.
+
+•Telco Cloud Platform: This solution supports network operations for telecom operators and communications service providers to modernize their infrastructure and allows them to create monetizable services. The modernization of the telecom infrastructure is critical to enabling operational agility, onboarding and delivering services much faster across domains and simplifying operations with automation.
+
+Tanzu Software Portfolio. Our application development, operations and optimization solutions help leading enterprises deliver highly performant applications and best-in-class user experiences.
+
+•Tanzu Platform: This cloud native application platform accelerates software delivery, providing platform engineering teams with enhanced governance and operational efficiency while reducing toil and complexity for development teams. Tanzu Platform includes access to content including enterprise-ready curated distributions of open source software technologies used for storing and processing data. It also includes Tanzu AI Solutions, a set of capabilities that help application teams deliver generative AI-powered, intelligent applications quickly, safely, and at scale. Tanzu Platform also offers teams full-stack visibility from applications to infrastructure and efficient modern application lifecycle management across public and private clouds with Cloud Foundry and/or with any conformant Kubernetes.
+
+•Tanzu Data: A suite of data services that provides advanced analytical data warehouse capabilities and real-time transactions and processing at massive scale with an in-memory data grid with vector database capabilities for AI use cases.
+
+•Tanzu CloudHealth: This solution simplifies financial management, streamlines operations, and improves organizational collaboration across the multi-cloud environment.
+
+•Tanzu Labs: This service provides hands-on cloud native consulting services to help customers move software to production while strengthening platform engineering skills.
+
+VeloCloud Portfolio. VeloCloud provides networking solutions to connect, secure and optimize workloads across distributed locations. By combining our VeloRAIN (Robust AI Networking) architecture with seamless connectivity and outcome-based quality of service, VeloCloud provides users and devices with compute and connectivity to optimize performance, security and reliability across fixed or mobile environments, while simplifying operations.
+
+•SD-WAN and SASE: Our SD-WAN (software-defined wide area network) solution, whether a part of our SASE (secure access service edge) architecture offering or standalone, provides a platform for enterprises to distribute modern applications and advanced AI systems while delivering security and ubiquity of access for distributed applications. Our SD-WAN or SASE solutions bring software-defined networking, security and AIOps together to support ubiquitous access across fiber, cellular and satellite for optimal performance and availability for modern applications.
+
+•VeloRAIN: Our architecture uses AI or machine learning to improve the performance and security of distributed workloads.
+
+•Fixed Wireless Access: This solution provides enterprises with reliable 5G connectivity to businesses and enterprise branches at the edge while optimizing the network through intelligence and network programmability.
+
+Application Networking and Security Software Portfolio. Our application networking and security software delivers zero-trust lateral security and load balancing solutions enabling global digital organizations to combat malware and ransomware. These software-defined solutions provide distributed and scale-out architectures, deep visibility, plug-and-play operations and self-service consumption. Customers can deploy our solutions at speed and operate them at scale across all their private cloud applications, which can reduce the total cost of ownership.
+
+8
+
+Table of Contents
+
+•Lateral Security Firewall: This solution enables access control for applications, protects against lateral movement of threats and provides security policy recommendations based on the workloads, and enables isolation of sensitive applications for enhanced regulatory compliance.
+
+•Advanced Threat Prevention: This solution integrates multiple threat detection and prevention technologies to deliver comprehensive protection from malware and ransomware attacks, including utilizing behavior-based techniques and advanced correlations to identify lateral threat movement and ransomware threat campaigns.
+
+•Advanced Load Balancing: This solution simplifies and accelerates application deployments and enhances application availability and resiliency to deliver load balancing at the speed of applications, allowing customers to leverage built-in automation to deploy load balancing as code as part of DevOps workflows for rapid infrastructure roll out.
+
+Mainframe Software Portfolio. Our mainframe software provides market-leading DevOps, AIOps, Cybersecurity, Workload Automation, Data Management, and Foundational Software solutions which enable customers to embrace open tools and technologies, innovate with their mainframe as part of their hybrid environment, and extend the value of their mainframe investments. Our commitment to partnering with our customers goes beyond products and technology. Through our unique Beyond Code programs we address challenges such as skills development, staffing, change management and cost-saving initiatives that drive greater overall business success with the platform.
+
+•Operational Analytics & Management: These solutions combine big data, machine learning and AI with mainframe expertise to deliver meaningful and actionable insights to augment and automate day-to-day operations and deliver exceptional customer experiences.
+
+•Workload Automation: These solutions reduce manual effort by enabling customers to proactively optimize resources and orchestrate automation across enterprise applications and systems.
+
+•Databases & Data Management: These high-performance databases and management tools store, organize, and manage mainframe data to ensure optimal performance, efficient administration, and reliability of critical systems. Customers can also manage their mainframe data storage using modern mainframe solutions that securely store data on any device that customers choose, including the cloud. These software-only solutions are designed to save on costs and maintain confidence in data security.
+
+•Application Development & Testing: These solutions enable customers to accelerate software delivery while increasing code quality through the use of our agile processes and tools, and DevOps solutions. Our open-first strategy helps customers modernize their mainframe environment through the use of open source and open application programming technologies across people, process, tooling and applications, resulting in greater synergy and alignment with their corporate IT environment.
+
+•Identity & Access Management: These solutions manage mainframe access and elevate it with modern practices such as multi-factor authentication and privileged user management, and support all external security managers.
+
+•Compliance & Data Protection: These solutions protect crucial mainframe data to ensure compliance, identify risk, proactively respond to potential threats, and reduce those risks to lighten the load on security management with automated identification and authorization cleanup.
+
+•Security Insights Platform: This solution helps ensure a trusted environment for customers and their employees by quickly interpreting and assessing mainframe security posture, identifying risks and developing remediation steps on an ongoing and ad hoc basis. This data is available for use with in-house tools for security information and event management.
+
+•Beyond Code Programs: These value-added offerings help ensure our customers get the most out of their mainframe investments. These offerings unlock additional value for organizations in areas such as educating and upskilling the workforce, providing expert guidance and support for change events, and uncovering opportunities to improve efficiency and save costs.
+
+Distributed Software Portfolio. Our distributed software solutions enable global enterprises to optimize the planning, development and delivery of software, powering their business-critical digital services. Our solutions are designed to enable customers to innovate, improve customer experience, and drive profitability by aligning business, development, and operational teams. Our products, organized in the domains of ValueOps, DevOps, and AIOps, deliver end-to-end visibility across all stages of the digital lifecycle and help our customers realize better business outcomes and better experiences for their customers.
+
+9
+
+Table of Contents
+
+•ValueOps: This solution delivers value stream management capabilities that enable customers to schedule, track, and manage work throughout its lifecycle from investment planning to execution. It aligns business and development teams across the enterprise, increasing transparency, reducing inefficiencies, and improving time to value.
+
+•DevOps: This solution offers capabilities that empower users of our agile processes and tools to track development progress and deploy releases confidently with assurance of feature completeness, high-quality and reduced risk. Key stakeholders have a single view of key insights into release progress, health, quality, defect trends, and metrics that drive focus, gauge readiness, and help to ensure successful, quality releases.
+
+•AIOps: This solution combines application, infrastructure and network monitoring and correlation with intelligent remediation capabilities to help customers create more resilient production environments and improve customer experience.
+
+Enterprise Security Portfolio. Our Enterprise Security solutions help organizations and governments secure against threats and compliance risks by protecting their users and data on any app, device, or network. Our integrated cyber defense approach simplifies cybersecurity with comprehensive solutions designed to secure critical business assets across on-premises and cloud infrastructures. Enterprise Security solutions utilize rich threat intelligence from a global network of security engineers, threat analyst and researchers, as well as advanced AI and machine learning engines, enabling customers to protect data, connect authorized users with trusted applications, and detect and respond to the most advanced targeted attacks.
+
+•Endpoint Security: Endpoints are the critical last line of defense against cyber attackers. Our Symantec and Carbon Black endpoint security solutions prevent, detect and respond to emerging threats across all devices and operating systems including laptops, desktops, tablets, mobile phones, servers and cloud workloads through an AI driven security console and single agent.
+
+•Network Security: Email and web access are the lifeblood and essential communication means for every modern organization. We have a full array of network security solutions, as well as a shared set of advanced threat protection technologies to stop inbound and outbound threats targeting end users, information and key infrastructure.
+
+•Information Security: Information protection and compliance is critical to managing risk. We offer integrated information security solutions, based on an efficient, single-policy that can be applied across the entire environment, to help organizations identify and protect risky users, applications and their most sensitive data everywhere across endpoints, on-premises networks, cloud services and private applications.
+
+•Application Security: Applications are increasingly targeted by cyber attackers. Our solutions secure critical systems, prevent unwanted changes, and ensure continuous compliance with regulatory mandates. Carbon Black solutions employ a positive security model that secures often overlooked use cases such as end-of-life operating systems, critical systems, fixed function devices, and air-gapped systems.
+
+•Identity Security: User identities are under attack by cyber criminals hoping to exploit their access and privileges and do harm. Our solution mitigates these attacks by positively identifying legitimate users, enforcing granular access control policies, and streamlining access governance to prevent unauthorized access to sensitive resources and data.
+
+FC SAN Management. We also offer mission-critical FC SAN products designed to help customers reduce the cost and complexity of managing business information within a shared data storage environment, enabling high levels of availability of mission-critical applications in the form of modules, switches and subsystems incorporating multiple semiconductor products. We deliver reliable and simplified management of these FC SAN products through our software-based management tools designed to maximize uptime, dramatically simplify storage area networking deployment and management, and provide high levels of visibility and insight into the storage network. Our Brocade Fibre Channel switch products provide interconnection, bandwidth and high-speed switching between servers and storage devices which are in a FC SAN.
+
+Payment Security Portfolio. Our payment security suite is a software as a service (“SaaS”)-based payment authentication service to help banks and merchants protect against fraud and ensure a hassle-free online shopping experience for their customers.
+
+10
+
+Table of Contents
+
+Research and Development
+
+We are committed to continuous investment in product development and enhancement, with a focus on rapidly introducing new, proprietary products and releases. Many of our products have grown out of our own research and development efforts, and have given us competitive advantages in certain target markets due to performance differentiation. However, we opportunistically seek to enhance our capabilities through the acquisition of engineers with complementary research and development skills and complementary technologies and businesses. We focus our research and development efforts on the development of mission-critical, innovative, sustainable and higher value product platforms and those that improve the quality and stability in our broadly deployed products. We leverage our design capabilities in markets where we believe our innovation and reputation will allow us to earn attractive margins by developing high value-add products.
+
+We plan to continue investing in product development, both organically and through acquisitions, to drive growth in our business. We also invest in process development and improvements to product features and functions, as well as fabrication capabilities to optimize processes for devices that are manufactured internally. Our field application engineers, design engineers, and product and software development engineers are located in many places around the world, and in many cases, near our top customers. This enhances our customer reach and our visibility into new product opportunities and, in the case of our semiconductor customers, enables us to support our customers in each stage of their product development cycle, from the early stages of production design to volume manufacturing and future growth. By collaborating with our customers, we have opportunities to develop high value-added, customized products for them that leverage our existing technologies. We anticipate that we will continue to make significant research and development investments in order to maintain our competitive position, and to ensure a continuous flow of innovative and sustainable product platforms.
+
+Customers, Sales and Distribution
+
+We sell our products through our direct sales force and a select network of distributors and channel partners globally. Distributors and OEMs, or their contract manufacturers, typically account for the substantial majority of our semiconductor sales. A relatively small number of customers account for a significant portion of our net revenue. Sales to distributors accounted for 48% and 57% of our net revenue for fiscal years 2024 and 2023, respectively. We believe aggregate sales to our top five end customers, through all channels, accounted for approximately 40% and 35% of our net revenue for fiscal years 2024 and 2023, respectively. We expect to continue to experience significant customer concentration in future periods. The loss of, or significant decrease in demand from, any of our top five end customers could have a material adverse effect on our business, results of operations and financial condition.
+
+Many of our semiconductor customers design products in North America or Europe that are then manufactured in Asia. To serve customers around the world, we have strategically developed relationships with large global electronic component distributors, complemented by a number of regional distributors with customer relationships based on their respective product ranges. We also sell our products to a wide variety of OEMs or their contract manufacturers. We have established strong relationships with leading OEM customers across multiple target markets. Our direct sales force focuses on supporting our large OEM customers, and has specialized product and service knowledge that enables us to sell specific offerings at key levels throughout a customer’s organization. Certain customers require us to contract with them directly and with specified intermediaries, such as contract manufacturers. Many of our major customer relationships have been in place for many years and are often the result of years of collaborative product development. This has enabled us to build our extensive IP portfolio and develop critical expertise regarding our customers’ requirements, including substantial system-level knowledge. This collaboration has provided us with key insights into our customers' businesses and has enabled us to be more efficient and productive and to better serve our target markets and customers. Many of our customers and their contract manufacturers often require time critical delivery of our products to multiple locations around the world. With sales offices located in various countries, our primary warehouse in Malaysia, and dedicated regional customer support call centers, where we address customer issues and handle logistics and other order fulfillment requirements, we believe we are well-positioned to support our customers throughout the design, technology transfer and manufacturing stages across all geographies.
+
+Our software customers generally consist of large enterprises that have computing environments from multiple vendors and are in most major industries worldwide, including banks, insurance companies, other financial services providers, government agencies, global IT service providers, telecommunication providers, transportation companies, manufacturers, technology companies, retailers, educational organizations and health care institutions. Our private cloud infrastructure suite of solutions are available directly from Broadcom, resellers and distributors, hyperscale cloud providers, value-added OEMs and VMware cloud service provider partners. VCF provides license portability, which enables customers to purchase subscriptions of VCF software and move their VCF environments between on-premises data centers and supported cloud endpoints. We remain focused on strengthening relationships and increasing penetration within our existing core, mainframe, VMware, and Symantec endpoint customers and expanding the adoption of our enterprise software offerings with these customers. We believe our enterprise-wide license model will continue to offer our customers reduced complexity, more flexibility and an easier renewal process that will help drive revenue growth.
+
+11
+
+Table of Contents
+
+Manufacturing
+
+We focus on maintaining an efficient global supply chain and a variable, low-cost operating model. Accordingly, we outsource a majority of our manufacturing operations, utilizing third-party foundry and assembly and test capabilities, as well as some of our corporate infrastructure functions. The majority of our front-end wafer manufacturing operations is outsourced to external foundries, including Taiwan Semiconductor Manufacturing Company Limited (“TSMC”). We use third-party contract manufacturers for a significant majority of our assembly and test operations, including TSMC, Advanced Semiconductor Engineering, Inc., Foxconn Technology Group, Amkor Technology, Inc. and Siliconware Precision Industries Co., Ltd. We use our internal fabrication facilities for products utilizing our innovative and proprietary processes, such as our FBAR filters for wireless communications and our vertical-cavity surface emitting laser and side emitting lasers based on GaAs and InP lasers for fiber optic communications, while outsourcing commodity processes such as standard CMOS. By doing so, we can protect our IP and accelerate time to market for our products. The majority of our internal III-V semiconductor wafer fabrication is done in the U.S. and Singapore.
+
+We purchase materials from hundreds of suppliers on a global basis. These purchases are generally on a purchase order basis and some parts are not readily available from alternate suppliers due to their unique design or the length of time and cost necessary for re-design or qualification. To address the potential disruption in our supply chain, we may use a number of techniques, including redesigning products for alternative components, making incremental or “lifetime” purchases, or qualifying more than one source of supply. Our long-term relationships with our suppliers allow us to proactively manage our technology development and product discontinuance plans, and to monitor our suppliers' financial health.
+
+We also have a long history of operating in Asia where we manufacture and source the majority of our products and materials. We store the majority of our product inventory in our warehouse in Malaysia and our presence in Asia places us in close proximity to many of our customers’ manufacturing facilities.
+
+Competition
+
+The markets in which we participate are highly competitive. Our competitors range from large international companies offering a wide range of products to smaller companies specializing in narrow markets. The competitive landscape is changing as a result of a trend toward consolidation within many industries, as some of our competitors have merged with or been acquired by other competitors, while others have begun collaborating with each other. We expect this consolidation trend to continue. We expect competition in the markets in which we participate to continue to increase as existing competitors improve or expand their product offerings and as new companies enter the market. Additionally, our ability to compete effectively depends on a number of factors, including: quality, technical performance, price, product features, product system compatibility, system-level design capability, engineering expertise, responsiveness to customers, new product innovation, product availability, delivery timing and reliability, and customer sales and technical support.
+
+In semiconductor solutions, we compete with integrated device manufacturers, fabless semiconductor companies and the internal resources of large integrated OEMs, such as Advanced Micro Devices, Inc., Amlogic Inc., Analog Devices, Inc., Cisco Systems, Inc., Coherent Corp., Hamamatsu Photonics K.K., Heidenhain Corporation, iC-Haus GmbH, Intel Corporation, Lumentum Holdings Inc., MACOM Technology Solutions Holdings, Inc., Marvell Technology, Inc., MaxLinear, Inc., MediaTek Inc., Microchip Technology Incorporated, Mitsubishi Electric Corporation, Murata Manufacturing Co., Ltd., NVIDIA Corporation, NXP Semiconductors N.V., ON Semiconductor Corporation, OSRAM Licht AG, Qorvo, Inc., Qualcomm Inc., Realtek Semiconductor Corp., Renesas Electronics Corporation, Skyworks Solutions, Inc., STMicroelectronics N.V., Sumitomo Corporation, Synaptics Incorporated, Texas Instruments, Inc., TDK-EPC Corporation, Toshiba Corporation, and Wolfspeed, Inc. (f/k/a Cree, Inc.).
+
+In infrastructure software, we compete with large enterprise software vendors who continue to expand their product and service offerings and consolidate offerings into broad product lines, and smaller, niche players focused on specific markets, such as Atlassian Corporation, Plc, BeyondTrust Corporation, BMC Software Inc., Cisco Systems, Inc., CrowdStrike Holdings, Inc., CyberArk Software, Ltd., Dino-Software Corporation, Fortinet, Inc., Hewlett Packard Enterprise Company, International Business Machines Corporation, Microsoft Corporation, New Relic, Inc., OpenText Corporation, Oracle Corporation, Palo Alto Networks, Inc., Proofpoint, Inc., Rocket Software, Inc., SailPoint Technologies Holdings, Inc., Salesforce.com, Inc., ServiceNow, Inc., SolarWinds Corporation, Versa Networks, Inc., and Zscaler, Inc.
+
+Intellectual Property
+
+Our success depends in part upon our ability to protect our IP. To accomplish this, we rely on a combination of IP rights, including patents, copyrights, trademarks, service marks, trade secrets and similar IP, as well as customary contractual protections with our customers, suppliers, employees and consultants, and through security measures to protect our trade secrets. We believe our current product expertise, key engineering talent and IP portfolio provide us with a strong platform from which to develop application specific products in key target markets.
+
+12
+
+Table of Contents
+
+As of November 3, 2024, we had 20,870 U.S. and other patents and 2,650 U.S. and other pending patent applications. The expiration dates of our patents range from 2024 to 2043, with a small number of patents expiring in the near future, none of which are expected to be material to our IP portfolio. We are not substantially dependent on any single patent or group of related patents.
+
+We focus our patent application program to a greater extent on those inventions and improvements that we believe are likely to be incorporated into our products, as contrasted with more basic research. However, we do not know how many of our pending patent applications will result in the issuance of patents or the extent to which the examination process could require us to narrow our claims.
+
+We and our predecessors have also entered into a variety of IP licensing and cross-licensing arrangements that have both benefited our business and enabled some of our competitors. A portion of our revenue comes from IP licensing royalty payments and from litigation settlements relating to such IP. We also license third-party technologies that are incorporated into some elements of our design activities, products and manufacturing processes. Historically, licenses of the third-party technologies used by us have generally been available to us on acceptable terms.
+
+The industries in which we compete are characterized by the existence of a large number of patents, copyrights, trademarks and trade secrets and by the vigorous pursuit, protection and enforcement of IP rights, including by patent holding companies that do not make or sell products. Some of our customer agreements require us to indemnify our customers for third-party IP infringement claims arising from our products. Claims of this sort could harm our relationships with our customers and might deter future customers from doing business with us. With respect to any IP rights claims against us or our customers or distributors, we may be required to defend ourselves or our customers or distributors in litigation, cease manufacturing the infringing products, pay damages, expend resources to develop non-infringing technology, seek a license which may not be available on commercially reasonable terms or at all, or relinquish patents or other IP rights.
+
+In addition, the proprietary portions of our source code for our infrastructure software products are protected both as a trade secret and as copyrighted works. Except with respect to software components that are subject to open source licenses, our customers do not generally have access to the source code for our products. Rather, on-premises customers typically access only the executable code for our products, and SaaS customers access only the functionality of our SaaS offerings. Under certain contingent circumstances, some of our customers are beneficiaries of a source code escrow arrangement that would enable them to obtain a limited right to access and use our source code if specific conditions are met.
+
+Employees
+
+Our continued success depends on our ability to attract, motivate and retain our workforce in a highly competitive labor market. Specifically, as the source of our technological and product innovations, our engineering and technical personnel are a critical asset.
+
+We measure our employees’ engagement by our voluntary attrition rate and employee feedback. Our global voluntary attrition rates in fiscal year 2024 were approximately 2.9% (excluding employees who joined Broadcom as a result of the VMware Merger) and approximately 6.2% (including employees who joined Broadcom as a result of the VMware Merger), which are both below the technology industry benchmark (AON, 2024 Salary Increase and Turnover Study — Second Edition, September 2024).
+
+We also track the portion of our workforce in research and development roles. As of November 3, 2024, we had approximately 37,000 employees worldwide, with approximately 55% in research and development roles. By geography, approximately 48% of our employees are located in North America, 36% in Asia, and 16% in Europe, the Middle East and Africa.
+
+Governmental Regulation
+
+We are subject to numerous regulations and laws in the United States and abroad involving matters central to our business. Many of these laws and regulations are evolving and their applicability and scope, as interpreted by the courts, remain uncertain.
+
+We are subject to regulation by the U.S. Occupational Safety and Health Administration and similar health and safety laws in other jurisdictions. We believe that our properties and operations at our facilities comply in all material respects with applicable environmental laws and worker health and safety laws. However, the risk of environmental liabilities cannot be completely eliminated and there can be no assurance that the application of environmental, health and safety laws to our business will not require us to incur significant expenditures.
+
+In addition, our business is subject to various import/export regulations, such as the U.S. Export Administration Regulations, and applicable executive orders, and rules of industrial standards bodies, like the International Organization for Standardization, as well as regulation by other agencies, such as the U.S. Federal Trade Commission (“FTC”). These laws,
+
+13
+
+Table of Contents
+
+regulations and orders are complex, may change frequently and with limited notice, have generally and may continue to become more stringent over time. We may incur significant expenditures in future periods as a result.
+
+Our semiconductor manufacturing operations and research and development involve the use of hazardous substances and are regulated under international, federal, state and local laws governing health, safety and the environment. These regulations include limitations on discharge of pollutants to air, water, and soil; remediation requirements; product chemical content limitations; manufacturing chemical use and handling restrictions; pollution control requirements; waste minimization considerations; and treatment, transport, storage and disposal of solid and hazardous wastes. We are also regulated under a number of international, federal, state and local laws regarding recycling, product packaging and product content requirements, including legislation enacted in the U.S., European Union and China, among a growing number of jurisdictions, which have placed greater restrictions on the use of lead, among other restricted substances, in electronic products, which affects materials composition and semiconductor packaging.
+
+Seasonality
+
+Historically, our net revenue has typically been higher in the second half of the fiscal year than in the first half, primarily due to seasonality in our wireless communications products. These products have historically experienced seasonality due to launches of new mobile devices manufactured by our OEM customers. However, from time to time, typical seasonality and industry cyclicality are overshadowed by other factors such as wider macroeconomic effects, the timing of customer deployments, significant product transitions and launches by large OEMs, particularly with our AI and wireless communications products. We have a diversified business portfolio and we believe that our overall revenue is less susceptible to seasonal variations as a result of this diversification.
+
+Available Information
+
+Our website is www.broadcom.com. At the “Investor Center” page on this website, we promptly make available free of charge the reports we file or furnish pursuant to Section 13(a) or 15(d) of the Securities Exchange Act of 1934 (the “Exchange Act”) with the Securities and Exchange Commission (the “SEC”), as well as our proxy statements. Such periodic reports, proxy statements and other information are also available at the SEC’s website at www.sec.gov. The information posted on our website is not incorporated into this Annual Report on Form 10-K.
+
+Information About Our Executive Officers
+
+The following table provides information regarding our executive officers as of December 20, 2024:
+
+Name and Title | Age | Position and Offices
+
+Hock E. Tan | 73 | President, Chief Executive Officer and Director
+
+Kirsten M. Spears | 60 | Chief Financial Officer and Chief Accounting Officer
+
+Mark D. Brazeal | 56 | Chief Legal and Corporate Affairs Officer
+
+Charlie B. Kawwas, Ph.D. | 54 | President, Semiconductor Solutions Group
+
+Hock E. Tan has served as our President and Chief Executive Officer since March 2006. He was President and Chief Executive Officer at Integrated Circuit Systems, Inc. (“ICS”), a publicly traded timing solutions IC company, from 1999 until its acquisition by Integrated Device Technology, Inc. in 2005. He also served in a number of executive positions at ICS, including Chief Operating Officer from 1996 to 1999 and Senior Vice President and Chief Financial Officer from 1995 to 1999. He was Vice President of Finance at Commodore International, Ltd. from 1992 to 1994, and held senior management positions at PepsiCo, Inc. and General Motors Corporation. He was also managing director of Pacven Investment, Ltd., a venture capital fund in Singapore, from 1988 to 1992, and was managing director of Hume Industries Ltd. in Malaysia from 1983 to 1988.
+
+Kirsten M. Spears has served as our Chief Financial Officer and Chief Accounting Officer since December 2020. She served as our Principal Accounting Officer from March 2016 to December 2020 and Vice President and Corporate Controller from May 2014 to December 2020. She was Vice President and Corporate Controller at LSI Corporation from 2007 until its acquisition by us in 2014. She held several management positions in accounting and reporting at LSI from 1997 to 2007. She also worked for PriceWaterhouseCoopers prior to joining LSI.
+
+Mark D. Brazeal has served as our Chief Legal and Corporate Affairs Officer since December 2021. He served as our Chief Legal Officer from March 2017 to December 2021. He was Chief Legal Officer and Senior Vice President, IP Licensing for SanDisk Corporation from 2014 until its acquisition by Western Digital Corporation in 2016. He held several senior legal positions at Broadcom Corporation from 2000 to 2014, including Senior Vice President and Senior Deputy General Counsel in charge of all commercial, operational, IP licensing and litigation matters. He was also an attorney in the transactional and IP groups at the law firms of Wilson Sonsini Goodrich & Rosati, Yuasa & Hara and Howrey & Simon prior to joining Broadcom Corporation.
+
+14
+
+Table of Contents
+
+Charlie B. Kawwas has served as our President, Semiconductor Solutions Group since July 2022. He served as our Chief Operating Officer from December 2020 to July 2022, Senior Vice President and Chief Sales Officer from June 2015 to December 2020 and Senior Vice President, Worldwide Sales from May 2014 to June 2015. He was head of worldwide sales at LSI Corporation from 2010 until its acquisition by us in 2014. He held several executive leadership positions at LSI from 2007 to 2010, including Vice President of Sales and Marketing for the networking division and Vice President of Marketing for the networking and storage products group. He was also the leader of Product Line Management for the Optical Ethernet and Multi-service Edge portfolio at Nortel Networks Corporation prior to joining LSI.
+
+15
+
+Table of Contents

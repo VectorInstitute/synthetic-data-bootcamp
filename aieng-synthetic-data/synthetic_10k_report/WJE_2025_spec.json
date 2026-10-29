@@ -1,0 +1,33 @@
+{
+  "fictional_id": "WJE",
+  "fictional_name": "Fieldstone Partners Holdings, Inc.",
+  "fiscal_year": 2025,
+  "sector": "Information Technology",
+  "sub_industry": "Systems Software",
+  "hq_state": "Texas",
+  "template": {
+    "ticker": "CRWD",
+    "fiscal_year": 2025
+  },
+  "financials": {
+    "total_assets": 8882569655,
+    "total_liabilities": 4987998006,
+    "stockholders_equity": 3894571649,
+    "revenues": 4636511420,
+    "net_income": -15585296,
+    "operating_income": -124758351
+  },
+  "cybersecurity": {
+    "framework": "the NIST Cybersecurity Framework and ISO/IEC 27001",
+    "oversight": "the full Board of Directors, with support from the Audit Committee",
+    "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "cash_burn",
+    "summary": "Fieldstone Partners recorded an operating and net loss for fiscal 2025, reflecting ongoing investment in research and development and sales and marketing ahead of sustained profitability, consistent with its stage of growth as a subscription-based cybersecurity platform.",
+    "facts": {
+      "driver": "ongoing investment in research and development and sales and marketing ahead of sustained profitability",
+      "framing": "consistent with the company's growth stage as a subscription-based platform business, not a deteriorating core business"
+    }
+  }
+}

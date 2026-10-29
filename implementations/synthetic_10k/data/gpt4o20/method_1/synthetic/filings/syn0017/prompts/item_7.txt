@@ -1,0 +1,263 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Orris Aerospace, Inc. (ticker OSRR)
+Sector: Industrials
+Incorporated in: Delaware
+Headquarters: Columbus, Ohio
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 27,000
+
+Orris Aerospace, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      10,928        10,499
+Cost of revenue                               7,940         7,730
+Gross profit                                  2,988         2,769
+Research and development                        409           370
+Selling, general and administrative             676           557
+Other operating expense                           0             1
+Operating income                              1,903         1,841
+Interest expense                                 85            86
+Income before income taxes                    1,818         1,755
+Provision for income taxes                      355           362
+Net income                                    1,463         1,393
+
+Orris Aerospace, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                              401           375
+Accounts receivable, net                             1,175         1,158
+Inventories                                          2,194         2,036
+Other current assets                                   199           188
+Total current assets                                 3,969         3,757
+Property, plant and equipment, net                  10,560        10,128
+Goodwill                                             1,183         1,118
+Other non-current assets                               721         1,118
+Total assets                                        16,433        16,121
+Total current liabilities                            5,407         5,171
+Long-term debt                                       1,888         1,913
+Other non-current liabilities                        4,537         4,624
+Total liabilities                                   11,832        11,708
+Total stockholders' equity                           4,601         4,413
+Total liabilities and stockholders' equity          16,433        16,121
+
+Orris Aerospace, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             1,463
+Depreciation and amortization                            597
+Changes in working capital and other                     189
+Net cash provided by operating activities              2,249
+Purchases of property and equipment                    (304)
+Other investing activities, net                        (619)
+Net cash used in investing activities                  (923)
+Net change in long-term debt                            (25)
+Dividends paid                                         (314)
+Share repurchases, net of issuances                    (961)
+Net cash used in financing activities                (1,300)
+Net change in cash and cash equivalents                   26
+Cash and cash equivalents, beginning of year             375
+Cash and cash equivalents, end of year                   401
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 4.1%
+Net income growth, fiscal 2024 versus 2023: 5.0%
+Operating income growth, fiscal 2024 versus 2023: 3.4%
+Gross margin, fiscal 2024: 27.3%
+Operating margin, fiscal 2024: 17.4%
+Net margin, fiscal 2024: 13.4%
+Effective tax rate, fiscal 2024: 19.5%
+Research and development as a share of revenue, fiscal 2024: 3.7%
+Selling, general and administrative as a share of revenue, fiscal 2024: 6.2%
+Gross margin, fiscal 2023: 26.4%
+Operating margin, fiscal 2023: 17.5%
+Net margin, fiscal 2023: 13.3%
+Effective tax rate, fiscal 2023: 20.6%
+Research and development as a share of revenue, fiscal 2023: 3.5%
+Selling, general and administrative as a share of revenue, fiscal 2023: 5.3%
+
+STYLE EXAMPLE: the start of Item 7 from a real Industrials company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS
+Overview
+Our business is comprised of two operating segments, the Flight Support Group (“FSG”) and the Electronic Technologies Group (“ETG”).
+The FSG consists of HEICO Aerospace Holdings Corp. (“HEICO Aerospace”), which is 80% owned, and HEICO Flight Support Corp., which is wholly owned, and their collective subsidiaries, which primarily:
+•Designs, Manufactures, Repairs, Overhauls and Distributes Jet Engine and Aircraft Component Replacement Parts. The FSG designs and manufactures jet engine and aircraft component replacement parts, which are approved by the Federal Aviation Administration (“FAA”). In addition, the FSG repairs, overhauls and distributes jet engine and aircraft components, avionics and instruments for domestic and foreign commercial air carriers and aircraft repair companies as well as military and business aircraft operators. The FSG also manufactures and sells specialty parts as a subcontractor for aerospace and industrial original equipment manufacturers and the United States ("U.S.") government. Additionally, the FSG is a leading supplier, distributor, and integrator of military aircraft parts and support services primarily to the U.S. Department of Defense, defense prime contractors, and foreign military organizations allied with the U.S. Further, the FSG is a leading manufacturer of advanced niche components and complex composite assemblies for commercial aviation, defense and space applications. The FSG also engineers, designs and manufactures thermal insulation blankets and parts as well as removable/reusable insulation systems for aerospace, defense, commercial and industrial applications; manufactures expanded foil mesh for lightning strike protection in fixed and rotary wing aircraft; distributes aviation electrical interconnect products and electromechanical parts; overhauls industrial pumps, motors, and other hydraulic units with a focus on the support of legacy systems for the U.S. Navy; performs tight-tolerance machining, brazing, fabricating and welding services for aerospace, defense and other industrial applications; and manufactures emergency descent devices ("EDDs") and personnel and cargo parachute products.
+The ETG consists of HEICO Electronic Technologies Corp. (“HEICO Electronic”) and its subsidiaries, which primarily:
+•Designs and Manufactures Electronic, Microwave, Electro-Optical and Other Power Equipment, High-Speed Interface Products, High Voltage Interconnection Devices, EMI
+34
+Index
+and RFI Shielding and Filters, High Voltage Advanced Power Electronics, Power Conversion Products, Underwater Locator Beacons, Memory Products, Self-Sealing Auxiliary Fuel Systems, Active Antenna Systems, Airborne Antennas, TSCM Equipment, High Reliability ("Hi-Rel") Electronic Components, In-Flight Entertainment Products, and Cockpit displays and Other Avionics Components. The ETG collectively designs, manufactures and sells various types of electronic, data and microwave, and electro-optical products, including infrared simulation and test equipment, laser rangefinder receivers, electrical power supplies, back-up power supplies, power conversion products, underwater locator beacons, emergency locator transmission beacons, flight deck annunciators, panels, indicators, electromagnetic and radio frequency interference shielding and filters, high power capacitor charging power supplies, amplifiers, traveling wave tube amplifiers, photodetectors, amplifier modules, microwave power modules, flash lamp drivers, laser diode drivers, arc lamp power supplies, custom power supply designs, cable assemblies, high voltage power supplies, high voltage interconnection devices and wire, high voltage energy generators, high frequency power delivery systems; memory products, including three-dimensional microelectronic and stacked memory, static random-access memory (SRAM) and electronically erasable programmable read-only memory (EEPROM); harsh environment electronic connectors and other interconnect products, RF and microwave amplifiers, transmitters, and receivers and integrated assemblies, sub-assemblies and components; RF sources, detectors and controllers, wireless cabin control systems, solid state power distribution and management systems, proprietary in-cabin power and entertainment components and subsystems, cockpit displays and other avionics components, crashworthy and ballistically self-sealing auxiliary fuel systems, nuclear radiation detectors, communications and electronic intercept receivers and tuners, fuel level sensing systems, high-speed interface products that link devices, high performance active antenna systems and airborne antennas for commercial and military aircraft, precision guided munitions, other defense applications and commercial uses; silicone material for a variety of demanding applications; precision power analog monolithic, hybrid and open frame components; high-reliability ceramic-to-metal feedthroughs and connectors, technical surveillance countermeasures (TSCM) equipment to detect devices used for espionage and information theft; rugged small-form factor embedded computing solutions; custom high power filters and filter assemblies; test sockets and adapters for both engineering and production use of semiconductor devices; radiation assurance services and products; and Hi-Rel, complex, passive electronic components and rotary joint assemblies for mostly aerospace and defense applications, in addition to other high-end applications, such as medical and energy uses including emerging "clean energy" and electrification applications.
+Additionally, our results of operations in fiscal 2025 have been affected by recent acquisitions as further detailed in Note 2, Acquisitions, of the Notes to Consolidated Financial Statements.
+35
+Index
+Presentation of Results of Operations and Liquidity and Capital Resources
+The following discussion and analysis of our Results of Operations and Liquidity and Capital Resources includes a comparison of fiscal 2025 to fiscal 2024. A similar discussion and analysis that compares fiscal 2024 to fiscal 2023 may be found in Item 7, "Management’s Discussion and Analysis of Financial Condition and Results of Operations,” of our Form 10-K for the fiscal year ended October 31, 2024.
+Results of Operations
+The following table sets forth the results of our operations, net sales and operating income by segment and the percentage of net sales represented by the respective items in our Consolidated Statements of Operations (in thousands):
+Year ended October 31,
+2025	2024
+Net sales	$4,485,044	$3,857,669
+Cost of sales	2,698,580	2,355,943
+Selling, general and administrative expenses
+767,466	677,271
+Total operating costs and expenses
+3,466,046	3,033,214
+Operating income	$1,018,998	$824,455
+Net sales by segment and intersegment:
+Flight Support Group
+$3,117,277	$2,639,354
+Electronic Technologies Group	1,413,120	1,263,626
+Intersegment sales
+(45,353)	(45,311)
+$4,485,044	$3,857,669
+Operating income by segment and corporate and other:
+Flight Support Group
+$750,395	$593,074
+Electronic Technologies Group
+324,952	288,193
+Other, primarily corporate
+(56,349)	(56,812)
+$1,018,998	$824,455
+Net sales	100.0	%	100.0	%
+Gross profit	39.8	%	38.9	%
+Selling, general and administrative expenses
+17.1	%	17.6	%
+Operating income	22.7	%	21.4	%
+Interest expense	(2.9	%)	(3.9	%)
+Other income	.1	%	.1	%
+Income tax expense	3.3	%	3.1	%
+Net income attributable to noncontrolling interests
+1.2	%	1.2	%
+Net income attributable to HEICO
+15.4	%	13.3	%
+36
+Index
+Comparison of Fiscal 2025 to Fiscal 2024
+Net Sales
+Our consolidated net sales in fiscal 2025 increased by 16% to a record $4,485.0 million, up from net sales of $3,857.7 million in fiscal 2024. The increase in consolidated net sales principally reflects an increase of $477.9 million (an 18% increase) to a record $3,117.3 million in net sales of the FSG and an increase of $149.5 million (a 12% increase) to a record $1,413.1 million in net sales of the ETG. The net sales increase in the FSG reflects strong organic growth of 14% and net sales of $110.6 million contributed by fiscal 2025 and 2024 acquisitions. The FSG's organic net sales growth reflects increased demand within its aftermarket replacement parts, repair and overhaul parts and services, and specialty products product lines resulting in net sales increases of $263.9 million, $67.8 million and $35.6 million, respectively. The net sales increase in the ETG reflects strong organic growth of 7% and net sales of $63.9 million contributed by fiscal 2025 and 2024 acquisitions. The ETG's organic net sales growth is mainly attributable to increased demand for its defense, space, other electronics, and aerospace products resulting in net sales increases of $29.6 million, $28.4 million, $20.6 million, and $16.2 million, respectively, partially offset by decreased demand for its medical products resulting in a net sales decrease of $9.4 million. Sales price changes were not a significant contributing factor to the change in net sales of the FSG and ETG in fiscal 2025.
+Our net sales in fiscal 2025 and 2024 by market consisted of approximately 58% and 56% from the commercial aviation industry, respectively, 31% and 32% from the defense and space industries, respectively, and 11% and 12% from other industrial markets including electronics, medical and telecommunications, respectively.
+Gross Profit and Operating Expenses
+Our consolidated gross profit margin [...]
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Overview
+
+Orris Aerospace, Inc. is a leading provider in the aerospace and defense industry, focusing on the development, manufacturing, and servicing of aircraft systems and components. Incorporated in Delaware and headquartered in Columbus, Ohio, Orris Aerospace operates primarily in the United States but serves a global customer base. For the fiscal year ended December 31, 2024, the company generated revenue of $10,928 million, reflecting a robust growth trajectory in the sector.
+
+Principal Products and Services
+
+Orris Aerospace specializes in a diverse array of products and services that cater to the needs of commercial aviation, defense, and space exploration. Our core offerings include aircraft engines, avionics systems, and aerostructures. Additionally, Orris Aerospace provides maintenance, repair, and overhaul (MRO) services, ensuring the longevity and safety of aircraft operations. Our commitment to innovation is demonstrated through our investments in advanced technologies such as electric propulsion and autonomous flight systems.
+
+Reportable Segments
+
+Commercial Aviation
+
+The commercial aviation segment is Orris Aerospace's largest revenue generator, driven by the demand for fuel-efficient and reliable aircraft components. We supply major aircraft manufacturers with engines and systems that are integral to the next generation of commercial airliners. This segment is characterized by long-term contracts and partnerships with key industry players, ensuring steady growth and consistent revenue streams.
+
+Defense and Space
+
+In the defense and space segment, Orris Aerospace provides mission-critical systems to government and defense contractors. Our advanced propulsion systems and avionics are designed to meet the stringent requirements of military applications. Additionally, we are actively involved in various space exploration projects, contributing to the development of spacecraft and satellite systems. This segment benefits from government contracts and is supported by robust research and development efforts.
+
+Aftermarket Services
+
+The aftermarket services segment encompasses our MRO operations, which are essential for maintaining the operational readiness of aircraft fleets. Orris Aerospace offers comprehensive support services, including parts distribution and technical assistance, to airlines and military operators worldwide. The demand for aftermarket services is driven by the aging global aircraft fleet and the need for upgrades to meet evolving regulatory standards.
+
+Customers
+
+Orris Aerospace serves a broad customer base, including commercial airlines, aircraft manufacturers, government agencies, and defense contractors. Our strong relationships with these customers are built on a foundation of trust, innovation, and reliability. We aim to exceed customer expectations by delivering high-quality products and services that enhance the performance and safety of their operations.
+
+Sales and Marketing
+
+Our sales and marketing efforts are focused on building long-term relationships with key stakeholders in the aerospace industry. We employ a direct sales model, complemented by a network of representatives and distributors to extend our reach globally. Strategic marketing initiatives are designed to enhance brand recognition and demonstrate our commitment to technological advancement. Participation in major industry trade shows and events allows us to showcase our capabilities and engage with potential customers.
+
+Competition
+
+Orris Aerospace operates in a highly competitive industry characterized by rapid technological advancements and stringent regulatory requirements. Our primary competitors include large multinational corporations and specialized firms that offer similar products and services. To maintain our competitive edge, we invest significantly in research and development, enabling us to introduce innovative solutions that meet the evolving needs of the aerospace sector. Our focus on quality, performance, and customer service sets us apart from our competitors.
+
+Seasonality
+
+The aerospace industry exhibits some seasonal variations, particularly in the commercial aviation segment. Demand for aircraft components and MRO services tends to increase during peak travel periods, such as summer and holiday seasons, when airlines expand their operations. However, the defense and space segment experiences relatively stable demand throughout the year, driven by government procurement cycles and long-term contracts.
+
+Intellectual Property
+
+Orris Aerospace holds a substantial portfolio of patents and trademarks that safeguard our technological innovations and brand identity. Our intellectual property strategy is instrumental in maintaining our competitive advantage and ensuring that our proprietary technologies are protected. We are committed to ongoing research and development to expand our intellectual property assets and support our growth in emerging markets.
+
+Government Regulation
+
+As a participant in the aerospace and defense industry, Orris Aerospace is subject to a variety of governmental regulations and standards. Compliance with safety, environmental, and export control regulations is critical to our operations. We work closely with regulatory bodies to ensure that our products and services meet all applicable requirements. Our dedicated compliance teams actively monitor changes in legislation to mitigate potential risks and maintain operational integrity.
+
+Human Capital
+
+Orris Aerospace's success is underpinned by a talented and dedicated workforce of approximately 27,000 employees. We prioritize the development and retention of our employees through comprehensive training programs and career advancement opportunities. Our diverse and inclusive work environment fosters innovation and collaboration, enabling us to attract top talent from across the industry. We are committed to providing a safe and supportive workplace that empowers our employees to achieve their full potential.
+
+Available Information
+
+Orris Aerospace is committed to transparency and accountability in our business operations. We provide timely and accurate information to our stakeholders through annual reports, press releases, and regulatory filings. Our corporate website serves as a valuable resource for investors, customers, and the public, offering access to financial reports, corporate governance documents, and other relevant information. We encourage stakeholders to engage with us through various communication channels to gain insights into our business activities and strategic direction.
+
+In summary, Orris Aerospace, Inc. is a dynamic and forward-thinking leader in the aerospace industry, dedicated to delivering innovative products and services that meet the needs of our diverse customer base. Our strategic focus on growth, innovation, and operational excellence positions us for continued success in a competitive and rapidly evolving market.
+
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+The following risk factors could materially affect Orris Aerospace, Inc.’s business, financial condition, and results of operations. These risks are not the only ones we face. Additional risks not presently known to us or that we currently deem immaterial may also impair our business operations.
+
+Business and Industry Risks
+
+Fluctuations in Aerospace Demand. Our business is highly sensitive to changes in the overall economic environment and conditions specific to the aerospace industry. Economic downturns or geopolitical events can lead to reduced budgets for defense and space exploration, as well as decreased commercial air travel, negatively impacting demand for our products and services. Additionally, fluctuations in fuel prices, interest rates, and consumer confidence can influence our customers’ purchasing decisions, potentially leading to reduced orders and revenue volatility.
+
+Intense Competition and Technological Advancements. We operate in a highly competitive environment where rapid technological advancements and innovation are crucial for maintaining market share. Competitors, both established and emerging, may develop more advanced or cost-effective products, which could lead to reduced demand for our offerings. Our ability to compete effectively depends on our capacity to innovate, develop new technologies, and adapt to evolving industry standards and customer preferences.
+
+Operational Risks
+
+Supply Chain Disruptions. The production of our aerospace systems relies on a complex global supply chain. Disruptions caused by natural disasters, geopolitical tensions, or pandemics can lead to shortages of critical components, increased costs, and delays in production schedules. Our reliance on third-party suppliers for specialized materials and components increases our exposure to these risks. Failure to manage supply chain disruptions could adversely affect our ability to deliver products on time and within budget.
+
+Cost Pressures and Inflation. The aerospace industry is subject to significant cost pressures, including those related to raw materials, labor, and energy. Inflationary trends can increase these costs, affecting our profitability and financial performance. We may not be able to pass these increased costs on to customers through price adjustments, leading to margin compression. Additionally, unexpected increases in production costs could impact our competitive positioning and financial health.
+
+Capacity Constraints and Production Challenges. The manufacturing of aerospace components and systems requires specialized facilities and skilled labor. Capacity constraints, whether due to facility limitations or labor shortages, can hinder our ability to meet production targets. Inadequate production capacity can result in missed customer deadlines, potential penalties under service contracts, and reputational damage. Furthermore, any operational inefficiencies or quality control issues could lead to increased costs and product recalls.
+
+Financing and Capital Structure Risks
+
+Liquidity and Access to Capital. Our operations and strategic initiatives require significant capital investment. Disruptions in financial markets or changes in our credit ratings could limit our access to capital resources, affecting our ability to fund operations, invest in research and development, or pursue growth opportunities. Additionally, increased borrowing costs could adversely impact our financial results and constrain our strategic flexibility.
+
+Debt Obligations and Interest Rate Fluctuations. Our existing debt obligations expose us to risks associated with interest rate fluctuations. Rising interest rates could increase the cost of servicing our debt, affecting our profitability and financial condition. Furthermore, our leverage may limit our ability to pursue additional financing opportunities, impacting our strategic initiatives and growth prospects.
+
+Legal and Regulatory Risks
+
+Compliance with Government Regulations. As a participant in the aerospace and defense sectors, we are subject to extensive government regulations, including safety standards, environmental regulations, and export controls. Non-compliance with these regulations can result in substantial penalties, legal liabilities, and reputational harm. Changes in regulatory requirements or the introduction of new regulations could increase our compliance costs and operational burdens.
+
+Intellectual Property Protection and Infringement. Our success depends on our ability to protect our proprietary technologies and intellectual property. Unauthorized use of our intellectual property by competitors or third parties could diminish our competitive advantage. Conversely, defending against infringement claims from others can result in legal expenses and potential damages. The failure to adequately protect our intellectual property could adversely impact our market position and financial performance.
+
+Environmental and Climate Change Risks
+
+Environmental Compliance and Liability. The aerospace industry is subject to various environmental regulations concerning emissions, waste disposal, and resource conservation. Non-compliance with these regulations can result in fines, operational restrictions, and reputational damage. Additionally, evolving environmental standards may necessitate costly modifications to our products and processes, impacting our financial condition.
+
+Transition to Sustainable Technologies. The shift towards sustainable technologies and alternative energy sources presents both opportunities and challenges. While we are committed to developing innovative solutions to address climate change, the pace of transition to alternative powertrains and propulsion systems is uncertain. Failure to effectively integrate sustainable technologies into our product offerings could lead to decreased competitiveness and market share.
+
+General Risks
+
+Cybersecurity and Data Privacy. Our reliance on digital technologies exposes us to cybersecurity threats and data privacy risks. Breaches or failures in our information systems could compromise sensitive data, disrupt operations, and damage our reputation. As cyber threats evolve, we must continuously enhance our security measures to protect against unauthorized access and data breaches. Failure to safeguard our digital assets could result in legal liabilities and financial losses.
+
+Dependence on Key Personnel. Our success is heavily reliant on the expertise and contributions of key personnel, including executives, engineers, and technical specialists. The loss of key employees or the inability to attract and retain top talent could adversely affect our operations and strategic initiatives. We must invest in talent development and retention programs to mitigate this risk and ensure continuity in leadership and innovation.
+
+In conclusion, Orris Aerospace, Inc. is exposed to a range of risks that could materially impact our business operations and financial performance. While we strive to mitigate these risks through strategic planning and operational excellence, there can be no assurance that we will be able to successfully address all potential challenges.
+
+>>>
+
+TASK
+Write Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations for Orris Aerospace, Inc.'s annual report for the fiscal year ended 2024-12-31. Write MD&A with these parts: overview; results of operations comparing the current with the prior fiscal year line by line (revenue, cost of revenue and gross margin, each operating expense, operating income, interest expense, effective tax rate, net income), giving plausible qualitative drivers; liquidity and capital resources (cash, operating, investing and financing cash flows, capital expenditures, debt, dividends and share repurchases); and critical accounting estimates. Quote amounts and percentages exactly as they appear in the facts sheet. Do not include market risk disclosures; Item 7A covers them.
+Length: about 3000 words. Start with the line "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations" and output only the section text.

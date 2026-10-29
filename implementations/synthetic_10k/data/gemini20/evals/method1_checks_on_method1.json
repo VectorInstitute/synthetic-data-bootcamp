@@ -1,0 +1,255 @@
+{
+  "run_id": "20261027T151337Z",
+  "model": "gemini-3-flash-preview",
+  "item_models": {},
+  "items": [
+    "1",
+    "1A",
+    "1C",
+    "7",
+    "8"
+  ],
+  "dry_run": false,
+  "temperature": 0.7,
+  "length_scale": 1.0,
+  "workers": 4,
+  "wall_seconds": 857.96,
+  "companies": 20,
+  "succeeded": 20,
+  "passed_validation": 8,
+  "errors": [],
+  "totals": {
+    "seconds": 3185.85,
+    "prompt_tokens": 657351,
+    "completion_tokens": 577630,
+    "total_tokens": 1234981,
+    "reasoning_tokens": 208565,
+    "calls": 113
+  },
+  "per_company_avg": {
+    "seconds": 159.81,
+    "total_tokens": 61749
+  },
+  "by_company": [
+    {
+      "company_id": "syn0001",
+      "passed": false,
+      "wall_seconds": 236.51,
+      "seconds": 235.73,
+      "prompt_tokens": 47848,
+      "completion_tokens": 44256,
+      "total_tokens": 92104,
+      "reasoning_tokens": 17792,
+      "calls": 8
+    },
+    {
+      "company_id": "syn0002",
+      "passed": false,
+      "wall_seconds": 158.07,
+      "seconds": 157.52,
+      "prompt_tokens": 39901,
+      "completion_tokens": 30572,
+      "total_tokens": 70473,
+      "reasoning_tokens": 11595,
+      "calls": 6
+    },
+    {
+      "company_id": "syn0003",
+      "passed": true,
+      "wall_seconds": 106.94,
+      "seconds": 106.58,
+      "prompt_tokens": 23338,
+      "completion_tokens": 18555,
+      "total_tokens": 41893,
+      "reasoning_tokens": 6517,
+      "calls": 4
+    },
+    {
+      "company_id": "syn0004",
+      "passed": true,
+      "wall_seconds": 106.01,
+      "seconds": 105.62,
+      "prompt_tokens": 23729,
+      "completion_tokens": 18453,
+      "total_tokens": 42182,
+      "reasoning_tokens": 6604,
+      "calls": 4
+    },
+    {
+      "company_id": "syn0005",
+      "passed": true,
+      "wall_seconds": 113.53,
+      "seconds": 113.17,
+      "prompt_tokens": 24074,
+      "completion_tokens": 19409,
+      "total_tokens": 43483,
+      "reasoning_tokens": 6441,
+      "calls": 4
+    },
+    {
+      "company_id": "syn0006",
+      "passed": true,
+      "wall_seconds": 123.87,
+      "seconds": 123.47,
+      "prompt_tokens": 30477,
+      "completion_tokens": 24948,
+      "total_tokens": 55425,
+      "reasoning_tokens": 9073,
+      "calls": 5
+    },
+    {
+      "company_id": "syn0007",
+      "passed": false,
+      "wall_seconds": 183.6,
+      "seconds": 183.02,
+      "prompt_tokens": 34639,
+      "completion_tokens": 33262,
+      "total_tokens": 67901,
+      "reasoning_tokens": 10902,
+      "calls": 6
+    },
+    {
+      "company_id": "syn0008",
+      "passed": false,
+      "wall_seconds": 180.49,
+      "seconds": 179.9,
+      "prompt_tokens": 33633,
+      "completion_tokens": 32144,
+      "total_tokens": 65777,
+      "reasoning_tokens": 10241,
+      "calls": 6
+    },
+    {
+      "company_id": "syn0009",
+      "passed": false,
+      "wall_seconds": 217.45,
+      "seconds": 216.77,
+      "prompt_tokens": 43022,
+      "completion_tokens": 40648,
+      "total_tokens": 83670,
+      "reasoning_tokens": 14408,
+      "calls": 8
+    },
+    {
+      "company_id": "syn0010",
+      "passed": false,
+      "wall_seconds": 158.67,
+      "seconds": 158.15,
+      "prompt_tokens": 33628,
+      "completion_tokens": 28467,
+      "total_tokens": 62095,
+      "reasoning_tokens": 10148,
+      "calls": 6
+    },
+    {
+      "company_id": "syn0011",
+      "passed": false,
+      "wall_seconds": 186.23,
+      "seconds": 185.63,
+      "prompt_tokens": 34024,
+      "completion_tokens": 33487,
+      "total_tokens": 67511,
+      "reasoning_tokens": 11498,
+      "calls": 6
+    },
+    {
+      "company_id": "syn0012",
+      "passed": false,
+      "wall_seconds": 176.58,
+      "seconds": 176.0,
+      "prompt_tokens": 33098,
+      "completion_tokens": 30372,
+      "total_tokens": 63470,
+      "reasoning_tokens": 8295,
+      "calls": 6
+    },
+    {
+      "company_id": "syn0013",
+      "passed": false,
+      "wall_seconds": 177.43,
+      "seconds": 176.89,
+      "prompt_tokens": 35826,
+      "completion_tokens": 32270,
+      "total_tokens": 68096,
+      "reasoning_tokens": 12321,
+      "calls": 6
+    },
+    {
+      "company_id": "syn0014",
+      "passed": true,
+      "wall_seconds": 116.73,
+      "seconds": 116.38,
+      "prompt_tokens": 23424,
+      "completion_tokens": 20397,
+      "total_tokens": 43821,
+      "reasoning_tokens": 8424,
+      "calls": 4
+    },
+    {
+      "company_id": "syn0015",
+      "passed": false,
+      "wall_seconds": 199.26,
+      "seconds": 198.65,
+      "prompt_tokens": 40016,
+      "completion_tokens": 35766,
+      "total_tokens": 75782,
+      "reasoning_tokens": 13234,
+      "calls": 7
+    },
+    {
+      "company_id": "syn0016",
+      "passed": true,
+      "wall_seconds": 99.28,
+      "seconds": 98.98,
+      "prompt_tokens": 23573,
+      "completion_tokens": 18075,
+      "total_tokens": 41648,
+      "reasoning_tokens": 7129,
+      "calls": 4
+    },
+    {
+      "company_id": "syn0017",
+      "passed": false,
+      "wall_seconds": 228.9,
+      "seconds": 228.2,
+      "prompt_tokens": 44462,
+      "completion_tokens": 39157,
+      "total_tokens": 83619,
+      "reasoning_tokens": 14748,
+      "calls": 8
+    },
+    {
+      "company_id": "syn0018",
+      "passed": false,
+      "wall_seconds": 188.93,
+      "seconds": 188.37,
+      "prompt_tokens": 34665,
+      "completion_tokens": 34312,
+      "total_tokens": 68977,
+      "reasoning_tokens": 13561,
+      "calls": 6
+    },
+    {
+      "company_id": "syn0019",
+      "passed": true,
+      "wall_seconds": 106.93,
+      "seconds": 106.52,
+      "prompt_tokens": 23346,
+      "completion_tokens": 18675,
+      "total_tokens": 42021,
+      "reasoning_tokens": 7363,
+      "calls": 4
+    },
+    {
+      "company_id": "syn0020",
+      "passed": true,
+      "wall_seconds": 130.76,
+      "seconds": 130.3,
+      "prompt_tokens": 30628,
+      "completion_tokens": 24405,
+      "total_tokens": 55033,
+      "reasoning_tokens": 8271,
+      "calls": 5
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "company_id": "syn0008",
+  "name": "Novqua Retail, Inc.",
+  "ticker": "NQVU",
+  "sector": "Consumer Discretionary",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "NY",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 51238,
+  "revenue_growth": -0.0142,
+  "employees": 57400,
+  "ratios": {
+    "gross_margin": 0.6134,
+    "operating_margin": 0.0811,
+    "sga_ratio": 0.1523,
+    "da_ratio": 0.0284,
+    "capex_ratio": 0.0242,
+    "tax_rate": 0.1762,
+    "asset_turnover": 0.7597,
+    "equity_ratio": 0.3606,
+    "current_assets_ratio": 0.1078,
+    "current_ratio": 1.2795,
+    "cash_ratio": 0.0852,
+    "ppe_ratio": 0.0081,
+    "debt_ratio": 0.1385,
+    "receivables_ratio": 0.0564,
+    "inventory_ratio": 0.0989,
+    "goodwill_ratio": 0.002,
+    "dividend_payout": 0.7083,
+    "other_operating_cash_ratio": 0.0238
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 51238,
+        "cost_of_revenue": 36205,
+        "gross_profit": 15033,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 7804,
+        "other_operating_expense": 3074,
+        "operating_income": 4155,
+        "interest_expense": 420,
+        "pretax_income": 3735,
+        "income_tax": 658,
+        "net_income": 3077
+      },
+      "2023": {
+        "revenue": 51976,
+        "cost_of_revenue": 36235,
+        "gross_profit": 15741,
+        "research_and_development": 0,
+        "selling_general_and_administrative": 7963,
+        "other_operating_expense": 3119,
+        "operating_income": 4659,
+        "interest_expense": 413,
+        "pretax_income": 4246,
+        "income_tax": 748,
+        "net_income": 3498
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 2896,
+        "receivables": 1457,
+        "inventory": 2554,
+        "total_current_assets": 7271,
+        "property_plant_and_equipment": 4158,
+        "goodwill": 135,
+        "total_assets": 67445,
+        "total_current_liabilities": 5682,
+        "long_term_debt": 9341,
+        "total_equity": 24321,
+        "other_current_assets": 364,
+        "other_noncurrent_assets": 55881,
+        "other_noncurrent_liabilities": 28101,
+        "total_liabilities": 43124,
+        "total_liabilities_and_equity": 67445
+      },
+      "2023": {
+        "cash": 3008,
+        "receivables": 1549,
+        "inventory": 2764,
+        "total_current_assets": 7705,
+        "property_plant_and_equipment": 4146,
+        "goodwill": 142,
+        "total_assets": 68830,
+        "total_current_liabilities": 6248,
+        "long_term_debt": 9181,
+        "total_equity": 25132,
+        "other_current_assets": 384,
+        "other_noncurrent_assets": 56837,
+        "other_noncurrent_liabilities": 28269,
+        "total_liabilities": 43698,
+        "total_liabilities_and_equity": 68830
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 3077,
+        "depreciation_and_amortization": 1455,
+        "other_operating_items": 1219,
+        "net_cash_from_operating_activities": 5751,
+        "capital_expenditures": -1240,
+        "other_investing_activities": -895,
+        "net_cash_from_investing_activities": -2135,
+        "net_change_in_long_term_debt": 160,
+        "dividends_paid": -2179,
+        "share_repurchases_net": -1709,
+        "net_cash_from_financing_activities": -3728,
+        "net_change_in_cash": -112,
+        "cash_beginning_of_year": 3008,
+        "cash_end_of_year": 2896
+      }
+    }
+  }
+}

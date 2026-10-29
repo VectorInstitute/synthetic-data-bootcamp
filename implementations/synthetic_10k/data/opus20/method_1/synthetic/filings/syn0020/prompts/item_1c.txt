@@ -1,0 +1,336 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Drazennov Medical, Inc. (ticker DEVR)
+Sector: Health Care
+Incorporated in: Delaware
+Headquarters: Minneapolis, Minnesota
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 78,900
+
+Drazennov Medical, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      60,579        58,356
+Cost of revenue                              34,924        33,744
+Gross profit                                 25,655        24,612
+Research and development                      6,882         6,687
+Selling, general and administrative           7,148         6,853
+Other operating expense                       3,635         3,501
+Operating income                              7,990         7,571
+Interest expense                                835           751
+Income before income taxes                    7,155         6,820
+Provision for income taxes                    1,827         1,804
+Net income                                    5,328         5,016
+
+Drazennov Medical, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                           28,917        26,659
+Accounts receivable, net                             8,645         8,112
+Inventories                                          9,141         8,530
+Other current assets                                20,015        18,558
+Total current assets                                66,718        61,859
+Property, plant and equipment, net                  21,220        20,898
+Goodwill                                            52,295        48,618
+Other non-current assets                             5,811         5,403
+Total assets                                       146,044       136,778
+Total current liabilities                           58,269        52,885
+Long-term debt                                      18,562        16,690
+Other non-current liabilities                       38,485        37,974
+Total liabilities                                  115,316       107,549
+Total stockholders' equity                          30,728        29,229
+Total liabilities and stockholders' equity         146,044       136,778
+
+Drazennov Medical, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             5,328
+Depreciation and amortization                          7,427
+Changes in working capital and other                   (127)
+Net cash provided by operating activities             12,628
+Purchases of property and equipment                  (1,321)
+Other investing activities, net                      (7,092)
+Net cash used in investing activities                (8,413)
+Net change in long-term debt                           1,872
+Dividends paid                                         (822)
+Share repurchases, net of issuances                  (3,007)
+Net cash used in financing activities                (1,957)
+Net change in cash and cash equivalents                2,258
+Cash and cash equivalents, beginning of year          26,659
+Cash and cash equivalents, end of year                28,917
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 3.8%
+Net income growth, fiscal 2024 versus 2023: 6.2%
+Operating income growth, fiscal 2024 versus 2023: 5.5%
+Gross margin, fiscal 2024: 42.3%
+Operating margin, fiscal 2024: 13.2%
+Net margin, fiscal 2024: 8.8%
+Effective tax rate, fiscal 2024: 25.5%
+Research and development as a share of revenue, fiscal 2024: 11.4%
+Selling, general and administrative as a share of revenue, fiscal 2024: 11.8%
+Gross margin, fiscal 2023: 42.2%
+Operating margin, fiscal 2023: 13.0%
+Net margin, fiscal 2023: 8.6%
+Effective tax rate, fiscal 2023: 26.5%
+Research and development as a share of revenue, fiscal 2023: 11.5%
+Selling, general and administrative as a share of revenue, fiscal 2023: 11.7%
+
+STYLE EXAMPLE: the start of Item 1C from a real Health Care company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1C. Cybersecurity
+Risk management and strategy
+The Company has documented cybersecurity policies and standards, assesses risks from cybersecurity threats, and monitors information systems for potential cybersecurity issues. To protect the Company’s information systems from cybersecurity threats, the Company uses various security tools supporting protection, detection, and response capabilities. The Company maintains a cybersecurity incident response plan to help ensure a timely, consistent response to actual or attempted cybersecurity incidents impacting the Company.
+The Company also identifies and assesses third-party risks within the enterprise, and through the Company's use of third-party service providers, across a range of areas including data security and supply chain through a structured third-party risk management program.
+The Company maintains a formal information security training program for all employees that includes training on matters such as phishing and email security best practices. Employees are also required to complete mandatory training on data privacy.
+To evaluate and enhance its cybersecurity program, the Company periodically utilizes third-party experts to undertake maturity assessments of the Company’s information security program.
+To date, the Company is not aware of any cybersecurity incident that has had or is reasonably likely to have a material impact on the Company’s business or operations; however, because of the frequently changing attack techniques, along with the increased volume and sophistication of the attacks, there is the potential for the Company to be adversely impacted. This impact could result in reputational, competitive, operational or other business harm as well as financial costs and regulatory action. Refer to the risk factor captioned An information security incident, including a cybersecurity breach, could have a negative impact to the Company’s business or reputation in Part I, Item 1A. Risk factors for additional description of cybersecurity risks and potential related impacts on the Company.
+Governance - management’s responsibility
+The Company takes a risk-based approach to cybersecurity and has implemented cybersecurity controls designed to address cybersecurity threats and risks. The Chief Information Officer (CIO), who is a member of the Company’s Executive Committee, and the Chief Information Security Officer (CISO) are responsible for assessing and managing cybersecurity risks, including security incident detection, response, and recovery.
+The Company’s CISO, in coordination with the CIO, is responsible for leading the Company’s cybersecurity program and management of cybersecurity risk. The current CISO has over twenty-five years of experience in information security, and his background includes technical experience, strategy and architecture focused roles, cyber and threat experience, and various leadership roles.
+Governance - board oversight
+The Company’s Board of Directors oversees the overall risk management process, including cybersecurity risks, directly and through its committees. The Regulatory Compliance & Sustainability Committee (RCSC) of the board is primarily responsible for oversight of risk from cybersecurity threats and oversees compliance with applicable laws, regulations and Company policies related to, among others, privacy and cybersecurity.
+RCSC meetings include discussions of specific risk areas throughout the year including, among others, those relating to cybersecurity. The CISO provides quarterly updates each year to RCSC on cybersecurity matters. These reports include an overview of the cybersecurity threat landscape, key cybersecurity initiatives to improve the Company’s risk posture, changes in the legal and regulatory landscape relative to cybersecurity, and overviews of certain cybersecurity incidents that have occurred within the Company and within the industry.
+2024 Annual Report
+17
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Overview
+
+Drazennov Medical, Inc. is a global health care technology company that designs, manufactures and sells medical devices, therapies and related services used by physicians, hospitals and patients to diagnose and treat chronic and acute conditions. Our products address cardiovascular disease, neurological disorders, surgical care, diabetes and patient monitoring. We sell them in developed and emerging markets around the world. Unless the context requires otherwise, references in this Annual Report on Form 10-K to "Drazennov," "the Company," "we," "us" and "our" refer to Drazennov Medical, Inc. and its consolidated subsidiaries.
+
+For the fiscal year ended December 31, 2024, we generated total revenue of $60,579 million, an increase of 3.8% compared with the prior fiscal year. Growth reflected continued adoption of our established therapies, contributions from recently introduced products and expanded access to our technologies in markets outside the United States. We invested 11.4% of revenue in research and development during fiscal 2024. We consider this level of investment central to maintaining a broad and replenishing portfolio of clinically differentiated products.
+
+Our mission is to improve and extend patients' lives by bringing to market technologies that address unmet clinical needs. We aim to deliver meaningful clinical outcomes and economic value to health care systems. Our scale, global manufacturing network and long-standing relationships with clinicians enable us to support patients across the continuum of care, from diagnosis and intervention through long-term disease management.
+
+Drazennov Medical, Inc. is incorporated in the State of Delaware. Our principal executive offices are located in Minneapolis, Minnesota.
+
+Our Strategy
+
+Our strategy centers on four priorities.
+
+First, we seek to lead in innovation. We direct research and development spending toward therapies that can change the standard of care in large and underpenetrated patient populations. We complement internal programs with targeted acquisitions, licensing arrangements and collaborations with academic and clinical institutions.
+
+Second, we seek to expand access to our therapies. We work with health care providers, payers and governments to build the clinical and economic evidence that supports coverage and reimbursement. We also invest in physician training and referral pathways so that more eligible patients are identified and treated.
+
+Third, we pursue operational excellence. We are working to simplify our manufacturing footprint, strengthen supply chain resilience, improve quality systems and apply digital tools to our operations. The goals are higher reliability and more efficient use of capital.
+
+Fourth, we actively manage our portfolio. We periodically evaluate our businesses and product lines against their growth prospects, margin profile and strategic fit. We reallocate resources toward the areas we believe offer the most attractive long-term returns.
+
+Principal Products and Services
+
+Our product portfolio includes implantable and minimally invasive devices, capital equipment, single-use instruments and consumables, software, and services that support the effective use of our technologies. Principal product categories include:
+
+- Cardiac rhythm management devices, including implantable pacemakers, defibrillators, leadless pacing systems and insertable cardiac monitors, together with remote monitoring platforms that transmit device data to clinicians.
+- Structural heart and vascular therapies, including transcatheter heart valve systems, coronary and peripheral stents, balloon catheters, aortic stent grafts and devices used to treat venous disease.
+- Cardiac ablation solutions, including mapping and navigation systems, ablation catheters and related consumables used to treat atrial fibrillation and other arrhythmias.
+- Neuromodulation therapies, including spinal cord stimulation systems for chronic pain, deep brain stimulation systems for movement disorders and sacral nerve stimulation systems for bladder and bowel dysfunction.
+- Surgical technologies, including powered surgical instruments, advanced energy devices, surgical staplers, hernia repair products, robotic-assisted surgical platforms and surgical navigation and imaging systems.
+- Spine and cranial products, including spinal implants, biologics, neurovascular devices used to treat stroke and aneurysms, and cerebrospinal fluid management products.
+- Diabetes management products, including insulin pumps, continuous glucose monitoring sensors and transmitters, infusion sets and software that connects these devices into automated insulin delivery systems.
+- Patient monitoring and respiratory products, including pulse oximetry sensors, capnography systems, ventilators, airway management devices and hospital monitoring software.
+
+Beyond our devices, we provide clinical education, technical field support, equipment service contracts, data management platforms and outcomes analytics to hospitals and health systems. We are increasingly offering integrated solutions that combine devices with digital tools and services. We believe these solutions help providers improve procedural efficiency and patient outcomes.
+
+Reportable Segments
+
+We manage our business through three reportable segments, organized by therapeutic area and customer call point. Each segment has its own leadership team responsible for research and development, marketing and commercial strategy. Manufacturing, supply chain, quality, regulatory and other functions are shared across the enterprise. Financial information for our segments is in the notes to the consolidated financial statements included elsewhere in this Annual Report on Form 10-K.
+
+Cardiovascular and Vascular Therapies
+
+The Cardiovascular and Vascular Therapies segment develops and sells products that diagnose, treat and monitor heart rhythm disorders, heart failure, structural heart disease, and coronary, aortic and peripheral vascular disease. The segment's principal customers are electrophysiologists, interventional and general cardiologists, cardiac and vascular surgeons, and the hospitals and ambulatory centers where they practice.
+
+The segment's strategy emphasizes less invasive approaches, such as transcatheter valve replacement and leadless pacing. It also seeks to expand our presence in cardiac ablation, which we consider one of the fastest-growing areas of cardiovascular medicine. Remote monitoring and data connectivity are integral to the segment's implantable device offerings and support ongoing patient management after implantation.
+
+Neuroscience and Surgical Solutions
+
+The Neuroscience and Surgical Solutions segment develops and sells therapies for chronic pain, movement disorders, pelvic health, stroke and spinal conditions, along with a broad range of instruments and platforms used in general, thoracic, bariatric, colorectal, gynecologic and orthopedic surgery. Principal customers include neurosurgeons, orthopedic and spine surgeons, neurologists, pain management specialists, general surgeons, and hospital operating room and supply chain leaders.
+
+The segment's strategy focuses on four areas: expanding the use of minimally invasive and robotic-assisted surgery, enlarging the installed base of our surgical platforms, growing the use of consumable instruments that accompany them, and advancing closed-loop neuromodulation technologies that adapt therapy to individual patient signals.
+
+Diabetes and Patient Monitoring
+
+The Diabetes and Patient Monitoring segment develops and sells insulin delivery systems, continuous glucose monitoring products and related software for people with diabetes. It also sells monitoring, respiratory and airway products used in hospitals, ambulatory settings and the home. Customers include endocrinologists, primary care physicians, diabetes educators, anesthesiologists, critical care clinicians, hospitals, and, for diabetes products, patients themselves through pharmacy and durable medical equipment channels.
+
+The segment's strategy centers on automated insulin delivery, interoperability with third-party devices and digital applications, and connected monitoring solutions. These solutions are intended to help clinicians identify patient deterioration earlier and manage care across settings. Because a significant portion of the segment's revenue comes from recurring purchases of sensors, infusion sets and other disposables, the segment places particular emphasis on patient retention and the user experience.
+
+Customers
+
+Our principal customers are hospitals, integrated delivery networks, group purchasing organizations, ambulatory surgery centers, physician practices, clinics, government health care agencies, distributors, pharmacies and, for certain diabetes products, individual patients. In many markets, purchasing decisions involve both the clinicians who select and use our products and the administrators and procurement organizations that negotiate pricing and contract terms.
+
+In the United States, a substantial portion of our sales is made under contracts with group purchasing organizations and integrated delivery networks. These contracts typically set pricing and terms for member facilities but do not obligate members to purchase specified volumes. Outside the United States, many of our customers are public hospitals or government-funded health systems, and sales often occur through tender processes or national procurement arrangements.
+
+Payment for our products ultimately depends in large part on reimbursement from third-party payers. These include government programs such as Medicare and Medicaid in the United States, national health systems in other countries, and private insurers. No single customer accounted for a material portion of our consolidated revenue in fiscal 2024. We do not believe the loss of any single customer would have a material adverse effect on our consolidated results of operations.
+
+Sales and Marketing
+
+We market and sell our products primarily through a direct sales force, supplemented by independent distributors and sales agents in certain geographies and product lines. Our sales representatives and clinical specialists are typically organized by segment and therapy area. Many of them are trained to provide technical support in the procedure room, assist with device programming and follow-up, and educate clinicians on the appropriate use of our products.
+
+Our marketing activities include:
+
+- Physician education and training programs delivered through our training centers, mobile labs, simulation tools and digital learning platforms.
+- Participation in medical congresses and scientific meetings.
+- Publication of clinical trial results in peer-reviewed journals.
+- Patient awareness programs designed to help people recognize symptoms and seek appropriate care.
+
+For diabetes products, we also maintain direct relationships with patients through customer service, product training and digital support channels.
+
+We work with payers and health technology assessment bodies to demonstrate the clinical and economic value of our therapies. Our health economics and market access teams develop evidence on outcomes, cost-effectiveness and total cost of care to support coverage decisions, reimbursement coding and favorable payment rates.
+
+Our marketing and promotional activities are subject to extensive regulation. We maintain compliance programs, policies and training designed to ensure that our [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+Our business, financial condition, results of operations and cash flows are subject to a range of risks and uncertainties. Investors should consider the risks described below together with the other information in this Annual Report on Form 10-K, including Management's Discussion and Analysis of Financial Condition and Results of Operations and our consolidated financial statements and related notes. Any of these risks could materially and adversely affect our business, our financial results or the trading price of our common stock. The risks below are not the only ones we face. Additional risks that we do not currently consider material, or of which we are not currently aware, may also impair our business.
+
+Risks Related to Our Business and Industry
+
+We operate in highly competitive markets characterized by rapid technological change, and our products may be displaced by competing technologies or alternative treatments.
+Each of our three reportable segments competes against large diversified medical technology companies, specialized device manufacturers, pharmaceutical and biotechnology companies, and a growing number of start-up and technology companies, some of which have significant financial and engineering resources. Competition in our markets centers on clinical outcomes, product performance, ease of use, breadth of portfolio, service, evidence and price. Competitors may introduce products with superior clinical data, lower cost or more convenient designs. In our cardiac ablation, transcatheter valve, robotic-assisted surgery and continuous glucose monitoring franchises, new product cycles are short and market share can shift quickly.
+
+Advances in pharmaceutical therapies, gene and cell therapies, or digital health tools could also reduce the number of patients who require device-based intervention. For example, new drug classes that slow the progression of cardiovascular disease, obesity or diabetes could reduce demand for some of our implantable and procedural products over time. If we fail to anticipate these shifts, or if competitors bring disruptive technologies to market before we do, our revenue, margins and market position could decline.
+
+Pricing pressure from hospitals, group purchasing organizations, integrated delivery networks and government purchasers could reduce our revenue and margins.
+A substantial portion of our sales in the United States is made under contracts with group purchasing organizations and integrated delivery networks that negotiate pricing on behalf of many facilities. Continued consolidation among hospitals and health systems increases the bargaining power of these purchasers, and many are adopting value analysis committees, standardization programs and capitated purchasing models designed to reduce the cost of medical devices. Outside the United States, many of our customers are public hospitals or government-funded systems that purchase through competitive tenders and national procurement programs, including volume-based procurement initiatives that have significantly reduced prices for certain device categories.
+
+Because our cost structure includes substantial fixed manufacturing, research and development, and selling expenses, price reductions that are not offset by volume growth, mix improvement or cost savings would reduce our gross and operating margins. Losing a major group purchasing or tender contract could also lower volumes in a given product line or geography.
+
+Changes in coverage and reimbursement by government and private payers could reduce demand for our products.
+Demand for our products depends in large part on whether hospitals, physicians and patients receive adequate reimbursement from third-party payers. These include Medicare and Medicaid in the United States, national health systems in other countries, and private insurers. Payers increasingly require evidence of clinical effectiveness and cost-effectiveness before granting coverage, and they may limit coverage to narrow patient populations, require prior authorization, or set payment rates that do not adequately compensate providers for using our technologies.
+
+Annual updates to hospital inpatient, outpatient and ambulatory surgery center payment systems, physician fee schedules and durable medical equipment rules can change the economics of procedures that use our products. Competitive bidding for durable medical equipment, or changes in how continuous glucose monitors and insulin pumps are covered under pharmacy or medical benefits, could also affect our Diabetes and Patient Monitoring segment. Adverse changes in reimbursement, or delays in obtaining coverage for new products, could slow adoption and reduce our revenue.
+
+Our growth depends on successfully developing and commercializing new products, and our substantial research and development investment may not produce commercially viable results.
+We devote a significant portion of our revenue to research and development, and we expect to keep doing so. Developing medical devices is costly, takes many years and is inherently uncertain. Product candidates may fail to show safety or efficacy in clinical trials, may not receive regulatory approval, may receive approval for narrower indications than expected, or may face manufacturing, reimbursement or market acceptance challenges that limit their commercial potential. A meaningful share of our expected future growth depends on a limited number of pipeline programs in areas such as cardiac ablation, renal denervation, robotic-assisted surgery, closed-loop neuromodulation and automated insulin delivery.
+
+If these programs are delayed, fail or underperform commercially, we may not recover our investment. We may also need to record impairment charges on related capitalized assets, and our revenue growth and profitability could fall below expectations.
+
+Unfavorable clinical trial results, new scientific data or negative publicity about our products or therapy categories could harm our business.
+Physician adoption of our products depends heavily on clinical evidence published in peer-reviewed journals and presented at medical congresses. Results from our own studies, competitor studies, registries, independent analyses or regulatory reviews may raise questions about the safety, durability or effectiveness of our products or of an entire therapy category. Such findings, even if later disputed or not confirmed, could lead to reduced use of our products, changes in clinical guidelines, label changes, additional regulatory requirements or product liability claims. Negative media coverage or social media commentary about device safety could also damage our reputation with clinicians, patients and payers.
+
+Our diabetes business depends on patient retention and recurring purchases of disposable products, which exposes it to consumer-oriented competitive risks.
+A significant portion of revenue in our Diabetes and Patient Monitoring segment comes from recurring purchases of sensors, infusion sets and other disposables by people with diabetes who use our insulin pumps and glucose monitoring systems. Patients and their physicians can switch to competing systems at the end of a pump warranty period or at any time for sensor-based products. Competition in this market increasingly turns on factors familiar from consumer technology markets, such as device form factor, software features, smartphone integration, interoperability and user experience.
+
+Product performance issues, field actions, customer service problems or supply interruptions could cause patients to discontinue our products, and lost patients may be difficult to win back. Lower patient retention would reduce recurring revenue and could adversely affect the segment's results.
+
+Acquisitions, divestitures and other portfolio actions involve significant risks and may not achieve their intended benefits.
+As part of our strategy, we acquire businesses and technologies, enter into licensing and collaboration arrangements, and periodically divest or exit product lines. Acquisitions involve risks including overpaying for targets, failing to integrate operations, quality systems, information technology and personnel, losing key employees or customers of acquired businesses, and assuming unknown liabilities, including product liability and compliance matters. Acquired technologies may not achieve expected clinical or commercial milestones, and contingent consideration arrangements may require significant fair value adjustments.
+
+Divestitures can reduce revenue and scale, create stranded costs, require transition services, and leave us with ongoing indemnification obligations. Any of these outcomes could adversely affect our results of operations and could lead to impairment of the goodwill and intangible assets recorded in connection with past acquisitions.
+
+Risks Related to Our Operations
+
+Quality problems, product defects, recalls or field actions could result in significant costs, regulatory action and loss of customer confidence.
+Many of our products are life-sustaining or life-supporting devices that are implanted in the body or used in critical care settings. Design or manufacturing defects, software errors, component failures, labeling deficiencies or improper use could cause patient injury or death. If quality or safety issues arise, we may initiate voluntary recalls or field corrective actions, or regulators may require us to do so. Such actions can involve significant costs for product replacement, physician and patient notification, remediation and additional testing.
+
+Quality issues may also lead to regulatory warning letters, import restrictions, shipment holds, consent decrees, product liability litigation and reputational harm. In the past, quality system observations at individual facilities have required substantial remediation effort across the industry. A serious quality event affecting a major product line could materially reduce our revenue and increase our costs for an extended period.
+
+Disruptions in our manufacturing operations or supply chain could prevent us from meeting customer demand.
+We manufacture products at numerous facilities around the world. Certain products or critical components are produced at a single site, or rely on specialized processes such as sterilization that are available from a limited number of internal or third-party facilities. We also obtain certain raw materials, electronic components, batteries, resins and specialty metals from single or limited sources, and qualifying alternative suppliers for regulated medical devices can take considerable time and require regulatory approval.
+
+Natural disasters, extreme weather, fires, power outages, labor disputes, pandemics, geopolitical conflict, export controls, regulatory actions against suppliers or sterilization providers, and supplier financial distress could interrupt our supply. Shortages of semiconductors and other electronic components have affected the [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+This discussion and analysis is intended to help investors understand our results of operations, financial condition and cash flows for the fiscal year ended December 31, 2024, compared with the fiscal year ended December 31, 2023. Read it together with our consolidated financial statements and the accompanying notes included in Item 8 of this Annual Report on Form 10-K, and with the description of our business in Item 1.
+
+Certain statements in this section are forward-looking. They reflect management's current expectations about future events and financial performance, including statements about product demand, pricing, reimbursement, the timing of new product introductions, manufacturing costs, capital allocation and liquidity. These statements involve risks and uncertainties, and actual outcomes may differ materially from those we describe. Item 1A, Risk Factors, describes important factors that could cause such differences. We undertake no obligation to update forward-looking statements except as required by law.
+
+Overview
+
+Drazennov Medical, Inc. is a global health care technology company that designs, manufactures and sells medical devices, therapies and related services. Physicians, hospitals and patients use our products to diagnose and treat cardiovascular disease, neurological disorders, surgical conditions and diabetes, and to monitor patients across care settings. We manage our business through three reportable segments: Cardiovascular and Vascular Therapies, Neuroscience and Surgical Solutions, and Diabetes and Patient Monitoring. Financial information by segment appears in the notes to our consolidated financial statements.
+
+Our customers include hospitals, integrated delivery networks, group purchasing organizations, ambulatory surgery centers, physician practices, government health care agencies, distributors, pharmacies and, for certain diabetes products, individual patients. Demand for our products depends on procedure volumes, physician adoption of new therapies, the availability of coverage and reimbursement from government and private payers, and the clinical and economic evidence that supports our technologies. Our revenue mix includes capital equipment and implantable devices as well as a substantial and growing base of recurring revenue from single-use instruments, consumables, sensors, infusion sets and service contracts.
+
+Fiscal 2024 Financial Highlights
+
+Fiscal 2024 was a year of steady growth and margin improvement. Key results were:
+
+- Revenue was $60,579 million, compared with $58,356 million in fiscal 2023, an increase of 3.8%.
+- Gross margin was 42.3%, compared with 42.2% in fiscal 2023.
+- Operating income was $7,990 million, compared with $7,571 million in fiscal 2023, an increase of 5.5%. Operating margin was 13.2%, compared with 13.0%.
+- Net income was $5,328 million, compared with $5,016 million in fiscal 2023, an increase of 6.2%. Net margin was 8.8%, compared with 8.6%.
+- Net cash provided by operating activities was $12,628 million.
+- We returned cash to stockholders through dividends of $822 million and share repurchases, net of issuances, of $3,007 million.
+- We ended the year with cash and cash equivalents of $28,917 million, compared with $26,659 million at the end of fiscal 2023.
+
+Business Environment and Trends
+
+Several factors shaped our performance in fiscal 2024 and are likely to remain relevant to our results.
+
+Procedure volumes in most of our major markets remained healthy, supported by an aging population, a rising prevalence of chronic disease and continued clinical preference for less invasive treatment. Demand was particularly favorable in cardiac ablation, transcatheter structural heart therapies, neuromodulation and automated insulin delivery. In these areas, new product introductions and expanded indications broadened the population of eligible patients.
+
+Pricing remained a headwind in several product categories. Hospital and health system consolidation in the United States continued to strengthen the negotiating position of group purchasing organizations and integrated delivery networks. Outside the United States, competitive tenders and volume-based procurement programs continued to put pressure on prices for certain mature device categories. Favorable product mix, volume growth and cost reduction initiatives largely offset these pressures during the year.
+
+Inflation in labor, freight, electronic components and certain raw materials moderated compared with the prior year but stayed above historical levels in some categories. We continued to invest in supply chain resilience, including dual sourcing of critical components and additional sterilization capacity. These investments added cost in the near term, and we believe they reduce the risk of future disruptions.
+
+We continued to manage our portfolio actively. During fiscal 2024 we completed acquisitions intended to strengthen our positions in higher-growth therapy areas, which is reflected in the increase in goodwill on our consolidated balance sheet and in investing cash outflows. We also continued to evaluate lower-growth product lines for potential exit or divestiture.
+
+Results of Operations
+
+The following discussion compares our consolidated results of operations for fiscal 2024 with fiscal 2023. All amounts are in millions of U.S. dollars unless otherwise noted.
+
+Revenue
+
+Revenue was $60,579 million in fiscal 2024, compared with $58,356 million in fiscal 2023, an increase of 3.8%. Higher unit volumes across all three reportable segments drove the increase, together with favorable product mix from recently introduced products. Pricing pressure in certain mature categories and markets partially offset these gains.
+
+In our Cardiovascular and Vascular Therapies segment, cardiac ablation solutions made the largest contribution to growth. Expanding physician adoption of our mapping and navigation systems and catheter technologies drove these results. Transcatheter valve systems and leadless pacing devices also grew as clinicians continued to shift toward less invasive procedures. Remote monitoring services added recurring revenue associated with our installed base of implantable devices. Pricing pressure in coronary stents and certain peripheral vascular products partially offset this growth.
+
+In our Neuroscience and Surgical Solutions segment, growth reflected continued demand for spinal cord stimulation systems, including our closed-loop technologies, and increased use of neurovascular devices for the treatment of stroke. Placements of our robotic-assisted surgical and surgical navigation platforms enlarged the installed base. Higher utilization of related single-use instruments and consumables contributed recurring revenue. Revenue from surgical staplers, advanced energy devices and hernia repair products grew modestly, reflecting stable procedure volumes and competitive pricing in these established categories.
+
+In our Diabetes and Patient Monitoring segment, revenue growth reflected expanded adoption of our automated insulin delivery systems and continuous glucose monitoring sensors. Recurring purchases of disposables by our growing installed base of users also contributed. Improvements in patient retention, supported by software updates and enhanced customer service, benefited the segment. Patient monitoring and respiratory product revenue grew modestly as hospital capital spending stabilized and demand for pulse oximetry sensors and capnography consumables remained steady.
+
+Geographically, revenue grew in both the United States and international markets. Outside the United States, we expanded access to our therapies in several emerging markets, and new product approvals in developed markets supported adoption. Volume-based procurement programs and competitive tenders reduced selling prices for certain products in specific international markets. Changes in foreign currency exchange rates also affected reported revenue. Item 7A discusses our exposure to foreign currency.
+
+No single customer accounted for a material portion of our consolidated revenue in fiscal 2024 or fiscal 2023.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue was $34,924 million in fiscal 2024, compared with $33,744 million in fiscal 2023. The increase primarily reflected higher unit volumes. Cost of revenue includes materials, direct labor, manufacturing overhead, freight, warranty costs, royalties and the amortization of certain manufacturing-related assets.
+
+Gross profit was $25,655 million in fiscal 2024, compared with $24,612 million in fiscal 2023. Gross margin was 42.3% in fiscal 2024, compared with 42.2% in fiscal 2023. The modest improvement reflected:
+
+- Favorable product mix, driven by growth in higher-margin therapies such as cardiac ablation, transcatheter valves, neuromodulation and automated insulin delivery.
+- Manufacturing efficiencies and procurement savings from our operational excellence programs, including site consolidation and automation.
+- Better absorption of fixed manufacturing costs on higher production volumes.
+
+These benefits were largely offset by:
+
+- Pricing pressure in certain mature product categories and international tender markets.
+- Continued elevated costs for labor, electronic components and certain raw materials.
+- Costs to strengthen supply chain resilience and quality systems, including qualification of alternative suppliers and investment in sterilization capacity.
+- Lower margins on certain products from recently acquired businesses during their initial integration period.
+
+Research and Development
+
+Research and development expense was $6,882 million in fiscal 2024, compared with $6,687 million in fiscal 2023. As a share of revenue, research and development was 11.4% in fiscal 2024, compared with 11.5% in fiscal 2023.
+
+The increase in spending reflected continued investment in our priority pipeline programs. These include next-generation cardiac ablation technologies, renal denervation, transcatheter structural heart therapies, closed-loop neuromodulation, robotic-assisted surgery and automated insulin delivery. Spending also increased because of a larger number of clinical trials, including studies designed to support expanded indications and to generate the clinical and economic evidence that payers require for coverage decisions. Research and development activities of recently acquired businesses also contributed to the increase. Spending declined slightly as a share of revenue because revenue grew faster than research and development expense. Prioritization of programs with the most attractive clinical and commercial prospects also contributed, along with the discontinuation of certain lower-priority projects.
+
+We expect to continue investing a significant portion of our revenue in research and development, consistent with our strategy of leading in innovation.
+
+Selling, General and Administrative
+
+Selling, general and administrative expense was $7,148 million in fiscal 2024, compared with $6,853 million in fiscal 2023. As a share of revenue, selling, general and administrative expense was 11.8% in fiscal [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Drazennov Medical, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 900 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

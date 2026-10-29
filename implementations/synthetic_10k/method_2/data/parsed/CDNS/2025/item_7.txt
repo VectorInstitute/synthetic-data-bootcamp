@@ -1,0 +1,675 @@
+The following discussion should be read in conjunction with the consolidated financial statements and notes thereto included elsewhere in this Annual Report and with Part I, Item 1A, “Risk Factors.” Please refer to the cautionary language at the beginning of Part I of this Annual Report regarding forward-looking statements.
+
+Business Overview
+
+Cadence® is a global market leader that develops computational, AI-driven software, accelerated hardware, and silicon IP products and solutions for engineers and scientists to bring new and innovative products to life. Our mission is to empower the world’s most innovative companies to deliver extraordinary electronic products that drive the global economy and improve everyday life. Our customers include semiconductor companies that design and manufacture ICs, as well as systems companies that design and manufacture electromechanical systems containing various types of semiconductor and other electronics.
+
+Our strategy enables us to address our customers’ most challenging product development needs while expanding our capabilities beyond traditional chip design to encompass full electromechanical systems. By leveraging our deep expertise, we develop industry-leading computational AI-driven software, accelerated hardware, and IP solutions that adapt to our customers’ evolving design requirements. This flexibility helps our customers address critical business priorities such as reducing time-to-market and advancing sustainability goals. To address the growing complexity of modern design, we’ve integrated cutting-edge technologies including agentic and generative AI, machine learning, and digital twin algorithms, into our core products and solutions. These innovations, whether developed in-house or through strategic acquisition, empower our customers to achieve their business objectives with greater efficiency and precision.
+
+We group our products into the following categories:
+
+•Core EDA
+
+•Semiconductor IP; and
+
+•System Design and Analysis.
+
+For additional information about our products, see the discussion in Item 1, “Business,” under the heading “Product Categories.”
+
+Management uses certain performance indicators to manage our business, including revenue, certain elements of operating expenses and cash flow from operations, and we describe these items further below under the headings “Results of Operations” and “Liquidity and Capital Resources.”
+
+Acquisitions
+
+As part of our ISD strategy, we invest in and acquire complementary businesses, joint ventures, services and technologies and IP rights. The size and timing of these investments and acquisitions may affect comparability of revenue, expenses and cash flows between fiscal periods.
+
+During the second quarter of fiscal 2024, we completed our acquisition of BETA CAE Systems International AG (“BETA CAE”), a system analysis platform provider of multi-domain, engineering simulation solutions. Revenue associated with our acquisition of BETA CAE is primarily classified as product and maintenance revenue in our System Design and Analysis product category, and cost of revenue associated with these contracts is primarily classified as cost of product and maintenance in our consolidated income statements.
+
+During fiscal 2025, we completed multiple acquisitions, including our acquisition of a holding company containing the VLAB Works business (“VLAB Works”), our acquisition of the Artisan foundation IP business from Arm Limited and our acquisition of Secure-IC.
+
+For fiscal 2025, the revenue associated with contracts assumed with our acquisition of VLAB Works was primarily classified as product and maintenance revenue in our Core EDA product category. Revenue associated with contracts assumed with our acquisition of the Artisan foundation IP business and Secure-IC was primarily classified as product and maintenance revenue in our Semiconductor IP product category. The cost of revenue associated with these contracts was primarily classified as cost of product and maintenance in our consolidated income statements.
+
+On September 4, 2025, we entered into a definitive agreement with Hexagon to acquire its D&E business. This acquisition is expected to expand our System Design & Analysis portfolio, building upon our acquisition of BETA CAE in fiscal 2024. The acquisition includes substantially all of the subsidiaries and related assets comprising Hexagon's D&E business. Among other conditions, closing is conditioned on the expiration or termination of the applicable waiting period under the Hart-Scott Rodino Antitrust Improvements Act of 1976, as amended, and receipt of other required approvals under antitrust and foreign direct investment laws of certain other jurisdictions.
+
+For additional information about our acquisitions, see Note 6 in the notes to consolidated financial statements.
+
+37
+
+Table of Contents
+
+Macroeconomic and Geopolitical Environment
+
+Because we operate globally, our business is subject to the effects of economic downturns or recessions in the regions in which we do business, volatility in foreign currency exchange rates relative to the U.S. dollar, inflation, changing interest rates, expanded trade control laws and regulations, imposition of new or higher tariffs and geopolitical conflicts.
+
+Trade control laws and regulations have amended over the past several years, including through the imposition of certain export control restrictions concerning advanced node IC production in China and the inclusion of additional Chinese technology companies on the BIS “Entity List” regulations governing the sale of certain technologies. In furtherance of these regulations, effective September 29, 2025, BIS issued an interim final rule that extended the export restrictions imposed on entities identified on the Entity List or the Military End-User List and other certain sanctioned parties, to entities that are 50% or more owned by one or more such entities. However, on November 11, 2025, BIS published a one-year suspension of the new rule that is currently set to expire on November 9, 2026, absent a future extension. We expect the impact of these current expanded trade control laws and regulations on our business to be limited, but we will continue to monitor future developments.
+
+As previously disclosed, on May 23, 2025, BIS informed us that a license was required for the export, re-export or in-country transfer of EDA software and technology classified under Export Control Classification Numbers (ECCNs) 3D991 and 3E991 on the Commerce Control List (“EDA Software and Technology”), when a party to the transaction is located in China or is a Chinese “military end user” wherever located. On July 2, 2025, BIS informed us that the license requirements set forth in the May 23, 2025 letter from BIS were rescinded effective immediately. During this period, our revenue in China decreased primarily due to reduced deliveries of software offerings to our customers in China due to these license requirements. Following the rescission, we have restored access to EDA Software and Technology for affected customers in accordance with these updated U.S. export regulations. However, in light of continued negotiations between the U.S. and China, the United States may consider reimposing these or additional restrictions on the export, re-export or in-country transfer of EDA Software and Technology or our other products and services in China in the future.
+
+Also, as previously disclosed, on July 27, 2025, we reached a settlement with each of BIS and the U.S. Department of Justice (“DOJ”) that resolved matters relating to export control violations that occurred between 2015 and 2021 primarily involving sales initiated by a Cadence subsidiary of products and services valued at $45.3 million in total over that period to a customer in China, as well as the subsequent transfer of technology involved in those sales to a third party in China, without the requisite authorization from BIS. These settlement agreements include ongoing audit, compliance and other obligations.
+
+In addition, U.S. President Trump has made a series of announcements regarding the imposition of new and higher U.S. tariffs on imports from many countries, including China and Mexico. In response, China and other countries, as well as the European Union, have announced retaliatory tariffs on imports of U.S. goods and other countermeasures. We are monitoring these actions, including any pauses, escalations, exemptions or removal of exemptions, with respect to the threatened or imposed tariffs, and will continue to assess their potential impact on our business either directly, such as on our hardware business, or due to downstream effects.
+
+We also continuously monitor geopolitical conflicts around the world, including the ongoing conflict between Russia and Ukraine and conflicts in the Middle East, and assess their impact on our business. To date, these conflicts have not materially limited our ability to develop or support our products and have not had a material impact on our results of operations, financial condition, liquidity or cash flows.
+
+While our business model provides some resilience against these factors, we will continue to monitor the direct and indirect impacts of these or similar circumstances on our business and financial results. For additional information on the potential impact of macroeconomic conditions on our business, see Part I, Item 1A, “Risk Factors.”
+
+Results of Operations
+
+The discussion of our fiscal 2025 consolidated results of operations includes year-over-year comparisons to fiscal 2024 for revenue, cost of revenue, operating expenses, operating margin, other non-operating income and expenses, income taxes and cash flows. For a discussion of the fiscal 2024 changes compared to fiscal 2023, see the discussion in Item 7, “Management’s Discussion and Analysis of Financial Condition and Results of Operations” in our Annual Report on Form 10-K for the fiscal year ended December 31, 2024, filed with the SEC on February 20, 2025.
+
+Results of operations for fiscal 2025, as compared to fiscal 2024, reflect the following:
+
+•Growth in revenue from our software, hardware and IP offerings, including revenue from our recent acquisitions;
+
+•Increases in operating expenses from continued investment in research and development and technical sales support, including additional headcount from acquisitions;
+
+•A loss associated with our settlements with BIS and the DOJ that was paid during fiscal 2025; and
+
+•Increased interest expense from our outstanding indebtedness.
+
+38
+
+Table of Contents
+
+Revenue
+
+We primarily generate revenue from licensing our software and IP, selling or leasing our hardware products, providing maintenance for our software, hardware and IP, providing engineering and cloud services and earning royalties generated from the use of our IP. The timing of our revenue is significantly affected by the mix of software, hardware and IP products generating revenue in any given period and whether the revenue is recognized over time or at a point in time, upon completion of delivery.
+
+Recurring revenue includes revenue recognized over time from certain of our software licensing arrangements, services, royalties, maintenance on IP licenses and hardware, and operating leases of hardware. Other recurring revenue includes revenue recognized at a point in time for certain short-term software arrangements that are typically renewed at least annually and revenue recognized at varying points in time over the term of other arrangements with non-cancelable commitments, whereby the customer commits to a fixed dollar amount over a specified period of time that can be used to purchase from a list of products. Arrangements that require future decisions on the performance obligations to be delivered do not meet the definition of a revenue contract until the customer executes a separate selection form to identify the products and services that they are purchasing. Each separate selection form under the arrangement is treated as an individual contract and accounted for based on the respective performance obligations.
+
+The remainder of our revenue is recognized at a point in time and is characterized as up-front revenue. Up-front revenue is primarily generated by our sales of hardware products, individual IP licenses and certain software licenses with a term greater than one year. The percentage of our recurring and up-front revenue and fluctuations in revenue within our geographies in any single fiscal period are primarily impacted by delivery of hardware and IP products to our customers.
+
+The following table shows the percentage of our revenue that is classified as recurring or up-front for fiscal 2025 and 2024:
+
+2025 | 2024
+
+Revenue recognized over time | 76 | % | 80 | %
+
+Other recurring revenue | 4 | % | 3 | %
+
+Recurring revenue | 80 | % | 83 | %
+
+Up-front revenue | 20 | % | 17 | %
+
+Total | 100 | % | 100 | %
+
+The following table shows the percentage of recurring revenue for the twelve-month periods ended concurrently with our five most recent fiscal quarters:
+
+Trailing Twelve Months Ended
+
+December 31, 2025 | September 30, 2025 | June 30, 2025 | March 31, 2025 | December 31, 2024
+
+Recurring revenue | 80 | % | 80 | % | 80 | % | 82 | % | 83 | %
+
+Up-front revenue | 20 | % | 20 | % | 20 | % | 18 | % | 17 | %
+
+Total | 100 | % | 100 | % | 100 | % | 100 | % | 100 | %
+
+The percentage of revenue characterized as recurring compared to revenue characterized as up-front may vary between fiscal quarters. On an annual basis, we expect recurring and up-front revenue as a percentage of total revenue to remain relatively consistent with the results of fiscal 2025.
+
+Revenue by Year
+
+The following table shows our revenue for fiscal 2025 and 2024 and the change in revenue between years:
+
+Change
+
+2025 | 2024 | 2025 vs. 2024
+
+(In millions, except percentages)
+
+Product and maintenance | 4,821.6 | 4,213.5 | 608.1 | 14 | %
+
+Services | 475.2 | 427.8 | 47.4 | 11 | %
+
+Total revenue | 5,296.8 | 4,641.3 | 655.5 | 14 | %
+
+Product and maintenance revenue increased during fiscal 2025, as compared to fiscal 2024, primarily due to growth in revenue from our software, hardware and IP product offerings as a result of existing customers' continued investment in complex designs for their products.
+
+39
+
+Table of Contents
+
+Services revenue increased during fiscal 2025, as compared to fiscal 2024, primarily due to increased revenue from our cloud and IP service offerings. Services revenue may fluctuate from period to period based on the timing of fulfillment of our services and IP performance obligations.
+
+No one customer accounted for 10% or more of total revenue during fiscal 2025 or 2024.
+
+Revenue by Product Category
+
+The following table shows the percentage of revenue contributed by each of our product categories during fiscal 2025 and 2024:
+
+2025 | 2024
+
+Core EDA | 70 | % | 71 | %
+
+Semiconductor IP | 14 | % | 13 | %
+
+System Design and Analysis | 16 | % | 16 | %
+
+Total | 100 | % | 100 | %
+
+Revenue from any one product category as a percentage of total revenue may fluctuate from period to period based on the mix of products and services sold in a given period and the timing of revenue recognition, particularly for our hardware, IP and certain software products for which revenue is recognized up-front.
+
+Revenue by Geography
+
+Change
+
+2025 | 2024 | 2025 vs. 2024
+
+(In millions, except percentages)
+
+United States | 2,311.0 | 2,159.7 | 151.3 | 7 | %
+
+Other Americas | 168.3 | 93.1 | 75.2 | 81 | %
+
+China | 680.0 | 573.1 | 106.9 | 19 | %
+
+Other Asia | 1,005.2 | 855.9 | 149.3 | 17 | %
+
+Europe, Middle East and Africa (“EMEA”) | 790.6 | 699.3 | 91.3 | 13 | %
+
+Japan | 341.7 | 260.2 | 81.5 | 31 | %
+
+Total revenue | 5,296.8 | 4,641.3 | 655.5 | 14 | %
+
+Revenue in any one of Cadence’s six geographies may fluctuate from period to period based on the mix of products and services sold in a given period and the timing of revenue recognition, particularly for our hardware, IP and certain software products. During fiscal 2025, as compared to fiscal 2024, demand for our hardware, software and IP product offerings contributed to revenue growth in each of our geographies.
+
+Revenue by Geography as a Percent of Total Revenue
+
+2025 | 2024
+
+United States | 44 | % | 47 | %
+
+Other Americas | 3 | % | 2 | %
+
+China | 13 | % | 12 | %
+
+Other Asia | 19 | % | 18 | %
+
+EMEA | 15 | % | 15 | %
+
+Japan | 6 | % | 6 | %
+
+Total | 100 | % | 100 | %
+
+Most of our revenue is transacted in the U.S. dollar. However, certain revenue transactions are denominated in foreign currencies. For an additional description of how changes in foreign exchange rates affect our consolidated financial statements, see the discussion under Item 7A, “Quantitative and Qualitative Disclosures About Market Risk – Foreign Currency Risk.”
+
+40
+
+Table of Contents
+
+Cost of Revenue
+
+Change
+
+2025 | 2024 | 2025 vs. 2024
+
+(In millions, except percentages)
+
+Cost of product and maintenance | 518.7 | 436.6 | 82.1 | 19 | %
+
+Cost of services | 203.6 | 210.9 | (7.3) | (3) | %
+
+Total cost of revenue | 722.3 | 647.5 | 74.8 | 12 | %
+
+The following table shows cost of revenue as a percentage of related revenue for fiscal 2025 and 2024:
+
+2025 | 2024
+
+Cost of product and maintenance | 11 | % | 10 | %
+
+Cost of services | 43 | % | 49 | %
+
+Cost of Product and Maintenance
+
+Cost of product and maintenance includes costs associated with the sale and lease of our hardware products and licensing of our software and IP products, certain employee salary and benefits and other employee-related costs, cost of our customer support services, amortization of technology-related acquired intangibles, costs of technical documentation and royalties payable to third-party vendors. Cost of product and maintenance depends primarily on our hardware product sales in any given period, but is also affected by employee salary and benefits and other employee-related costs, reserves for inventory, and the timing and extent to which we acquire intangible assets, license third-party technology or IP, and sell our products that include such acquired or licensed assets, technology or IP.
+
+A summary of cost of product and maintenance for fiscal 2025 and 2024 is as follows:
+
+Change
+
+2025 | 2024 | 2025 vs. 2024
+
+(In millions, except percentages)
+
+Product and maintenance-related costs | 453.3 | 376.5 | 76.8 | 20 | %
+
+Amortization of acquired intangibles | 65.4 | 60.1 | 5.3 | 9 | %
+
+Total cost of product and maintenance | 518.7 | 436.6 | 82.1 | 19 | %
+
+Product and maintenance-related costs increased during fiscal 2025, when compared to fiscal 2024, due to the following:
+
+Change
+
+2025 vs. 2024
+
+(In millions)
+
+Hardware product costs | 57.6
+
+Salary, benefits and other employee-related costs | 11.5
+
+Other items | 7.7
+
+Total change in product and maintenance-related costs | 76.8
+
+Costs associated with our hardware products include components, assembly, testing, applicable reserves and overhead. These costs make our cost of hardware products higher, as a percentage of revenue, than our cost of software and IP products. Hardware product costs increased during fiscal 2025, as compared to fiscal 2024, primarily due to increased installations of hardware, partially offset by a decrease in charges for excess and obsolete inventory related to previous generations of our hardware products.
+
+Amortization of acquired intangibles included in cost of product and maintenance may fluctuate from period to period depending on the timing of newly acquired assets relative to assets becoming fully amortized in any given period.
+
+Cost of Services
+
+Cost of services primarily includes employee salary, benefits and other employee-related costs to perform work on revenue-generating projects, costs to maintain the infrastructure necessary to manage a services organization and provide cloud-based offerings, and direct costs associated with certain design services. Cost of services may fluctuate from period to period based on our utilization of design services engineers on revenue-generating projects rather than internal development projects and the timing of design service projects being completed.
+
+41
+
+Table of Contents
+
+Operating Expenses
+
+Our operating expenses include marketing and sales, research and development, and general and administrative expenses. Factors that tend to cause our operating expenses to fluctuate include changes in the number of employees due to hiring and acquisitions, industry trends for salary and other employee benefits, the timing and nature of restricted stock grants, foreign exchange rate movements, acquisition-related costs, and volatility in variable compensation programs that are driven by operating results. Certain prior period balance have been reclassified to conform to the current period presentation.
+
+Many of our operating expenses are transacted in various foreign currencies. We recognize lower expenses in periods when the U.S. dollar strengthens in value against other currencies and we recognize higher expenses when the U.S. dollar weakens against other currencies. For an additional description of how changes in foreign exchange rates affect our consolidated financial statements, see the discussion in Item 7A, “Quantitative and Qualitative Disclosures About Market Risk – Foreign Currency Risk.”
+
+Our operating expenses for fiscal 2025 and 2024 were as follows:
+
+Change
+
+2025 | 2024 | 2025 vs. 2024
+
+(In millions, except percentages)
+
+Marketing and sales | 802.6 | 757.5 | 45.1 | 6 | %
+
+Research and development | 1,768.8 | 1,549.1 | 219.7 | 14 | %
+
+General and administrative | 313.4 | 274.0 | 39.4 | 14 | %
+
+Total operating expenses | 2,884.8 | 2,580.6 | 304.2 | 12 | %
+
+Our operating expenses, as a percentage of total revenue, for fiscal 2025 and 2024 were as follows:
+
+2025 | 2024
+
+Marketing and sales | 15 | % | 16 | %
+
+Research and development | 33 | % | 34 | %
+
+General and administrative | 6 | % | 6 | %
+
+Total operating expenses | 54 | % | 56 | %
+
+Marketing and Sales
+
+The increase in marketing and sales expense were due to the following:
+
+Change
+
+2025 vs. 2024
+
+(In millions)
+
+Salary, benefits and other employee-related costs | 28.0
+
+Stock-based compensation | 10.0
+
+Facilities and other infrastructure costs | 6.0
+
+Other items | 1.1
+
+Total change in marketing and sales expense | 45.1
+
+Salary, benefits and other employee-related costs and stock-based compensation included in marketing and sales expense increased during fiscal 2025, as compared to fiscal 2024, primarily due to our continued investment in attracting and retaining talent dedicated to technical sales support, including additional headcount from acquisitions.
+
+Facilities and other infrastructure costs included in marketing and sales expense increased during fiscal 2025, as compared to fiscal 2024, primarily due to our growing workforce. We expect to continue attracting and retaining talent dedicated to technical sales support through hiring and acquisitions.
+
+42
+
+Table of Contents
+
+Research and Development
+
+The increase in research and development expense were due to the following:
+
+Change
+
+2025 vs. 2024
+
+(In millions)
+
+Salary, benefits and other employee-related costs | 153.8
+
+Stock-based compensation | 36.8
+
+Facilities and other infrastructure costs | 25.5
+
+Other items | 3.6
+
+Total change in research and development expense | 219.7
+
+Salary, benefits and other employee-related costs and stock-based compensation included in research and development expense increased during fiscal 2025, as compared to fiscal 2024, primarily due to our continued investment in attracting and retaining talent for research and development activities, including additional headcount from acquisitions. Stock-based compensation also increased due to incremental expense from market-based equity awards granted to certain members of senior management.
+
+Facilities and other infrastructure costs increased during fiscal 2025, as compared to fiscal 2024, primarily due to our growing workforce. We expect to continue attracting and retaining talent dedicated to research and development activities through hiring and acquisitions.
+
+General and Administrative
+
+The changes in general and administrative expense were due to the following:
+
+Change
+
+2025 vs. 2024
+
+(In millions)
+
+Contributions to non-profit organizations | 20.1
+
+Stock-based compensation | 14.1
+
+Professional services | 10.6
+
+Salary, benefits and other employee-related costs | 9.2
+
+Facilities and other infrastructure costs | (10.1)
+
+Other items | (4.5)
+
+Total change in general and administrative expense | 39.4
+
+Contributions to non-profit organizations increased during fiscal 2025, as compared to fiscal 2024, primarily due to the timing of our contributions supporting charitable initiatives, including the Cadence Giving Foundation.
+
+Stock-based compensation included in general and administrative expense increased during fiscal 2025, as compared to fiscal 2024, primarily due to incremental expense from market-based equity awards granted to certain members of senior management.
+
+Professional services included in general and administrative expense increased during fiscal 2025, as compared to fiscal 2024, primarily due to increased professional services associated with acquisitions, including legal, accounting and advisory services.
+
+Salary, benefits and other employee-related costs and stock-based compensation included in general and administrative expense increased during fiscal 2025, as compared to fiscal 2024, primarily due to our continued investment in retaining talent for general and administrative activities.
+
+Facilities and other infrastructure costs included in general and administrative expense decreased during fiscal 2025, as compared to fiscal 2024, primarily due to a decrease in facilities and related resources allocated for general and administrative activities as these resources have been reallocated to support ongoing growth of technical sales support and research and development activities.
+
+Amortization of Acquired Intangibles
+
+Amortization of acquired intangibles consists primarily of amortization of customer relationships, acquired backlog, trade names, trademarks and patents. Amortization in any given period depends primarily on the timing and extent to which we acquire intangible assets.
+
+43
+
+Table of Contents
+
+Change
+
+2025 | 2024 | 2025 vs. 2024
+
+(In millions, except percentages)
+
+Amortization of acquired intangibles | 39.9 | 30.4 | 9.5 | 31 | %
+
+Amortization of acquired intangibles increased during fiscal 2025, as compared to fiscal 2024, primarily due to amortization from intangible assets acquired with our fiscal 2025 and fiscal 2024 acquisitions, partially offset by certain intangible assets that became fully amortized. Our strategy includes continuing to purchase intangible assets and acquiring other companies and businesses.
+
+Loss Related to Contingent Liability
+
+During fiscal 2025, we reached a settlement with each of BIS and DOJ that resolved matters relating to export violations that took place between 2015 and 2021. As part of the settlements, we recorded a charge of $128.5 million in Loss related to contingent liability on our consolidated income statement and paid BIS and the DOJ aggregate net penalties and forfeitures of $140.6 million during fiscal 2025. For additional information relating to this matter, see Note 18 in the notes to consolidated financial statements.
+
+Restructuring
+
+We have initiated restructuring plans in recent years, most recently in September 2025, to better align our resources with our business strategy. Restructuring charges and related benefits are derived from management's estimates during the formulation of the restructuring plans, based on then-currently available information. As a result, our restructuring plans may not achieve the benefits anticipated on the timetable or at the level contemplated. Additional actions, including further restructuring of our operations, may be required in the future. For additional information about our restructuring plans, see Note 11 in the notes to consolidated financial statements.
+
+Operating margin
+
+Operating margin represents income from operations as a percentage of total revenue. Our operating margin for fiscal 2025 and 2024 was as follows:
+
+2025 | 2024
+
+Operating margin | 28 | % | 29 | %
+
+Our operating margin may fluctuate from period to period depending on the mix of products and services sold during each period, the timing and magnitude of restructuring plans and other significant, infrequent expenses. In addition, our acquisitions may result in incremental expenses, including amortization of acquired intangibles, that exceed incremental revenue for a period of time. Operating margin decreased during fiscal 2025, as compared to fiscal 2024, primarily due to the loss recognized in connection with our settlements with BIS and the DOJ.
+
+Interest Expense
+
+Interest expense for fiscal 2025 and 2024 was comprised of the following:
+
+2025 | 2024
+
+(In millions)
+
+Contractual cash interest expense:
+
+Senior Notes | 111.0 | 46.0
+
+Term Loans | — | 25.9
+
+Revolving Credit Facility | 1.0 | 0.7
+
+Amortization of debt discount and debt issuance costs:
+
+Senior Notes | 4.0 | 1.9
+
+Term Loans | — | 1.2
+
+Revolving Credit Facility | 0.3 | 0.4
+
+Other | 0.2 | (0.1)
+
+Total interest expense | 116.5 | 76.0
+
+In September 2024, we issued $2.5 billion aggregate principal amount of senior notes, consisting of $500.0 million aggregate principal amount of senior notes due 2027 (the “2027 Notes”), $1.0 billion aggregate principal amount of senior notes due 2029 (the “2029 Notes”) and $1.0 billion aggregate principal amount of senior notes due 2034 (the “2034 Notes” and together with the 2027 Notes and the 2029 Notes, the “Senior Notes”).
+
+44
+
+Table of Contents
+
+In fiscal 2024, we used a portion of the net proceeds from the Senior Notes to fully extinguish the outstanding principal and accrued interest of other debt instruments that were outstanding at that time.
+
+Interest expense increased during fiscal 2025, as compared to fiscal 2024, primarily due to contractual interest from the Senior Notes, partially offset by the decrease in interest related to debt that was settled in fiscal 2024. For additional information relating to our debt arrangements, see Note 5 in the notes to consolidated financial statements.
+
+Other Income, Net
+
+Other income, net consists primarily of interest earned on cash, cash equivalents and investments in debt securities, realized and unrealized gains and losses from our strategic investments in equity securities of other companies, gains and losses from investments held in the Nonqualified Deferred Compensation (“NQDC”) trust and foreign exchange gains and losses.
+
+Other income, net increased during fiscal 2025, as compared to fiscal 2024, primarily due to increased interest earned from deposits, a recognized gain during fiscal 2025 on the sale of IP and other assets and an increase in net gains from our strategic investment portfolio. These factors were partially offset by increased losses on foreign exchange. For additional information about other income, net, see Note 12 in the notes to consolidated financial statements.
+
+Income Taxes
+
+The following table presents the provision for income taxes and the effective tax rate for fiscal 2025 and 2024:
+
+2025 | 2024
+
+(In millions, except percentages)
+
+Provision for income taxes | 413.2 | 340.3
+
+Effective tax rate | 27.1 | % | 24.4 | %
+
+Our provision for income taxes for fiscal 2025 was primarily attributable to federal, state and foreign income taxes on our fiscal 2025 income. We also recognized tax benefits of $37.5 million related to stock-based compensation that vested or was exercised during the period partially offset by $33.4 million of tax expense for a non-deductible loss associated with our settlements with BIS and the DOJ that was paid during fiscal 2025.
+
+On July 4, 2025, the One Big Beautiful Bill Act (“OBBBA”) was enacted in the United States. The OBBBA includes significant provisions, such as the permanent extension of certain expiring provisions of the Tax Cuts and Jobs Act, modifications to the international tax framework and the restoration of favorable tax treatment for certain business provisions including the immediate expensing of United States research and development expenditures. The legislation has multiple effective dates, with certain provisions effective in fiscal 2025 and others effective from fiscal 2026. We recognized the fiscal 2025 tax effects of the OBBBA in our provision for income taxes in accordance with ASC 740, Income Taxes. The OBBBA did not materially impact our fiscal 2025 effective tax rate.
+
+In 2021, the OECD announced Pillar Two Model Rules which call for the taxation of large multinational corporations, such as Cadence, at a global minimum tax rate of 15%. Many non-U.S. tax jurisdictions, including Ireland and Hungary, have enacted legislation to adopt certain components of the Pillar Two Model Rules or announced their plans to enact legislation in future years. The currently enacted Pillar Two Model Rules did not have a material impact to our provision for income taxes for fiscal 2025 and 2024.
+
+Our provision for income taxes for fiscal 2024 was primarily attributable to federal, state and foreign income taxes on our fiscal 2024 income. We also recognized tax benefits of $42.9 million related to stock-based compensation that vested or was exercised during the period.
+
+Our future effective tax rates may also be materially impacted by tax amounts associated with our foreign earnings at rates different from the United States federal statutory rate, research credits, the tax impact of stock-based compensation, accounting for uncertain tax positions, business combinations, closure of statutes of limitations or settlement of tax audits and changes in tax law. A significant amount of our foreign earnings is generated by our subsidiaries organized in Ireland and Hungary. Our future effective tax rates may be adversely affected if our earnings were to be lower in countries where we have lower statutory tax rates. We currently expect that our fiscal 2026 effective tax rate will be approximately 27%. We expect that our quarterly effective tax rates will vary from our fiscal 2026 effective tax rate as a result of recognizing the income tax effects of stock-based awards in the quarterly periods that the awards vest or are settled and other items that we cannot anticipate.
+
+For additional discussion about how our effective tax rate could be affected by various risks, see Part I, Item 1A, “Risk Factors.” For further discussion regarding our income taxes, see Note 8 in the notes to consolidated financial statements.
+
+45
+
+Table of Contents
+
+Liquidity and Capital Resources
+
+As of | Change
+
+December 31, 2025 | December 31, 2024 | 2025 vs. 2024
+
+(In millions)
+
+Cash and cash equivalents | 3,001.3 | 2,644.0 | 357.3
+
+Net working capital | 3,034.4 | 2,646.0 | 388.4
+
+Cash and Cash Equivalents
+
+Our primary sources of cash and cash equivalents during fiscal 2025 were cash generated from operations, proceeds from the issuance of common stock resulting from stock purchases under our employee stock purchase plan and stock options exercised during the year and proceeds from the sale and maturity of investments.
+
+Our primary uses of cash and cash equivalents during fiscal 2025 were payments related to employee salaries and benefits, operating expenses, repurchases of our common stock, cash paid for acquired businesses, purchases of inventory, payments for income taxes, payment of employee taxes on vesting of restricted stock and purchases of property, plant and equipment.
+
+Approximately 29% of our cash and cash equivalents was held by our foreign subsidiaries as of December 31, 2025. Our cash and cash equivalents held by our foreign subsidiaries may vary from period to period due to the timing of collections, cash paid for acquisitions and investments and repatriation of foreign earnings. We expect that current cash and cash equivalent balances and cash flows that are generated from operations and financing activities will be sufficient to meet the needs of our domestic and international operating activities and other capital and liquidity requirements, including acquisitions, investments and share repurchases, for at least the next 12 months and thereafter for the foreseeable future.
+
+Net Working Capital
+
+Net working capital is comprised of current assets less current liabilities, as shown on our consolidated balance sheets. Our net working capital varies from period to period due to changes in operating assets and liabilities and the timing of investing and financing activities.
+
+Cash Flows from Operating Activities
+
+Cash flows from operating activities during fiscal 2025 and 2024 were as follows:
+
+Change
+
+2025 | 2024 | 2025 vs. 2024
+
+(In millions)
+
+Cash provided by operating activities | 1,728.8 | 1,260.6 | 468.2
+
+Cash flows provided by operating activities include net income, adjusted for certain non-cash items, as well as changes in the balances of certain assets and liabilities. Our cash flows from operating activities are significantly influenced by business levels and the payment terms set forth in our customer agreements. The increase in cash flows from operating activities during fiscal 2025, as compared to fiscal 2024, was primarily due to increased business levels, the timing of cash receipts from customers, the timing of cash disbursements for operating assets and liabilities and cash paid for income taxes. During fiscal 2025 and 2024, our cash flows from operating activities was impacted by growth in our System Design and Analysis business in which revenue is recognized at a point in time and cash is typically collected over the term of the arrangement.
+
+The increase in cash provided by operating activities was partially offset by settlement payments to BIS and the DOJ during fiscal 2025. For information relating to our settlements with BIS and the DOJ, see Note 18 in the notes to consolidated financial statements.
+
+Cash Flows Used for Investing Activities
+
+Cash flows used for investing activities during fiscal 2025 and 2024 were as follows:
+
+Change
+
+2025 | 2024 | 2025 vs. 2024
+
+(In millions)
+
+Cash used for investing activities | (460.5) | (837.1) | 376.6
+
+Cash used for investing activities decreased during fiscal 2025, as compared to fiscal 2024, primarily due to decreased payments for business combinations and an increase in proceeds from the sale and maturity of investments in equity and debt securities. We expect to continue our investing activities, including purchasing property, plant and equipment, purchasing intangible assets, acquiring other companies and businesses, and making investments.
+
+46
+
+Table of Contents
+
+Cash Flows Provided by (Used for) Financing Activities
+
+Cash flows provided by (used for) financing activities during fiscal 2025 and 2024 were as follows:
+
+Change
+
+2025 | 2024 | 2025 vs. 2024
+
+(In millions)
+
+Cash provided by (used for) financing activities | (949.0) | 1,239.2 | (2,188.2)
+
+Cash flows from financing activities decreased during fiscal 2025, as compared to fiscal 2024, primarily due to a decrease in net proceeds from the issuance of debt, an increase in repurchases of common stock and decreased proceeds from the issuance of common stock resulting from stock purchases under our employee stock purchase plan and stock options exercised during the period. These factors were partially offset by a decrease in payments of employee taxes on vesting of restricted stock.
+
+Other Factors Affecting Liquidity and Capital Resources
+
+Senior Notes
+
+In September 2024, we issued $2.5 billion aggregate principal amount of senior notes, consisting of $500.0 million aggregate principal amount of 4.200% Senior Notes due 2027 (the “2027 Notes”), $1.0 billion aggregate principal amount of 4.300% Senior Notes due 2029 (the “2029 Notes”) and $1.0 billion aggregate principal amount of 4.700% Senior Notes due 2034 (the “2034 Notes” and together with the 2027 Notes and the 2029 Notes, the “Senior Notes”). Interest on the Senior Notes is payable semi-annually in arrears in March and September of each year. As of December 31, 2025, we were in compliance with all covenants associated with the Senior Notes.
+
+Revolving Credit Facility
+
+In August 2024, we terminated our existing revolving credit facility, dated June 30, 2021, and amended in September 2022, and entered into a five-year senior unsecured revolving credit facility with a group of lenders led by Bank of America, N.A., as administrative agent (the “2024 Credit Facility”). The 2024 Credit Facility provides for borrowings up to $1.25 billion, with the right to request increased capacity up to an additional $500.0 million upon receipt of lender commitments, for total maximum borrowings of $1.75 billion. The 2024 Credit Facility expires on August 14, 2029. Any outstanding loans drawn under the 2024 Credit Facility are due at maturity on August 14, 2029, subject to an option to extend the maturity date. Outstanding borrowings may be repaid at any time prior to maturity. Interest rates associated with the 2024 Credit Facility are variable, so interest expense is impacted by changes in the interest rates, particularly for periods when there are outstanding borrowings under the revolving credit facility. Interest is payable quarterly. As of December 31, 2025, there were no borrowings outstanding under the 2024 Credit Facility, and we were in compliance with all covenants associated with such credit facility.
+
+For additional information relating to our debt arrangements, see Note 5 in the notes to consolidated financial statements.
+
+Stock Repurchase Program
+
+We are authorized to repurchase shares of our common stock under a publicly announced program. In May 2025, our Board of Directors increased the prior authorization to repurchase shares of our common stock by authorizing an additional $1.5 billion. The actual timing and amount of repurchases are subject to business and market conditions, corporate and regulatory requirements, stock price, acquisition opportunities and other factors. Our repurchase authorization does not obligate us to acquire a minimum number of shares, does not have an expiration date and may be modified, suspended or terminated without prior notice. As of December 31, 2025, approximately $1.4 billion of the share repurchase authorization remained available to repurchase shares of our common stock. See Part II, Item 5, “Market for Registrant’s Common Equity, Related Stockholder Matters and Issuer Purchases of Equity Securities” for additional information on share repurchases.
+
+Cash Payments for Income Taxes
+
+On July 4, 2025, the OBBBA was enacted in the United States. The OBBBA included the restoration of the immediate expensing of United States research and development costs starting in fiscal 2025. This legislation decreased our fiscal 2025 cash tax payments by approximately $151 million.
+
+Pending Acquisition of Hexagon Design and Engineering Business
+
+On September 4, 2025, we entered into a definitive agreement (the “purchase agreement”) with Hexagon to acquire Hexagon’s D&E business. Under the terms of the purchase agreement, we will pay Hexagon aggregate consideration of approximately €2.70 billion. Approximately €1.89 billion of the aggregate consideration will be paid in the form of cash, subject to customary purchase price adjustments in accordance with the purchase agreement, with the remaining consideration payable in the form of newly issued shares of Cadence’s common stock. We intend to fund the cash consideration through a combination of cash on hand and borrowings under existing debt facilities. Closing is expected to occur in the first quarter of 2026.
+
+47
+
+Table of Contents
+
+The purchase agreement also provides for customary termination rights for the parties, including the right to terminate the purchase agreement due to the failure to obtain required regulatory approvals on or prior to September 4, 2026 (subject to two three-month extensions, at our election, until March 4, 2027) or if a governmental authority has issued a final and non-appealable order or injunction prohibiting closing. Under the purchase agreement, we will be required to pay a reverse termination fee of up to €175 million if the purchase agreement is terminated due to the failure to obtain required regulatory approvals on or prior to March 4, 2027, or following an injunction arising from certain antitrust or foreign investment laws.
+
+For information relating to our acquisitions, see Note 6 in the notes to consolidated financial statements.
+
+Other Liquidity Requirements
+
+A summary of other capital and liquidity requirements as of December 31, 2025, is as follows:
+
+Total | Due in Less Than 1 Year
+
+(In millions)
+
+Operating lease obligations (1) | 247.0 | 58.5
+
+Purchase obligations | 162.1 | 99.6
+
+Contractual interest payments | 637.0 | 111.0
+
+Income tax payable | 70.2 | 70.2
+
+Other long-term contractual obligations (2) | 96.9 | —
+
+Total | 1,213.2 | 339.3
+
+_________________
+
+(1) Includes future payments under leases that had commenced as of December 31, 2025 as well as leases that had been signed but not yet commenced as of December 31, 2025.
+
+(2) Included in other long-term contractual obligations are long-term income tax liabilities of $47.6 million related to unrecognized tax benefits. The remaining portion of other long-term contractual obligations is primarily liabilities associated with defined benefit retirement plans and acquisitions.
+
+As of December 31, 2025, we did not have any significant off-balance sheet arrangements that are reasonably likely to have a material current or future effect on our operating results or financial condition.
+
+Critical Accounting Estimates
+
+In preparing our consolidated financial statements, we make assumptions, judgments and estimates that can have a significant impact on our revenue, operating income and net income, as well as on the value of certain assets and liabilities on our consolidated balance sheets. We base our assumptions, judgments and estimates on historical experience and various other factors that we believe to be reasonable under the circumstances. Actual results could differ materially from these estimates under different assumptions or conditions. At least quarterly, we evaluate our assumptions, judgments and estimates, and make changes as deemed necessary.
+
+We believe that the assumptions, judgments and estimates involved in revenue recognition, the accounting for income taxes and business combinations have the greatest potential impact on our consolidated financial statements; therefore, we consider these to be our critical accounting estimates. For information on our significant accounting policies, see Note 2 in the notes to consolidated financial statements.
+
+Revenue Recognition
+
+Our contracts with customers often include promises to transfer multiple software and/or IP licenses, hardware and services, including professional services, technical support services, and rights to unspecified updates to a customer. These contracts require us to apply judgment in identifying and evaluating any terms and conditions in contracts which may impact revenue recognition. Determining whether licenses and services are distinct performance obligations that should be accounted for separately, or not distinct and thus accounted for together, requires significant judgment. In some arrangements, such as most of our IP license arrangements and the license of certain software, we have concluded that the licenses and associated services are distinct from each other. In other arrangements, like the majority of our time-based software arrangements, the licenses and certain services are not distinct from each other. These time-based software arrangements include multiple software licenses and updates to the licensed software products, as well as technical support, and we have concluded that these promised goods and services are a single, combined performance obligation.
+
+48
+
+Table of Contents
+
+Judgment is required to determine the stand-alone selling prices (“SSPs”) for each distinct performance obligation. We rarely license or sell products on a standalone basis, so we are required to estimate the SSP for each performance obligation. In instances where the SSP is not directly observable because we do not sell the license, product or service separately, we determine the SSP using information that may include market conditions and other observable inputs. We typically have more than one SSP for individual performance obligations due to the stratification of those items by classes of customers and circumstances. In these instances, we may use information such as the size of the customer and geographic region of the customer in determining the SSP.
+
+Revenue is recognized over time for our combined performance obligations that include software licenses, updates, and technical support as well as for maintenance and professional services that are separate performance obligations. For our professional services, revenue is recognized over time, generally using costs incurred or hours expended to measure progress. Judgment is required in estimating project status and the costs necessary to complete projects. A number of internal and external factors can affect these estimates, including labor rates, utilization and efficiency variances and specification and testing requirement changes. For our other performance obligations recognized over time, revenue is generally recognized using a time-based measure of progress reflecting generally consistent efforts to satisfy those performance obligations throughout the arrangement term.
+
+If a group of agreements are so closely related that they are, in effect, part of a single arrangement, such agreements are deemed to be one arrangement for revenue recognition purposes. We exercise significant judgment to evaluate the relevant facts and circumstances in determining whether the separate agreements should be accounted for separately or as, in substance, a single arrangement. Our judgments about whether a group of contracts comprise a single arrangement can affect the allocation of consideration to the distinct performance obligations, which could have an effect on results of operations for the periods involved.
+
+We are required to estimate the total consideration expected to be received from contracts with customers. In some circumstances, the consideration expected to be received is variable based on the specific terms of the contract or based on our expectations of the term of the contract. Generally, we have not experienced significant returns or refunds to customers. These estimates require significant judgment and the change in these estimates could have an effect on our results of operations during the periods involved.
+
+Accounting for Income Taxes
+
+We are subject to income taxes in the United States and numerous foreign jurisdictions. Significant judgment is required in evaluating and estimating our provision for these taxes. There are many transactions that occur during the ordinary course of business for which the ultimate tax determination is uncertain. Our provision for income taxes could be adversely affected by our earnings being lower than anticipated in countries where we have lower statutory rates and higher than anticipated in countries where we have higher statutory rates, losses incurred in jurisdictions for which we are not able to realize the related tax benefit, changes in foreign currency exchange rates, entry into new businesses and geographies and changes to our existing businesses, acquisitions and investments, changes in our deferred tax assets and liabilities including changes in our assessment of valuation allowances, changes in the relevant tax laws or interpretations of these tax laws, and developments in current and future tax examinations.
+
+We only recognize the tax benefit of an income tax position if we judge that it is more likely than not that the tax position will be sustained, solely on its technical merits, in a tax audit including resolution of any related appeals or litigation processes. To make this judgment, we must interpret complex and sometimes ambiguous tax laws, regulations and administrative practices. If we judge that an income tax position meets this recognition threshold, then we must measure the amount of the tax benefit to be recognized by estimating the largest amount of tax benefit that has a greater than 50% cumulative probability of being realized upon settlement with a taxing authority that has full knowledge of all of the relevant facts. It is inherently difficult and subjective to estimate such amounts, as this requires us to determine the probability of various possible settlement outcomes. We must reevaluate our income tax positions on a quarterly basis to consider factors such as changes in facts or circumstances, changes in tax law, effectively settled issues under audit, the lapse of applicable statute of limitations, and new audit activity. Such a change in recognition or measurement would result in recognition of a tax benefit or an additional charge to the tax provision. For a more detailed description of our unrecognized tax benefits, see Note 8 in the notes to consolidated financial statements.
+
+49
+
+Table of Contents
+
+Business Combinations
+
+When we acquire businesses, we allocate the purchase price to the acquired tangible assets and assumed liabilities, including deferred revenue, liabilities associated with the fair value of contingent consideration and acquired identifiable intangible assets. Any residual purchase price is recorded as goodwill. The allocation of the purchase price requires us to make significant estimates in determining the fair values of these acquired assets and assumed liabilities, especially with respect to intangible assets and goodwill. These estimates are based on information obtained from management of the acquired companies, our assessment of this information, and historical experience. These estimates can include, but are not limited to, the cash flows that an acquired business is expected to generate in the future, the cash flows that specific assets acquired with that business are expected to generate in the future, the appropriate weighted average cost of capital, and the cost savings expected to be derived from acquiring an asset. These estimates are inherently uncertain and unpredictable, and if different estimates were used, the purchase price for the acquisition could be allocated to the acquired assets and assumed liabilities differently from the allocation that we have made to the acquired assets and assumed liabilities. In addition, unanticipated events and circumstances may occur that may affect the accuracy or validity of such estimates, and if such events occur, we may be required to adjust the value allocated to acquired assets or assumed liabilities.
+
+We also make significant judgments and estimates when we assign useful lives to the definite-lived intangible assets identified as part of our acquisitions. These estimates are inherently uncertain and if we used different estimates, the useful life over which we amortize intangible assets would be different. In addition, unanticipated events and circumstances may occur that may impact the useful life assigned to our intangible assets, which would impact our amortization of intangible assets expense and our results of operations.
+
+During fiscal 2025, we acquired intangible assets of $184.4 million, primarily through our acquisitions of the Artisan foundation IP business from Arm, Secure-IC and VLAB Works. The fair value of the intangible assets acquired was primarily determined by using variations of the income approach that utilizes unobservable inputs classified as Level 3 measurements.
+
+For existing technology, the fair value was determined primarily by applying the relief-from-royalty method. This method is based on the application of a royalty rate to forecasted revenue to quantify the benefit of owning the intangible asset rather than paying a royalty for use of the asset. To estimate royalty savings over time, we projected revenue from the acquired existing technology over the estimated remaining life of the technology, including the effect of assumed technological obsolescence, before applying an assumed royalty rate. We assumed technological obsolescence at rates between 8% and 13% annually, before applying an assumed royalty rates between 25% and 30% and discount rates between 10% and 13%.
+
+For agreements and relationships, the fair value was determined by using the multi-period excess earnings method. This method reflects the present value of the projected cash flows that are expected to be generated from existing customers, less charges representing the contribution of other assets to those cash flows. Projected income from existing customer relationships was determined using customer retention rates between 85% and 90%. The present value of operating cash flows from existing customers was determined using discount rates between 10% and 13%.
+
+We believe that our estimates and assumptions related to the fair value of our acquired intangible assets are reasonable, but significant judgment is involved.
+
+New Accounting Standards
+
+For additional information about the adoption of new accounting standards, see Note 2 in the notes to consolidated financial statements.

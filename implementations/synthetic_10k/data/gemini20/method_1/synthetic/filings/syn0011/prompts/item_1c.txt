@@ -1,0 +1,337 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Novmer Materials, Inc. (ticker NOMV)
+Sector: Materials
+Incorporated in: Delaware
+Headquarters: Atlanta, Georgia
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 65,500
+
+Novmer Materials, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      20,255        19,080
+Cost of revenue                              15,825        14,858
+Gross profit                                  4,430         4,222
+Research and development                          0             0
+Selling, general and administrative           2,856         2,629
+Other operating expense                       1,215         1,145
+Operating income                                359           448
+Interest expense                                689           652
+Income before income taxes                    (330)         (204)
+Provision for income taxes                        0             0
+Net income                                    (330)         (204)
+
+Novmer Materials, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            6,552         6,313
+Accounts receivable, net                             3,219         3,057
+Inventories                                          2,730         2,585
+Other current assets                                 5,358         5,123
+Total current assets                                17,859        17,078
+Property, plant and equipment, net                  33,569        30,712
+Goodwill                                             9,242         9,141
+Other non-current assets                             1,027         1,016
+Total assets                                        61,697        57,947
+Total current liabilities                           13,858        13,401
+Long-term debt                                      15,309        14,499
+Other non-current liabilities                        1,851         1,739
+Total liabilities                                   31,018        29,639
+Total stockholders' equity                          30,679        28,308
+Total liabilities and stockholders' equity          61,697        57,947
+
+Novmer Materials, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             (330)
+Depreciation and amortization                            701
+Changes in working capital and other                     903
+Net cash provided by operating activities              1,274
+Purchases of property and equipment                    (521)
+Other investing activities, net                      (4,025)
+Net cash used in investing activities                (4,546)
+Net change in long-term debt                             810
+Dividends paid                                             0
+Share repurchases, net of issuances                    2,701
+Net cash used in financing activities                  3,511
+Net change in cash and cash equivalents                  239
+Cash and cash equivalents, beginning of year           6,313
+Cash and cash equivalents, end of year                 6,552
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 6.2%
+Net income growth, fiscal 2024 versus 2023: -61.8%
+Operating income growth, fiscal 2024 versus 2023: -19.9%
+Gross margin, fiscal 2024: 21.9%
+Operating margin, fiscal 2024: 1.8%
+Net margin, fiscal 2024: -1.6%
+Effective tax rate, fiscal 2024: 0.0%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 14.1%
+Gross margin, fiscal 2023: 22.1%
+Operating margin, fiscal 2023: 2.3%
+Net margin, fiscal 2023: -1.1%
+Effective tax rate, fiscal 2023: 0.0%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 13.8%
+
+STYLE EXAMPLE: the start of Item 1C from a real Materials company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1C. Cybersecurity.
+Risk Management and Strategy
+We maintain a cyber risk management program designed to assess, identify, manage, mitigate and respond to cybersecurity threats and incidents. We seek to address material risks from cybersecurity threats through a cross-functional approach, and we utilize various processes to inform our identification, assessment and management of material risks from cybersecurity threats. Our cyber risk management program is integrated into our overall enterprise risk management (ERM) program. Cybersecurity risks are identified and assessed through our ERM program, which is designed to provide cross-functional executive insight across the business to identify and monitor risks, opportunities and emerging trends that can impact our strategic business objectives. The underlying controls of our cyber risk management program are based on recognized best practices and standards for cybersecurity and information technology, including the National Institute of Standards and Technology Cybersecurity Framework.
+We utilize dedicated internal and external cybersecurity personnel to focus on assessing, detecting, identifying, managing, preventing and responding to cybersecurity threats and incidents. Our approach to cybersecurity incorporates a layered portfolio of technology controls, including strategic partnerships for our cybersecurity platforms, documented policies and procedures, periodic end user training, including cybersecurity awareness training for employees and certain contractors, and dedicated resources to manage and monitor the evolving threat landscape, including through the gathering of actionable threat intelligence. We maintain and periodically evaluate and, as needed, update our information security policy and an incident response plan, which describes the processes we use to prepare for, detect, respond to and recover from a cybersecurity incident, including processes to assess severity, escalate, contain, investigate and remediate an incident, as well as to comply with potentially applicable legal and disclosure obligations.
+We regularly evaluate and assess the threat landscape and our security controls, including through audits and assessments, regular network and endpoint monitoring, vulnerability testing, penetration testing and tabletop exercises that include senior management. To assess the design and effectiveness of our cybersecurity controls, we engage with assessors, consultants, auditors and other third parties, including through independent third-party reviews of our information technology security program conducted on at least an annual basis. We also have processes to oversee and identify material cybersecurity risks associated with our use of third-party service providers, including utilizing safeguards to protect sensitive data, performing diligence on certain third parties that have access to our systems, data or facilities that store such systems or data, continually monitoring cybersecurity threat risks identified through such diligence and contracting to manage cybersecurity risks in specified ways such as requiring agreements to be subject to periodic cybersecurity audits.
+We have experienced targeted and non-targeted cybersecurity incidents in the past, including an incident in August 2023 that affected certain of our information systems and resulted in temporary disruptions to parts of our operations. However, prior cybersecurity incidents, including the August 2023 incident, have not materially affected us. Notwithstanding our cyber risk management program, we may not be successful in preventing or mitigating a cybersecurity incident that could materially affect us, including our business strategy, results of operations or financial condition. Refer to Item 1A. “Risk Factors” for further information on the risks we face from cybersecurity threats.
+Governance
+Our Senior Vice President and Chief Innovation Officer, who has served in various senior leadership roles in operational improvement and technology during his nearly 30-year tenure with us, leads our innovation and technology initiatives, corporate information systems and financial shared services. Our cybersecurity risk management and strategy processes described in “Risk Management and Strategy” above are led by our Chief Information Officer (CIO) and our Chief Information Security Officer (CISO). Our CIO and CISO each report to our Chief Innovation Officer. Our CIO is responsible for the strategy, deployment, operational effectiveness and risk management of our technology systems and operations. Our CIO has over 30 years of experience in technology, cybersecurity and risk management, including leading information and technology initiatives for companies in the mining and energy sectors as a partner and senior managing director at a global professional services public company specializing in information technology services and management consulting. Our CISO is responsible for protecting our global technology systems from cybersecurity incidents, which includes overseeing the deployment of cybersecurity controls, managing a team of cybersecurity professionals and reporting on cybersecurity matters to management and the Audit Committee of our Board. Our CISO has 30 years of experience in the technology and
+72
+Table of Contents
+cybersecurity industries, including 15 years serving as CISO for public companies. Our CISO is also a Certified Information Systems Security Professional.
+Our ERM management committee is responsible for providing input and oversight on our ERM program, including cybersecurity risks. Our ERM management committee is comprised of senior leaders, including our Chief Innovation Officer, with responsibility across operations and core business functions, and with a breadth of knowledge, influence and experience covering the risks we face. An annual report on our enterprise risks, including cybersecurity risks, is presented to the Audit Committee and/or the full Board of Directors (Board).
+While management is responsible for the day-to-day management of cybersecurity risks, our Board and its Audit Committee have ongoing oversight roles. The Audit Committee reviews and discusses with management, including reports from our Chief Innovation Officer, at least annually:
+•the adequacy and effectiveness of our information technology security processes and procedures,
+•the assessment of risks and threats to our information technology systems,
+•the internal controls regarding information technology security and cybersecurity, and
+•the steps management has taken to monitor and mitigate information technology security and cybersecurity risks.
+The Audit Committee also periodically receives reports on notable cybersecurity incidents and briefs the full Board on these matters.
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Overview
+
+Novmer Materials, Inc. is a leading global provider of high-performance materials and specialized manufacturing solutions. Incorporated in the State of Delaware and headquartered in Atlanta, Georgia, the Company serves a diverse array of end markets, including industrial manufacturing, infrastructure development, commercial construction, and aerospace. Since our inception, we have focused on the development and production of essential materials that form the foundation of modern industrial and urban environments. Our operations are characterized by a deep commitment to technical expertise, material science innovation, and large-scale manufacturing efficiency.
+
+In the fiscal year ended December 31, 2024, Novmer Materials, Inc. generated revenue of $20,255 million. Our business model is built upon a vertically integrated supply chain that allows us to manage the lifecycle of our products from raw material extraction and chemical processing to the delivery of finished high-value components. We operate a vast network of production facilities, distribution centers, and research laboratories across the globe, enabling us to meet the rigorous demands of our customers while maintaining a competitive cost structure.
+
+As a materials science leader, we utilize advanced engineering processes to solve complex challenges for our clients. Whether through the provision of structural components for large-scale infrastructure projects or the development of specialized polymers for high-stress industrial applications, the Company remains a critical partner in the global industrial supply chain. Our strategic focus is on expanding our market share in high-growth regions and continuing to optimize our operational footprint to drive long-term value for our stockholders.
+
+Business Segments
+
+The Company manages its operations through three reportable segments: Industrial Materials Solutions, Infrastructure and Construction Products, and Performance Coatings and Polymers. These segments are organized based on the nature of the products provided and the specific customer markets they serve.
+
+Industrial Materials Solutions
+
+The Industrial Materials Solutions segment focuses on the production of high-performance alloys, specialized metal components, and advanced composite materials. These products are designed to withstand extreme temperatures, high pressure, and corrosive environments. This segment primarily serves the aerospace, defense, and energy sectors. Our engineers work closely with original equipment manufacturers to design materials that meet exacting specifications for safety and performance. The production process in this segment involves sophisticated metallurgy and precision machining, often requiring proprietary manufacturing techniques that differentiate our offerings from those of our competitors.
+
+Infrastructure and Construction Products
+
+The Infrastructure and Construction Products segment is our largest division by volume and provides the essential materials required for the built environment. This includes cementitious materials, aggregates, structural steel components, and prefabricated building elements. We serve both public and private sector clients, providing materials for the construction of highways, bridges, tunnels, and large-scale commercial developments. This segment benefits from our extensive network of quarries and processing plants, which are strategically located near major metropolitan areas to minimize transportation costs and ensure timely delivery to project sites. Our solutions in this segment are increasingly focused on durability and the integration of recycled materials to meet the evolving requirements of modern construction standards.
+
+Performance Coatings and Polymers
+
+The Performance Coatings and Polymers segment develops and manufactures specialized chemical products, including protective coatings, sealants, and high-strength polymers. These products are utilized across a wide range of industries, including automotive, marine, and general manufacturing, to protect surfaces from environmental degradation and to enhance the structural integrity of finished goods. Our polymer products are also used in the production of consumer goods and medical devices, where material purity and consistency are paramount. This segment relies heavily on our chemical engineering capabilities and our ability to formulate custom solutions that address specific environmental or functional challenges faced by our customers.
+
+Principal Products and Services
+
+Novmer Materials, Inc. offers a comprehensive portfolio of products categorized by their functional application and material composition.
+
+Metals and Alloys: We produce a variety of non-ferrous alloys and specialty steel products. These are used in the manufacturing of engine components, structural frames for aircraft, and heavy machinery. Our proprietary smelting and refining processes allow us to achieve high levels of purity and specific mechanical properties required for mission-critical applications.
+
+Cement and Aggregates: Our construction materials include Portland cement, specialized masonry cements, and various grades of crushed stone, sand, and gravel. These materials are the primary ingredients in concrete and asphalt, used extensively in infrastructure and building projects.
+
+Specialty Chemicals and Resins: We manufacture a broad range of synthetic resins and chemical additives. These products serve as the base for adhesives, coatings, and composite materials. Our chemical portfolio is designed to provide specific attributes such as UV resistance, thermal stability, and chemical inertness.
+
+Fabricated Components: Beyond raw materials, we provide value-added services by fabricating materials into ready-to-use components. This includes pre-cast concrete sections for bridge construction and precision-machined metal parts for industrial equipment.
+
+Sales and Marketing
+
+We utilize a multi-channel sales and marketing strategy to reach our diverse customer base. Our primary sales force consists of technically trained professionals who manage direct relationships with large industrial accounts and governmental agencies. These sales teams are organized by industry vertical to ensure they possess the specific technical knowledge required to consult on complex projects.
+
+For our infrastructure and construction products, we maintain a regional sales structure that focuses on local contractors, developers, and municipal authorities. This localized approach allows us to respond quickly to regional construction trends and to manage the logistics of heavy material delivery effectively.
+
+In addition to our direct sales force, we partner with a network of authorized distributors and wholesalers for the sale of our coatings, polymers, and standardized metal products. These partners provide us with broader market reach, particularly among smaller manufacturing firms and specialized contractors. Our marketing efforts are centered on demonstrating the technical superiority and long-term cost-effectiveness of our materials, often through case studies, technical white papers, and participation in major industry trade shows.
+
+Customers
+
+Our customer base is highly diversified, spanning numerous industries and geographic regions. No single customer accounts for a disproportionate share of our total revenue, which helps to mitigate the risk associated with the loss of any individual account.
+
+Governmental Entities: We serve national, state, and local governments as a primary supplier of materials for public infrastructure projects. These contracts are often long-term in nature and are subject to rigorous bidding processes and strict compliance standards.
+
+Original Equipment Manufacturers (OEMs): In the aerospace, automotive, and industrial equipment sectors, we provide materials and components that are integrated into the final products of some of the world's largest manufacturing companies. These relationships are often characterized by long-term supply agreements and joint development projects.
+
+Construction Contractors: We supply a wide range of materials to general contractors and specialized subcontractors involved in residential, commercial, and industrial construction.
+
+Industrial Processors: Our chemical and polymer products are sold to other manufacturers who use them as raw materials in their own production processes, such as the formulation of paints or the molding of plastic parts.
+
+Competition
+
+The markets for our products are highly competitive and are characterized by a large number of global and regional participants. We compete on several factors, including product quality, technical innovation, price, reliability of supply, and customer service.
+
+In our Infrastructure and Construction Products segment, competition is primarily regional due to the high cost of transporting heavy materials. We compete with both large international building materials companies and local independent producers. Our competitive advantage in this segment stems from our strategic asset locations and our ability to provide a full suite of integrated solutions.
+
+In the Industrial Materials Solutions and Performance Coatings and Polymers segments, competition is global. We compete with large diversified chemical and metal companies that may have significant research and development resources. In these markets, we differentiate ourselves through our specialized technical expertise and our ability to develop custom material formulations that meet the specific needs of high-tech industries.
+
+The emergence of new materials and manufacturing technologies, such as additive manufacturing and bio-based polymers, represents both a challenge and an opportunity. We continuously monitor the competitive landscape and invest in our manufacturing capabilities to maintain our market position.
+
+Seasonality
+
+Our business is subject to seasonal fluctuations, particularly within the Infrastructure and Construction Products segment. Construction activity in many of our key markets, especially in the northern hemisphere, typically slows down during the winter months due to inclement weather. Consequently, our revenues and operating volumes are generally higher in the second and third quarters of the calendar year.
+
+The Industrial Materials Solutions segment is less affected by weather-related seasonality but may be influenced by the cyclical nature of the aerospace and energy industries. Periodic maintenance shutdowns at our customers' facilities or the timing of major capital projects can also lead to fluctuations in demand. We manage these seasonal and cyclical variations through careful production planning and by maintaining a flexible workforce and supply chain.
+
+Intellectual Property
+
+Intellectual property is a critical component of our business strategy and a key driver of our competitive advantage. We rely on a combination of patents, trademarks, trade secrets, and confidentiality agreements to protect our proprietary technology and brands.
+
+We hold a significant portfolio of patents covering our material formulations, manufacturing processes, and specialized product designs. These patents are filed in the United States and in various international jurisdictions where we conduct business. While our patent portfolio is extensive, no single patent is [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+Many of the factors that affect our business and operations involve risk and uncertainty. The factors described below are some of the risks that could materially negatively affect our business, financial condition, results of operations and cash flows.
+
+Industry and Market Risk Factors
+
+Our business is highly cyclical and sensitive to downturns in the industries we serve, which could adversely affect our financial results.
+
+The demand for our products is closely tied to the level of activity in the construction, infrastructure, aerospace, and industrial manufacturing sectors. These industries are cyclical and are significantly affected by changes in general economic conditions, such as interest rates, consumer confidence, and government spending levels. For example, our Infrastructure and Construction Products segment relies heavily on public funding for highways and bridges as well as private investment in commercial real estate. A slowdown in the U.S. or global economy that leads to a reduction in construction activity or a delay in infrastructure projects would decrease demand for our cement and structural steel products. Similarly, our Industrial Materials Solutions segment is dependent on the capital expenditure cycles of the aerospace and energy industries. If these sectors experience a prolonged downturn, our revenue and operating income would be materially and adversely affected.
+
+The markets for our products are highly competitive, and our inability to compete effectively could result in a loss of market share.
+
+We face intense competition from both domestic and international producers across all our business segments. In the Infrastructure and Construction Products segment, competition is often regional due to the high costs associated with transporting heavy materials like cement and aggregates. We compete with large multinational corporations as well as smaller, local independent producers who may have lower overhead costs. In our Performance Coatings and Polymers and Industrial Materials Solutions segments, we compete on a global scale against large diversified chemical and metal companies. Some of our competitors may have greater financial resources or lower production costs than we do. If we are unable to maintain our competitive position through product quality, customer service, and manufacturing efficiency, our sales volumes and pricing power could decline, leading to reduced margins.
+
+Substitution of our products by alternative materials could reduce demand and negatively impact our results.
+
+In many of the applications for which our products are used, customers have the option to substitute our materials with alternatives. For instance, in the construction industry, steel and concrete compete with wood, engineered composites, and recycled plastics. In the aerospace and automotive sectors, our high-performance alloys and polymers may face competition from carbon fiber or other advanced lightweight materials. If these alternative materials become more cost-effective, or if technological advancements improve their performance characteristics, our customers may shift their preferences away from our products. Such a shift could lead to a permanent reduction in demand for our core offerings and materially harm our long-term growth prospects.
+
+Volatility in the prices of raw materials and energy could increase our cost of revenue and decrease our profitability.
+
+Our manufacturing processes are energy-intensive and require significant quantities of raw materials, including iron ore, chemical feedstocks, and various minerals. The prices of these inputs are subject to market volatility caused by factors beyond our control, such as global supply and demand imbalances, geopolitical tensions, and changes in trade policies. Because our cost of revenue reached $15,825 million in fiscal 2024, even small percentage increases in the price of key inputs can have a substantial impact on our bottom line. We may not always be able to pass these increased costs on to our customers through higher product prices, especially in highly competitive markets or during periods of weak demand. Furthermore, our operations rely heavily on electricity and natural gas. Any significant disruption in the supply of energy or a sharp increase in utility rates could impair our ability to operate our facilities efficiently and adversely affect our results of operations.
+
+Operational Risk Factors
+
+We operate a large number of manufacturing facilities and any significant disruption could harm our business.
+
+Our operations depend on the continuous and efficient functioning of our production plants, quarries, and distribution centers. These facilities are subject to risks such as equipment failure, fires, natural disasters, and industrial accidents. Because many of our products require specialized manufacturing techniques and equipment, a major disruption at one of our key facilities could result in significant production delays and the inability to meet customer orders. Moreover, the capital-intensive nature of our business means that we must invest regularly in maintenance and upgrades. If we fail to maintain our property, plant and equipment, which had a net value of $33,569 million at the end of fiscal 2024, we could experience increased downtime and higher operating costs.
+
+The loss of key personnel or an inability to attract and retain a skilled workforce could negatively affect our operations.
+
+Our success depends on the contributions of our approximately 65,500 employees. We rely on skilled engineers, material scientists, and technical sales professionals to develop and market our specialized products. The market for such talent is highly competitive. If we are unable to attract and retain qualified personnel, our ability to innovate and manage our complex global operations could be compromised. Additionally, a significant portion of our workforce is involved in manufacturing and logistics. Any labor shortages, work stoppages, or significant increases in labor costs could disrupt our production schedules and reduce our profitability.
+
+Our lack of investment in research and development may result in product obsolescence and a loss of competitive advantage.
+
+In fiscal 2024, our research and development expenses were $0 million. While we currently hold an extensive portfolio of patents and proprietary manufacturing processes, the materials science industry is characterized by rapid technological change. Our competitors may invest heavily in the development of new materials, more efficient production methods, or sustainable technologies that could render our current products or processes obsolete. Without ongoing investment in research and development, we may fail to identify emerging market trends or develop the next generation of high-performance materials. This lack of innovation could lead to a decline in our market position and make it difficult for us to compete in high-growth sectors such as advanced manufacturing and green infrastructure.
+
+We are subject to risks associated with our global operations, including geopolitical instability and trade barriers.
+
+We maintain a significant presence in international markets, which exposes us to risks related to varying legal, regulatory, and economic environments. Geopolitical instability, social unrest, or changes in government leadership in the regions where we operate could disrupt our supply chain or result in the expropriation of our assets. Furthermore, our international sales and imports of raw materials are subject to trade policies, including tariffs and quotas. The imposition of new trade barriers or the escalation of trade disputes could increase our costs and limit our access to key markets. For example, tariffs on imported metals or chemicals could increase the cost of our raw materials or make our finished products less competitive in foreign markets.
+
+Financial and Capital Risk Factors
+
+Our significant level of debt could adversely affect our financial health and limit our operational flexibility.
+
+As of December 31, 2024, we had $15,309 million in long-term debt. This substantial level of indebtedness requires us to dedicate a significant portion of our cash flow from operations to interest payments, which totaled $689 million in fiscal 2024. Our high debt load could make it more difficult for us to satisfy our financial obligations, increase our vulnerability to adverse economic conditions, and limit our ability to obtain additional financing for working capital, capital expenditures, or acquisitions. If we are unable to generate sufficient cash flow to service our debt, we may be forced to reduce or delay capital expenditures, sell assets, or seek to restructure our indebtedness, any of which could have a material adverse effect on our business.
+
+We have experienced net losses in recent years, and we may not be able to achieve or maintain profitability in the future.
+
+For the fiscal year ended December 31, 2024, we reported a net loss of $330 million, which followed a net loss of $204 million in the prior year. Our net margin for fiscal 2024 was negative 1.6%. These losses are primarily due to high operating expenses and significant interest costs that have exceeded our operating income. If we are unable to increase our revenue or significantly reduce our cost structure, we may continue to incur net losses. A sustained period of unprofitability could deplete our cash reserves, erode stockholders' equity, and negatively impact our ability to fund our operations and strategic initiatives.
+
+Fluctuations in interest rates could increase our borrowing costs and negatively impact our financial results.
+
+A portion of our debt may be subject to variable interest rates, or we may need to refinance our existing fixed-rate debt at higher prevailing rates in the future. In fiscal 2024, our interest expense increased to $689 million from $652 million in the previous year. If interest rates continue to rise, our cost of borrowing will increase, further straining our cash flows and reducing the funds available for our business operations. Moreover, higher interest rates often lead to a [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+The following discussion and analysis of the financial condition and results of operations of Novmer Materials, Inc. should be read in conjunction with the consolidated financial statements and the related notes included elsewhere in this Annual Report on Form 10-K. This discussion contains forward-looking statements that involve risks and uncertainties. Our actual results could differ materially from those anticipated in these forward-looking statements as a result of various factors, including those discussed below and elsewhere in this report, particularly under the heading Risk Factors in Item 1A.
+
+OVERVIEW
+
+Novmer Materials, Inc. is a global leader in the materials science sector, providing essential products for industrial manufacturing, infrastructure development, and specialized chemical applications. Headquartered in Atlanta, Georgia, and incorporated in Delaware, we operate a complex network of production facilities and distribution hubs supported by a workforce of about 65,500 employees. Our business is organized into three primary reportable segments: Industrial Materials Solutions, Infrastructure and Construction Products, and Performance Coatings and Polymers.
+
+During the fiscal year ended December 31, 2024, the Company navigated a complex macroeconomic environment characterized by steady demand in infrastructure sectors offset by significant inflationary pressures in raw materials and energy. Revenue for the fiscal year reached $20,255 million, representing an increase of 6.2% compared to the prior year. This growth was primarily driven by higher pricing attainment across our product lines and increased volume in our Infrastructure and Construction Products segment, which benefited from continued public and private investment in large-scale building projects.
+
+Despite the growth in revenue, our profitability was challenged by rising operational costs and a heavy debt service burden. Operating income for fiscal 2024 was $359 million, representing a decrease of 19.9% from $448 million in fiscal 2023. The compression in operating margins was largely due to higher cost of revenue and increased selling, general and administrative expenses. Our net loss widened during the year, reaching $330 million in fiscal 2024 compared to a net loss of $204 million in the prior year. This represents a decrease in net income of 61.8%.
+
+Our financial position remains supported by a substantial cash balance of $6,552 million as of December 31, 2024. However, our capital structure includes $15,309 million in long-term debt, which resulted in interest expense of $689 million during the fiscal year. Management remains focused on optimizing our manufacturing footprint and improving operational efficiencies to mitigate the impact of cost inflation and to return the Company to profitability.
+
+RESULTS OF OPERATIONS
+
+The following table and discussion provide a comparison of our results of operations for the fiscal years ended December 31, 2024 and 2023.
+
+Revenue
+
+Revenue for fiscal 2024 was $20,255 million, an increase of $1,175 million, or 6.2%, compared to $19,080 million in fiscal 2023. The growth in revenue was primarily attributable to the following factors:
+
+- Pricing Actions: In response to rising input costs, the Company implemented strategic price increases across all segments. These actions contributed significantly to the year-over-year revenue growth, particularly in the Industrial Materials Solutions and Performance Coatings and Polymers segments, where specialized product formulations allow for greater pricing power.
+
+- Volume Growth: We experienced higher demand for cement, aggregates, and structural steel within our Infrastructure and Construction Products segment. This was driven by a robust pipeline of government-funded infrastructure projects and commercial development in North America.
+
+- Market Expansion: Continued expansion into emerging markets and high-growth industrial sectors provided additional revenue streams. Our ability to provide integrated solutions for aerospace and energy customers helped offset localized softening in general manufacturing.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue for fiscal 2024 was $15,825 million, an increase of $967 million, or 6.5%, compared to $14,858 million in fiscal 2023. This increase was slightly higher than our revenue growth rate, reflecting the persistent inflationary environment. Key drivers of the increase in cost of revenue included:
+
+- Raw Material Costs: We saw significant price volatility and overall increases in the cost of iron ore, chemical feedstocks, and minerals. These materials are critical to our production processes across all three segments.
+
+- Energy and Logistics: As an energy-intensive business, our operations were impacted by higher prices for electricity and natural gas. Additionally, the cost of transporting heavy materials to project sites increased due to higher fuel prices and freight rates.
+
+- Labor and Manufacturing Overhead: Higher wage rates for our manufacturing workforce and increased maintenance costs at our aging production facilities also contributed to the rise in cost of revenue.
+
+Gross profit for fiscal 2024 was $4,430 million, compared to $4,222 million in the prior year. Gross margin was 21.9% in fiscal 2024, representing a decrease from 22.1% in fiscal 2023. The slight contraction in gross margin reflects our inability to fully pass through the entirety of the cost increases to our customers in certain highly competitive regional markets.
+
+Research and Development
+
+Research and development expenses were $0 million for both fiscal 2024 and fiscal 2023. The Company does not currently maintain a dedicated research and development expense line as we focus our technical efforts on application engineering and process improvements that are typically captured within cost of revenue or capital expenditures. We rely on our existing portfolio of proprietary manufacturing techniques and established material formulations to maintain our competitive position.
+
+Selling, General and Administrative Expenses
+
+Selling, general and administrative (SG&A) expenses for fiscal 2024 were $2,856 million, an increase of $227 million, or 8.6%, compared to $2,629 million in fiscal 2023. As a percentage of revenue, SG&A expenses were 14.1% in fiscal 2024, compared to 13.8% in fiscal 2023.
+
+The increase in SG&A expenses was primarily driven by:
+
+- Personnel Costs: Higher compensation and benefits for our administrative and sales staff, reflecting broader labor market trends and the need to retain skilled technical professionals.
+
+- Information Technology: Increased investment in digital infrastructure and cybersecurity measures to support our global operations and protect our intellectual property.
+
+- Professional Fees: Higher legal and consulting fees related to regulatory compliance and strategic operational reviews aimed at improving long-term efficiency.
+
+Other Operating Expense
+
+Other operating expense for fiscal 2024 was $1,215 million, compared to $1,145 million in fiscal 2023, an increase of $70 million. This category primarily includes depreciation and amortization not allocated to cost of revenue, as well as costs associated with environmental remediation and asset retirement obligations. The increase was largely due to higher depreciation charges following the completion of several modernization projects at our manufacturing facilities and quarries.
+
+Operating Income
+
+Operating income for fiscal 2024 was $359 million, a decrease of $89 million, or 19.9%, compared to $448 million in fiscal 2023. Operating margin decreased to 1.8% in fiscal 2024 from 2.3% in fiscal 2023. The decline in operating income and margin was the result of the aforementioned increases in SG&A and other operating expenses, which outweighed the growth in gross profit.
+
+Interest Expense
+
+Interest expense for fiscal 2024 was $689 million, an increase of $37 million, or 5.7%, compared to $652 million in fiscal 2023. This increase was driven by a higher total debt balance, which rose to $15,309 million by the end of fiscal 2024. The Company utilizes debt to fund its capital-intensive operations and strategic initiatives, and the current interest expense reflects the cost of servicing this significant obligation.
+
+Effective Tax Rate
+
+The effective tax rate for both fiscal 2024 and fiscal 2023 was 0.0%. The Company recorded a provision for income taxes of $0 million in both years. The difference between the U.S. statutory rate and our effective tax rate is primarily due to the recognition of full valuation allowances against our deferred tax assets. Because we have experienced consistent net losses, we have determined that it is more likely than not that the benefits of our net operating loss carryforwards and other deferred tax assets will not be realized in the near term.
+
+Net Income
+
+Net loss for fiscal 2024 was $330 million, compared to a net loss of $204 million in fiscal 2023. The net loss widened by $126 million, or 61.8%. Net margin for fiscal 2024 was negative 1.6%, compared to negative 1.1% in the prior year. The increase in net loss was primarily due to the lower operating income and the substantial interest expense, which combined to exceed the Company's gross earnings.
+
+LIQUIDITY AND CAPITAL RESOURCES
+
+Our primary sources of liquidity are cash generated from operations and borrowings under our various debt facilities. As of December 31, 2024, we had $6,552 million in cash and cash equivalents, an increase of $239 million from $6,313 million at the end of fiscal 2023. We believe our current cash position and projected cash flows from operations will be sufficient to meet our working capital requirements, capital expenditures, and debt service obligations for the next twelve months.
+
+Cash Flows from Operating Activities
+
+Net cash provided by operating activities was $1,274 million in fiscal 2024. This was driven by a net loss of $330 million, adjusted for non-cash items including depreciation and amortization of $701 million. Changes in working capital and other items provided $903 million in cash. The positive contribution from working capital was largely due to efficient management of accounts payable and other current liabilities, which helped offset the increase in accounts receivable and inventories [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Novmer Materials, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 900 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

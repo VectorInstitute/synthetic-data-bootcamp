@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0004",
+  "name": "Lonnov Software, Inc.",
+  "ticker": "LNON",
+  "sector": "Information Technology",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "TX",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 80053,
+  "revenue_growth": 0.0394,
+  "employees": 163900,
+  "ratios": {
+    "gross_margin": 0.3714,
+    "operating_margin": 0.2037,
+    "sga_ratio": 0.03,
+    "da_ratio": 0.0544,
+    "capex_ratio": 0.0197,
+    "tax_rate": 0.0941,
+    "asset_turnover": 0.849,
+    "equity_ratio": 0.8,
+    "current_assets_ratio": 0.6731,
+    "current_ratio": 3.1825,
+    "cash_ratio": 0.222,
+    "ppe_ratio": 0.1225,
+    "debt_ratio": 0.135,
+    "receivables_ratio": 0.18,
+    "rd_ratio": 0.1377,
+    "inventory_ratio": 0.0,
+    "goodwill_ratio": 0.0405,
+    "dividend_payout": 0.1716,
+    "other_operating_cash_ratio": -0.0047
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 80053,
+        "cost_of_revenue": 50321,
+        "gross_profit": 29732,
+        "research_and_development": 11023,
+        "selling_general_and_administrative": 2402,
+        "other_operating_expense": 0,
+        "operating_income": 16307,
+        "interest_expense": 504,
+        "pretax_income": 15803,
+        "income_tax": 1487,
+        "net_income": 14316
+      },
+      "2023": {
+        "revenue": 77018,
+        "cost_of_revenue": 49221,
+        "gross_profit": 27797,
+        "research_and_development": 10546,
+        "selling_general_and_administrative": 2310,
+        "other_operating_expense": 0,
+        "operating_income": 14941,
+        "interest_expense": 482,
+        "pretax_income": 14459,
+        "income_tax": 1385,
+        "net_income": 13074
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 20933,
+        "receivables": 14410,
+        "inventory": 0,
+        "total_current_assets": 50489,
+        "property_plant_and_equipment": 12443,
+        "goodwill": 3819,
+        "total_assets": 94291,
+        "total_current_liabilities": 13948,
+        "long_term_debt": 11192,
+        "total_equity": 66322,
+        "other_current_assets": 15146,
+        "other_noncurrent_assets": 27540,
+        "other_noncurrent_liabilities": 2829,
+        "total_liabilities": 27969,
+        "total_liabilities_and_equity": 94291
+      },
+      "2023": {
+        "cash": 19316,
+        "receivables": 13507,
+        "inventory": 0,
+        "total_current_assets": 46890,
+        "property_plant_and_equipment": 12316,
+        "goodwill": 3594,
+        "total_assets": 90152,
+        "total_current_liabilities": 13077,
+        "long_term_debt": 10707,
+        "total_equity": 63663,
+        "other_current_assets": 14067,
+        "other_noncurrent_assets": 27352,
+        "other_noncurrent_liabilities": 2705,
+        "total_liabilities": 26489,
+        "total_liabilities_and_equity": 90152
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 14316,
+        "depreciation_and_amortization": 4355,
+        "other_operating_items": -376,
+        "net_cash_from_operating_activities": 18295,
+        "capital_expenditures": -1577,
+        "other_investing_activities": -3929,
+        "net_cash_from_investing_activities": -5506,
+        "net_change_in_long_term_debt": 485,
+        "dividends_paid": -2457,
+        "share_repurchases_net": -9200,
+        "net_cash_from_financing_activities": -11172,
+        "net_change_in_cash": 1617,
+        "cash_beginning_of_year": 19316,
+        "cash_end_of_year": 20933
+      }
+    }
+  }
+}

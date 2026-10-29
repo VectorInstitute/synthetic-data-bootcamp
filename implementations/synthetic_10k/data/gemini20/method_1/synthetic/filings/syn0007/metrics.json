@@ -1,0 +1,142 @@
+{
+  "company_id": "syn0007",
+  "name": "Oral Communications, Inc.",
+  "sector": "Communication Services",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 183.6,
+  "totals": {
+    "seconds": 183.02,
+    "prompt_tokens": 34639,
+    "completion_tokens": 33262,
+    "total_tokens": 67901,
+    "reasoning_tokens": 10902,
+    "calls": 6
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1227,
+      "prompt_chars": 14161,
+      "words": 2605,
+      "attempts": 1,
+      "exemplar_overlap": 0.0057,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1217,
+      "prompt_chars": 25812,
+      "words": 4180,
+      "attempts": 3,
+      "exemplar_overlap": 0.0012,
+      "issues": [
+        "Item 1A cites 12 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1421,
+      "prompt_chars": 37590,
+      "words": 2617,
+      "attempts": 1,
+      "exemplar_overlap": 0.0033,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 570,
+      "exemplar_words": 875,
+      "prompt_chars": 44614,
+      "words": 674,
+      "attempts": 1,
+      "exemplar_overlap": 0.0294,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 26.58,
+      "prompt_tokens": 3157,
+      "completion_tokens": 4381,
+      "total_tokens": 7538,
+      "reasoning_tokens": 1186,
+      "finish_reason": "stop",
+      "words": 2605,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 37.38,
+      "prompt_tokens": 4872,
+      "completion_tokens": 6868,
+      "total_tokens": 11740,
+      "reasoning_tokens": 1734,
+      "finish_reason": "stop",
+      "words": 4308,
+      "issues": [
+        "Item 1A cites 10 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 37.78,
+      "prompt_tokens": 4917,
+      "completion_tokens": 6808,
+      "total_tokens": 11725,
+      "reasoning_tokens": 2357,
+      "finish_reason": "stop",
+      "words": 3769,
+      "issues": [
+        "Item 1A cites 9 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gemini-3-flash-preview",
+      "seconds": 34.76,
+      "prompt_tokens": 4916,
+      "completion_tokens": 6410,
+      "total_tokens": 11326,
+      "reasoning_tokens": 1462,
+      "finish_reason": "stop",
+      "words": 4180,
+      "issues": [
+        "Item 1A cites 12 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 32.91,
+      "prompt_tokens": 8036,
+      "completion_tokens": 6610,
+      "total_tokens": 14646,
+      "reasoning_tokens": 2789,
+      "finish_reason": "stop",
+      "words": 2617,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 13.61,
+      "prompt_tokens": 8741,
+      "completion_tokens": 2185,
+      "total_tokens": 10926,
+      "reasoning_tokens": 1374,
+      "finish_reason": "stop",
+      "words": 674,
+      "issues": []
+    }
+  ]
+}

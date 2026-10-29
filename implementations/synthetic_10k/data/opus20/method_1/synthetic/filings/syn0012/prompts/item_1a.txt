@@ -1,0 +1,182 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Venzen Industries, Inc. (ticker VNNZ)
+Sector: Industrials
+Incorporated in: Delaware
+Headquarters: Charlotte, North Carolina
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 72,500
+
+Venzen Industries, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      48,137        44,567
+Cost of revenue                              30,909        28,726
+Gross profit                                 17,228        15,841
+Research and development                      2,036         1,912
+Selling, general and administrative           6,292         5,812
+Other operating expense                       2,888         2,674
+Operating income                              6,012         5,443
+Interest expense                                420           367
+Income before income taxes                    5,592         5,076
+Provision for income taxes                    1,186         1,142
+Net income                                    4,406         3,934
+
+Venzen Industries, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                           13,825        12,038
+Accounts receivable, net                             6,373         5,433
+Inventories                                          6,797         6,101
+Other current assets                                 1,811         1,241
+Total current assets                                28,806        24,813
+Property, plant and equipment, net                  49,763        45,832
+Goodwill                                            19,058        16,890
+Other non-current assets                             2,118         1,877
+Total assets                                        99,745        89,412
+Total current liabilities                           38,635        32,118
+Long-term debt                                       9,336         8,148
+Other non-current liabilities                       28,264        28,606
+Total liabilities                                   76,235        68,872
+Total stockholders' equity                          23,510        20,540
+Total liabilities and stockholders' equity          99,745        89,412
+
+Venzen Industries, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             4,406
+Depreciation and amortization                            785
+Changes in working capital and other                     626
+Net cash provided by operating activities              5,817
+Purchases of property and equipment                    (823)
+Other investing activities, net                      (2,959)
+Net cash used in investing activities                (3,782)
+Net change in long-term debt                           1,188
+Dividends paid                                       (2,397)
+Share repurchases, net of issuances                      961
+Net cash used in financing activities                  (248)
+Net change in cash and cash equivalents                1,787
+Cash and cash equivalents, beginning of year          12,038
+Cash and cash equivalents, end of year                13,825
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 8.0%
+Net income growth, fiscal 2024 versus 2023: 12.0%
+Operating income growth, fiscal 2024 versus 2023: 10.5%
+Gross margin, fiscal 2024: 35.8%
+Operating margin, fiscal 2024: 12.5%
+Net margin, fiscal 2024: 9.2%
+Effective tax rate, fiscal 2024: 21.2%
+Research and development as a share of revenue, fiscal 2024: 4.2%
+Selling, general and administrative as a share of revenue, fiscal 2024: 13.1%
+Gross margin, fiscal 2023: 35.5%
+Operating margin, fiscal 2023: 12.2%
+Net margin, fiscal 2023: 8.8%
+Effective tax rate, fiscal 2023: 22.5%
+Research and development as a share of revenue, fiscal 2023: 4.3%
+Selling, general and administrative as a share of revenue, fiscal 2023: 13.0%
+
+STYLE EXAMPLE: the start of Item 1A from a real Industrials company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1A. Risk Factors
+Our business is subject to a variety of risks and uncertainties, including, but not limited to, the risks and uncertainties described below. You should carefully consider the risks described below, together with all other information included in this report, including information contained in the “Business,” “Management’s Discussion and Analysis of Financial Condition and Results of Operations” and “Quantitative and Qualitative Disclosures about Market Risk” sections. Our business, financial condition, results of operations or cash flows could be adversely affected by the occurrence of any of these events, which could cause actual results to differ materially from expected and historical results, and the trading price of our common stock could decline.
+Risks Related to Our Business
+Economic downturns in the markets in which we operate may materially and adversely affect our business because our business is dependent on levels of construction activity.
+The demand for our services is dependent upon the existence of construction projects and service requirements within the markets in which we operate. Any period of economic recession affecting a market or industry in which we transact business is likely to adversely impact our business. Many of the projects we work on have long lifecycles from conception to completion, and the bulk of our performance generally occurs late in a construction project’s lifecycle. We experience the results of economic trends well after an economic cycle begins, and therefore have generally continued to experience the results of an economic recession well after conditions in the general economy have improved.
+10
+Table of Contents
+The industries and markets in which we operate have always been and will continue to be vulnerable to macroeconomic downturns because they are cyclical in nature. When there is a reduction in demand, it often leads to greater price competition as well as decreased revenue and profit. The lasting effects of a recession can also increase economic instability with our vendors, subcontractors, developers, and general contractors, which can increase our liability exposure and result in us not being paid in full or at all on some projects, thus decreasing our revenue and profit. Further, to the extent some of our vendors, subcontractors, developers, or general contractors seek bankruptcy protection, such bankruptcy will likely force us to incur additional costs in attorneys’ fees, as well as other professional consultants, and will result in decreased revenue and profit. Additionally, because 5.4% of our revenue for the year ended December 31, 2024 was attributable to projects in the government sector, a reduction in federal, state, or local government spending in our industries and markets could result in decreased revenue and profit for us.
+Because we bear the risk of cost overruns in most of our contracts, we may experience reduced profits or, in some cases, losses under these contracts if costs increase above our estimates.
+Our contract prices are established largely based on estimates and assumptions of our projected costs, including assumptions about: future economic conditions; prices, including commodity prices and inflation; availability of labor, including the costs of providing labor, equipment, and materials; and other factors outside our control. If our estimates or assumptions prove to be inaccurate, circumstances change in a way that renders our assumptions and estimates inaccurate or we fail to successfully execute the work, cost overruns may occur, and we could experience reduced profits or a loss for affected projects. For instance, unanticipated technical problems may arise, we could have difficulty obtaining permits or approvals, local laws, labor costs or labor conditions could change, bad weather could delay construction, raw materials prices could increase, our suppliers or subcontractors may fail to perform as expected or site conditions may be different than we expected. Further, rising inflation may result in higher costs for labor and materials needed to complete our contracts, and we may be unable to pass these heightened costs to our customers. We are also exposed to increases in energy prices, particularly as they relate to gasoline prices. Additionally, in certain circumstances, we guarantee project completion or the achievement of certain acceptance and performance testing levels by a scheduled date. Failure to meet schedule or performance requirements typically results in additional costs to us, and in some cases, we may also create liability for consequential and liquidated damages. Performance problems for existing and future projects could cause our actual results of operations to differ materially from those we anticipate and could damage our reputation within our industry and our customer base.
+Our backlog is subject to unexpected adjustments and cancellations, which means that amounts included in our backlog may not result in actual revenue or translate into profits.
+Backlog reflects revenue still to be recognized under contracted or committed installation and replacement project work. Our backlog as of December 31, 2024 was $5.99 billion. The predictive value of backlog information is limited to indications of general revenue direction over the near term, and we cannot guarantee that the revenue projected from our backlog will be realized or, if realized, will be profitable. Projects may remain in our backlog for an extended period of time, or project cancellations or scope adjustments may occur with respect to contracts reflected in our backlog. Such changes may adversely affect the revenues and profit we ultimately realize on these projects.
+We could be adversely impacted by the effects of inflation, supply chain disruptions, capital market volatility and an economic recession or downturn.
+The global economy continues to experience high rates of inflation and market and economic volatility, resulting from a number of factors, including the war between Russia and Ukraine, unrest in the Middle East, and supply chain constraints. These conditions have increased our cost for labor, materials, utilities, and other goods and services. In addition, the current market conditions have caused volatility in the capital markets, which may increase our cost of capital or prevent us from raising capital if we desire or need to do so and may have adverse impacts on the mechanical and electrical services industry. Further, there are market concerns that the United States economy could experience a recession. As a result, these conditions have, and they or any similar future conditions may continue to have, significant adverse impacts on our business, financial condition and results of operations.
+The loss of one or a few customers could adversely affect our business, financial condition and results of operations.
+A few customers have in the past and may in the future account for a significant portion of our revenues. For example, in 2024, one customer represented approximately 13.3% of our consolidated revenue. Although we have
+11
+Table of Contents
+long - standing relationships with many of our significant customers and believe that our portfolio of customers is reasonably diverse, one or a number of significant customers may unilaterally reduce, fail to renew, or terminate their contracts with us in the future. A loss of business from a significant customer, or a number of significant customers, could have a material adverse effect on our business, financial condition, results of operations and cash flows.
+Rising inflation and/or interest rates may have an adverse effect on our business, financial condition and results of operations.
+In efforts to combat inflation, the U.S. Federal Reserve raised interest rates multiple times in recent years and may do so again in 2025 (or may slow any rate reductions from [...]
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+General
+
+Venzen Industries, Inc. ("Venzen," the "Company," "we," "us" or "our") is a diversified industrial technology company. We design, manufacture, sell and service engineered products, systems and solutions for commercial, industrial, infrastructure, energy and transportation markets around the world. Our offerings help customers improve the efficiency, safety, reliability and environmental performance of the buildings, plants, networks and fleets they own or operate. We combine a broad base of proprietary hardware with embedded controls, software and lifecycle services. This allows us to support customers from initial system design and installation through long-term operation, maintenance, modernization and replacement.
+
+Venzen is incorporated in the State of Delaware, and our corporate headquarters is located in Charlotte, North Carolina. We have manufacturing, engineering, distribution and service locations across North America, Europe, the Middle East, Africa, Latin America and the Asia Pacific region. We sell to customers in a large number of countries through a combination of direct sales and service personnel, independent distributors, dealers, manufacturers' representatives and original equipment manufacturer relationships.
+
+For the fiscal year ended December 31, 2024 ("fiscal 2024"), the Company reported revenue of $48,137 million, an increase of 8.0% compared with the fiscal year ended December 31, 2023 ("fiscal 2023"). Growth in fiscal 2024 reflected demand across our principal end markets, contributions from businesses acquired during the year, pricing actions and continued expansion of our aftermarket and services offerings. A discussion of our results of operations appears in Item 7, "Management's Discussion and Analysis of Financial Condition and Results of Operations," of this Annual Report on Form 10-K.
+
+Our long-term strategy rests on several priorities:
+
+- Extend our positions in end markets supported by durable secular trends, including energy efficiency, electrification, automation, infrastructure renewal and the decarbonization of buildings, industry and transportation.
+- Grow our installed base and the recurring aftermarket, service and software revenue associated with it.
+- Invest in research, development and engineering to sustain technology leadership and bring differentiated products to market more quickly.
+- Apply our operating system, which emphasizes lean manufacturing, continuous improvement, disciplined pricing and supply chain resilience, to improve productivity and quality across our businesses.
+- Allocate capital with discipline among organic investment, targeted acquisitions that complement our existing portfolio, and the return of capital to stockholders.
+
+Portfolio Development
+
+Venzen has developed its current portfolio through a combination of organic growth and acquisitions. These actions have broadened our technology base, expanded our geographic reach and deepened our presence in attractive end markets. We have also divested businesses that we concluded were not core to our long-term strategy or that we believed would be better positioned under different ownership. During fiscal 2024, we completed several acquisitions that strengthened our capabilities in building controls, industrial automation software and power conversion. Their results have been included in our consolidated financial statements from the respective dates of acquisition. We continue to evaluate the composition of our portfolio regularly. We may pursue additional acquisitions, joint ventures, strategic investments or dispositions when we believe they will enhance long-term value for our stockholders.
+
+Business Segments
+
+We manage our operations through three operating segments, each of which is a reportable segment. Our segments are organized around the markets they serve and the technologies they employ. This structure is consistent with the manner in which our chief operating decision maker reviews financial information, evaluates performance and allocates resources.
+
+- Climate and Building Technologies. This segment designs, manufactures, sells, installs and services heating, ventilation and air-conditioning ("HVAC") equipment, commercial refrigeration systems, building automation and controls, energy management software, and fire and life safety products. Its customers include owners and operators of commercial offices, healthcare facilities, educational institutions, data centers, retail and hospitality properties, government buildings and multi-family residential developments. Climate and Building Technologies also provides a broad range of technical services, including preventive maintenance, repair, retrofit, energy audits, remote monitoring and equipment replacement. These services are delivered through a network of company-operated service branches and authorized third-party service providers.
+
+- Industrial Automation and Flow Control. This segment designs and manufactures motion control systems, programmable logic and distributed control systems, sensors and instrumentation, industrial valves, pumps, actuators and fluid handling equipment, together with related software and services. Its products are used in process industries such as chemicals, oil and gas, water and wastewater, pharmaceuticals, food and beverage, and mining. They are also used in discrete manufacturing industries such as automotive, packaging, electronics and general machinery. The segment's offerings help customers automate production, monitor and optimize the performance of critical assets, reduce unplanned downtime and comply with safety and environmental requirements.
+
+- Transportation and Power Systems. This segment designs, manufactures and services power generation and distribution equipment, electrical switchgear, power conversion and energy storage systems, and engineered components and subsystems for rail, commercial vehicle, marine and aerospace applications. Its customers include electric utilities, independent power producers, transit authorities, railcar and locomotive builders, commercial vehicle manufacturers, airframers and their suppliers, and operators of large industrial and commercial facilities. Transportation and Power Systems also provides field services, spare parts, refurbishment and long-term service agreements that support the performance of equipment over extended operating lives.
+
+Financial information about our reportable segments, including revenue and segment operating results, is included in the segment information note in the Notes to Consolidated Financial Statements in Item 8, "Financial Statements and Supplementary Data," of this Annual Report on Form 10-K.
+
+Principal Products and Services
+
+Our products and services span the full lifecycle of the assets our customers depend on. Our principal offerings include the following.
+
+Equipment and systems. We manufacture a wide range of engineered equipment. This includes chillers, rooftop units, air handlers, heat pumps, variable refrigerant flow systems, commercial refrigeration cases and compressors, fire detection panels and suppression equipment, industrial valves and pumps, drives and motors, control hardware, medium- and low-voltage switchgear, transformers, inverters, battery energy storage enclosures, and propulsion, braking and thermal management components for transportation applications. Many of these products are designed to meet stringent customer specifications and industry standards. A significant portion is configured or engineered to order.
+
+Controls and software. We provide embedded controls, building and plant management platforms, and cloud-based analytics applications. These connect our equipment, and in many cases third-party equipment, to provide visibility into system performance. Our software offerings support remote monitoring, fault detection and diagnostics, predictive maintenance, energy optimization, asset performance management and regulatory reporting. Software is increasingly delivered on a subscription basis, which we believe enhances the recurring nature of our revenue and strengthens our relationships with customers.
+
+Aftermarket parts and services. Our large installed base generates ongoing demand for replacement parts, consumables, upgrades and services. We offer scheduled maintenance, emergency repair, inspection and testing, commissioning, retrofit and modernization, training and multi-year service agreements. We believe our service capabilities, technical expertise and proximity to customers are important competitive advantages. We also believe aftermarket activity generally provides a more stable source of revenue than new equipment sales, which tend to be more sensitive to economic and construction cycles.
+
+Integrated solutions. For larger and more complex projects, we combine equipment, controls, software and services into integrated solutions designed to achieve specified outcomes. These outcomes may include energy savings, emissions reductions, uptime commitments or capacity expansions. In certain cases, we enter into performance-based contracts under which we guarantee specified levels of energy or operational savings over a defined period.
+
+Customers
+
+We serve a large and diverse customer base, ranging from small and mid-sized businesses to multinational corporations, utilities and government entities. Our principal customer groups include:
+
+- Commercial and institutional building owners, property managers, general and mechanical contractors, and design engineers.
+- Industrial manufacturers and process operators, engineering, procurement and construction firms, and system integrators.
+- Electric utilities, independent power producers, renewable energy developers and data center operators.
+- Original equipment manufacturers in the rail, commercial vehicle, marine and aerospace industries, together with fleet operators and transit agencies.
+- Federal, state, local and foreign government agencies, including military and defense customers.
+
+No single customer accounted for 10% or more of our consolidated revenue in fiscal 2024 or fiscal 2023. We do not believe that the loss of any individual customer would have a material adverse effect on our consolidated results of operations. A portion of our revenue is derived from contracts with government entities, directly or as a subcontractor. Such contracts are generally subject to termination for convenience and to audit, and they impose specific compliance obligations. These matters are described further under "Government Regulation" below and in Item 1A, "Risk Factors."
+
+Sales, Marketing and Distribution
+
+We go to market through multiple channels tailored to the requirements of each business, product line and geography.
+
+Direct sales and service. Our direct sales organization includes account managers, application engineers and solution specialists. They work closely with customers, consulting engineers and specifiers to design systems that meet project requirements. In our Climate and Building Technologies segment in particular, a network of company-operated sales and service branches provides direct access to building owners and facility managers. This supports both new equipment sales and recurring service relationships.
+
+Distributors, dealers and representatives. We sell a significant portion of our standardized products through independent wholesale distributors, dealers, contractors and manufacturers' representatives. These channel partners extend our geographic coverage, hold local inventory and provide installation and first-line support. [...]
+>>>
+
+TASK
+Write Item 1A. Risk Factors for Venzen Industries, Inc.'s annual report for the fiscal year ended 2024-12-31. List the material risks, grouped under sub-headings (for example risks related to the business and industry, to operations, to financing and capital structure, to legal and regulatory matters, and general risks). Each risk starts with a one-sentence heading line, followed by one or two paragraphs. Make the risks specific to this company's sector, cost structure and balance sheet. Do not quote dollar amounts or percentages; describe exposures in words, as real risk factors do.
+Length: about 3500 words. Start with the line "Item 1A. Risk Factors" and output only the section text.

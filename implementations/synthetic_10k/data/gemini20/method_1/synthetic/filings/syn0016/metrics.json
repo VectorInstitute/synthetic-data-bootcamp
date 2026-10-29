@@ -1,0 +1,108 @@
+{
+  "company_id": "syn0016",
+  "name": "Zenaltal Foods, Inc.",
+  "sector": "Consumer Staples",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 99.28,
+  "totals": {
+    "seconds": 98.98,
+    "prompt_tokens": 23573,
+    "completion_tokens": 18075,
+    "total_tokens": 41648,
+    "reasoning_tokens": 7129,
+    "calls": 4
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1224,
+      "prompt_chars": 13973,
+      "words": 2083,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1216,
+      "prompt_chars": 25009,
+      "words": 3331,
+      "attempts": 1,
+      "exemplar_overlap": 0.0018,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1219,
+      "prompt_chars": 35771,
+      "words": 2588,
+      "attempts": 1,
+      "exemplar_overlap": 0.0049,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 590,
+      "exemplar_words": 1216,
+      "prompt_chars": 46369,
+      "words": 771,
+      "attempts": 1,
+      "exemplar_overlap": 0.0039,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 22.87,
+      "prompt_tokens": 3040,
+      "completion_tokens": 4093,
+      "total_tokens": 7133,
+      "reasoning_tokens": 1509,
+      "finish_reason": "stop",
+      "words": 2083,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 30.77,
+      "prompt_tokens": 4841,
+      "completion_tokens": 5373,
+      "total_tokens": 10214,
+      "reasoning_tokens": 1511,
+      "finish_reason": "stop",
+      "words": 3331,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 32.0,
+      "prompt_tokens": 6786,
+      "completion_tokens": 6454,
+      "total_tokens": 13240,
+      "reasoning_tokens": 2870,
+      "finish_reason": "stop",
+      "words": 2588,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 13.34,
+      "prompt_tokens": 8906,
+      "completion_tokens": 2155,
+      "total_tokens": 11061,
+      "reasoning_tokens": 1239,
+      "finish_reason": "stop",
+      "words": 771,
+      "issues": []
+    }
+  ]
+}

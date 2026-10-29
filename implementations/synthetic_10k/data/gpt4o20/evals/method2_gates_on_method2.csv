@@ -1,0 +1,361 @@
+fictional_id,fiscal_year,check,item,status,detail
+AMED,2023,substantive,1,PASS,597 words
+AMED,2023,length_vs_real,1,INFO,4715 chars vs real median 61281 chars (8%)
+AMED,2023,real_company_leak,1,PASS,none found
+AMED,2023,substantive,1a,PASS,816 words
+AMED,2023,length_vs_real,1a,INFO,6064 chars vs real median 80672 chars (8%)
+AMED,2023,real_company_leak,1a,PASS,none found
+AMED,2023,substantive,1c,PASS,847 words
+AMED,2023,length_vs_real,1c,INFO,6420 chars vs real median 6000 chars (107%)
+AMED,2023,real_company_leak,1c,PASS,none found
+AMED,2023,substantive,7,PASS,858 words
+AMED,2023,length_vs_real,7,INFO,6653 chars vs real median 66970 chars (10%)
+AMED,2023,real_company_leak,7,PASS,none found
+AMED,2023,substantive,8,PASS,838 words
+AMED,2023,length_vs_real,8,INFO,6771 chars vs real median 171195 chars (4%)
+AMED,2023,real_company_leak,8,PASS,none found
+AMED,2023,required_headings,8,PASS,all present
+AMED,2023,numeric_consistency,7,PASS,25/25 figures traced
+AMED,2023,numeric_consistency,8,PASS,no figures found
+BFJ,2025,substantive,1,PASS,698 words
+BFJ,2025,length_vs_real,1,INFO,5430 chars vs real median 61281 chars (9%)
+BFJ,2025,real_company_leak,1,PASS,none found
+BFJ,2025,substantive,1a,PASS,634 words
+BFJ,2025,length_vs_real,1a,INFO,4716 chars vs real median 80672 chars (6%)
+BFJ,2025,real_company_leak,1a,PASS,none found
+BFJ,2025,substantive,1c,PASS,685 words
+BFJ,2025,length_vs_real,1c,INFO,5360 chars vs real median 6000 chars (89%)
+BFJ,2025,real_company_leak,1c,PASS,none found
+BFJ,2025,substantive,7,PASS,710 words
+BFJ,2025,length_vs_real,7,INFO,5583 chars vs real median 66970 chars (8%)
+BFJ,2025,real_company_leak,7,PASS,none found
+BFJ,2025,substantive,8,PASS,779 words
+BFJ,2025,length_vs_real,8,INFO,6245 chars vs real median 171195 chars (4%)
+BFJ,2025,real_company_leak,8,PASS,none found
+BFJ,2025,required_headings,8,FAIL,Statements? of (Income|Operations)
+BFJ,2025,numeric_consistency,7,FAIL,21/23 figures traced; unmatched: 2.354e+10 in '$23.54 billion'; 1.57e+10 in '$15.70 billion'
+BFJ,2025,numeric_consistency,8,FAIL,24/25 figures traced; unmatched: 1.57e+10 in '$15.70 billion'
+BFOD,2024,substantive,1,PASS,652 words
+BFOD,2024,length_vs_real,1,INFO,4944 chars vs real median 61281 chars (8%)
+BFOD,2024,real_company_leak,1,PASS,none found
+BFOD,2024,substantive,1a,PASS,674 words
+BFOD,2024,length_vs_real,1a,INFO,4988 chars vs real median 80672 chars (6%)
+BFOD,2024,real_company_leak,1a,PASS,none found
+BFOD,2024,substantive,1c,PASS,816 words
+BFOD,2024,length_vs_real,1c,INFO,6294 chars vs real median 6000 chars (105%)
+BFOD,2024,real_company_leak,1c,PASS,none found
+BFOD,2024,substantive,7,PASS,655 words
+BFOD,2024,length_vs_real,7,INFO,5115 chars vs real median 66970 chars (8%)
+BFOD,2024,real_company_leak,7,PASS,none found
+BFOD,2024,substantive,8,PASS,1023 words
+BFOD,2024,length_vs_real,8,INFO,9152 chars vs real median 171195 chars (5%)
+BFOD,2024,real_company_leak,8,PASS,none found
+BFOD,2024,required_headings,8,PASS,all present
+BFOD,2024,numeric_consistency,7,PASS,no figures found
+BFOD,2024,numeric_consistency,8,FAIL,"1/20 figures traced; unmatched: 1.67161e+11 in '| Cash and cash equivalents                        | $167,161          | [prior '; 6.68621e+11 in '| Property, plant, and equipment, net              | $668,621          | [prior '; 1.55678e+12 in '| Goodwill                                         | $1,556,780        | [prior '; 4.89049e+11 in '| Intangible assets, net                           | $489,049          | [prior '; 5.71084e+13 in '| Other assets                                     | $57,108,421       | [prior '; 3.58809e+12 in '| Long-term debt                                   | $3,588,091        | [prior '; 4.39691e+13 in '| Other liabilities                                | $43,969,075       | [prior '; 4.3846e+11 in '| Additional paid-in capital                       | $438,460          | [prior '; 1.69422e+13 in '| Retained earnings                                | $16,942,245       | [prior '; 2.9995e+12 in '| Revenues                                       | $2,999,501        | [prior ye'"
+CIG,2024,substantive,1,PASS,654 words
+CIG,2024,length_vs_real,1,INFO,4896 chars vs real median 61281 chars (8%)
+CIG,2024,real_company_leak,1,PASS,none found
+CIG,2024,substantive,1a,PASS,727 words
+CIG,2024,length_vs_real,1a,INFO,5255 chars vs real median 80672 chars (7%)
+CIG,2024,real_company_leak,1a,PASS,none found
+CIG,2024,substantive,1c,PASS,829 words
+CIG,2024,length_vs_real,1c,INFO,6129 chars vs real median 6000 chars (102%)
+CIG,2024,real_company_leak,1c,PASS,none found
+CIG,2024,substantive,7,PASS,808 words
+CIG,2024,length_vs_real,7,INFO,6149 chars vs real median 66970 chars (9%)
+CIG,2024,real_company_leak,7,PASS,none found
+CIG,2024,substantive,8,PASS,774 words
+CIG,2024,length_vs_real,8,INFO,5831 chars vs real median 171195 chars (3%)
+CIG,2024,real_company_leak,8,PASS,none found
+CIG,2024,required_headings,8,FAIL,Statements? of (Income|Operations); Statements? of Cash Flows
+CIG,2024,numeric_consistency,7,PASS,19/19 figures traced
+CIG,2024,numeric_consistency,8,PASS,no figures found
+DLBG,2023,substantive,1,PASS,610 words
+DLBG,2023,length_vs_real,1,INFO,4671 chars vs real median 61281 chars (8%)
+DLBG,2023,real_company_leak,1,PASS,none found
+DLBG,2023,substantive,1a,PASS,635 words
+DLBG,2023,length_vs_real,1a,INFO,4825 chars vs real median 80672 chars (6%)
+DLBG,2023,real_company_leak,1a,PASS,none found
+DLBG,2023,substantive,1c,PASS,734 words
+DLBG,2023,length_vs_real,1c,INFO,5704 chars vs real median 6000 chars (95%)
+DLBG,2023,real_company_leak,1c,PASS,none found
+DLBG,2023,substantive,7,PASS,683 words
+DLBG,2023,length_vs_real,7,INFO,5443 chars vs real median 66970 chars (8%)
+DLBG,2023,real_company_leak,7,PASS,none found
+DLBG,2023,substantive,8,PASS,526 words
+DLBG,2023,length_vs_real,8,INFO,4288 chars vs real median 171195 chars (3%)
+DLBG,2023,real_company_leak,8,PASS,none found
+DLBG,2023,required_headings,8,FAIL,Statements? of (Income|Operations)
+DLBG,2023,numeric_consistency,7,PASS,1/1 figures traced
+DLBG,2023,numeric_consistency,8,PASS,no figures found
+DNP,2023,substantive,1,PASS,652 words
+DNP,2023,length_vs_real,1,INFO,5027 chars vs real median 61281 chars (8%)
+DNP,2023,real_company_leak,1,PASS,none found
+DNP,2023,substantive,1a,PASS,993 words
+DNP,2023,length_vs_real,1a,INFO,7496 chars vs real median 80672 chars (9%)
+DNP,2023,real_company_leak,1a,PASS,none found
+DNP,2023,substantive,1c,PASS,667 words
+DNP,2023,length_vs_real,1c,INFO,5270 chars vs real median 6000 chars (88%)
+DNP,2023,real_company_leak,1c,PASS,none found
+DNP,2023,substantive,7,PASS,547 words
+DNP,2023,length_vs_real,7,INFO,4244 chars vs real median 66970 chars (6%)
+DNP,2023,real_company_leak,7,PASS,none found
+DNP,2023,substantive,8,PASS,697 words
+DNP,2023,length_vs_real,8,INFO,5516 chars vs real median 171195 chars (3%)
+DNP,2023,real_company_leak,8,PASS,none found
+DNP,2023,required_headings,8,FAIL,Consolidated Balance Sheets?; Statements? of (Income|Operations); Statements? of Cash Flows
+DNP,2023,numeric_consistency,7,PASS,no figures found
+DNP,2023,numeric_consistency,8,PASS,no figures found
+FMT,2023,substantive,1,PASS,720 words
+FMT,2023,length_vs_real,1,INFO,5345 chars vs real median 61281 chars (9%)
+FMT,2023,real_company_leak,1,PASS,none found
+FMT,2023,substantive,1a,PASS,684 words
+FMT,2023,length_vs_real,1a,INFO,5196 chars vs real median 80672 chars (6%)
+FMT,2023,real_company_leak,1a,PASS,none found
+FMT,2023,substantive,1c,PASS,741 words
+FMT,2023,length_vs_real,1c,INFO,5605 chars vs real median 6000 chars (93%)
+FMT,2023,real_company_leak,1c,PASS,none found
+FMT,2023,substantive,7,PASS,746 words
+FMT,2023,length_vs_real,7,INFO,5697 chars vs real median 66970 chars (9%)
+FMT,2023,real_company_leak,7,PASS,none found
+FMT,2023,substantive,8,PASS,674 words
+FMT,2023,length_vs_real,8,INFO,5323 chars vs real median 171195 chars (3%)
+FMT,2023,real_company_leak,8,PASS,none found
+FMT,2023,required_headings,8,PASS,all present
+FMT,2023,numeric_consistency,7,PASS,no figures found
+FMT,2023,numeric_consistency,8,PASS,no figures found
+IJMU,2023,substantive,1,PASS,624 words
+IJMU,2023,length_vs_real,1,INFO,5035 chars vs real median 61281 chars (8%)
+IJMU,2023,real_company_leak,1,PASS,none found
+IJMU,2023,substantive,1a,PASS,657 words
+IJMU,2023,length_vs_real,1a,INFO,5161 chars vs real median 80672 chars (6%)
+IJMU,2023,real_company_leak,1a,PASS,none found
+IJMU,2023,substantive,1c,PASS,840 words
+IJMU,2023,length_vs_real,1c,INFO,6605 chars vs real median 6000 chars (110%)
+IJMU,2023,real_company_leak,1c,PASS,none found
+IJMU,2023,substantive,7,PASS,821 words
+IJMU,2023,length_vs_real,7,INFO,6526 chars vs real median 66970 chars (10%)
+IJMU,2023,real_company_leak,7,PASS,none found
+IJMU,2023,substantive,8,PASS,820 words
+IJMU,2023,length_vs_real,8,INFO,6670 chars vs real median 171195 chars (4%)
+IJMU,2023,real_company_leak,8,PASS,none found
+IJMU,2023,required_headings,8,FAIL,Consolidated Balance Sheets?; Statements? of (Income|Operations); Statements? of Cash Flows
+IJMU,2023,numeric_consistency,7,PASS,14/14 figures traced
+IJMU,2023,numeric_consistency,8,PASS,no figures found
+KMKE,2023,substantive,1,PASS,590 words
+KMKE,2023,length_vs_real,1,INFO,4614 chars vs real median 61281 chars (8%)
+KMKE,2023,real_company_leak,1,PASS,none found
+KMKE,2023,substantive,1a,PASS,766 words
+KMKE,2023,length_vs_real,1a,INFO,5862 chars vs real median 80672 chars (7%)
+KMKE,2023,real_company_leak,1a,PASS,none found
+KMKE,2023,substantive,1c,PASS,769 words
+KMKE,2023,length_vs_real,1c,INFO,5921 chars vs real median 6000 chars (99%)
+KMKE,2023,real_company_leak,1c,PASS,none found
+KMKE,2023,substantive,7,PASS,802 words
+KMKE,2023,length_vs_real,7,INFO,6167 chars vs real median 66970 chars (9%)
+KMKE,2023,real_company_leak,7,PASS,none found
+KMKE,2023,substantive,8,PASS,744 words
+KMKE,2023,length_vs_real,8,INFO,5838 chars vs real median 171195 chars (3%)
+KMKE,2023,real_company_leak,8,PASS,none found
+KMKE,2023,required_headings,8,FAIL,Statements? of (Income|Operations); Statements? of Cash Flows
+KMKE,2023,numeric_consistency,7,PASS,2/2 figures traced
+KMKE,2023,numeric_consistency,8,PASS,2/2 figures traced
+NAL,2024,substantive,1,PASS,543 words
+NAL,2024,length_vs_real,1,INFO,4063 chars vs real median 61281 chars (7%)
+NAL,2024,real_company_leak,1,PASS,none found
+NAL,2024,substantive,1a,PASS,834 words
+NAL,2024,length_vs_real,1a,INFO,6039 chars vs real median 80672 chars (7%)
+NAL,2024,real_company_leak,1a,PASS,none found
+NAL,2024,substantive,1c,PASS,719 words
+NAL,2024,length_vs_real,1c,INFO,5366 chars vs real median 6000 chars (89%)
+NAL,2024,real_company_leak,1c,PASS,none found
+NAL,2024,substantive,7,PASS,721 words
+NAL,2024,length_vs_real,7,INFO,5472 chars vs real median 66970 chars (8%)
+NAL,2024,real_company_leak,7,PASS,none found
+NAL,2024,substantive,8,PASS,663 words
+NAL,2024,length_vs_real,8,INFO,5153 chars vs real median 171195 chars (3%)
+NAL,2024,real_company_leak,8,PASS,none found
+NAL,2024,required_headings,8,FAIL,Statements? of (Income|Operations)
+NAL,2024,numeric_consistency,7,PASS,no figures found
+NAL,2024,numeric_consistency,8,PASS,no figures found
+NWSH,2025,substantive,1,PASS,704 words
+NWSH,2025,length_vs_real,1,INFO,5588 chars vs real median 61281 chars (9%)
+NWSH,2025,real_company_leak,1,PASS,none found
+NWSH,2025,substantive,1a,PASS,741 words
+NWSH,2025,length_vs_real,1a,INFO,5617 chars vs real median 80672 chars (7%)
+NWSH,2025,real_company_leak,1a,PASS,none found
+NWSH,2025,substantive,1c,PASS,726 words
+NWSH,2025,length_vs_real,1c,INFO,5620 chars vs real median 6000 chars (94%)
+NWSH,2025,real_company_leak,1c,PASS,none found
+NWSH,2025,substantive,7,PASS,730 words
+NWSH,2025,length_vs_real,7,INFO,5746 chars vs real median 66970 chars (9%)
+NWSH,2025,real_company_leak,7,PASS,none found
+NWSH,2025,substantive,8,PASS,669 words
+NWSH,2025,length_vs_real,8,INFO,5332 chars vs real median 171195 chars (3%)
+NWSH,2025,real_company_leak,8,PASS,none found
+NWSH,2025,required_headings,8,FAIL,Consolidated Balance Sheets?; Statements? of (Income|Operations); Statements? of Cash Flows
+NWSH,2025,numeric_consistency,7,PASS,11/11 figures traced
+NWSH,2025,numeric_consistency,8,PASS,22/22 figures traced
+OQM,2025,substantive,1,PASS,607 words
+OQM,2025,length_vs_real,1,INFO,4738 chars vs real median 61281 chars (8%)
+OQM,2025,real_company_leak,1,PASS,none found
+OQM,2025,substantive,1a,PASS,808 words
+OQM,2025,length_vs_real,1a,INFO,6035 chars vs real median 80672 chars (7%)
+OQM,2025,real_company_leak,1a,PASS,none found
+OQM,2025,substantive,1c,PASS,661 words
+OQM,2025,length_vs_real,1c,INFO,5145 chars vs real median 6000 chars (86%)
+OQM,2025,real_company_leak,1c,PASS,none found
+OQM,2025,substantive,7,PASS,749 words
+OQM,2025,length_vs_real,7,INFO,5919 chars vs real median 66970 chars (9%)
+OQM,2025,real_company_leak,7,PASS,none found
+OQM,2025,substantive,8,PASS,984 words
+OQM,2025,length_vs_real,8,INFO,7882 chars vs real median 171195 chars (5%)
+OQM,2025,real_company_leak,8,PASS,none found
+OQM,2025,required_headings,8,FAIL,Consolidated Balance Sheets?; Statements? of (Income|Operations); Statements? of Cash Flows
+OQM,2025,numeric_consistency,7,PASS,no figures found
+OQM,2025,numeric_consistency,8,PASS,no figures found
+QXVM,2024,substantive,1,PASS,716 words
+QXVM,2024,length_vs_real,1,INFO,5544 chars vs real median 61281 chars (9%)
+QXVM,2024,real_company_leak,1,PASS,none found
+QXVM,2024,substantive,1a,PASS,767 words
+QXVM,2024,length_vs_real,1a,INFO,5664 chars vs real median 80672 chars (7%)
+QXVM,2024,real_company_leak,1a,PASS,none found
+QXVM,2024,substantive,1c,PASS,792 words
+QXVM,2024,length_vs_real,1c,INFO,5827 chars vs real median 6000 chars (97%)
+QXVM,2024,real_company_leak,1c,PASS,none found
+QXVM,2024,substantive,7,PASS,723 words
+QXVM,2024,length_vs_real,7,INFO,5413 chars vs real median 66970 chars (8%)
+QXVM,2024,real_company_leak,7,PASS,none found
+QXVM,2024,substantive,8,PASS,820 words
+QXVM,2024,length_vs_real,8,INFO,6481 chars vs real median 171195 chars (4%)
+QXVM,2024,real_company_leak,8,PASS,none found
+QXVM,2024,required_headings,8,FAIL,Consolidated Balance Sheets?; Statements? of (Income|Operations); Statements? of Cash Flows
+QXVM,2024,numeric_consistency,7,PASS,no figures found
+QXVM,2024,numeric_consistency,8,PASS,no figures found
+RJOD,2025,substantive,1,PASS,657 words
+RJOD,2025,length_vs_real,1,INFO,5067 chars vs real median 61281 chars (8%)
+RJOD,2025,real_company_leak,1,PASS,none found
+RJOD,2025,substantive,1a,PASS,784 words
+RJOD,2025,length_vs_real,1a,INFO,5785 chars vs real median 80672 chars (7%)
+RJOD,2025,real_company_leak,1a,PASS,none found
+RJOD,2025,substantive,1c,PASS,713 words
+RJOD,2025,length_vs_real,1c,INFO,5440 chars vs real median 6000 chars (91%)
+RJOD,2025,real_company_leak,1c,PASS,none found
+RJOD,2025,substantive,7,PASS,794 words
+RJOD,2025,length_vs_real,7,INFO,5985 chars vs real median 66970 chars (9%)
+RJOD,2025,real_company_leak,7,PASS,none found
+RJOD,2025,substantive,8,PASS,745 words
+RJOD,2025,length_vs_real,8,INFO,6002 chars vs real median 171195 chars (4%)
+RJOD,2025,real_company_leak,8,PASS,none found
+RJOD,2025,required_headings,8,FAIL,Statements? of (Income|Operations); Statements? of Cash Flows
+RJOD,2025,numeric_consistency,7,PASS,no figures found
+RJOD,2025,numeric_consistency,8,PASS,no figures found
+SGJ,2023,substantive,1,PASS,640 words
+SGJ,2023,length_vs_real,1,INFO,4831 chars vs real median 61281 chars (8%)
+SGJ,2023,real_company_leak,1,PASS,none found
+SGJ,2023,substantive,1a,PASS,866 words
+SGJ,2023,length_vs_real,1a,INFO,6115 chars vs real median 80672 chars (8%)
+SGJ,2023,real_company_leak,1a,PASS,none found
+SGJ,2023,substantive,1c,PASS,717 words
+SGJ,2023,length_vs_real,1c,INFO,5445 chars vs real median 6000 chars (91%)
+SGJ,2023,real_company_leak,1c,PASS,none found
+SGJ,2023,substantive,7,PASS,702 words
+SGJ,2023,length_vs_real,7,INFO,5263 chars vs real median 66970 chars (8%)
+SGJ,2023,real_company_leak,7,PASS,none found
+SGJ,2023,substantive,8,PASS,721 words
+SGJ,2023,length_vs_real,8,INFO,5632 chars vs real median 171195 chars (3%)
+SGJ,2023,real_company_leak,8,PASS,none found
+SGJ,2023,required_headings,8,FAIL,Consolidated Balance Sheets?; Statements? of (Income|Operations); Statements? of Cash Flows
+SGJ,2023,numeric_consistency,7,PASS,2/2 figures traced
+SGJ,2023,numeric_consistency,8,PASS,no figures found
+SLN,2023,substantive,1,PASS,589 words
+SLN,2023,length_vs_real,1,INFO,4611 chars vs real median 61281 chars (8%)
+SLN,2023,real_company_leak,1,PASS,none found
+SLN,2023,substantive,1a,PASS,687 words
+SLN,2023,length_vs_real,1a,INFO,5159 chars vs real median 80672 chars (6%)
+SLN,2023,real_company_leak,1a,PASS,none found
+SLN,2023,substantive,1c,PASS,764 words
+SLN,2023,length_vs_real,1c,INFO,6058 chars vs real median 6000 chars (101%)
+SLN,2023,real_company_leak,1c,PASS,none found
+SLN,2023,substantive,7,PASS,772 words
+SLN,2023,length_vs_real,7,INFO,5961 chars vs real median 66970 chars (9%)
+SLN,2023,real_company_leak,7,PASS,none found
+SLN,2023,substantive,8,PASS,868 words
+SLN,2023,length_vs_real,8,INFO,6691 chars vs real median 171195 chars (4%)
+SLN,2023,real_company_leak,8,PASS,none found
+SLN,2023,required_headings,8,PASS,all present
+SLN,2023,numeric_consistency,7,PASS,no figures found
+SLN,2023,numeric_consistency,8,PASS,no figures found
+TIO,2025,substantive,1,PASS,609 words
+TIO,2025,length_vs_real,1,INFO,4665 chars vs real median 61281 chars (8%)
+TIO,2025,real_company_leak,1,PASS,none found
+TIO,2025,substantive,1a,PASS,971 words
+TIO,2025,length_vs_real,1a,INFO,7220 chars vs real median 80672 chars (9%)
+TIO,2025,real_company_leak,1a,PASS,none found
+TIO,2025,substantive,1c,PASS,736 words
+TIO,2025,length_vs_real,1c,INFO,5522 chars vs real median 6000 chars (92%)
+TIO,2025,real_company_leak,1c,PASS,none found
+TIO,2025,substantive,7,PASS,784 words
+TIO,2025,length_vs_real,7,INFO,5947 chars vs real median 66970 chars (9%)
+TIO,2025,real_company_leak,7,PASS,none found
+TIO,2025,substantive,8,PASS,679 words
+TIO,2025,length_vs_real,8,INFO,5188 chars vs real median 171195 chars (3%)
+TIO,2025,real_company_leak,8,PASS,none found
+TIO,2025,required_headings,8,PASS,all present
+TIO,2025,numeric_consistency,7,FAIL,"19/20 figures traced; unmatched: 6.11683e+10 in '$61,168.3 million'"
+TIO,2025,numeric_consistency,8,PASS,no figures found
+UCOG,2025,substantive,1,PASS,601 words
+UCOG,2025,length_vs_real,1,INFO,4467 chars vs real median 61281 chars (7%)
+UCOG,2025,real_company_leak,1,PASS,none found
+UCOG,2025,substantive,1a,PASS,726 words
+UCOG,2025,length_vs_real,1a,INFO,5741 chars vs real median 80672 chars (7%)
+UCOG,2025,real_company_leak,1a,PASS,none found
+UCOG,2025,substantive,1c,PASS,636 words
+UCOG,2025,length_vs_real,1c,INFO,4844 chars vs real median 6000 chars (81%)
+UCOG,2025,real_company_leak,1c,PASS,none found
+UCOG,2025,substantive,7,PASS,592 words
+UCOG,2025,length_vs_real,7,INFO,4641 chars vs real median 66970 chars (7%)
+UCOG,2025,real_company_leak,7,PASS,none found
+UCOG,2025,substantive,8,PASS,573 words
+UCOG,2025,length_vs_real,8,INFO,4571 chars vs real median 171195 chars (3%)
+UCOG,2025,real_company_leak,8,PASS,none found
+UCOG,2025,required_headings,8,FAIL,Consolidated Balance Sheets?; Statements? of (Income|Operations); Statements? of Cash Flows
+UCOG,2025,numeric_consistency,7,PASS,no figures found
+UCOG,2025,numeric_consistency,8,PASS,no figures found
+UZK,2023,substantive,1,PASS,702 words
+UZK,2023,length_vs_real,1,INFO,5358 chars vs real median 61281 chars (9%)
+UZK,2023,real_company_leak,1,PASS,none found
+UZK,2023,substantive,1a,PASS,789 words
+UZK,2023,length_vs_real,1a,INFO,5699 chars vs real median 80672 chars (7%)
+UZK,2023,real_company_leak,1a,PASS,none found
+UZK,2023,substantive,1c,PASS,692 words
+UZK,2023,length_vs_real,1c,INFO,5292 chars vs real median 6000 chars (88%)
+UZK,2023,real_company_leak,1c,PASS,none found
+UZK,2023,substantive,7,PASS,575 words
+UZK,2023,length_vs_real,7,INFO,4542 chars vs real median 66970 chars (7%)
+UZK,2023,real_company_leak,7,PASS,none found
+UZK,2023,substantive,8,PASS,772 words
+UZK,2023,length_vs_real,8,INFO,5986 chars vs real median 171195 chars (3%)
+UZK,2023,real_company_leak,8,PASS,none found
+UZK,2023,required_headings,8,FAIL,Statements? of (Income|Operations); Statements? of Cash Flows
+UZK,2023,numeric_consistency,7,PASS,no figures found
+UZK,2023,numeric_consistency,8,PASS,no figures found
+WHKJ,2024,substantive,1,PASS,764 words
+WHKJ,2024,length_vs_real,1,INFO,5885 chars vs real median 61281 chars (10%)
+WHKJ,2024,real_company_leak,1,PASS,none found
+WHKJ,2024,substantive,1a,PASS,829 words
+WHKJ,2024,length_vs_real,1a,INFO,6189 chars vs real median 80672 chars (8%)
+WHKJ,2024,real_company_leak,1a,PASS,none found
+WHKJ,2024,substantive,1c,PASS,764 words
+WHKJ,2024,length_vs_real,1c,INFO,5903 chars vs real median 6000 chars (98%)
+WHKJ,2024,real_company_leak,1c,PASS,none found
+WHKJ,2024,substantive,7,PASS,832 words
+WHKJ,2024,length_vs_real,7,INFO,6090 chars vs real median 66970 chars (9%)
+WHKJ,2024,real_company_leak,7,PASS,none found
+WHKJ,2024,substantive,8,PASS,755 words
+WHKJ,2024,length_vs_real,8,INFO,5821 chars vs real median 171195 chars (3%)
+WHKJ,2024,real_company_leak,8,PASS,none found
+WHKJ,2024,required_headings,8,FAIL,Statements? of (Income|Operations)
+WHKJ,2024,numeric_consistency,7,FAIL,22/23 figures traced; unmatched: 1.903e+10 in '$19.03 billion'
+WHKJ,2024,numeric_consistency,8,PASS,13/13 figures traced

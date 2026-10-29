@@ -1,0 +1,2 @@
+# The root .gitignore ignores all CSVs; keep the eval reports.
+!results/**/*.csv

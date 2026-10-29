@@ -1,0 +1,339 @@
+This Annual Report and the documents incorporated by reference in this Annual Report contain statements that are not historical in nature, are predictive, or that depend upon or refer to future events or conditions or contain other forward-looking statements. Statements including, but not limited to, statements regarding the extent, timing and mix of future revenues and customer demand; the deployment of our products and services; the impact of the macroeconomic and geopolitical environment, including but not limited to, expanded trade control laws and regulations, conflicts in and around Ukraine, the Middle East and other areas of the world, volatility in foreign currency exchange rates, inflation and the rise in interest rates; the impact of government actions; future costs, expenses, tax rates and uses of cash; pending legal, administrative and tax proceedings; restructuring actions and associated charges and benefits; pending acquisitions, accounting for acquisitions and integration of acquired businesses; and other statements using words such as “anticipates,” “believes,” “could,” “estimates,” “expects,” “forecasts,” “intends,” “may,” “plans,” “projects,” “should,” “targets,” “will” and “would,” and words of similar import and the negatives thereof, constitute forward-looking statements. These statements are predictions based upon our current expectations about future events. Actual results could vary materially as a result of certain factors, including but not limited to those expressed in these statements. Important risks and uncertainties that could cause actual results to differ materially from those contained in the forward-looking statements include, but are not limited to, those identified in the “Proprietary Technology,” “Competition,” “Risk Factors,” “Critical Accounting Estimates,” “Results of Operations,” “Quantitative and Qualitative Disclosures About Market Risk” and “Liquidity and Capital Resources” sections contained in this Annual Report and the risks discussed in our other Securities and Exchange Commission (“SEC”) filings.
+
+We urge you to consider these factors carefully in evaluating the forward-looking statements contained in this Annual Report. All subsequent written or oral forward-looking statements attributable to our company or persons acting on our behalf are expressly qualified in their entirety by these cautionary statements. The forward-looking statements included in this Annual Report are made only as of the date of this Annual Report. We do not intend, and undertake no obligation, to update these forward-looking statements.
+
+Overview
+
+Cadence® is a leading pioneer of electronic system design software and intellectual property (“IP”), building upon more than 35 years of computational software expertise. Since our inception, we have been at the forefront of technology innovation, solving highly complex challenges in the semiconductor and electronic systems industries. We are a global company that provides computational software, special-purpose computational hardware, IP and services to multiple vertical sectors including automotive, artificial intelligence (“AI”), aerospace and defense, high-performance and mobile computing, hyperscalers, wireless communication, industrial internet of things (“IIoT”) and life sciences. Our solutions are integrated and used in every stage of design creation, implementation, verification, analysis and signoff from chips to printed circuit boards (“PCBs”) to complete electromechanical systems.
+
+Companies that design semiconductors and other electronic devices use our solutions to design, simulate, verify, signoff and manufacture every major type of semiconductor electronics including analog, mixed-signal, radio frequency (“RF”) and microwave devices, photonics, memory devices and digital chips for high-performance computing and AI, including central processing units (“CPUs”), graphics processing units (“GPUs”), neural processing units (“NPUs”), three-dimensional (“3D”) integrated circuit (“3D-IC”) and advanced package devices. These devices are used in multiple vertical sectors.
+
+Companies that design system-level products cover a broad range of vertical sectors including automotive, aerospace and defense systems, networking and communication systems, high-performance computing, cloud infrastructure and data centers, medical systems and health and life sciences. These companies use our solutions to design, simulate, verify and manufacture complete system products with the electronics included.
+
+Our offerings include software, hardware, services, and reusable IC design blocks, which are commonly referred to as IP. Our semiconductor customers use our offerings to design, configure, analyze, and verify integrated circuits (“ICs”). Additionally, customers license our IP, which accelerates their product development processes by providing pre-designed and verified circuit blocks for their ICs. Systems customers use our offerings to design, simulate, and verify the electro-thermal and physical functionality of their ICs, PCBs, and systems products. Some of our software offerings are used by pharmaceutical and biotech companies to help accelerate their drug discovery process.
+
+Business Strategy
+
+Our Intelligent System Design™ strategy allows us to deliver essential computational software, hardware and IP that our customers use to turn their design concepts into reality. Our customers include many of the world’s most innovative companies that design and build highly sophisticated semiconductor and electronic systems found in products used in everyday life. Our Intelligent System Design strategy allows us to quickly adapt to our customers' dynamic design requirements. We develop industry-leading computational software and hardware, generative AI, and digital twin algorithms to help solve their toughest challenges. Our software and services enable our customers to produce products that meet their critical business goals including time-to-market, costs and productivity while meeting growing global environmental concerns including sustainability and carbon emissions.
+
+1
+
+Table of Contents
+
+The creation of even the most seemingly simple electronic systems and products that people use every day is a complex process and requires many highly-trained engineers with various areas of specialized knowledge and skill sets. Our ability to deliver products that keep up with increasing complexity allows our customers to be successful in meeting their business goals and objectives.
+
+Historically, the industry that provided the tools used by IC engineers was referred to as Electronic Design Automation (“EDA”). The pace of technical innovation in EDA has been driven by a concept known as Moore’s Law, which more than 50 years ago predicted that the complexity of ICs would double approximately every 18-24 months. Today, our offerings include and extend beyond EDA to enable computational software for Intelligent System Design across three layers as illustrated below—starting with semiconductor and silicon design excellence, followed by system innovation, and then pervasive intelligence.
+
+The foundation of design excellence for semiconductors is essential for our customers to produce best-in-class technology for custom IC, digital IC design and signoff, simulation and functional verification, and leverages pre-built semiconductor IP. These tools, IP and associated services are specifically designed to meet the growing requirements of engineers designing increasingly complex chips across analog, digital and mixed-signal domains, and perform the associated verification tasks, including validation of low-level software running on a digital twin of the silicon model. This enables design teams to manage complexity and verification throughput without increasing their team size or extending the project schedule, while reducing technical risks.
+
+The second layer of our strategy leverages our computational expertise, expanding our solutions into the physical analysis in system innovation. It includes tools and services used for system design of the packages that encapsulate the ICs, 3D-ICs and PCBs. Our technology covers system simulation analysis, including electromagnetic, electro-thermal, electromechanics, and other multiphysics analysis necessary as part of optimizing the full system’s performance, radio frequency (“RF”) and microwave systems, and embedded software. We also leverage our computational software expertise to life sciences by offering biosimulation solutions.
+
+The third layer of our strategy addresses pervasive intelligence in new electronics. It starts with providing solutions and services to develop AI-enhanced systems and includes machine learning, deep learning and digital twin capabilities being added to the Cadence computational software and computational hardware portfolio to make IP and tools more automated and to produce optimized results faster. It also includes deploying generative AI techniques and LLMs to provide a rich set of co-pilots or design assistants to accelerate the design process.
+
+Our software and special-purpose hardware products also support cloud access to address the growing computational needs of our customers.
+
+Recent Acquisitions
+
+Consistent with our Intelligent System Design strategy, we completed several acquisitions since the beginning of fiscal 2023 that we believe enhance our talent, our technology portfolio and our ability to pursue attractive opportunities in the markets we serve.
+
+2
+
+Table of Contents
+
+During the second quarter of fiscal 2023, we acquired Pulsic, Ltd., a provider of floorplanning, placement and routing of custom IC software. This acquisition enhances our existing generative AI capabilities in Virtuoso® Studio to solve advanced node challenges using intelligent AI-based physical design and virtual prototyping techniques.
+
+During the third quarter of fiscal 2023, we acquired the Rambus SerDes and memory interface PHY IP assets from Rambus Inc. This acquisition broadens our enterprise IP portfolio in the design of AI, data center and hyperscale applications, as well as extends our expertise across multiple vertical sectors including automotive, aerospace and defense and consumer electronics, with the objective of providing broad subsystem solutions that meet the demands of our worldwide customers.
+
+During the fourth quarter of fiscal 2023, we acquired Intrinsix Corporation, a wholly owned subsidiary of CEVA, Inc., and a provider of design engineering solutions focused on the U.S. aerospace and defense industry. This acquisition adds a highly skilled engineering team that has expertise in advanced nodes, radio frequency, mixed signal and security algorithms.
+
+In January 2024, we acquired Invecas, Inc., a leading provider of design engineering, embedded software and system-level solutions. This acquisition adds a skilled system design engineering team with expertise in providing custom solutions across chip design, product engineering, advanced packaging and embedded software.
+
+Business Drivers
+
+Our products and services enable our customers to design complex and innovative semiconductor and electronic systems that are accelerated by the trends of semiconductor companies designing electrical systems, systems companies designing semiconductors, the hyper-convergence between electrical and mechanical systems and generative AI. Demand for our technology and expertise is driven by increasing complexity and our customers’ need to invest in new designs and products that are highly differentiated.
+
+We believe the most promising new opportunities for us involve enabling the design of electronic systems for consumers, including digital twin, generative AI, augmented reality (“AR”), virtual reality (“VR”), IIoT, edge computing, hyperscale computing (including data center infrastructure), mobile, communications (including 5G networks), automotive, aerospace and defense, industrial subsystems, as well as the emerging opportunities in life sciences. Large and existing electronics categories, such as data center infrastructure, networking, mobile, smartphones and AI products, continue to provide business opportunities for us as customers initiate new design projects.
+
+Underlying the requirements within any particular vertical sector is the availability of rapidly improving IC manufacturing technology. In order for our customers to take advantage of such advancements, some of our products need to first incorporate new capabilities such that they can exploit new manufacturing capabilities. This dependency means that we must invest significantly in product research and development (“R&D”) to keep pace with the latest manufacturing technology. The demand for new IC manufacturing technology directly impacts the demand for our newest products.
+
+Another driver for our business is the differentiation, capabilities and benefits provided to our customers by our products. With the rapid pace of innovation comes the opportunity for our products to address growing key challenges associated with the design of electronic products, such as power consumption, performance, chip area and cost. Our products and services have differentiated attributes that our customers value. In general, these attributes can be grouped into broader categories such as quality of results (“QoR”) (in terms of power consumption, performance and chip area), engineering productivity, tool performance, manufacturing, reliability and faster time to market. Many of these attributes contribute to sustainability initiatives by enabling our customers to create innovative products that optimize power, space and energy.
+
+Products and Product Categories
+
+Our Intelligent System Design strategy enables our customers to address a broad range of challenges that arise as they develop electronic products. Our solutions are categorized according to the role they play in the electronic product design process. We group our products into categories related to major design activities, including custom IC design and simulation, digital IC design and signoff, functional verification, IP, and system design and analysis. All of our product categories have generative AI solutions that augment the core product offering.
+
+Custom IC Design and Simulation
+
+Our custom IC design and simulation offerings are used by our customers to create schematic and physical representations of circuits down to the transistor level for analog, mixed-signal, custom digital, memory and RF designs. These representations are verified using simulation tools optimized for each type of design, including the design capture environment, simulation and IC layout within the Virtuoso custom IC design platform. Other tools in the custom IC portfolio are used to prepare the designs for manufacturing.
+
+The Virtuoso Advanced-Node Platform adds functionality to the base Virtuoso package to enable the use of 3D transistors (“FinFETs”), multi-patterning and other technologies required for advanced designs. The Virtuoso RF Solution addresses the challenges of RF design across chip, package and board. The Spectre® Simulation Platform provides large-scale verification simulation. The Virtuoso System Design Platform enables engineers to design and verify concurrently across the chip, package and board. The Virtuoso Studio platform is our generative AI solution for custom IC and mixed-signal design and simulation that enables additional productivity, automation and quality of results throughout the entire design flow.
+
+3
+
+Table of Contents
+
+Digital IC Design and Signoff
+
+Our digital IC design and signoff solutions are used to create logical representations of a digital circuit or an IC that can be verified for correctness prior to implementation (please refer to the discussion under “Functional Verification” below). Once the logic is verified, the design representation is implemented, or converted to a format ready for silicon manufacturing, using additional software tools within this category. The manufacturing representation is also analyzed and verified. Our digital IC design and signoff technology suite provides a full flow to achieve power, performance and area (“PPA”) design targets, and includes three major categories: logic design, physical implementation and signoff.
+
+Our logic design offering is comprised of logic synthesis, test and equivalence checking capabilities and is typically used by customers to create and verify designs in conjunction with our functional verification capabilities. The offering includes the Genus™ Synthesis Solution, a logic synthesis offering that provides fast throughput while also offering high quality results, and the Joules™ RTL Power Solution, which delivers fast power analysis while preserving near-signoff accuracy. We also offer the Cadence Modus DFT Software Solution, which reduces SoC design-for-test time.
+
+Our physical implementation offering comprises tools used near the end of the design process, including place and route, optimization and multi-patterning preparation. The Innovus™ Implementation System is a physical implementation offering that delivers fast design turnaround time while also delivering improved PPA characteristics. This offering enables customers to address the technology challenges of the latest semiconductor advanced-process nodes, create a physical representation of logic models and prepare a design for signoff.
+
+Our signoff offering is comprised of tools used to sign off the design as ready for manufacture by a semiconductor foundry, which provides certification for this step. This offering includes the Tempus™ Timing Signoff Solution, Voltus™ Power Integrity Solution, Quantus™ Extraction Solution and Pegasus™ Physical Verification System. Our design-for-manufacturing products are also included in our signoff offering and are used by customers to address manufacturing and yield issues as early in the product development process as possible.
+
+Cadence Cerebrus™ is our generative AI solution that combines all elements of the full-flow IC through signoff that enables additional productivity, automation and improved quality of results throughout the entire design flow.
+
+Functional Verification
+
+Functional verification products are used by our customers to effectively and efficiently verify that the circuitry or the software they have designed is consistent with the functional specification. Verification is largely done throughout the design process, with the objective of identifying as many potential functional problems as possible before manufacturing the circuitry, thereby significantly reducing the risk of discovering a costly error in the completed product.
+
+Our Verification Suite includes four primary verification engines, starting with the JasperGold® Formal Verification Platform and Xcelium™ Parallel Logic Simulation Platform, which are used in the early stages of design verification, often at the IP and subsystem level. Once the design is more mature, with early formal and simulation verification tasks performed, verification engineers deploy our Palladium® Enterprise Emulation Platform and Protium™ field programmable gate arrays (“FPGA”)-Based Prototyping Platforms for more comprehensive chip verification, often running low-level embedded software on top of a model of the chip, to ensure proper functionality before silicon manufacturing.
+
+These engines are used for early bug detection, verification of block-level functionality, verification acceleration and emulation of system-level functionality, system-level power exploration, analysis and optimization, and system-level prototyping for hardware/software co-verification. Our Palladium platform provides high throughput, capacity, data center reliability and workgroup productivity to enable global design teams to develop advanced hardware-software systems. The Protium platform leverages a common front end with the Palladium environment to move designs rapidly from emulation to the prototyping stage, allowing for software development to begin weeks to months earlier than otherwise possible.
+
+These engines are also supported by other verification tools that provide an environment that allows for effective verification throughput and management, including verification planning and metric tracking, testbench automation, debugging and software-driven tests, enabling our customers to coordinate verification activities across multiple verification engines, teams and locations for effective verification closure. Additionally, Verisium™ is our generative AI solution for multi-run verification that enables additional productivity, automation and quality of results throughout the entire verification flow.
+
+IP
+
+Our IP offerings consist of pre-verified, customizable functional blocks, which customers integrate into their ICs to accelerate the development process and to reduce the risk of errors in the design process. We offer many types of IP, including Tensilica® configurable digital signal processors (“DSPs”), vertically targeted subsystems for AI, audio/voice, baseband and vision/imaging applications, controllers and physical interfaces for standard protocols and analog IP. Our design IP portfolio includes solutions for high speed SerDes, peripheral component interconnect (“PCI”), USB and many other standards.
+
+We also offer a broad range of Verification IP (“VIP”) with memory models, which model the expected behavior of many industry-standard protocols when used with verification solutions and are complementary to our design IP offerings. Our VIP and accelerated VIP are used with our full suite of functional verification engines to emulate and model the expected behavior and interaction of standard industry system interface protocols including DDR, USB and PCI Express® in silicon. Our customers also use our System VIP offerings to perform full system-level chip verification.
+
+4
+
+Table of Contents
+
+System Design and Analysis
+
+Our system design and analysis offerings are used by our customers to develop PCBs and advanced IC packages and to analyze electromagnetic, electro-thermal and other multiphysics effects.
+
+The capabilities in the Allegro® System Design Platform include PCB authoring and implementation, IC package and system-in-package design, signal and power integrity analysis, and PCB library design management and collaboration. The need for compact, high-performance mobile, consumer and automotive design with advanced serial interconnect is driving the technological evolution for our PCB offerings. For mainstream PCB customers, where individual or small team productivity is a focus, we provide the OrCAD® family of offerings, which are primarily marketed worldwide through a network of resellers.
+
+The speed and close proximity of signals on silicon, through packages to boards, and through connectors and cables, exposes these communications to various kinds of interference, generates heat and emits electromagnetic radiation. Careful analysis is required for these systems to work as designed under a wide range of operating conditions and within compliance of standards and laws. The complexity of these devices and signal transmissions requires analysis and simulation throughout the product lifecycle to meet these objectives. Our Clarity™ 3D Solver for electromagnetic and power electronics analysis and simulation, as well as our Celsius™ Thermal Solver, provide the foundation for multiphysics analysis technology, with complete electrical-thermal co-simulation for electronic systems from ICs to physical enclosures.
+
+Our Fidelity™ CFD Software expands our ability to meet the growing design challenges of electronic and systems companies. Fidelity CFD is a physics-based analysis solution for mechanical design and complements the electronic system analysis portfolio. Our comprehensive suite of computational fluid dynamics (“CFD”) solutions enables our customers to extend their multiphysics analysis workflows to address simulation and analysis challenges for applications such as aerodynamics, hydrodynamics, propulsion, turbomachinery, heat transfer and combustion.
+
+Our Millennium™ Multiphysics Enterprise Platform is an industry-first turnkey AI-enabled digital twin. Millennium M1 is the first release and overcomes traditional CFD speed/accuracy and compute resource limitations with a combination of GPU resident CFD solvers such as Fidelity LES for large eddy simulations (“LES”) and scalable high-performance hardware.
+
+Augmenting all our multiphysics analysis solutions is Optimality™ Intelligent System Explorer, an industry-first generative AI-driven multiphysics optimization solution that enables additional productivity, automation and quality of results throughout the entire analysis flow. Optimality Explorer breaks through the limitations of the conventional human-intensive optimization process and is designed to produce the optimal system design solution expeditiously and without compromising accuracy.
+
+An additional AI digital twin solution of our Data Center Design and Insight Platform brings physics-based design and analysis to the data center sector for performance-aware design and operational planning. Data center professionals can future-proof designs and assess operational decisions with this digital twin and empower designers, owners and operators to address the need for reliability, capacity and energy efficiency.
+
+We also offer molecular modeling and simulation solutions obtained through our acquisition of OpenEye Scientific Software in fiscal 2022. These solutions and services are used by a wide range of organizations in the pharmaceutical and biotechnology sectors to accelerate the drug discovery process and make more informed decisions in the development of new therapeutics.
+
+Product Arrangements
+
+We primarily license our software using time-based licenses. Our time-based license arrangements offer customers the right to access and use all of the products delivered at the outset of an arrangement and updates throughout the entire term of the arrangement, which is generally two to three years, with no rights to return. Our updates provide continued access to our evolving technology as our customers’ designs migrate to more advanced nodes. In addition, certain time-based license arrangements include the right for the customer to remix among the products delivered at the outset of the arrangement and use unspecified additional products that become commercially available during the term of the arrangement.
+
+A small portion of our software is licensed under perpetual licenses, which does not include the right to use new technology. Payment terms for time-based licenses generally provide for payments to be made over the license period, and payment terms for perpetual licenses generally are net 30 days.
+
+Our emulation and prototyping hardware products are either sold or leased to our customers. Our emulation hardware can also be accessed remotely via a Cadence-managed cloud arrangement.
+
+We generally license our design IP under nonexclusive license agreements that provide usage rights for specific designs. Some customers enter into non-cancelable commitments, whereby the customer commits to a fixed dollar amount over a specified period of time that can be used to purchase from a list of products or services. In addition, for certain IP license agreements, we collect royalties as our customers ship their product that includes our IP to their customers.
+
+For a further description of our license agreements, our emulation and prototyping hardware sale or lease agreements, revenue recognition policies and results of operations, please refer to the discussion under “Critical Accounting Estimates” under Part II, Item 7, “Management’s Discussion and Analysis of Financial Condition and Results of Operations.”
+
+5
+
+Table of Contents
+
+Technical Support and Maintenance
+
+Customer service and support is critical to the adoption and successful use of our products. We provide our customers with technical support and maintenance to facilitate their use of our software, hardware and IP solutions.
+
+Our education services offerings can be customized and include training programs that are delivered online, app-based, or in a classroom setting. The content of these offerings ranges from the latest design techniques to methodologies for using the most recent features of our products. The primary focus of education services is to accelerate our customers’ path to productivity in the use of our products.
+
+Services
+
+We offer a number of services, including services related to methodology, education and hosted design solutions. These services may be sold separately or sold and performed in conjunction with the license, sale or lease of our products. As necessary, specialized design services engineers are assigned to internal R&D projects associated with our design IP business.
+
+As part of our services offerings, we design advanced ICs, develop custom IP and help customers address design challenges. This enables us to target and accelerate the development of new software technology and products to satisfy current and future design requirements.
+
+We offer engineering services to collaborate with our customers in the design of complex ICs and the implementation of key design capabilities, including low power design, IC packaging and board design, functional verification, digital implementation, analog/mixed-signal design and system-level design. The customers for these services primarily consist of semiconductor and systems companies developing products for the consumer, hyperscale computing, 5G communications, mobile, automotive, aerospace and defense, industrial and life science vertical sectors. These ICs range from digital SoCs and analog and RF designs to complex mixed-signal ICs.
+
+The Cadence Cloud portfolio, consisting of Cadence-managed and customer-managed environments for electronic product and life sciences companies using the scalability of the cloud, continues to expand, with additional cloud-based and software as a service (“SaaS”) products added or under development in fiscal 2023, including cloud-based platforms for e-commerce and molecular sciences. Contractual arrangements with customers for both environments are generally time-based, similar to the on-premises software license arrangements described above and may also include usage-based terms.
+
+In delivering methodology services, we leverage our experience and knowledge of design techniques, our products, leading practices and different design environments to improve the productivity of our customers’ engineering teams. Depending on the customers’ projects and needs, we work with customers using outsourced, consultative and collaborative offerings.
+
+Third-Party Programs and Initiatives
+
+In addition to our products, many customers use design tools that are provided by other companies, as well as design IP available from alternative suppliers. We support the use of third-party design products and design IP through our Cadence Connections® program and through our participation in industry groups such as the Silicon Integration Initiative and Accellera System Initiative. We actively contribute to the development and deployment of industry standards.
+
+Product and Maintenance and Services Revenue
+
+Revenue, and revenue as a percentage of total revenue, from our product and maintenance and services offerings for the last three fiscal years were as follows:
+
+2023 | 2022 | 2021
+
+(In millions, except percentages)
+
+Product and maintenance | 3,834 | 94 | % | 3,340 | 94 | % | 2,813 | 94 | %
+
+Services | 256 | 6 | % | 222 | 6 | % | 175 | 6 | %
+
+Total revenue | 4,090 | 3,562 | 2,988
+
+Recurring revenue includes revenue recognized over time from our software arrangements, services, royalties, maintenance on IP licenses and hardware, and operating leases of hardware. Recurring revenue also includes revenue recognized at varying points in time over the term of other arrangements with non-cancelable commitments, whereby the customer commits to a fixed dollar amount over a specified period of time that can be used to purchase from a list of products or services. These arrangements do not meet the definition of a revenue contract until the customer executes a separate selection form to identify the products and services that they are purchasing. Each separate selection form under the arrangement is treated as an individual contract and accounted for based on the respective performance obligations.
+
+The remainder of our revenue is recognized at a point in time and is characterized as up-front revenue. Up-front revenue is primarily generated by sales of emulation and prototyping hardware and individual IP licenses. The percentage of our recurring and up-front revenue is impacted by delivery of hardware and IP products to our customers in any single fiscal period.
+
+6
+
+Table of Contents
+
+For additional information and analysis on our revenue, including revenue by geography, see the discussion under “Results of Operations” under Part II, Item 7, “Management’s Discussion and Analysis of Financial Condition and Results of Operations.” For our fiscal 2023 results of operations and our financial position as of December 31, 2023, see Part IV, Item 15, “Exhibits and Financial Statement Schedules.”
+
+Remaining Performance Obligations
+
+Revenue allocated to remaining performance obligations represents the transaction price allocated to the performance obligations that are unsatisfied, or partially unsatisfied, which includes unearned revenue and amounts that will be invoiced and recognized as revenue in future periods. We have elected to exclude the potential future royalty receipts from the remaining performance obligations. Contracted but unsatisfied performance obligations were approximately $6.0 billion as of December 31, 2023, which included $0.4 billion of non-cancelable commitments from customers where actual product selection and quantities of specific products or services are to be determined by customers at a later date.
+
+We estimate our remaining performance obligations at a point in time. Actual amounts and timing of revenue recognition may differ from these estimates largely due to changes in actual installation and delivery dates, as well as contract renewals, modifications and terminations. As of December 31, 2023, we expected to recognize 56% of the contracted but unsatisfied performance obligations, excluding non-cancelable commitments, as revenue over the next 12 months, 39% over the next 13 to 36 months and the remainder thereafter.
+
+Marketing and Sales
+
+We generally market our products and provide services to existing and prospective customers through a direct sales force consisting of salespeople and applications engineers. Applications engineers provide technical pre-sales and post-sales support for our products. Due to the complexity of many of our products and the system design process, the sales cycle is generally long, requiring up to six months or longer. During the sales cycle, our direct sales force generally provides technical presentations, product demonstrations and support for on-site customer evaluation of our solutions. We also promote our products and services through advertising, marketing automation, trade shows, public relations and the internet. We selectively utilize value-added resellers to broaden our reach and reduce cost of sales. Our OrCAD products and certain Allegro products are primarily marketed through these channels. With respect to international sales, we generally market and support our products and services through our subsidiaries. We also use a third-party distributor to license our products and services to certain customers in Japan.
+
+Research and Development
+
+Our future performance depends on our ability to innovate, commercialize newly developed solutions and enhance and maintain our current products. The primary areas of our R&D align with our product categories discussed above. We must continuously adapt our products to solve new or increased physics challenges that arise with each successive process node and address the increase in complexity that is introduced by the resulting much larger designs. We must also keep pace with our customers’ technical developments, satisfy industry standards and meet our customers’ increasingly demanding performance, productivity, quality and predictability requirements. Therefore, we expect to continue to make significant investments in R&D.
+
+Hardware Manufacturing and Software Distribution
+
+Our emulation and prototyping hardware, including all individual PCBs, custom ICs and FPGA-based prototyping components, is manufactured, assembled and tested by subcontractors before delivery to our customers. Software and documentation are primarily distributed to customers by secure electronic delivery.
+
+Proprietary Technology
+
+Our success depends, in part, upon our proprietary technology. We generally rely on patents, copyrights, trademarks and trade secret laws, licenses and restrictive agreements to establish and protect our proprietary rights in technology and products. Many of our products include software or other IP licensed from third parties. We may have to seek new licenses or renew existing licenses for third-party software and other IP in the future. As part of performing engineering services for customers, our engineering services business uses certain software and other IP licensed from third parties, including that of our competitors.
+
+Governmental Regulations
+
+We are subject to a variety of federal, state, local and foreign laws and regulations relating to our business and operations. These include, but are not limited to, laws and regulations related to trade controls, anti-corruption and anti-bribery, and data privacy and data protection, as well as antitrust, competition, employment, income taxes and the environment.
+
+7
+
+Table of Contents
+
+•Trade controls. We are subject to laws and regulations in the United States and other jurisdictions concerning the sale, shipment and transmission of our products and technology outside the United States and to foreign nationals, including tariffs, trade protection measures, import or export licensing requirements, sanctions and other trade regulations. U.S. Export Administration Regulations include “Entity List” and “Unverified List” restrictions imposed by the Bureau of Industry and Security (“BIS”) of the U.S. Department of Commerce (“DOC”). BIS frequently adds entities to the Entity List and the Unverified List, some of which have been Cadence customers. BIS also issues new rules and regulations from time to time. In 2022, BIS issued new restrictions concerning advanced node IC production in China and other countries and extended controls to additional technologies, including electronic computer-aided design software specially designed for the development of ICs with Gate-All-Around Field-Effect Transistor structure. Trade regulations limiting or banning sales into certain countries or to certain companies have impacted our ability to transact business in certain countries and with certain customers. Future trade regulations may also impact our ability to transact business with certain customers and in certain countries and may restrict certain non-U.S. person employees from performing their duties at Cadence without first obtaining appropriate authorization if their duties involve an export, reexport, or transfer of export-controlled technology.
+
+•Anti-corruption and anti-bribery. We are subject to laws and regulations in the United States and other jurisdictions concerning anti-corruption and anti-bribery, including the U.S. Foreign Corrupt Practices Act and the U.K. Bribery Act, which prohibit corrupt payments to governmental officials and bribes to other persons.
+
+•Data privacy and data protection. We are subject to laws and regulations in the United States and other jurisdictions governing data privacy and data protection, including the General Data Protection Regulation in the European Union, which regulate our collection, handling and use of personal information.
+
+The laws and regulations to which we are subject are complex and may change or develop over time, sometimes with limited or no advance notice. Developments or other changes in laws or regulations or how they are interpreted or enforced have had, and may continue to have, a negative impact on our business and increase our compliance-related expenditures. For additional information regarding risks related to laws and regulations, including existing restrictions imposed by BIS, as well as international relations, see Item 1A, “Risk Factors.”
+
+Competition
+
+We compete most frequently with Synopsys, Inc., Siemens EDA, and ANSYS, Inc., and also with numerous other tools providers, electronics device manufacturers with their own EDA capabilities, technical or computational software companies, electronics design and consulting companies and other IP companies. These include U.S. based companies such as Keysight Technologies, Inc., Schrödinger, Inc. and CEVA, Inc. and foreign companies such as Altium Limited (Australia) and Zuken Ltd. (Japan) and emerging competitors in China like Huada Empyrean, Xpeedic, X-EPIC, Primarius Technologies, Univista and Giga-DA. Some of our competitors have made or may make acquisitions and/or have entered or may enter into partnerships or other strategic relationships which may alter their ability to compete with us.
+
+Certain competitive factors in the engineering services business differ from those of the products businesses. While we compete with other computational software companies in the engineering services business, our principal competitors in this area include independent engineering service businesses. Many of these companies are also customers, and therefore use our product offerings in the delivery of their services or products.
+
+For more information on risks related to competitive factors affecting our business, see the relevant discussions throughout Item 1A, “Risk Factors.”
+
+Human Capital Resource Management
+
+Our future success is inextricably linked to our ability to attract, retain and develop exceptional talent globally. To facilitate talent attraction and retention, we invest in key initiatives including, but not limited to, furthering diversity, equity and inclusion, physical and mental health, and talent development. To measure engagement and collect feedback from our employees, we administer regular employee engagement surveys. Our core cultural tenet is “One Team – One Cadence,” highlighting that seamless teamwork is critical to making Cadence a great place to work for all.
+
+We believe that a high-performing, inclusive culture is a competitive differentiator and crucial to our business' success. Cadence leaders are tasked with creating and sustaining our culture and therefore, they are measured on their contributions to diversity, equity and inclusion, attraction, development and engagement of high-caliber talent, and advancing our sustainability objectives.
+
+Employees
+
+We believe our employees represent the best and brightest in our industry, and the talent we select to be a part of our team defines our culture and success. As of December 31, 2023, we had approximately 11,200 employees. Our global workforce is highly educated, technical and specialized, with a substantial majority of employees working in engineering roles.
+
+8
+
+Table of Contents
+
+Diversity, Equity and Inclusion
+
+We believe that workforce diversity, equity and inclusion advance high performance and innovation. We recognize that gender and racial disparities remain a challenge in the technology field, and with a high proportion of technical employees, we are focused on addressing this issue and have appointed executive sponsors to drive this focus throughout our company. Some of our current programs and initiatives aimed at addressing this issue include:
+
+•Regular monitoring of the diversity of our current workforce and candidate pool, with an aim to identify and address areas where we can improve.
+
+•Partnerships with organizations such as National Society of Black Engineers, Society of Hispanic Professional Engineers, Out in Tech, National GEM Consortium and Society of Women Engineers and similar university programs to advance our efforts in outreach, engagement, and inclusion.
+
+•Development programs at Cadence including our IMPACT mentorship program which gives early career women, and U.S. Black and Latinx employees an opportunity to choose a meaningful mentor based on their career goals.
+
+•Training and resources for managers, such as inclusive leadership training.
+
+•Inclusion groups for Black, Latinx, Asian American and Pacific Islanders, LGBTQ+, veterans, women employees, employees who are neurodivergent or disabled and allies which host networking events to foster dialogue and promote awareness.
+
+Health, Safety and Wellness
+
+We strive to create a safe and rewarding environment to enable our employees to develop the innovations necessary for our sustained success.
+
+With the aim of providing for both the physical and mental health of our employees, we offer a variety of benefits that go beyond traditional health insurance. Our U.S. health and well-being benefits include fertility benefits, coverage for transgender employees undergoing medical treatment, expanded new parent leave, adoption and surrogacy benefits, financial planning and coaching services and legal services. We also provide training and tools for stress management, time management, conflict resolution and emotional well-being.
+
+Compensation and Benefits
+
+To inspire and recognize our employees, we offer what we believe are competitive compensation and benefits programs. Our compensation programs link employee compensation to our business and individual performance. We also offer a semi-annual bonus program, 401(k) match, Employee Stock Purchase Plan and equity compensation. In addition, our employees are eligible to receive monetary awards from their colleagues through our peer-to-peer recognition program.
+
+Talent Development
+
+To help employees succeed in their current roles, pursue their passions and develop the skills necessary for advancement, we provide formal training programs and curriculums in addition to on-the-job training. Our high performance culture platform provides our employees with valuable resources such as a comprehensive online Learning Management program with training and development tools on a broad range of topics and skills. We also offer tuition reimbursement opportunities to employees to further hone their skills.
+
+Social Impact and Community Outreach
+
+We believe it is important to create meaningful opportunities for employees to connect and contribute to their communities. We provide paid volunteer time off, charitable contribution matching, company-wide volunteer campaigns, international service immersion projects and grants to employees who are giving back to their communities.
+
+The Cadence Giving Foundation, established in 2021, is committed to providing Cadence employees and others a means through which to carry out their volunteer activities as well as making an impact on our focus areas of environmental sustainability and climate change, diversity, equity and inclusion, and science, technology, engineering and math (“STEM”) education. This is accomplished through various means, including grant making and partnerships with non-profit organizations committed to addressing these issues. We also make charitable contributions consisting of Cadence technology product donations.
+
+Corporate Responsibility
+
+We believe that, in general, the best and brightest talent is inclined to build a career with a responsible organization that positively impacts society. We recognize that climate change is one of the greatest challenges of our time. We are focused on doing our part to contribute to the health of the planet by actively investing in initiatives to reduce our environmental footprint. We encourage you to review our 2022 Environmental, Social, and Governance ("ESG") Report available through our website, and our 2023 ESG Report when released, for more information on our ESG targets, initiatives and progress. The contents of our ESG Reports are not part of or incorporated by reference into this Annual Report.
+
+9
+
+Table of Contents
+
+Corporate Information
+
+Our headquarters is located at 2655 Seely Avenue, San Jose, California 95134. Our telephone number is (408) 943-1234. We use our website at www.cadence.com to communicate important information about our company, including news releases and financial information. Our website permits investors to subscribe to email notification alerts when we post new material information on our website. We also make available on our investor relations webpage, free of charge, copies of our SEC filings and submissions, which can be found at the SEC’s website, www.sec.gov, as soon as reasonably practicable after electronically filing or furnishing such documents with the SEC. Stockholders may also request copies of these documents by writing to our Corporate Secretary at the address above. Website references are provided throughout this document for convenience only. The contents of these websites do not constitute a part of this Annual Report and shall not be deemed incorporated by reference into this Annual Report unless expressly noted.
+
+Fiscal Year End
+
+Historically, our fiscal years were 52- or 53-week periods ending on the Saturday closest to December 31. During fiscal 2022, our Board of Directors approved a change in our fiscal year end from the Saturday closest to December 31 of each year to December 31 of each year. The fiscal year change became effective beginning with our 2023 fiscal year, which began on January 1, 2023. Both fiscal year 2022 and 2021, which are included in this report for comparative purposes, represent 52-week periods. Our first three fiscal quarters end on March 31, June 30, and September 30.
+
+10
+
+Table of Contents
+
+INFORMATION ABOUT OUR EXECUTIVE OFFICERS
+
+The following table provides information regarding our executive officers as of February 13, 2024:
+
+Name | Age | Positions and Offices
+
+Anirudh Devgan | 54 | President and Chief Executive Officer
+
+John M. Wall | 53 | Senior Vice President and Chief Financial Officer
+
+Thomas P. Beckley | 66 | Senior Vice President and General Manager of the Custom IC and PCB Group
+
+Paul Cunningham | 46 | Senior Vice President and General Manager of the System Verification Group
+
+Karna Nisewaner | 49 | Senior Vice President, General Counsel and Corporate Secretary
+
+Chin-Chi Teng | 58 | Senior Vice President and General Manager of the Digital and Signoff Group
+
+Neil Zaman | 55 | Senior Vice President and Chief Revenue Officer
+
+Our executive officers are appointed by our Board of Directors and serve at the discretion of our Board of Directors.
+
+ANIRUDH DEVGAN has served as Chief Executive Officer of Cadence since December 2021 and President of Cadence since November 2017. From May 2012 to November 2017, Dr. Devgan held several positions at Cadence, most recently as Executive Vice President, Research and Development from March 2017 to November 2017 and Senior Vice President, Research and Development from November 2013 to March 2017. Prior to joining Cadence, from May 2005 to March 2012, Dr. Devgan served as Corporate Vice President and General Manager of the Custom Design Business Unit at Magma Design Automation, Inc., an EDA company. Dr. Devgan has a B.Tech. in electrical engineering from the Indian Institute of Technology, Delhi, and an M.S. and Ph.D. in electrical and computer engineering from Carnegie Mellon University.
+
+JOHN M. WALL has served as Senior Vice President and Chief Financial Officer of Cadence since October 2017. From June 1997 to October 2017, Mr. Wall held several positions at Cadence, most recently as Corporate Vice President and Corporate Controller from April 2016 to October 2017, Vice President, Finance and Operations, Worldwide Revenue Accounting and Sales Finance from 2015 to 2016 and Vice President, Finance and Operations, EMEA and Worldwide Revenue Accounting from 2005 to 2015. Mr. Wall has an NCBS from the Institute of Technology, Tralee and is a Fellow of the Association of Chartered Certified Accountants.
+
+THOMAS P. BECKLEY has served as Senior Vice President and General Manager of the Custom IC and PCB Group of Cadence since 2018. From September 2012 to September 2018, Mr. Beckley served as Senior Vice President, Research and Development of Cadence. From April 2004 to September 2012, Mr. Beckley served as Corporate Vice President, Research and Development of Cadence. Prior to joining Cadence, Mr. Beckley served as President and Chief Executive Officer of Neolinear, Inc., a developer of auto-interactive and automated analog/RF tools and solutions for mixed-signal design that Cadence acquired in April 2004. Mr. Beckley has a B.S. in mathematics and physics from Kalamazoo College and an M.B.A. from Vanderbilt University.
+
+PAUL CUNNINGHAM has served as Senior Vice President and General Manager of the System Verification Group of Cadence since March 2021. From August 2011 to March 2021, Dr. Cunningham held several positions at Cadence, most recently as Corporate Vice President of the System Verification Group beginning January 2018. Prior to joining Cadence, Dr. Cunningham was co-founder and Chief Executive Officer of Azuro, Inc., a clock concurrent optimization company, that Cadence acquired in July 2011. Dr. Cunningham has an M.A. and Ph.D. in computer science from the University of Cambridge in the United Kingdom.
+
+KARNA NISEWANER has served as Senior Vice President, General Counsel and Corporate Secretary of Cadence since February 2024. From May 2011 to February 2024, Ms. Nisewaner held several positions at Cadence, most recently as Corporate Vice President, General Counsel and Corporate Secretary beginning in September 2022. Prior to joining Cadence, Ms. Nisewaner held in-house counsel roles at Intuit from 2007 to 2011 and IBM from 2003 to 2007. Ms. Nisewaner was in private practice focused on IP at Finnegan, Henderson, Farbow, Garrett, and Dunner, LLP from 2001 to 2003. Ms. Nisewaner has a B.S.E. in civil engineering and operations research from Princeton University and a J.D. from UCLA School of Law.
+
+CHIN-CHI TENG has served as Senior Vice President and General Manager of the Digital and Signoff Group of Cadence since September 2018. From January 2002 to September 2018, Dr. Teng held several positions at Cadence, most recently as Corporate Vice President, Research and Development from June 2015 to September 2018, and Vice President, Research and Development from March 2009 to June 2015. Dr. Teng has a B.S. in electrical engineering from the National Taiwan University and a Ph.D. in electrical and computer engineering from the University of Illinois, Urbana-Champaign.
+
+NEIL ZAMAN has served as Chief Revenue Officer of Cadence since October 2020 and as Senior Vice President, Worldwide Field Operations since September 2015. From October 1999 to September 2015, Mr. Zaman held several positions at Cadence, most recently as Corporate Vice President, North America Field Operations. Prior to joining Cadence, Mr. Zaman held positions at Phoenix Technologies Ltd., a developer of core system software, and IBM Corporation, a technology and consulting company. Mr. Zaman has a B.S. in finance from California State University, Hayward.
+
+11
+
+Table of Contents

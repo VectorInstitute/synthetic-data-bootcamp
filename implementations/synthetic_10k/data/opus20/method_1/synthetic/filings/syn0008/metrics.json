@@ -1,0 +1,108 @@
+{
+  "company_id": "syn0008",
+  "name": "Novqua Retail, Inc.",
+  "sector": "Consumer Discretionary",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 310.91,
+  "totals": {
+    "seconds": 310.49,
+    "prompt_tokens": 35975,
+    "completion_tokens": 32863,
+    "total_tokens": 68838,
+    "reasoning_tokens": 0,
+    "calls": 4
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1221,
+      "prompt_chars": 13640,
+      "words": 3366,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 998,
+      "prompt_chars": 23592,
+      "words": 4372,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1407,
+      "prompt_chars": 36823,
+      "words": 4403,
+      "attempts": 1,
+      "exemplar_overlap": 0.0054,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 890,
+      "exemplar_words": 840,
+      "prompt_chars": 41410,
+      "words": 1087,
+      "attempts": 1,
+      "exemplar_overlap": 0.0219,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 77.49,
+      "prompt_tokens": 4539,
+      "completion_tokens": 7966,
+      "total_tokens": 12505,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 3366,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 96.57,
+      "prompt_tokens": 7162,
+      "completion_tokens": 9823,
+      "total_tokens": 16985,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4372,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 106.94,
+      "prompt_tokens": 11717,
+      "completion_tokens": 12288,
+      "total_tokens": 24005,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4403,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 29.49,
+      "prompt_tokens": 12557,
+      "completion_tokens": 2786,
+      "total_tokens": 15343,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 1087,
+      "issues": []
+    }
+  ]
+}

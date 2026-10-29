@@ -1,0 +1,8 @@
+set,n_questions,rag_answer_correct_pct,rag_abstain_pct,retrieval_hit_pct
+real,177,37.3,58.2,33.3
+m1_gemini,200,66.5,32.5,63.5
+m2_gemini,186,78.0,22.0,75.8
+m1_gpt4o,200,84.0,16.0,84.0
+m2_gpt4o,186,82.8,16.1,78.0
+m1_opus,200,74.5,25.5,74.5
+m2_opus,90,93.3,6.7,90.0

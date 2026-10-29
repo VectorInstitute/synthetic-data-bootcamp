@@ -1,0 +1,13 @@
+comparison,metric,real,synthetic,note
+section_length,item_1_median_words,9033,324,synthetic is 3.6% of real's median length
+section_length,item_1A_median_words,11860,470,synthetic is 4.0% of real's median length
+section_length,item_1C_median_words,826,258,synthetic is 31.2% of real's median length
+section_length,item_7_median_words,10178,507,synthetic is 5.0% of real's median length
+section_length,item_8_median_words,27557,429,synthetic is 1.6% of real's median length
+vocabulary_overlap,jaccard_top_3000_terms,0.404,0.671,"real=Jaccard(real_top, synth_top); synthetic=share of synthetic's top terms also in real's top terms"
+number_distribution,dollars_per_1k_words,1.48,4.02,
+number_distribution,percents_per_1k_words,1.75,3.09,
+number_distribution,median_dollar_magnitude_millions,429.0,2125.9,
+number_distribution,median_percent_value,100.0,23.8,
+bm25_score_distribution,median_top1_score,22.5,18.64,"n_real=549, n_synthetic=118; not directly comparable across corpora of different sizes, shape matters more than the absolute value"
+retriever_ranking_agreement,best_retriever_by_recall_at_10,hybrid_rrf,bm25,"disagrees: synthetic_only order ['bm25', 'hybrid_rrf', 'semantic'], real_only order ['hybrid_rrf', 'bm25', 'semantic']"

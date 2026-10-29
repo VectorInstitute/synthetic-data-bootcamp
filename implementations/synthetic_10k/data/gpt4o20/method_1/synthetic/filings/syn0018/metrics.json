@@ -1,0 +1,211 @@
+{
+  "company_id": "syn0018",
+  "name": "Orzenka Midstream, Inc.",
+  "sector": "Energy",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 117.91,
+  "totals": {
+    "seconds": 117.41,
+    "prompt_tokens": 45227,
+    "completion_tokens": 13836,
+    "total_tokens": 59063,
+    "reasoning_tokens": 0,
+    "calls": 10
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1237,
+      "prompt_chars": 13933,
+      "words": 925,
+      "attempts": 3,
+      "exemplar_overlap": 0.0022,
+      "issues": [
+        "The section has 925 words; write at least 1800 (target 3000)."
+      ]
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1223,
+      "prompt_chars": 21102,
+      "words": 1262,
+      "attempts": 3,
+      "exemplar_overlap": 0.0111,
+      "issues": [
+        "The section has 1262 words; write at least 2100 (target 3500)."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1240,
+      "prompt_chars": 30306,
+      "words": 1569,
+      "attempts": 3,
+      "exemplar_overlap": 0.0075,
+      "issues": [
+        "The section has 1569 words; write at least 1800 (target 3000)."
+      ]
+    },
+    "1C": {
+      "target_words": 820,
+      "exemplar_words": 945,
+      "prompt_chars": 39520,
+      "words": 818,
+      "attempts": 1,
+      "exemplar_overlap": 0.0184,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 8.87,
+      "prompt_tokens": 2883,
+      "completion_tokens": 1053,
+      "total_tokens": 3936,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 857,
+      "issues": [
+        "The section has 857 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 9.57,
+      "prompt_tokens": 2915,
+      "completion_tokens": 1134,
+      "total_tokens": 4049,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 878,
+      "issues": [
+        "The section has 878 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 9.19,
+      "prompt_tokens": 2915,
+      "completion_tokens": 1136,
+      "total_tokens": 4051,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 925,
+      "issues": [
+        "The section has 925 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 10.58,
+      "prompt_tokens": 3980,
+      "completion_tokens": 858,
+      "total_tokens": 4838,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 696,
+      "issues": [
+        "The section has 696 words; write at least 2100 (target 3500).",
+        "6% of the text repeats the style example word for word; rewrite it in your own words. Copied sentences include: \"Risk Factors\n\nThe following risk factors could materially and adversely affect our business, operations, financial resul...\"; \"This list is not exhaustive, and we place no priority or likelihood based on order of presentation or grouping under sub...\""
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 11.78,
+      "prompt_tokens": 4086,
+      "completion_tokens": 1420,
+      "total_tokens": 5506,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1152,
+      "issues": [
+        "The section has 1152 words; write at least 2100 (target 3500)."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 12.23,
+      "prompt_tokens": 4013,
+      "completion_tokens": 1495,
+      "total_tokens": 5508,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1262,
+      "issues": [
+        "The section has 1262 words; write at least 2100 (target 3500)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 16.47,
+      "prompt_tokens": 5758,
+      "completion_tokens": 1949,
+      "total_tokens": 7707,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1477,
+      "issues": [
+        "The section has 1477 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 14.05,
+      "prompt_tokens": 5791,
+      "completion_tokens": 1823,
+      "total_tokens": 7614,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1365,
+      "issues": [
+        "The section has 1365 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 15.51,
+      "prompt_tokens": 5791,
+      "completion_tokens": 2001,
+      "total_tokens": 7792,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1569,
+      "issues": [
+        "The section has 1569 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 9.16,
+      "prompt_tokens": 7095,
+      "completion_tokens": 967,
+      "total_tokens": 8062,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 818,
+      "issues": []
+    }
+  ]
+}

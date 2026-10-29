@@ -1,0 +1,333 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Selzennov Materials, Inc. (ticker SOLV)
+Sector: Materials
+Incorporated in: Delaware
+Headquarters: Charlotte, North Carolina
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 18,000
+
+Selzennov Materials, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      14,240        13,521
+Cost of revenue                              11,829        11,290
+Gross profit                                  2,411         2,231
+Research and development                          0             0
+Selling, general and administrative             365           378
+Other operating expense                         854           811
+Operating income                              1,192         1,042
+Interest expense                                697           665
+Income before income taxes                      495           377
+Provision for income taxes                      112            91
+Net income                                      383           286
+
+Selzennov Materials, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            3,038         2,831
+Accounts receivable, net                             2,952         2,905
+Inventories                                          1,820         1,778
+Other current assets                                 3,347         3,219
+Total current assets                                11,157        10,733
+Property, plant and equipment, net                  14,342        13,990
+Goodwill                                             9,821         9,575
+Other non-current assets                             5,296         4,633
+Total assets                                        40,616        38,931
+Total current liabilities                            4,910         4,579
+Long-term debt                                      15,480        14,781
+Other non-current liabilities                        1,219         1,169
+Total liabilities                                   21,609        20,529
+Total stockholders' equity                          19,007        18,402
+Total liabilities and stockholders' equity          40,616        38,931
+
+Selzennov Materials, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                               383
+Depreciation and amortization                            698
+Changes in working capital and other                     105
+Net cash provided by operating activities              1,186
+Purchases of property and equipment                    (779)
+Other investing activities, net                      (1,121)
+Net cash used in investing activities                (1,900)
+Net change in long-term debt                             699
+Dividends paid                                         (116)
+Share repurchases, net of issuances                      338
+Net cash used in financing activities                    921
+Net change in cash and cash equivalents                  207
+Cash and cash equivalents, beginning of year           2,831
+Cash and cash equivalents, end of year                 3,038
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 5.3%
+Net income growth, fiscal 2024 versus 2023: 33.9%
+Operating income growth, fiscal 2024 versus 2023: 14.4%
+Gross margin, fiscal 2024: 16.9%
+Operating margin, fiscal 2024: 8.4%
+Net margin, fiscal 2024: 2.7%
+Effective tax rate, fiscal 2024: 22.6%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 2.6%
+Gross margin, fiscal 2023: 16.5%
+Operating margin, fiscal 2023: 7.7%
+Net margin, fiscal 2023: 2.1%
+Effective tax rate, fiscal 2023: 24.1%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 2.8%
+
+STYLE EXAMPLE: the start of Item 1C from a real Materials company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1C. CYBERSECURITY
+We maintain a cybersecurity program that is aligned with our business and focused on managing risks to our Company. As described below, we have established policies, standards, processes and practices for assessing, identifying and managing material risks from cybersecurity threats, which are integrated into our overall risk management program and governance structure.
+We use various controls, technologies and other processes designed to identify, protect against, detect, respond to and mitigate cybersecurity risks, in alignment with the National Institute of Standards and Technology (NIST) Cybersecurity Framework 2.0. These include, but are not limited to, internal reporting, monitoring and detection tools, threat intelligence and general and role-based training. We also maintain third-party management processes to identify and manage the cybersecurity risks associated with third-party service providers. We periodically evaluate and improve the effectiveness of our cybersecurity program internally and by engaging with consultants and other third-party advisors to conduct reviews and assessments of our program. These periodic assessments and reviews may include penetration and vulnerability testing, simulations, table-tops and other exercises.
+Overseeing the assessment and management of our exposure to various risks, including cybersecurity, is a key oversight responsibility for the Board of Directors. We have an enterprise risk management (ERM) program that includes the processes used to identify, assess and manage our most significant enterprise risks and uncertainties that could materially impact the long-term health of the Company or prevent the achievement of strategic objectives. These risks are identified, measured, monitored and managed across key risk categories, which include the consideration of cybersecurity risks. Our chief financial officer (CFO) facilitates the Company’s ERM program, which includes a formal assessment of the Company’s risk environment at least once per year. The ERM program also facilitates the incorporation of risk assessment and evaluation into the strategic planning process and the provision of regular reports to senior management, including our CEO. The Audit Committee assists the Board with its oversight of both the ERM program and cybersecurity risk, providing regular reports to the Board. Our CFO reviews the ERM program with the Audit Committee at least once per year, including reviewing existing risks and significant emerging risks across the Company’s key risk categories. In reviewing specific threats and risks with the Board, senior management may incorporate reports from consultants and other third-party advisors.
+Our Chief Information Security Officer (CISO) leads our global cybersecurity program and is responsible for management of our cybersecurity risks. Our CISO reports to our CFO. Our CISO has served in that position since 2022 and has relevant
+16
+Table of Contents
+experience in cybersecurity leadership positions, including prior experience as CISO of a public company. The Audit Committee regularly reviews our risk exposures relating to cybersecurity with our CISO and CFO, including review of the state of the Company’s cybersecurity and emerging cybersecurity developments and threats and the steps management has taken to monitor and mitigate such exposures. Our CISO manages a team of cybersecurity professionals with expertise and experience in information security.
+Our CISO is informed of cybersecurity incidents by the cybersecurity team’s security operations center, which is generally responsible for monitoring the prevention, detection, mitigation and remediation of cybersecurity incidents. We have an established process governing our assessment, response and notifications internally and externally upon the occurrence of a cybersecurity incident, including for our evaluation of materiality. Depending on the nature and severity of an incident, this process provides for escalating notification to our CEO and Board of Directors.
+Despite our efforts to prevent cybersecurity threats and incidents, our systems may be affected by damage or interruption resulting from, among other causes, cyber attacks, security breaches, power outages, system failures or malware (including ransomware and other programs that operate with malicious intent). Disruptions to these systems may impair our ability to conduct business and have a material adverse effect on our business, results of operations and financial condition. Despite the security measures we have in place, our facilities and systems and those of third parties we rely on or do business with, may be vulnerable to cyber attacks, security breaches, malware (including ransomware and other programs that operate with malicious intent), power outages, system failures, acts of vandalism, human or technical errors, or other similar events or disruptions. Any such event involving the misappropriation, loss or other unauthorized disclosure of information, whether impacting us or third parties we rely on or do business with, could result in losses, damage our reputation or relationships with customers and suppliers, expose us to the risks of litigation, regulatory action and liability, disrupt our operations and have a material adverse effect on our business, results of operations and financial condition.
+To date, we have not experienced a cybersecurity threat or incident that has had a material adverse affect on our business, results of operations and financial condition. We, and third parties we do business with, have experienced cybersecurity attacks and incidents in the past, some of which have resulted in unauthorized access to our information and systems, and other disruptions to our business operations, and we could in the future experience similar incidents. See Risk Factors in Item 1A for additional information on cybersecurity risks.
+17
+Table of Contents
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+General Development of Business
+
+Selzennov Materials, Inc. (the Company, we, us, or our) was incorporated as a Delaware corporation. We are a leading global provider of high-performance materials and specialized chemical solutions, serving a diverse array of end-markets including automotive, electronics, infrastructure, and industrial manufacturing. Our corporate headquarters is located in Charlotte, North Carolina. Since our inception, we have focused on expanding our manufacturing footprint and refining our material science capabilities to meet the evolving needs of a global industrial economy. Our fiscal year ends on December 31.
+
+Narrative Description of Business
+
+General
+
+Selzennov Materials, Inc. is a global leader in the materials sector, dedicated to delivering essential components and advanced formulations that enable modern industrial applications. In the fiscal year ended December 31, 2024, we generated revenue of $14,240 million. We employ approximately 18,000 associates worldwide, operating a network of manufacturing facilities, distribution centers, and technical service hubs across multiple continents. Our business is built upon a foundation of operational excellence, deep technical expertise, and a commitment to providing reliable, high-quality materials that serve as the building blocks for our customers' products.
+
+Our strategy, referred to internally as the Selzennov Advantage, emphasizes a customer-centric approach where we leverage our extensive portfolio of polymers, specialty chemicals, and engineered materials to solve complex manufacturing challenges. We operate at the intersection of chemistry and engineering, providing solutions that enhance the durability, efficiency, and performance of end-products. By maintaining a broad geographic presence and a diversified product mix, we are able to mitigate localized economic volatility and participate in the long-term growth of global industrial production.
+
+Sustainability and stewardship are integrated into our business model. We focus on optimizing our manufacturing processes to reduce resource consumption and waste generation. Our materials often contribute to the sustainability goals of our customers, such as providing lightweight polymers for the automotive industry to improve fuel efficiency or developing high-durability coatings that extend the lifecycle of critical infrastructure.
+
+Reportable Segments
+
+We manage our business through three primary reportable segments: Advanced Polymer Technologies, Performance Chemical Solutions, and Engineered Infrastructure Systems. These segments are organized based on the nature of the products provided, the production processes involved, and the specific end-markets served.
+
+Advanced Polymer Technologies
+
+The Advanced Polymer Technologies segment specializes in the development and production of high-performance plastics, resins, and thermoplastic elastomers. These materials are engineered to withstand extreme temperatures, resist chemical corrosion, and provide structural integrity while minimizing weight. Our polymer solutions are critical components in the automotive, aerospace, and electronics industries.
+
+In the automotive sector, we provide specialized resins used in under-the-hood applications where thermal stability is paramount. Our lightweight composites are increasingly utilized by original equipment manufacturers (OEMs) to reduce vehicle mass, thereby supporting the transition toward more fuel-efficient and electric-powered transportation. For the electronics industry, this segment produces high-purity polymers used in the encapsulation of semiconductors and the housing of consumer electronic devices, where dielectric properties and heat dissipation are essential.
+
+The manufacturing process for this segment involves complex polymerization techniques and compounding processes. We operate high-capacity extrusion lines and reactors that allow for precise control over molecular weight and material consistency. Our products are typically sold to component manufacturers and tier-one suppliers who integrate our materials into larger assemblies.
+
+Performance Chemical Solutions
+
+The Performance Chemical Solutions segment provides a broad range of specialty additives, catalysts, and functional chemicals used across various industrial processes. These products are designed to modify the properties of other materials or to facilitate specific chemical reactions during manufacturing.
+
+Our offerings in this segment include surfactants used in industrial cleaning and agricultural formulations, catalysts that optimize the efficiency of refining and petrochemical processes, and stabilizers that prevent the degradation of materials exposed to UV light or heat. We also produce a variety of lubricants and process aids that improve the throughput and quality of manufacturing lines in the textile, paper, and metalworking industries.
+
+The value proposition of this segment lies in our ability to provide highly specific formulations that address niche technical requirements. Our technical service teams work closely with customers to troubleshoot production issues and optimize the use of our chemical additives in their specific environments. This segment relies on a sophisticated supply chain for raw material procurement and utilizes batch manufacturing processes to produce a high volume of distinct stock-keeping units.
+
+Engineered Infrastructure Systems
+
+The Engineered Infrastructure Systems segment focuses on materials and solutions for the construction, renovation, and maintenance of physical infrastructure. This includes high-performance concrete additives, architectural coatings, and composite reinforcement materials used in bridges, highways, commercial buildings, and residential developments.
+
+Our concrete admixtures are designed to improve the workability, strength, and curing time of cementitious materials, allowing for more efficient construction schedules and longer-lasting structures. In the coatings market, we provide protective layers that prevent corrosion in steel structures and provide weather resistance for building facades. This segment also produces advanced fiber-reinforced polymers used to strengthen aging infrastructure, providing a cost-effective alternative to complete demolition and reconstruction.
+
+Demand in this segment is closely tied to global trends in urbanization and government spending on public works. We maintain a localized distribution network to ensure timely delivery of heavy or perishable materials to construction sites. Our sales force in this segment frequently interacts with architects, engineers, and general contractors to specify our products during the design phase of large-scale projects.
+
+Customers
+
+We serve a diverse global customer base ranging from small regional manufacturers to large multinational corporations. No single customer accounts for a disproportionate share of our total revenue, which helps to mitigate the risk associated with the loss of any individual contract. Our customers are primarily located in North America, Europe, and Asia-Pacific.
+
+In the industrial and automotive sectors, our customers are typically OEMs or their direct suppliers. In the infrastructure and construction markets, we sell through a mix of direct sales to large contractors and indirect sales through specialized distributors. Our relationship with our customers is often technical in nature; we do not merely provide commodities but rather integrated solutions that require ongoing support and application expertise.
+
+Sales and Marketing
+
+Our sales and marketing strategy is centered on technical proficiency and regional responsiveness. We employ a direct sales force comprised of individuals with backgrounds in chemistry, engineering, and material science. This allows our sales teams to engage deeply with the technical departments of our customers to understand their specific performance requirements.
+
+In addition to our direct sales force, we utilize a network of independent distributors and agents in certain geographic regions or market niches where they provide better access or logistical advantages. Our marketing efforts include participation in industry trade shows, the publication of technical white papers, and digital marketing aimed at highlighting the performance characteristics of our material portfolio. We emphasize the reliability of our supply chain and the consistency of our product quality as key competitive differentiators.
+
+Competition
+
+The global materials and specialty chemicals industry is highly competitive. We compete with large international chemical companies as well as specialized regional players. The primary bases of competition include product performance, technical service, price, reliability of supply, and the ability to innovate in response to changing market demands.
+
+In our Advanced Polymer Technologies segment, competition is often based on the ability to meet stringent OEM specifications and provide consistent material properties across global manufacturing footprints. In Performance Chemical Solutions, competition centers on the effectiveness of our formulations in solving specific customer process challenges. In Engineered Infrastructure Systems, localized presence and distribution efficiency are critical competitive factors alongside product durability and ease of application.
+
+Many of our competitors are larger than we are and may have greater financial resources. However, we believe our focus on specialized high-margin applications and our deep technical partnerships with customers allow us to maintain a strong market position.
+
+Seasonality
+
+Certain portions of our business, particularly the Engineered Infrastructure Systems segment, experience seasonal fluctuations. Construction activity in many regions is weather-dependent, typically slowing during the winter months in the Northern Hemisphere. This can lead to lower demand for concrete additives and architectural coatings in the first and fourth quarters of the calendar year. Other segments, such as Advanced Polymer Technologies and Performance Chemical Solutions, generally follow broader industrial production cycles and do not exhibit significant seasonality, although they may be impacted by year-end inventory management practices at our customers.
+
+Intellectual Property
+
+Our success depends in part on our ability to develop and protect proprietary technology and manufacturing processes. We rely on a combination of patents, trademarks, trade secrets, and confidentiality agreements to safeguard our intellectual property. We hold numerous patents globally covering our polymer formulations, chemical additives, and infrastructure materials.
+
+While patents are important to our competitive position, we also place significant value on our unpatented trade secrets and "know-how" regarding the efficient operation of complex chemical reactors and extrusion lines. We require our employees, consultants, and business partners to sign confidentiality agreements to protect our proprietary information. Our brand names and trademarks are also important assets that represent our reputation for quality and reliability in the marketplace.
+
+Government Regulation
+
+Our operations are subject to extensive and evolving federal, state, local, and international laws and regulations. These regulations govern matters such as environmental protection, health and safety, the handling and transport of hazardous materials, and international trade.
+
+Environmental, [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+This report contains forward-looking statements within the meaning of the federal securities laws. Forward-looking statements are all statements other than statements of historical facts, including, without limitation, statements regarding our business strategy, future operations, financial position, estimated revenues and losses, projected costs, prospects, plans and objectives of management. These statements are based on management's beliefs and assumptions and on information currently available to management. Forward-looking statements include the information concerning our possible or assumed future results of operations, including descriptions of our business strategy. These statements often include words such as anticipate, believe, estimate, expect, intend, plan, target, project, seek, forecast, will, may, should, or similar expressions.
+
+Forward-looking statements are not guarantees of performance. They involve risks, uncertainties and assumptions. Our future results and shareholder value may differ materially from those expressed in these forward-looking statements. Many of the factors that will determine these results and values are beyond our ability to control or predict. Investors are cautioned not to put undue reliance on any forward-looking statements. We undertake no obligation to update or revise any forward-looking statements, whether as a result of new information, future events or otherwise.
+
+The following risks and uncertainties, together with the other information set forth in this Annual Report on Form 10-K, should be carefully considered. If any of the following risks actually occur, our business, financial condition, results of operations, cash flows and prospects could be materially and adversely affected. In that case, the trading price of our common stock could decline.
+
+Risk Factor Summary
+
+Our business is subject to numerous risks and uncertainties, including those outside of our control, that could materially and adversely affect our business, financial condition, results of operations and cash flows. These risks include, but are not limited to, the following:
+
+- Volatility in the cost and availability of raw materials, particularly chemical feedstocks and minerals.
+- Our significant level of indebtedness and the impact of interest rate fluctuations on our debt service obligations.
+- The cyclical nature of our primary end-markets, including the automotive, electronics, and construction industries.
+- Our lack of recorded research and development expenditure, which may hinder our ability to compete with innovative competitors.
+- Risks associated with our global manufacturing footprint, including potential disruptions at our production facilities.
+- Stringent and evolving environmental, health, and safety regulations that could result in significant compliance costs or liabilities.
+- Challenges in recruiting and retaining a skilled workforce of approximately 18,000 employees.
+- The impact of seasonal weather patterns on our infrastructure-related sales.
+- Our exposure to international trade tensions, tariffs, and geopolitical instability.
+- Potential impairment of our substantial goodwill and other intangible assets.
+- Cybersecurity threats and the risk of data breaches or system failures.
+- The influence of macroeconomic conditions, including inflation and potential economic downturns, on customer demand.
+
+Risks Related to Our Industry and Market Conditions
+
+Volatility in the prices of raw materials and energy could negatively impact our margins and results of operations.
+
+Our manufacturing processes, particularly in the Advanced Polymer Technologies and Performance Chemical Solutions segments, require significant quantities of raw materials, including petroleum-based feedstocks, specialized minerals, and various chemical intermediates. The prices of these materials are subject to high volatility and are influenced by global supply and demand dynamics, geopolitical tensions, and fluctuations in energy prices. Because we operate in a highly competitive environment, we may not be able to pass on the full extent of raw material price increases to our customers through price adjustments. Furthermore, there is often a time lag between an increase in our input costs and our ability to implement price increases in the market. If we are unable to manage our raw material costs effectively or if we experience prolonged periods of high input prices, our gross profit and operating margins could be materially reduced.
+
+Our business is highly dependent on the cyclicality of the automotive, electronics, and construction industries.
+
+A substantial portion of our revenue is derived from customers in the automotive and electronics sectors through our Advanced Polymer Technologies segment, and from the construction and infrastructure sectors through our Engineered Infrastructure Systems segment. These industries are notoriously cyclical and are sensitive to broader economic conditions, including interest rates, consumer confidence, and government spending levels. During periods of economic contraction or uncertainty, demand for new vehicles, consumer electronics, and large-scale infrastructure projects typically declines. Such a downturn in our primary end-markets would lead to reduced demand for our materials, lower production volumes, and increased pressure on our pricing, all of which would adversely affect our financial performance.
+
+The materials and specialty chemicals industry is intensely competitive, and we may lose market share to larger or more innovative rivals.
+
+We compete with numerous global and regional manufacturers, many of whom have significantly greater financial, marketing, and technical resources than we do. Competition is based on several factors, including product performance, technical support, reliability of supply, and price. Some of our competitors may be more vertically integrated or have lower cost structures due to their scale or proximity to raw material sources. If we are unable to maintain our competitive position through operational excellence and strong customer relationships, we could experience a loss of market share or be forced to reduce prices to retain customers, which would negatively impact our revenue and profitability.
+
+Our lack of investment in research and development could lead to technological obsolescence and a weakened competitive position.
+
+In the fiscal year ended December 31, 2024, we did not record any expenditure for research and development. In an industry characterized by rapid technological advancement and evolving customer requirements, the failure to invest in the development of new products and processes poses a significant risk. Our competitors may develop superior materials that are more cost-effective, durable, or environmentally friendly than our current offerings. Without a dedicated research and development function, we may be unable to respond to these innovations or to meet new regulatory standards for material safety and performance. This reliance on existing technology and "know-how" could result in our product portfolio becoming obsolete over time, leading to a decline in demand and a loss of competitive advantage.
+
+Risks Related to Our Operations and Strategy
+
+Disruptions at our manufacturing facilities could materially affect our ability to serve customers and our financial results.
+
+We operate a global network of manufacturing plants, some of which involve complex chemical reactions and high-pressure extrusion processes. These facilities are subject to various operational risks, including equipment failure, fires, explosions, natural disasters, and industrial accidents. Because many of our products are specialized and require specific production lines, a significant outage at one of our key facilities could result in our inability to meet customer orders and a loss of sales. Furthermore, the costs associated with repairing damaged facilities and the potential for environmental cleanup or legal liabilities following an accident could be substantial. While we maintain property and business interruption insurance, such coverage may not be sufficient to compensate us for all losses.
+
+We rely on a complex global supply chain, and disruptions in logistics or transportation could impact our operations.
+
+Our ability to produce and deliver materials depends on the timely arrival of raw materials and the efficient distribution of finished goods. We utilize various modes of transportation, including trucking, rail, and ocean freight. The global logistics network is subject to disruptions caused by labor disputes, port congestion, fuel price spikes, and geopolitical conflicts. Any significant delay in our supply chain could lead to production halts or the inability to fulfill customer contracts on time. Additionally, as we serve a global customer base, any increase in transportation costs that we cannot pass on to customers will directly reduce our operating income.
+
+Our Engineered Infrastructure Systems segment is subject to seasonal fluctuations and weather-related risks.
+
+Demand for our infrastructure materials, such as concrete additives and architectural coatings, is heavily influenced by the pace of construction activity, which is often seasonal. In many of our key markets, construction projects slow down during the winter months or during periods of heavy precipitation. Consequently, we typically experience lower sales volumes in the first and fourth quarters of the calendar year. Persistent or extreme weather events, such as prolonged winters or severe hurricane seasons, can further disrupt construction schedules and lead to a more significant decrease in demand for our products than we typically anticipate in our seasonal planning.
+
+We may be unable to successfully integrate future acquisitions or realize the expected benefits from past investments.
+
+Our growth strategy may include the acquisition of complementary businesses or technologies. Acquisitions involve numerous risks, including the difficulty of integrating operations and corporate cultures, the diversion of management's attention from core business activities, and the potential for unanticipated liabilities. If we fail to integrate acquired businesses effectively, we may not achieve the projected synergies or cost savings, and the value of our investments could be impaired. Our recent increase in goodwill suggests a history of acquisitive activity, and any failure to sustain the performance of these acquired units could result in significant non-cash impairment charges.
+
+Risks Related to Our Financial Condition and Capital Structure
+
+Our substantial level of indebtedness could adversely affect our financial health and limit our operational flexibility.
+
+We have a significant amount of long-term debt, [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+The following Management’s Discussion and Analysis of Financial Condition and Results of Operations (MD&A) is intended to provide a reader of our financial statements with a narrative from the perspective of our management on our financial condition, results of operations, liquidity, and certain other factors that may affect our future results. This MD&A should be read in conjunction with our Consolidated Financial Statements and related notes included in Item 8 of this Annual Report on Form 10-K.
+
+Overview
+
+Selzennov Materials, Inc. is a leading provider of high-performance materials and specialized chemical solutions. Our operations are organized into three primary reportable segments: Advanced Polymer Technologies, Performance Chemical Solutions, and Engineered Infrastructure Systems. We serve a diverse range of end-markets, including the automotive, electronics, infrastructure, and industrial manufacturing sectors. Our business model, which we refer to as the Selzennov Advantage, focuses on leveraging our material science expertise to provide value-added solutions that enhance the performance and durability of our customers' products.
+
+During the fiscal year ended December 31, 2024, our business demonstrated resilience and growth despite a complex global macroeconomic environment characterized by fluctuating raw material costs and elevated interest rates. We achieved total revenue of $14,240 million in 2024, representing an increase of 5.3% compared to $13,521 million in 2023. This growth was primarily driven by strong demand in our Engineered Infrastructure Systems segment, as government-funded projects continued to drive consumption of concrete additives and architectural coatings. Additionally, our Advanced Polymer Technologies segment benefited from the ongoing transition toward lightweight materials in the automotive sector, particularly for electric vehicle applications.
+
+Our operating income increased 14.4% to $1,192 million in 2024, compared to $1,042 million in 2023. This improvement in operating profitability was the result of favorable pricing actions taken to offset inflationary pressures and a disciplined approach to managing our selling, general and administrative expenses. Our net income for 2024 was $383 million, a 33.9% increase from $286 million in the prior year.
+
+We continue to face challenges related to the volatility of raw material inputs, particularly petroleum-based feedstocks and specialized minerals. In 2024, our cost of revenue was $11,829 million, compared to $11,290 million in 2023. While we were successful in improving our gross margin to 16.9% in 2024 from 16.5% in 2023, we remain vigilant regarding the impact of global supply chain dynamics and energy prices on our cost structure.
+
+Our financial position remains robust, with cash and cash equivalents of $3,038 million as of December 31, 2024. We maintain a significant level of long-term debt, which stood at $15,480 million at year-end. Managing our capital structure and interest expense, which was $697 million in 2024, remains a key priority for management. We also remain committed to returning value to our stockholders, as evidenced by our payment of $116 million in dividends and $338 million in net share repurchases during the fiscal year.
+
+Results of Operations
+
+The following table and discussion provide a comparison of our results of operations for the fiscal years ended December 31, 2024 and 2023.
+
+Revenue
+
+Revenue for the fiscal year ended December 31, 2024 was $14,240 million, an increase of $719 million, or 5.3%, compared to $13,521 million for the fiscal year ended December 31, 2023. The increase in revenue was primarily attributable to higher sales volumes in our infrastructure and automotive end-markets.
+
+In our Engineered Infrastructure Systems segment, we saw increased demand for high-performance concrete additives and composite reinforcement materials, driven by public works projects and urbanization trends in North America and Asia-Pacific. Revenue in our Advanced Polymer Technologies segment also grew as we expanded our supply of specialized resins used in automotive lightweighting applications. These volume gains were partially offset by localized economic softening in certain industrial manufacturing sectors that impacted our Performance Chemical Solutions segment. Pricing adjustments implemented across all segments to mitigate higher input costs also contributed to the overall revenue growth.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue for 2024 was $11,829 million, compared to $11,290 million in 2023, representing an increase of $539 million. This increase was largely driven by higher sales volumes and the rising cost of certain raw materials, including chemical intermediates and energy-related inputs used in our manufacturing processes.
+
+Gross profit for 2024 was $2,411 million, compared to $2,231 million in 2023. Our gross margin improved to 16.9% in 2024, compared to 16.5% in 2023. This 40 basis point expansion in gross margin was primarily due to our ability to implement price increases that exceeded the rate of raw material inflation, as well as operational efficiencies achieved through our Selzennov Advantage initiatives. We also benefited from a more favorable product mix, with a higher proportion of sales coming from specialized, high-margin polymer formulations.
+
+Selling, General and Administrative Expenses
+
+Selling, general and administrative (SGA) expenses for 2024 were $365 million, compared to $378 million in 2023. As a percentage of revenue, SGA expenses decreased to 2.6% in 2024 from 2.8% in 2023. The $13 million decrease in SGA expenses was primarily due to cost-saving measures, including the consolidation of certain administrative functions and lower third-party consulting fees. These savings were achieved while continuing to support our global sales force of approximately 18,000 associates and maintaining our technical service capabilities.
+
+Research and Development
+
+Research and development (R&D) expenses were $0 million for both the fiscal years ended December 31, 2024 and 2023. As a share of revenue, R&D expenditure remained at 0.0%. We currently rely on our existing portfolio of proprietary technology, trade secrets, and "know-how" to maintain our competitive position. While we do not record formal R&D expenses, our technical service teams work closely with customers to adapt our existing material solutions to their specific manufacturing requirements.
+
+Other Operating Expense
+
+Other operating expense for 2024 was $854 million, compared to $811 million in 2023. This increase of $43 million was primarily driven by higher logistics and transportation costs associated with our global supply chain, as well as increased maintenance expenses at several of our larger manufacturing facilities. We also incurred higher environmental compliance and insurance costs during the year.
+
+Operating Income
+
+Operating income for 2024 was $1,192 million, an increase of $150 million, or 14.4%, compared to $1,042 million in 2023. Our operating margin improved to 8.4% in 2024 from 7.7% in 2023. The increase in operating income and margin reflects the growth in gross profit and the reduction in SGA expenses, which more than offset the increase in other operating expenses.
+
+Interest Expense
+
+Interest expense for 2024 was $697 million, compared to $665 million in 2023. The increase of $32 million was primarily due to higher average interest rates on our variable-rate debt and the issuance of additional long-term debt during the year to fund investing activities and provide general liquidity. Our total long-term debt increased to $15,480 million at the end of 2024.
+
+Provision for Income Taxes
+
+Our provision for income taxes was $112 million in 2024, compared to $91 million in 2023. The effective tax rate for 2024 was 22.6%, compared to 24.1% for 2023. The decrease in the effective tax rate was primarily due to a more favorable geographic mix of earnings and the resolution of certain prior-year tax positions in international jurisdictions.
+
+Net Income
+
+Net income for 2024 was $383 million, compared to $286 million in 2023, representing an increase of $97 million, or 33.9%. The increase was driven by the strong growth in operating income and the lower effective tax rate, partially offset by higher interest expense. Our net margin for 2024 was 2.7%, an improvement from 2.1% in 2023.
+
+Liquidity and Capital Resources
+
+Our primary sources of liquidity are cash flows from operations and borrowings under our debt facilities. As of December 31, 2024, we had cash and cash equivalents of $3,038 million, an increase of $207 million from $2,831 million at the end of 2023. We believe that our existing cash balances, anticipated cash flows from operations, and available credit will be sufficient to meet our working capital, capital expenditure, and debt service requirements for at least the next twelve months.
+
+Cash Flows
+
+Net cash provided by operating activities in 2024 was $1,186 million. This was driven by our net income of $383 million, adjusted for non-cash items including depreciation and amortization of $698 million. Changes in working capital and other items contributed a net $105 million to operating cash flow. We continue to focus on optimizing our working capital components, including accounts receivable, which was $2,952 million at year-end, and inventories, which stood at $1,820 million.
+
+Net cash used in investing activities in 2024 was $1,900 million. This included $779 million for purchases of property and equipment, as we continued to invest in the modernization and expansion of our manufacturing footprint. Other investing activities, net, resulted in a cash outflow of $1,121 million, which primarily related to strategic acquisitions and investments in non-current assets to support our long-term growth objectives.
+
+Net cash used in financing activities in 2024 was $921 million. This included a net change in long-term debt of $699 million, representing additional borrowings to support our investing activities. During the year, we paid $116 million in dividends to our stockholders. We also engaged in share [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Selzennov Materials, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 900 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

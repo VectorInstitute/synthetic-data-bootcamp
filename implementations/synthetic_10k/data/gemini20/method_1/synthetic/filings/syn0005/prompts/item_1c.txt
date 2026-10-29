@@ -1,0 +1,358 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Merqua Land, Inc. (ticker MERQ)
+Sector: Real Estate
+Incorporated in: Delaware
+Headquarters: Chicago, Illinois
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 16,800
+
+Merqua Land, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                       9,373         9,587
+Cost of revenue                               7,118         7,273
+Gross profit                                  2,255         2,314
+Research and development                          0             0
+Selling, general and administrative           1,469         1,481
+Other operating expense                         562           575
+Operating income                                224           258
+Interest expense                                213           218
+Income before income taxes                       11            40
+Provision for income taxes                        3             9
+Net income                                        8            31
+
+Merqua Land, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            2,034         2,141
+Accounts receivable, net                               793           808
+Inventories                                              0             0
+Other current assets                                 1,211         1,264
+Total current assets                                 4,038         4,213
+Property, plant and equipment, net                  48,065        48,808
+Goodwill                                             6,767         7,349
+Other non-current assets                            34,860        38,224
+Total assets                                        93,730        98,594
+Total current liabilities                            1,176         1,225
+Long-term debt                                       4,724         4,843
+Other non-current liabilities                       37,056        40,545
+Total liabilities                                   42,956        46,613
+Total stockholders' equity                          50,774        51,981
+Total liabilities and stockholders' equity          93,730        98,594
+
+Merqua Land, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                                 8
+Depreciation and amortization                          1,619
+Changes in working capital and other                    (69)
+Net cash provided by operating activities              1,558
+Purchases of property and equipment                    (990)
+Other investing activities, net                          659
+Net cash used in investing activities                  (331)
+Net change in long-term debt                           (119)
+Dividends paid                                             0
+Share repurchases, net of issuances                  (1,215)
+Net cash used in financing activities                (1,334)
+Net change in cash and cash equivalents                (107)
+Cash and cash equivalents, beginning of year           2,141
+Cash and cash equivalents, end of year                 2,034
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: -2.2%
+Net income growth, fiscal 2024 versus 2023: -74.2%
+Operating income growth, fiscal 2024 versus 2023: -13.2%
+Gross margin, fiscal 2024: 24.1%
+Operating margin, fiscal 2024: 2.4%
+Net margin, fiscal 2024: 0.1%
+Effective tax rate, fiscal 2024: 27.3%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 15.7%
+Gross margin, fiscal 2023: 24.1%
+Operating margin, fiscal 2023: 2.7%
+Net margin, fiscal 2023: 0.3%
+Effective tax rate, fiscal 2023: 22.5%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 15.4%
+
+STYLE EXAMPLE: the start of Item 1C from a real Real Estate company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1C. CYBERSECURITY
+Cybersecurity Risk Management and Strategy
+We have developed and implemented cybersecurity risk management processes intended to protect the confidentiality, integrity, and availability of our information systems.
+We utilize the United States National Institute of Standards and Technology, Cybersecurity Framework (NIST CSF) in considering the design and in assessing our processes. This does not imply that we meet any particular technical standards, specifications, or requirements, only that we use the NIST CSF as a guide to help us identify, assess, and manage cybersecurity risks relevant to our business.
+47
+Table of Contents
+Index to Financial Statements
+We have integrated aspects of our cybersecurity risk management processes into our overall risk management program through, for example, common methodologies, reporting channels and governance processes that apply across the overall risk management program to other risk areas.
+Our cybersecurity risk management processes include, but are not limited to:
+●	independent maturity assessments designed to help identify significant cybersecurity risks to our IT environment and systems;
+●	a cyber resilience team jointly responsible for managing (1) our cybersecurity risk assessment processes, (2) our security controls, and (3) our response to cybersecurity incidents;
+●	the use of external service providers, where appropriate, to assess, test or otherwise assist with aspects of our security controls;
+●	cybersecurity awareness training of our employees, incident response personnel, and senior management;
+●	a cybersecurity incident response plan that includes procedures for responding to cybersecurity incidents; and
+●	a risk management process for service providers, suppliers, and vendors that aligns to our compliance requirements.
+We have not identified risks from known cybersecurity threats as a result of any prior cybersecurity incidents that have materially affected us, including our operations, business strategy, results of operations, or financial condition. We face complex risks from cybersecurity threats that, if realized, are reasonably likely to materially affect us, including our operations, business strategy, results of operations, or financial condition. See “Risk Factors—We and our third-party providers are vulnerable to cyberattacks and security breaches that could materially disrupt or compromise our operations, data and results.” There can be no assurance that our cybersecurity risk management processes, including our policies, controls or procedures, will be fully implemented as currently anticipated, complied with or effective in protecting our systems and information or in allowing us to recover from a cybersecurity incident.
+Cybersecurity Governance
+Our Board considers cybersecurity and other information technology risks as part of its risk management and compliance oversight function. The Board oversees management’s implementation of our cybersecurity risk management processes and receives reports from management on our cybersecurity risks at least twice a year. In addition, management updates the Board, as necessary, regarding any material cybersecurity incidents, as well as any incidents with lesser impact potential. The Board receives briefings from management on our cyber risk management processes, and it receives presentations on cybersecurity topics from our Chief Technology Officer, Chief Information Security Officer and Chief Information Officer, internal security staff or external experts as part of the Board’s continuing education on topics that impact public companies.
+Our management team has overall responsibility for assessing and managing material risks from cybersecurity threats, and for executing on our cybersecurity risk management processes. Our Chief Technology Officer, Chief Information Officer and Chief Information Security Officer, among others, have decades of combined experience in areas such as information technology, compliance, and cybersecurity program design and management. Additionally, certain leaders and personnel within the cybersecurity operations team hold industry certifications, such as Certified Information Systems Security Professional or Certified Information Security Manager. Our management team works closely with our cybersecurity operations team to stay informed about and monitor efforts to prevent, detect, mitigate, and remediate cybersecurity risks and incidents through various means, which may include briefings from internal security personnel, threat intelligence and other information obtained from governmental, public or private sources, including external consultants engaged by us, and alerts and reports produced by security tools deployed in the IT, Operational Technology (OT), and products and services environments.
+48
+Table of Contents
+Index to Financial Statements
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Overview
+
+Merqua Land, Inc., a Delaware corporation headquartered in Chicago, Illinois, is a premier integrated real estate company dedicated to the acquisition, development, management, and leasing of a diverse portfolio of high-quality properties. Since our inception, we have focused on creating long-term value for our stockholders by maintaining a disciplined approach to capital allocation and operational excellence. Our portfolio includes a wide array of commercial, residential, and mixed-use assets situated in strategic markets across the United States. We aim to provide exceptional environments for our tenants and residents while driving sustainable growth through the economic cycles inherent in the real estate industry.
+
+For the fiscal year ended December 31, 2024, the Company generated total revenue of $9,373 million. This represented a decrease of 2.2% compared to the prior fiscal year, primarily reflecting shifts in occupancy rates and the timing of certain property dispositions. Despite broader macroeconomic fluctuations, our core business remains centered on the stewardship of physical assets that serve as essential infrastructure for commerce and living.
+
+Our business model is built upon three primary pillars: property ownership, professional management services, and strategic land development. We leverage our deep industry expertise and local market knowledge to identify undervalued assets, enhance their operational efficiency, and optimize their market positioning. By maintaining a vertically integrated platform, we are able to control the quality of the tenant experience and the physical condition of our assets, which we believe is a significant competitive advantage in the highly fragmented real estate sector.
+
+Principal Products and Services
+
+The principal products offered by Merqua Land, Inc. consist of leased space within our extensive portfolio of real estate assets. These include:
+
+- Office Space: We provide modern, technology-enabled office environments designed to meet the evolving needs of corporate tenants. Our office properties range from central business district high-rises to suburban office parks, often featuring amenities such as fitness centers, conference facilities, and sustainable building systems.
+
+- Retail Space: Our retail portfolio includes premier shopping centers, lifestyle centers, and urban storefronts. We focus on high-traffic locations that attract a diverse mix of national, regional, and local retailers.
+
+- Residential Units: We own and manage a significant number of multi-family residential communities. These properties offer a variety of floor plans and amenities intended to appeal to a broad demographic, including young professionals, families, and retirees.
+
+- Industrial and Logistics Facilities: We provide warehouse and distribution space designed to support the supply chain requirements of modern commerce. These facilities are typically located near major transportation hubs to facilitate the efficient movement of goods.
+
+In addition to leasing space, we provide comprehensive property management services. These services include building maintenance, security, tenant relations, and financial reporting. By managing our properties internally, we ensure a high standard of service that supports tenant retention and long-term asset appreciation.
+
+Reportable Segments
+
+We organize our business into three reportable segments based on the nature of the properties and the services provided: Commercial Property Operations, Residential Property Operations, and Land Development and Management.
+
+Commercial Property Operations
+
+The Commercial Property Operations segment is our largest business unit by revenue. This segment focuses on the ownership and management of office and retail assets. Our strategy in this segment is to maintain high occupancy levels by attracting creditworthy tenants and negotiating favorable lease terms. We emphasize the "Class A" nature of our flagship properties, which are characterized by superior architectural design, high-quality finishes, and prime locations.
+
+Within this segment, we utilize various lease structures, including gross leases, where the Company is responsible for most operating expenses, and triple-net leases, where the tenant assumes responsibility for taxes, insurance, and maintenance. This diversity in lease structures allows us to balance risk and reward across our commercial portfolio. We also invest in tenant improvements to ensure our spaces remain competitive and functional for modern business operations.
+
+Residential Property Operations
+
+The Residential Property Operations segment encompasses our multi-family housing portfolio. We focus on high-growth geographic regions where demographic trends support strong demand for rental housing. Our residential communities are managed with a focus on resident satisfaction and community engagement. We believe that by providing well-maintained facilities and responsive management, we can achieve higher renewal rates and lower turnover costs.
+
+This segment is also responsible for the ongoing renovation and modernization of our older residential assets. By upgrading kitchens, bathrooms, and common areas, we are able to realize higher rental rates and improve the overall value of the portfolio. We also integrate smart-home technology and energy-efficient systems into our residential properties to meet the increasing demand for sustainable and connected living spaces.
+
+Land Development and Management
+
+The Land Development and Management segment is responsible for the acquisition of raw land and the subsequent entitlement and infrastructure development processes. This segment acts as a pipeline for our future internal growth and also generates revenue through the sale of developed parcels to third-party builders.
+
+Our development team manages the complex process of obtaining zoning approvals, environmental permits, and construction clearances. We take a long-term view of land value, often holding strategic parcels through various market phases until conditions are optimal for development or sale. This segment requires significant capital investment and expertise in navigating local regulatory environments, but it offers the potential for substantial value creation through the transformation of underutilized land into productive real estate assets.
+
+Customers
+
+Our customer base is highly diversified, spanning a wide range of industries and demographic profiles. In our Commercial Property Operations segment, our tenants include global corporations, professional service firms, government agencies, and small businesses. We strive to maintain a balanced tenant mix to mitigate the impact of a downturn in any single industry. No single commercial tenant accounts for a disproportionate share of our total revenue, which enhances the stability of our cash flows.
+
+In our Residential Property Operations segment, our customers are individual residents and families. We serve a broad spectrum of the population, offering housing options across various price points and geographic locations. Our focus on the resident experience is central to our marketing and retention efforts.
+
+In our Land Development and Management segment, our customers include national and regional homebuilders, commercial developers, and municipal entities. We maintain strong relationships with these parties to ensure a steady demand for our developed land inventory.
+
+Sales and Marketing
+
+The Company employs a multi-faceted sales and marketing strategy tailored to each of our business segments. For our commercial properties, we maintain an internal team of leasing professionals who work closely with the external brokerage community. We utilize sophisticated marketing materials, digital tours, and industry events to showcase our available spaces to potential tenants and their representatives.
+
+For our residential communities, we rely heavily on digital marketing platforms, including our corporate website and third-party rental portals. We also utilize social media and local advertising to reach prospective residents. Our on-site leasing agents are trained to provide high-touch service, guiding potential residents through the application and move-in process.
+
+In all segments, our marketing efforts are supported by our corporate brand, which stands for quality, reliability, and professional integrity. We believe that our reputation as a premier property owner and manager helps us attract high-quality tenants and partners.
+
+Competition
+
+The real estate industry is intensely competitive and highly fragmented. We compete with a variety of market participants, including other publicly traded real estate investment trusts, private equity firms, insurance companies, pension funds, and local property developers.
+
+In our leasing activities, we compete based on property location, rental rates, building quality, amenities, and the level of service provided. Some of our competitors may have greater financial resources or lower capital costs than we do, which may allow them to acquire assets or offer lease terms that are more attractive than ours. Furthermore, the supply of new office, retail, and residential space in our target markets can impact our ability to maintain occupancy and rental rates.
+
+In our land development activities, we compete for the acquisition of prime land parcels and for the services of skilled contractors and consultants. Competition for land is driven by factors such as proximity to transportation, quality of local schools, and overall economic growth in the region.
+
+Seasonality
+
+While our overall business is not subject to extreme seasonality, certain aspects of our operations do experience seasonal fluctuations. Our Residential Property Operations segment typically sees higher leasing activity during the spring and summer months, as individuals and families are more likely to move during these periods. Conversely, leasing activity often slows during the winter months.
+
+In our Commercial Property Operations segment, the timing of lease expirations and renewals can create quarterly variations in revenue, although these are generally not tied to specific seasons. Our Land Development and Management segment can be impacted by weather conditions, as extreme cold or heavy precipitation can delay construction and infrastructure work, particularly in our northern markets.
+
+Intellectual Property
+
+We rely on a combination of trademarks, service marks, and trade secrets to protect our brand and proprietary business processes. The "Merqua Land" name and logo are significant assets that represent our reputation in the marketplace. We also utilize proprietary software and data analytics tools to manage our portfolio, optimize pricing, and track market trends. While intellectual property is important to our operations, our business is not materially dependent on any single patent, [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+The following risk factors should be read carefully in connection with evaluating our business and the forward-looking statements contained in this Annual Report on Form 10-K. Any of the following risks could materially and adversely affect our business, financial condition, results of operations, and cash flows. The risks described below are not the only ones facing our Company. Additional risks and uncertainties not currently known to us or that we currently deem to be immaterial may also materially and adversely affect our business operations. In such cases, the trading price of our common stock could decline, and you may lose all or part of your investment.
+
+Risk Factors Summary
+
+Our business is subject to numerous risks and uncertainties, including those outside of our control, that could cause our actual results to differ materially from our historical results or our expectations. These risks include, but are not limited to, the following:
+
+- General economic conditions and their impact on the real estate market.
+- Fluctuations in interest rates and their effect on our borrowing costs and property valuations.
+- Our ability to maintain occupancy rates and attract high-quality tenants in our commercial and residential portfolios.
+- Significant competition from other real estate owners, developers, and managers.
+- Risks associated with our substantial indebtedness and our ability to service or refinance such debt.
+- The impact of declining net income and operating margins on our financial flexibility.
+- Volatility in the costs of labor, energy, and materials required for property operations and development.
+- Our dependence on key personnel and our ability to manage a large workforce.
+- Potential liabilities related to environmental matters and compliance with government regulations.
+- Risks related to our land development activities, including entitlement and construction delays.
+- The impact of our share repurchase program on our liquidity and capital resources.
+- Vulnerability to cybersecurity threats and failures in our information technology systems.
+- Geographic concentration of our assets and exposure to local market downturns.
+- Potential conflicts of interest and risks related to our corporate structure under Delaware law.
+
+Risks Related to Our Business and Industry
+
+Our performance is subject to general economic conditions and market fluctuations in the real estate industry.
+
+As a real estate company, our financial performance is heavily dependent on the health of the broader economy and the specific conditions of the markets where we operate. Economic downturns, whether national or localized, can lead to reduced demand for office and retail space, lower residential rental rates, and a decrease in the value of our land holdings. Factors such as employment levels, consumer confidence, and business investment directly influence our ability to lease space and collect rent. If economic conditions remain stagnant or deteriorate, we may experience increased vacancy rates and tenant defaults, which would negatively impact our revenue and cash flows.
+
+The value of our real estate portfolio is subject to market volatility and could decline.
+
+The fair market value of our property, plant, and equipment is influenced by various factors, including rental income, occupancy levels, and market capitalization rates. Changes in these factors can lead to significant fluctuations in the value of our assets. If market conditions worsen, we may be required to record impairment charges, which would reduce our total assets and stockholders' equity. Furthermore, real estate investments are relatively illiquid, meaning we may not be able to sell properties quickly or at favorable prices if we need to raise capital or exit a specific market.
+
+Fluctuations in interest rates could adversely affect our financial results and property values.
+
+Interest rates play a critical role in the real estate industry, affecting everything from our cost of debt to the valuation of our assets. An increase in interest rates generally leads to higher borrowing costs for our variable-rate debt and can increase the cost of refinancing our long-term debt. Additionally, rising interest rates often result in higher capitalization rates, which can put downward pressure on property values. Given our significant long-term debt, any substantial increase in market interest rates could materially increase our interest expense and reduce our income before income taxes.
+
+We face intense competition in the leasing and acquisition of real estate assets.
+
+The real estate market is highly fragmented and competitive. We compete with numerous other owners and developers, including large institutional investors, private equity firms, and other public real estate companies. Some of our competitors may have greater financial resources, lower costs of capital, or more extensive local market knowledge than we do. This competition can lead to lower rental rates, higher tenant improvement allowances, and increased costs for acquiring new properties or land. If we are unable to compete effectively, our occupancy levels and profitability may suffer.
+
+Our commercial portfolio is sensitive to shifts in workplace trends and retail consumer behavior.
+
+Our office and retail properties are subject to evolving trends that could reduce demand for traditional space. The increasing prevalence of remote and hybrid work models has changed the requirements for office environments, potentially leading to smaller footprints or lower demand for certain types of office assets. Similarly, the growth of e-commerce continues to impact the retail sector, influencing the types of tenants that are viable and the rental rates they can afford. If we fail to adapt our portfolio to these changing needs, we may face prolonged vacancies and declining rental income in our Commercial Property Operations segment.
+
+Risks Related to Our Operations
+
+We depend on the financial stability of our tenants and the successful collection of rent.
+
+Our revenue is primarily derived from rent paid by our commercial and residential tenants. A significant economic downturn could impair the ability of our tenants to meet their lease obligations. In our commercial segment, the bankruptcy or insolvency of a major tenant could lead to a sudden loss of revenue and significant costs associated with re-leasing the space. In our residential segment, high unemployment or stagnant wage growth could lead to increased delinquencies and turnover. If we are unable to collect rent in a timely manner or at all, our results of operations and cash flows would be adversely affected.
+
+The costs of operating and maintaining our properties may increase faster than our revenue.
+
+Our operating expenses include property taxes, insurance, utilities, and maintenance costs. Many of these costs are subject to inflationary pressures and are beyond our control. For example, property tax assessments can increase significantly, and insurance premiums for large real estate portfolios have shown volatility. If we are unable to pass these increased costs through to our tenants via lease structures, or if our revenue does not grow at a sufficient rate to offset these expenses, our operating income and margins will decline. This risk is heightened in periods where our revenue growth is low or negative.
+
+We are vulnerable to labor shortages and increases in labor costs.
+
+With approximately 16,800 employees, we rely on a large workforce to manage our properties, provide services to tenants, and execute our development projects. The market for skilled property management, leasing, and construction personnel is competitive. Labor shortages or significant increases in wages and benefits could increase our selling, general and administrative expenses and our cost of revenue. Furthermore, any labor disputes or work stoppages could disrupt our operations and damage our reputation with tenants and residents.
+
+Our land development activities involve significant risks, including entitlement and construction delays.
+
+Our Land Development and Management segment is subject to risks inherent in the development process. These include the inability to obtain necessary zoning, occupancy, and other required governmental permits and authorizations. We may also face opposition from local community groups, which can delay or prevent the development of our land holdings. Construction projects are subject to delays due to weather, supply chain disruptions, or contractor defaults. Any significant delay or cost overrun in our development pipeline could defer our ability to generate revenue from these investments and negatively impact our return on capital.
+
+We may be unable to renew leases or re-lease space on favorable terms as leases expire.
+
+A significant portion of our commercial leases expire periodically. There is no guarantee that we will be able to renew these leases or find new tenants on terms as favorable as the current ones. If we are forced to offer significant concessions, such as rent abatements or large tenant improvement allowances, to attract or retain tenants, our financial results could be harmed. Additionally, during periods of high vacancy in the market, we may experience long periods of downtime between leases, during which we must still cover the fixed costs of the property.
+
+Our geographic concentration in certain markets exposes us to localized risks.
+
+Although we operate across the United States, our portfolio may be concentrated in specific metropolitan areas. This concentration makes us vulnerable to local economic downturns, changes in local real estate regulations, and natural disasters specific to those regions. For example, a decline in the local economy of Chicago, Illinois, where our headquarters are located, or other key markets could have a disproportionate impact on our overall financial condition compared to a more geographically diverse competitor.
+
+Risks Related to Financing and Capital Structure
+
+Our substantial indebtedness could adversely affect our financial health and prevent us from fulfilling our obligations.
+
+As of December 31, 2024, we had [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+The following discussion and analysis of our financial condition and results of operations should be read in conjunction with our consolidated financial statements and the related notes included elsewhere in this Annual Report on Form 10-K. This discussion contains forward-looking statements that involve risks and uncertainties. Our actual results could differ materially from those anticipated in these forward-looking statements as a result of various factors, including those discussed below and elsewhere in this report, particularly under the heading Risk Factors in Item 1A.
+
+Overview
+
+Merqua Land, Inc. is a leading integrated real estate company that owns, develops, and manages a large-scale portfolio of commercial, residential, and industrial properties across the United States. Headquartered in Chicago, Illinois, and incorporated in Delaware, we operate through a vertically integrated platform that encompasses property acquisition, professional management, and strategic land development. As of December 31, 2024, our workforce consisted of approximately 16,800 employees dedicated to maintaining the operational excellence of our assets and providing high-quality environments for our diverse base of tenants and residents.
+
+The fiscal year ended December 31, 2024, was characterized by a focus on portfolio optimization and operational efficiency amidst a shifting macroeconomic landscape. We generated total revenue of $9,373 million and maintained a significant asset base with total assets of $93.7 billion. While we experienced a moderate decrease in total revenue of 2.2% compared to the prior year, our core leasing operations remained resilient. Our management team remained focused on navigating fluctuations in interest rates and evolving workplace trends, which influenced occupancy levels in our commercial segments.
+
+Our financial performance in 2024 reflects the stability of our diversified property mix, although net income decreased 74.2% to $8 million, primarily due to higher effective tax rates and the impact of lower operating margins. We continued to generate substantial cash from operations, totaling $1,558 million, which supported our capital expenditure programs and our commitment to returning capital to stockholders through share repurchases.
+
+Business Environment
+
+The real estate markets in which we operate faced several headwinds and tailwinds during 2024. The commercial office sector continued to adjust to hybrid work models, which led to some volatility in renewal rates and tenant footprints. However, demand for high-quality, modern office space in central business districts remained relatively stable. The retail sector showed signs of recovery as consumer spending remained steady, supporting occupancy in our premier shopping centers.
+
+In the residential sector, high demand for multi-family housing in growth markets supported our rental rates, although the pace of growth moderated compared to previous years. Our land development activities were influenced by the broader housing market and the availability of construction financing. While interest rates remained elevated for much of the year, impacting borrowing costs across the industry, our disciplined approach to leverage and our robust cash position provided us with the flexibility to manage our long-term debt, which stood at $4,724 million at year-end.
+
+Results of Operations
+
+The following table and discussion compare our results of operations for the fiscal year ended December 31, 2024, with the fiscal year ended December 31, 2023.
+
+Revenue
+
+Total revenue for the fiscal year ended December 31, 2024, was $9,373 million, compared to $9,587 million for the fiscal year ended December 31, 2023. This represents a decrease of $214 million, or 2.2%. The decrease in revenue was primarily attributable to a slight decline in occupancy rates within our Commercial Property Operations segment, specifically in suburban office assets, as well as the impact of property dispositions completed in late 2023. These factors were partially offset by modest rental rate increases in our Residential Property Operations segment and stable performance in our industrial and logistics portfolio.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue for the fiscal year ended December 31, 2024, was $7,118 million, compared to $7,273 million for the prior fiscal year. This decrease of $155 million, or 2.1%, was largely consistent with the decline in total revenue. The reduction in cost of revenue was driven by lower variable property operating expenses, including reduced utility consumption in certain commercial buildings and more efficient maintenance scheduling across our residential portfolio.
+
+Gross profit for 2024 was $2,255 million, compared to $2,314 million in 2023. Our gross margin remained stable at 24.1% for the fiscal year ended December 31, 2024, which was identical to the 24.1% gross margin reported in the fiscal year ended December 31, 2023. This stability indicates that we were successful in managing our direct property-level expenses in proportion to our revenue streams, despite inflationary pressures on labor and materials.
+
+Selling, General and Administrative Expenses
+
+Selling, general and administrative (SG&A) expenses were $1,469 million for the fiscal year ended December 31, 2024, compared to $1,481 million for the fiscal year ended December 31, 2023. This represents a decrease of $12 million, or 0.8%. As a percentage of revenue, SG&A expenses were 15.7% in 2024, compared to 15.4% in 2023. The decrease in absolute dollar terms was due to corporate-level cost savings initiatives and a reduction in professional service fees. However, the slight increase as a percentage of revenue reflects the fact that our total revenue decreased at a faster rate than our fixed administrative costs.
+
+Other Operating Expenses
+
+Other operating expenses, which include property-level depreciation not allocated to cost of revenue and certain non-recurring charges, were $562 million for the fiscal year ended December 31, 2024, compared to $575 million for the fiscal year ended December 31, 2023. This decrease of $13 million, or 2.3%, was primarily due to lower impairment charges on certain non-core land parcels compared to the prior year.
+
+Operating Income
+
+Operating income for the fiscal year ended December 31, 2024, was $224 million, compared to $258 million for the fiscal year ended December 31, 2023. This represents a decrease of $34 million, or 13.2%. Our operating margin decreased to 2.4% in 2024 from 2.7% in 2023. The decline in operating income and margin was primarily the result of the 2.2% decrease in total revenue, which outpaced the modest reductions we achieved in our operating and administrative expense base.
+
+Interest Expense
+
+Interest expense for the fiscal year ended December 31, 2024, was $213 million, compared to $218 million for the fiscal year ended December 31, 2023. This decrease of $5 million, or 2.3%, was due to a lower average outstanding balance on our revolving credit facility and the repayment of certain maturing debt obligations during the year. Despite the high interest rate environment, our focus on maintaining a fixed-rate debt profile for our long-term obligations helped mitigate the impact of market volatility.
+
+Provision for Income Taxes
+
+Our income before income taxes was $11 million for the fiscal year ended December 31, 2024, compared to $40 million for the fiscal year ended December 31, 2023. The provision for income taxes was $3 million in 2024, compared to $9 million in 2023.
+
+Our effective tax rate for the fiscal year ended December 31, 2024, was 27.3%, compared to 22.5% for the fiscal year ended December 31, 2023. The increase in the effective tax rate was primarily due to the impact of certain non-deductible executive compensation and changes in the geographic mix of our earnings across various state jurisdictions.
+
+Net Income
+
+Net income for the fiscal year ended December 31, 2024, was $8 million, compared to $31 million for the fiscal year ended December 31, 2023. This represents a decrease of $23 million, or 74.2%. Our net margin for 2024 was 0.1%, compared to 0.3% in the prior year. The substantial decrease in net income was driven by the combination of lower operating income and a higher effective tax rate on a lower base of pre-tax earnings.
+
+Liquidity and Capital Resources
+
+Our primary sources of liquidity are cash generated from operations, available cash and cash equivalents, and borrowings under our credit facilities. As of December 31, 2024, we had $2,034 million in cash and cash equivalents, representing a decrease of $107 million from $2,141 million at the end of 2023. We believe that our current liquidity position and our ability to generate positive cash flow from operations are sufficient to meet our anticipated working capital requirements, capital expenditures, and debt service obligations for the foreseeable future.
+
+Cash Flows
+
+The following table summarizes our cash flow activities for the fiscal year ended December 31, 2024:
+
+- Net cash provided by operating activities: $1,558 million
+- Net cash used in investing activities: $331 million
+- Net cash used in financing activities: $1,334 million
+
+Operating Activities
+
+Net cash provided by operating activities was $1,558 million in 2024. The primary driver of our operating cash flow is the collection of rental income from our tenants, adjusted for the timing of payments for operating expenses and taxes. Net income of $8 million was adjusted for non-cash items, the most significant of which was depreciation and amortization of $1,619 million. Changes in working capital and other items resulted in a cash outflow of $69 million, primarily due to the timing of accounts receivable collections and payments of accrued liabilities.
+
+Investing Activities
+
+Net cash used in investing activities was $331 million in 2024. This included $990 million for the purchase of property and equipment, reflecting our ongoing investment in the modernization of [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Merqua Land, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 900 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

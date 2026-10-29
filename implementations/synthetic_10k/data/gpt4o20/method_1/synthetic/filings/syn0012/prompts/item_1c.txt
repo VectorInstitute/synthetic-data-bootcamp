@@ -1,0 +1,339 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Venzen Industries, Inc. (ticker VNNZ)
+Sector: Industrials
+Incorporated in: Delaware
+Headquarters: Charlotte, North Carolina
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 72,500
+
+Venzen Industries, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      48,137        44,567
+Cost of revenue                              30,909        28,726
+Gross profit                                 17,228        15,841
+Research and development                      2,036         1,912
+Selling, general and administrative           6,292         5,812
+Other operating expense                       2,888         2,674
+Operating income                              6,012         5,443
+Interest expense                                420           367
+Income before income taxes                    5,592         5,076
+Provision for income taxes                    1,186         1,142
+Net income                                    4,406         3,934
+
+Venzen Industries, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                           13,825        12,038
+Accounts receivable, net                             6,373         5,433
+Inventories                                          6,797         6,101
+Other current assets                                 1,811         1,241
+Total current assets                                28,806        24,813
+Property, plant and equipment, net                  49,763        45,832
+Goodwill                                            19,058        16,890
+Other non-current assets                             2,118         1,877
+Total assets                                        99,745        89,412
+Total current liabilities                           38,635        32,118
+Long-term debt                                       9,336         8,148
+Other non-current liabilities                       28,264        28,606
+Total liabilities                                   76,235        68,872
+Total stockholders' equity                          23,510        20,540
+Total liabilities and stockholders' equity          99,745        89,412
+
+Venzen Industries, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             4,406
+Depreciation and amortization                            785
+Changes in working capital and other                     626
+Net cash provided by operating activities              5,817
+Purchases of property and equipment                    (823)
+Other investing activities, net                      (2,959)
+Net cash used in investing activities                (3,782)
+Net change in long-term debt                           1,188
+Dividends paid                                       (2,397)
+Share repurchases, net of issuances                      961
+Net cash used in financing activities                  (248)
+Net change in cash and cash equivalents                1,787
+Cash and cash equivalents, beginning of year          12,038
+Cash and cash equivalents, end of year                13,825
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 8.0%
+Net income growth, fiscal 2024 versus 2023: 12.0%
+Operating income growth, fiscal 2024 versus 2023: 10.5%
+Gross margin, fiscal 2024: 35.8%
+Operating margin, fiscal 2024: 12.5%
+Net margin, fiscal 2024: 9.2%
+Effective tax rate, fiscal 2024: 21.2%
+Research and development as a share of revenue, fiscal 2024: 4.2%
+Selling, general and administrative as a share of revenue, fiscal 2024: 13.1%
+Gross margin, fiscal 2023: 35.5%
+Operating margin, fiscal 2023: 12.2%
+Net margin, fiscal 2023: 8.8%
+Effective tax rate, fiscal 2023: 22.5%
+Research and development as a share of revenue, fiscal 2023: 4.3%
+Selling, general and administrative as a share of revenue, fiscal 2023: 13.0%
+
+STYLE EXAMPLE: the start of Item 1C from a real Industrials company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1C. CYBERSECURITY
+We maintain a cybersecurity program and framework as set forth in our cybersecurity policies and standards. The foundation of our cybersecurity program is based on the National Institute of Standards and Technology ("NIST") Cybersecurity Framework, which includes a set of controls to prevent, detect, and respond to cybersecurity threats and incidents. These controls include constant monitoring, log collection and analysis, threat hunting and intelligence surveillance, and regular vulnerability scans/penetration tests. Additionally, in furtherance of assessing, identifying and managing material cybersecurity risks, we:
+•Leverage technology solutions, including proactive detection tools, to protect our assets and detect threats in our environment;
+•Perform regular internal assessments of our cybersecurity program against the NIST Cybersecurity Framework. The results of these assessments are then reviewed and, based on such findings, action plans are developed and progress tracked through completion;
+•Analyze both internal and external cybersecurity incidents and related threat intelligence to determine applicability to our environment and industry. Findings from such analyses are then reviewed and utilized to create action plans where applicable and relevant to our environment and industry;
+•Maintain an enterprise-wide disaster recovery governance program, which includes cybersecurity-related disaster recovery standards and compliance procedures related thereto;
+•Regularly perform cybersecurity-related disaster recovery testing to ensure that the Company's mission-critical systems are recoverable, in support of the business continuity needs of our various business lines;
+•Maintain an operational technology (OT) security program to address cyber risks that are inherent and unique to our industry and manufacturing environment;
+•Maintain a centralized product security program that unifies company-wide strategy to ensure our customer-facing products and services are secure by design; and
+•Integrate each of our business and corporate groups with our internal cybersecurity team to ensure cybersecurity requirements are embedded into operating environments as appropriate, which drives business strategies, budgeting, and similar processes. In addition, senior and executive management, as well as our Board of Directors, regularly review our financial planning processes for these areas, inclusive of our cybersecurity programs.
+Any changes or additions to our cybersecurity program and related practices and procedures described above in response to cybersecurity needs are reviewed by our executive management, Board of Directors and Audit Committee.
+We regularly engage independent third-parties and auditors to assess our cybersecurity program and practices and assist in the mitigation of risk. The effectiveness of our cybersecurity environment is regularly tested by internal personnel and these third-parties. These assessments are performed in connection with standards and requirements under the Payment Card Industry (PCI) data security standard, Sarbanes-Oxley Act (SOX), and the U.S. Department of Defense, cybersecurity capability maturity benchmarking and voluntary certifications by us, such as the Service Organization Control Type 2 (SOC 2). The results of these audits and assessments are promptly reviewed and enhancements are made to our cybersecurity program and practices based on such findings as appropriate. We also maintain a cybersecurity third party risk management program which evaluates third parties that either host or have access to our data and/or systems to ensure that they are aligned with our security requirements. The program includes initial review, ongoing monitoring and contractual agreements with cybersecurity requirements to ensure third party services meet our standards for such providers, and the cybersecurity risks associated with the use of these services is acceptable.
+Like other comparable-sized companies, our information technology systems, networks and infrastructure and technology embedded in certain of our control products have been and may continue to be vulnerable to cyber-attacks and unauthorized security intrusions. These types of attacks may include computer viruses, malicious code, unauthorized access, phishing attempts, denial-of-service attacks, among others. For more information about these and other cybersecurity risks faced by us, see Part IA, Item 1A, "Risk Factors - Risks Related to Cybersecurity and Technology."
+Our Board of Directors has ultimate oversight for risks relating to our cybersecurity program and practices and receives regular updates from our internal cybersecurity team on cybersecurity risks and threats. In addition, our Audit Committee provides Board-level oversight for management's actions with respect to practices, procedures and controls used to identify, assess and manage our key cybersecurity programs and risks. We also maintain an Enterprise Risk Intelligence Committee (ERIC), a management-level cross-functional group designed to monitor and mitigate risks, including cybersecurity risks, that pose a threat to our strategic objectives. The ERIC is charged with providing guidance and direction for integrating enterprise risk
+24
+Table of Contents
+intelligence with important business processes, such as strategic planning, business forecasting, operational management, and investment allocation to ensure consistent consideration of risks in decision making. Finally, we maintain an Enterprise Cybersecurity Governance Committee that presents updates on cybersecurity initiatives, known and emerging issues and risks, and program updates to a cross-section of our senior management.
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+General
+
+Venzen Industries, Inc., headquartered in Charlotte, North Carolina, is a prominent entity in the Industrials sector, specializing in the design, manufacture, and distribution of advanced industrial solutions and equipment. Founded in the state of Delaware, Venzen Industries has consistently maintained its commitment to innovation, quality, and customer satisfaction. The company operates with a strategic focus on providing cutting-edge solutions that cater to a diverse range of industrial applications.
+
+With an extensive portfolio that includes products and services aimed at enhancing operational efficiency and reliability, Venzen Industries is dedicated to delivering superior value to its stakeholders. For the fiscal year ended December 31, 2024, the company reported a total revenue of $48,137 million, reflecting its strong market position and the effective execution of its business strategies.
+
+Principal Products and Services
+
+Venzen Industries offers a comprehensive suite of industrial solutions, which are categorized into several principal areas:
+
+1. Industrial Equipment: The company provides a wide range of machinery and equipment designed for various industrial applications, including manufacturing, construction, and energy production. These products are engineered to deliver high performance, durability, and cost-effectiveness.
+
+2. Automation Solutions: Venzen Industries is at the forefront of integrating automation technologies into industrial operations. The company offers advanced control systems and software solutions that enhance productivity, streamline processes, and ensure precision in critical applications.
+
+3. Maintenance and Support Services: Recognizing the importance of operational continuity, Venzen Industries provides extensive maintenance and support services. These services encompass preventive maintenance, repair, and technical support to ensure the optimal performance of its products throughout their lifecycle.
+
+Reportable Segments
+
+Venzen Industries conducts its operations through three primary reportable segments, each tailored to address specific market needs and opportunities:
+
+1. Manufacturing Solutions: This segment focuses on providing equipment and systems for manufacturing processes across various industries. Emphasizing innovation and efficiency, the segment offers solutions that enhance production capabilities and reduce operational costs for its clients.
+
+2. Infrastructure and Construction: Catering to the dynamic needs of infrastructure development, this segment delivers specialized equipment and services that support construction projects of all scales. From heavy machinery to precision tools, the segment ensures that clients have access to reliable and effective solutions for their construction endeavors.
+
+3. Energy and Utilities: As the demand for sustainable and efficient energy solutions grows, Venzen Industries' Energy and Utilities segment offers products and services designed to optimize energy production and distribution. This includes equipment for power generation, transmission, and supporting utilities in managing their operations more effectively.
+
+Customers
+
+Venzen Industries serves a diverse customer base, including businesses in the manufacturing, construction, and energy sectors. The company's clients range from small enterprises to large multinational corporations, each relying on Venzen Industries' expertise and innovative solutions to meet their operational needs. By maintaining close relationships with its customers, the company ensures that its products and services are aligned with market demands and customer expectations.
+
+Sales and Marketing
+
+The company employs a multifaceted sales and marketing strategy designed to enhance market penetration and brand recognition. Venzen Industries utilizes a combination of direct sales, distribution networks, and digital marketing to reach its target audiences. The company's salesforce is equipped with industry expertise and technical knowledge, enabling them to provide tailored solutions and support to meet specific customer requirements. Additionally, Venzen Industries participates in industry exhibitions, conferences, and seminars to showcase its innovations and engage with potential clients.
+
+Competition
+
+Venzen Industries operates in a competitive landscape characterized by numerous local, regional, and international players. Competitors encompass both established firms and emerging companies offering industrial equipment, automation solutions, and related services. Key competitive factors include product performance, quality, pricing, technological innovation, and customer service. Venzen Industries differentiates itself by leveraging its robust product portfolio, commitment to research and development, and focus on customer-centric solutions.
+
+Seasonality
+
+The company's business is subject to seasonal fluctuations, with demand varying across different periods of the year. Factors such as weather conditions, project timelines, and industry cycles can influence the purchasing patterns of customers. Venzen Industries actively manages its production and inventory levels to accommodate these seasonal variations and ensure timely delivery of products and services.
+
+Intellectual Property
+
+Venzen Industries places significant emphasis on protecting its intellectual property, which includes patents, trademarks, and proprietary technologies. The company invests in research and development to drive innovation and maintain a competitive edge in the market. By safeguarding its intellectual assets, Venzen Industries ensures that its technological advancements are protected from unauthorized use and that its brand reputation is upheld.
+
+Government Regulation
+
+As a participant in the Industrials sector, Venzen Industries is subject to various government regulations and compliance requirements. These include environmental standards, safety regulations, and industry-specific guidelines. The company is committed to adhering to these regulations and implementing best practices to ensure compliance. Venzen Industries continually monitors regulatory changes and adapts its operations to align with evolving legal requirements.
+
+Human Capital
+
+Venzen Industries recognizes that its workforce is a critical asset in achieving its strategic objectives. As of the end of fiscal 2024, the company employed approximately 72,500 individuals. The company is dedicated to fostering a workplace environment that promotes diversity, inclusion, and professional development. Through targeted training programs and career advancement opportunities, Venzen Industries empowers its employees to contribute effectively to the company's success.
+
+Available Information
+
+Venzen Industries provides comprehensive information about its operations, financial performance, and strategic initiatives through various channels. Interested parties can access the company's filings, including its annual report on Form 10-K, quarterly reports on Form 10-Q, and current reports on Form 8-K, via the Securities and Exchange Commission's EDGAR database. Additionally, the company's official website serves as a resource for news, product information, and investor relations updates.
+
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+Venzen Industries, Inc. is subject to a variety of risks and uncertainties that could adversely affect our business, financial condition, results of operations, and cash flows. These risks, which are outlined below, should be considered along with all other information included in this report.
+
+Risks Related to Our Business and Industry
+
+Economic Cyclicality and Market Demand
+Our operations are significantly influenced by macroeconomic conditions and industrial demand. Economic downturns in regions where we operate can lead to decreased demand for our products and services. The industrial sector is cyclical, and periods of economic weakness could reduce customer investments in capital equipment, negatively impacting our sales and profitability. Recovery from economic recessions can be slow and may not coincide with improvements in our business.
+
+Competitive Landscape and Market Position
+The industrial sector in which we operate is highly competitive, with numerous companies vying for market share. We face competition from both established players and emerging companies that offer similar products and services. This competitive pressure could lead to reduced pricing power, decreased sales volumes, and diminished profit margins. Failure to maintain our competitive edge through innovation and customer service could adversely affect our market position.
+
+Dependence on Key Customers
+Our customer base includes several large corporations and government entities, and a small number of these customers account for a significant portion of our revenues. The loss of any key customers, whether due to changes in their business strategies, financial difficulties, or competitive pressures, could materially affect our business. Additionally, our reliance on a concentrated customer base could expose us to risks of non-payment or delayed payments, impacting our cash flow and working capital.
+
+Technological Change and Innovation
+The industrial sector is subject to rapid technological advancements. Our ability to compete effectively depends on our capacity to innovate and develop new products and solutions that meet evolving customer needs. Failure to keep pace with technological changes or to anticipate market trends could result in our products becoming obsolete or less competitive, adversely affecting our business and financial performance.
+
+Risks Related to Operations
+
+Supply Chain Disruptions
+Our operations depend on a complex supply chain that sources raw materials and components from various suppliers. Disruptions in the supply chain, whether due to natural disasters, geopolitical tensions, or supplier insolvency, can affect our ability to manufacture and deliver products on time. Supply chain constraints could lead to increased costs, production delays, and dissatisfied customers, impacting our reputation and financial results.
+
+Cost Management and Operational Efficiency
+As a company with significant operational expenses, managing costs effectively is crucial to maintaining profitability. Increases in labor, material, or energy costs can adversely affect our cost structure. Unexpected increases in expenses or inefficiencies in our operations could erode profit margins and weaken our competitive position.
+
+Risks Related to Financing and Capital Structure
+
+Interest Rate Fluctuations
+Our financial performance is sensitive to changes in interest rates. Rising interest rates could increase our cost of borrowing, impacting our ability to finance operations and strategic investments. Higher interest expenses could reduce our profitability and cash flow. Additionally, interest rate volatility could affect our capital market activities, limiting our access to new financing or raising the cost of capital.
+
+Leverage and Debt Obligations
+The level of indebtedness on our balance sheet could pose risks to our financial health. Our ability to service debt depends on generating sufficient cash flow from operations. If we fail to meet our debt obligations, we could face liquidity challenges, restrict our ability to invest in growth opportunities, or be subject to restrictive covenants that limit our operational flexibility.
+
+Risks Related to Legal and Regulatory Matters
+
+Compliance with Environmental Regulations
+Our operations are subject to extensive environmental laws and regulations, which impose significant compliance costs and liabilities. Changes in environmental legislation or stricter enforcement could increase our operational costs and necessitate additional capital expenditures. Failure to comply with environmental regulations could result in substantial fines, sanctions, or damage to our reputation.
+
+Regulatory Compliance and Changes
+Operating in the industrial sector involves adherence to a wide range of regulatory standards, including safety, labor, and trade regulations. Changes in regulations or unexpected enforcement actions could increase compliance costs or restrict our business operations. Non-compliance with regulatory requirements could lead to legal penalties, operational disruptions, and reputational harm.
+
+Intellectual Property Protection
+Protecting our intellectual property is vital to maintaining our competitive advantage. Infringement of our patents, trademarks, or proprietary technologies by competitors could erode our market position and revenue streams. Conversely, defending against allegations of intellectual property infringement could be costly and divert management's attention from core business activities.
+
+General Risks
+
+Global Economic and Political Instability
+Our business is exposed to risks arising from global economic and political instability. Factors such as trade tensions, geopolitical conflicts, or currency fluctuations can impact our international operations and financial performance. Unforeseen political events or changes in trade policies could disrupt our supply chain, alter competitive dynamics, and affect customer demand.
+
+Natural Disasters and Climate Change
+Natural disasters, extreme weather events, and climate change pose risks to our operations and supply chain. These events could result in physical damage to facilities, production disruptions, and increased costs for insurance and mitigation efforts. Climate change-related regulations and shifts in consumer preferences towards more sustainable products could also affect our market and operational strategies.
+
+Cybersecurity Threats
+As digital technologies become integral to our operations, the risk of cybersecurity threats increases. Cyberattacks, data breaches, or system failures could compromise sensitive information, disrupt operations, and result in financial losses and reputational damage. Enhancing cybersecurity measures and ensuring data protection are critical to safeguarding our business interests.
+
+Human Capital Management
+Our success depends on attracting, retaining, and developing skilled employees. A competitive labor market, changes in workforce demographics, and evolving employee expectations could challenge our human capital management strategies. Failure to maintain a positive work environment or to invest in employee development could affect productivity, innovation, and overall company performance.
+
+In summary, Venzen Industries, Inc. faces a range of risks that could adversely affect our business operations and financial performance. We are committed to identifying and mitigating these risks through strategic planning, operational excellence, and ongoing risk management efforts.
+
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+Overview
+
+Venzen Industries, Inc. ("Venzen" or the "Company"), headquartered in Charlotte, North Carolina, is a leading player in the Industrials sector, providing innovative solutions across a broad spectrum of industrial applications. The fiscal year ended December 31, 2024, was marked by significant achievements and challenges as we navigated through a dynamic market environment. Our commitment to operational excellence, strategic investments, and customer-centric solutions enabled us to achieve strong financial performance, as reflected in our improved revenue, profitability, and cash flow metrics.
+
+In fiscal 2024, Venzen generated revenue of $48,137 million, representing an 8.0% increase over the previous year. This growth was driven by robust demand across our segments, particularly in Manufacturing Solutions and Infrastructure and Construction, as well as our continued focus on innovation and customer engagement. Our diversified product portfolio and strategic market positioning allowed us to capitalize on emerging opportunities while mitigating the impact of external challenges, such as supply chain disruptions and macroeconomic uncertainties.
+
+Results of Operations
+
+Revenue
+
+In fiscal 2024, Venzen recorded revenue of $48,137 million, an increase of $3,570 million, or 8.0%, from $44,567 million in fiscal 2023. This growth was primarily attributed to strong sales performance in our key segments, driven by increased demand for industrial equipment and automation solutions. The Manufacturing Solutions segment experienced significant growth due to heightened investment in production capacity by industrial clients. Additionally, the Infrastructure and Construction segment benefited from increased infrastructure spending, leading to higher demand for our construction equipment and services.
+
+Cost of Revenue and Gross Margin
+
+The cost of revenue for fiscal 2024 was $30,909 million, up from $28,726 million in fiscal 2023. This increase of $2,183 million was largely in line with the growth in revenue, reflecting higher production volumes and increased raw material costs. Despite these cost pressures, our gross profit improved to $17,228 million in fiscal 2024, compared to $15,841 million in the prior year. The gross margin for fiscal 2024 was 35.8%, a slight increase from 35.5% in fiscal 2023. This improvement was driven by operational efficiencies, strategic sourcing initiatives, and favorable product mix, partially offset by rising input costs.
+
+Operating Expenses
+
+Research and Development
+
+Our investment in research and development (R&D) increased to $2,036 million in fiscal 2024, up from $1,912 million in the previous year. This 6.5% increase underscores our commitment to innovation and maintaining a competitive edge in the market. R&D expenses accounted for 4.2% of total revenue in fiscal 2024, reflecting our focus on developing advanced technologies and enhancing our product offerings to meet evolving customer needs.
+
+Selling, General and Administrative
+
+Selling, general and administrative (SG&A) expenses were $6,292 million in fiscal 2024, compared to $5,812 million in fiscal 2023. The increase of $480 million, or 8.3%, was primarily due to higher personnel costs, expanded marketing efforts, and investments in digital transformation initiatives. SG&A expenses represented 13.1% of revenue in fiscal 2024, slightly up from 13.0% in the prior year, as we continued to invest in enhancing our customer engagement and operational capabilities.
+
+Other Operating Expense
+
+Other operating expenses amounted to $2,888 million in fiscal 2024, an increase from $2,674 million in fiscal 2023. This 8.0% increase was driven by higher costs associated with compliance and regulatory requirements, as well as increased provisions for contingencies and warranties. We continue to closely monitor these expenses to ensure alignment with our operational objectives and risk management strategies.
+
+Operating Income
+
+Operating income for fiscal 2024 was $6,012 million, an increase of $569 million, or 10.5%, compared to $5,443 million in fiscal 2023. The improvement in operating income was driven by revenue growth and disciplined cost management across our business segments. Our operating margin improved to 12.5% in fiscal 2024, up from 12.2% in the prior year, reflecting our efforts to enhance operational efficiency and profitability.
+
+Interest Expense
+
+Interest expense increased to $420 million in fiscal 2024, compared to $367 million in fiscal 2023. This increase of 14.4% was primarily due to higher levels of borrowings to support strategic investments and capital expenditures. We continue to manage our interest expense through effective debt structuring and favorable interest rate negotiations.
+
+Provision for Income Taxes and Effective Tax Rate
+
+The provision for income taxes was $1,186 million in fiscal 2024, compared to $1,142 million in fiscal 2023. Our effective tax rate decreased to 21.2% in fiscal 2024 from 22.5% in the prior year. The reduction in the effective tax rate was primarily due to favorable changes in tax legislation and the implementation of tax optimization strategies. We remain committed to ensuring tax compliance while optimizing our overall tax position.
+
+Net Income
+
+Net income for fiscal 2024 was $4,406 million, an increase of $472 million, or 12.0%, compared to $3,934 million in fiscal 2023. This improvement reflects our strong operating performance and effective cost management, as well as the benefits of a lower effective tax rate. Our net margin increased to 9.2% in fiscal 2024, up from 8.8% in the prior year, underscoring our ability to deliver sustainable profitability.
+
+Liquidity and Capital Resources
+
+Cash and Cash Equivalents
+
+Our cash and cash equivalents at the end of fiscal 2024 were $13,825 million, compared to $12,038 million at the end of fiscal 2023. The increase of $1,787 million reflects our strong cash generation from operating activities, as well as our prudent approach to cash management and capital allocation.
+
+Operating Activities
+
+Net cash provided by operating activities in fiscal 2024 was $5,817 million, driven by strong net income and effective working capital management. Depreciation and amortization expenses contributed $785 million to cash flow, while changes in working capital and other items provided an additional $626 million. Our focus on optimizing cash flow from operations remains a key priority to support our strategic initiatives and enhance shareholder value.
+
+Investing Activities
+
+Net cash used in investing activities was $3,782 million in fiscal 2024, primarily reflecting investments in property, plant, and equipment of $823 million, as well as other investing activities totaling $2,959 million. These investments are aligned with our strategic priorities to enhance production capacity, drive innovation, and support long-term growth. We continue to evaluate investment opportunities with a focus on maximizing returns and supporting our business objectives.
+
+Financing Activities
+
+Net cash used in financing activities was $248 million in fiscal 2024. Key components included net changes in long-term debt, which increased by $1,188 million, and dividends paid of $2,397 million. Additionally, we repurchased shares, net of issuances, totaling $961 million. Our capital allocation strategy balances the need for growth investments with returning capital to shareholders through dividends and share repurchases.
+
+Capital Expenditures
+
+Capital expenditures for fiscal 2024 were $823 million, reflecting our ongoing investments in expanding and upgrading our production facilities, as well as enhancing our technological capabilities. These investments are essential to maintaining our competitive position and supporting future growth initiatives.
+
+Debt
+
+Total long-term debt increased to $9,336 million at the end of fiscal 2024, compared to $8,148 million at the end of fiscal 2023. This increase was driven by additional borrowings to finance strategic investments and capital expenditures. We continue to manage our debt levels prudently, ensuring a balanced capital structure that supports our growth objectives while maintaining financial flexibility.
+
+Dividends and Share Repurchases
+
+During fiscal 2024, we paid dividends totaling $2,397 million, reflecting our commitment to returning capital to shareholders. Additionally, we repurchased shares, net of issuances, amounting to $961 million. Our capital return strategies are aligned with our goal of enhancing shareholder value while supporting our strategic growth initiatives.
+
+Critical Accounting Estimates
+
+The preparation of financial statements in conformity with U.S. generally accepted accounting principles (GAAP) requires management to make estimates and assumptions that affect the reported amounts of assets, liabilities, revenues, and expenses. These estimates are based on historical experience and various other assumptions that management believes to be reasonable under the circumstances. Actual results may differ from these estimates.
+
+Revenue Recognition
+
+Revenue recognition involves judgment in determining the timing and amount of revenue to be recognized, particularly for complex contracts that involve multiple performance obligations. We recognize revenue when control of the promised goods or services is transferred to our customers, in an amount that reflects the consideration we expect to receive. Management regularly evaluates the assumptions and estimates used in recognizing revenue to ensure compliance with applicable accounting standards.
+
+Impairment of Goodwill
+
+Goodwill is tested for impairment annually, or more frequently if events or changes in circumstances indicate that it might be impaired. The impairment test involves estimating the fair value of our reporting units and comparing it to their carrying value. Estimating the fair value requires significant judgment and assumptions, including projections of future cash flows and discount rates. Changes in these estimates could result in material impairment charges.
+
+Pension and Other Post-Retirement Benefits
+
+The calculation of pension and other post-retirement benefit obligations involves significant assumptions, including discount rates, expected long-term rates of return on plan assets, and healthcare cost trend rates. These assumptions are reviewed annually and adjusted as necessary based on current market conditions and historical trends. Changes in these assumptions could affect the reported amounts of our benefit obligations and related expenses.
+
+Income Taxes
+
+We are subject to income taxes in numerous jurisdictions, and the determination of our tax liabilities involves consideration of complex tax laws and regulations. We recognize deferred tax assets [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Venzen Industries, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 900 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

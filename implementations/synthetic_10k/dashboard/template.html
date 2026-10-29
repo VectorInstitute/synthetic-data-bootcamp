@@ -1,0 +1,1244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEC 10-K Synthetic Corpus: Results</title>
+<style>
+  /* ---- palette: dataviz skill's validated default (references/palette.md) ---- */
+  :root {
+    color-scheme: light;
+    --surface-1: #fcfcfb;      /* chart surface */
+    --page: #f9f9f7;           /* page plane */
+    --panel: #ffffff;
+    --ink-1: #0b0b0b;          /* primary */
+    --ink-2: #52514e;          /* secondary */
+    --ink-muted: #898781;      /* axis/labels */
+    --grid: #e1e0d9;
+    --axis: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --good: #0ca30c;
+    --warning: #fab219;
+    --critical: #d03b3b;
+    --series-1: #2a78d6;       /* blue   - bm25 / real */
+    --series-2: #eb6834;       /* orange - semantic / synthetic */
+    --series-3: #1baf7a;       /* aqua   - hybrid_rrf */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --panel: #171716;
+      --ink-1: #f0efec;
+      --ink-2: #c3c2b7;
+      --ink-muted: #898781;
+      --grid: #2c2c2a;
+      --axis: #383835;
+      --border: rgba(255,255,255,0.10);
+      --good: #0ca30c;
+      --warning: #fab219;
+      --critical: #e66767;
+      --series-1: #3987e5;
+      --series-2: #d95926;
+      --series-3: #199e70;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--page);
+    color: var(--ink-1);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.45;
+  }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .92em; background: var(--surface-1); padding: .05em .35em; border-radius: .3em; }
+
+  .page { max-width: 76rem; margin-inline: auto; display: flex; flex-direction: column; gap: 2.5rem; padding: 1.75rem 1.25rem 4rem; }
+
+  .hdr { display: flex; flex-direction: column; gap: .6rem; }
+  .hdr h1 { font-size: 1.65rem; font-weight: 700; margin: 0; letter-spacing: -.01em; }
+  .hdr p { margin: 0; color: var(--ink-2); max-width: 58rem; }
+
+  .jump { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .jump a { font-size: .8rem; color: var(--ink-2); text-decoration: none; border: 1px solid var(--border); border-radius: 999px; padding: .3rem .8rem; white-space: nowrap; }
+  .jump a:hover { color: var(--ink-1); border-color: var(--ink-muted); }
+
+  .axis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1rem; }
+  .axis-card { background: var(--panel); border: 1px solid var(--border); border-top: 3px solid var(--ink-muted); border-radius: .75rem; padding: 1.25rem; display: flex; flex-direction: column; gap: .5rem; }
+  .axis-card.fidelity { border-top-color: var(--series-1); }
+  .axis-card.utility { border-top-color: var(--series-3); }
+  .axis-card.privacy { border-top-color: var(--series-2); }
+  .axis-card .eyebrow { font-size: .75rem; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .07em; font-weight: 600; }
+  .axis-card .verdict-line { font-size: 1.05rem; font-weight: 700; }
+  .axis-card .stats { display: flex; flex-direction: column; gap: .15rem; font-size: .82rem; color: var(--ink-2); }
+  .axis-card .stats b { color: var(--ink-1); font-variant-numeric: tabular-nums; }
+
+  section.phase { display: flex; flex-direction: column; gap: 1.1rem; scroll-margin-top: 1rem; }
+  .phase-hdr { display: flex; flex-direction: column; gap: .15rem; border-bottom: 1px solid var(--border); padding-bottom: .6rem; }
+  .phase-hdr .eyebrow { font-size: .78rem; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .07em; font-weight: 600; }
+  .phase-hdr h2 { font-size: 1.3rem; font-weight: 700; margin: 0; }
+  .phase-hdr p { margin: 0; color: var(--ink-2); font-size: .95rem; max-width: 60rem; }
+
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 1rem; align-items: start; }
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1rem; align-items: start; }
+
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: .75rem; padding: 1.2rem; display: flex; flex-direction: column; gap: .65rem; min-width: 0; }
+  .card h3 { font-size: 1rem; font-weight: 700; margin: 0; }
+  .card .note { font-size: .8rem; color: var(--ink-2); margin: 0; }
+  .card.span-2 { grid-column: span 2; }
+  @media (max-width: 640px) { .card.span-2 { grid-column: span 1; } }
+
+  .stat-row { display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap; }
+  .stat-row .big { font-size: 1.6rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .stat-row .vs { color: var(--ink-2); font-size: .85rem; }
+
+  .pill { display: inline-flex; align-items: center; gap: .35rem; font-size: .78rem; padding: .15rem .55rem; border-radius: 999px; background: var(--surface-1); border: 1px solid var(--border); white-space: nowrap; }
+  .pill .dot { width: .45rem; height: .45rem; border-radius: 50%; flex: none; }
+
+  .table-tools { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; justify-content: space-between; }
+  .table-tools input[type="search"] { font: inherit; font-size: .85rem; padding: .4rem .7rem; border-radius: .5rem; border: 1px solid var(--border); background: var(--surface-1); color: var(--ink-1); min-width: 12rem; }
+  .table-tools .count { font-size: .8rem; color: var(--ink-muted); white-space: nowrap; }
+
+  .table-wrap { overflow: auto; border: 1px solid var(--border); border-radius: .5rem; max-height: 26rem; }
+  table.data { border-collapse: collapse; width: 100%; font-size: .85rem; font-variant-numeric: tabular-nums; }
+  table.data th { position: sticky; top: 0; background: var(--panel); text-align: left; border-bottom: 1px solid var(--border); z-index: 1; }
+  table.data th button { all: unset; cursor: pointer; display: flex; align-items: center; gap: .3rem; padding: .55rem .7rem; font-weight: 600; font-size: .78rem; color: var(--ink-2); white-space: nowrap; }
+  table.data th button:hover { color: var(--ink-1); }
+  table.data th button::after { content: ''; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; opacity: .35; }
+  table.data th[aria-sort="ascending"] button::after { border-bottom: 5px solid currentColor; opacity: 1; }
+  table.data th[aria-sort="descending"] button::after { border-top: 5px solid currentColor; opacity: 1; }
+  table.data td { padding: .5rem .7rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.data tbody tr:last-child td { border-bottom: none; }
+  table.data tbody tr:hover { background: var(--surface-1); }
+  td.wrap { white-space: normal; min-width: 14rem; }
+  td.mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .78rem; color: var(--ink-2); background: none; padding: .5rem .7rem; }
+  td.num { text-align: right; }
+
+  .chart-box { min-height: 15rem; }
+  .chart-box svg { width: 100%; height: auto; overflow: visible; }
+  .legend { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .78rem; color: var(--ink-2); }
+  .legend .sw { display: inline-flex; align-items: center; gap: .35rem; }
+  .legend .sw i { width: .6rem; height: .6rem; border-radius: 2px; display: inline-block; }
+
+  .tip { position: absolute; pointer-events: none; background: var(--panel); border: 1px solid var(--border); border-radius: .5rem; box-shadow: 0 4px 16px rgba(0,0,0,.15); padding: .4rem .6rem; font-size: .78rem; line-height: 1.4; transform: translate(-50%, -110%); white-space: nowrap; opacity: 0; transition: opacity .1s; z-index: 5; }
+  .chart-wrap { position: relative; }
+
+  .cta-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; text-decoration: none; color: inherit; border: 1px solid var(--border); border-left: 3px solid var(--series-1); border-radius: .75rem; background: var(--panel); padding: 1.1rem 1.3rem; }
+  .cta-row:hover { border-color: var(--ink-muted); border-left-color: var(--series-1); }
+  .cta-row .cta-text h3 { margin: 0 0 .2rem; font-size: 1.05rem; font-weight: 700; }
+  .cta-row .cta-text p { margin: 0; font-size: .85rem; color: var(--ink-2); }
+  .cta-row .cta-arrow { font-size: 1.3rem; color: var(--series-1); flex: none; }
+
+  .verdict { border-left: 3px solid var(--ink-muted); padding-left: 1rem; display: flex; flex-direction: column; gap: .4rem; }
+  .verdict p { margin: 0; line-height: 1.55; }
+  .foot { color: var(--ink-muted); font-size: .8rem; line-height: 1.6; border-top: 1px solid var(--border); padding-top: 1rem; }
+  .foot code { background: none; padding: 0; }
+
+  .loading, .error { padding: 3rem 1rem; text-align: center; color: var(--ink-2); }
+  .error { color: var(--critical); }
+
+  nav.sitenav { display: flex; gap: .25rem; flex-wrap: wrap; border-bottom: 1px solid var(--border); margin: 0 0 1.5rem; }
+  nav.sitenav a { font-size: .85rem; font-weight: 600; color: var(--ink-2); text-decoration: none; padding: .55rem .9rem .5rem; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  nav.sitenav a:hover { color: var(--ink-1); }
+  nav.sitenav a[aria-current="page"] { color: var(--ink-1); border-bottom-color: var(--series-1); }
+</style>
+</head>
+<body>
+
+<div class="page" id="app">
+
+  <nav class="sitenav" aria-label="Dashboard pages">
+    <a href="index.html" aria-current="page">Results dashboard</a>
+    <a href="scorecard.html">Scorecard</a>
+    <a href="financial_method_comparison.html">Financial method comparison</a>
+    <a href="chatbot.html">Chatbot</a>
+  </nav>
+
+  <div class="hdr">
+    <h1>SEC 10-K Synthetic Corpus: Results</h1>
+    <p>A synthetic 10-K corpus is only as good as the answers to three questions: does it look and
+    compute like a real filing (<b>fidelity</b>), is it actually useful for the retrieval benchmark
+    it exists to support (<b>utility</b>), and does it avoid exposing the real companies each
+    fictional one is modeled on (<b>privacy</b>)? This page is organized around those three, not
+    around the build phases that produced the numbers.</p>
+    <nav class="jump">
+      <a href="#fidelity">Fidelity</a>
+      <a href="#utility">Utility</a>
+      <a href="#privacy">Privacy</a>
+    </nav>
+  </div>
+
+  <div class="axis-grid" id="axis-strip">
+    <div class="axis-card fidelity">
+      <div class="eyebrow">Fidelity</div>
+      <div class="verdict-line" id="fidelity-verdict">—</div>
+      <div class="stats">
+        <div><b id="fidelity-struct-rate">—</b> of structural checks pass</div>
+        <div><b id="fidelity-length-ratio">—</b> of real's median length</div>
+      </div>
+    </div>
+    <div class="axis-card utility">
+      <div class="eyebrow">Utility</div>
+      <div class="verdict-line" id="utility-verdict">—</div>
+      <div class="stats">
+        <div><b id="utility-qa-total">—</b> QA pairs built from it</div>
+        <div><b id="utility-best-retriever">—</b> wins on both corpora</div>
+      </div>
+    </div>
+    <div class="axis-card privacy">
+      <div class="eyebrow">Privacy</div>
+      <div class="verdict-line" id="privacy-verdict">—</div>
+      <div class="stats">
+        <div><b id="privacy-leaks">—</b> real name/ticker leaks found</div>
+        <div><b id="privacy-median-diff">—</b> median difference from template</div>
+      </div>
+    </div>
+  </div>
+
+  <a class="cta-row" href="chatbot.html">
+    <div class="cta-text">
+      <h3>Try the RAG chatbot</h3>
+      <p>Ask questions about the 20 fictional companies, answered using the same hybrid retrieval
+      evaluated under Utility below &mdash; plus a scenario-analysis walkthrough. Needs
+      <code>uv run python -m RAG.chatbot_server</code> running locally.</p>
+    </div>
+    <span class="cta-arrow">&rarr;</span>
+  </a>
+
+  <!-- ================= FIDELITY ================= -->
+  <section class="phase" id="fidelity">
+    <div class="phase-hdr">
+      <div class="eyebrow">Fidelity</div>
+      <h2>Does it look and compute like a real 10-K?</h2>
+      <p>Two different senses of fidelity. <b>Structural:</b> every item file checked against its own
+      <code>financials.json</code> and <code>spec.json</code> scenario — every dollar figure and
+      percentage traced back to source, every required statement heading present, every scenario
+      actually grounded in the narrative. <b>Distributional:</b> how the synthetic corpus's shape —
+      section length, vocabulary, numeric density — compares to the full real corpus, not just
+      whether each file is internally sound.</p>
+    </div>
+
+    <div class="card">
+      <h3>Structural checks: pass rate by type</h3>
+      <p class="note">Each bar is one check type, scaled to its own total so checks that apply to
+      different numbers of companies are still comparable. <code>length_vs_real</code> is
+      informational, not gated — see the distributional charts below. Real-company-leak checks are
+      reported under Privacy, not here.</p>
+      <div class="legend" id="check-status-legend"></div>
+      <div class="chart-wrap" id="chart-check-status" style="min-height: 13rem;"></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Scenario diversity</h3>
+        <p class="note">How many companies get each kind of scenario. 7 of 20 are a deliberate
+        baseline (ordinary course, no scenario) — see <code>PLAN.md</code> Phase 4.5 for why a
+        control group matters as much as the scenario coverage does.</p>
+        <div class="chart-wrap chart-box" id="chart-scenario-diversity"></div>
+      </div>
+      <div class="card">
+        <h3>Per-company scenario grounding</h3>
+        <p class="note">Which scenario each company was assigned, and whether its structural checks
+        all passed. Full match detail is in the all-checks table below.</p>
+        <div class="table-wrap" style="max-height: 22rem;">
+          <table class="data" id="tbl-by-company">
+            <thead><tr>
+              <th data-col="fictional_id"><button>Company</button></th>
+              <th data-col="fiscal_year"><button>FY</button></th>
+              <th data-col="scenario_label"><button>Scenario</button></th>
+              <th data-col="status_label"><button>Checks</button></th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Median section length, real vs. synthetic</h3>
+        <p class="note">Words per item, log scale &mdash; synthetic runs <span id="length-ratio-note">—</span> of real's length depending on item.</p>
+        <div class="chart-wrap chart-box" id="chart-length"></div>
+      </div>
+      <div class="card">
+        <h3>Numeric figures per 1,000 words</h3>
+        <p class="note">Synthetic narrative states more numbers, more densely, than real MD&amp;A's more qualitative prose.</p>
+        <div class="chart-wrap chart-box" id="chart-density"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Vocabulary overlap</h3>
+      <div class="grid2">
+        <div class="stat-row"><span class="big" id="jaccard-val">—</span><span class="vs">Jaccard, top 3,000 terms each (real vs. synthetic)</span></div>
+        <div class="stat-row"><span class="big" id="coverage-val">—</span><span class="vs">of synthetic's top terms also in real's</span></div>
+      </div>
+      <p class="note">Synthetic's smaller vocabulary is largely a subset of real's &mdash; expected, since it was written from real exemplars as templates.</p>
+    </div>
+
+    <div class="card">
+      <h3>All structural checks</h3>
+      <p class="note">One row per company &times; fiscal year &times; check &times; item (excluding <code>real_company_leak</code>, under Privacy). Search across every column, or click a header to sort.</p>
+      <div class="table-tools">
+        <input type="search" id="search-validation" placeholder="Search e.g. GKRH, numeric_consistency, FAIL…" aria-label="Search validation rows">
+        <span class="count" id="count-validation"></span>
+      </div>
+      <div class="table-wrap">
+        <table class="data" id="tbl-validation">
+          <thead><tr>
+            <th data-col="fictional_id"><button>Company</button></th>
+            <th data-col="fiscal_year"><button>FY</button></th>
+            <th data-col="check"><button>Check</button></th>
+            <th data-col="item"><button>Item</button></th>
+            <th data-col="status"><button>Status</button></th>
+            <th data-col="detail"><button>Detail</button></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Model-judged realism (LLM judge)</h3>
+      <p class="note">PLAN.md Phase 7's "model-judged" rubric, automated (<code>evals/llm_judge.py</code>):
+      for every company &times; fiscal year, a judge model reads Item 7 (MD&amp;A, the narrative)
+      side by side with Item 8 (the financial statements, the tables) and the company's own
+      <code>financials.json</code> and <code>spec.json</code> scenario, then scores four dimensions
+      1&ndash;5 plus an overall score, each with a short rationale. <code>table_grounding</code>:
+      does the narrative actually engage with what the tables show, not just avoid contradicting
+      them. <code>truthfulness</code>: are its numbers, directions, and magnitude words
+      (&ldquo;modest&rdquo;, &ldquo;significant&rdquo;) accurate against the ground-truth figures
+      &mdash; the one check here that the structural <code>numeric_consistency</code> gate above
+      can't do, since that gate only confirms a quoted number exists somewhere in
+      <code>financials.json</code>, not that the narrative's characterization of it is correct.
+      <code>narrative_consistency</code>: Item 7 and Item 8 agree with each other and with the
+      scenario. <code>invented_detail</code> is a count, not a 1&ndash;5 score: any name, event, or
+      figure not grounded in <code>spec.json</code> or <code>financials.json</code>.</p>
+      <div class="grid3" id="judge-stats"></div>
+      <div class="table-tools">
+        <input type="search" id="search-judge" placeholder="Search e.g. GKRH, truthfulness, FAIL…" aria-label="Search judge rows">
+        <span class="count" id="count-judge"></span>
+      </div>
+      <div class="table-wrap">
+        <table class="data" id="tbl-judge">
+          <thead><tr>
+            <th data-col="fictional_id"><button>Company</button></th>
+            <th data-col="fiscal_year"><button>FY</button></th>
+            <th data-col="check"><button>Check</button></th>
+            <th data-col="score" data-num="1"><button>Score</button></th>
+            <th data-col="status"><button>Status</button></th>
+            <th data-col="detail"><button>Rationale</button></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="note" id="judge-missing-note" style="display:none;">No <code>llm_judge_report.csv</code> yet &mdash; run <code>uv run python -m evals.llm_judge</code> (needs an OpenAI-compatible API key; see that module's docstring) to populate this card.</p>
+    </div>
+  </section>
+
+  <!-- ================= UTILITY ================= -->
+  <section class="phase" id="utility">
+    <div class="phase-hdr">
+      <div class="eyebrow">Utility</div>
+      <h2>Is it actually useful for the job it exists to do?</h2>
+      <p>The corpus exists to build and evaluate a retrieval benchmark. Every QA pair has an exact
+      answer and a gold passage — synthetic ones generated deterministically from each company's own
+      financial statements and scenario facts (no model call, so the answer is guaranteed to be a
+      verbatim substring of its gold passage by construction); real ones mostly the same way now —
+      the same financial-fact templates, grounded in each real company's own extracted XBRL metrics
+      (method_1.build) and checked verbatim against the actual text — across every real company with
+      usable data, plus a small hand-authored set from 6 filings read closely for Phase 7's
+      model-judged review. Three retrievers — BM25, a
+      real semantic embedding retriever, and their reciprocal-rank-fusion hybrid — are scored on
+      recall@5, recall@10, MRR and nDCG@10. The question that actually matters for utility: if you
+      picked a retriever using only the synthetic corpus, would you have picked the same one using
+      the real corpus?</p>
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <h3>Questions by source</h3>
+        <div class="stat-row"><span class="big" id="qa-synthetic">—</span><span class="vs">synthetic</span></div>
+        <div class="stat-row"><span class="big" id="qa-real">—</span><span class="vs">real</span></div>
+        <p class="note">Deterministic financial facts across every real company with usable metrics, plus a small hand-authored set from AEP, BEN, USB, CVS, NOC, CRWD.</p>
+      </div>
+      <div class="card">
+        <h3>Questions by style</h3>
+        <div class="stat-row"><span class="big" id="qa-factual">—</span><span class="vs">factual — a figure or named entity</span></div>
+        <div class="stat-row"><span class="big" id="qa-analytical">—</span><span class="vs">analytical — why, or what it implies</span></div>
+        <p class="note">Analytical questions (e.g. "why did margins compress?", "what integration risk does this acquisition carry?") still have one short exact answer, but finding it means reading a passage that connects a cause to an effect, not matching a labeled figure.</p>
+      </div>
+      <div class="card">
+        <h3>Does retriever choice transfer from synthetic to real?</h3>
+        <div class="verdict">
+          <p>Best retriever by recall@10: <b id="best-real">—</b> (real) and <b id="best-synth">—</b> (synthetic) &mdash; <span id="best-note">—</span>.</p>
+          <p>Median top-1 BM25 score: <b id="bm25-real">—</b> (real sample) vs. <b id="bm25-synth">—</b> (synthetic) &mdash; not directly comparable in absolute terms, since BM25's IDF term depends on each corpus's own size.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <h3>Retrieval evaluation, all runs</h3>
+        <div class="table-wrap" style="max-height: 20rem;">
+          <table class="data" id="tbl-retrieval">
+            <thead><tr>
+              <th data-col="experiment"><button>Experiment</button></th>
+              <th data-col="retriever"><button>Retriever</button></th>
+              <th data-col="n_questions" data-num="1"><button>n</button></th>
+              <th data-col="recall_at_5" data-num="1"><button>Recall@5</button></th>
+              <th data-col="recall_at_10" data-num="1"><button>Recall@10</button></th>
+              <th data-col="mrr" data-num="1"><button>MRR</button></th>
+              <th data-col="ndcg_at_10" data-num="1"><button>nDCG@10</button></th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card span-2">
+        <h3>Retriever comparison by experiment</h3>
+        <p class="note">Same 4 metrics, same 0&ndash;100% axis, three corpus scopes. <code>real_only</code> and <code>mixed</code> use a seeded 15-company real sample (~120,000 paragraphs), not all ~50 real companies (~380,000 paragraphs) &mdash; bounded by memory in the development environment this was built in, not by runtime; see <code>RAG/step12_evaluate_retrievers.py</code>'s module docstring.</p>
+        <div class="legend" id="retrieval-legend"></div>
+        <div class="grid3" id="retrieval-charts"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>All QA pairs</h3>
+      <p class="note">Every question, its exact answer, and the chunk id it's grounded in. Search "analytical" or "factual" to filter by style.</p>
+      <div class="table-tools">
+        <input type="search" id="search-qa" placeholder="Search e.g. PRG, analytical, margin…" aria-label="Search QA pairs">
+        <span class="count" id="count-qa"></span>
+      </div>
+      <div class="table-wrap">
+        <table class="data" id="tbl-qa">
+          <thead><tr>
+            <th data-col="source"><button>Source</button></th>
+            <th data-col="style"><button>Style</button></th>
+            <th data-col="ticker"><button>Ticker</button></th>
+            <th data-col="fiscal_year"><button>FY</button></th>
+            <th data-col="item"><button>Item</button></th>
+            <th data-col="question"><button>Question</button></th>
+            <th data-col="answer"><button>Answer</button></th>
+            <th data-col="gold_chunk_id"><button>Gold chunk</button></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRIVACY ================= -->
+  <section class="phase" id="privacy">
+    <div class="phase-hdr">
+      <div class="eyebrow">Privacy</div>
+      <h2>Does it avoid exposing the real companies it's modeled on?</h2>
+      <p>Every fictional company is templated on one real company, so privacy here means two
+      things: no real company's name or ticker ever appears in the narrative (a literal identity
+      leak), and no fictional company's financials sit close enough to its real template's actual
+      numbers to make the disguise pointless — a leak check alone doesn't catch a fictional company
+      whose numbers are just the real one relabeled.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Real company name/ticker leaks</h3>
+        <div class="stat-row"><span class="big" id="leak-pass">—</span><span class="vs">checks found no leak</span></div>
+        <p class="note">Scoped to each fictional company's own real template, not every real S&amp;P 500 company &mdash; that's the one real company whose exemplar text ever entered its generation.</p>
+      </div>
+      <div class="card">
+        <h3>Closest single company to its template</h3>
+        <div class="stat-row"><span class="big" id="privacy-closest-company">—</span><span class="vs" id="privacy-closest-detail">—</span></div>
+        <p class="note">No company is within 5% of its real template on every financial field — see the per-company chart below for the full spread.</p>
+      </div>
+    </div>
+
+    <div class="card" style="min-height: 20rem;">
+      <h3>Distance from real template, by company</h3>
+      <p class="note">Median absolute percent difference between each fictional company's financials and its real template's actual same-year values, across up to 6 fields (total assets, total liabilities, stockholders' equity, revenues, net income, operating income). Sorted closest to farthest &mdash; closer bars are the ones worth a second look.</p>
+      <div class="chart-wrap chart-box" id="chart-privacy" style="min-height: 18rem;"></div>
+    </div>
+
+    <div class="card">
+      <h3>All financial-field comparisons</h3>
+      <p class="note">One row per company &times; financial field: the real template's actual value, the fictional value, and the percent difference.</p>
+      <div class="table-tools">
+        <input type="search" id="search-privacy" placeholder="Search e.g. NDE, revenues…" aria-label="Search privacy rows">
+        <span class="count" id="count-privacy"></span>
+      </div>
+      <div class="table-wrap">
+        <table class="data" id="tbl-privacy">
+          <thead><tr>
+            <th data-col="fictional_id"><button>Company</button></th>
+            <th data-col="template_ticker"><button>Template</button></th>
+            <th data-col="field"><button>Field</button></th>
+            <th data-col="real_value" data-num="1"><button>Real value</button></th>
+            <th data-col="synthetic_value" data-num="1"><button>Synthetic value</button></th>
+            <th data-col="pct_diff" data-num="1"><button>% diff</button></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card verdict">
+      <h3>Verdict</h3>
+      <p>No real company name or ticker leaks into any narrative. No fictional company's financials
+      are close enough to its real template's to functionally reveal it — every company has at least
+      one field that differs substantially, even the closest overall (<b id="verdict-closest">—</b>).
+      One single field anywhere (<b id="verdict-closest-field">—</b>) lands very close by chance;
+      nothing about the corpus makes that the rule rather than the exception.</p>
+    </div>
+  </section>
+
+  <p class="foot">Built by <code>method_2/step09_validate_filings.py</code>, <code>step11_make_qa.py</code>,
+  <code>step12_evaluate_retrievers.py</code>, <code>step13_gap_report.py</code> and
+  <code>step14_privacy_check.py</code> in the <code>method_2</code>. This page reads
+  <code>data/validation_report.csv</code>, <code>data/qa_pairs.csv</code>,
+  <code>data/retrieval_eval.csv</code>, <code>data/gap_report.csv</code>, and
+  <code>data/privacy_report.csv</code> directly at load time &mdash; nothing on this page is typed in
+  by hand, and it reflects whatever is in those five files right now. Serve this directory locally to
+  view it (browsers block a local page from fetching local files directly):
+  <code>python -m http.server</code> from the project root, then open
+  <code>http://localhost:8000/dashboard/</code>.</p>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+(() => {
+  'use strict';
+  const fmtInt = d3.format(',');
+  const fmtPct1 = d3.format('.1%');
+  const num = (v) => { const n = Number(v); return Number.isFinite(n) ? n : NaN; };
+
+  const CHECK_ORDER = ['substantive', 'length_vs_real', 'required_headings', 'scenario_grounding', 'numeric_consistency'];
+  const CHECK_LABEL = {
+    substantive: 'Substantive length',
+    length_vs_real: 'Length vs. real (informational)',
+    required_headings: 'Required statement headings',
+    scenario_grounding: 'Scenario grounding',
+    numeric_consistency: 'Numeric consistency',
+  };
+  const SCENARIO_TYPE_LABEL = {
+    mergers_and_acquisitions: 'Mergers & acquisitions',
+    product_launch: 'Product launch',
+    competitive_displacement: 'Competitive displacement',
+    margin_crisis: 'Margin crisis',
+    capital_structure: 'Capital structure',
+    cash_burn: 'Cash burn',
+    regulatory_rate_case: 'Regulatory rate case',
+    weather_event: 'Weather event',
+    regulatory_pricing_pressure: 'Regulatory pricing pressure',
+    regulatory_consent_order: 'Regulatory consent order',
+    baseline: 'Baseline (no scenario)',
+  };
+
+  function parseScenarioType(detail) {
+    const m = /^\[([a-z_]+)\]/.exec(detail || '');
+    return m ? m[1] : 'baseline';
+  }
+  const RETRIEVERS = ['bm25', 'semantic', 'hybrid_rrf'];
+  const RETRIEVER_LABEL = { bm25: 'BM25', semantic: 'Semantic', hybrid_rrf: 'Hybrid RRF' };
+  const RETRIEVER_COLOR = { bm25: 'var(--series-1)', semantic: 'var(--series-2)', hybrid_rrf: 'var(--series-3)' };
+  const METRICS = ['recall_at_5', 'recall_at_10', 'mrr', 'ndcg_at_10'];
+  const METRIC_LABEL = { recall_at_5: 'R@5', recall_at_10: 'R@10', mrr: 'MRR', ndcg_at_10: 'nDCG@10' };
+  const EXPERIMENTS = ['synthetic_only', 'real_only', 'mixed'];
+  const EXPERIMENT_LABEL = { synthetic_only: 'Synthetic only', real_only: 'Real only (15-co. sample)', mixed: 'Mixed' };
+
+  // ---------- derived aggregates over the raw validation/qa_pairs/privacy rows ----------
+  function computeStructuralTotals(rows) {
+    const structural = rows.filter((r) => r.check !== 'real_company_leak' && r.check !== 'length_vs_real');
+    const pass = structural.filter((r) => r.status === 'PASS').length;
+    const fail = structural.filter((r) => r.status === 'FAIL').length;
+    const graded = pass + fail;
+    return { total: structural.length, pass, fail, passRate: graded ? pass / graded : 0, companies: new Set(rows.map((r) => r.fictional_id)).size };
+  }
+
+  function computeByCheck(rows) {
+    const nonLeak = rows.filter((r) => r.check !== 'real_company_leak');
+    const byCheck = new Map();
+    for (const r of nonLeak) {
+      if (!byCheck.has(r.check)) byCheck.set(r.check, { check: r.check, total: 0, pass: 0, fail: 0, info: 0 });
+      const c = byCheck.get(r.check);
+      c.total += 1;
+      if (r.status === 'PASS') c.pass += 1;
+      else if (r.status === 'FAIL') c.fail += 1;
+      else if (r.status === 'INFO') c.info += 1;
+    }
+    return CHECK_ORDER.filter((k) => byCheck.has(k)).map((k) => byCheck.get(k));
+  }
+
+  function computeByCompany(rows) {
+    const byCompany = new Map();
+    for (const r of rows) {
+      if (r.check === 'real_company_leak') continue;
+      if (!byCompany.has(r.fictional_id)) {
+        byCompany.set(r.fictional_id, { fictional_id: r.fictional_id, fiscal_year: r.fiscal_year, total: 0, fail: 0, scenario_type: 'baseline' });
+      }
+      const c = byCompany.get(r.fictional_id);
+      c.total += 1;
+      if (r.status === 'FAIL') c.fail += 1;
+      if (r.check === 'scenario_grounding') c.scenario_type = parseScenarioType(r.detail);
+    }
+    return Array.from(byCompany.values()).map((c) => ({
+      ...c,
+      scenario_label: SCENARIO_TYPE_LABEL[c.scenario_type] || c.scenario_type,
+      status_label: c.fail === 0 ? 'all pass' : c.fail + ' failing',
+    })).sort((a, b) => a.fictional_id.localeCompare(b.fictional_id));
+  }
+
+  function computeScenarioDiversity(byCompanyRows) {
+    const counts = new Map();
+    for (const c of byCompanyRows) {
+      counts.set(c.scenario_label, (counts.get(c.scenario_label) || 0) + 1);
+    }
+    return Array.from(counts.entries()).map(([label, count]) => ({ label, count })).sort((a, b) => b.count - a.count);
+  }
+
+  function computePrivacyByCompany(rows) {
+    const byCompany = new Map();
+    for (const r of rows) {
+      if (!byCompany.has(r.fictional_id)) byCompany.set(r.fictional_id, []);
+      byCompany.get(r.fictional_id).push(Math.abs(num(r.pct_diff)));
+    }
+    return Array.from(byCompany.entries()).map(([fictional_id, diffs]) => {
+      diffs.sort((a, b) => a - b);
+      return { fictional_id, median: diffs[Math.floor(diffs.length / 2)], min: diffs[0], max: diffs[diffs.length - 1], n: diffs.length };
+    }).sort((a, b) => a.median - b.median);
+  }
+
+  // ---------- generic sortable/searchable table ----------
+  // ---------- model-judged realism (LLM judge) ----------
+  const JUDGE_CHECK_ORDER = ['table_grounding', 'truthfulness', 'narrative_consistency', 'overall', 'invented_detail'];
+  const JUDGE_CHECK_LABEL = {
+    table_grounding: 'Table grounding',
+    truthfulness: 'Truthfulness',
+    narrative_consistency: 'Narrative consistency',
+    overall: 'Overall',
+    invented_detail: 'Invented details',
+  };
+
+  function renderJudgeStats(container, rows) {
+    container.replaceChildren();
+    JUDGE_CHECK_ORDER.forEach((check) => {
+      const checkRows = rows.filter((r) => r.check === check);
+      if (!checkRows.length) return;
+      const scores = checkRows.map((r) => num(r.score)).filter(Number.isFinite);
+      const fails = checkRows.filter((r) => r.status === 'FAIL').length;
+      const big = check === 'invented_detail'
+        ? fmtInt(d3.sum(scores))
+        : (scores.length ? d3.mean(scores).toFixed(1) : '—');
+      const sub = check === 'invented_detail'
+        ? 'found across ' + fmtInt(checkRows.length) + ' filings'
+        : 'avg of ' + fmtInt(checkRows.length) + ', 1–5';
+      const card = document.createElement('div');
+      card.className = 'card';
+      const h3 = document.createElement('h3');
+      h3.textContent = JUDGE_CHECK_LABEL[check];
+      const statRow = document.createElement('div');
+      statRow.className = 'stat-row';
+      const bigSpan = document.createElement('span');
+      bigSpan.className = 'big';
+      bigSpan.textContent = big;
+      const vsSpan = document.createElement('span');
+      vsSpan.className = 'vs';
+      vsSpan.textContent = sub;
+      statRow.append(bigSpan, vsSpan);
+      card.append(h3, statRow);
+      if (fails) {
+        const note = document.createElement('p');
+        note.className = 'note';
+        note.textContent = fmtInt(fails) + ' filing' + (fails === 1 ? '' : 's') + ' flagged FAIL on this check';
+        card.append(note);
+      }
+      container.appendChild(card);
+    });
+  }
+
+  function cellText(row, col) {
+    const v = row[col];
+    return v === undefined || v === null || v === '' ? '—' : String(v);
+  }
+
+  function setupTable({ tableId, searchId, countId, columns, rows, formatters = {} }) {
+    const table = document.getElementById(tableId);
+    const tbody = table.querySelector('tbody');
+    const searchInput = searchId ? document.getElementById(searchId) : null;
+    const countEl = countId ? document.getElementById(countId) : null;
+    let sortCol = null;
+    let sortDir = 1;
+
+    function render() {
+      let view = rows;
+      const q = (searchInput && searchInput.value || '').trim().toLowerCase();
+      if (q) view = view.filter((r) => columns.some((c) => cellText(r, c).toLowerCase().includes(q)));
+      if (sortCol) {
+        view = view.slice().sort((a, b) => {
+          const an = num(a[sortCol]); const bn = num(b[sortCol]);
+          let cmp;
+          if (Number.isFinite(an) && Number.isFinite(bn)) cmp = an - bn;
+          else cmp = String(a[sortCol] ?? '').localeCompare(String(b[sortCol] ?? ''));
+          return cmp * sortDir;
+        });
+      }
+      tbody.replaceChildren(...view.map((r) => {
+        const tr = document.createElement('tr');
+        tr.append(...columns.map((c) => {
+          const td = document.createElement('td');
+          const fmt = formatters[c];
+          td.textContent = fmt ? fmt(r) : cellText(r, c);
+          if (['detail', 'question', 'scenario', 'note'].includes(c)) td.classList.add('wrap');
+          if (c === 'gold_chunk_id') td.classList.add('mono');
+          return td;
+        }));
+        return tr;
+      }));
+      if (countEl) countEl.textContent = view.length + ' row' + (view.length === 1 ? '' : 's');
+    }
+
+    table.querySelectorAll('th').forEach((th) => {
+      const btn = th.querySelector('button');
+      const col = th.dataset.col;
+      btn.addEventListener('click', () => {
+        if (sortCol === col) sortDir = -sortDir; else { sortCol = col; sortDir = 1; }
+        table.querySelectorAll('th').forEach((h) => h.removeAttribute('aria-sort'));
+        th.setAttribute('aria-sort', sortDir === 1 ? 'ascending' : 'descending');
+        render();
+      });
+    });
+    if (searchInput) searchInput.addEventListener('input', render);
+    render();
+  }
+
+  // ---------- retrieval comparison: 3 small-multiple grouped bar charts ----------
+  function renderLegend() {
+    const el = document.getElementById('retrieval-legend');
+    el.replaceChildren(...RETRIEVERS.map((r) => {
+      const span = document.createElement('span');
+      span.className = 'sw';
+      span.innerHTML = '<i style="background:' + RETRIEVER_COLOR[r] + '"></i>';
+      span.append(RETRIEVER_LABEL[r]);
+      return span;
+    }));
+  }
+
+  function drawRetrievalChart(container, rows, experiment) {
+    container.replaceChildren();
+    const title = document.createElement('div');
+    title.className = 'note';
+    title.style.marginBottom = '.4rem';
+    title.textContent = EXPERIMENT_LABEL[experiment];
+    container.appendChild(title);
+
+    const width = container.clientWidth || 280;
+    const height = 220;
+    const margin = { top: 6, right: 6, bottom: 32, left: 32 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+
+    const svg = d3.select(container).append('svg').attr('viewBox', `0 0 ${width} ${height}`);
+    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const x0 = d3.scaleBand().domain(METRICS).range([0, innerW]).paddingInner(0.3);
+    const x1 = d3.scaleBand().domain(RETRIEVERS).range([0, x0.bandwidth()]).padding(0.12);
+    const y = d3.scaleLinear().domain([0, 1]).range([innerH, 0]);
+
+    g.append('g').attr('color', 'var(--grid)')
+      .call(d3.axisLeft(y).ticks(5).tickSize(-innerW).tickFormat(''))
+      .call((sel) => sel.select('.domain').remove());
+
+    g.append('g').attr('transform', `translate(0,${innerH})`).attr('color', 'var(--axis)')
+      .call(d3.axisBottom(x0).tickSize(0))
+      .call((sel) => sel.select('.domain').attr('stroke-opacity', .6))
+      .selectAll('text').attr('fill', 'var(--ink-muted)').attr('font-size', 10).attr('font-family', null)
+      .text((d) => METRIC_LABEL[d]);
+
+    g.append('g').attr('color', 'var(--axis)')
+      .call(d3.axisLeft(y).ticks(5).tickFormat(d3.format('.0%')))
+      .call((sel) => sel.select('.domain').remove())
+      .selectAll('text').attr('fill', 'var(--ink-muted)').attr('font-size', 10).attr('font-family', null);
+
+    const tip = d3.select(container).append('div').attr('class', 'tip');
+
+    const byMetric = g.selectAll('.mgroup').data(METRICS).join('g').attr('transform', (m) => `translate(${x0(m)},0)`);
+
+    byMetric.selectAll('rect').data((m) => RETRIEVERS.map((r) => {
+      const row = rows.find((row) => row.retriever === r);
+      return { metric: m, retriever: r, value: row ? num(row[m]) : 0 };
+    })).join('rect')
+      .attr('x', (d) => x1(d.retriever))
+      .attr('width', x1.bandwidth())
+      .attr('y', (d) => y(d.value))
+      .attr('height', (d) => innerH - y(d.value))
+      .attr('rx', 2)
+      .attr('fill', (d) => RETRIEVER_COLOR[d.retriever])
+      .on('mousemove', (event, d) => {
+        const [mx, my] = d3.pointer(event, container);
+        tip.style('left', mx + 'px').style('top', my + 'px').style('opacity', 1)
+          .html(`<b>${RETRIEVER_LABEL[d.retriever]}</b> &middot; ${METRIC_LABEL[d.metric]}: ${d.value.toFixed(3)}`);
+      })
+      .on('mouseleave', () => tip.style('opacity', 0));
+  }
+
+  // ---------- Fidelity charts ----------
+  function drawLengthChart(container, rows) {
+    container.replaceChildren();
+    const ITEM_LABEL = { item_1_median_words: 'Item 1', item_1A_median_words: 'Item 1A', item_1C_median_words: 'Item 1C', item_7_median_words: 'Item 7', item_8_median_words: 'Item 8' };
+    const items = Object.keys(ITEM_LABEL).filter((k) => rows.some((r) => r.metric === k));
+
+    const width = container.clientWidth || 420;
+    const height = 260;
+    const margin = { top: 6, right: 10, bottom: 28, left: 42 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+
+    const svg = d3.select(container).append('svg').attr('viewBox', `0 0 ${width} ${height}`);
+    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const x0 = d3.scaleBand().domain(items).range([0, innerW]).paddingInner(0.35);
+    const series = ['real', 'synthetic'];
+    const x1 = d3.scaleBand().domain(series).range([0, x0.bandwidth()]).padding(0.15);
+    const y = d3.scaleLog().domain([100, 30000]).range([innerH, 0]).clamp(true);
+
+    g.append('g').attr('color', 'var(--grid)')
+      .call(d3.axisLeft(y).tickValues([100, 1000, 10000]).tickSize(-innerW).tickFormat(''))
+      .call((sel) => sel.select('.domain').remove());
+
+    g.append('g').attr('transform', `translate(0,${innerH})`)
+      .call(d3.axisBottom(x0).tickSize(0)).call((s) => s.select('.domain').attr('stroke', 'var(--axis)'))
+      .selectAll('text').attr('fill', 'var(--ink-muted)').attr('font-size', 10).attr('font-family', null)
+      .text((d) => ITEM_LABEL[d]);
+
+    g.append('g')
+      .call(d3.axisLeft(y).tickValues([100, 1000, 10000]).tickFormat(d3.format('~s'))).call((s) => s.select('.domain').remove())
+      .selectAll('text').attr('fill', 'var(--ink-muted)').attr('font-size', 10).attr('font-family', null);
+
+    const tip = d3.select(container).append('div').attr('class', 'tip');
+    const color = { real: 'var(--series-1)', synthetic: 'var(--series-2)' };
+
+    const byItem = g.selectAll('.g').data(items).join('g').attr('transform', (d) => `translate(${x0(d)},0)`);
+    byItem.selectAll('rect').data((item) => {
+      const row = rows.find((r) => r.metric === item);
+      return series.map((s) => ({ item, series: s, value: row ? num(row[s]) : 0 }));
+    }).join('rect')
+      .attr('x', (d) => x1(d.series)).attr('width', x1.bandwidth())
+      .attr('y', (d) => y(Math.max(d.value, 1))).attr('height', (d) => innerH - y(Math.max(d.value, 1)))
+      .attr('rx', 2).attr('fill', (d) => color[d.series])
+      .on('mousemove', (event, d) => {
+        const [mx, my] = d3.pointer(event, container);
+        tip.style('left', mx + 'px').style('top', my + 'px').style('opacity', 1)
+          .html(`<b>${d.series}</b> &middot; ${ITEM_LABEL[d.item]}: ${fmtInt(Math.round(d.value))} words`);
+      }).on('mouseleave', () => tip.style('opacity', 0));
+
+    const legend = d3.select(container).append('div').attr('class', 'legend').style('margin-top', '.5rem');
+    legend.selectAll('span').data(series).join('span').attr('class', 'sw')
+      .html((s) => `<i style="background:${color[s]}"></i>${s}`);
+  }
+
+  function drawDensityChart(container, rows) {
+    container.replaceChildren();
+    const METRIC_LABEL2 = { dollars_per_1k_words: 'Dollar figures', percents_per_1k_words: 'Percent figures' };
+    const items = Object.keys(METRIC_LABEL2).filter((k) => rows.some((r) => r.metric === k));
+
+    const width = container.clientWidth || 420;
+    const height = 260;
+    const margin = { top: 6, right: 10, bottom: 28, left: 32 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+
+    const svg = d3.select(container).append('svg').attr('viewBox', `0 0 ${width} ${height}`);
+    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const x0 = d3.scaleBand().domain(items).range([0, innerW]).paddingInner(0.35);
+    const series = ['real', 'synthetic'];
+    const x1 = d3.scaleBand().domain(series).range([0, x0.bandwidth()]).padding(0.15);
+    const maxVal = d3.max(rows.filter((r) => items.includes(r.metric)), (r) => Math.max(num(r.real), num(r.synthetic))) || 1;
+    const y = d3.scaleLinear().domain([0, maxVal * 1.15]).range([innerH, 0]);
+
+    g.append('g').attr('color', 'var(--grid)')
+      .call(d3.axisLeft(y).ticks(4).tickSize(-innerW).tickFormat(''))
+      .call((sel) => sel.select('.domain').remove());
+
+    g.append('g').attr('transform', `translate(0,${innerH})`)
+      .call(d3.axisBottom(x0).tickSize(0)).call((s) => s.select('.domain').attr('stroke', 'var(--axis)'))
+      .selectAll('text').attr('fill', 'var(--ink-muted)').attr('font-size', 10).attr('font-family', null)
+      .text((d) => METRIC_LABEL2[d]);
+
+    g.append('g')
+      .call(d3.axisLeft(y).ticks(4)).call((s) => s.select('.domain').remove())
+      .selectAll('text').attr('fill', 'var(--ink-muted)').attr('font-size', 10).attr('font-family', null);
+
+    const tip = d3.select(container).append('div').attr('class', 'tip');
+    const color = { real: 'var(--series-1)', synthetic: 'var(--series-2)' };
+
+    const byItem = g.selectAll('.g').data(items).join('g').attr('transform', (d) => `translate(${x0(d)},0)`);
+    byItem.selectAll('rect').data((item) => {
+      const row = rows.find((r) => r.metric === item);
+      return series.map((s) => ({ item, series: s, value: row ? num(row[s]) : 0 }));
+    }).join('rect')
+      .attr('x', (d) => x1(d.series)).attr('width', x1.bandwidth())
+      .attr('y', (d) => y(d.value)).attr('height', (d) => innerH - y(d.value))
+      .attr('rx', 2).attr('fill', (d) => color[d.series])
+      .on('mousemove', (event, d) => {
+        const [mx, my] = d3.pointer(event, container);
+        tip.style('left', mx + 'px').style('top', my + 'px').style('opacity', 1)
+          .html(`<b>${d.series}</b> &middot; ${METRIC_LABEL2[d.item]}: ${d.value.toFixed(2)} / 1,000 words`);
+      }).on('mouseleave', () => tip.style('opacity', 0));
+
+    const legend = d3.select(container).append('div').attr('class', 'legend').style('margin-top', '.5rem');
+    legend.selectAll('span').data(series).join('span').attr('class', 'sw')
+      .html((s) => `<i style="background:${color[s]}"></i>${s}`);
+  }
+
+  // ---------- Fidelity charts: check status + scenario diversity ----------
+  function renderCheckStatusLegend() {
+    const el = document.getElementById('check-status-legend');
+    const items = [['Pass', 'var(--good)'], ['Fail', 'var(--critical)'], ['Informational', 'var(--ink-muted)']];
+    el.replaceChildren(...items.map(([label, color]) => {
+      const span = document.createElement('span');
+      span.className = 'sw';
+      span.innerHTML = '<i style="background:' + color + '"></i>' + label;
+      return span;
+    }));
+  }
+
+  function drawCheckStatusChart(container, rows) {
+    container.replaceChildren();
+    const width = container.clientWidth || 600;
+    const rowH = 34;
+    const margin = { top: 6, right: 56, bottom: 6, left: 180 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = rows.length * rowH;
+    const height = innerH + margin.top + margin.bottom;
+
+    const svg = d3.select(container).append('svg').attr('viewBox', `0 0 ${width} ${height}`);
+    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const y = d3.scaleBand().domain(rows.map((r) => r.check)).range([0, innerH]).padding(0.35);
+    const x = d3.scaleLinear().domain([0, 1]).range([0, innerW]);
+    const tip = d3.select(container).append('div').attr('class', 'tip');
+
+    g.selectAll('.lbl').data(rows).join('text')
+      .attr('x', -10).attr('y', (d) => y(d.check) + y.bandwidth() / 2)
+      .attr('dy', '.32em').attr('text-anchor', 'end')
+      .attr('fill', 'var(--ink-2)').attr('font-size', 12)
+      .text((d) => CHECK_LABEL[d.check] || d.check);
+
+    const rowG = g.selectAll('.row').data(rows).join('g').attr('transform', (d) => `translate(0,${y(d.check)})`);
+    rowG.each(function (d) {
+      const total = d.total || 1;
+      const segs = [
+        { key: 'pass', value: d.pass, color: 'var(--good)' },
+        { key: 'fail', value: d.fail, color: 'var(--critical)' },
+        { key: 'info', value: d.info, color: 'var(--ink-muted)' },
+      ];
+      let acc = 0;
+      const sel = d3.select(this);
+      sel.append('rect').attr('x', 0).attr('y', 0).attr('width', innerW).attr('height', y.bandwidth())
+        .attr('rx', 3).attr('fill', 'var(--grid)');
+      segs.forEach((s) => {
+        const frac = s.value / total;
+        if (frac > 0) {
+          sel.append('rect')
+            .attr('x', x(acc)).attr('width', Math.max(x(acc + frac) - x(acc), 0))
+            .attr('y', 0).attr('height', y.bandwidth())
+            .attr('rx', 3).attr('fill', s.color)
+            .on('mousemove', (event) => {
+              const [mx, my] = d3.pointer(event, container);
+              tip.style('left', mx + 'px').style('top', my + 'px').style('opacity', 1)
+                .html(`<b>${CHECK_LABEL[d.check] || d.check}</b><br>${s.key}: ${s.value} / ${d.total}`);
+            })
+            .on('mouseleave', () => tip.style('opacity', 0));
+        }
+        acc += frac;
+      });
+    });
+
+    rowG.append('text')
+      .attr('x', innerW + 10).attr('y', y.bandwidth() / 2).attr('dy', '.32em')
+      .attr('fill', 'var(--ink-muted)').attr('font-size', 11)
+      .text((d) => (d.check === 'length_vs_real' ? d.info + ' informational' : d.pass + '/' + d.total));
+  }
+
+  function drawScenarioDiversityChart(container, rows) {
+    container.replaceChildren();
+    const width = container.clientWidth || 420;
+    const rowH = 28;
+    const margin = { top: 6, right: 30, bottom: 6, left: 170 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = rows.length * rowH;
+    const height = innerH + margin.top + margin.bottom;
+
+    const svg = d3.select(container).append('svg').attr('viewBox', `0 0 ${width} ${height}`);
+    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const y = d3.scaleBand().domain(rows.map((r) => r.label)).range([0, innerH]).padding(0.3);
+    const x = d3.scaleLinear().domain([0, d3.max(rows, (r) => r.count) || 1]).range([0, innerW]);
+    const tip = d3.select(container).append('div').attr('class', 'tip');
+
+    g.selectAll('.lbl').data(rows).join('text')
+      .attr('x', -10).attr('y', (d) => y(d.label) + y.bandwidth() / 2)
+      .attr('dy', '.32em').attr('text-anchor', 'end')
+      .attr('fill', 'var(--ink-2)').attr('font-size', 11)
+      .text((d) => d.label);
+
+    g.selectAll('.bar').data(rows).join('rect')
+      .attr('x', 0).attr('y', (d) => y(d.label))
+      .attr('width', (d) => Math.max(x(d.count), 2)).attr('height', y.bandwidth())
+      .attr('rx', 3).attr('fill', (d) => (d.label.startsWith('Baseline') ? 'var(--ink-muted)' : 'var(--series-2)'))
+      .on('mousemove', (event, d) => {
+        const [mx, my] = d3.pointer(event, container);
+        tip.style('left', mx + 'px').style('top', my + 'px').style('opacity', 1)
+          .html(`<b>${d.label}</b>: ${d.count} compan${d.count === 1 ? 'y' : 'ies'}`);
+      }).on('mouseleave', () => tip.style('opacity', 0));
+
+    g.selectAll('.val').data(rows).join('text')
+      .attr('x', (d) => x(d.count) + 6).attr('y', (d) => y(d.label) + y.bandwidth() / 2)
+      .attr('dy', '.32em').attr('fill', 'var(--ink-2)').attr('font-size', 11)
+      .text((d) => d.count);
+  }
+
+  // ---------- Privacy chart: per-company distance from real template, sorted ----------
+  function drawPrivacyChart(container, companyStats) {
+    container.replaceChildren();
+    const width = container.clientWidth || 700;
+    const height = 280;
+    const margin = { top: 10, right: 10, bottom: 50, left: 40 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+
+    const svg = d3.select(container).append('svg').attr('viewBox', `0 0 ${width} ${height}`);
+    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const ids = companyStats.map((c) => c.fictional_id);
+    const x = d3.scaleBand().domain(ids).range([0, innerW]).padding(0.25);
+    const maxVal = d3.max(companyStats, (c) => c.max) || 10;
+    const y = d3.scaleLinear().domain([0, maxVal * 1.08]).range([innerH, 0]);
+
+    g.append('g').attr('color', 'var(--grid)')
+      .call(d3.axisLeft(y).ticks(5).tickSize(-innerW).tickFormat(''))
+      .call((sel) => sel.select('.domain').remove());
+
+    g.append('g').attr('transform', `translate(0,${innerH})`)
+      .call(d3.axisBottom(x).tickSize(0)).call((s) => s.select('.domain').attr('stroke', 'var(--axis)'))
+      .selectAll('text').attr('fill', 'var(--ink-muted)').attr('font-size', 9).attr('font-family', null)
+      .attr('transform', 'rotate(-45)').attr('text-anchor', 'end').attr('dx', '-.3em').attr('dy', '.2em');
+
+    g.append('g')
+      .call(d3.axisLeft(y).ticks(5).tickFormat((d) => d + '%')).call((s) => s.select('.domain').remove())
+      .selectAll('text').attr('fill', 'var(--ink-muted)').attr('font-size', 10).attr('font-family', null);
+
+    // 5%-of-every-field reference line: the privacy concern threshold.
+    g.append('line')
+      .attr('x1', 0).attr('x2', innerW).attr('y1', y(5)).attr('y2', y(5))
+      .attr('stroke', 'var(--critical)').attr('stroke-dasharray', '4,3').attr('stroke-width', 1).attr('opacity', .6);
+    g.append('text').attr('x', innerW).attr('y', y(5) - 4).attr('text-anchor', 'end')
+      .attr('fill', 'var(--critical)').attr('font-size', 9).text('5% concern threshold');
+
+    const tip = d3.select(container).append('div').attr('class', 'tip');
+
+    // min-max range line per company, median as the bar.
+    const groups = g.selectAll('.g').data(companyStats).join('g').attr('transform', (d) => `translate(${x(d.fictional_id)},0)`);
+    groups.append('line')
+      .attr('x1', x.bandwidth() / 2).attr('x2', x.bandwidth() / 2)
+      .attr('y1', (d) => y(d.min)).attr('y2', (d) => y(d.max))
+      .attr('stroke', 'var(--ink-muted)').attr('stroke-width', 1.5);
+    groups.append('rect')
+      .attr('x', 0).attr('width', x.bandwidth())
+      .attr('y', (d) => y(d.median) - 2).attr('height', 4)
+      .attr('rx', 2).attr('fill', 'var(--series-2)')
+      .on('mousemove', (event, d) => {
+        const [mx, my] = d3.pointer(event, container);
+        tip.style('left', mx + 'px').style('top', my + 'px').style('opacity', 1)
+          .html(`<b>${d.fictional_id}</b><br>median ${d.median.toFixed(1)}% &middot; range ${d.min.toFixed(1)}%&ndash;${d.max.toFixed(1)}%`);
+      }).on('mouseleave', () => tip.style('opacity', 0));
+  }
+
+  // ---------- load the 5 CSVs and render once ----------
+  // dashboard/build_dashboard.py turns this template into dashboard/index.html by
+  // injecting `window.__DASHBOARD_DATA__` (the 5 CSVs, parsed) just above this
+  // script tag -- the built file needs no server and no fetch, so it opens directly
+  // over file://. This template itself has no embedded data, so editing it and
+  // reloading via a server (python -m http.server) still works during development:
+  // it falls back to a live, cache-busted fetch of the same 5 files.
+  if (window.__DASHBOARD_DATA__) {
+    const d = window.__DASHBOARD_DATA__;
+    render(d.validation, d.qa, d.retrieval, d.gap, d.privacy, d.judge);
+  } else {
+    const v = Date.now();
+    Promise.all([
+      d3.csv(`../method_2/data/validation_report.csv?v=${v}`),
+      d3.csv(`../method_2/data/qa_pairs.csv?v=${v}`),
+      d3.csv(`../method_2/data/retrieval_eval.csv?v=${v}`),
+      d3.csv(`../method_2/data/gap_report.csv?v=${v}`),
+      d3.csv(`../method_2/data/privacy_report.csv?v=${v}`),
+      // optional: needs evals/llm_judge.py to have been run; absence isn't an error.
+      d3.csv(`../method_2/data/llm_judge_report.csv?v=${v}`).catch(() => []),
+    ]).then(([validation, qa, retrieval, gap, privacy, judge]) => {
+      render(validation, qa, retrieval, gap, privacy, judge);
+    }).catch((err) => {
+      const app = document.getElementById('app');
+      const msg = document.createElement('div');
+      msg.className = 'error';
+      msg.innerHTML = '<p><b>Could not load the data files.</b></p>'
+        + '<p>Browsers block a page from fetching local files over <code>file://</code>. Serve this directory instead:</p>'
+        + '<p><code>cd implementations/synthetic_10k &amp;&amp; python -m http.server</code>, then open '
+        + '<code>http://localhost:8000/dashboard/</code>.</p>'
+        + '<p style="color: var(--ink-muted); font-size: .85rem;">' + String(err) + '</p>';
+      app.prepend(msg);
+    });
+  }
+
+  function render(validation, qa, retrieval, gap, privacy, judge) {
+    // ---- Fidelity ----
+    const structTotals = computeStructuralTotals(validation);
+    document.getElementById('fidelity-struct-rate').textContent = fmtPct1(structTotals.passRate);
+
+    renderCheckStatusLegend();
+    drawCheckStatusChart(document.getElementById('chart-check-status'), computeByCheck(validation));
+
+    const byCompany = computeByCompany(validation);
+    drawScenarioDiversityChart(document.getElementById('chart-scenario-diversity'), computeScenarioDiversity(byCompany));
+    setupTable({ tableId: 'tbl-by-company', columns: ['fictional_id', 'fiscal_year', 'scenario_label', 'status_label'], rows: byCompany });
+    setupTable({
+      tableId: 'tbl-validation', searchId: 'search-validation', countId: 'count-validation',
+      columns: ['fictional_id', 'fiscal_year', 'check', 'item', 'status', 'detail'],
+      rows: validation.filter((r) => r.check !== 'real_company_leak'),
+    });
+
+    const judgeMissingNote = document.getElementById('judge-missing-note');
+    if (judge && judge.length) {
+      if (judgeMissingNote) judgeMissingNote.style.display = 'none';
+      renderJudgeStats(document.getElementById('judge-stats'), judge);
+      setupTable({
+        tableId: 'tbl-judge', searchId: 'search-judge', countId: 'count-judge',
+        columns: ['fictional_id', 'fiscal_year', 'check', 'score', 'status', 'detail'],
+        rows: judge,
+      });
+    } else if (judgeMissingNote) {
+      judgeMissingNote.style.display = '';
+    }
+
+    const lengthRows = gap.filter((r) => r.comparison === 'section_length');
+    const densityRows = gap.filter((r) => r.comparison === 'number_distribution');
+    if (lengthRows.length) drawLengthChart(document.getElementById('chart-length'), lengthRows);
+    if (densityRows.length) drawDensityChart(document.getElementById('chart-density'), densityRows);
+
+    let lengthRatioText = '—';
+    if (lengthRows.length) {
+      const ratios = lengthRows.map((r) => num(r.synthetic) / num(r.real));
+      lengthRatioText = fmtPct1(d3.min(ratios)) + '–' + fmtPct1(d3.max(ratios));
+    }
+    document.getElementById('length-ratio-note').textContent = lengthRatioText;
+    document.getElementById('fidelity-length-ratio').textContent = lengthRatioText;
+
+    const byMetric = (metric) => gap.find((r) => r.metric === metric);
+    const jaccardRow = byMetric('jaccard_top_3000_terms');
+    if (jaccardRow) {
+      document.getElementById('jaccard-val').textContent = fmtPct1(num(jaccardRow.real));
+      document.getElementById('coverage-val').textContent = fmtPct1(num(jaccardRow.synthetic));
+    }
+
+    document.getElementById('fidelity-verdict').textContent = structTotals.fail === 0
+      ? 'Structurally sound, distributionally different'
+      : fmtInt(structTotals.fail) + ' structural check(s) failing';
+
+    // ---- Utility ----
+    const qaSynthetic = qa.filter((r) => r.source === 'synthetic').length;
+    const qaReal = qa.filter((r) => r.source === 'real').length;
+    const qaAnalytical = qa.filter((r) => r.style === 'analytical').length;
+    document.getElementById('qa-synthetic').textContent = fmtInt(qaSynthetic);
+    document.getElementById('qa-real').textContent = fmtInt(qaReal);
+    document.getElementById('qa-factual').textContent = fmtInt(qa.length - qaAnalytical);
+    document.getElementById('qa-analytical').textContent = fmtInt(qaAnalytical);
+    document.getElementById('utility-qa-total').textContent = fmtInt(qa.length);
+
+    setupTable({
+      tableId: 'tbl-retrieval',
+      columns: ['experiment', 'retriever', 'n_questions', 'recall_at_5', 'recall_at_10', 'mrr', 'ndcg_at_10'],
+      rows: retrieval,
+      formatters: {
+        recall_at_5: (r) => fmtPct1(num(r.recall_at_5)), recall_at_10: (r) => fmtPct1(num(r.recall_at_10)),
+        mrr: (r) => num(r.mrr).toFixed(2), ndcg_at_10: (r) => num(r.ndcg_at_10).toFixed(2),
+      },
+    });
+    setupTable({
+      tableId: 'tbl-qa', searchId: 'search-qa', countId: 'count-qa',
+      columns: ['source', 'style', 'ticker', 'fiscal_year', 'item', 'question', 'answer', 'gold_chunk_id'], rows: qa,
+    });
+
+    renderLegend();
+    const retrievalContainer = document.getElementById('retrieval-charts');
+    EXPERIMENTS.forEach((exp) => {
+      const panel = document.createElement('div');
+      panel.className = 'chart-wrap chart-box';
+      retrievalContainer.appendChild(panel);
+      drawRetrievalChart(panel, retrieval.filter((r) => r.experiment === exp), exp);
+    });
+
+    const bm25Row = byMetric('median_top1_score');
+    if (bm25Row) {
+      document.getElementById('bm25-real').textContent = num(bm25Row.real).toFixed(2);
+      document.getElementById('bm25-synth').textContent = num(bm25Row.synthetic).toFixed(2);
+    }
+    const bestAgreeRow = byMetric('best_retriever_by_recall_at_10');
+    let bestAgrees = false;
+    if (bestAgreeRow) {
+      document.getElementById('best-real').textContent = (RETRIEVER_LABEL[bestAgreeRow.real] || bestAgreeRow.real);
+      document.getElementById('best-synth').textContent = (RETRIEVER_LABEL[bestAgreeRow.synthetic] || bestAgreeRow.synthetic);
+      document.getElementById('best-note').textContent = bestAgreeRow.note;
+      document.getElementById('utility-best-retriever').textContent = (RETRIEVER_LABEL[bestAgreeRow.synthetic] || bestAgreeRow.synthetic);
+      bestAgrees = bestAgreeRow.real === bestAgreeRow.synthetic;
+    }
+    document.getElementById('utility-verdict').textContent = bestAgrees ? 'Retriever choice transfers to real' : 'Retriever choice doesn’t fully transfer';
+
+    // ---- Privacy ----
+    const leakRows = validation.filter((r) => r.check === 'real_company_leak');
+    const leakPass = leakRows.filter((r) => r.status === 'PASS').length;
+    document.getElementById('leak-pass').textContent = fmtInt(leakPass) + ' / ' + fmtInt(leakRows.length);
+    document.getElementById('privacy-leaks').textContent = fmtInt(leakRows.length - leakPass);
+
+    setupTable({
+      tableId: 'tbl-privacy', searchId: 'search-privacy', countId: 'count-privacy',
+      columns: ['fictional_id', 'template_ticker', 'field', 'real_value', 'synthetic_value', 'pct_diff'],
+      rows: privacy,
+      formatters: {
+        real_value: (r) => fmtInt(Math.round(num(r.real_value))),
+        synthetic_value: (r) => fmtInt(Math.round(num(r.synthetic_value))),
+        pct_diff: (r) => (num(r.pct_diff) > 0 ? '+' : '') + num(r.pct_diff).toFixed(1) + '%',
+      },
+    });
+
+    const byCompanyPrivacy = computePrivacyByCompany(privacy);
+    drawPrivacyChart(document.getElementById('chart-privacy'), byCompanyPrivacy);
+
+    const allDiffs = privacy.map((r) => Math.abs(num(r.pct_diff))).sort((a, b) => a - b);
+    const medianDiff = allDiffs[Math.floor(allDiffs.length / 2)];
+    document.getElementById('privacy-median-diff').textContent = medianDiff.toFixed(1) + '%';
+
+    if (byCompanyPrivacy.length) {
+      const closest = byCompanyPrivacy[0];
+      document.getElementById('privacy-closest-company').textContent = closest.fictional_id;
+      document.getElementById('privacy-closest-detail').textContent =
+        'median ' + closest.median.toFixed(1) + '%, max ' + closest.max.toFixed(1) + '% across ' + closest.n + ' fields';
+      document.getElementById('verdict-closest').textContent =
+        closest.fictional_id + ', still a ' + closest.max.toFixed(1) + '% max across its ' + closest.n + ' fields';
+    }
+    const closestField = privacy.slice().sort((a, b) => Math.abs(num(a.pct_diff)) - Math.abs(num(b.pct_diff)))[0];
+    if (closestField) {
+      document.getElementById('verdict-closest-field').textContent =
+        closestField.fictional_id + "'s " + closestField.field.replaceAll('_', ' ') + ', '
+        + Math.abs(num(closestField.pct_diff)).toFixed(1) + '% from ' + closestField.template_ticker + "'s actual figure";
+    }
+
+    const anyLeak = leakRows.length - leakPass > 0;
+    const allFieldsClose = byCompanyPrivacy.some((c) => c.max < 5);
+    document.getElementById('privacy-verdict').textContent = (anyLeak || allFieldsClose) ? 'Needs review' : 'No leaks, no copies';
+  }
+})();
+</script>
+</body>
+</html>

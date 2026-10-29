@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0010",
+  "name": "Kalondra Machinery, Inc.",
+  "ticker": "KOLR",
+  "sector": "Industrials",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "CA",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 82769,
+  "revenue_growth": 0.067,
+  "employees": 126100,
+  "ratios": {
+    "gross_margin": 0.4784,
+    "operating_margin": 0.138,
+    "sga_ratio": 0.0774,
+    "da_ratio": 0.0497,
+    "capex_ratio": 0.0267,
+    "tax_rate": 0.2092,
+    "asset_turnover": 1.3914,
+    "equity_ratio": 0.3616,
+    "current_assets_ratio": 0.4082,
+    "current_ratio": 0.7099,
+    "cash_ratio": 0.0214,
+    "ppe_ratio": 0.0798,
+    "debt_ratio": 0.0383,
+    "receivables_ratio": 0.1082,
+    "rd_ratio": 0.024,
+    "inventory_ratio": 0.2721,
+    "goodwill_ratio": 0.1299,
+    "dividend_payout": 0.0634,
+    "other_operating_cash_ratio": 0.0071
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 82769,
+        "cost_of_revenue": 57989,
+        "gross_profit": 24780,
+        "research_and_development": 1986,
+        "selling_general_and_administrative": 6406,
+        "other_operating_expense": 4966,
+        "operating_income": 11422,
+        "interest_expense": 103,
+        "pretax_income": 11319,
+        "income_tax": 2368,
+        "net_income": 8951
+      },
+      "2023": {
+        "revenue": 77572,
+        "cost_of_revenue": 55129,
+        "gross_profit": 22443,
+        "research_and_development": 1899,
+        "selling_general_and_administrative": 5876,
+        "other_operating_expense": 4654,
+        "operating_income": 10014,
+        "interest_expense": 103,
+        "pretax_income": 9911,
+        "income_tax": 2019,
+        "net_income": 7892
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 897,
+        "receivables": 6308,
+        "inventory": 15863,
+        "total_current_assets": 24282,
+        "property_plant_and_equipment": 11753,
+        "goodwill": 7727,
+        "total_assets": 59486,
+        "total_current_liabilities": 34205,
+        "long_term_debt": 2278,
+        "total_equity": 21510,
+        "other_current_assets": 1214,
+        "other_noncurrent_assets": 15724,
+        "other_noncurrent_liabilities": 1493,
+        "total_liabilities": 37976,
+        "total_liabilities_and_equity": 59486
+      },
+      "2023": {
+        "cash": 866,
+        "receivables": 6149,
+        "inventory": 14921,
+        "total_current_assets": 23091,
+        "property_plant_and_equipment": 10740,
+        "goodwill": 7428,
+        "total_assets": 57762,
+        "total_current_liabilities": 33227,
+        "long_term_debt": 2288,
+        "total_equity": 20929,
+        "other_current_assets": 1155,
+        "other_noncurrent_assets": 16503,
+        "other_noncurrent_liabilities": 1318,
+        "total_liabilities": 36833,
+        "total_liabilities_and_equity": 57762
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 8951,
+        "depreciation_and_amortization": 4114,
+        "other_operating_items": 588,
+        "net_cash_from_operating_activities": 13653,
+        "capital_expenditures": -2210,
+        "other_investing_activities": -3032,
+        "net_cash_from_investing_activities": -5242,
+        "net_change_in_long_term_debt": -10,
+        "dividends_paid": -567,
+        "share_repurchases_net": -7803,
+        "net_cash_from_financing_activities": -8380,
+        "net_change_in_cash": 31,
+        "cash_beginning_of_year": 866,
+        "cash_end_of_year": 897
+      }
+    }
+  }
+}

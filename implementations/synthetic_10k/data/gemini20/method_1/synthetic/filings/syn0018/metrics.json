@@ -1,0 +1,142 @@
+{
+  "company_id": "syn0018",
+  "name": "Orzenka Midstream, Inc.",
+  "sector": "Energy",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 188.93,
+  "totals": {
+    "seconds": 188.37,
+    "prompt_tokens": 34665,
+    "completion_tokens": 34312,
+    "total_tokens": 68977,
+    "reasoning_tokens": 13561,
+    "calls": 6
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1237,
+      "prompt_chars": 13933,
+      "words": 2217,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1223,
+      "prompt_chars": 25336,
+      "words": 4091,
+      "attempts": 3,
+      "exemplar_overlap": 0.0095,
+      "issues": [
+        "Item 1A cites 6 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1240,
+      "prompt_chars": 35737,
+      "words": 2857,
+      "attempts": 1,
+      "exemplar_overlap": 0.0024,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 820,
+      "exemplar_words": 945,
+      "prompt_chars": 44436,
+      "words": 923,
+      "attempts": 1,
+      "exemplar_overlap": 0.0087,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 25.34,
+      "prompt_tokens": 3158,
+      "completion_tokens": 4702,
+      "total_tokens": 7860,
+      "reasoning_tokens": 1882,
+      "finish_reason": "stop",
+      "words": 2217,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 35.85,
+      "prompt_tokens": 5070,
+      "completion_tokens": 6661,
+      "total_tokens": 11731,
+      "reasoning_tokens": 2342,
+      "finish_reason": "stop",
+      "words": 3647,
+      "issues": [
+        "Item 1A cites 7 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 35.12,
+      "prompt_tokens": 5114,
+      "completion_tokens": 6385,
+      "total_tokens": 11499,
+      "reasoning_tokens": 2747,
+      "finish_reason": "stop",
+      "words": 3038,
+      "issues": [
+        "Item 1A cites 6 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gemini-3-flash-preview",
+      "seconds": 37.08,
+      "prompt_tokens": 5114,
+      "completion_tokens": 6430,
+      "total_tokens": 11544,
+      "reasoning_tokens": 1628,
+      "finish_reason": "stop",
+      "words": 4091,
+      "issues": [
+        "Item 1A cites 6 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 31.79,
+      "prompt_tokens": 7291,
+      "completion_tokens": 6491,
+      "total_tokens": 13782,
+      "reasoning_tokens": 2412,
+      "finish_reason": "stop",
+      "words": 2857,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 23.19,
+      "prompt_tokens": 8918,
+      "completion_tokens": 3643,
+      "total_tokens": 12561,
+      "reasoning_tokens": 2550,
+      "finish_reason": "stop",
+      "words": 923,
+      "issues": []
+    }
+  ]
+}

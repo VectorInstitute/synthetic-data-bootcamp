@@ -1,0 +1,84 @@
+## Item 1C. Cybersecurity
+
+### Risk Management and Strategy
+
+As a multi-line insurer, we hold large volumes of personal, financial, and health information about customers, claimants, insureds' employees, beneficiaries, and our own workforce. We depend on information technology to quote, bind, service policies, pay claims, and manage investments. We therefore treat cybersecurity risk as an enterprise risk. It is managed within our enterprise risk management framework as a component of operational risk, alongside technology, third-party, and model risk.
+
+Our information security program is designed to protect the confidentiality, integrity, and availability of our systems and data. It is aligned with the NIST Cybersecurity Framework. We use the framework's functions to organize our controls and measure the program's maturity:
+
+- identify;
+- protect;
+- detect;
+- respond; and
+- recover.
+
+The program is also designed to meet the requirements of the NYDFS cybersecurity regulation, which applies to our New York-domiciled insurers and other licensed entities. It also addresses state insurance data security laws, HIPAA, and other applicable requirements.
+
+Key elements of the program include:
+
+- **Risk assessment.** We conduct periodic cybersecurity risk assessments. The results inform our control priorities, investment decisions, and the risk tolerances established under our risk appetite framework.
+- **Policies and standards.** Our written security policies and standards are reviewed regularly and approved through our governance processes.
+- **Preventive and detective controls.** These include:
+  - identity and access management, including multifactor authentication;
+  - network segmentation and endpoint protection;
+  - encryption of sensitive data;
+  - secure configuration standards; and
+  - continuous security monitoring.
+- **Vulnerability management.** We maintain processes for identifying, prioritizing, and remediating vulnerabilities, including in the cloud-enabled platforms we are deploying through our platform modernization program.
+- **Secure development and emerging technology.** Security requirements are built into software development and into the deployment of new tools, including the generative artificial intelligence applications described in Item 1.
+- **Security awareness.** Employees and contractors receive security awareness training and participate in simulated phishing exercises.
+- **Testing.** Our controls are tested through penetration tests, red-team exercises, and assessments performed by internal teams and independent third parties.
+
+**Third-party risk management.** We rely on vendors, cloud providers, delegated authority partners, and other third parties for important services, and many of them process or store our data. Our third-party risk management process includes:
+
+- security due diligence before onboarding;
+- contractual security and incident notification requirements;
+- risk-tiered ongoing monitoring; and
+- periodic reassessment of vendors that have access to sensitive data or critical systems.
+
+For managing general agents and program administrators, we combine these practices with the audits described in Item 1 under "Specialty Insurance—Programs."
+
+**Incident response and recovery.** We maintain a documented cybersecurity incident response plan. The plan establishes how incidents are escalated, how their severity and potential materiality are assessed, and how we communicate with regulators, customers, law enforcement, and other stakeholders. A cross-functional team, including information security, technology, legal, compliance, privacy, risk management, and communications, carries out the plan. Senior management and the Board are involved according to the incident's severity. We conduct tabletop exercises with management and periodically with members of the Board. Our business continuity and disaster recovery plans are tested regularly.
+
+**External advisors.** We engage outside cybersecurity firms, forensic investigators, and legal counsel to:
+
+- assess and benchmark the program;
+- support threat intelligence; and
+- assist in responding to incidents.
+
+Our internal audit function independently reviews elements of the program.
+
+**Prior incident.** During fiscal 2023, we identified unauthorized access to a system maintained by one of our third-party vendors. The access briefly exposed limited customer contact information. In response, we:
+
+- activated our incident response plan;
+- worked with the vendor to contain the access and investigate its scope;
+- notified affected individuals and regulators as required by applicable law; and
+- reviewed the vendor's remediation actions.
+
+Based on our investigation, the incident did not involve unauthorized access to our own systems. We also do not believe it exposed financial account, health, or similarly sensitive information. We have applied lessons learned from the incident to our third-party risk management practices, including our vendor monitoring and contractual notification requirements.
+
+**Material effects.** To date, risks from cybersecurity threats, including the incident described above, have not materially affected us. We do not believe they are reasonably likely to materially affect our business strategy, results of operations, or financial condition. However, we cannot eliminate cybersecurity risk. A future incident could have a material adverse effect. See Item 1A, "Risk Factors—Risks Related to Technology, Cybersecurity, and Operations."
+
+### Governance
+
+**Board oversight.** Our Board of Directors oversees cybersecurity risk primarily through a dedicated Technology and Cybersecurity Committee of the Board. The committee's responsibilities include:
+
+- overseeing our information security program, technology strategy, and platform modernization program;
+- reviewing the program's alignment with the NIST Cybersecurity Framework and its compliance with applicable regulatory requirements, including the NYDFS cybersecurity regulation;
+- receiving reports on the threat environment, the results of risk assessments and independent testing, and significant incidents, including the third-party incident described above; and
+- monitoring the status of key remediation and investment initiatives.
+
+The committee receives regular reports from our Chief Information Security Officer and other members of management. It reports on its activities to the full Board.
+
+The committee coordinates with the risk committee of the Board, which oversees our enterprise risk management framework, including operational risk. It also coordinates with the audit committee on matters affecting internal control over financial reporting and disclosure. The full Board receives periodic briefings on cybersecurity matters.
+
+**Management's role.** Our Chief Information Security Officer leads the information security program and the enterprise information security function. The CISO's responsibilities include:
+
+- assessing and managing cybersecurity risk;
+- setting security policies and standards;
+- overseeing security operations and incident response; and
+- directing the program's continued development.
+
+The CISO and the information security team have experience and professional credentials in information security, technology risk, and incident response.
+
+The CISO reports regularly to senior management and to the Technology and Cybersecurity Committee. The CISO also participates in management-level risk committees led by our Chief Risk Officer. Under our incident response plan and escalation protocols, the CISO keeps senior management informed about the prevention, detection, mitigation, and remediation of cybersecurity incidents. Senior management determines, with input from legal counsel, whether an incident is material and how it must be disclosed.

@@ -1,0 +1,45 @@
+# ITEM 1C. CYBERSECURITY
+
+## Risk Management and Strategy
+
+Our business depends on the secure and reliable operation of our information systems and on our ability to protect the large volume of personal, financial, health, and proprietary information we hold. This information includes policyholder and claimant data, driving and telematics records, information obtained in connection with workers' compensation and liability claims, and the analytics software, models, rating plans, and underwriting guidelines developed by our technology subsidiary. We have therefore made cybersecurity risk management a core part of our operational risk discipline.
+
+Our information security program is aligned with the ISO/IEC 27001 standard for information security management systems. We use the standard's control domains and its risk-based approach to structure our policies, assess threats and vulnerabilities, select and implement safeguards, and drive continuous improvement. The program is also designed to meet applicable regulatory requirements. These include state insurance data security laws modeled on the NAIC Insurance Data Security Model Law, which require licensees to maintain written information security programs, conduct risk assessments, oversee third-party service providers, and notify regulators of cybersecurity events. Alignment with a recognized framework does not mean that we meet every technical requirement of that framework or that our controls will prevent every incident.
+
+Cybersecurity risk is integrated into our enterprise risk management framework. It is included in our risk taxonomy as a component of operational risk and is assessed alongside the other risks that inform our risk appetite statement, our ORSA process, and our scenario analysis. Under our three-lines-of-defense model:
+
+- business units and technology teams own the cybersecurity risks in their systems and processes;
+- our information security and enterprise risk functions set standards, monitor compliance, and provide independent challenge; and
+- internal audit periodically evaluates the design and operating effectiveness of key security controls.
+
+The principal elements of our program include:
+
+- **Risk assessment.** We perform periodic assessments to identify reasonably foreseeable internal and external threats, evaluate the likelihood and potential impact of those threats, and prioritize remediation.
+- **Preventive and detective controls.** These include identity and access management, privileged access controls, multi-factor authentication, network segmentation, endpoint protection, encryption of sensitive data, secure software development practices, and vulnerability and patch management.
+- **Security monitoring.** We monitor our environment continuously, using internal resources supplemented by external managed security services, to detect anomalous activity and potential intrusions.
+- **Testing and assessment.** We engage independent assessors to perform penetration testing, control reviews, and other evaluations of our program, and we use their findings to strengthen our controls.
+- **Training and awareness.** Employees and contractors complete security awareness training and receive simulated phishing exercises. Personnel with elevated access or specialized responsibilities receive role-specific training.
+- **Incident response.** We maintain a written incident response plan that defines roles, escalation paths, and procedures for containment, investigation, remediation, recovery, and regulatory and customer notification. The plan coordinates the information security, technology, legal, compliance, communications, and business functions and includes criteria for evaluating whether an incident is material. We test the plan through tabletop exercises involving members of senior management.
+- **Resilience.** Our business continuity and disaster recovery plans address the restoration of critical underwriting, policy administration, billing, and claims capabilities. They include scenarios in which a cyber event coincides with a natural catastrophe and a surge in claims volume.
+
+**Third-party risk.** We rely on vendors for cloud infrastructure, software, data, catastrophe models, and business process services. We also exchange information with independent agents, brokers, program administrators, and managing general agents through portals and application programming interfaces. Our vendor risk management program applies security due diligence before engagement, contractual security and notification requirements, risk-based ongoing assessments, and monitoring of service providers' security posture. For delegated authority partners, information security expectations are incorporated into our written agreements and periodic audits.
+
+**Emerging technologies and modernization.** As we migrate legacy systems to cloud-enabled platforms and expand our use of machine learning and generative artificial intelligence, our information security team participates in architecture reviews and vendor selection. Its role is to help ensure that new systems, data flows, and AI tools are deployed with appropriate access controls, data protection, and monitoring.
+
+**Material effects of cybersecurity threats.** As of the date of this report, we are not aware of any cybersecurity threats, including any previous cybersecurity incidents, that have materially affected or are reasonably likely to materially affect us, including our business strategy, results of operations, or financial condition. Like other insurers and financial institutions, we face persistent and evolving threats, and we cannot provide assurance that we will not experience a material incident in the future. For additional discussion, see Item 1A, "Risk Factors—Cybersecurity incidents and other breaches of our information systems could disrupt our operations, compromise confidential information, and expose us to liability and reputational harm."
+
+## Governance
+
+**Board oversight.** The Audit Committee of the Board of Directors has primary responsibility for overseeing cybersecurity risk. The Audit Committee receives regular reports from our Chief Information Security Officer ("CISO") on:
+
+- the threat landscape;
+- the status of our information security program and key initiatives;
+- results of risk assessments, independent testing, and internal audits;
+- third-party risk; and
+- significant security events and their resolution.
+
+The Audit Committee reports to the full Board on these matters. Because cybersecurity is part of our enterprise risk profile, the Risk Committee of the Board also receives information on cybersecurity risk in connection with its oversight of our ERM framework and risk appetite. Our incident response plan provides for prompt escalation of significant incidents to senior management and, as appropriate, to the Audit Committee chair and the full Board.
+
+**Management's role.** Our CISO leads the information security program and is responsible for assessing and managing cybersecurity risk on a day-to-day basis. The CISO's organization includes professionals in security architecture, security operations, identity and access management, threat intelligence, and third-party security risk. Many members of this team hold industry-recognized security certifications. The CISO works closely with our Chief Information Officer, Chief Risk Officer, General Counsel, and Chief Compliance Officer. Management keeps informed of the prevention, detection, mitigation, and remediation of cybersecurity incidents through ongoing reporting from the security operations function, the incident response process, and periodic program reviews.
+
+A management-level information security steering group, composed of senior leaders from technology, risk, legal, compliance, and the operating segments, reviews significant cybersecurity risks, approves security policies, and monitors the progress of remediation efforts.

@@ -1,0 +1,26 @@
+source,ticker,fiscal_year,item,style,question,answer,gold_chunk_id,gold_chunk_ids,kind,qa_id
+synthetic,AMED,2023,1,factual,"What were Riverton Energy Group, Inc.'s total revenues for fiscal 2023?",$1.98 billion,s:AMED_2023_1_2,s:AMED_2023_1_2;s:AMED_2023_7_2;s:AMED_2023_7_11,core,m2_gpt4o_0000
+synthetic,AMED,2023,7,factual,"What was Riverton Energy Group, Inc.'s net income for fiscal 2023?",$210.5 million,s:AMED_2023_7_14,s:AMED_2023_7_14;s:AMED_2023_7_17,core,m2_gpt4o_0001
+synthetic,AMED,2023,7,factual,"What were Riverton Energy Group, Inc.'s total assets as of the end of fiscal 2023?",$4.05 billion,s:AMED_2023_7_5,s:AMED_2023_7_5,core,m2_gpt4o_0002
+synthetic,BFJ,2025,7,factual,"What were Stonegate Systems Holdings, Inc.'s total revenues for fiscal 2025?",$18.3 billion,s:BFJ_2025_7_2,s:BFJ_2025_7_2;s:BFJ_2025_7_15;s:BFJ_2025_8_11,core,m2_gpt4o_0003
+synthetic,BFJ,2025,7,factual,"What was Stonegate Systems Holdings, Inc.'s net income for fiscal 2025?",$2.16 billion,s:BFJ_2025_7_13,s:BFJ_2025_7_13;s:BFJ_2025_8_12,core,m2_gpt4o_0004
+synthetic,BFJ,2025,7,factual,"What were Stonegate Systems Holdings, Inc.'s total assets as of the end of fiscal 2025?",$125.3 billion,s:BFJ_2025_7_6,s:BFJ_2025_7_6;s:BFJ_2025_8_4,core,m2_gpt4o_0005
+synthetic,CIG,2024,7,factual,What were Crestline Energy Inc.'s total revenues for fiscal 2024?,$7.43 billion,s:CIG_2024_7_15,s:CIG_2024_7_15,core,m2_gpt4o_0006
+synthetic,CIG,2024,7,factual,What was Crestline Energy Inc.'s net income for fiscal 2024?,$1.88 billion,s:CIG_2024_7_6,s:CIG_2024_7_6,core,m2_gpt4o_0007
+synthetic,CIG,2024,7,factual,What were Crestline Energy Inc.'s total assets as of the end of fiscal 2024?,$29.92 billion,s:CIG_2024_7_10,s:CIG_2024_7_10,core,m2_gpt4o_0008
+synthetic,DLBG,2023,1,factual,What were Ironwood Resources Corp.'s total revenues for fiscal 2023?,$8.04 billion,s:DLBG_2023_1_3,s:DLBG_2023_1_3;s:DLBG_2023_7_3,core,m2_gpt4o_0009
+synthetic,IJMU,2023,7,factual,What were Clearwater Technologies Co.'s total revenues for fiscal 2023?,$26.8 billion,s:IJMU_2023_7_7,s:IJMU_2023_7_7,core,m2_gpt4o_0010
+synthetic,IJMU,2023,7,factual,What were Clearwater Technologies Co.'s total assets as of the end of fiscal 2023?,$535.4 billion,s:IJMU_2023_7_16,s:IJMU_2023_7_16,core,m2_gpt4o_0011
+synthetic,KMKE,2023,7,factual,"What was Stonegate Networks Group, Inc.'s net margin for fiscal 2023?",47.8%,s:KMKE_2023_7_9,s:KMKE_2023_7_9;s:KMKE_2023_8_10,core,m2_gpt4o_0012
+synthetic,KMKE,2023,7,factual,"What was Stonegate Networks Group, Inc.'s operating margin for fiscal 2023?",55.1%,s:KMKE_2023_7_7,s:KMKE_2023_7_7;s:KMKE_2023_8_9,core,m2_gpt4o_0013
+synthetic,NWSH,2025,1,factual,What were Meridian Technologies Co.'s total revenues for fiscal 2025?,$26.03 billion,s:NWSH_2025_1_26,s:NWSH_2025_1_26;s:NWSH_2025_7_4;s:NWSH_2025_8_10,core,m2_gpt4o_0014
+synthetic,NWSH,2025,7,factual,What was Meridian Technologies Co.'s net income for fiscal 2025?,$3.69 billion,s:NWSH_2025_7_4,s:NWSH_2025_7_4;s:NWSH_2025_8_11;s:NWSH_2025_8_14,core,m2_gpt4o_0015
+synthetic,NWSH,2025,1a,factual,What were Meridian Technologies Co.'s total assets as of the end of fiscal 2025?,$41.88 billion,s:NWSH_2025_1a_18,s:NWSH_2025_1a_18;s:NWSH_2025_7_4;s:NWSH_2025_8_4,core,m2_gpt4o_0016
+synthetic,SGJ,2023,7,factual,"What were Northbridge Robotics Holdings, Inc.'s total revenues for fiscal 2023?",$258.4 billion,s:SGJ_2023_7_4,s:SGJ_2023_7_4,core,m2_gpt4o_0017
+synthetic,SGJ,2023,7,factual,"What was Northbridge Robotics Holdings, Inc.'s net income for fiscal 2023?",$5.39 billion,s:SGJ_2023_7_4,s:SGJ_2023_7_4,core,m2_gpt4o_0018
+synthetic,TIO,2025,7,factual,"What were Fieldstone Solutions Holdings, Inc.'s total revenues for fiscal 2025?","$96,117.2 million",s:TIO_2025_7_4,s:TIO_2025_7_4;s:TIO_2025_7_8,core,m2_gpt4o_0019
+synthetic,TIO,2025,7,factual,"What was Fieldstone Solutions Holdings, Inc.'s net income for fiscal 2025?","$38,197.1 million",s:TIO_2025_7_12,s:TIO_2025_7_12,core,m2_gpt4o_0020
+synthetic,TIO,2025,7,factual,"What were Fieldstone Solutions Holdings, Inc.'s total assets as of the end of fiscal 2025?","$231,579.4 million",s:TIO_2025_7_17,s:TIO_2025_7_17,core,m2_gpt4o_0021
+synthetic,WHKJ,2024,1,factual,What were Stonegate Materials Corp.'s total revenues for fiscal 2024?,$20.49 billion,s:WHKJ_2024_1_3,s:WHKJ_2024_1_3;s:WHKJ_2024_7_3;s:WHKJ_2024_7_16;s:WHKJ_2024_8_10,core,m2_gpt4o_0022
+synthetic,WHKJ,2024,7,factual,What was Stonegate Materials Corp.'s net income for fiscal 2024?,$270.67 million,s:WHKJ_2024_7_3,s:WHKJ_2024_7_3;s:WHKJ_2024_7_22;s:WHKJ_2024_8_12,core,m2_gpt4o_0023
+synthetic,WHKJ,2024,1a,factual,What were Stonegate Materials Corp.'s total assets as of the end of fiscal 2024?,$38.22 billion,s:WHKJ_2024_1a_10,s:WHKJ_2024_1a_10;s:WHKJ_2024_7_6;s:WHKJ_2024_8_5,core,m2_gpt4o_0024

@@ -1,0 +1,108 @@
+{
+  "company_id": "syn0017",
+  "name": "Orris Aerospace, Inc.",
+  "sector": "Industrials",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 311.23,
+  "totals": {
+    "seconds": 310.79,
+    "prompt_tokens": 36186,
+    "completion_tokens": 32930,
+    "total_tokens": 69116,
+    "reasoning_tokens": 0,
+    "calls": 4
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1222,
+      "prompt_chars": 14253,
+      "words": 3866,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1234,
+      "prompt_chars": 25763,
+      "words": 3963,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1312,
+      "prompt_chars": 37793,
+      "words": 4265,
+      "attempts": 1,
+      "exemplar_overlap": 0.003,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 1090,
+      "prompt_chars": 42514,
+      "words": 1052,
+      "attempts": 1,
+      "exemplar_overlap": 0.0104,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 91.23,
+      "prompt_tokens": 4275,
+      "completion_tokens": 9274,
+      "total_tokens": 13549,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 3866,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 87.88,
+      "prompt_tokens": 7641,
+      "completion_tokens": 9051,
+      "total_tokens": 16692,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 3963,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 100.94,
+      "prompt_tokens": 11706,
+      "completion_tokens": 11644,
+      "total_tokens": 23350,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4265,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 30.74,
+      "prompt_tokens": 12564,
+      "completion_tokens": 2961,
+      "total_tokens": 15525,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 1052,
+      "issues": []
+    }
+  ]
+}

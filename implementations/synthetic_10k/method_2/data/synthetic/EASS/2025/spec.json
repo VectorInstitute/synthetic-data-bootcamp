@@ -1,0 +1,34 @@
+{
+  "fictional_id": "EASS",
+  "fictional_name": "Cedarfield Systems Holdings, Inc.",
+  "fiscal_year": 2025,
+  "sector": "Materials",
+  "sub_industry": "Metal, Glass & Plastic Containers",
+  "hq_state": "Colorado",
+  "template": {
+    "ticker": "BALL",
+    "fiscal_year": 2025
+  },
+  "financials": {
+    "total_assets": 23516760961,
+    "total_liabilities": 16631187807,
+    "stockholders_equity": 6885573154,
+    "revenues": 16028315487,
+    "net_income": 1036394843
+  },
+  "cybersecurity": {
+    "framework": "ISO/IEC 27001",
+    "oversight": "the full Board of Directors, with support from the Audit Committee",
+    "had_disclosed_incident": false
+  },
+  "scenario": {
+    "type": "mergers_and_acquisitions",
+    "summary": "Cedarfield Systems Holdings completed the acquisition of Thornridge Packaging Corp., a fictional packaging manufacturer, during fiscal 2025, consistent with its history of bolt-on acquisitions in the packaging industry.",
+    "facts": {
+      "acquired_name": "Thornridge Packaging Corp.",
+      "purchase_price": 249712064,
+      "rationale": "expand manufacturing capacity and customer relationships in adjacent packaging end markets",
+      "integration_status": "substantially integrated into existing operations as of fiscal year end"
+    }
+  }
+}

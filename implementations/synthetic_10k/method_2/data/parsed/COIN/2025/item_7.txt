@@ -1,0 +1,725 @@
+The following discussion and analysis of our financial condition and results of operations should be read in conjunction with our Consolidated Financial Statements and the accompanying notes thereto included elsewhere in this Annual Report on Form 10-K. The following discussion and analysis contains forward-looking statements that involve risks and uncertainties, as well as assumptions that, if they never materialize or prove incorrect, could cause our results to differ materially from those expressed or implied by such forward-looking statements. Factors that could cause or contribute to these differences include, but are not limited to, those identified below and those discussed in the section titled Risk Factors in Part I, Item 1A of this Annual Report on Form 10-K. Unless otherwise expressly stated or the context otherwise requires, references to “we,” “our,” “us,” “the Company,” and “Coinbase” refer to Coinbase Global, Inc. and its consolidated subsidiaries. For all narrative provided in this Item 7, two numbers presented consecutively represent figures for the year ended December 31, 2025 as compared to the year ended December 31, 2024, respectively, unless otherwise noted. Management’s Discussion and Analysis of Financial Condition and Results of Operations for the year ended December 31, 2024 as compared to the year ended December 31, 2023 can be found in Item 7 of our Annual Report on Form 10-K for the year ended December 31, 2024, as filed with the Securities and Exchange Commission on February 13, 2025, which is incorporated by reference herein.
+
+Executive Overview
+
+This executive overview of Management’s Discussion and Analysis of Financial Condition and Results of Operations highlights selected information and does not contain all of the information that is important to readers of this Annual Report on Form 10-K.
+
+During 2025, we continued to make progress towards our mission by expanding access to trading through innovative derivative products, listing more spot assets, and expanding our offerings in markets globally. We completed the acquisition of Deribit in August, which we believe will play a key role in our goal to be the premier global platform for crypto derivatives, and we launched U.S. perpetual-style futures. Stablecoin adoption is accelerating. USDC reached an all-time high in market capitalization, as did USDC held in Coinbase products. We are scaling payments infrastructure, expanding distribution with new partnerships, and extending utility for everyday spending with the Coinbase One Card.
+
+For the year ended December 31, 2025, our net revenue was $6.9 billion, including $4.1 billion in transaction revenue and $2.8 billion in subscription and services revenue. For the year ended December 31, 2024, our net revenue was $6.3 billion, including $4.0 billion in transaction revenue and $2.3 billion in subscription and services revenue.
+
+For the year ended December 31, 2025, our net income was $1.3 billion and Adjusted EBITDA was $2.8 billion. For the year ended December 31, 2024, our net income was $2.6 billion and Adjusted EBITDA was $3.3 billion.
+
+For 2026, with growing regulatory clarity, we believe we are well-positioned to drive crypto’s role in global GDP through the Everything Exchange and by advancing stablecoin adoption with USDC, including scaling payments. We are working to further grow assets on our platform, and in turn revenue, as customers discover and adopt more products where their assets already reside. Despite multiple Federal Funds Rate decreases in late 2024 and 2025, future interest rate decreases are not certain. If interest rates continue to decline, they may materially impact our subscription and services and other revenue. We plan to dynamically adjust our expense base in order to be responsive to market conditions and revenue opportunities, increasing or decreasing it as needed, especially with respect to certain variable expenses. In the first quarter of 2026, we expect the aggregate of technology and development and general and administrative expenses to generally be in line with that of the fourth quarter of 2025. Additionally, we expect sales and marketing expenses to be roughly in line with or lower than those of the fourth quarter of 2025, reflecting the anticipated timing and scope of marketing opportunities.
+
+89
+
+Table of Contents
+
+Key Business Metrics
+
+In addition to the measures presented in our Consolidated Financial Statements, we use the key business metrics listed below to evaluate our business, measure our performance, identify trends affecting our business, and make strategic decisions:
+
+Year Ended December 31, | Change
+
+2025 | 2024 | %
+
+MTUs (1) (in millions) | 9.2 | 8.4 | 10
+
+Assets on Platform (2) (in billions) | 376 | 404 | (7)
+
+Trading Volume (3) (in billions) | 1,221 | 1,189 | 3
+
+Net income (in millions) | 1,260 | 2,579 | (51)
+
+Adjusted EBITDA (4) (in millions) | 2,808 | 3,348 | (16)
+
+_____________
+
+(1)Represents the annual average MTUs, calculated as the average of quarterly MTUs, which are derived from the average of each month’s MTUs in each respective quarter.
+
+(2)Represents Assets on Platform as of December 31.
+
+(3)Represents the total U.S. Dollar equivalent of Spot Trading Volume transacted through our platform. During the fourth quarter of 2025, we redefined Trading Volume to add half of the trade value of spot trades that are routed off our platform for fulfillment, in order to provide a more comprehensive view of Trading Volume that drives our transaction revenue. Prior period amounts have been recast to conform to the current period’s definition.
+
+(4)See Non-GAAP Financial Measure below for a reconciliation of net income to Adjusted EBITDA and an explanation for why we consider Adjusted EBITDA to be a helpful metric for investors.
+
+Monthly Transacting Users
+
+We define a Monthly Transacting User (“MTU”) as a consumer who actively or passively transacts in one or more products on our platform at least once during the rolling 28-day period ending on the date of measurement. MTUs engage in transactions that generate transaction revenue or subscription and services revenue. Revenue-generating transactions include active transactions, such as buying or selling crypto assets or passive transactions such as earning staking rewards and USDC rewards. MTUs also engage in transactions that are non-revenue generating, such as consumers sending and receiving crypto assets between wallets and off-platform accounts on a non-expedited basis. MTUs may overstate the number of unique consumers due to differences in product architecture or user behavior.
+
+MTUs increased for the year ended December 31, 2025 as compared to 2024, primarily due to an increase in users participating in rewards programs, by holding USDC or staking their assets, influenced by deeper integration of USDC across our products and expanded staking services.
+
+Assets on Platform
+
+We define Assets on Platform (“AOP”) as the total United States (“U.S.”) dollar equivalent value of crypto assets and payment stablecoins held or managed on behalf of customers in digital wallets on our platform, including our custody services but excluding assets for which the customer holds full or partial keys, calculated based on the market price on the date of measurement. AOP demonstrates the scale of balances held across our suite of products and services, the trust customers place in us to securely store their assets, and the underlying growth of the onchain economy. AOP also represents a monetization opportunity through our products and services, including from trading and the adoption and use of payment stablecoins, staking, custody, and institutional financing, when customers use these assets to engage with these products and services.
+
+90
+
+Table of Contents
+
+The following table sets forth the value of AOP by asset (in millions, except percentages):
+
+December 31, | Change
+
+2025 | 2024 | %
+
+Bitcoin | 252,803 | 235,378 | 7
+
+Ethereum | 56,229 | 54,209 | 4
+
+XRP | 17,233 | 16,501 | 4
+
+Solana | 13,319 | 21,298 | (37)
+
+USDC | 9,261 | 6,091 | 52
+
+Other crypto assets and payment stablecoins (1) | 27,284 | 70,557 | (61)
+
+Total | 376,129 | 404,034 | (7)
+
+__________________
+
+(1)Includes various other crypto asset and payment stablecoin balances, none of which individually represented more than 5% of total AOP.
+
+AOP at December 31, 2025 decreased as compared to December 31, 2024, primarily reflecting a $77.0 billion aggregate decline in prices of most assets, offset in part by growth attributable to units, primarily Bitcoin.
+
+Trading Volume
+
+We define Trading Volume as the total U.S. dollar equivalent value of spot matched trades transacted between a buyer and seller through our platform, plus half of the value of trades that we routed off our platform for fulfillment, during the period of measurement. Trading Volume does not include volume from other trading products, such as derivatives, equities, or event contracts, but may in the future as those become more material. Trading Volume represents the product of the quantity of assets transacted and the trade price at the time the transaction was executed. As trading activity directly impacts transaction revenue, we believe this measure is a reflection of liquidity on our order books, trading health, and the underlying growth of the onchain economy. Institutions incur lower fees per transaction than consumers and, as a result, the impact of changes in consumer Trading Volume on transaction revenue is more pronounced than the impact of changes in institutional Trading Volume. Within consumer, Advanced traders incur lower fees per transaction than Simple traders, and therefore a shift in the mix of trading between these consumers impacts transaction revenue.
+
+Generally, Trading Volume is primarily influenced by overall market dynamics, namely the price of crypto assets, crypto asset volatility, and macroeconomic conditions, and by our share of total crypto market spot trading volume. In periods of high crypto asset prices and crypto asset volatility, we have generally experienced correspondingly high levels of Trading Volume. In recent quarters, we have also seen market events, product announcements, paid incentives, and competition as influential factors. Trading activity generally directly impacts transaction revenue. However, during periods when new products or markets are being introduced or entered, associated trading volume may not directly impact revenue within the same period, or may impact it indirectly.
+
+91
+
+Table of Contents
+
+Year Ended December 31, | Change
+
+2025 | 2024 | %
+
+Trading Volume (1) (in billions)
+
+Consumer | 239 | 224 | 7
+
+Institutional | 982 | 965 | 2
+
+Total Trading Volume | 1,221 | 1,189 | 3
+
+Trading Volume by crypto asset
+
+Bitcoin | 29 | % | 33 | % | (12)
+
+Ethereum | 16 | 13 | 23
+
+USDT | 6 | 12 | (50)
+
+Other crypto assets (2) | 49 | 42 | 17
+
+Total | 100 | % | 100 | %
+
+____________________________________
+
+(1)During the fourth quarter of 2025, we redefined Trading Volume to add half of the trade value of spot trades that are routed off our platform for fulfillment, in order to provide a more comprehensive view of Trading Volume that drives our transaction revenue. Prior period amounts have been recast to conform to the current period’s definition.
+
+(2)Includes various other crypto assets, none of which individually represented more than 10% of our total Trading Volume.
+
+For the year ended December 31, 2025 as compared to 2024, Trading Volume increased primarily reflecting an increase of 9% in global crypto market spot trading volume (the USD equivalent value of all matched trades transacted between buyers and sellers across all exchanges), offset in part by a decrease of $101.0 billion attributed to a decline in our share of stablecoin pair market volume driven by an intentional pricing change made in March of 2025 as we evolved our stablecoin strategy.
+
+Results of Operations
+
+Comparison of the years ended December 31, 2025 and 2024
+
+Revenue
+
+For the years ended December 31, 2025 and 2024 we generated 84% and 83%, respectively, of total revenue in the U.S., with no other country contributing over 10%. International revenue comprised mainly transaction revenue.
+
+Transaction revenue
+
+Year Ended December 31, | Change
+
+(in thousands, except %) | 2025 | 2024 | %
+
+Consumer, net | 3,322,835 | 3,430,322 | (107,487) | (3)
+
+Institutional, net | 479,667 | 345,598 | 134,069 | 39
+
+Other transaction revenue, net | 252,888 | 210,193 | 42,695 | 20
+
+Total transaction revenue | 4,055,390 | 3,986,113 | 69,277 | 2
+
+% of net revenue | 59 | 63
+
+Transaction revenue increased for the year ended December 31, 2025 as compared to 2024, primarily reflecting:
+
+•a decrease in consumer transaction revenue driven by:
+
+◦a decrease of $384.4 million attributed to a lower average blended fee rate, primarily due to changes in the mix of Trading Volume from Simple users to Advanced and Coinbase One users who pay lower average fees; offset in part by
+
+◦an increase of $277.0 million attributed to a 7% increase in consumer Trading Volume; and
+
+92
+
+Table of Contents
+
+•an increase in institutional transaction revenue driven by an increase of $152.0 million attributed to derivatives trading, due mainly to the acquisition of Deribit.
+
+There were no material changes to note within other transaction revenue.
+
+The percentage of transaction revenue from spot trading on our platform by crypto asset was as follows:
+
+Year Ended December 31, | Change
+
+2025 | 2024 | %
+
+Bitcoin | 27 | % | 30 | % | (10)
+
+XRP | 14 | 6 | 133
+
+Ethereum | 12 | 13 | (8)
+
+Other crypto assets (1) | 47 | 51 | (8)
+
+Total | 100 | % | 100 | %
+
+____________________________________
+
+(1)Includes various other crypto assets, none of which individually represented more than 10% of our total transaction revenue from spot trading on our platform.
+
+Subscription and services revenue
+
+Year Ended December 31, | Change
+
+(in thousands, except %) | 2025 | 2024 | %
+
+Stablecoin revenue | 1,348,821 | 910,464 | 438,357 | 48
+
+Blockchain rewards | 677,405 | 705,757 | (28,352) | (4)
+
+Interest and finance fee income | 247,047 | 265,799 | (18,752) | (7)
+
+Other subscription and services revenue | 554,775 | 425,113 | 129,662 | 31
+
+Total subscription and services revenue | 2,828,048 | 2,307,133 | 520,915 | 23
+
+% of net revenue | 41 | 37
+
+Subscription and services revenue increased for the year ended December 31, 2025 as compared to 2024, reflecting:
+
+•increases in stablecoin revenue of:
+
+◦$417.7 million due to higher average USDC balances held in Coinbase products1; and
+
+◦$314.1 million due to higher average USDC off-platform balances; offset in part by
+
+◦a decrease of $290.8 million due to lower average interest rates, which declined 89 basis points; and
+
+•an increase in other subscription and services revenue, primarily due to a higher number of Coinbase One paid subscribers.
+
+There were no material changes to note within blockchain rewards or interest and finance fee income.
+
+Other revenue
+
+Year Ended December 31, | Change
+
+(in thousands, except %) | 2025 | 2024 | %
+
+Corporate interest and other income | 297,887 | 270,782 | 27,105 | 10
+
+Total other revenue | 297,887 | 270,782 | 27,105 | 10
+
+1 Includes corporate USDC balances and USDC held on behalf of customers in eligible Coinbase products.
+
+93
+
+Table of Contents
+
+Other revenue increased for the year ended December 31, 2025 as compared to 2024, largely reflecting an increase of $85.3 million due to higher average cash and cash equivalents balances, offset by lower average interest rates earned on these balances, which declined 89 basis points.
+
+Operating expenses
+
+Certain prior period amounts have been reclassified to conform to the current period presentation.
+
+Transaction expense
+
+Year Ended December 31, | Change
+
+(in thousands, except %) | 2025 | 2024 | %
+
+Blockchain rewards fees | 427,506 | 455,946 | (28,440) | (6)
+
+Transaction rebates and commissions | 221,471 | 122,372 | 99,099 | 81
+
+Payment processing and account verification | 194,587 | 150,897 | 43,690 | 29
+
+Transaction reversal losses | 132,671 | 79,639 | 53,032 | 67
+
+Other | 43,995 | 88,853 | (44,858) | (50)
+
+Total transaction expense | 1,020,230 | 897,707 | 122,523 | 14
+
+% of net revenue | 15 | 14
+
+Transaction expense increased for the year ended December 31, 2025 as compared to 2024, reflecting:
+
+•higher transaction rebates and commissions, primarily those earned by institutional customers providing liquidity on our international exchange, driven by growth in volume; and
+
+•an increase in transaction reversal losses primarily driven by higher transaction volume; offset in part by
+
+•a decrease in blockchain transaction fees within other, primarily due to lower average Ethereum gas fees.
+
+There were no material changes to note within blockchain rewards fees or payment processing and account verification.
+
+Technology and development
+
+Year Ended December 31, | Change
+
+(in thousands, except %) | 2025 | 2024 | %
+
+Employee-related | 1,052,597 | 1,036,656 | 15,941 | 2
+
+Website hosting and infrastructure | 322,125 | 228,392 | 93,733 | 41
+
+Amortization, depreciation, and impairment | 157,067 | 122,595 | 34,472 | 28
+
+Other | 138,816 | 80,609 | 58,207 | 72
+
+Total technology and development | 1,670,605 | 1,468,252 | 202,353 | 14
+
+% of net revenue | 24 | 23
+
+Technology and development expenses increased for the year ended December 31, 2025 as compared to 2024, reflecting:
+
+•changes in employee-related expenses driven by higher average headcount supporting international expansion and new product initiatives, offset in part by lower stock-based compensation expense (see Note 16. Stock-Based Compensation of the Notes to our Consolidated Financial Statements included in Part II, Item 8 of this Annual Report on Form 10-K for additional details) primarily associated with non-recurring awards; and
+
+94
+
+Table of Contents
+
+•an increase in website hosting and infrastructure expenses driven by initiatives to increase capacity and scalability to support activity on our platform.
+
+There were no material changes to note within amortization, depreciation, and impairment, or other.
+
+Sales and marketing
+
+Year Ended December 31, | Change
+
+(in thousands, except %) | 2025 | 2024 | %
+
+USDC rewards | 441,347 | 224,255 | 217,092 | 97
+
+Marketing programs | 402,555 | 247,087 | 155,468 | 63
+
+Employee-related | 136,229 | 151,036 | (14,807) | (10)
+
+Other | 78,446 | 32,066 | 46,380 | 145
+
+Total sales and marketing | 1,058,577 | 654,444 | 404,133 | 62
+
+% of net revenue | 15 | 10
+
+Sales and marketing expenses increased for the year ended December 31, 2025 as compared to 2024, primarily due to:
+
+•an increase in USDC rewards primarily reflecting growth in average customer USDC balances held in Coinbase products2 as we continue to integrate USDC across our products; and
+
+•an increase in marketing program expenses largely due to higher digital advertising and brand spend, including corporate sponsorships and go-to-market efforts.
+
+There were no material changes to note within employee-related or other.
+
+General and administrative
+
+Year Ended December 31, | Change
+
+(in thousands, except %) | 2025 | 2024 | %
+
+Employee-related | 664,761 | 606,554 | 58,207 | 10
+
+Professional services | 292,599 | 202,956 | 89,643 | 44
+
+Customer support (1) | 224,193 | 124,940 | 99,253 | 79
+
+Other | 438,089 | 365,807 | 72,282 | 20
+
+Total general and administrative | 1,619,642 | 1,300,257 | 319,385 | 25
+
+% of net revenue | 24 | 21
+
+____________________________________
+
+(1)Excludes employee-related and professional services expenses.
+
+General and administrative expenses increased for the year ended December 31, 2025 as compared to 2024, primarily due to:
+
+•an increase in employee-related expenses primarily due to higher average headcount;
+
+•an increase in professional services due to increased use of legal advisory services, including those relating to business combinations and strategic investments; and
+
+•an increase in customer support costs as a result of increased capacity needs and enhancement of our customer service function.
+
+There were no material changes to note within other.
+
+2 Comprises USDC held on behalf of customers in eligible Coinbase products.
+
+95
+
+Table of Contents
+
+Losses (gains) on crypto assets held for operations, net
+
+Year Ended December 31, | Change
+
+(in thousands, except %) | 2025 | 2024 | %
+
+Losses (gains) on crypto assets held for operations, net | 20,704 | (71,725) | 92,429 | (129)
+
+Changes in losses (gains) on crypto assets held for operations, net resulted primarily from holding these assets during a period of declining crypto asset prices, particularly in the fourth quarter of 2025. Though both gross inflows and outflows of these assets were approximately $1.6 billion and $1.5 billion during the years ended December 31, 2025 and 2024, respectively, gains and losses on changes in the fair value of the assets were limited as these assets are converted to cash or used for expenses nearly immediately after receipt.
+
+Other operating expense, net
+
+Year Ended December 31, | Change
+
+(in thousands, except %) | 2025 | 2024 | %
+
+Platform-related incidents | 345,210 | 28,070 | 317,140 | nm
+
+Other | 10,916 | (20,137) | 31,053 | (154)
+
+Total other operating expense, net | 356,126 | 7,933 | 348,193 | nm
+
+__________________
+
+nm - not meaningful
+
+Other operating expense, net increased for the year ended December 31, 2025 as compared to 2024, primarily due to losses directly associated with the incident announced on the Current Report on Form 8-K we filed with the SEC on May 15, 2025 (the “Data Theft Incident”), comprising voluntary customer reimbursements and direct legal costs. There were no other material changes to note within other.
+
+Interest expense
+
+Year Ended December 31, | Change
+
+(in thousands, except %) | 2025 | 2024 | %
+
+Interest expense | 85,413 | 80,645 | 4,768 | 6
+
+There were no material changes to note within interest expense.
+
+Losses (gains) on crypto assets held for investment, net
+
+Year Ended December 31, | Change
+
+(in thousands, except %) | 2025 | 2024 | %
+
+Losses (gains) on crypto assets held for investment, net | 528,857 | (687,055) | 1,215,912 | (177)
+
+Changes in losses (gains) on crypto assets held for investment, net resulted primarily from fair value remeasurement, particularly in the fourth quarter of 2025, of these assets, mainly Bitcoin and Ethereum. The impact of these changes in fair value expanded beginning late in the first quarter of 2025, as we have actively increased our investment in Bitcoin since then.
+
+Other income, net
+
+Year Ended December 31, | Change
+
+(in thousands, except %) | 2025 | 2024 | %
+
+(Gains) losses on investments, net | (680,520) | 11,553 | (692,073) | nm
+
+Other | (20,374) | (40,627) | 20,253 | (50)
+
+Total other income, net | (700,894) | (29,074) | (671,820) | nm
+
+__________________
+
+nm - not meaningful
+
+96
+
+Table of Contents
+
+Other income, net changed for the year ended December 31, 2025 as compared to 2024, due to a gain on the sale of a portion of our investment in Circle Internet Group, Inc. and fair value remeasurement of our remaining holding, both resulting from Circle’s initial public offering in June 2025. There were no material changes to note within other.
+
+Provision for income taxes
+
+Year Ended December 31, | Change
+
+(in thousands, except %) | 2025 | 2024 | %
+
+Provision for income taxes | 261,738 | 363,578 | (101,840) | (28)
+
+For the year ended December 31, 2025 as compared to 2024, the decrease in provision for income taxes was primarily due to lower pretax income, partially offset by lower tax benefits from stock-based compensation.
+
+Non-GAAP Financial Measure
+
+In addition to our results determined in accordance with GAAP, we believe Adjusted EBITDA, a non-GAAP financial performance measure, is useful information to help investors evaluate our operating performance because it: enables investors to compare this measure and component adjustments to similar information provided by peer companies and our past financial performance; provides additional company-specific adjustments for certain items that may be included in income from operations but that we do not consider to be normal, recurring, operating expenses (or income) necessary to operate our business given our operations, revenue generating activities, business strategy, industry, and regulatory environment; and provides investors with visibility to a measure management uses to evaluate our ongoing operations and for internal planning and forecasting purposes. For example:
+
+•We believe it is useful to exclude certain non-cash expenses, such as depreciation and amortization and stock-based compensation, from Adjusted EBITDA because the amounts of such expenses can vary significantly from period to period and may not directly correlate to the underlying performance of our business operations.
+
+•We believe it is useful to exclude certain items that we do not consider to be normal, recurring, cash operating expenses and therefore, not reflective of our ongoing business operations. For example, we exclude: (i) other income, net, as the income and expenses recognized in this line item are not part of our core operating activities and are considered non-operating activities under GAAP, (ii) gains and losses on crypto assets held for investment because such investments are considered primarily long-term holdings, and (iii) losses directly related to the Data Theft Incident, including voluntary customer reimbursements, direct legal costs, and reward payments, if any, in connection with the threat actor’s arrest and conviction. We do not plan on engaging in regular trading of crypto assets, and, as an operating company, our investing activities in crypto are not part of our revenue generating activities, which are primarily based on transactions on our platform and the sales of subscriptions and services.
+
+•We believe Adjusted EBITDA is useful to measure a company’s operating performance without regard to items such as stock-based compensation expense, depreciation and amortization expense, interest expense, other income, net, and provision for income taxes that can vary substantially from company to company depending upon their financing, capital structures, and the method by which assets were acquired.
+
+Limitations of Adjusted EBITDA
+
+We believe that Adjusted EBITDA may be helpful to investors for the reasons noted above. However, Adjusted EBITDA is presented for supplemental informational purposes only, has limitations as an analytical tool, and should not be considered in isolation or as a substitute for financial information
+
+97
+
+Table of Contents
+
+presented in accordance with GAAP. There are a number of limitations related to Adjusted EBITDA rather than net income (loss), which is the nearest GAAP equivalent of Adjusted EBITDA. Some of these limitations are that Adjusted EBITDA excludes:
+
+•provision for income taxes;
+
+•interest expense, or the cash requirements necessary to service interest or principal payments on our debt, which reduces cash available to us;
+
+•depreciation and amortization expense and, although these are non-cash expenses, the assets being depreciated and amortized may have to be replaced in the future;
+
+•stock-based compensation expense, which has been, and will continue to be for the foreseeable future, a significant recurring expense for our business and an important part of our compensation strategy;
+
+•losses directly related to the Data Theft Incident, net of recoveries;
+
+•net gains or losses on our crypto assets held for investment; and
+
+•other income, net, which represents net gains or losses on investments and other financial instruments, and other non-operating income and expense activity.
+
+In addition, other companies, including companies in our industry, may calculate Adjusted EBITDA differently or may use other measures to evaluate their performance, all of which could reduce the usefulness of our disclosure of Adjusted EBITDA as a tool for comparison. A reconciliation is provided below for Adjusted EBITDA to net income, the most directly comparable financial measure stated in accordance with GAAP. Investors are encouraged to review the related GAAP financial measure and the reconciliation of Adjusted EBITDA to net income, and not to rely on any single financial measure to evaluate our business.
+
+The following table provides a reconciliation of net income to Adjusted EBITDA (in thousands):
+
+Year Ended December 31,
+
+2025 | 2024
+
+Net income | 1,260,327 | 2,579,066
+
+Adjusted to exclude the following:
+
+Provision for income taxes | 261,738 | 363,578
+
+Interest expense | 85,413 | 80,645
+
+Depreciation and amortization | 188,428 | 127,518
+
+Stock-based compensation expense | 839,440 | 912,838
+
+Data Theft Incident losses, net | 345,179 | —
+
+Losses (gains) on crypto assets held for investment, net | 528,857 | (687,055)
+
+Other income, net (1) | (700,894) | (29,074)
+
+Adjusted EBITDA | 2,808,488 | 3,347,516
+
+__________________
+
+(1)See Note 17. Other Consolidated Statements of Operations Details of the Notes to our Consolidated Financial Statements included in Part II, Item 8 of this Annual Report on Form 10-K for additional details.
+
+Liquidity and Capital Resources
+
+We continue to believe our existing cash, cash equivalents, and marketable investments, which totaled $11.6 billion as of December 31, 2025, will be sufficient in both the short and long term to meet our requirements and plans for cash, including meeting our working capital and capital expenditure requirements. Our ability to meet our requirements and plans for cash, including meeting our working capital and capital expenditure requirements, will depend on many factors, including market acceptance of crypto assets and blockchain technology, our growth, our ability to attract and retain customers on our
+
+98
+
+Table of Contents
+
+platform, the continuing market acceptance of our products and services, the introduction of new subscription products and services on our platform, expansion of sales and marketing activities, and overall economic conditions. We anticipate satisfying both our short-term and long-term cash requirements with our existing cash and cash equivalents and with future cash flows from operations, future sales of marketable investments, and potential future equity or debt financing. The sale of additional equity would result in additional dilution to our shareholders. The incurrence of additional debt financing would result in debt service obligations, and the instruments governing such debt could provide for operating and financing covenants that restrict our operations.
+
+Primary commitments
+
+Long-term debt
+
+As of December 31, 2025, our primary contractual obligation remained long-term debt, of which we held $7.3 billion in aggregate principal amount, including $1.3 billion that is due within the next 12 months and classified as a current liability.
+
+In August 2025, we issued an aggregate principal amount of $1.5 billion convertible senior notes that mature on October 1, 2032, unless converted, repurchased, or redeemed on an earlier date, and an aggregate principal amount of $1.5 billion convertible senior notes that mature on October 1, 2029, unless converted or repurchased on an earlier date. As market conditions warrant, we may, from time to time, repurchase our outstanding long-term debt securities in the open market, in privately negotiated transactions, by exchange transaction, or otherwise. Such repurchases, if any, will depend on prevailing market conditions, our liquidity, and other factors, and may be commenced or suspended at any time. See Note 11. Long-Term Debt of the Notes to our Consolidated Financial Statements included in Part II, Item 8 of this Annual Report on Form 10-K for additional details.
+
+As of December 31, 2025 and 2024, our ratings with S&P Global Ratings were BB- for both issuer credit and senior unsecured debt. In August 2025, Moody’s Ratings announced an upgrade of our ratings from B2 to B1 for corporate family and from B1 to Ba2 for guaranteed senior unsecured notes.
+
+Short-term borrowings
+
+As of December 31, 2025, we also held short-term borrowings of $452.1 million, denominated in crypto assets and payment stablecoins, which we use to facilitate institutional financing. See Note 5. Collateralized Arrangements and Financing of the Notes to our Consolidated Financial Statements included in Part II, Item 8 of this Annual Report on Form 10-K for additional details.
+
+Other contractual obligations
+
+As of December 31, 2025, our other material contractual obligations consisted of the following (in thousands):
+
+Amounts Due
+
+Next 12 Months | Total
+
+Non-cancelable purchase obligations (1) | 169,886 | 670,422
+
+Operating leases (2) | 32,547 | 417,873
+
+Other commitments (3) | 180,493 | 180,493
+
+_______________
+
+(1) Committed spend for non-cancellable purchase obligations greater than $2.0 million per obligation, primarily relating to technology. The increase from total purchase obligations of $198.5 million as of December 31, 2024 reflects the renewal of a multi-year technology services agreement.
+
+(2) Primarily relates to corporate offices. The increase from total operating lease commitments of $132.3 million as of December 31, 2024, reflects new office leases in San Francisco, CA and New York, NY.
+
+(3) Represents definitive agreements to acquire interests in entities.
+
+99
+
+Table of Contents
+
+See Notes 13. Other Consolidated Balance Sheets Details, 18. Income Taxes, and 21. Commitments and Contingencies of the Notes to our Consolidated Financial Statements included in Part II, Item 8 of this Annual Report on Form 10-K for additional details relating to our short- and long-term material cash requirements and contractual obligations as of December 31, 2025.
+
+Repurchase program
+
+As of December 31, 2025, our board of directors had authorized an aggregate $2.0 billion to repurchase, without expiration, our outstanding Class A common stock and long-term debt (the “Repurchase Program”). As of December 31, 2025, approximately $1.2 billion remained available, and no long-term debt has been repurchased under the Repurchase Program. See Issuer Purchases of Equity Securities included in Part II, Item 5 of this Annual Report on Form 10-K for additional details.
+
+Other resources and commitments
+
+Crypto assets
+
+We hold and use crypto assets for various purposes. Crypto assets held for operations are received in the ordinary course of business and are converted to cash or used to fulfill expenses, primarily blockchain rewards, nearly immediately. In order to facilitate institutional financing, we hold crypto assets we borrow, as well as crypto assets customers pledge as collateral against certain of our loans to them. We do not use these assets as a source of liquidity otherwise. Crypto assets held for investment are primarily long-term holdings and in certain cases fulfill capital requirements set by regulators (see also Capital requirements below). We do not plan to engage in regular trading of these crypto assets but may purchase additional crypto assets for investment as a buy and hold strategy. In case of a liquidity stress event, or for other episodic purposes, which may necessitate the use of these assets, we may change our policy and sell crypto assets held for investment to generate liquidity. During times of instability in the crypto assets market, we may not be able to sell our crypto assets at reasonable prices or at all. Our crypto assets held are considered less liquid than our cash and cash equivalents and may not be able to serve as a source of liquidity for us to the same extent as cash and cash equivalents. As of December 31, 2025, we held the following crypto assets: $120.8 million held for operations, $822.8 million held as collateral, $318.8 million that were borrowed, and $2.0 billion held for investment.
+
+Customer assets and liabilities
+
+Recognized customer assets and liabilities comprise customer custodial funds and corresponding customer custodial liabilities that represent our obligation to return these assets to the customers. We also securely store additional customer AOP that we do not recognize in our Consolidated Balance Sheets. We do not use customer assets as collateral for any loan, margin, rehypothecation, or other similar activities to which we or our affiliates are a party, without the customer’s consent.
+
+Our business model does not expose us to liquidity risk if we have excessive redemptions or withdrawals from customers. As of December 31, 2025, we have not experienced excessive redemptions or withdrawals, or prolonged suspended redemptions or withdrawals, of crypto assets to date. See Risk Factors—Depositing and withdrawing crypto assets into and from our platform involves risks, which could result in loss of customer assets, customer disputes and other liabilities, which could adversely affect our business, operating results, and financial condition included in Part I, Item 1A of this Annual Report on Form 10-K for further information.
+
+100
+
+Table of Contents
+
+Cash flows
+
+The following table summarizes our Consolidated Statements of Cash Flows (in thousands):
+
+Year Ended December 31,
+
+2025 | 2024
+
+Net cash provided by operating activities | 2,426,383 | 3,103,935
+
+Net cash used in investing activities | (2,049,550) | (201,003)
+
+Net cash provided by financing activities | 740,282 | 2,903,078
+
+Net increase in cash, cash equivalents, and restricted cash and cash equivalents | 1,117,115 | 5,806,010
+
+Change in customer custodial cash and cash equivalents | (754,370) | 1,634,934
+
+Operating activities
+
+Our largest source of cash provided by operating activities are revenues generated from transaction fees. Our primary uses of cash in operating activities include payments to employees for compensation, marketing programs, website hosting and infrastructure services, and professional services.
+
+Net cash provided by operating activities decreased by $677.6 million for the year ended December 31, 2025 as compared to 2024 primarily due to:
+
+•$311.2 million in cash used in 2025 related to the Data Theft Incident, for which impacted customers were voluntarily reimbursed; and
+
+•an overall increase in other cash and cash equivalent expenses as we continue to grow our business; offset in part by
+
+•cash and cash equivalents provided as a result of the $617.3 million increase in total revenue.
+
+Investing activities
+
+Net cash used in investing activities increased by $1.8 billion for the year ended December 31, 2025 as compared to 2024 as we invested more of our available cash and cash equivalents, including:
+
+•$742.0 million in net cash and cash equivalents used for business combinations in 2025, primarily due to the completion of the Deribit acquisition in August;
+
+•a $578.0 million increase in cash and cash equivalents used for net purchases of crypto assets held for investment; and
+
+•a $614.0 million increase in cash and cash equivalents used for the origination of fiat and payment stablecoin loans, net of repayments, reflecting higher demand for institutional financing products.
+
+Financing activities
+
+Net cash provided by financing activities decreased by $2.2 billion for the year ended December 31, 2025 as compared to 2024 primarily due to:
+
+•a $2.6 billion decrease in customer custodial funds;
+
+•$790.2 million in cash used to repurchase approximately 3.0 million shares of our outstanding Class A common stock; and
+
+•a $285.6 million decrease in cash used to pay taxes related to net share settlement of equity awards; offset in part by
+
+101
+
+Table of Contents
+
+•a $1.6 billion net increase in proceeds from long-term debt, driven by the August 2025 issuance of our 2029 Convertible Notes and 2032 Convertible Notes, offset in part by prior year proceeds from the issuance of our 2030 Convertible Notes, less cash paid for associated capped calls.
+
+Capital requirements
+
+We are a highly regulated business subject to regulations on how we manage our liquidity, operations, and capital structure. As our primary operating subsidiary, Coinbase Inc. (“CB Inc.”) is subject to the most significant capital requirements, we seek to minimize surplus capital at other subsidiaries and hold surplus at CB Inc. See Business—Government Regulation and Risk Factors included in Part I, Item 1 and 1A, respectively, of this Annual Report on Form 10-K for additional details about these regulations.
+
+We are required to hold corporate liquid assets at our subsidiaries to meet capital requirements established by our regulators based on the value of crypto assets and payment stablecoins held in custody. Our money-transmitting subsidiary, CB Inc., and our custodian subsidiary, Coinbase Custody Trust Company, LLC (“CCTC”), which is a fiduciary under New York State Law and a qualified custodian under the Investment Advisers Act of 1940, are required to maintain minimum net capital requirements under agreements with the New York State Department of Financial Services (“NYDFS”). These subsidiaries and other subsidiaries are also subject to maintenance capital requirements by other regulators both within the United States and internationally. As of December 31, 2025, we were in compliance with these capital requirements.
+
+As of December 31, 2025, our net capital requirements by subsidiary consisted of the following (in millions):
+
+Net Capital | Required Net Capital (1) | Capital Surplus
+
+CB Inc. | 2,795 | 1,166 | 1,629
+
+CCTC | 745 | 336 | 409
+
+Other (2) | 687 | 74 | 613
+
+(1)Depending on the agreement between the subsidiary and the regulator, may include corporate holdings of cash and cash equivalents, Bitcoin, and Ethereum. Due to the volatility of crypto assets, Net Capital and Required Net Capital can fluctuate.
+
+(2)Includes subsidiaries that are subject to requirements from regulators that allow for the intermediation of customer orders in derivatives markets or the operation of a regulated marketplace for the trading of such contracts.
+
+Critical Accounting Estimates
+
+Our Consolidated Financial Statements and the related notes included elsewhere in this Annual Report on Form 10-K are prepared in accordance with GAAP. The preparation of our Consolidated Financial Statements also requires us to make estimates and assumptions that affect the reported amounts of assets, liabilities, revenue, costs, and expenses and related disclosures. We base our estimates on historical experience and on various other assumptions that we believe to be reasonable under the circumstances. Actual results could differ significantly from our estimates. To the extent that there are differences between our estimates and actual results, our future financial statement presentation, financial condition, operating results, and cash flows will be affected.
+
+See Note 2. Summary of Significant Accounting Policies of the Notes to our Consolidated Financial Statements included in Part II, Item 8 of this Annual Report on Form 10-K for a summary of significant accounting policies and significant estimates and assumptions and their effects on our financial statements. Below are the significant estimates and assumptions that we consider critical because they involve a significant amount of estimation uncertainty and have had or are reasonably likely to have a material impact on our financial condition or results of operations.
+
+Business combinations, goodwill, and intangible assets
+
+We determined that business combinations, goodwill, and intangible assets represent critical accounting estimates, as they involve significant judgment, estimates, and assumptions and to the extent
+
+102
+
+Table of Contents
+
+that our estimates and assumptions materially change or if actual circumstances differ from those in the assumptions, our financial statements could be materially impacted.
+
+We account for our business combinations using the acquisition method of accounting, which requires, among other things, allocation of the fair value of purchase consideration to the tangible and intangible assets acquired and liabilities assumed at their estimated fair values on the acquisition date. When determining the fair value of assets acquired and liabilities assumed, we make significant estimates and assumptions, especially with respect to non-crypto intangible assets. These intangible assets do not have observable prices and have primarily consisted of customer relationships, developed technology, licenses, trademarks and trade names, and non-compete agreements, which are subsequently measured at acquisition date fair value, less accumulated amortization. These estimates and assumptions can include, but are not limited to, the cash flows that an asset is expected to generate in the future, the appropriate weighted-average cost of capital, and the estimated useful lives. Changes in these assumptions could affect the carrying value of these assets. Our estimates of fair value are based upon assumptions believed to be reasonable, but which are inherently uncertain and, as a result, actual results may differ from estimates.
+
+Goodwill
+
+We perform an impairment test annually in the fourth quarter or whenever events or changes in circumstances indicate that the carrying value of goodwill might not be fully recoverable. In accordance with applicable accounting guidance, a company can assess qualitative factors to determine whether it is necessary to perform a goodwill impairment test. Alternatively, a company may elect to proceed directly to a quantitative goodwill impairment test. We do the former and assess qualitative factors to determine whether it is necessary to perform a goodwill impairment test. We review factors including changes in our stock price, macroeconomic conditions, industry and market conditions, cost factors, overall financial performance, changes in any key personnel, and any changes in the composition of the carrying amount of our assets. There were no changes to the qualitative factors considered indicating an impairment of goodwill for the reporting periods presented. In the future, if there are material changes in the underlying estimates and assumptions pertaining to the impairment assessment, our financial statements could be materially impacted. For the reporting periods presented, we determined that it was more likely than not that the fair value of our reporting unit was more than the respective related carrying amounts, including goodwill, and therefore we did not record any goodwill impairment.
+
+Intangible assets
+
+Intangible assets are initially valued at fair value using generally accepted valuation methods appropriate for the type of intangible asset. Intangible assets with definite lives are amortized over their estimated useful lives and are reviewed for impairment if indicators of impairment arise. Intangible assets assessed as having indefinite lives are not amortized, but are assessed for indicators that the useful life is no longer indefinite or for indicators of impairment each period. Indicators we review, as applicable, include whether there has been a significant adverse change in the extent or manner in which our assets are being used, a significant adverse change in legal factors affecting our assets, customer attrition, and/or a cash flow loss. Due to the dynamic nature of our business and the regulatory environment in which we operate, it is not practicable to model sensitivity of the valuation of these assets to these factors. Each reporting period, we evaluate the estimated remaining useful life of our intangible assets and whether events or changes in circumstances warrant a revision to the remaining period of amortization. We did not identify indicators of impairment of our intangible assets during the reporting periods presented. In the future, if there are material changes in the underlying estimates and assumptions pertaining to the impairment assessment, our financial statements could be materially impacted.
+
+103
+
+Table of Contents
+
+Investments
+
+Strategic investments
+
+We hold strategic investments in primarily privately held companies in the form of equity securities without readily determinable fair values in which we do not have a controlling interest or significant influence. The vast majority of these investments are accounted for under the measurement alternative method (“the measurement alternative”) and are measured at cost, less impairment, subject to upward and downward adjustments resulting from observable price changes for identical or similar investments of the same issuer (“pricing adjustments”). We determined that valuation of privately-held strategic investments represents a critical accounting estimate because impairment evaluations involve significant judgment, estimates, and assumptions, and to the extent that these estimates and assumptions change materially or if actual circumstances differ from those in the assumptions, our financial statements could be materially impacted.
+
+Impairment
+
+Privately-held strategic investments are evaluated quarterly for impairment. Our qualitative analysis includes a review of indicators such as: operating results when available, business prospects of the investees, changes in the regulatory and macroeconomic environment, observable price changes in similar transactions, and general market conditions of the geographical area or industry in which our investees operate. If indicators of impairment exist, we prepare quantitative measurements of the fair value of our equity investments using an Option-Pricing Model that uses publicly available market data of comparable companies and other unobservable inputs including expected volatility, expected time to liquidity, adjustments for other company-specific developments, and the rights and obligations of the securities we hold. When the quantitative remeasurements of fair value indicate an impairment exists, we write down the investment to its current fair value.
+
+We anticipate volatility to our net income (loss) in future periods due to changes in the fair values associated with these investments and changes in observable prices and similar transactions that could impact our fair value assessments. Based on future market conditions, these changes could be material to our financial statements. For more information regarding these market conditions and related sensitivity, see Marketable and Strategic Investments—Strategic investments included in Part II, Item 7A of this Annual Report on Form 10-K. See Note 14. Fair Value Measurements of the Notes to our Consolidated Financial Statements included in Part II, Item 8 of this Annual Report on Form 10-K for details of changes in our strategic investments for the years ended December 31, 2025 and 2024.
+
+Income taxes
+
+We determined that income taxes involve critical accounting estimates because management makes significant estimates, assumptions, and judgments to determine our provision for income taxes, deferred tax assets and liabilities, and any valuation allowance recorded against deferred tax assets, and to the extent that our estimates and assumptions materially change, or if actual circumstances differ materially from those in the assumptions, our financial statements could be materially impacted.
+
+We utilize the asset and liability method for computing our income tax provision. Deferred tax assets and liabilities reflect the expected future consequences of temporary differences between the financial reporting and tax bases of assets and liabilities as well as operating loss, capital loss, and tax credit carryforwards, using enacted tax rates. We assess the likelihood that our deferred tax assets will be recovered from future taxable income and, to the extent we believe that recovery is not likely, we establish a valuation allowance. Assessing the need for a valuation allowance requires a great deal of judgment and we consider all available evidence, both positive and negative, to determine whether it is more likely than not that our deferred tax assets are recoverable. We evaluate all available evidence including, but not limited to, history of earnings and losses, forecasts of future taxable income, and the weight of evidence that can be objectively verified. See Note 18. Income Taxes of the Notes to our Consolidated
+
+104
+
+Table of Contents
+
+Financial Statements included in Part II, Item 8 of this Annual Report on Form 10-K for details of changes in our valuation allowance for the years ended December 31, 2025, 2024, and 2023.
+
+We recognize the tax benefit from an uncertain tax position only if it is more likely than not the tax position will be sustained on examination by the taxing authorities, based on the technical merits of the position. The tax benefits recognized from such positions are then measured based on the largest benefit that has a greater than 50% likelihood of being realized upon settlement. Interest and penalties related to unrecognized tax benefits are recognized within the provision for income taxes. See Note 18. Income Taxes of the Notes to our Consolidated Financial Statements included in Part II, Item 8 of this Annual Report on Form 10-K for details of changes in unrecognized tax benefits for the years ended December 31, 2025, 2024, and 2023.
+
+For U.S. federal tax purposes, crypto asset transactions are treated under the same tax principles as property transactions. We recognize a gain or loss when crypto assets are exchanged for other property, in the amount of the difference between the fair market value of the property received and the tax basis of the exchanged crypto assets. Receipts of crypto assets in exchange for goods or services are included in taxable income at the fair market value on the date of receipt.
+
+Legal and other contingencies
+
+We are subject to various legal proceedings and claims that arise in the ordinary course of business, the outcomes of which are inherently uncertain, and such uncertainty may be enhanced due to the industry in which we operate. We record a liability when it is probable that a loss has been incurred and the amount is reasonably estimable, the determination of which requires significant judgment. In addition, we record recoveries of these losses when it is probable that they will be collected. These estimates are highly sensitive to change and involve variables that are not completely within our control nor practicable to model, including decisions made by regulators and settlement negotiations. Resolution of legal and other contingencies in a manner inconsistent with management’s expectations could have a material impact on our financial condition and results of operations. See Results of operations—Comparison of the years ended December 31, 2025 and 2024—Operating expenses—General and administrative above for discussion of material changes in legal and other contingencies during the years ended December 31, 2025 and 2024.
+
+Recent accounting pronouncements
+
+See Note 2. Summary of Significant Accounting Policies—Recent accounting pronouncements of the Notes to our Consolidated Financial Statements included in Part II, Item 8 of this Annual Report on Form 10-K for a discussion about new accounting pronouncements adopted and not yet adopted as of the date of this report.

@@ -1,0 +1,349 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Novqua Retail, Inc. (ticker NQVU)
+Sector: Consumer Discretionary
+Incorporated in: Delaware
+Headquarters: New York, New York
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 57,400
+
+Novqua Retail, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      51,238        51,976
+Cost of revenue                              36,205        36,235
+Gross profit                                 15,033        15,741
+Research and development                          0             0
+Selling, general and administrative           7,804         7,963
+Other operating expense                       3,074         3,119
+Operating income                              4,155         4,659
+Interest expense                                420           413
+Income before income taxes                    3,735         4,246
+Provision for income taxes                      658           748
+Net income                                    3,077         3,498
+
+Novqua Retail, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            2,896         3,008
+Accounts receivable, net                             1,457         1,549
+Inventories                                          2,554         2,764
+Other current assets                                   364           384
+Total current assets                                 7,271         7,705
+Property, plant and equipment, net                   4,158         4,146
+Goodwill                                               135           142
+Other non-current assets                            55,881        56,837
+Total assets                                        67,445        68,830
+Total current liabilities                            5,682         6,248
+Long-term debt                                       9,341         9,181
+Other non-current liabilities                       28,101        28,269
+Total liabilities                                   43,124        43,698
+Total stockholders' equity                          24,321        25,132
+Total liabilities and stockholders' equity          67,445        68,830
+
+Novqua Retail, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             3,077
+Depreciation and amortization                          1,455
+Changes in working capital and other                   1,219
+Net cash provided by operating activities              5,751
+Purchases of property and equipment                  (1,240)
+Other investing activities, net                        (895)
+Net cash used in investing activities                (2,135)
+Net change in long-term debt                             160
+Dividends paid                                       (2,179)
+Share repurchases, net of issuances                  (1,709)
+Net cash used in financing activities                (3,728)
+Net change in cash and cash equivalents                (112)
+Cash and cash equivalents, beginning of year           3,008
+Cash and cash equivalents, end of year                 2,896
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: -1.4%
+Net income growth, fiscal 2024 versus 2023: -12.0%
+Operating income growth, fiscal 2024 versus 2023: -10.8%
+Gross margin, fiscal 2024: 29.3%
+Operating margin, fiscal 2024: 8.1%
+Net margin, fiscal 2024: 6.0%
+Effective tax rate, fiscal 2024: 17.6%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 15.2%
+Gross margin, fiscal 2023: 30.3%
+Operating margin, fiscal 2023: 9.0%
+Net margin, fiscal 2023: 6.7%
+Effective tax rate, fiscal 2023: 17.6%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 15.3%
+
+STYLE EXAMPLE: the start of Item 1C from a real Consumer Discretionary company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1C. Cybersecurity
+Cybersecurity Governance
+Hilton has a dedicated Global Information Security team (collectively, the "GIS team") led by our Chief Information Security Officer ("CISO") that is responsible for identifying, assessing, monitoring, managing and communicating the Company's cybersecurity risks. The GIS team is organized into five functional areas: (i) cloud, network and infrastructure architecture security; (ii) application security; (iii) incident response; (iv) endpoint security and vulnerability management; and (v) governance, risk and compliance ("GRC"). Collectively, the GIS team has decades of dedicated cybersecurity experience with personnel certified in various disciplines, including data privacy, enterprise risk management, cloud security and ethical hacking.
+While the full board of directors has overall responsibility for risk oversight, for cyber security matters, it is supported by its Audit Committee, which regularly reports to the full board of directors. The Audit Committee assists the board of directors in monitoring cybersecurity risk by receiving quarterly reports and as needed updates from the Chief Information Officer and the CISO, that cover, among other things, our information security framework, threat assessment, response readiness and training efforts.
+Hilton has adopted a Cybersecurity Policy that requires all employees to immediately report a potential cybersecurity incident to the GIS team, and all employees are required to certify their understanding of the Cybersecurity Policy on an annual basis. Our Global Cybersecurity Incident Response Plan ("CIRP") includes the criteria for determining if a cybersecurity incident is considered a qualifying cybersecurity incident ("QCI"), which requires management escalation and review, identifies the first response team and the leadership team responsible for supervising the response and provides guidelines for when and how to communicate such incident to the appropriate members of management and the Audit Committee.
+Cybersecurity Strategy and Risk Management
+The GIS team leverages several mechanisms to continuously identify and assess cybersecurity risks across the Company and utilizes a GRC platform to monitor identified risks and mitigation and remediation activities. The GIS team uses defined industry accepted risk management and controls frameworks to determine the potential likelihood and impact of each risk. Monitoring activities are designed and executed based on the materiality of the assessed likelihood and magnitude of impact of the risks that are identified. The GIS team, with the assistance of third-party consultants, performs application security reviews, penetration tests and gap assessments against certain cybersecurity frameworks. Management reviews any assessments performed by the third-party consultants and determines the final evaluations and communication plan, which the GIS team executes.
+In the event of a reported potential cybersecurity incident, a first response team, which includes leaders of the GIS team, other members of management and the legal team, determines without undue delay whether it is a QCI as defined in the CIRP. If an incident is determined to be a QCI, the process included in the CIRP is initiated and such incident is communicated to the designated leadership team, including Hilton's general counsel. Further, appointed leaders collaborate on determining if the incident is material, as well as the resulting response, including any legal and financial reporting obligations of the Company. Information also is provided to additional members of senior management as appropriate. The remediation plan for the QCI is entered within Hilton's GRC platform and monitored and reviewed at least monthly to ensure effective implementation; depending upon the type of incident, additional reporting may be produced and monitored by the GIS team to ensure the effectiveness of the remediation plan. All cybersecurity incidents are tracked within our incident response platform, regardless of the potential materiality of the impact.
+We also have a process in place to manage cybersecurity risks associated with third-party service providers. However, we rely on the third parties we use to implement security programs commensurate with their risk, and we cannot ensure in all circumstances that their efforts will be successful.
+33
+As of the date of this report, we are not aware of any cybersecurity threats that have materially affected or are reasonably likely to materially affect the Company, including our business strategy, results of operations or financial condition. However, as discussed under "Part I—Item 1A. Risk Factors," specifically the risks titled "Failures in, material damage to or interruptions in our information technology systems, software or websites, including as a result of cyber-attacks on our systems or systems operated by third parties that provide operational and technical services to us, costs associated with protecting the integrity and security of personal data and other sensitive information and difficulties in updating our existing software or developing or implementing new software could have a material adverse effect on our business or results of operations" and "Cyber-attacks could have a disruptive effect on our business," the sophistication of cyber threats continues to increase, and the preventative actions we take to reduce the risk of cyber incidents and protect our systems and information may be insufficient. Accordingly, no matter how well designed or implemented our controls are, we will not be able to anticipate all security breaches, and we may not be able to implement effective preventive measures against such security breaches in a timely manner.
+34
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+BUSINESS OVERVIEW
+
+Novqua Retail, Inc. (together with its subsidiaries, "Novqua Retail," the "Company," "we," or "our") is a prominent entity in the consumer discretionary sector, focusing on delivering superior value in apparel and home goods. Headquartered in New York, New York, and incorporated in Delaware, Novqua Retail operates with a strategic emphasis on adaptability and customer satisfaction. For the fiscal year ended December 31, 2024, we achieved total revenue of $51,238 million, demonstrating our commitment to providing exceptional products and services to our diverse customer base.
+
+Our business model revolves around offering an extensive array of quality merchandise at competitive prices through a network of physical stores and our emerging online platform. This approach enables us to maintain a dynamic presence in the retail market, catering to varying consumer preferences and trends. Our mission is to meet the evolving demands of our customers by delivering innovative solutions and a compelling shopping experience.
+
+PRINCIPAL PRODUCTS AND SERVICES
+
+Novqua Retail specializes in a broad spectrum of consumer goods, primarily focusing on fashion apparel, accessories, and home furnishings. Our product offerings are designed to encompass a wide range of styles, preferences, and price points, allowing us to appeal to a broad demographic. We emphasize quality, style, and affordability across our product lines, ensuring that customers have access to desirable merchandise that aligns with current market trends.
+
+In addition to our core product categories, we continuously explore new product introductions and lines to diversify our offerings and enhance our market position. This strategy allows us to remain competitive and relevant in an ever-evolving retail environment.
+
+REPORTABLE SEGMENTS
+
+Our operations are organized into several reportable segments, each contributing to our overall success. These segments are structured to optimize our market presence and operational efficiency.
+
+Apparel and Accessories Segment
+The Apparel and Accessories segment is a cornerstone of our business, offering a comprehensive range of clothing, footwear, and fashion accessories for men, women, and children. This segment capitalizes on our deep understanding of fashion trends and consumer preferences, enabling us to stock a diverse assortment of styles. Our goal is to provide customers with an exciting fashion experience characterized by high-quality products at attractive prices.
+
+Home Goods Segment
+The Home Goods segment focuses on home furnishings, decor, and related products. This segment caters to consumers seeking to enhance their living spaces with stylish and functional items. By offering a wide selection of furniture, lighting, textiles, and decorative pieces, we aim to inspire creativity and personalization in home design. Our commitment to quality and affordability positions us as a trusted source for home improvement needs.
+
+E-commerce Segment
+Our E-commerce segment represents a growing component of our business strategy. With the increasing importance of digital channels, we are expanding our online presence to reach a broader audience. This segment leverages cutting-edge technology and user-friendly interfaces to provide customers with a seamless shopping experience. Through our e-commerce platform, we offer an extensive inventory of products, supported by efficient logistics and delivery systems.
+
+CUSTOMERS
+
+Our customer base is diverse, encompassing individuals from various demographic and socioeconomic backgrounds. We strive to attract and retain customers by offering a well-curated selection of products that resonate with their lifestyle and needs. Our value proposition emphasizes quality, variety, and competitive pricing, ensuring that customers receive an exceptional shopping experience.
+
+SALES AND MARKETING
+
+Novqua Retail employs a multifaceted sales and marketing strategy to promote our brand and products effectively. Our approach includes traditional advertising, digital marketing, and in-store promotions. We leverage data analytics and customer insights to tailor marketing campaigns that resonate with our target audience. By integrating customer feedback and market trends, we refine our offerings and enhance customer engagement.
+
+COMPETITION
+
+The retail industry is highly competitive, with numerous players vying for consumer attention. Novqua Retail faces competition from both traditional brick-and-mortar retailers and online marketplaces. Key competitive factors include product variety, pricing, customer service, and brand reputation. We differentiate ourselves through our commitment to quality, innovation, and customer satisfaction, which we believe positions us favorably in the marketplace.
+
+SEASONALITY
+
+Our business is subject to seasonal fluctuations, with certain periods experiencing heightened consumer activity. The back-to-school season, holidays, and end-of-season sales are pivotal times that significantly impact our sales performance. We strategically manage inventory and marketing efforts to capitalize on these peak periods, ensuring that we meet customer demand and optimize revenue generation.
+
+INTELLECTUAL PROPERTY
+
+Novqua Retail values the protection of its intellectual property, which includes trademarks, trade names, and proprietary business processes. We believe that our intellectual property is integral to maintaining our competitive edge and brand identity. We actively monitor and enforce our rights to safeguard our brand and reputation in the marketplace.
+
+GOVERNMENT REGULATION
+
+Our operations are subject to various federal, state, and local regulations, including those related to consumer protection, product safety, and labor practices. We are committed to compliance with applicable laws and regulations, ensuring that we operate ethically and responsibly. We regularly review and update our policies to align with regulatory requirements and industry standards.
+
+HUMAN CAPITAL
+
+At Novqua Retail, our workforce is a vital component of our success. With approximately 57,400 employees, we emphasize cultivating a diverse and inclusive workplace that fosters innovation, collaboration, and professional growth. We invest in employee development programs and initiatives that enhance skills and competencies, enabling our team members to contribute effectively to our strategic objectives.
+
+AVAILABLE INFORMATION
+
+We are committed to transparency and regularly update our stakeholders on our business activities and performance. Our annual reports, quarterly filings, and other pertinent information are accessible through our corporate website and the Securities and Exchange Commission's (SEC) online platform. We encourage investors, analysts, and the public to stay informed about our progress and initiatives.
+
+In conclusion, Novqua Retail, Inc. remains steadfast in its mission to deliver exceptional value and quality to its customers. By leveraging our strengths and continuously adapting to market dynamics, we aim to sustain our growth trajectory and reinforce our position as a leading retailer in the consumer discretionary sector.
+
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+BUSINESS AND INDUSTRY RISKS
+
+Intense Competition in the Retail Sector
+
+Novqua Retail operates in a highly competitive retail environment, facing significant competition from both traditional brick-and-mortar retailers and online marketplaces. Our ability to attract and retain customers is influenced by competitors' pricing strategies, product offerings, and customer service initiatives. If we fail to differentiate ourselves effectively, our market share and profitability could be adversely impacted. Additionally, the rapid pace of change in consumer preferences and the growing importance of e-commerce present challenges in maintaining our competitive position.
+
+Shifts in Consumer Preferences
+
+The retail industry is subject to changing consumer preferences and trends, which can impact demand for our products. Our success relies on accurately predicting and responding to these changes to offer relevant merchandise. Failure to anticipate shifts in fashion, home decor, or lifestyle trends could result in inventory obsolescence, reduced sales, and diminished customer loyalty. Maintaining an agile supply chain and effective merchandising strategies are critical to adapting to evolving consumer preferences.
+
+Dependence on Seasonal Sales
+
+A significant portion of our revenue is generated during peak shopping seasons, including back-to-school, holidays, and end-of-season sales. Our financial performance is heavily influenced by our ability to capitalize on these periods. Any disruptions, such as adverse weather conditions, economic downturns, or shifts in consumer spending patterns, could negatively impact our sales. Effective inventory management and marketing strategies are essential to optimize performance during these critical times.
+
+ECONOMIC AND FINANCIAL RISKS
+
+Macroeconomic Conditions
+
+Our business is affected by macroeconomic conditions, including consumer confidence, employment levels, and disposable income. Economic downturns or recessions can lead to reduced consumer spending, adversely affecting our sales and profitability. Additionally, fluctuations in interest rates and inflation can impact our cost structure and pricing strategies. We must remain vigilant in monitoring economic indicators and adjust our business strategies accordingly to mitigate these risks.
+
+Fluctuations in Foreign Currency Exchange Rates
+
+Although our primary operations are based in the United States, we source products from international suppliers. As a result, we are exposed to risks related to foreign currency exchange rate fluctuations. Volatility in currency values can impact the cost of goods sold and affect our pricing strategies and profit margins. We employ hedging strategies to mitigate these risks, but significant currency fluctuations could still adversely affect our financial performance.
+
+Credit and Financing Risks
+
+Our ability to access financing on favorable terms is crucial for funding operations, capital expenditures, and strategic initiatives. Changes in credit markets or deterioration in our credit rating could increase borrowing costs and limit access to capital. Additionally, changes in interest rates can impact the cost of existing and future debt. Maintaining strong financial health and effective capital management strategies are essential to mitigating these risks.
+
+OPERATIONAL RISKS
+
+Supply Chain Disruptions
+
+Our operations depend on a complex and efficient supply chain involving multiple suppliers and logistics providers. Disruptions due to natural disasters, geopolitical events, or labor strikes can impact the availability of raw materials and finished goods. Such disruptions may lead to delays, increased costs, and inventory shortages, affecting our ability to meet customer demand. We continuously assess and enhance our supply chain resilience to mitigate these risks.
+
+Cybersecurity and Data Privacy
+
+As a retailer with a significant online presence, we are exposed to cybersecurity threats and data privacy risks. Breaches or unauthorized access to our systems can lead to the loss or theft of sensitive customer information, resulting in reputational damage and regulatory penalties. We invest in robust cybersecurity measures and data protection protocols to safeguard our systems, but the evolving nature of cyber threats presents ongoing challenges.
+
+Operational Efficiency and Labor Relations
+
+Our success is reliant on the efficiency of our operations and the productivity of our workforce. Labor shortages, increased labor costs, or disruptions due to labor disputes can impact our ability to operate effectively. We are committed to maintaining positive employee relations and investing in workforce development, but external factors such as changes in labor laws or competitive labor markets could pose challenges.
+
+LEGAL AND REGULATORY RISKS
+
+Compliance with Laws and Regulations
+
+We are subject to a wide range of federal, state, and local regulations, including those related to consumer protection, product safety, and labor practices. Non-compliance with these regulations can result in legal penalties, fines, and reputational harm. We maintain rigorous compliance programs and regularly review our policies to align with regulatory requirements, but changes in laws or regulations could increase our compliance costs and operational complexity.
+
+Intellectual Property Protection
+
+Our intellectual property, including trademarks and proprietary business processes, is vital to maintaining our competitive advantage. Infringement or misappropriation of our intellectual property can erode our brand value and market position. We actively monitor and enforce our intellectual property rights, but the global nature of commerce presents challenges in protecting our assets across different jurisdictions.
+
+Environmental, Social, and Governance (ESG) Considerations
+
+Increasing focus on ESG factors presents both opportunities and risks for our business. Failure to meet stakeholder expectations regarding sustainability, social responsibility, or corporate governance can impact our reputation and customer loyalty. We are committed to advancing our ESG initiatives, but evolving standards and stakeholder demands may require additional investments and resources.
+
+GENERAL RISKS
+
+Pandemic and Public Health Threats
+
+The COVID-19 pandemic has highlighted the potential impact of public health crises on our operations. Future pandemics or health threats could lead to store closures, supply chain disruptions, and changes in consumer behavior. We have implemented contingency plans and health protocols, but the unpredictable nature of such events poses ongoing risks to our business continuity.
+
+Technological Advancements
+
+Technological advancements in retail, such as artificial intelligence and digital platforms, offer opportunities for growth but also present risks. Failure to adopt and integrate new technologies effectively can result in competitive disadvantages. We continuously evaluate and invest in technological innovations to enhance our operations and customer experience, but rapid advancements may outpace our ability to adapt.
+
+Climate Change and Natural Disasters
+
+Climate change and natural disasters pose long-term risks to our operations and supply chain. Severe weather events, rising sea levels, and other environmental factors can disrupt our facilities and logistics networks. We are committed to evaluating and mitigating these risks, but the unpredictability of climate-related events necessitates ongoing assessment and adaptation.
+
+In conclusion, while we strive to identify and mitigate risks through strategic planning and operational agility, the inherent uncertainties in our industry and the broader economic environment present challenges that could impact our business performance. We remain steadfast in our commitment to navigating these risks and sustaining our position as a leading retailer in the consumer discretionary sector.
+
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+The following discussion and analysis of our financial condition and results of operations should be read in conjunction with the consolidated financial statements and related notes thereto included elsewhere in this Annual Report on Form 10-K. This discussion contains forward-looking statements that involve risks and uncertainties. Factors that could cause or contribute to such differences include those identified below and those discussed in the section titled “Risk Factors” and other sections of this Annual Report on Form 10-K. Our historical results are not necessarily indicative of the results that may be expected for any period in the future.
+
+In addition, this “Management’s Discussion and Analysis of Financial Condition and Results of Operations” section generally discusses 2024 and 2023 items and year-to-year comparisons between 2024 and 2023.
+
+Overview
+
+Novqua Retail, Inc. is a prominent player in the consumer discretionary sector, focused on providing quality merchandise across a network of physical stores and an expanding online platform. For the fiscal year ended December 31, 2024, we reported total revenue of $51,238 million, a decrease of 1.4% from $51,976 million in 2023. This slight decline reflects the challenging retail environment and competitive pressures, as well as shifts in consumer spending patterns. Despite these challenges, we remain committed to delivering exceptional value to our customers, supported by a diverse product offering and strategic market positioning.
+
+Our gross margin for 2024 was 29.3%, down from 30.3% in 2023, primarily due to increased competitive pricing strategies and changes in product mix. We continue to focus on maintaining operational efficiencies and cost management to support our profitability objectives. Our operating income for 2024 was $4,155 million, reflecting a decrease of 10.8% from $4,659 million in 2023, primarily driven by a reduction in gross profit and targeted investments in our selling, general, and administrative functions.
+
+Results of Operations
+
+Revenue
+
+For the fiscal year 2024, revenue decreased by 1.4% to $51,238 million from $51,976 million in 2023. This decline was influenced by several factors, including heightened competition in the retail sector and evolving consumer preferences towards e-commerce platforms. While we have made significant strides in expanding our online presence, the transition from traditional retail formats to digital channels continues to be a focal point of our strategic initiatives.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue remained relatively stable, decreasing slightly to $36,205 million in 2024 from $36,235 million in 2023. This stability reflects our ongoing efforts to manage supplier relationships and optimize inventory levels amid fluctuating market conditions. As a result of the decreased revenue and stable cost of revenue, our gross margin declined to 29.3% in 2024 from 30.3% in the previous year.
+
+Selling, General and Administrative Expenses
+
+Selling, general, and administrative (SG&A) expenses were $7,804 million in 2024, representing a decrease from $7,963 million in 2023. The decrease in SG&A expenses is attributed to cost-control measures and the streamlining of operations to enhance efficiency. These efforts have been integral in offsetting some of the pressures on gross margin and operating income.
+
+Other Operating Expenses
+
+Other operating expenses totaled $3,074 million in 2024, down from $3,119 million in 2023. This decrease was driven by reductions in certain discretionary spending categories and efforts to optimize operational processes. We continue to evaluate our cost structure to ensure alignment with our strategic objectives and market conditions.
+
+Operating Income
+
+Operating income for 2024 was $4,155 million, reflecting a decrease of 10.8% compared to $4,659 million in 2023. The decline in operating income is primarily due to the reduction in gross profit, partially offset by the effective management of operating expenses. We remain focused on driving operational efficiencies and leveraging technology to enhance productivity.
+
+Interest Expense
+
+Interest expense increased slightly to $420 million in 2024 from $413 million in 2023. This increase is attributable to higher borrowing costs associated with our long-term debt, reflecting changes in market interest rates. We continue to monitor our capital structure to ensure optimal financing costs.
+
+Effective Tax Rate
+
+Our effective tax rate for 2024 was 17.6%, consistent with the rate in 2023. We maintain a proactive approach to tax planning and compliance, ensuring alignment with applicable regulations and maximizing tax efficiencies.
+
+Net Income
+
+Net income for 2024 was $3,077 million, representing a decrease of 12.0% from $3,498 million in 2023. This decline reflects the combined impact of decreased operating income and slightly higher interest expenses. We remain committed to enhancing our profitability through strategic initiatives focused on revenue growth and cost management.
+
+Liquidity and Capital Resources
+
+Cash and Cash Equivalents
+
+As of December 31, 2024, we had cash and cash equivalents totaling $2,896 million, compared to $3,008 million at the end of 2023. The decrease in cash and cash equivalents reflects our capital allocation priorities, including investments in growth initiatives and returns to shareholders through dividends and share repurchases.
+
+Operating Activities
+
+Net cash provided by operating activities was $5,751 million in 2024. This cash flow was primarily driven by our net income of $3,077 million and adjustments for non-cash items, including depreciation and amortization of $1,455 million. Effective working capital management also contributed to strong operating cash flows.
+
+Investing Activities
+
+Net cash used in investing activities was $2,135 million in 2024. Our investing activities primarily included capital expenditures of $1,240 million for store renovations and technology upgrades, as well as other investing activities totaling $895 million. These investments are critical to supporting our growth strategy and enhancing operational capabilities.
+
+Financing Activities
+
+Net cash used in financing activities was $3,728 million in 2024. This outflow primarily consisted of dividends paid amounting to $2,179 million and share repurchases, net of issuances, totaling $1,709 million. Additionally, we managed a net change in long-term debt of $160 million to optimize our capital structure.
+
+Capital Expenditures
+
+Capital expenditures for 2024 were $1,240 million, reflecting our commitment to investing in infrastructure and technology to support long-term growth. These expenditures were focused on enhancing our e-commerce capabilities, upgrading our physical store network, and improving supply chain efficiency.
+
+Debt
+
+Our long-term debt increased to $9,341 million as of December 31, 2024, from $9,181 million at the end of 2023. The increase in debt reflects our strategic financing activities aimed at supporting growth initiatives while maintaining financial flexibility.
+
+Dividends and Share Repurchases
+
+In 2024, we returned $2,179 million to shareholders through dividends and executed share repurchases totaling $1,709 million, net of issuances. These actions underscore our commitment to delivering value to shareholders while balancing investment in growth opportunities.
+
+Critical Accounting Estimates
+
+The preparation of financial statements in accordance with generally accepted accounting principles (GAAP) requires management to make estimates and assumptions that affect the reported amounts of assets, liabilities, revenues, and expenses. Our critical accounting estimates are those that are most important to the portrayal of our financial condition and results of operations and require our most difficult, subjective, or complex judgments.
+
+Inventory Valuation
+
+We value our inventories at the lower of cost or net realizable value. This requires us to make estimates of future demand, market conditions, and product life cycles. Changes in these estimates could impact the valuation of inventory and the associated cost of revenue.
+
+Impairment of Long-Lived Assets
+
+We review long-lived assets for impairment whenever events or changes in circumstances indicate that the carrying amount may not be recoverable. This process involves estimating future cash flows and determining the fair value of the assets. Changes in market conditions or our business strategy could impact these estimates and result in impairment charges.
+
+Income Taxes
+
+We record a provision for income taxes based on our interpretation of tax laws and regulations. This requires us to make estimates about future taxable income and the potential impact of tax planning strategies. Changes in tax laws or our business operations could affect these estimates and result in adjustments to our tax provision.
+
+Goodwill and Intangible Assets
+
+Goodwill and intangible assets are tested for impairment annually or more frequently if events or circumstances indicate that the carrying amount may not be recoverable. This process requires us to estimate the fair value of reporting units and to assess the reasonableness of assumptions used in the valuation process.
+
+In conclusion, while we have experienced challenges during fiscal 2024, we remain focused on executing our strategic initiatives and enhancing our competitive position in the consumer discretionary sector. Our commitment to delivering value to our customers and shareholders, coupled with disciplined financial management, positions us well for future growth opportunities.
+
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Novqua Retail, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 890 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

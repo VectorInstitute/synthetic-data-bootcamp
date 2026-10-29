@@ -1,0 +1,354 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Torsel Software, Inc. (ticker TSOE)
+Sector: Information Technology
+Incorporated in: Delaware
+Headquarters: Princeton, New Jersey
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 28,000
+
+Torsel Software, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      24,213        21,422
+Cost of revenue                              13,334        11,813
+Gross profit                                 10,879         9,609
+Research and development                      2,620         2,375
+Selling, general and administrative           2,673         2,303
+Other operating expense                       1,453         1,285
+Operating income                              4,133         3,646
+Interest expense                                190           167
+Income before income taxes                    3,943         3,479
+Provision for income taxes                      442           364
+Net income                                    3,501         3,115
+
+Torsel Software, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            1,154           960
+Accounts receivable, net                             4,671         4,187
+Inventories                                          1,608         1,433
+Other current assets                                 3,185         2,821
+Total current assets                                10,618         9,401
+Property, plant and equipment, net                   2,477         2,180
+Goodwill                                             1,951         1,600
+Other non-current assets                            14,250        11,796
+Total assets                                        29,296        24,977
+Total current liabilities                            7,798         7,171
+Long-term debt                                       4,222         3,721
+Other non-current liabilities                        9,179         7,111
+Total liabilities                                   21,199        18,003
+Total stockholders' equity                           8,097         6,974
+Total liabilities and stockholders' equity          29,296        24,977
+
+Torsel Software, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             3,501
+Depreciation and amortization                            867
+Changes in working capital and other                   (346)
+Net cash provided by operating activities              4,022
+Purchases of property and equipment                    (472)
+Other investing activities, net                      (1,479)
+Net cash used in investing activities                (1,951)
+Net change in long-term debt                             501
+Dividends paid                                             0
+Share repurchases, net of issuances                  (2,378)
+Net cash used in financing activities                (1,877)
+Net change in cash and cash equivalents                  194
+Cash and cash equivalents, beginning of year             960
+Cash and cash equivalents, end of year                 1,154
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 13.0%
+Net income growth, fiscal 2024 versus 2023: 12.4%
+Operating income growth, fiscal 2024 versus 2023: 13.4%
+Gross margin, fiscal 2024: 44.9%
+Operating margin, fiscal 2024: 17.1%
+Net margin, fiscal 2024: 14.5%
+Effective tax rate, fiscal 2024: 11.2%
+Research and development as a share of revenue, fiscal 2024: 10.8%
+Selling, general and administrative as a share of revenue, fiscal 2024: 11.0%
+Gross margin, fiscal 2023: 44.9%
+Operating margin, fiscal 2023: 17.0%
+Net margin, fiscal 2023: 14.5%
+Effective tax rate, fiscal 2023: 10.5%
+Research and development as a share of revenue, fiscal 2023: 11.1%
+Selling, general and administrative as a share of revenue, fiscal 2023: 10.8%
+
+STYLE EXAMPLE: the start of Item 1C from a real Information Technology company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1C. Cybersecurity
+We recognize the significant role of information security in safeguarding our valuable intellectual property along with the confidentiality, integrity and availability of the data of our customers, employees, and suppliers. We have implemented certain policies, procedures, and systems that are designed to identify and address material risks related to cybersecurity and cybersecurity incidents.
+We have a comprehensive enterprise risk management (“ERM”) program, which is implemented by management and overseen by our Board of Directors (“Board”).
+Our identification, assessment, and management of material risks from cybersecurity threats is integrated into the Company’s overall ERM system and processes. Our ERM program is designed to leverage existing management processes to (i) identify critical enterprise risks, including both information security and cybersecurity risks, (ii) design and implement appropriate risk mitigation strategies, and (iii) assess the status of risks and mitigation plans.
+A key component within our ERM framework is a robust information security risk management program, which includes:
+•risk assessments designed to help identify risks to our critical systems, information, services, and our broader global information systems environment;
+•a security team principally responsible for managing (i) our cybersecurity risk assessment processes, (ii) our security controls, and (iii) our response to cybersecurity incidents;
+•the use of external service providers, where appropriate, to aid in assessing specific risks, providing benchmarking data, providing information regarding trends or recent regulatory changes applicable to our risk profile, or to test or otherwise assist with aspects of our security processes;
+•the periodic engagement of an independent third-party expert to evaluate our security capabilities;
+•mandatory annual cybersecurity awareness training of our employees, including incident response personnel and senior management, as well as conducting periodic tests with our user population to reinforce good information security practices;
+•a cybersecurity incident response plan that includes procedures for responding to cybersecurity incidents, including those impacting the Company’s manufacturing sites;
+•processes to identify vulnerabilities, breach attempts and possible criminal activity by external parties; and
+•processes to assess the practices of our suppliers and third-party service providers relative to protecting the security of our information.
+The Company holds ISO 27001-2022 certification for information security at our corporate headquarters. Our Chief Information Security Officer (“CISO”), who has over 30 years of experience in information security and technology leadership, has primary responsibility for (i) leading our global information security program, (ii) managing the cybersecurity risks identified as part of the ERM program, and (iii) developing, implementing, and enforcing security policies and maintaining information security systems.
+Our global information security program, led by our CISO, includes dedicated teams specialized in (i) identity access management, (ii) incident response, (iii) vulnerability governance, (iv) security operations and engineering (v) governance, risk, and compliance, and (vi) insider risk and intelligence. The members of the information security team are responsible for managing, maintaining, and monitoring the systems and processes that prevent, detect, mitigate and remediate cybersecurity incidents, and for informing our CISO of status of such systems and processes, as well as any significant incidents.
+Our Board is responsible for overseeing our strategy and approach to addressing information security risks, including managing and assessing risks from cybersecurity threats, both directly and through the audit committee. The audit committee is responsible for reviewing and monitoring the Company’s cybersecurity and information security policies and its internal controls regarding cybersecurity and information security. In addition, the audit committee is responsible for regularly reporting to the Board on the substance of such reviews and, as necessary, recommending to the Board such actions as it deems appropriate. Our CISO reports on information security risks at least annually to the Board and quarterly to the audit committee or Board.
+We experience cybersecurity and other threats and incidents in the course of our operations. To date, we have not determined that such threats and incidents have materially and adversely affected the Company, including our business strategy, results of operations or financial condition. Furthermore, to date, we have not determined that such threats and incidents are reasonably likely to materially and adversely affect the Company, including our business strategy, results of operations or financial condition.
+Lam Research Corporation 2025 10-K 25
+Table of Contents
+For additional information on certain risks associated with cybersecurity, please refer to “Our Business Relies on Technology, Data, Intellectual Property and Other Sensitive information That is Susceptible to Cybersecurity and Other Threats or Incidents” in Item 1A: Risk Factors.
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+General
+
+Overview
+
+Torsel Software, Inc. ("we," "us," "our," or the "Company") is a prominent provider in the information technology sector, offering a comprehensive suite of software solutions designed to enhance business operations across various industries. Our headquarters are located in Princeton, New Jersey, and we are incorporated in Delaware. As of December 31, 2024, we employed approximately 28,000 individuals dedicated to delivering innovative technology solutions to our global customer base.
+
+Our business is structured around several key segments, each focusing on specific areas of technology and customer needs. We have achieved significant growth in fiscal year 2024, with total revenue reaching $24,213 million. Our commitment to research and development, customer-focused innovation, and strategic market engagement has positioned us as an industry leader in software development and services.
+
+Principal Products and Services
+
+Our product offerings are categorized into two primary segments: Enterprise Software Solutions and Cloud Services. Each segment addresses the distinct needs of our diverse customer base while leveraging our core technology competencies.
+
+Enterprise Software Solutions
+
+Our Enterprise Software Solutions segment provides a wide range of software products that enable businesses to optimize their operations, improve productivity, and drive growth. This segment includes enterprise resource planning (ERP) systems, customer relationship management (CRM) software, and supply chain management solutions. These products are designed to integrate seamlessly into our customers’ existing workflows, offering flexibility and scalability.
+
+Our ERP systems support businesses in managing their core processes, including finance, human resources, and procurement, while our CRM solutions help organizations enhance customer interactions and sales effectiveness. Our supply chain management tools enable efficient management of logistics, inventory, and demand forecasting, ensuring that businesses can respond swiftly to market changes.
+
+Cloud Services
+
+Our Cloud Services segment offers cloud-based platforms and infrastructure that empower businesses to operate with increased agility and reduced IT costs. These services include cloud storage, computing power, and software-as-a-service (SaaS) applications. Our cloud solutions are engineered to provide robust security, reliability, and scalability, catering to the diverse needs of enterprises ranging from small businesses to large multinational corporations.
+
+In addition to infrastructure and platform services, our Cloud Services segment provides advanced analytics and artificial intelligence capabilities, enabling customers to derive actionable insights from their data. This empowers them to make informed decisions and improve business outcomes.
+
+Customers
+
+Our customer base is diverse, spanning multiple industry sectors, including finance, healthcare, retail, manufacturing, and telecommunications. We serve both private and public sector clients, including government agencies, educational institutions, and non-profit organizations. Our software solutions are designed to meet the specific needs of each industry, ensuring that we deliver maximum value to our customers.
+
+Sales and Marketing
+
+Our sales and marketing strategy is focused on building strong relationships with our customers while expanding our market reach. We employ a multi-channel approach that includes direct sales teams, channel partners, and strategic alliances. Our marketing initiatives are designed to enhance brand awareness, generate leads, and support our sales efforts through targeted campaigns, events, and digital marketing.
+
+We invest in understanding our customers’ specific requirements and tailor our solutions to address their unique challenges. Our customer-centric approach has been instrumental in driving customer satisfaction and loyalty, contributing to our revenue growth.
+
+Competition
+
+The information technology sector is highly competitive, with numerous companies vying for market share. Our primary competitors include both large, established software providers and emerging technology firms. We differentiate ourselves through our comprehensive product offerings, commitment to innovation, and strong customer relationships.
+
+We compete based on several factors, including product functionality, performance, reliability, customer support, and total cost of ownership. Our ability to deliver integrated solutions that address the full spectrum of our customers’ needs is a key competitive advantage.
+
+Seasonality
+
+Our business does not experience significant seasonal fluctuations. However, certain factors, such as budget cycles of our enterprise customers and government fiscal year-end spending, can influence quarterly revenue patterns. We continuously monitor and adapt to these factors to optimize our sales and operational strategies.
+
+Intellectual Property
+
+Intellectual property is a critical asset for our business, and we are committed to protecting our proprietary technologies. We hold a portfolio of patents, trademarks, and copyrights that safeguard our innovations and brand identity. Our intellectual property strategy focuses on fostering innovation, securing market leadership, and mitigating competitive risks.
+
+We actively monitor the intellectual property landscape to ensure compliance and take appropriate actions to defend our rights. Our commitment to research and development supports the ongoing creation of new technologies and solutions, reinforcing our competitive position.
+
+Government Regulation
+
+As a provider of technology solutions, we are subject to various government regulations and industry standards. These regulations pertain to data protection, privacy, cybersecurity, and intellectual property rights. Compliance with these regulations is integral to our operations and customer trust.
+
+We maintain robust compliance programs and engage with regulatory bodies to stay informed of evolving requirements. Our policies and procedures are designed to ensure adherence to applicable laws and mitigate regulatory risks.
+
+Human Capital
+
+Our workforce is a key driver of our success, and we are committed to fostering an inclusive and supportive work environment. With approximately 28,000 employees, we prioritize talent development, diversity, and employee well-being. Our human capital strategy focuses on attracting top talent, providing opportunities for growth, and cultivating a culture of innovation and collaboration.
+
+We offer comprehensive training and development programs to enhance the skills and capabilities of our employees. Our commitment to diversity, equity, and inclusion is reflected in our recruitment practices and employee engagement initiatives.
+
+Available Information
+
+We provide access to our financial and operational information through various channels, including our corporate website and filings with the Securities and Exchange Commission (SEC). Stakeholders can access our annual reports, quarterly earnings releases, and other relevant documents to gain insights into our business performance and strategic initiatives.
+
+We are committed to transparency and timely communication with our investors, customers, and partners. Our Investor Relations team is available to address inquiries and provide information on our financial performance and business outlook.
+
+In conclusion, Torsel Software, Inc. is dedicated to delivering innovative technology solutions that drive customer success and create long-term value. Our strategic focus on product excellence, customer satisfaction, and operational efficiency underpins our continued growth and market leadership in the information technology sector.
+
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+Risks Related to Our Business and Industry
+
+Intense Competition Could Adversely Affect Our Market Position and Profitability
+
+The information technology sector is characterized by rapid technological advancements and intense competition. Our primary competitors include large, established software providers and emerging technology firms that may have more resources or innovative offerings. This competitive landscape may pressure us to reduce prices, invest heavily in research and development, and increase sales and marketing expenditures to maintain or enhance our market position. Failure to effectively compete could adversely affect our market share, profitability, and ability to attract and retain customers.
+
+Rapid Technological Changes May Outpace Our Ability to Innovate
+
+The technology industry is subject to rapid changes, with frequent introductions of new products and services. Our success depends on our ability to anticipate these changes and develop and incorporate new technologies into our offerings. If we fail to keep pace with technological advancements or if our innovations do not meet market demands, our competitive position could be weakened, potentially leading to a loss of revenue and market share.
+
+Dependence on Key Customers and Industry Verticals
+
+Our customer base spans multiple industry sectors, including finance, healthcare, retail, manufacturing, and telecommunications. A significant portion of our revenues is derived from key customers within these sectors. Any reduction in demand from these customers, due to economic downturns, regulatory changes, or shifts in industry focus, could adversely impact our financial performance. Additionally, consolidation within these industries could reduce the number of potential customers, further affecting our revenue streams.
+
+Risks Related to Operations
+
+Failure to Manage Growth Effectively Could Impact Our Operations
+
+We have experienced significant growth in recent years, and managing this growth effectively is critical to our continued success. Growth places a substantial strain on our operational, financial, and management resources. If we fail to manage our growth effectively, we may experience operational inefficiencies, reduced quality of service, and inability to capitalize on market opportunities, which could adversely affect our business and financial results.
+
+Challenges in Recruiting and Retaining Skilled Personnel
+
+Our success depends on our ability to attract, retain, and motivate qualified personnel, particularly in areas such as software development, sales, and management. The competition for skilled professionals in the technology sector is intense, and our ability to maintain a competitive edge is reliant on our workforce. If we are unable to hire and retain key employees or if significant numbers of our personnel leave the company, our operations and ability to achieve strategic objectives could be adversely affected.
+
+Increased Costs Related to Data Security and Privacy
+
+Data security and privacy are critical concerns for our customers and stakeholders. As cyber threats become more sophisticated, the costs associated with maintaining robust data security measures increase. A security breach or failure to protect sensitive customer data could result in significant reputational damage, legal liabilities, and financial losses. Additionally, evolving regulations regarding data protection could require us to incur additional costs to comply with new requirements, affecting our profitability.
+
+Risks Related to Financial Condition and Results
+
+Fluctuations in Foreign Currency Exchange Rates Could Impact Financial Results
+
+A portion of our revenue is derived from international operations, exposing us to risks associated with fluctuating foreign currency exchange rates. While we may employ hedging strategies to mitigate these risks, significant volatility in exchange rates could impact our financial results, affecting our revenue and profitability.
+
+Reliance on Third-Party Suppliers and Partners
+
+Our operations depend on third-party suppliers and partners for certain components, services, and technologies. Any disruption in the supply chain or failure of these parties to meet performance or quality standards could adversely impact our ability to deliver products and services to customers. This reliance also exposes us to risks related to potential increases in costs, which could affect our margins and financial performance.
+
+Risks Related to Legal and Regulatory Matters
+
+Compliance with Laws and Regulations Involves Costs and Risks
+
+As a provider of technology solutions, we are subject to various laws and regulations, including those related to data protection, privacy, cybersecurity, and intellectual property. Compliance with these regulations is complex and evolving, requiring ongoing investment in processes and controls. Non-compliance may result in substantial fines, legal liabilities, and reputational harm, adversely affecting our business and financial condition.
+
+Intellectual Property Infringement Claims Could Be Costly
+
+Intellectual property is a critical asset for our company, and we may face claims of infringement or challenges to our patents, trademarks, or copyrights. Defending against such claims can be costly and time-consuming, potentially diverting management attention from core business operations. If we are found to infringe on third-party intellectual property rights, we may be required to pay damages, alter our products, or obtain licenses, which could impact our financial performance and market position.
+
+Risks Related to General Economic Conditions
+
+Economic Uncertainty and Adverse Market Conditions
+
+Our business is affected by general economic conditions and market environments. Economic downturns, rising inflation rates, or geopolitical instability can reduce customer spending on technology solutions, affecting our revenues and profitability. Additionally, adverse market conditions can impact the availability of credit and financial stability, potentially affecting our liquidity and financial condition.
+
+Pandemic and Health Crises Impact on Business Operations
+
+Global pandemics and health crises, such as COVID-19, can have significant impacts on business operations, including disruptions to supply chains, reduced customer demand, and challenges in workforce management. Such events may require us to adapt our operations, invest in remote work capabilities, and manage increased health and safety compliance costs. The long-term effects of such health crises on the global economy and our business remain uncertain.
+
+In conclusion, Torsel Software, Inc. faces a range of risks that could materially affect our business operations, financial condition, and results. While we strive to mitigate these risks through strategic planning and risk management practices, some factors are beyond our control. Stakeholders are encouraged to consider these risks when evaluating our company and its future prospects.
+
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+The following discussion and analysis provides information that Torsel Software, Inc.'s management believes is relevant to an assessment and understanding of our consolidated financial condition and results of operations. This section should be read in conjunction with our Consolidated Financial Statements and the related notes included in Part II, Item 8 of this Annual Report on Form 10-K. This discussion contains forward-looking statements that involve risks and uncertainties. Actual results may differ materially from those anticipated in these forward-looking statements as a result of various factors.
+
+Overview
+
+Torsel Software, Inc. is a leading provider of software solutions in the information technology sector, headquartered in Princeton, New Jersey. Our fiscal year ended on December 31, 2024, marking a period of substantial growth and development in our business operations. For fiscal 2024, we reported a revenue of $24,213 million, reflecting a 13.0% increase from the prior year's revenue of $21,422 million. Our robust performance can be attributed to our strategic focus on innovation, expanding our cloud services, and strengthening our enterprise software solutions.
+
+Results of Operations
+
+Revenue
+
+For the fiscal year ended December 31, 2024, our revenue increased by 13.0% to $24,213 million from $21,422 million in fiscal 2023. This growth was driven by the increased adoption of our cloud services and enterprise software solutions, as well as our ability to capture new market opportunities and expand our customer base across diverse industry sectors. The demand for digital transformation and scalable IT solutions contributed significantly to our revenue growth.
+
+Cost of Revenue and Gross Margin
+
+The cost of revenue for fiscal 2024 was $13,334 million, an increase from $11,813 million in fiscal 2023. Despite the increase in cost of revenue, our gross profit improved to $10,879 million from $9,609 million in the prior year, maintaining a stable gross margin of 44.9%. This consistent gross margin highlights our effective cost management strategies and our ability to scale operations efficiently while meeting increasing customer demand.
+
+Operating Expenses
+
+Research and Development
+
+Research and development expenses in fiscal 2024 were $2,620 million, compared to $2,375 million in fiscal 2023. This increase aligns with our commitment to innovation and the development of new technologies and solutions to enhance our competitive position. The investment in research and development, representing 10.8% of our revenue, enables us to remain at the forefront of technological advancements and meet evolving customer needs.
+
+Selling, General and Administrative
+
+Selling, general and administrative expenses for fiscal 2024 were $2,673 million, up from $2,303 million in fiscal 2023. This increase was primarily due to expanded sales and marketing efforts to support our growing product portfolio and to enhance brand recognition. Our focus on customer engagement and market expansion necessitated additional investments in these areas, which we believe will drive future revenue growth.
+
+Other Operating Expense
+
+Other operating expenses increased to $1,453 million in fiscal 2024 from $1,285 million in the previous year. The rise in other operating expenses was primarily due to business growth-related activities and the expansion of our operational infrastructure to support increased demand for our solutions.
+
+Operating Income
+
+Our operating income for fiscal 2024 was $4,133 million, representing a 13.4% increase from $3,646 million in fiscal 2023. This growth reflects our ability to effectively manage costs and leverage our revenue increases to improve profitability. Our operating margin improved slightly to 17.1% from 17.0% in the prior year, demonstrating our continued focus on operational efficiency and profitability.
+
+Interest Expense
+
+Interest expense for fiscal 2024 was $190 million, compared to $167 million in fiscal 2023. The increase in interest expense is attributable to higher levels of debt incurred to finance our strategic investments and growth initiatives. We continue to manage our capital structure prudently to balance growth ambitions with financial stability.
+
+Effective Tax Rate
+
+The provision for income taxes was $442 million in fiscal 2024, compared to $364 million in fiscal 2023, resulting in an effective tax rate of 11.2% for fiscal 2024, up from 10.5% in the previous year. The increase in the effective tax rate reflects changes in our geographical earnings mix and tax planning strategies.
+
+Net Income
+
+Net income for fiscal 2024 was $3,501 million, an increase of 12.4% from $3,115 million in fiscal 2023. Our net margin remained stable at 14.5%, underscoring our ability to maintain profitability while navigating a competitive market landscape and investing in future growth.
+
+Liquidity and Capital Resources
+
+Cash and Cash Equivalents
+
+As of December 31, 2024, cash and cash equivalents totaled $1,154 million, compared to $960 million as of December 31, 2023. This increase reflects our strong operational performance and effective cash management practices.
+
+Operating Activities
+
+Net cash provided by operating activities for fiscal 2024 was $4,022 million. Our robust cash flow from operations is a testament to our strong revenue growth and effective working capital management. This cash flow supports our ability to fund ongoing operations and invest in strategic initiatives.
+
+Investing Activities
+
+Net cash used in investing activities was $1,951 million for fiscal 2024. Capital expenditures, primarily for the purchase of property and equipment, amounted to $472 million. Additionally, we continued to invest in strategic opportunities to enhance our technology offerings and infrastructure, which is reflected in our other investing activities totaling $1,479 million.
+
+Financing Activities
+
+Net cash used in financing activities was $1,877 million for fiscal 2024, which includes a net change in long-term debt of $501 million. We did not pay dividends in fiscal 2024 but executed share repurchases, net of issuances, totaling $2,378 million. Our share repurchase program reflects our commitment to returning capital to shareholders and maintaining an efficient capital structure.
+
+Capital Expenditures
+
+During fiscal 2024, we incurred capital expenditures of $472 million, focused on enhancing our technological infrastructure and expanding our operational capabilities. These investments are critical to supporting our growth strategy and ensuring we deliver high-quality solutions to our customers.
+
+Debt
+
+Our long-term debt increased to $4,222 million as of December 31, 2024, from $3,721 million as of December 31, 2023. The increase in debt was primarily used to finance strategic initiatives and investments in growth opportunities. We remain committed to maintaining a balanced approach to leverage, ensuring we have the financial flexibility to pursue our business objectives.
+
+Dividends and Share Repurchases
+
+We did not declare or pay any dividends during fiscal 2024. However, we continued our share repurchase program, repurchasing shares valued at $2,378 million, net of issuances. This strategy underscores our focus on optimizing shareholder returns and managing our equity structure efficiently.
+
+Critical Accounting Estimates
+
+Our consolidated financial statements are prepared in accordance with generally accepted accounting principles (GAAP) in the United States, which require us to make estimates and assumptions that affect the reported amounts of assets, liabilities, revenues, and expenses. We base our estimates and judgments on historical experience and other factors that we believe to be reasonable under the circumstances. Actual results may differ from these estimates under different assumptions or conditions.
+
+Revenue Recognition
+
+We recognize revenue from contracts with customers when control of promised goods or services is transferred to the customer in an amount that reflects the consideration we expect to receive in exchange for those goods or services. Revenue recognition involves judgments, particularly in determining the timing of transfer of control, the identification of performance obligations, and the allocation of the transaction price to those performance obligations.
+
+Goodwill and Intangible Assets
+
+We perform annual impairment tests of goodwill and indefinite-lived intangible assets or more frequently if events or changes in circumstances indicate that the asset might be impaired. The impairment test involves estimating the fair value of our reporting units, which requires judgment, including assumptions about future cash flows, discount rates, and growth rates. Changes in these assumptions could materially affect the determination of fair value and the resulting impairment charge, if any.
+
+Income Taxes
+
+We recognize deferred tax assets and liabilities for the expected future tax consequences of temporary differences between the carrying amounts of assets and liabilities for financial reporting purposes and their respective tax bases. We regularly assess the likelihood that our deferred tax assets will be recovered from future taxable income and establish valuation allowances if deemed necessary. This assessment requires judgment regarding future taxable income and the impact of tax planning strategies.
+
+In conclusion, Torsel Software, Inc. has demonstrated strong financial performance for fiscal 2024, driven by strategic growth initiatives, effective cost management, and a commitment to innovation. Our focus on expanding our product offerings and enhancing our operational capabilities positions us well for future success. We remain vigilant in managing the risks associated with our business and are dedicated to creating long-term value for our shareholders.
+
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Torsel Software, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 900 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

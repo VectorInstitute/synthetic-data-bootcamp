@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0012",
+  "name": "Venzen Industries, Inc.",
+  "ticker": "VNNZ",
+  "sector": "Industrials",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "NC",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 48137,
+  "revenue_growth": 0.0801,
+  "employees": 72500,
+  "ratios": {
+    "gross_margin": 0.5226,
+    "operating_margin": 0.1249,
+    "sga_ratio": 0.1307,
+    "da_ratio": 0.0163,
+    "capex_ratio": 0.0171,
+    "tax_rate": 0.212,
+    "asset_turnover": 0.4826,
+    "equity_ratio": 0.2357,
+    "current_assets_ratio": 0.2888,
+    "current_ratio": 0.7456,
+    "cash_ratio": 0.1386,
+    "ppe_ratio": 0.4989,
+    "debt_ratio": 0.0936,
+    "receivables_ratio": 0.1324,
+    "rd_ratio": 0.0423,
+    "inventory_ratio": 0.1412,
+    "goodwill_ratio": 0.4009,
+    "dividend_payout": 0.5441,
+    "other_operating_cash_ratio": 0.013
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 48137,
+        "cost_of_revenue": 30909,
+        "gross_profit": 17228,
+        "research_and_development": 2036,
+        "selling_general_and_administrative": 6292,
+        "other_operating_expense": 2888,
+        "operating_income": 6012,
+        "interest_expense": 420,
+        "pretax_income": 5592,
+        "income_tax": 1186,
+        "net_income": 4406
+      },
+      "2023": {
+        "revenue": 44567,
+        "cost_of_revenue": 28726,
+        "gross_profit": 15841,
+        "research_and_development": 1912,
+        "selling_general_and_administrative": 5812,
+        "other_operating_expense": 2674,
+        "operating_income": 5443,
+        "interest_expense": 367,
+        "pretax_income": 5076,
+        "income_tax": 1142,
+        "net_income": 3934
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 13825,
+        "receivables": 6373,
+        "inventory": 6797,
+        "total_current_assets": 28806,
+        "property_plant_and_equipment": 49763,
+        "goodwill": 19058,
+        "total_assets": 99745,
+        "total_current_liabilities": 38635,
+        "long_term_debt": 9336,
+        "total_equity": 23510,
+        "other_current_assets": 1811,
+        "other_noncurrent_assets": 2118,
+        "other_noncurrent_liabilities": 28264,
+        "total_liabilities": 76235,
+        "total_liabilities_and_equity": 99745
+      },
+      "2023": {
+        "cash": 12038,
+        "receivables": 5433,
+        "inventory": 6101,
+        "total_current_assets": 24813,
+        "property_plant_and_equipment": 45832,
+        "goodwill": 16890,
+        "total_assets": 89412,
+        "total_current_liabilities": 32118,
+        "long_term_debt": 8148,
+        "total_equity": 20540,
+        "other_current_assets": 1241,
+        "other_noncurrent_assets": 1877,
+        "other_noncurrent_liabilities": 28606,
+        "total_liabilities": 68872,
+        "total_liabilities_and_equity": 89412
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 4406,
+        "depreciation_and_amortization": 785,
+        "other_operating_items": 626,
+        "net_cash_from_operating_activities": 5817,
+        "capital_expenditures": -823,
+        "other_investing_activities": -2959,
+        "net_cash_from_investing_activities": -3782,
+        "net_change_in_long_term_debt": 1188,
+        "dividends_paid": -2397,
+        "share_repurchases_net": 961,
+        "net_cash_from_financing_activities": -248,
+        "net_change_in_cash": 1787,
+        "cash_beginning_of_year": 12038,
+        "cash_end_of_year": 13825
+      }
+    }
+  }
+}

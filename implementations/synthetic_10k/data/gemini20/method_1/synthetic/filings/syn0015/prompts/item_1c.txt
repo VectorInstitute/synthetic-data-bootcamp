@@ -1,0 +1,345 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Zennov Medical, Inc. (ticker ZONE)
+Sector: Health Care
+Incorporated in: Delaware
+Headquarters: Denver, Colorado
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 2,700
+
+Zennov Medical, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                       2,264         2,093
+Cost of revenue                                 606           584
+Gross profit                                  1,658         1,509
+Research and development                        923           854
+Selling, general and administrative             124            87
+Other operating expense                           0             0
+Operating income                                611           568
+Interest expense                                 59            54
+Income before income taxes                      552           514
+Provision for income taxes                      166           149
+Net income                                      386           365
+
+Zennov Medical, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                               68            60
+Accounts receivable, net                               340           324
+Inventories                                            149           140
+Other current assets                                   240           224
+Total current assets                                   797           748
+Property, plant and equipment, net                     176           157
+Goodwill                                               490           449
+Other non-current assets                             1,614         1,443
+Total assets                                         3,077         2,797
+Total current liabilities                              710           658
+Long-term debt                                       1,321         1,201
+Other non-current liabilities                           88            63
+Total liabilities                                    2,119         1,922
+Total stockholders' equity                             958           875
+Total liabilities and stockholders' equity           3,077         2,797
+
+Zennov Medical, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                               386
+Depreciation and amortization                             62
+Changes in working capital and other                       3
+Net cash provided by operating activities                451
+Purchases of property and equipment                     (60)
+Other investing activities, net                        (200)
+Net cash used in investing activities                  (260)
+Net change in long-term debt                             120
+Dividends paid                                         (152)
+Share repurchases, net of issuances                    (151)
+Net cash used in financing activities                  (183)
+Net change in cash and cash equivalents                    8
+Cash and cash equivalents, beginning of year              60
+Cash and cash equivalents, end of year                    68
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 8.2%
+Net income growth, fiscal 2024 versus 2023: 5.8%
+Operating income growth, fiscal 2024 versus 2023: 7.6%
+Gross margin, fiscal 2024: 73.2%
+Operating margin, fiscal 2024: 27.0%
+Net margin, fiscal 2024: 17.0%
+Effective tax rate, fiscal 2024: 30.1%
+Research and development as a share of revenue, fiscal 2024: 40.8%
+Selling, general and administrative as a share of revenue, fiscal 2024: 5.5%
+Gross margin, fiscal 2023: 72.1%
+Operating margin, fiscal 2023: 27.1%
+Net margin, fiscal 2023: 17.4%
+Effective tax rate, fiscal 2023: 29.0%
+Research and development as a share of revenue, fiscal 2023: 40.8%
+Selling, general and administrative as a share of revenue, fiscal 2023: 4.2%
+
+STYLE EXAMPLE: the start of Item 1C from a real Health Care company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1C. CYBERSECURITY
+Cybersecurity Strategy and Risk Management
+Our comprehensive cybersecurity program is supported by policies and procedures designed to protect our systems and operations as well as the sensitive personal information and data of our clients and customers from foreseeable cybersecurity threats. This program is an integral component of our enterprise risk management program.
+Core to our security model is our defense-in-depth framework, comprising multiple layers of processes and technologies that help prevent, detect and respond to threats. Our approach to safeguarding against external threats incorporates a suite of preventive technologies, including malicious email blocking, defenses against automated attacks and multifactor authentication. Event monitoring technologies run continuously, detecting suspected intrusion attempts and alerting our Cybersecurity Incident Response Team. We undertake a number of critical security processes to mitigate and protect against cybersecurity risks, which include but are not limited to (i) identity and access management; (ii) security awareness and training; (iii) security operations and monitoring; (iv) change
+33
+management; (v) disaster recovery/business continuity; (vi) intelligence feeds; (vii) physical security; (viii) third-party vendor security reviews; (ix) vulnerability management/patching; and (x) cybersecurity incident reporting.
+We routinely manage cybersecurity risks through a defined framework that includes activities aimed at the identification, assessment, treatment and monitoring of risks. Cybersecurity risk assessment results are used by senior management to make informed decisions about where to allocate resources to reduce cybersecurity risks and improve overall security posture. We examine our entire program annually with third parties and measure the program against generally accepted industry standards and frameworks, such as an internationally recognized security control framework established by the NIST and used by companies to assess and improve their ability to prevent, detect and respond to cyberattacks. Our cybersecurity policies and standards are reviewed annually and are mainly guided by the NIST 800-53 Cybersecurity Framework. In addition to the NIST framework, we leverage the International Organization for Standardization 27001 and 27002 standards. Our information protection policies and standards are informed by NIST 800-53b, moderate-level security control baseline requirements.
+To enhance our preparedness and practice our collective cybersecurity response capabilities, we conduct tabletop exercises with leaders, stakeholders, subject matter experts and certain executives that are developed in partnership with external security experts. These events are designed to exercise and engage some of the most critical areas of cybersecurity incident response and preparedness through an interactive/evolving, simulated scenario.
+In addition to these internal measures, the effectiveness of components of our overall cybersecurity program is frequently evaluated by external third parties, which includes work performed over various levels of control assessments for specific business lines and core processes. These include Health Information Trust Alliance for health care data security, PCI DSS for payment security and System Organization Controls 2 for information security and related controls for specific business lines and core processes. We also perform an annual maturity assessment and benchmark our security controls to identify opportunities to strengthen our cybersecurity program.
+As part of our Global Threat Management Program, a dedicated Incident Handling Team, comprising both technical and management personnel, determines the severity of a validated cybersecurity event across the enterprise and is responsible for the development and ongoing maintenance of our comprehensive Global Incident Response Plan ("GIRP"). The GIRP is reviewed quarterly at a minimum but may be updated as needed based on lessons learned, changes in key teams or processes or other circumstances as warranted, and the procedures therein are tested annually. The GIRP's incident handling procedures dictate our actions during each phase of an incident, including the assembly of a broad, cross-functional Computer Security Incident Response Team, the formulation of a response, and post-incident reviews and corrective actions.
+Our information protection department maintains a risk register that is used to manage cybersecurity risks associated with its business activities, technology assets and its interaction with business, information technology and security parties, internal and external. Cybersecurity risks are also periodically reviewed by Enterprise Risk Management to ensure appropriate oversight of cybersecurity risk management activities.
+Suppliers that have access to, host or transmit our data are contractually required to comply with our Security Policies and Standards. Additionally, suppliers may be subject to periodic security audits or risk assessments, which include security questionnaires, security capabilities and maturity assessments, controls evidence reviews, application vulnerability assessments, public internet presence monitoring, and alignment reviews with service-specific industry standards. Follow-up activities are performed as needed. Contracts with suppliers also include critical security requirements, such as right to audit, technology requirements and hiring practices, including background checks for those who have access to our network. To further ensure supplier resilience and continuity, we regularly evaluate and assess our critical supplier relationships and business continuity plans, enabling us to quickly adapt and maintain operations in the event of prolonged disruption.
+As of the date of this report, we do not believe that any risks from any cybersecurity threats, including as a result of any previous cybersecurity incidents, have materially affected or are reasonably likely to materially affect us, including our business strategy, results of operations or financial condition. That said, as discussed more fully under Part I, Item 1A "Risk Factors – Strategic and Operational Risks – As a large global health company, we and our vendors are subject to cyberattacks or other privacy or data security incidents. If we are unable to prevent or contain the effects of any such attacks, or fail to ensure vendors do the same, we may suffer exposure to substantial liability, reputational harm, loss of revenue or other damages," the sophistication of cybersecurity threats continues to increase, and the preventive actions we take to reduce the risk of cybersecurity incidents and protect our systems and information may become insufficient. Accordingly, no matter how well designed or implemented our controls are, we will not be able to anticipate all attacks of these types, and we may not be able to implement effective preventive measures against such security breaches in a timely manner.
+34
+Cybersecurity Governance
+Our Board has ultimate oversight over our privacy and cybersecurity programs and strategy and is responsible for ensuring that we have risk management policies and processes in place to meet and mitigate evolving risks and threats. Certain members of the Board have cybersecurity certifications. The Board executes this oversight directly and through both the Audit Committee, for cybersecurity purposes, and the Compliance Committee, for privacy purposes. In these capacities, these committees are regularly briefed by the Global Chief Information Security Officer ("GCISO") and Chief Privacy Officer on cybersecurity and privacy matters. These briefings are designed to provide visibility about the identification, assessment and management of critical risks, audit findings, and management's risk mitigation strategies. Additionally, these briefings include information about current trends in the environment, incident preparedness, artificial intelligence and various components of our cybersecurity and privacy programs. On an annual basis, the Board reviews our cybersecurity program, including the threat landscape and related controls, and periodically conducts cybersecurity tabletop exercises.
+Our dedicated cybersecurity team is led by our GCISO. Our current GCISO joined the Company in October 2023 and works closely with senior management to develop and innovate the cybersecurity strategy and risk management. Prior to joining the team, our GCISO held senior information security roles at other global organizations where this individual defined information security strategies, built global information security programs, implemented cybersecurity capabilities that protect consumers, wholesale partners [...]
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+OVERVIEW
+
+Zennov Medical, Inc. (referred to in this Annual Report on Form 10-K as Zennov, the Company, we, us, or our) is a diversified medical technology company headquartered in Denver, Colorado. Since our incorporation in Delaware, we have dedicated our operations to the design, development, manufacture, and marketing of innovative medical solutions intended to improve patient outcomes and enhance the efficiency of healthcare delivery. We operate at the intersection of advanced engineering and clinical science, providing a broad portfolio of products that address critical needs in surgical intervention, diagnostic accuracy, and chronic disease management.
+
+Our mission is to provide healthcare professionals with the tools necessary to treat complex medical conditions through minimally invasive techniques and data-driven insights. Our product development strategy is centered on high-growth segments of the healthcare market where clinical unmet needs remain significant. We maintain a robust research and development pipeline, supported by a global infrastructure of manufacturing facilities and a specialized sales force. For the fiscal year ended December 31, 2024, our total revenue was $2,264 million.
+
+As of December 31, 2024, we employed approximately 2,700 individuals worldwide. Our organizational structure is designed to foster innovation while maintaining rigorous quality standards and regulatory compliance across all jurisdictions in which we operate. We continue to invest in our core technologies while exploring strategic acquisitions and partnerships that complement our existing capabilities and expand our geographic reach.
+
+PRINCIPAL PRODUCTS AND SERVICES
+
+Our product portfolio is categorized into several key areas of clinical focus, primarily serving the cardiovascular, orthopedic, and general surgical markets. We offer a range of implantable devices, disposable surgical instruments, and sophisticated diagnostic hardware and software systems.
+
+In our surgical portfolio, we provide specialized catheters, stents, and delivery systems used in interventional procedures. These products are designed to navigate complex anatomical structures with high precision, reducing the need for open-market surgeries and shortening patient recovery times. We also produce a line of bio-absorbable implants used in orthopedic reconstruction, which are engineered to provide structural support during the healing process before being naturally integrated by the body.
+
+Our diagnostic offerings include molecular testing platforms and high-resolution imaging equipment. These systems are utilized by clinical laboratories and hospitals to identify disease markers at an early stage, enabling more personalized treatment pathways. Additionally, we provide integrated software solutions that allow for the remote monitoring of patients with chronic conditions. These digital health tools collect and analyze physiological data, providing clinicians with real-time alerts and longitudinal trends to improve outpatient care.
+
+REPORTABLE SEGMENTS
+
+We manage our business through three reportable segments: Therapeutic Solutions, Diagnostic Systems, and Patient Management. Each segment is focused on distinct aspects of the patient care continuum and utilizes specific technological platforms.
+
+Therapeutic Solutions
+
+The Therapeutic Solutions segment is our largest operating unit and is responsible for the development of interventional medical devices. This segment focuses on high-acuity clinical environments, such as cardiac catheterization labs and surgical suites. The primary products within this segment include endovascular grafts, electrophysiology mapping tools, and advanced wound closure devices. We focus our innovation in this segment on material science and micro-mechanics to enhance the performance and safety of our implantable technologies. Revenue in this segment is driven by the volume of elective and emergency surgical procedures performed globally.
+
+Diagnostic Systems
+
+The Diagnostic Systems segment provides the hardware and consumable reagents necessary for modern clinical diagnostics. Our focus in this area is on point-of-care testing and centralized laboratory automation. We develop proprietary assays for the detection of infectious diseases, oncological markers, and genetic predispositions. This segment also includes our imaging division, which produces specialized ultrasound and optical coherence tomography systems used to guide interventional procedures. The business model for this segment relies on a "razor and blade" approach, where the placement of diagnostic instruments creates a recurring revenue stream through the sale of associated consumables and service contracts.
+
+Patient Management
+
+The Patient Management segment encompasses our digital health and remote monitoring initiatives. This segment develops wearable sensors and cloud-based data platforms that connect patients with their healthcare providers outside of traditional clinical settings. Our solutions in this area are primarily used for the management of chronic respiratory and cardiovascular diseases. By leveraging artificial intelligence and machine learning, this segment aims to predict adverse clinical events before they occur, thereby reducing hospital readmission rates. This segment represents our most significant investment area for future growth as healthcare systems transition toward value-based care models.
+
+CUSTOMERS
+
+Our primary customers include hospitals, multi-hospital systems, ambulatory surgery centers, clinical laboratories, and physician offices. We also sell our products to government-affiliated healthcare providers and large integrated delivery networks. In certain international markets, we engage with national health ministries and centralized purchasing organizations.
+
+No single customer accounted for more than ten percent of our consolidated revenue in the fiscal year ended December 31, 2024. However, the ongoing consolidation of healthcare providers, particularly in the United States, has led to the emergence of large group purchasing organizations (GPOs). These GPOs negotiate contracts on behalf of their members, often resulting in significant pricing pressure but providing us with access to a broad base of facilities. We maintain strong relationships with these organizations through our national accounts team, which focuses on demonstrating the clinical and economic value of our product offerings.
+
+SALES AND MARKETING
+
+We market and sell our products through a combination of a direct sales force and a network of independent distributors. In the United States and most major European markets, we utilize a direct sales model. Our sales representatives are highly trained professionals who often possess clinical backgrounds, allowing them to provide technical support and training to physicians and nursing staff in the operating room or laboratory setting.
+
+In emerging markets and other international territories, we frequently partner with local distributors who possess deep knowledge of the regional regulatory environment and established relationships with local healthcare providers. These distributors are responsible for local inventory management, logistics, and first-line technical support, while our regional management teams provide oversight and strategic guidance.
+
+Our marketing efforts are focused on clinical education and evidence-based promotion. We participate in major medical congresses and sponsor clinical trials to validate the efficacy of our technologies. We also engage in digital marketing initiatives and peer-to-peer training programs to increase awareness of our solutions among key opinion leaders and medical practitioners.
+
+COMPETITION
+
+The medical technology industry is characterized by rapid innovation and intense competition. We compete with a range of companies, from large multinational corporations with extensive product lines and significant financial resources to smaller, specialized firms that focus on niche technologies.
+
+Our competitive position is based on several factors, including product performance, clinical outcomes, ease of use, reliability, and price. We also compete on the basis of our ability to provide comprehensive service and support to our customers. In many of our product categories, the ability to integrate hardware with proprietary software and data analytics is becoming an increasingly important competitive differentiator.
+
+To maintain our market position, we must continuously invest in research and development to introduce new products and enhance our existing portfolio. Failure to innovate or to respond to technological shifts could result in a loss of market share to competitors who develop more effective or lower-cost alternatives. Additionally, the increasing focus on healthcare cost containment has intensified competition based on the economic value and cost-effectiveness of our products.
+
+SEASONALITY
+
+Our business experiences a degree of seasonality, particularly in our Therapeutic Solutions segment. We typically observe higher sales volumes in the fourth quarter of our fiscal year, as hospitals and other healthcare providers often exhaust their annual capital budgets and patients seek to undergo elective procedures before their insurance deductibles reset at the beginning of the new calendar year. Conversely, the first quarter often sees a relative decline in procedure volumes.
+
+Furthermore, our international operations can be affected by regional holiday schedules and summer vacation periods, particularly in Europe, which may result in lower surgical volumes during the third quarter. While these seasonal patterns are generally predictable, they can be influenced by broader economic conditions or public health events that disrupt standard healthcare utilization patterns.
+
+INTELLECTUAL PROPERTY
+
+Our success depends significantly on our ability to protect our proprietary technology and operate without infringing the intellectual property rights of others. We rely on a combination of patents, trademarks, copyrights, and trade secret laws, as well as confidentiality agreements and licensing arrangements.
+
+We maintain an extensive portfolio of issued patents and pending patent applications in the United States and various international jurisdictions. These patents cover a wide range of technologies, including device designs, manufacturing processes, and software algorithms. The duration of our patent protection varies by jurisdiction and the date of filing, generally lasting for twenty years from the earliest effective filing date. We actively monitor the competitive landscape and take legal action when necessary to defend our intellectual property from infringement.
+
+In addition to our own patents, we license certain technologies from third parties, including academic institutions and other medical technology companies. These licenses may require us to pay royalties based on the sale of products incorporating the licensed technology. We also rely on trade secrets and unpatented "know-how" to maintain our competitive advantage, particularly in our manufacturing processes. We protect this information through strict internal security [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+An investment in Zennov Medical, Inc. involves a high degree of risk. You should carefully consider the risks and uncertainties described below, together with the other information contained in this Annual Report on Form 10-K, including our consolidated financial statements and the related notes. The risks described below are not the only ones facing our Company. Additional risks and uncertainties not presently known to us or that we currently deem immaterial may also impair our business operations. If any of the following risks actually occur, our business, financial condition, results of operations and future growth prospects could be materially and adversely affected.
+
+Business and Industry Risks
+
+We operate in a highly competitive environment dominated by large, well-capitalized organizations and specialized firms, and we may be unable to compete effectively.
+
+The medical technology industry is intensely competitive and subject to rapid technological change. We compete with large multinational corporations that have substantially greater financial, marketing, and distribution resources than we do. These competitors may be able to spend more aggressively on research and development or sales and marketing initiatives, allowing them to respond more quickly to new or emerging technologies or changes in clinical practice. We also face competition from smaller, niche companies that focus on specific high-growth technologies. In our Therapeutic Solutions segment, competition is based on clinical efficacy, ease of use, and physician preference. In the Diagnostic Systems segment, we compete on the basis of diagnostic accuracy, throughput, and the total cost of ownership for clinical laboratories. If we are unable to demonstrate the superior clinical and economic value of our products, our market share may decline, and our revenue could be negatively impacted.
+
+Our significant investment in research and development may not result in commercially viable products or sufficient financial returns.
+
+Our business strategy is heavily dependent on innovation, and we allocate a substantial portion of our resources to research and development activities. In the fiscal year ended December 31, 2024, our research and development expense was $923 million, representing 40.8% of our total revenue. This high level of investment carries significant risk. The process of developing new medical devices and diagnostic platforms is expensive, time-consuming, and uncertain. We may spend hundreds of millions of dollars on products that fail to meet clinical endpoints in trials or that are rejected by regulatory authorities. Even if a product is approved, it may not achieve market acceptance if physicians or healthcare systems perceive it as too complex or if it does not offer a clear advantage over existing treatments. If our research and development efforts do not result in a steady pipeline of successful new products, our long-term competitive position and financial results will suffer.
+
+Consolidation in the healthcare industry and the use of group purchasing organizations may lead to significant pricing pressure.
+
+Our primary customers, including hospitals and clinical laboratories, have been undergoing significant consolidation. This trend has resulted in the emergence of large, powerful healthcare systems and group purchasing organizations (GPOs) that have increased leverage when negotiating prices with medical device manufacturers. Many of these organizations seek to limit the number of vendors they work with and demand deep volume-based discounts. As a result, we may be forced to reduce our prices or be excluded from major contracts, which would adversely affect our gross margin. While our gross margin was 73.2% in fiscal 2024, any further intensification of pricing pressure from GPOs or large integrated delivery networks could lead to a decline in this metric and overall profitability.
+
+The transition toward value-based healthcare models may reduce the demand for our products or limit our pricing power.
+
+Healthcare payers, including government programs and private insurers, are increasingly shifting away from fee-for-service models toward value-based care. These models reward healthcare providers for improving patient outcomes while reducing the total cost of care. This shift may lead to a reduction in the volume of elective procedures, which would specifically impact our Therapeutic Solutions segment. Furthermore, payers may require extensive clinical evidence demonstrating that our products lead to shorter hospital stays or lower readmission rates before they agree to provide reimbursement. If we cannot provide such evidence, or if the costs of generating this data are prohibitive, our ability to sell our products at profitable prices will be compromised.
+
+Our business is subject to seasonal fluctuations that can affect our quarterly results of operations.
+
+We typically experience higher sales in the fourth quarter of our fiscal year. This seasonality is driven by healthcare providers exhausting their annual capital budgets and patients choosing to undergo elective surgical procedures before their insurance deductibles reset at the start of the new year. Conversely, the first quarter of the year often sees lower procedure volumes. Additionally, during the summer months, particularly in Europe, surgical volumes tend to decrease due to holiday schedules. These fluctuations can make it difficult for investors to evaluate our financial performance on a quarter-to-quarter basis and may lead to volatility in our stock price if our results do not meet market expectations during specific periods.
+
+Operational Risks
+
+We rely on a complex global supply chain and certain single-source suppliers for critical components.
+
+The manufacture of our medical devices and diagnostic systems requires specialized raw materials and highly engineered components. For some of these items, we rely on a single or a limited number of suppliers. Any disruption in our supply chain due to natural disasters, geopolitical instability, or the financial failure of a key supplier could result in production delays. Because our products are used in critical medical procedures, we may not be able to find alternative suppliers that meet our rigorous quality standards in a timely manner. Any significant interruption in our ability to manufacture and ship products would lead to lost revenue and could damage our relationships with healthcare providers.
+
+Our manufacturing facilities are highly specialized, and any disruption at these sites could adversely affect our business.
+
+We perform a significant portion of our manufacturing at our facilities in Denver, Colorado, and other specialized locations. These facilities must comply with stringent regulatory requirements, including the Quality System Regulation maintained by the FDA. If these facilities are damaged by fire, flood, or other disasters, or if they are shut down due to regulatory non-compliance, we may be unable to meet customer demand. The specialized nature of our production processes, including cleanroom requirements for implantable devices, means that we cannot easily shift production to third-party manufacturers. Any prolonged disruption at our primary manufacturing sites would have a material adverse effect on our financial condition.
+
+A failure in our cybersecurity measures could result in the theft of sensitive data or the disruption of our digital health services.
+
+Our Patient Management segment relies heavily on cloud-based platforms and wearable sensors to monitor patient health. These systems collect and transmit sensitive personal health information. We are also increasingly reliant on digital infrastructure for our internal operations, including the storage of intellectual property. Like other global companies, we are a target for cyber-attacks, including ransomware and sophisticated phishing attempts. A successful breach could lead to the unauthorized access of patient data, which would violate privacy laws such as HIPAA in the United States and GDPR in Europe. Such an event could result in significant legal liabilities, government fines, and a loss of trust among patients and physicians, which would severely damage our Patient Management business.
+
+We may be unable to attract and retain the highly skilled personnel necessary to support our complex operations.
+
+As of December 31, 2024, we employed approximately 2,700 individuals. Our success depends on our ability to recruit and retain specialized talent, including research scientists, software engineers, clinical trial managers, and a technical sales force. There is intense competition for these professionals in the healthcare and technology sectors. If we are unable to maintain a competitive compensation structure or a culture that fosters innovation, we may lose key employees to competitors. The loss of several key members of our research and development team could delay the introduction of new products and harm our long-term growth prospects.
+
+Legal and Regulatory Risks
+
+Our products are subject to extensive and evolving government regulation, and failure to obtain or maintain approvals could stop our sales.
+
+The design, testing, manufacturing, and marketing of our products are subject to rigorous regulation by the FDA in the United States and similar authorities in international jurisdictions. The process of obtaining regulatory clearance or approval can be long and expensive, often requiring years of clinical data. Even after a product is on the market, we are subject to ongoing requirements, including medical device reporting and post-market surveillance. If the FDA determines that our products are not safe or effective, or if we fail to comply with manufacturing standards, they could order a product recall or withdraw our marketing authorization. Any such action would lead to a significant loss of revenue and could involve substantial costs for remediation.
+
+We are subject to the risk of product liability claims, which could exceed our insurance coverage.
+
+The nature of our business exposes us to potential product liability claims, particularly in our Therapeutic Solutions segment where we produce implantable devices. If one of our products is alleged to [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+The following discussion and analysis of our financial condition and results of operations should be read in conjunction with our consolidated financial statements and related notes included elsewhere in this Annual Report on Form 10-K. For discussion of 2022 items and year-over-year comparisons between 2023 and 2022 that are not included in this 2024 Form 10-K, refer to Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations found in our Form 10-K for the year ended December 31, 2023, filed with the Securities and Exchange Commission.
+
+Executive Overview
+
+Zennov Medical, Inc. is a medical technology leader focused on the development and commercialization of innovative solutions across the patient care continuum. Headquartered in Denver, Colorado, we operate through three reportable segments: Therapeutic Solutions, Diagnostic Systems, and Patient Management. Our mission is to improve clinical outcomes and healthcare efficiency through advanced engineering and digital health integration.
+
+Our financial performance is driven by several key factors, including the volume of elective and emergency surgical procedures, the adoption of our diagnostic platforms, and the expansion of our remote monitoring services. In fiscal 2024, we continued to execute our strategy of high-intensity research and development, investing $923 million to advance our product pipeline. This commitment to innovation is reflected in our revenue growth and the expansion of our gross margin.
+
+During the fiscal year ended December 31, 2024, our revenue increased 8.2% to $2,264 million, compared to $2,093 million in fiscal 2023. This growth was primarily driven by increased procedure volumes in our Therapeutic Solutions segment and a growing installed base of diagnostic instruments which generated recurring consumable revenue. Operating income grew 7.6% to $611 million, while net income increased 5.8% to $386 million.
+
+We maintain a strong focus on capital allocation, balancing investments in organic growth with returns to stockholders. In fiscal 2024, we paid $152 million in dividends and utilized $151 million for share repurchases, net of issuances. We ended the year with $68 million in cash and cash equivalents and total assets of $3,077 million.
+
+Results of Operations
+
+Revenue
+
+Consolidated revenue for the fiscal year ended December 31, 2024, was $2,264 million, an increase of $171 million, or 8.2%, from $2,093 million in fiscal 2023. The growth in revenue was observed across all three of our reportable segments.
+
+In our Therapeutic Solutions segment, revenue growth was supported by the continued recovery of elective surgical procedure volumes in the United States and Europe. Our portfolio of endovascular grafts and specialized catheters experienced strong demand as healthcare providers addressed patient backlogs. Additionally, the introduction of next-generation bio-absorbable implants in our orthopedic line contributed to market share gains in the ambulatory surgery center channel.
+
+The Diagnostic Systems segment benefited from an increase in the utilization of our molecular testing platforms. Our "razor and blade" business model, which focuses on the placement of diagnostic hardware to drive recurring sales of consumable reagents, performed well as clinical laboratories expanded their testing menus for infectious diseases and oncological markers. The imaging division also saw growth, driven by the adoption of optical coherence tomography systems used to guide complex interventional procedures.
+
+Our Patient Management segment, though smaller in total revenue contribution, represented our fastest-growing area. Revenue was driven by the expansion of our remote monitoring subscriber base. The integration of artificial intelligence into our cloud-based platforms has allowed us to offer higher-value data insights to clinicians, supporting the transition toward value-based care models.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue for fiscal 2024 was $606 million, compared to $584 million in fiscal 2023. This increase of $22 million, or 3.8%, was primarily due to higher sales volumes and increased raw material costs for certain specialized components.
+
+Gross profit increased to $1,658 million in fiscal 2024 from $1,509 million in fiscal 2023. Our gross margin improved to 73.2% in fiscal 2024, compared to 72.1% in fiscal 2023. The 110-basis point expansion in gross margin was primarily driven by:
+
+- A favorable shift in product mix toward high-margin diagnostic consumables and digital health subscriptions.
+- Manufacturing efficiencies achieved at our Denver, Colorado, production facilities through the implementation of automated assembly processes.
+- Improved pricing discipline in our Therapeutic Solutions segment, partially offsetting the pricing pressures exerted by large group purchasing organizations.
+
+Research and Development (R&D)
+
+R&D expense for fiscal 2024 was $923 million, an increase of $69 million, or 8.1%, from $854 million in fiscal 2023. As a percentage of revenue, R&D remained consistent at 40.8% in both fiscal 2024 and 2023.
+
+The increase in absolute R&D spending reflects our ongoing commitment to innovation and the high costs associated with clinical evidence generation. Key areas of investment in 2024 included:
+
+- Clinical trials for our advanced wound closure devices and next-generation stents.
+- Development of software algorithms for our Patient Management platforms to enhance predictive analytics.
+- Engineering efforts to miniaturize wearable sensors and improve battery life.
+- Regulatory filing costs for new diagnostic assays in international markets.
+
+We believe that our sustained high level of R&D investment is essential to maintaining our competitive position in an industry characterized by rapid technological change.
+
+Selling, General and Administrative (SG&A)
+
+SG&A expense for fiscal 2024 was $124 million, an increase of $37 million, or 42.5%, from $87 million in fiscal 2023. As a percentage of revenue, SG&A increased to 5.5% in fiscal 2024 from 4.2% in fiscal 2023.
+
+The increase in SG&A expenses was primarily driven by:
+
+- Expansion of our specialized direct sales force in the United States to support the launch of new therapeutic products.
+- Increased marketing and clinical education initiatives, including participation in major medical congresses.
+- Higher personnel-related costs, including salaries and benefits for our approximately 2,700 employees.
+- Investments in our corporate information technology infrastructure to enhance cybersecurity and data privacy protections.
+
+Operating Income
+
+Operating income for fiscal 2024 was $611 million, an increase of $43 million, or 7.6%, from $568 million in fiscal 2023. Our operating margin was 27.0% in fiscal 2024, compared to 27.1% in fiscal 2023. The slight decrease in operating margin was due to the significant increase in SG&A spending, which offset the improvements in gross margin.
+
+Interest Expense
+
+Interest expense for fiscal 2024 was $59 million, compared to $54 million in fiscal 2023. The increase of $5 million was primarily due to higher average outstanding debt balances. We increased our long-term debt to $1,321 million as of December 31, 2024, compared to $1,201 million at the end of the prior year, to support our strategic investments and capital return programs.
+
+Provision for Income Taxes
+
+The provision for income taxes was $166 million in fiscal 2024, compared to $149 million in fiscal 2023. Our effective tax rate was 30.1% for fiscal 2024, compared to 29.0% for fiscal 2023. The increase in the effective tax rate was primarily due to a shift in the geographic mix of our earnings and changes in the availability of certain tax credits related to our international operations.
+
+Net Income
+
+Net income for fiscal 2024 was $386 million, an increase of $21 million, or 5.8%, from $365 million in fiscal 2023. The growth in net income reflects our strong top-line performance and gross margin expansion, partially offset by higher operating expenses, interest costs, and a higher effective tax rate. Our net margin for fiscal 2024 was 17.0%, compared to 17.4% in fiscal 2023.
+
+Liquidity and Capital Resources
+
+Our primary sources of liquidity are cash flows from operations and borrowings under our debt facilities. As of December 31, 2024, we had $68 million in cash and cash equivalents, an increase of $8 million from $60 million at the end of fiscal 2023.
+
+We believe that our existing cash balances, anticipated cash flows from operations, and available credit will be sufficient to meet our working capital, capital expenditure, and debt service requirements for at least the next twelve months.
+
+Cash Flows from Operating Activities
+
+Net cash provided by operating activities in fiscal 2024 was $451 million. This was driven by net income of $386 million, adjusted for non-cash items including $62 million in depreciation and amortization. Changes in working capital and other items contributed $3 million to operating cash flow.
+
+The management of our working capital remains a key focus. Accounts receivable, net, increased to $340 million at year-end, reflecting higher sales volumes in the fourth quarter. Inventories increased to $149 million to support anticipated demand for new product launches and to mitigate potential supply chain disruptions. Total current liabilities rose to $710 million, primarily due to higher accrued expenses and accounts payable associated with our expanded operations.
+
+Cash Flows from Investing Activities
+
+Net cash used in investing activities in fiscal 2024 was $260 million. This included:
+
+- $60 million for the purchase of property and equipment, focused on expanding our manufacturing capacity and upgrading our laboratory facilities.
+- $200 million for other investing activities, net, which primarily included strategic investments in early-stage medical technology companies and the acquisition of intangible assets to bolster our intellectual property portfolio.
+
+Our capital expenditures are aimed at maintaining our specialized production environments, including cleanrooms required for the manufacture of implantable devices in our Therapeutic Solutions segment.
+
+Cash Flows from Financing Activities
+
+Net cash used in financing activities in fiscal 2024 was $183 million. This consisted of:
+
+- A net change [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Zennov Medical, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 610 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

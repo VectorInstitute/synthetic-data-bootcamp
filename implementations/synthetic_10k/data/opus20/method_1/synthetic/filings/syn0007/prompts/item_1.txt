@@ -1,0 +1,119 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Oral Communications, Inc. (ticker ORAL)
+Sector: Communication Services
+Incorporated in: Delaware
+Headquarters: Reston, Virginia
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 205,300
+
+Oral Communications, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                     119,056       130,116
+Cost of revenue                              79,196        87,114
+Gross profit                                 39,860        43,002
+Research and development                          0             0
+Selling, general and administrative          16,846        16,973
+Other operating expense                           0             0
+Operating income                             23,014        26,029
+Interest expense                              3,372         3,576
+Income before income taxes                   19,642        22,453
+Provision for income taxes                    4,596         5,185
+Net income                                   15,046        17,268
+
+Oral Communications, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                           10,708        11,340
+Accounts receivable, net                            10,072        11,045
+Inventories                                              0             0
+Other current assets                                 8,906         9,593
+Total current assets                                29,686        31,978
+Property, plant and equipment, net                  69,032        71,000
+Goodwill                                            26,770        27,200
+Other non-current assets                           191,319       205,006
+Total assets                                       316,807       335,184
+Total current liabilities                           36,690        39,805
+Long-term debt                                      74,925        79,463
+Other non-current liabilities                      106,063       108,584
+Total liabilities                                  217,678       227,852
+Total stockholders' equity                          99,129       107,332
+Total liabilities and stockholders' equity         316,807       335,184
+
+Oral Communications, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                            15,046
+Depreciation and amortization                         20,299
+Changes in working capital and other                     964
+Net cash provided by operating activities             36,309
+Purchases of property and equipment                 (19,954)
+Other investing activities, net                       10,800
+Net cash used in investing activities                (9,154)
+Net change in long-term debt                         (4,538)
+Dividends paid                                             0
+Share repurchases, net of issuances                 (23,249)
+Net cash used in financing activities               (27,787)
+Net change in cash and cash equivalents                (632)
+Cash and cash equivalents, beginning of year          11,340
+Cash and cash equivalents, end of year                10,708
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: -8.5%
+Net income growth, fiscal 2024 versus 2023: -12.9%
+Operating income growth, fiscal 2024 versus 2023: -11.6%
+Gross margin, fiscal 2024: 33.5%
+Operating margin, fiscal 2024: 19.3%
+Net margin, fiscal 2024: 12.6%
+Effective tax rate, fiscal 2024: 23.4%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 14.1%
+Gross margin, fiscal 2023: 33.0%
+Operating margin, fiscal 2023: 20.0%
+Net margin, fiscal 2023: 13.3%
+Effective tax rate, fiscal 2023: 23.1%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 13.0%
+
+STYLE EXAMPLE: the start of Item 1 from a real Communication Services company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1. Business.
+For convenience, the terms “Warner Bros. Discovery”, “WBD”, the “Company,” “we,” “us” or “our” are used in this Annual Report on Form 10-K to refer to both Warner Bros. Discovery, Inc. and collectively to Warner Bros. Discovery, Inc. and one or more of its consolidated subsidiaries, unless the context otherwise requires.
+Industry Trends
+The WGA and SAG-AFTRA went on strike in May and July 2023, respectively, following the expiration of their respective collective bargaining agreements with the Alliance of Motion Picture and Television Producers (“AMPTP”). The WGA strike ended on September 27, 2023, and a new collective bargaining agreement was ratified on October 9, 2023. The SAG-AFTRA strike ended on November 9, 2023, and a new collective bargaining agreement was ratified on December 5, 2023.
+The strikes had a material impact on the operations and results of the Company in 2023, including a pause on certain theatrical and television productions. Effects included a positive impact on cash flow from operations attributed to delayed production spend, and a negative impact on the results of operations attributed to timing and performance of the 2023 film slate, as well as the Company’s ability to produce, license, and deliver content. The Company experienced content completion and delivery delays in the first quarter of 2024 due to the pause in television and theatrical productions in 2023, but did not experience any material impacts for the remainder of 2024.
+Other headwinds in the industry, such as continued pressures on linear distribution and continued softness in the U.S. linear advertising market, have had, and are expected to continue to have, a material impact on the operations and results of the Company, including a negative impact on the results of operations attributed to declines in linear advertising revenue. In addition, declines in linear subscribers are expected to continue. The increase of digital advertising available in the marketplace has also resulted in, and is expected to continue to result in, increased competition for advertising expenditures for both traditional linear networks and ad-supported tiers in streaming services.
+We continue to closely monitor the ongoing impact of industry trends to our business; however, the full effects on our operations and results will depend on future developments, which are highly uncertain and cannot be predicted.
+Description of Business
+Warner Bros. Discovery is a leading global media and entertainment company that creates and distributes a differentiated and comprehensive portfolio of content and products across television, film, streaming, interactive gaming, publishing, themed experiences, and consumer products through brands including: Discovery Channel, Max, CNN, DC Studios, TNT Sports, HBO, Food Network, TLC, TBS, Warner Bros. Motion Picture Group, Warner Bros. Television Group, Warner Bros. Games, Adult Swim, Turner Classic Movies, and others.
+We are home to one of the largest collections of owned content in the world with assets and intellectual property across sports, news, lifestyle, and entertainment in most languages and regions of the globe. We create some of the best-in-class content using our renowned library, beloved franchises, and acclaimed creative expertise to serve our audiences and consumers. Our asset mix strongly positions us to execute our key strategies: grow our direct-to-consumer (“DTC”) business globally, enhance our Studios segment, and manage our linear networks for the best possible success in order to create long-term value for our shareholders.
+5
+We generate revenue from fees charged to distributors that carry our network brands and programming, including cable, direct-to-home (“DTH”) satellite, telecommunication and digital service providers, as well as through DTC subscription services (distribution revenue); the sale of advertising on our networks and digital platforms (advertising revenue); the release of feature films for initial exhibition in theaters, the licensing of feature films and television programs to various television, subscription video on demand (“SVOD”) and other digital markets, distribution of feature films and television programs in the physical and digital home entertainment markets, sales of console games and mobile in-game content, sublicensing of sports rights, and licensing of intellectual property such as characters and brands (content revenue); and other sources such as studio tours and production services (other revenue).
+Corporate Reorganization
+On December 12, 2024, the Company announced that its board of directors had authorized the Company to implement a new corporate structure designed to enhance the Company’s strategic flexibility and create potential opportunities to unlock shareholder value. Under the new corporate structure, the Company will serve as the parent company for two distinct operating divisions: Global Linear Networks and Streaming & Studios. To facilitate the implementation of this new structure and the movement of entities and assets to align with the new operating divisions, on January 1, 2025, the Company completed certain transactions, including (1) a merger of Discovery Holding Company with and into a newly formed subsidiary of WarnerMedia Holdings, Inc. (the “DHC Merger”) and (2) a merger of a second newly formed subsidiary of WarnerMedia Holdings, Inc. with and into Scripps Networks Interactive, Inc. (the “Scripps Merger”). As a result of the DHC Merger, Discovery Communications, LLC became an indirect subsidiary of WarnerMedia Holdings, Inc. As a result of the Scripps Merger, Scripps Networks Interactive, Inc. became a direct subsidiary of WarnerMedia Holdings, Inc.
+Segments
+As of December 31, 2024, we classified our operations in three reportable segments:
+•Studios - Our Studios segment primarily consists of the production and release of feature films for initial exhibition in theaters, production and initial licensing of television programs to our networks/DTC services as well as third parties, distribution of our films and television programs to various third party and internal television and streaming services, distribution through the home entertainment market (physical and digital), related consumer products and themed experience licensing, and interactive gaming.
+•Networks - Our Networks segment primarily consists of our domestic and international television networks.
+•DTC - Our DTC segment primarily consists of our premium pay-TV and streaming services.
+Our segment presentation aligns with our management structure and the financial information management uses to make decisions about operating matters, such as the allocation of resources and business performance assessments. Financial information for our segments and the geographical areas in which we do business is set forth in Item 7, “Management’s Discussion and Analysis of Financial Condition and Results of Operations” and Note 23 to the consolidated financial statements included in Item 8, “Financial Statements and Supplementary Data” in this Annual Report on Form 10-K.
+Studios
+WBD’s Studios business includes the Warner Bros. Motion Picture Group (“WBMPG”), DC Studios, Warner Bros. Television Group (“WBTVG”), Consumer Products, Themed Entertainment and Brand Licensing, DC Comics Publishing, Content Licensing, Home Entertainment, Studio Operations, and Interactive Gaming.
+WBMPG is comprised of Warner Bros. Pictures, New Line Cinema, and Warner Bros. Pictures Animation. WBMPG partners with captivating storytellers to create filmed entertainment for a global audience.
+DC Studios, tasked with developing properties licensed from DC Comics for film, television, animation, and games, continues the tradition of high-quality storytelling within the DC Universe, while building a sustainable growth business out of the iconic characters.
+WBTVG consists of Warner Bros. Television, the Company’s flagship television production unit for live-action scripted programming, as well as Warner Bros. Unscripted Television, which produces unscripted and alternative programming through its four production units – Warner Horizon Unscripted Television, Telepictures, Warner Bros. International Television Production, and Shed Media. WBTVG also includes Warner Bros. Animation, Cartoon Network Studios, and Hanna-Barbera Studios Europe.
+6
+Among the Studios segment’s content highlights for 2024 were [...]
+>>>
+
+TASK
+Write Item 1. Business for Oral Communications, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe the business: overview, principal products and services, two or three reportable segments described qualitatively, customers, sales and marketing, competition, seasonality, intellectual property, government regulation, human capital (state the number of employees from the facts sheet) and available information. The only dollar figure you may cite is total revenue.
+Length: about 3000 words. Start with the line "Item 1. Business" and output only the section text.

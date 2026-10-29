@@ -1,0 +1,355 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Novix Aerospace, Inc. (ticker NOIX)
+Sector: Industrials
+Incorporated in: Delaware
+Headquarters: Princeton, New Jersey
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 25,300
+
+Novix Aerospace, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      21,485        19,982
+Cost of revenue                              14,831        13,958
+Gross profit                                  6,654         6,024
+Research and development                      1,328         1,234
+Selling, general and administrative           2,024         1,805
+Other operating expense                       1,289         1,199
+Operating income                              2,013         1,786
+Interest expense                                213           187
+Income before income taxes                    1,800         1,599
+Provision for income taxes                      319           286
+Net income                                    1,481         1,313
+
+Novix Aerospace, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                              435           393
+Accounts receivable, net                             2,247         2,145
+Inventories                                          2,709         2,477
+Other current assets                                 2,311         2,151
+Total current assets                                 7,702         7,166
+Property, plant and equipment, net                   4,088         3,618
+Goodwill                                            15,718        14,500
+Other non-current assets                             6,476         5,343
+Total assets                                        33,984        30,627
+Total current liabilities                            5,972         5,725
+Long-term debt                                       4,734         4,161
+Other non-current liabilities                       14,208        12,286
+Total liabilities                                   24,914        22,172
+Total stockholders' equity                           9,070         8,455
+Total liabilities and stockholders' equity          33,984        30,627
+
+Novix Aerospace, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                             1,481
+Depreciation and amortization                          1,304
+Changes in working capital and other                   (260)
+Net cash provided by operating activities              2,525
+Purchases of property and equipment                    (397)
+Other investing activities, net                      (1,793)
+Net cash used in investing activities                (2,190)
+Net change in long-term debt                             573
+Dividends paid                                         (136)
+Share repurchases, net of issuances                    (730)
+Net cash used in financing activities                  (293)
+Net change in cash and cash equivalents                   42
+Cash and cash equivalents, beginning of year             393
+Cash and cash equivalents, end of year                   435
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 7.5%
+Net income growth, fiscal 2024 versus 2023: 12.8%
+Operating income growth, fiscal 2024 versus 2023: 12.7%
+Gross margin, fiscal 2024: 31.0%
+Operating margin, fiscal 2024: 9.4%
+Net margin, fiscal 2024: 6.9%
+Effective tax rate, fiscal 2024: 17.7%
+Research and development as a share of revenue, fiscal 2024: 6.2%
+Selling, general and administrative as a share of revenue, fiscal 2024: 9.4%
+Gross margin, fiscal 2023: 30.1%
+Operating margin, fiscal 2023: 8.9%
+Net margin, fiscal 2023: 6.6%
+Effective tax rate, fiscal 2023: 17.9%
+Research and development as a share of revenue, fiscal 2023: 6.2%
+Selling, general and administrative as a share of revenue, fiscal 2023: 9.0%
+
+STYLE EXAMPLE: the start of Item 1C from a real Industrials company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1C. Cybersecurity
+Risk Management and Strategy
+We believe cybersecurity is critical to advancing our 21st Century Security vision and enabling our digital transformation efforts. As an aerospace and defense company, we face a multitude of cybersecurity threats that range from attacks common to most industries, such as ransomware and denial-of-service, to attacks from more advanced and persistent, highly organized adversaries, including nation state actors, some of which target the defense industrial base and other critical infrastructure sectors. Our customers, suppliers, subcontractors and joint venture partners face similar cybersecurity threats, and a cybersecurity incident impacting us or any of these entities could materially adversely affect our operations, performance and results of operations. These cybersecurity threats and related risks make it imperative that we strive to be a leader in the information security field, and we expend considerable resources on cybersecurity.
+Our corporate information security organization has implemented a governance structure and processes to assess, identify, manage and report cybersecurity risks. We also have a corporate-wide counterintelligence and insider threat detection program to proactively identify external and internal threats and mitigate those threats in a timely manner. As a defense contractor, we must comply with extensive regulations, including requirements imposed by the Defense Federal Acquisition Regulation Supplement (DFARS) related to adequately safeguarding controlled unclassified information (CUI) and reporting cybersecurity incidents to the DoD. We have implemented cybersecurity policies and frameworks based on industry and governmental
+22
+Table of Contents
+standards to align closely with DoD requirements, instructions and guidance. Moreover, we continue to work with the DoD on assessing cybersecurity risk and on policies and practices aimed at mitigating these risks. For example, we have worked in collaboration with the other members of the defense industrial base to support DoD’s development of the Cybersecurity Maturity Model Certification (CMMC) program, DoD’s program to ensure members of the defense industrial base meet cybersecurity requirements for handling CUI and federal contract information. We believe we are well positioned to meet the requirements of the CMMC and are preparing for certification. In addition to following DoD guidance and implementing pre-existing third party frameworks, we have developed our own practices and frameworks, which we believe enhance our ability to identify and manage cybersecurity risks. For example, we use a proactive risk management strategy that we developed and implemented called the Intelligence Driven Defense® model that seeks to identify and prevent cybersecurity incidents by understanding the nature of adversaries and using this information to minimize the impact of an attack.
+Third parties also play a role in our cybersecurity. We engage third-party services to conduct evaluations of our security controls, whether through penetration testing, independent audits or consulting on best practices to address new challenges. These evaluations include testing both the design and operational effectiveness of security controls. We also share and receive threat intelligence with our defense industrial base peers, government agencies, information sharing and analysis centers and cybersecurity associations.
+We rely heavily on our supply chain to deliver our products and services to our customers, and a cybersecurity incident at a supplier, subcontractor, joint venture partner, or service provider could materially adversely impact us. We assess third party cybersecurity controls through a cybersecurity questionnaire and include security and privacy addendums to our contracts where applicable. We also contractually flow cybersecurity regulatory requirements to our subcontractors as required by the DFARS and other government agency specific requirements. These contractual flow downs include the requirement that our subcontractors implement certain security controls, and that our subcontractors self-report the status of their implementation of these controls to the U.S. Government. These government contracting regulations may create challenges for our supply chain and increase costs. We also require that our subcontractors report cybersecurity incidents to us so that we can assess the impact of the incident on us. For select suppliers, we engage third-party cybersecurity monitoring and alerting services, and seek to work directly with those suppliers to address potential deficiencies identified. We also make available cybersecurity education and awareness materials and briefings to our suppliers.
+Governance
+The Board of Directors oversees management’s processes for identifying and mitigating risks, including cybersecurity risks, to help align our risk exposure with our strategic objectives. Senior leadership, including our Chief Information Security Officer (CISO), regularly briefs the Board of Directors on our cybersecurity and information security posture and the Board of Directors is apprised of cybersecurity incidents deemed to have a moderate or higher business impact, even if immaterial to us. The Classified Business and Security Committee of the Board of Directors is briefed by senior leadership, as appropriate, on the cybersecurity of classified programs and the security of our classified business supply chain. Other than oversight of classified business cybersecurity, the full Board retains oversight of cybersecurity because of its importance to Lockheed Martin and the heightened risk in the aerospace and defense industry. In the event of an incident, we intend to follow our detailed incident response playbook, which outlines the steps to be followed from incident detection to mitigation, recovery and notification, including notifying functional areas (e.g., legal), as well as senior leadership, the Board, and regulators, as appropriate.
+Our corporate information security organization, led by our CISO, is responsible for our overall information security strategy, policy, security engineering, operations and cyber threat detection and response. The current CISO has extensive information technology and program management experience, and has served many years in our corporate information security organization. The corporate information security organization manages and continually enhances a robust enterprise security structure with the ultimate goal of preventing cybersecurity incidents to the extent feasible, while simultaneously increasing our system resilience in an effort to minimize the business impact should an incident occur. Central to this organization is our computer incident response team (CIRT), which is responsible for the protection, detection and response capabilities used in the defense of Lockheed Martin’s data and enterprise computing networks. Employees outside of our corporate information security organization also have a role in our cybersecurity defenses and they are immersed in a corporate culture supportive of security, which we believe improves our cybersecurity.
+Assessing, identifying and managing cybersecurity related risks are integrated into our overall enterprise risk management (ERM) process. Cybersecurity related risks are included in the risk universe that the ERM function evaluates to assess top risks to the enterprise on an annual basis. To the extent the ERM process identifies a heightened cybersecurity related risk, risk owners are assigned to develop risk mitigation plans, which are then tracked to completion. The ERM process’s annual risk assessment and relevant mitigations are presented to the Board of Directors.
+Notwithstanding the extensive approach we take to cybersecurity, we may not be successful in preventing or mitigating a cybersecurity incident that could have a material adverse effect on us. While Lockheed Martin maintains cybersecurity
+23
+Table of Contents
+insurance, the costs related to cybersecurity threats or disruptions may not be fully insured. See Item 1A. “Risk Factors” for a discussion of cybersecurity risks.
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Overview
+
+Novix Aerospace, Inc., incorporated in the State of Delaware, is a global leader in the design, manufacture, and service of advanced systems and components for the aerospace and defense industries. Headquartered in Princeton, New Jersey, the Company provides highly engineered solutions that enhance aircraft performance, safety, and efficiency for a diverse global customer base. In this Annual Report on Form 10-K, the words "Novix," "the Company," "we," "us," and "our" refer to Novix Aerospace, Inc. and its consolidated subsidiaries.
+
+For the fiscal year ended December 31, 2024, the Company generated total revenue of $21,485 million. Our operations are characterized by high barriers to entry, including significant research and development requirements, complex regulatory certifications, and long-term platform lifecycles. We maintain a strong commitment to innovation, leveraging our technical expertise to address evolving challenges in flight electrification, sustainable aviation, and next-generation defense capabilities.
+
+Strategy and Value Creation
+
+The Company’s strategy is built upon a foundation of operational excellence, technological leadership, and disciplined capital allocation. We focus on high-growth segments of the aerospace and defense markets where our proprietary technology provides a distinct competitive advantage. Our primary strategic objectives include:
+
+- Advancing Sustainable Aviation: We are investing in technologies that reduce the environmental impact of flight, including high-efficiency propulsion systems and lightweight aerostructures.
+- Expanding Defense and Space Capabilities: We continue to broaden our portfolio of mission-critical systems for national security, focusing on autonomous systems, secure communications, and space exploration.
+- Driving Aftermarket Growth: By expanding our service networks and digital maintenance solutions, we aim to capture a greater share of the recurring revenue generated over the decades-long life of an aircraft.
+- Optimizing the Supply Chain: We utilize a rigorous procurement framework to ensure the resilience and efficiency of our global network of suppliers.
+
+Operating Segments
+
+The Company manages its business through two reportable segments: Commercial Aerospace Systems and Defense, Space and Security. These segments are organized based on the nature of the products and services provided, as well as the primary end markets served.
+
+Commercial Aerospace Systems
+
+The Commercial Aerospace Systems segment is a leading provider of original equipment and aftermarket support for the commercial aviation industry. This segment serves a wide range of customers, including regional, narrow-body, and wide-body aircraft manufacturers, as well as commercial airlines and cargo carriers. Our portfolio includes advanced propulsion components, flight control systems, landing systems, and interior solutions.
+
+We focus on delivering integrated systems that improve fuel efficiency and reduce operating costs for airline operators. Our propulsion components are utilized in some of the world’s most advanced jet engines, while our flight control technologies enable more precise and automated aircraft operation. The aftermarket business within this segment provides essential maintenance, repair, and overhaul (MRO) services, ensuring the continued safety and reliability of the global commercial fleet.
+
+Defense, Space and Security
+
+The Defense, Space and Security segment designs, develops, and produces systems for global defense, intelligence, and space applications. This segment serves various government agencies and defense contractors, providing solutions that include military aircraft components, missile defense systems, satellite subsystems, and secure tactical communications.
+
+Our defense solutions are integrated into a variety of platforms, including fighter jets, transport aircraft, and unmanned aerial vehicles. In the space sector, we provide critical hardware and software for satellite constellations and deep-space exploration missions. This segment’s performance is driven by government defense budgets, geopolitical stability, and the increasing demand for advanced technological capabilities in modern warfare and surveillance.
+
+Products and Services
+
+Novix offers a comprehensive suite of products and services designed to meet the rigorous demands of the aerospace and defense sectors. Our offerings are categorized as follows:
+
+Propulsion and Power Systems: We manufacture high-performance engine components, including turbine blades, casings, and fuel delivery systems. We also provide auxiliary power units and electrical power generation systems that support onboard aircraft functions.
+
+Avionics and Flight Controls: Our avionics suites include navigation systems, flight management computers, and cockpit displays. Our fly-by-wire flight control systems provide the interface between the pilot and the aircraft’s moving surfaces, utilizing sophisticated actuators and sensors.
+
+Aerostructures and Landing Systems: We design and produce complex structural components, such as wing spars, fuselage sections, and nacelles. Our landing systems include struts, wheels, and braking systems engineered to withstand extreme forces during takeoff and landing.
+
+Mission Systems and Sensors: For our defense customers, we provide radar systems, electronic warfare suites, and electro-optical/infrared sensors. These systems provide enhanced situational awareness and protection for military personnel and assets.
+
+Aftermarket and Technical Support: We offer an extensive array of support services, including spare parts distribution, component repair, engine overhauls, and digital fleet management tools. These services are delivered through a global network of service centers and field support representatives.
+
+Customers and Markets
+
+Our customer base is highly diversified across the commercial and government sectors. In the commercial market, we serve major original equipment manufacturers (OEMs) of large commercial aircraft, regional jets, and business aviation platforms. We also maintain direct relationships with hundreds of airlines and aircraft leasing companies worldwide.
+
+In the defense market, our primary customers are national governments and their respective departments of defense. We also act as a tier-one supplier to other major defense contractors on large-scale military programs. No single customer accounted for more than 10% of our total revenue in 2024, reflecting a balanced portfolio that mitigates the risk of dependence on any individual program or entity.
+
+Our products are sold globally, with significant market presence in North America, Europe, and the Asia-Pacific region. Demand in the commercial market is closely tied to global passenger traffic, airline profitability, and aircraft replacement cycles. Demand in the defense market is influenced by national security priorities and long-term government procurement schedules.
+
+Sales and Marketing
+
+We utilize a sophisticated sales and marketing organization tailored to the unique procurement processes of our customers. For commercial OEMs, our sales teams engage in long-term collaborative engineering and contract negotiations that can span several years before a product enters production. These relationships are often defined by multi-year requirements contracts.
+
+For airline and aftermarket customers, we employ a global sales force and digital commerce platforms to facilitate the rapid delivery of spare parts and services. Our marketing efforts in this area focus on the reliability, total cost of ownership, and performance benefits of using genuine Novix components and authorized service centers.
+
+In the defense sector, we maintain dedicated government relations and business development teams. These professionals work closely with military acquisition officials to align our research and development roadmaps with future defense requirements. Participation in competitive bidding processes for government contracts is a core component of our sales strategy in this segment.
+
+Research and Development
+
+Innovation is a primary driver of our competitive position. Our research and development (R&D) activities are focused on creating new products, improving existing technologies, and enhancing manufacturing processes. In 2024, our R&D efforts were centered on several key areas:
+
+- Electrification of flight and hybrid-electric propulsion.
+- Advanced materials, including ceramic matrix composites and additive manufacturing.
+- Autonomous flight systems and artificial intelligence for mission planning.
+- Next-generation encryption and cybersecurity for aerospace networks.
+
+We often collaborate with academic institutions, government research labs, and industry partners to advance the state of aerospace technology. A portion of our R&D is funded by customers, particularly in the defense segment, while the remainder is internally funded to maintain our proprietary intellectual property.
+
+Competition
+
+The aerospace and defense industry is highly competitive. We compete with both large, diversified aerospace companies and specialized component manufacturers. Competition is based on several factors, including:
+
+- Technical innovation and product performance.
+- Reliability and safety records.
+- Price and total cost of ownership.
+- Lifecycle support and aftermarket service availability.
+- Compliance with complex regulatory and certification standards.
+
+In the commercial segment, competition is often centered on being selected for a new aircraft platform ("winning the platform"), which can secure a decades-long stream of revenue from both original equipment and aftermarket sales. In the defense segment, competition is driven by the ability to meet stringent mission requirements and provide superior technological capabilities within government budget constraints.
+
+Seasonality and Backlog
+
+While our business is generally not subject to significant seasonal fluctuations, our quarterly results can be influenced by the timing of major aircraft deliveries, government fiscal year-end spending patterns, and the scheduling of heavy maintenance cycles by airline customers.
+
+We maintain a substantial backlog of orders, representing the estimated value of products and services that customers have committed to purchase under firm contracts. This backlog provides visibility into future revenue and helps guide our production planning and capacity investments. However, backlog is subject to cancellations, deferrals, or modifications based on customer needs and market conditions.
+
+Intellectual Property
+
+We rely on a combination of patents, trademarks, copyrights, and trade secrets to protect our proprietary technology and brand identity. We hold a significant portfolio of patents worldwide covering various aspects of propulsion, avionics, and material science. We also conduct business under various trademarks and service marks, including our "NOIX" ticker symbol and various product-specific brands.
+
+While our patents are important to our competitive position, we believe that the technical expertise, specialized manufacturing capabilities, and deep industry knowledge of our employees are equally vital. We take rigorous steps to protect our trade secrets and confidential information through employee agreements and secure information technology systems.
+
+Government Regulation and Environmental Matters
+
+Our operations are subject to extensive regulation [...]
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+RISK FACTORS.
+
+The following risk factors could have a material adverse effect on our business, financial condition, results of operations, and cash flows. You should carefully consider these risks in conjunction with the other information contained in this Annual Report on Form 10-K, including the Consolidated Financial Statements and related notes. The risks described below are not the only ones we face. Additional risks and uncertainties not currently known to us or that we currently deem immaterial may also impair our business operations. If any of the following risks actually occur, the trading price of our common stock could decline, and you could lose all or part of your investment.
+
+STRATEGIC AND INDUSTRY RISKS
+
+Our business is heavily dependent on the health of the commercial aerospace industry and global passenger traffic levels.
+The Commercial Aerospace Systems segment generates a significant portion of our total revenue. Demand for our commercial products and services is closely tied to the financial health of airline operators and the overall volume of global air travel. Historically, the commercial aviation industry has been cyclical and subject to significant volatility. Factors such as global economic downturns, regional instability, or public health crises can lead to a rapid decrease in passenger demand. When airlines face lower traffic levels or reduced profitability, they may defer or cancel orders for new aircraft and reduce spending on maintenance, repair, and overhaul services. Such actions directly impact our original equipment sales and our higher-margin aftermarket revenue. A sustained period of reduced commercial flight activity would adversely affect our ability to achieve our growth targets and maintain our current operating margins.
+
+We rely on government spending and defense priorities which are subject to political and budgetary uncertainty.
+A substantial part of our revenue is derived from the Defense, Space and Security segment, where our primary customers are national governments and their agencies. Defense spending is determined by national security priorities, geopolitical conditions, and the availability of government funding. Changes in political leadership, shifts in foreign policy, or domestic fiscal constraints can lead to the cancellation, reduction, or delay of major defense programs. Because many of our defense contracts are long-term in nature, any mid-program adjustment to procurement volumes or funding levels can disrupt our production schedules and result in significant stranded costs. Furthermore, the competitive bidding process for government contracts is rigorous and often involves long lead times. Failure to secure follow-on contracts for major platforms could result in a material loss of future revenue and a decrease in our defense market share.
+
+The aerospace and defense markets are intensely competitive and characterized by rapid technological change.
+We operate in a highly competitive environment where we face pressure from both large-scale diversified aerospace firms and smaller, specialized manufacturers. Our competitors may have greater financial resources or more extensive technical capabilities in specific niche areas. Competition is based on various factors, including technical performance, product reliability, safety records, and total cost of ownership. If we fail to innovate or if our competitors introduce superior technologies—such as more efficient propulsion systems or advanced autonomous capabilities—our products may become obsolete. The trend toward flight electrification and sustainable aviation requires significant and sustained investment. If our research and development efforts do not yield commercially viable solutions ahead of our competitors, our long-term competitive position and financial performance will be harmed.
+
+Our success depends on our ability to win positions on new aircraft and defense platforms.
+The lifecycle of aerospace products is exceptionally long, often spanning several decades from initial design to the final retirement of the fleet. Securing a position as a supplier on a new aircraft platform is critical because it locks in a long-term stream of both original equipment and recurring aftermarket revenue. The selection process is highly competitive and requires significant upfront investment in engineering and prototyping. If we are not selected for major new platforms or if those platforms fail to achieve commercial success, we may not be able to recover our initial investments. Additionally, if an aircraft manufacturer chooses to vertically integrate and produce components that we currently supply, our addressable market would decrease significantly.
+
+OPERATIONAL AND MANUFACTURING RISKS
+
+Disruptions in our supply chain or increases in the cost of raw materials could adversely affect our production.
+We rely on a complex, global network of suppliers for raw materials, specialized components, and sub-assemblies. Some of these materials, such as aerospace-grade alloys, composites, and electronic components, are sourced from a limited number of suppliers or from regions subject to geopolitical instability. Any disruption in the supply chain due to labor disputes, natural disasters, financial distress of a key supplier, or trade barriers could delay our production and delivery schedules. Furthermore, the cost of raw materials and energy is subject to market volatility. While we attempt to mitigate these risks through long-term supply agreements and price escalation clauses, we may not be able to fully pass on increased costs to our customers, which would result in a decrease in our gross margins.
+
+We face risks associated with the complexity of manufacturing and the introduction of new products.
+The manufacturing of aerospace and defense systems involves highly complex processes, sophisticated machinery, and stringent quality standards. Any defects or failures in our manufacturing processes could lead to product recalls, warranty claims, or significant reputational damage. When we introduce new products or ramp up production for a new program, we often face "learning curve" challenges that can lead to higher-than-anticipated costs and production delays. If we are unable to achieve the necessary yields or meet delivery deadlines, we may be subject to contractual penalties or the cancellation of orders. Our ability to manage these manufacturing risks is essential to maintaining our profitability and customer relationships.
+
+Our business requires a highly skilled workforce and the loss of key personnel could hinder our operations.
+We employ approximately 25,300 people, many of whom possess specialized technical expertise and high-level security clearances required for defense work. The aerospace industry faces intense competition for talent in engineering, digital technology, and advanced manufacturing. If we are unable to attract, train, and retain qualified personnel, our ability to execute on our research and development programs and meet production targets will be compromised. An aging workforce and the potential loss of institutional knowledge through retirements also pose a risk. Furthermore, a significant portion of our workforce is represented by labor unions. Any work stoppages or inability to negotiate favorable collective bargaining agreements could disrupt our operations and increase our labor costs.
+
+Failures in our research and development efforts could result in significant losses.
+Innovation is the primary driver of our competitive position, and we invest heavily in research and development. In fiscal year 2024, our R&D spending represented a significant portion of our revenue. These investments are often made years in advance of any commercial return. There is no guarantee that our R&D activities will result in the development of successful new products or that we will be able to obtain the necessary regulatory certifications for our innovations. If we fail to accurately predict market trends or if our technological bets—such as those in autonomous flight or hybrid-electric propulsion—do not gain market acceptance, our financial condition and future growth prospects will be materially and adversely affected.
+
+FINANCIAL AND CAPITAL RISKS
+
+Our substantial level of indebtedness could adversely affect our financial health and limit our flexibility.
+As of December 31, 2024, we had a significant amount of long-term debt. This level of indebtedness requires us to dedicate a portion of our cash flow from operations to interest and principal payments, thereby reducing the funds available for research and development, capital expenditures, and other corporate purposes. Our ability to make scheduled payments or to refinance our debt depends on our future financial performance and market conditions. If our cash flows decrease or if interest rates increase significantly, we may face challenges in meeting our debt obligations. Furthermore, our credit agreements may contain restrictive covenants that limit our ability to take certain actions, such as incurring additional debt, making acquisitions, or paying dividends, which could constrain our strategic flexibility.
+
+The significant amount of goodwill on our balance sheet is subject to periodic impairment testing.
+Goodwill represents a substantial portion of our total assets, reflecting our history of strategic acquisitions. Under accounting principles generally accepted in the United States, we are required to test goodwill for impairment at least annually, or more frequently if indicators of impairment exist. Factors that could lead to an impairment include a significant decline in our stock price, a decrease in projected future cash flows, or an increase in the discount rates used in our valuation models. If we determine that the fair value of a reporting unit is less than its carrying value, we would be required to record a non-cash impairment charge. Such a charge could be substantial and would have a material adverse effect on our reported net income and stockholders' equity.
+
+We are exposed to fluctuations in foreign currency exchange rates.
+While we are headquartered in the United States and report our financial results in U.S. dollars, we conduct a significant portion of our business in international markets. We are exposed to currency [...]
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+Overview
+
+Novix Aerospace, Inc. (the "Company," "Novix," "we," "us," or "our") is a leading global provider of highly engineered systems and components for the commercial aerospace and defense sectors. Our operations are organized into two reportable segments: Commercial Aerospace Systems and Defense, Space and Security. We provide a broad range of products, including propulsion components, avionics, flight controls, and aerostructures, as well as comprehensive aftermarket maintenance, repair, and overhaul ("MRO") services. Our primary customers include major aircraft original equipment manufacturers ("OEMs"), commercial airlines, and national government defense agencies.
+
+During the fiscal year ended December 31, 2024, the Company experienced robust demand across both of its primary business segments. Total revenue for the year reached $21,485 million, representing an increase of 7.5% compared to the prior fiscal year. This growth was driven by the continued recovery in global passenger air traffic, which spurred demand for both new commercial aircraft and aftermarket parts, and a stable environment for defense spending. Our net income for fiscal 2024 was $1,481 million, an increase of 12.8% over the $1,313 million reported in fiscal 2023.
+
+Our financial performance in 2024 reflects our commitment to operational excellence and disciplined cost management. We achieved an operating margin of 9.4%, up from 8.9% in the prior year, as we successfully managed inflationary pressures in our supply chain and leveraged our fixed cost base against higher production volumes. We continue to invest significantly in the future of flight, with research and development expenditures totaling $1,328 million in 2024, representing 6.2% of our total revenue. These investments are focused on high-growth areas such as sustainable aviation, flight electrification, and next-generation defense platforms.
+
+The following discussion and analysis should be read in conjunction with our Consolidated Financial Statements and the related notes included elsewhere in this Annual Report on Form 10-K.
+
+Results of Operations
+
+The following table and discussion compare our results of operations for the fiscal year ended December 31, 2024, with the fiscal year ended December 31, 2023. All dollar amounts are in millions unless otherwise indicated.
+
+Revenue
+
+Revenue for the fiscal year ended December 31, 2024, was $21,485 million, compared to $19,982 million for the fiscal year ended December 31, 2023, representing an increase of 7.5%.
+
+The growth in revenue was primarily attributable to higher volumes in our Commercial Aerospace Systems segment. This segment benefited from increased production rates at major commercial aircraft OEMs as they worked to fulfill substantial order backlogs. Furthermore, the global increase in flight hours led to higher demand for our aftermarket services and spare parts, which typically carry higher margins than original equipment sales. Our Defense, Space and Security segment also contributed to the revenue increase, supported by steady demand for our mission-critical systems and components on established military platforms and new satellite subsystem contracts.
+
+Geographically, we saw strong demand in North America and Europe, while the Asia-Pacific region continued to show signs of recovery in the commercial sector. Pricing actions taken to offset rising material and labor costs also contributed to the year-over-year revenue growth, although volume increases remained the primary driver.
+
+Cost of Revenue and Gross Margin
+
+Cost of revenue for fiscal 2024 was $14,831 million, compared to $13,958 million in fiscal 2023. This increase was largely commensurate with the growth in our total revenue and reflects higher production volumes across our manufacturing facilities.
+
+Gross profit for fiscal 2024 was $6,654 million, compared to $6,024 million in fiscal 2023. Our gross margin improved to 31.0% in fiscal 2024, compared to 30.1% in fiscal 2023. The 0.9% improvement in gross margin was primarily driven by a more favorable product mix, specifically an increase in high-margin commercial aftermarket sales. Additionally, we realized benefits from our ongoing operational excellence initiatives, which focused on improving factory yields and optimizing our global supply chain. These gains were partially offset by higher costs for specialized aerospace-grade materials and increased labor expenses in certain competitive markets.
+
+Research and Development
+
+Research and development ("R&D") expenses were $1,328 million in fiscal 2024, compared to $1,234 million in fiscal 2023. As a percentage of revenue, R&D expenses remained consistent at 6.2% in both fiscal 2024 and fiscal 2023.
+
+Our R&D efforts continue to be a cornerstone of our long-term strategy. In 2024, we increased our investment in several key technological areas, including hybrid-electric propulsion systems, advanced composite materials for lightweight aerostructures, and autonomous flight control software. In the defense sector, we focused on enhancing our secure tactical communications and electronic warfare capabilities. We believe these investments are essential to maintaining our competitive position and meeting the evolving requirements of our customers for more efficient and capable aerospace systems.
+
+Selling, General and Administrative
+
+Selling, general and administrative ("SG&A") expenses were $2,024 million in fiscal 2024, compared to $1,805 million in fiscal 2023. As a share of revenue, SG&A expenses increased to 9.4% in fiscal 2024, compared to 9.0% in fiscal 2023.
+
+The increase in SG&A expenses was primarily driven by higher personnel-related costs, including salaries, benefits, and incentive compensation, as we expanded our workforce to support higher business volumes. We also incurred higher administrative costs related to the modernization of our information technology infrastructure and enhanced cybersecurity measures. Marketing and sales expenses increased as we expanded our international business development teams, particularly in support of our growing aftermarket service network.
+
+Other Operating Expense
+
+Other operating expense was $1,289 million in fiscal 2024, compared to $1,199 million in fiscal 2023. This category includes various costs related to the maintenance of our facilities, certain environmental remediation activities, and legal and professional fees not directly attributable to other functions. The year-over-year increase reflects higher facility maintenance costs and general inflationary increases in professional services.
+
+Operating Income
+
+Operating income for fiscal 2024 was $2,013 million, an increase of 12.7% compared to $1,786 million in fiscal 2023. Our operating margin for fiscal 2024 was 9.4%, compared to 8.9% in the prior year.
+
+The improvement in operating income and operating margin reflects the strong growth in gross profit, driven by volume and mix, which more than offset the increases in SG&A and other operating expenses. The 12.7% growth in operating income demonstrates the scalability of our business model as we continue to capture the benefits of the aerospace industry recovery.
+
+Interest Expense
+
+Interest expense was $213 million in fiscal 2024, compared to $187 million in fiscal 2023. The increase in interest expense was primarily due to a higher average level of long-term debt outstanding during the year and the impact of higher prevailing interest rates on our variable-rate debt obligations. As of December 31, 2024, our total long-term debt was $4,734 million.
+
+Provision for Income Taxes and Effective Tax Rate
+
+The provision for income taxes was $319 million in fiscal 2024, compared to $286 million in fiscal 2023. Our effective tax rate was 17.7% in fiscal 2024, compared to 17.9% in fiscal 2023.
+
+The effective tax rate decreased 0.2% compared to the prior year. This decrease was primarily due to a more favorable mix of earnings in lower-tax international jurisdictions and the impact of certain tax credits related to our increased R&D investments. We expect our effective tax rate to fluctuate in future periods based on changes in tax laws, the geographic distribution of our income, and the timing of R&D activities.
+
+Net Income
+
+Net income for fiscal 2024 was $1,481 million, or 6.9% of revenue, compared to $1,481 million in fiscal 2023, where net income was $1,313 million, or 6.6% of revenue. This represents a net income growth of 12.8% year-over-year. The increase in net income was primarily the result of higher operating income, partially offset by higher interest expense and a higher provision for income taxes.
+
+Liquidity and Capital Resources
+
+Our primary sources of liquidity are cash generated from operations and borrowings under our various debt facilities. We believe that our existing cash and cash equivalents, expected cash flows from operations, and available credit will be sufficient to meet our anticipated working capital requirements, capital expenditures, debt service obligations, and other cash needs for at least the next twelve months.
+
+As of December 31, 2024, we held cash and cash equivalents of $435 million, compared to $393 million at the end of fiscal 2023.
+
+Cash Flows
+
+The following table summarizes our cash flow activities for the fiscal year ended December 31, 2024 (in millions):
+
+Net cash provided by operating activities: $2,525
+Net cash used in investing activities: $2,190
+Net cash used in financing activities: $293
+
+Operating Activities
+
+Net cash provided by operating activities was $2,525 million in fiscal 2024. The primary driver of operating cash flow was our net income of $1,481 million, adjusted for non-cash items including depreciation and amortization of $1,304 million. These inflows were partially offset by a net change in working capital and other items, which resulted in a cash outflow of $260 million.
+
+The decrease of $260 million related to working capital was primarily driven by higher inventory levels, which increased to $2,709 million at year-end to support higher production rates and mitigate potential supply chain disruptions. Accounts receivable also increased to $2,247 million, reflecting the growth in our revenue. These outflows were partially offset by an increase in accounts payable and other current liabilities.
+
+Investing Activities
+
+Net cash used in investing activities was [...]
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Novix Aerospace, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 900 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

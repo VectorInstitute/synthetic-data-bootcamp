@@ -1,0 +1,260 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Orzenka Midstream, Inc. (ticker ORZA)
+Sector: Energy
+Incorporated in: Delaware
+Headquarters: Phoenix, Arizona
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 177,300
+
+Orzenka Midstream, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                      52,746        45,826
+Cost of revenue                              27,191        23,802
+Gross profit                                 25,555        22,024
+Research and development                          0             0
+Selling, general and administrative           1,313         1,095
+Other operating expense                       3,165         2,750
+Operating income                             21,077        18,179
+Interest expense                              3,832         3,302
+Income before income taxes                   17,245        14,877
+Provision for income taxes                    4,089         3,552
+Net income                                   13,156        11,325
+
+Orzenka Midstream, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                           10,049         8,785
+Accounts receivable, net                             6,609         5,785
+Inventories                                          1,060           956
+Other current assets                                 7,594         6,655
+Total current assets                                25,312        22,181
+Property, plant and equipment, net                 129,641       111,941
+Goodwill                                            15,677        13,577
+Other non-current assets                             1,743         1,509
+Total assets                                       172,373       149,208
+Total current liabilities                           45,346        38,324
+Long-term debt                                      85,152        73,377
+Other non-current liabilities                        2,074         2,799
+Total liabilities                                  132,572       114,500
+Total stockholders' equity                          39,801        34,708
+Total liabilities and stockholders' equity         172,373       149,208
+
+Orzenka Midstream, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                            13,156
+Depreciation and amortization                          4,336
+Changes in working capital and other                     285
+Net cash provided by operating activities             17,777
+Purchases of property and equipment                  (6,198)
+Other investing activities, net                     (14,027)
+Net cash used in investing activities               (20,225)
+Net change in long-term debt                          11,775
+Dividends paid                                       (3,564)
+Share repurchases, net of issuances                  (4,499)
+Net cash used in financing activities                  3,712
+Net change in cash and cash equivalents                1,264
+Cash and cash equivalents, beginning of year           8,785
+Cash and cash equivalents, end of year                10,049
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 15.1%
+Net income growth, fiscal 2024 versus 2023: 16.2%
+Operating income growth, fiscal 2024 versus 2023: 15.9%
+Gross margin, fiscal 2024: 48.4%
+Operating margin, fiscal 2024: 40.0%
+Net margin, fiscal 2024: 24.9%
+Effective tax rate, fiscal 2024: 23.7%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 2.5%
+Gross margin, fiscal 2023: 48.1%
+Operating margin, fiscal 2023: 39.7%
+Net margin, fiscal 2023: 24.7%
+Effective tax rate, fiscal 2023: 23.9%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 2.4%
+
+STYLE EXAMPLE: the start of Item 1A from a real Energy company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+ITEM 1A. RISK FACTORS
+The following risk factors could materially and adversely affect our business, operations, financial results, market price or value of our securities. This list is not exhaustive, and we place no priority or likelihood based on order of presentation or grouping under sub-captions.
+RISKS RELATED TO CLIMATE CHANGE
+Climate change risks could adversely affect our reputation, strategic plan, business, operations and financial results, and these effects could be material.
+Climate change is a systemic risk that presents both physical and transition risks to our organization. A summary of these risks is outlined below. Given the interconnected nature of climate change-related impacts, we also discuss these risks within the context of other risks impacting Enbridge throughout Item 1A. Risk Factors. Climate change and its associated impacts may also increase our exposure to, and magnitude of, other risks identified in Item 1A. Risk Factors. Our business, financial condition, results of operations, cash flows, reputation, access to and cost of capital or insurance, business plans and strategy may all be materially adversely impacted as a result of climate change and its associated impacts.
+PHYSICAL RISKS
+Climate-related physical risks, resulting from changing and more extreme weather, can damage our assets and affect the safety and reliability of our operations. Climate-related physical risks may be acute or chronic. Acute physical risks are those that are event-driven, including increased frequency and severity of extreme weather events, such as heavy snowfall, heavy rainfall, floods, landslides, fires, hurricanes, cyclones, tornados, tropical storms, ice storms, and extreme temperatures. Chronic physical risks are longer-term shifts in climate patterns, such as long-term changes in precipitation patterns, or sustained higher temperatures, which may cause sea level rises or chronic heat waves.
+Our assets and operations are exposed to potential damage or other negative impacts from these kinds of events, which have in the past resulted and could in the future result in reduced revenue from business disruption or reduced capacity and may also lead to increased costs due to repairs and required adaptation measures. We have experienced operational interruptions and damage to our assets from such weather events in the past, and we expect to continue to experience climate-related physical risks in the future, potentially with increasing frequency or severity. Such events may also result in personal injury, loss of life.
+TRANSITION RISKS
+The transition to a lower-carbon economy involves policy, legal, technology and market changes which may, in turn, increase our cost of operations and influence stakeholder sentiment and decisions about Enbridge, including potentially reducing the demand for some of our services, which could result in a decrease in profitability or reduction in the value of our assets. Transition risks include the following categories:
+•Policy and legal risks
+Policy and legal risks may result from evolving government policy, legislation, regulations and regulatory decisions focused on climate change, as well as changing political and public opinion, stakeholder opposition, legal challenges, litigation and regulatory proceedings. Foreign and domestic governments and regulators continue to evaluate and implement policy, legislation, regulations and decisions aimed at mitigating the impacts of and adapting to climate change, including measures to reduce GHG emissions and shift to lower-carbon sources of energy. Such policies, laws and regulations vary at the federal, state, provincial and municipal levels in which Enbridge operates and are continually evolving. Rules, standards, and methodologies for setting climate-related goals and for measuring and reporting climate-related information are still developing. At the same time, we have seen the rise of anti-ESG activism, creating competing stakeholder priorities and increasing
+48
+uncertainty. As a result, our climate-related goals and disclosures are based on assumptions that are subject to change. Collectively, these measures have resulted and are expected to continue to result in increased costs to us. Enbridge adheres to a number of carbon-pricing mechanisms, including explicit carbon prices (i.e., in BC) and implicit carbon prices (i.e., Canadian federal output-based pricing system). In Canada, the federal government has proposed new Clean Electricity Regulations and is considering options to cap and cut GHG emissions from the oil and gas sector, which may impact our business. Such evolving policy, legislation and regulation could impact commodity demand, and the overall energy mix we deliver and may result in significant expenditures and resources, as well as increased costs for our customers. In recent years, there has also been changing political and public opinion and stakeholder opposition in relation to parts of our business and industry, as well as an increase in climate-related litigation and regulatory action against companies, all of which could impact our reputation, strategy and financial results.
+•Technology risks
+Executing our strategic priorities, including participating in the energy transition over time and attaining our GHG emissions reduction goals, depends, in part, on technological improvements and innovation. This includes the development and use of emerging technologies, such as renewable power and other lower-carbon energy infrastructure. Such technological developments could require significant capital expenditures and resources and may, impact our competitiveness. GHG emissions reduction technology may not materialize as expected, which could make it more difficult to reduce emissions and meet our ESG goals.
+•Market risks
+Concerns about climate change, increased demand for lower-carbon forms of energy and new energy technologies, changing customer behavior, and reduced energy consumption could impact the demand for our services or our securities. In recent years, certain investors, lenders and insurers have taken or are contemplating actions to decrease the carbon intensity of their portfolios or reduce or cease support for the fossil fuel industry. Such measures could result in increased costs to manage these risks and could negatively impact our access to and cost of capital, as well as demand for, or value of, our securities or our services. Uncertainty in market signals, such as abrupt and unexpected shifts in energy costs and demands, including due to climate change concerns, could impact revenue through reduced throughput volumes on our pipeline transportation systems.
+•Reputational risks
+Companies across all sectors and industries are facing changing expectations and increased scrutiny from stakeholders related to their approach to climate change and GHG emissions. Companies in the energy industry are experiencing stakeholder opposition to their operations and infrastructure projects. Enbridge’s ESG goals, sustainability-related activities, commitments, and plans, including climate-related information and data, are based on various assumptions, estimates, judgments, risks, and uncertainties. Achieving these ESG goals and commitments will require collective efforts and actions from a wide range of stakeholders, much of which is beyond our control, and there can be no assurance that the impact of these efforts and actions will be realized. Our ESG goals and pathways for reducing operational emissions will continue to evolve and may need to be restated, modified, or recalibrated as data improves, standards, methodologies, metrics, and measurements mature, and as legislation, regulations, policies, and stakeholder sentiment evolve. If we experience challenges, or perceived challenges in achieving our climate-related goals, are not able to meet future climate-related, emissions, or other regulatory or reporting requirements, or are not able to meet or manage stakeholder expectations regarding climate change or disclosure of climate-change information (including potential allegations of greenwashing), it could negatively impact our reputation or investor sentiment and could expose us to government enforcement actions or litigation, which may, in turn, impact our business, operations or financial results.
+49
+RISKS RELATED TO OPERATIONAL DISRUPTION OR CATASTROPHIC EVENTS
+Operation of complex energy infrastructure involves many hazards and risks that [...]
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+OVERVIEW
+
+Orzenka Midstream, Inc. ("Orzenka," the "Company," "we," "us" or "our") is a Delaware corporation headquartered in Phoenix, Arizona. We own, operate and develop energy infrastructure that connects hydrocarbon supply to demand. Our asset base includes:
+
+- natural gas gathering systems and processing plants;
+- natural gas liquids ("NGL") fractionation facilities;
+- crude oil, refined product and NGL transportation pipelines;
+- above-ground tankage and underground storage caverns; and
+- marine, rail and truck terminals.
+
+Our customers include producers, refiners, petrochemical manufacturers, local distribution companies, power generators, marketers and exporters. Through our facilities, we move hydrocarbons from the wellhead and from the refinery gate to end-use markets in the United States and to export points.
+
+Our common stock trades under the ticker symbol "ORZA." For the fiscal year ended December 31, 2024, total revenue was $52,746 million, an increase of 15.1% from the prior fiscal year. Revenue grew because volumes on our systems increased, assets placed in service during the year contributed to results, and our recently acquired assets contributed for a full year.
+
+We manage our business through three reportable segments:
+
+- Gathering and Processing;
+- Transportation and Storage; and
+- Terminals and Marketing Services.
+
+Each segment is organized around the part of the hydrocarbon value chain it supports. The segments are described below under "Our Reportable Segments." Additional segment financial information appears in Item 7, Management's Discussion and Analysis of Financial Condition and Results of Operations, and in the notes to our consolidated financial statements in Item 8, Financial Statements and Supplementary Data.
+
+Our business model rests on long-term commercial agreements. Many of these agreements contain fee-based rate structures, minimum volume commitments, acreage dedications or reservation charges. We structure our contracts this way to limit our direct exposure to commodity price changes and to support cash flows through the commodity cycle. Some of our activities, such as certain percent-of-proceeds processing arrangements and our marketing operations, do expose us to commodity prices. We manage that exposure through contract design, operating practices and, where appropriate, derivative instruments.
+
+STRATEGY AND PRIORITIES
+
+Safe and Reliable Operations
+
+The safety of our workforce, the communities near our assets and the environment comes before every other operating objective. We maintain an integrity management program for our pipelines and facilities. The program includes:
+
+- inline inspection;
+- cathodic protection;
+- leak detection;
+- control room management; and
+- preventive maintenance.
+
+We investigate incidents and near misses to identify root causes. We share the lessons learned across our operating regions so that corrective measures are applied consistently.
+
+Disciplined Capital Allocation
+
+We assess growth opportunities against expected returns, the strength and duration of the underlying commercial support, and how well the project fits our existing footprint. We favor projects that extend, debottleneck or connect assets we already own. These projects generally offer lower execution risk and better capital efficiency than greenfield development in new regions. We also pursue acquisitions when we believe a transaction will add to our system, broaden our customer base, or create opportunities to integrate the acquired assets with our own.
+
+Cost Competitiveness and Operational Efficiency
+
+We seek to lower our unit operating costs. Our main tools are:
+
+- standardized engineering and procurement practices;
+- centralized control operations;
+- predictive maintenance programs; and
+- consolidation of support functions.
+
+We regard cost competitiveness as essential to winning new volumes in a market where customers can often choose among several service providers.
+
+Financial Strength and Shareholder Returns
+
+We intend to keep a balance sheet that supports access to capital markets throughout the commodity cycle. We aim to generate cash flow sufficient to fund maintenance capital, a significant share of our growth capital, and the return of capital to stockholders through dividends and share repurchases. Our board of directors reviews our capital allocation framework periodically. It may change dividend and repurchase levels in light of business conditions, investment opportunities and other factors.
+
+Energy Transition Readiness
+
+We evaluate opportunities that use our existing rights-of-way, engineering capabilities and customer relationships to serve lower-carbon energy markets. These include:
+
+- carbon dioxide transportation and sequestration;
+- renewable feedstock and renewable fuel logistics; and
+- the handling of hydrogen and hydrogen-derived products.
+
+We pursue these opportunities only where commercial structures provide returns consistent with our investment criteria.
+
+PRINCIPAL PRODUCTS AND SERVICES
+
+We provide midstream services across the life of a hydrocarbon molecule, from the point of production or refining to the point of consumption or export.
+
+- Gathering. We provide low- and high-pressure gathering of natural gas and crude oil from wellheads and central delivery points. Related services include compression, dehydration, treating and condensate stabilization.
+
+- Processing and fractionation. We separate natural gas into residue gas and a mixed NGL stream. We then fractionate the mixed NGL stream into purity products: ethane, propane, normal butane, isobutane and natural gasoline.
+
+- Pipeline transportation. We provide interstate and intrastate transportation of natural gas, crude oil, refined products and NGLs. Service is offered under tariffs approved by regulators and under negotiated agreements.
+
+- Storage. We provide storage in above-ground tanks and in solution-mined salt caverns. Customers use our storage to manage operations, balance seasonal demand and take advantage of market opportunities.
+
+- Terminalling. We provide receipt, storage, blending, additive injection and redelivery of crude oil, refined products, NGLs and renewable fuels. These services are offered at inland and marine terminals, with connections to pipelines, rail, barges, ships and trucks.
+
+- Marketing and logistics services. We purchase and resell crude oil, NGLs, natural gas and refined products. These activities help optimize the use of our own assets and give customers market access, scheduling support and supply aggregation.
+
+OUR REPORTABLE SEGMENTS
+
+Gathering and Processing
+
+The Gathering and Processing segment provides wellhead-to-market services to oil and natural gas producers in several onshore resource plays. Its assets include:
+
+- gathering pipelines;
+- field and central compression;
+- cryogenic and refrigeration processing plants;
+- treating facilities that remove carbon dioxide, hydrogen sulfide and other impurities; and
+- crude oil and produced water gathering systems in certain areas.
+
+Volumes processed in this segment frequently flow onward into our Transportation and Storage segment. This linkage allows us to capture value at several points in the value chain.
+
+Most contracts in this segment are long-term. Many include acreage dedications or minimum volume commitments. Fee types vary by agreement and include fixed fees per unit of throughput, cost-of-service structures, and percent-of-proceeds arrangements. Under a percent-of-proceeds arrangement, we keep a portion of the sales proceeds from residue gas and NGLs. Segment results depend mainly on producer drilling and completion activity. That activity is shaped by commodity prices, producer capital budgets, and the geology and economics of the basins we serve.
+
+Transportation and Storage
+
+The Transportation and Storage segment owns and operates long-haul and regional pipelines that carry natural gas, crude oil, refined products and NGLs. It also owns and operates the storage assets associated with those pipelines. Its assets include:
+
+- interstate and intrastate natural gas pipelines that serve utilities, industrial users, power generators and liquefied natural gas export facilities;
+- crude oil trunklines that connect producing regions with refining centers and export terminals;
+- refined product pipelines that serve metropolitan demand markets; and
+- NGL pipelines that deliver mixed and purity products to fractionation and petrochemical hubs.
+
+The segment also includes above-ground tank farms and underground salt cavern storage for natural gas, NGLs and refined products.
+
+Revenue in this segment comes mainly from fee-based services. Some services are priced under tariffs filed with federal or state regulators. Others are priced under negotiated rates in firm transportation and storage agreements. Many firm agreements include reservation or demand charges that are payable whether or not the customer ships or stores volumes. These charges add predictability to segment cash flows. Interruptible services and short-term storage arrangements supplement firm revenues and allow us to market available capacity.
+
+Terminals and Marketing Services
+
+The Terminals and Marketing Services segment operates our marine, inland, rail and truck-rack terminals. It also conducts our commodity marketing and logistics activities. The terminals offer:
+
+- storage, blending and handling services for refiners, marketers, wholesalers and exporters; and
+- dock capacity for loading and unloading vessels and barges serving domestic and international markets.
+
+Our marketing activities purchase hydrocarbons at receipt points on or near our systems and resell them at downstream markets. In doing so, they raise utilization of our assets and give customers flexible supply and disposition options.
+
+Revenue in this segment includes fees for terminalling throughput, storage and ancillary services. It also includes sales of commodities purchased in our marketing activities. Because marketing revenues reflect the gross value of the commodities sold, segment revenues can rise or fall sharply with commodity price levels, even when the margin we earn changes far less.
+
+CUSTOMERS
+
+Our customers span the energy value chain:
+
+- independent and integrated exploration and production companies;
+- refiners;
+- petrochemical and industrial manufacturers;
+- natural gas utilities and local distribution companies;
+- electric power generators;
+- liquefied natural gas exporters;
+- wholesale fuel marketers; and
+- commodity trading firms.
+
+We serve several large customers under long-term agreements. Some of these customers account for a meaningful portion of revenue in individual segments. If a significant customer lost volumes, defaulted or declared bankruptcy, the results of the affected segment could be materially affected. For more information, see Item 1A, Risk Factors.
+
+We manage credit risk by reviewing each customer's creditworthiness before entering into an agreement. Where warranted, we require credit support, such as letters of credit, parental guarantees, prepayments or cash collateral. We monitor customer exposure on an [...]
+>>>
+
+TASK
+Write Item 1A. Risk Factors for Orzenka Midstream, Inc.'s annual report for the fiscal year ended 2024-12-31. List the material risks, grouped under sub-headings (for example risks related to the business and industry, to operations, to financing and capital structure, to legal and regulatory matters, and general risks). Each risk starts with a one-sentence heading line, followed by one or two paragraphs. Make the risks specific to this company's sector, cost structure and balance sheet. Do not quote dollar amounts or percentages; describe exposures in words, as real risk factors do.
+Length: about 3500 words. Start with the line "Item 1A. Risk Factors" and output only the section text.

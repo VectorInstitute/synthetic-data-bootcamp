@@ -1,0 +1,11 @@
+experiment,retriever,n_questions,recall_at_5,recall_at_10,mrr,ndcg_at_10
+synthetic_only,bm25,87,0.5402,0.7241,0.3792,0.3214
+synthetic_only,semantic:text-embedding-3-small,87,0.7126,0.7241,0.4926,0.4697
+synthetic_only,hybrid:bm25+text-embedding-3-small,87,0.6552,0.7701,0.4609,0.4168
+synthetic_only,semantic:potion-retrieval-32M,87,0.2874,0.4023,0.2709,0.2021
+synthetic_only,hybrid:bm25+potion-retrieval-32M,87,0.3333,0.4943,0.3232,0.2287
+mixed,bm25,118,0.6864,0.7627,0.4997,0.4629
+mixed,semantic:text-embedding-3-small,118,0.6525,0.678,0.4864,0.4683
+mixed,hybrid:bm25+text-embedding-3-small,118,0.6695,0.7542,0.4946,0.4794
+mixed,semantic:potion-retrieval-32M,118,0.2712,0.3644,0.2479,0.1937
+mixed,hybrid:bm25+potion-retrieval-32M,118,0.2966,0.4576,0.3036,0.2365

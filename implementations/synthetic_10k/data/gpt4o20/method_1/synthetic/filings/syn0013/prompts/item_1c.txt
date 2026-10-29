@@ -1,0 +1,307 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Draor Midstream, Inc. (ticker DRAR)
+Sector: Energy
+Incorporated in: Delaware
+Headquarters: Seattle, Washington
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 202,000
+
+Draor Midstream, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                     134,874       125,839
+Cost of revenue                             123,572       114,074
+Gross profit                                 11,302        11,765
+Research and development                          0             0
+Selling, general and administrative           2,724         2,942
+Other operating expense                       1,322         3,427
+Operating income                              7,256         5,396
+Interest expense                              9,779         9,592
+Income before income taxes                  (2,523)       (4,196)
+Provision for income taxes                        0             0
+Net income                                  (2,523)       (4,196)
+
+Draor Midstream, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                           32,169        29,449
+Accounts receivable, net                            12,988        12,241
+Inventories                                          4,802         4,377
+Other current assets                                21,410        19,743
+Total current assets                                71,369        65,810
+Property, plant and equipment, net                 625,949       598,107
+Goodwill                                            23,624        23,088
+Other non-current assets                           116,785       104,780
+Total assets                                       837,727       791,785
+Total current liabilities                           61,680        56,889
+Long-term debt                                     217,306       213,156
+Other non-current liabilities                      403,594       374,448
+Total liabilities                                  682,580       644,493
+Total stockholders' equity                         155,147       147,292
+Total liabilities and stockholders' equity         837,727       791,785
+
+Draor Midstream, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                           (2,523)
+Depreciation and amortization                         22,780
+Changes in working capital and other                 (2,374)
+Net cash provided by operating activities             17,883
+Purchases of property and equipment                 (12,800)
+Other investing activities, net                     (16,891)
+Net cash used in investing activities               (29,691)
+Net change in long-term debt                           4,150
+Dividends paid                                             0
+Share repurchases, net of issuances                   10,378
+Net cash used in financing activities                 14,528
+Net change in cash and cash equivalents                2,720
+Cash and cash equivalents, beginning of year          29,449
+Cash and cash equivalents, end of year                32,169
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 7.2%
+Net income growth, fiscal 2024 versus 2023: 39.9%
+Operating income growth, fiscal 2024 versus 2023: 34.5%
+Gross margin, fiscal 2024: 8.4%
+Operating margin, fiscal 2024: 5.4%
+Net margin, fiscal 2024: -1.9%
+Effective tax rate, fiscal 2024: 0.0%
+Research and development as a share of revenue, fiscal 2024: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2024: 2.0%
+Gross margin, fiscal 2023: 9.3%
+Operating margin, fiscal 2023: 4.3%
+Net margin, fiscal 2023: -3.3%
+Effective tax rate, fiscal 2023: 0.0%
+Research and development as a share of revenue, fiscal 2023: 0.0%
+Selling, general and administrative as a share of revenue, fiscal 2023: 2.3%
+
+STYLE EXAMPLE: the start of Item 1C from a real Energy company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1C. Cybersecurity
+Chevron’s business and proprietary information, information technology (IT) and operational technology (OT) networks are essential to its success. The company’s cybersecurity program is designed to protect its information assets and operations from external and internal cyber threats by identifying and appropriately managing and mitigating risks while ensuring business resiliency. This program is integrated within the company’s Enterprise Risk Management (ERM) process, which is the company’s systematic approach to identifying, managing and assessing major risks and safeguards, including cybersecurity risks. Chevron uses a risk-based information security process aligned with the National Institute of Standards and Technology (NIST) Cybersecurity Framework to identify, prioritize and mitigate cyber risks.
+The company’s worldwide team of cybersecurity professionals undertakes a range of preemptive activities to protect its people, assets and reputation globally. The company also leverages internal and external resources to monitor cybersecurity threats to its systems and networks and to understand the broader threat environment. The company seeks to remove exploitable weaknesses in its systems or devices before they become a threat. Chevron security experts use automated threat intelligence feeds to increase vulnerability awareness, taking action to mitigate the highest risks. The company’s cybersecurity guardrails, which are high-level design requirements expected to be built into any new digital solutions being deployed, are also updated on an ongoing basis to align with changes in industry standards and the evolving threat environment.
+Chevron’s cyber risk management process includes testing and risk assessments of technologies, third-party suppliers, and its IT and OT networks. These assessments ensure that our focus is on the highest priorities to maintain the security of our company’s assets. To further protect the company’s systems and data, Chevron’s cybersecurity organization has threat intelligence capabilities to monitor security breaches impacting third-party suppliers. As third-party risks increase, the company’s approach to third-party supplier risk management and qualification continues to evolve, including the ongoing expansion of its current supplier risk management program beyond IT vendors to other high-risk, third-party vendors.
+Chevron’s Chief Information Officer (CIO) oversees Chevron’s broader IT program, which includes the company’s cybersecurity program and its ability to remediate and recover from a cybersecurity incident to minimize business and operational impacts. Chevron’s CIO joined Chevron in 2024, bringing more than 20 years of experience leading global innovation initiatives in digital, data, full supply chains, vehicle commerce, energy, and IT operations for technology and automotive companies. Chevron’s Chief Information Security Officer (CISO) reports to the CIO and leads a global cybersecurity team.
+27
+Table of Contents
+Chevron operates four Cyber Intelligence Centers around the world, some co-located with critical assets, with cyber professionals who monitor and respond to cyber threats 24 hours a day, 365 days a year, to limit the scope and impact of cyber incidents in its networks. The cybersecurity organization provides the IT leadership, which includes Chevron’s CIO, with regular cybersecurity operations reports detailing prevention, detection, mitigation and remediation efforts associated with cyber incidents, both on Chevron’s networks and third-party supplier networks. The leadership of the cybersecurity organization has authority to mobilize a cross-functional cyber incident response team, including outside cybersecurity experts, to drive mitigation and remediation actions. Status updates on incidents are provided to senior management and to the Board, as appropriate.
+The company’s dedicated cyber risk organization meets regularly with business units to raise cyber risk awareness and keep diverse cybersecurity skill sets connected across the enterprise. Chevron has invested in broad cybersecurity awareness and required training to educate those with access to Chevron’s networks on company policy and best practices. The company conducts regular phishing tests to train and assess its workforce’s ability to identify malicious emails.
+Chevron’s Corporate Audit Department has a dedicated team responsible for IT and information security (including cybersecurity) audits. Chevron also leverages external resources to reinforce its cybersecurity capabilities. On a regular basis, external consultants provide a maturity assessment of the company’s cybersecurity program.
+The company’s approach to managing risks, including cybersecurity risks, is embedded within the enterprise Operational Excellence (OE) Management System (OEMS). The OEMS provides a systematic process that enables the company to manage risk and implement safeguards and foster a culture of learning across different focus areas for Chevron’s business, including cybersecurity. The company’s Business Continuity Planning OE Process, a component of the OEMS, is designed to prepare Chevron to continue operations during an unplanned event or disruption, which aligns with its OE objective to prevent high-consequence security and cybersecurity incidents. Chevron works to identify critical business processes and dependent IT applications and document the processes for continuing operations without IT systems. Cross-functional teams also conduct regular multidisciplinary exercises to test and improve response plans.
+The Board provides oversight of Chevron’s cybersecurity program, receives reports from management on cybersecurity risks in connection with Chevron’s operations and projects, and also reviews cybersecurity risks as part of the company’s broader annual ERM process. In support of the Board’s oversight of the company’s policies and processes with respect to risk management and the company’s major financial risk exposures, including cybersecurity, the Audit Committee meets with Chevron’s CISO and CIO at least twice a year to review cybersecurity risks and implications, including the results of independent third-party assessments. The CISO and CIO present cybersecurity matters to the Board of Directors at least annually. The CISO and CIO also provide new Board members with a cybersecurity briefing as part of the onboarding process.
+To date, the company has not experienced a cybersecurity threat or incident that has materially affected or is reasonably likely to materially affect the company, including its business strategy, results of operations or financial condition; however, the company has experienced and will continue to experience cyber incidents of varying degrees. Despite the cybersecurity measures that the company is taking to mitigate such risks, there can be no guarantee that such measures will be sufficient to protect the company’s systems, information, intellectual property and other assets from significant harm and that future cybersecurity incidents will not have a material adverse effect on the company or its results of operations or financial condition or cause reputational or other harm to the company. Refer to Item 1A. Risk Factors on pages 21 through 22 for further discussion of cyberattacks and the associated risks to Chevron’s business.
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+Overview
+
+Draor Midstream, Inc. ("Draor" or the "Company"), headquartered in Seattle, Washington, is a prominent player in the energy sector, specializing in the transportation and distribution of energy resources. Incorporated in Delaware, Draor is a key provider of midstream services, linking suppliers with consumers through its extensive network of pipelines and storage facilities. For the fiscal year ended December 31, 2024, Draor reported total revenue of $134,874 million, reflecting its significant presence in the energy market.
+
+Principal Products and Services
+
+Draor's core operations involve the transportation, storage, and distribution of natural gas, crude oil, and natural gas liquids (NGLs). The Company operates a robust infrastructure that supports the seamless movement of these resources from production sites to end-users. This infrastructure includes a vast network of pipelines, strategically located storage facilities, and advanced logistics systems that ensure efficient and reliable delivery. Draor's services are critical in maintaining the balance between supply and demand in the energy market, providing essential connectivity across the energy value chain.
+
+Segments
+
+Draor's operations are organized into two primary reportable segments: Transportation and Storage.
+
+Transportation
+
+The Transportation segment encompasses Draor's extensive pipeline network, which is crucial for the movement of natural gas, crude oil, and NGLs. These pipelines traverse key energy-producing regions, connecting them to major consumption hubs across the United States. Draor's strategic focus on maintaining and expanding its pipeline infrastructure ensures the reliability and efficiency of its transportation services. The Company's pipelines are designed to accommodate varying volumes and types of energy products, allowing for flexible operations tailored to market conditions.
+
+Storage
+
+The Storage segment is centered around Draor's comprehensive portfolio of storage facilities. These facilities are strategically located near production areas and major distribution points, providing vital storage capacity for natural gas, crude oil, and NGLs. Draor's storage services offer flexibility in managing supply fluctuations, enabling customers to optimize their inventory levels and mitigate market volatility. The Company's commitment to safety and environmental stewardship is evident in its state-of-the-art storage infrastructure, which adheres to stringent industry standards.
+
+Customers
+
+Draor serves a diverse customer base that includes energy producers, refiners, marketers, and industrial end-users. The Company maintains long-term relationships with its customers, which underscores its reputation for reliability and operational excellence. Draor's ability to provide tailored solutions and responsive service has positioned it as a preferred partner for many leading entities in the energy sector.
+
+Sales and Marketing
+
+Draor's sales and marketing efforts are focused on fostering strong customer relationships and expanding its market reach. The Company's marketing team works closely with customers to understand their unique needs and develop customized service offerings. Draor leverages its extensive industry knowledge and expertise to identify growth opportunities and enhance its competitive position in the market.
+
+Competition
+
+The midstream energy sector is highly competitive, with numerous companies vying for market share. Draor competes with other midstream service providers, including those with integrated operations across the energy value chain. The Company's ability to differentiate itself through its extensive infrastructure, operational efficiency, and customer-centric approach is critical in maintaining its competitive edge. Draor continuously assesses market trends and technological advancements to enhance its service offerings and strengthen its market position.
+
+Seasonality
+
+Draor's operations are subject to seasonal variations, primarily driven by changes in energy demand. The demand for natural gas typically increases during colder months due to heating needs, while demand for crude oil and NGLs can fluctuate based on industrial activity and transportation needs. Draor's flexible infrastructure and adaptive operational strategies enable it to manage these seasonal variations effectively, ensuring consistent service delivery to its customers.
+
+Intellectual Property
+
+Draor's success is supported by its intellectual property portfolio, which includes proprietary technologies and processes that enhance the efficiency and safety of its operations. The Company invests in research and development to innovate and improve its service offerings, although it does not engage in formal research and development activities. Draor's commitment to technological advancement is evident in its adoption of cutting-edge technologies for pipeline monitoring, data analytics, and facility management.
+
+Government Regulation
+
+As a participant in the energy sector, Draor is subject to a comprehensive regulatory framework that governs its operations. Regulatory compliance is critical in ensuring the safety and reliability of Draor's services. The Company works closely with regulatory bodies to ensure adherence to all applicable laws and regulations, including those related to environmental protection, safety standards, and operational practices. Draor's proactive approach to regulatory compliance reflects its commitment to responsible and sustainable operations.
+
+Human Capital
+
+Draor recognizes the importance of its workforce in achieving its operational and strategic goals. The Company employs approximately 202,000 individuals, whose expertise and dedication drive its success. Draor is committed to fostering a diverse and inclusive work environment that promotes professional growth and development. The Company invests in training and development programs to equip its employees with the necessary skills and knowledge to excel in their roles. Draor's focus on employee well-being and engagement is integral to maintaining a motivated and high-performing workforce.
+
+Available Information
+
+Draor is committed to transparency and open communication with its stakeholders. The Company provides timely and accurate information through various channels, including its corporate website and investor relations platform. Stakeholders can access financial reports, regulatory filings, and other relevant information to gain insights into Draor's operations and performance. The Company adheres to best practices in corporate governance and strives to maintain the highest standards of integrity and accountability in all its interactions.
+
+In conclusion, Draor Midstream, Inc. is a leading midstream energy company with a robust infrastructure and a commitment to operational excellence. Through its Transportation and Storage segments, Draor provides critical services that support the energy market's stability and efficiency. The Company's focus on customer satisfaction, innovation, and regulatory compliance positions it for continued success in the evolving energy landscape. Draor remains dedicated to delivering value to its stakeholders while upholding its commitment to safety, sustainability, and community engagement.
+
+>>>
+
+ALREADY WRITTEN, Item 1A of this filing (stay consistent with it):
+<<<
+Item 1A. Risk Factors
+
+Risks Related to the Energy Industry
+
+Volatility in Commodity Prices
+The energy sector is inherently subject to fluctuations in commodity prices, which can significantly impact Draor Midstream, Inc.'s operational and financial performance. The prices of oil, natural gas, and natural gas liquids (NGLs) are influenced by global supply and demand dynamics, geopolitical events, and economic conditions. Any sustained decline or extreme volatility in these prices could adversely affect Draor's revenue and profitability. Additionally, price fluctuations can lead to decreased production from energy producers, which would, in turn, reduce the volumes transported and stored by Draor, impacting our business performance.
+
+Geopolitical and Economic Instability
+Draor's operations and financial results are affected by geopolitical events and economic conditions globally. Political instability, conflicts, and changes in government policies can disrupt energy supply chains and market dynamics, influencing commodity prices and availability. Additionally, economic downturns or recessions can lead to reduced energy consumption, adversely affecting demand for our services. The ongoing uncertainty in global markets, including trade disputes and changes in international relations, presents a risk to the stability and predictability of the energy industry.
+
+Risks Related to Operations
+
+Infrastructure and Operational Risks
+Draor's extensive infrastructure, including pipelines and storage facilities, is critical to its operations. However, these assets are exposed to various risks, including natural disasters, equipment failures, and unforeseen operational disruptions. Such events could result in significant repair costs, loss of revenue, and reputational damage. Additionally, Draor's operations depend on the reliability and integrity of its infrastructure, and any failure to maintain or enhance these systems could compromise service delivery, impacting customer satisfaction and operational efficiency.
+
+Environmental and Safety Compliance
+As a major player in the energy sector, Draor is subject to stringent environmental and safety regulations. Non-compliance with these regulations could result in substantial fines, legal liabilities, and remediation costs. Moreover, environmental incidents or safety breaches could lead to operational shutdowns, reputational harm, and loss of customer trust. Draor's commitment to environmental stewardship and safety is paramount; however, the complexity of regulatory requirements and the potential for unforeseen incidents pose ongoing risks.
+
+Risks Related to Financing and Capital Structure
+
+High Debt Levels and Interest Rates
+Draor's capital structure includes significant long-term debt, which may pose risks related to interest rate fluctuations and refinancing. An increase in interest rates could raise our borrowing costs, affecting liquidity and financial flexibility. Additionally, the need to refinance existing debt may expose Draor to unfavorable market conditions, potentially impacting our ability to finance capital expenditures or pursue strategic initiatives. Maintaining a prudent approach to managing debt and interest rate exposure is crucial to sustaining our financial health.
+
+Access to Capital Markets
+Draor relies on access to capital markets to fund its operations, growth initiatives, and infrastructure investments. Any deterioration in market conditions or changes in investor sentiment could limit our ability to raise capital on favorable terms. Additionally, shifts in the regulatory or economic environment may impact the availability of financing, potentially constraining Draor's strategic options and operational capabilities. Ensuring continued access to diverse funding sources is essential to support our long-term growth and stability.
+
+Risks Related to Legal and Regulatory Matters
+
+Regulatory Changes and Compliance
+Draor operates within a heavily regulated environment, with numerous federal, state, and local regulations governing its activities. Changes in regulatory policies, including environmental standards, safety requirements, and energy market regulations, could result in increased compliance costs and operational challenges. Additionally, the complexity and variability of regulatory frameworks may lead to legal disputes or delays in project approvals, impacting Draor's operational efficiency and strategic plans.
+
+Litigation and Legal Proceedings
+Draor may be involved in legal proceedings related to its operations, environmental matters, or contractual disputes. Such litigation can be costly, time-consuming, and unpredictable, potentially leading to significant financial liabilities and reputational harm. The outcome of legal proceedings is inherently uncertain, and adverse rulings could impact Draor's financial position and operational capabilities. Proactively managing legal risks and maintaining robust compliance programs are critical to mitigating these challenges.
+
+General Risks
+
+Technological Advancements and Cybersecurity
+The energy sector is experiencing rapid technological advancements, which present both opportunities and risks for Draor. While adopting new technologies can enhance operational efficiency and service delivery, it also introduces risks related to cybersecurity and data protection. Draor's reliance on digital systems and infrastructure makes it vulnerable to cyber threats, which could disrupt operations, compromise sensitive information, and result in financial losses. Ensuring robust cybersecurity measures and staying abreast of technological developments are essential to safeguarding our operations and data.
+
+Climate Change and Environmental Impact
+The increasing focus on climate change and environmental sustainability presents both challenges and opportunities for Draor. Regulatory pressures, public perception, and market demand for low-carbon solutions may require significant investments in sustainable practices and technologies. Failure to adapt to evolving environmental expectations could impact Draor's competitive position and reputation. Additionally, physical risks associated with climate change, such as extreme weather events, could disrupt operations and affect asset integrity. Developing a comprehensive approach to environmental stewardship and climate resilience is vital to our long-term success.
+
+In conclusion, Draor Midstream, Inc. faces a range of risks inherent to the energy sector and its operational and financial activities. The Company's ability to effectively manage these risks is critical to sustaining its competitive position and achieving its strategic objectives. Draor remains committed to proactive risk management, regulatory compliance, and operational excellence to navigate the dynamic energy landscape.
+
+>>>
+
+ALREADY WRITTEN, Item 7 of this filing (stay consistent with it):
+<<<
+Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations
+
+The following discussion and analysis should be read in conjunction with our consolidated financial statements and notes thereto in Item 8. Financial Statements and Supplementary Data of this report. This discussion contains forward-looking statements that reflect our plans, estimates, beliefs, and expected performance. Actual results and the timing of events may differ materially from those contained in these forward-looking statements due to various factors discussed further in Item 1A. Risk Factors and Cautionary Statement Regarding Forward-Looking Statements of this report.
+
+Overview
+
+Draor Midstream, Inc. ("Draor" or the "Company") is a leading company in the energy sector, focusing on midstream services, which include the transportation, storage, and distribution of energy resources such as natural gas, crude oil, and natural gas liquids (NGLs). Our operations are primarily centered on connecting energy producers with end-users efficiently and reliably through our extensive infrastructure network. For the fiscal year ended December 31, 2024, Draor reported substantial revenue growth, highlighting our robust position in the energy market.
+
+Results of Operations
+
+Revenue
+
+For the fiscal year 2024, Draor generated total revenue of $134,874 million, marking a 7.2% increase from $125,839 million in fiscal 2023. This growth was primarily driven by an increase in demand for midstream services amid favorable market conditions and strategic expansion of our pipeline and storage infrastructure. Enhanced operational efficiencies and strengthened customer relationships further contributed to this revenue growth.
+
+Cost of Revenue
+
+The cost of revenue for fiscal 2024 was $123,572 million, compared to $114,074 million in fiscal 2023. This represents an increase in costs commensurate with the rise in revenue, reflecting higher volumes transported and stored, which required greater operational resources. We also faced increased maintenance and operational costs due to the expansion of our infrastructure and rising energy prices, which impacted the expenses associated with our services.
+
+Gross Margin
+
+Draor’s gross profit for fiscal 2024 was $11,302 million, a slight decrease from $11,765 million in fiscal 2023. The gross margin decreased from 9.3% in fiscal 2023 to 8.4% in fiscal 2024. This decline in margin is attributable to the increased cost of revenue outpacing revenue growth, driven by heightened operational expenditures required to maintain and enhance our infrastructure under increased demand conditions.
+
+Selling, General and Administrative Expenses
+
+Selling, general and administrative (SG&A) expenses decreased to $2,724 million in fiscal 2024 from $2,942 million in fiscal 2023. This reduction reflects our continued efforts to streamline administrative processes and implement cost-saving initiatives across our operations, despite an increase in business activities and expansion efforts.
+
+Other Operating Expense
+
+Other operating expenses were significantly reduced in fiscal 2024, amounting to $1,322 million compared to $3,427 million in fiscal 2023. This decrease resulted from the conclusion of certain non-recurring expenses incurred in the previous fiscal year, including restructuring costs and expenses related to asset divestitures.
+
+Operating Income
+
+Operating income for fiscal 2024 rose to $7,256 million from $5,396 million in fiscal 2023, a substantial increase of 34.5%. This improvement was driven by the combination of revenue growth and effective cost management, particularly in reducing SG&A and other operating expenses. Our focus on enhancing operational efficiency and strategic resource allocation significantly contributed to this positive outcome.
+
+Interest Expense
+
+Interest expense increased slightly to $9,779 million in fiscal 2024 from $9,592 million in fiscal 2023. This increase is primarily due to higher average debt levels as we financed part of our infrastructure expansion and strategic investments through additional borrowings. Despite the increase in interest expenses, we maintained a stable debt management strategy to support our growth initiatives.
+
+Income Before Income Taxes and Net Income
+
+Draor reported a loss before income taxes of $2,523 million for fiscal 2024, compared to a loss of $4,196 million in fiscal 2023. The reduction in pre-tax loss reflects improved operating income and cost control measures. Correspondingly, net income for fiscal 2024 was a loss of $2,523 million, improving by 39.9% from a net loss of $4,196 million in fiscal 2023. The effective tax rate remained at 0.0% for both fiscal years due to the utilization of tax loss carryforwards and other strategic tax planning measures.
+
+Liquidity and Capital Resources
+
+Cash and Cash Equivalents
+
+Cash and cash equivalents increased to $32,169 million as of December 31, 2024, from $29,449 million as of December 31, 2023. This increase in cash reserves was primarily driven by improved cash flows from operating activities, despite significant investments in infrastructure expansion and strategic initiatives.
+
+Operating Activities
+
+Net cash provided by operating activities was $17,883 million for fiscal 2024. This positive cash flow reflects our enhanced operating income and rigorous working capital management, alongside a focus on optimizing operational efficiency. Despite a challenging environment, we successfully managed to convert a substantial portion of our revenue into operating cash flow.
+
+Investing Activities
+
+Net cash used in investing activities was $29,691 million in fiscal 2024. This outflow was primarily due to significant capital expenditures totaling $12,800 million for the expansion of our pipeline and storage infrastructure. Additionally, other investing activities, net, accounted for $16,891 million, reflecting our strategic investments in technology and asset acquisitions aimed at bolstering our market position.
+
+Financing Activities
+
+Net cash used in financing activities was $14,528 million for fiscal 2024. This included net share repurchases of $10,378 million, reflecting our commitment to returning value to shareholders. Furthermore, we raised $4,150 million through new long-term debt to finance part of our expansion activities. We did not declare or pay dividends during the fiscal year, aligning with our strategy to reinvest earnings into growth opportunities and strengthen our financial position.
+
+Capital Expenditures
+
+Capital expenditures for fiscal 2024 amounted to $12,800 million, reflecting our aggressive investment in expanding and upgrading our infrastructure to meet increasing demand. These investments are critical to sustaining our operational capabilities and enhancing our service offerings across the energy value chain.
+
+Debt Management
+
+As of December 31, 2024, our long-term debt stood at $217,306 million, up from $213,156 million at the end of fiscal 2023. This increase reflects our strategic borrowing to fund infrastructure projects and support our growth objectives while maintaining a prudent balance between debt and equity financing.
+
+Share Repurchases
+
+During fiscal 2024, we repurchased shares amounting to $10,378 million, net of issuances. This action demonstrates our commitment to optimizing our capital structure and enhancing shareholder value, while also reflecting confidence in our long-term growth prospects.
+
+Critical Accounting Estimates
+
+Our financial statements are prepared in accordance with generally accepted accounting principles (GAAP) in the United States, which require us to make estimates and assumptions that affect the reported amounts of assets, liabilities, revenues, and expenses. Our critical accounting estimates are those that are most important to the portrayal of our financial condition and results of operations and require our most difficult, subjective, or complex judgments, often as a result of the need to make estimates about the effect of matters that are inherently uncertain.
+
+Impairment of Long-Lived Assets
+
+We evaluate long-lived assets for impairment when events or changes in circumstances indicate that the carrying amount of an asset may not be recoverable. Our evaluation of long-lived assets requires significant judgment in determining whether indicators of impairment exist and in estimating future cash flows, useful lives, and residual values. Changes in these estimates could materially affect the amounts reported in our financial statements.
+
+Fair Value Measurements
+
+Certain assets and liabilities are reported at fair value in our financial statements. Determining fair value requires significant judgment and the use of estimates, particularly when observable market data is not available. We use various valuation techniques, including market, income, and cost approaches, to estimate fair value. Changes in these estimates could have a significant impact on our financial position and results of operations.
+
+Income Taxes
+
+We are subject to income taxes in various jurisdictions, and significant judgment is required in determining our provision for income taxes. We recognize the effects of uncertain tax positions when it is more likely than not, based on the technical merits, that the position will be sustained upon examination. Changes in tax laws and interpretations, as well as changes in estimated future taxable income, could affect the amounts recorded for income taxes in our financial statements.
+
+In conclusion, Draor Midstream, Inc. experienced significant growth and operational improvements in fiscal 2024, driven by strategic investments and rigorous cost management. Our focus on expanding our infrastructure and optimizing our operations has positioned us well for future growth, despite the challenges inherent in the energy sector. We remain committed to enhancing shareholder value while maintaining a strong financial position and adhering to the highest standards of operational excellence.
+
+>>>
+
+TASK
+Write Item 1C. Cybersecurity for Draor Midstream, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe cybersecurity risk management and strategy (processes, third parties, assessment of risks from threats) and governance (board oversight committee, the role and experience of the chief information security officer, reporting lines). Avoid numbers.
+Length: about 900 words. Start with the line "Item 1C. Cybersecurity" and output only the section text.

@@ -1,0 +1,182 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Zennov Medical, Inc. (ticker ZONE)
+Sector: Health Care
+Incorporated in: Delaware
+Headquarters: Denver, Colorado
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 2,700
+
+Zennov Medical, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                       2,264         2,093
+Cost of revenue                                 606           584
+Gross profit                                  1,658         1,509
+Research and development                        923           854
+Selling, general and administrative             124            87
+Other operating expense                           0             0
+Operating income                                611           568
+Interest expense                                 59            54
+Income before income taxes                      552           514
+Provision for income taxes                      166           149
+Net income                                      386           365
+
+Zennov Medical, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                               68            60
+Accounts receivable, net                               340           324
+Inventories                                            149           140
+Other current assets                                   240           224
+Total current assets                                   797           748
+Property, plant and equipment, net                     176           157
+Goodwill                                               490           449
+Other non-current assets                             1,614         1,443
+Total assets                                         3,077         2,797
+Total current liabilities                              710           658
+Long-term debt                                       1,321         1,201
+Other non-current liabilities                           88            63
+Total liabilities                                    2,119         1,922
+Total stockholders' equity                             958           875
+Total liabilities and stockholders' equity           3,077         2,797
+
+Zennov Medical, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                               386
+Depreciation and amortization                             62
+Changes in working capital and other                       3
+Net cash provided by operating activities                451
+Purchases of property and equipment                     (60)
+Other investing activities, net                        (200)
+Net cash used in investing activities                  (260)
+Net change in long-term debt                             120
+Dividends paid                                         (152)
+Share repurchases, net of issuances                    (151)
+Net cash used in financing activities                  (183)
+Net change in cash and cash equivalents                    8
+Cash and cash equivalents, beginning of year              60
+Cash and cash equivalents, end of year                    68
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 8.2%
+Net income growth, fiscal 2024 versus 2023: 5.8%
+Operating income growth, fiscal 2024 versus 2023: 7.6%
+Gross margin, fiscal 2024: 73.2%
+Operating margin, fiscal 2024: 27.0%
+Net margin, fiscal 2024: 17.0%
+Effective tax rate, fiscal 2024: 30.1%
+Research and development as a share of revenue, fiscal 2024: 40.8%
+Selling, general and administrative as a share of revenue, fiscal 2024: 5.5%
+Gross margin, fiscal 2023: 72.1%
+Operating margin, fiscal 2023: 27.1%
+Net margin, fiscal 2023: 17.4%
+Effective tax rate, fiscal 2023: 29.0%
+Research and development as a share of revenue, fiscal 2023: 40.8%
+Selling, general and administrative as a share of revenue, fiscal 2023: 4.2%
+
+STYLE EXAMPLE: the start of Item 1A from a real Health Care company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1A. Risk Factors.
+An investment in BD involves a variety of risks and uncertainties. The following describes some of the material risks that could adversely affect BD’s business, financial condition, operating results or cash flows. We may also be adversely impacted by other risks not presently known to us or that we currently consider immaterial.
+Business, Economic and Industry Risks
+Global economic conditions, including inflation and supply chain disruptions, could continue to adversely affect our operations.
+General global economic downturns and macroeconomic trends, including heightened inflation, capital market volatility (including volatility resulting from the imposition of (and changing policies around) tariffs and related countermeasures), import or export licensing requirements, interest rate and currency rate fluctuations, economic slowdown or recession, have contributed to conditions that have impacted, and may continue to impact, demand for our products and services, or the prices we can charge for our products, disrupt aspects of our supply chain, impair our ability to produce our products, increase borrowing costs and exacerbate other risks that affect our business, financial condition and results of operations. In addition, general economic conditions have adversely impacted, and may continue to adversely impact, the healthcare industry, including reductions in capital spending and U.S. federal funding and changes in the delivery of healthcare services, which have affected, and could in the future affect, demand for our products. Both domestic and international markets experienced inflationary pressures in fiscal year 2025 and we expect inflation to persist in the future. In addition, currency exchange rates have been especially volatile in the recent past, and these currency fluctuations have affected, and may continue to affect, the reported value of our assets and liabilities, as well as our cash flows.
+We have also experienced, and may continue to experience, challenges in our global supply chain, including shortages in supply, or disruptions in production and shipments, of certain materials or components used in our products and related price increases. While to date, we have been able to manage the challenges associated with these delays and shortages without significant disruption to our business, no assurance can be given that these efforts will continue to be successful.
+Our international operations subject us to certain business risks.
+A substantial amount of our sales come from our operations outside the U.S., and we intend to continue to pursue growth opportunities in new and existing foreign markets. Our foreign operations subject us to certain commercial, political and financial risks. In addition to fluctuations in foreign currency exchange (discussed above), our business in these foreign markets is subject to changing political, social, and geopolitical conditions, such as the continuation and/or escalation of the situation in Ukraine, the Middle East and Asia. These conditions include instability resulting from war, terrorism, insurrections and civil unrest, political conflict and changing economic conditions, such as inflation, deflation, interest rate volatility and credit availability.
+Specifically, recently enacted or any future tariffs imposed by the U.S. government (and countermeasures by non-U.S. governments) may result in adverse impacts to the global economic environment and the stability of global financial markets, which could alter global trade. The tariffs, sanctions or other trade barriers imposed by the U.S. (and countermeasures by non-U.S. governments) could adversely impact our supply chain costs or availability of certain components, demand for our products and our business, financial condition, results of operations and cash flows. Unpredictability of trade policy compounds this risk. Based upon the latest published tariffs that are currently in effect, we expect tariffs to adversely impact our operating expense for fiscal year 2026 and potentially beyond, primarily relating to any products (or components) imported from countries across our global supply chain, for which there are limited mitigation opportunities.
+14
+Table of Contents
+Further, the U.S. Department of Commerce recently initiated an investigation under Section 232 of the Trade Expansion Act of 1962, as amended, into (among other things) imports of personal protective equipment, medical consumables and medical equipment (including devices), to determine whether they threaten U.S. national security, which further creates policy uncertainty in terms of tariffs. The ultimate impact of any existing or new tariffs or other changes in international trade policies on our business, financial condition, results of operations and cash flows is subject to a number of factors, including, but not limited to, the duration of such tariffs, changes in tariff rates, the amount, scope and nature of the tariffs, any countermeasures that target countries may take or any mitigating actions that may become available. While sourcing optimization and tariff exemptions for qualifying products are key aspects of our mitigation strategy, the timing of such or the ultimate results we will realize from these efforts are uncertain. In addition, our tariff mitigation strategies may be challenged, rejected or eliminated through legislation or other challenges, or may otherwise not be effective.
+Additionally, a number of factors, including U.S. relations with or among the governments of the foreign countries in which we operate, changes to international trade agreements and treaties, changes in tax laws and regulations, economic sanctions, export controls, restrictions on the ability to transfer capital across borders and other increases in trade protectionism and barriers to market participation, or the weakening or loss of certain intellectual property rights in some countries, may affect our business, financial condition and results of operations. Foreign regulatory requirements, including those related to the testing authorization, and labeling of products and import or export licensing requirements, could affect the availability of our products in these markets. In addition to these broader market conditions, our operations may also be impacted by a variety of local factors, such as competition from local companies, local product preferences and requirements, changes in local healthcare payment systems and healthcare delivery systems, changes resulting from new political administrations and labor force instability.
+The success of our operations outside the U.S. also depends, in part, on our ability to make necessary infrastructure enhancements to, among other things, our production facilities and sales and distribution networks, and our strategic staffing plans required to support our international operations. These and other factors may adversely impact our ability to pursue our growth strategy in these markets.
+In addition, our international operations increase our compliance risk. For example, such international operations are governed by the U.S. Foreign Corrupt Practices Act and similar foreign anti-corruption laws. Global enforcement of anti-corruption and bribery laws has increased substantially in recent years, with more enforcement proceedings by foreign governmental agencies and the imposition of significant fines and penalties. While we have implemented policies, procedures and training related to compliance with these laws, our international operations, which often involve customer relationships with foreign governments, create the risk that there may be unauthorized payments or offers of payments made by employees, consultants, sales agents or distributors. We are also subject to certain U.S. and foreign laws and regulations that restrict us from transacting business with, or making investments in, certain countries, governments, entities and individuals subject to U.S. or foreign economic sanctions or export restrictions. Any alleged or actual violations of these laws may subject us to government investigations and significant criminal or civil sanctions and other liabilities, and negatively affect our reputation which could result in a material adverse effect on our business, results of operations, financial condition and cash flows.
+The medical technology industry is very competitive.
+We [...]
+>>>
+
+ALREADY WRITTEN, Item 1 of this filing (stay consistent with it):
+<<<
+Item 1. Business
+
+OVERVIEW
+
+Zennov Medical, Inc. (referred to in this Annual Report on Form 10-K as Zennov, the Company, we, us, or our) is a diversified medical technology company headquartered in Denver, Colorado. Since our incorporation in Delaware, we have dedicated our operations to the design, development, manufacture, and marketing of innovative medical solutions intended to improve patient outcomes and enhance the efficiency of healthcare delivery. We operate at the intersection of advanced engineering and clinical science, providing a broad portfolio of products that address critical needs in surgical intervention, diagnostic accuracy, and chronic disease management.
+
+Our mission is to provide healthcare professionals with the tools necessary to treat complex medical conditions through minimally invasive techniques and data-driven insights. Our product development strategy is centered on high-growth segments of the healthcare market where clinical unmet needs remain significant. We maintain a robust research and development pipeline, supported by a global infrastructure of manufacturing facilities and a specialized sales force. For the fiscal year ended December 31, 2024, our total revenue was $2,264 million.
+
+As of December 31, 2024, we employed approximately 2,700 individuals worldwide. Our organizational structure is designed to foster innovation while maintaining rigorous quality standards and regulatory compliance across all jurisdictions in which we operate. We continue to invest in our core technologies while exploring strategic acquisitions and partnerships that complement our existing capabilities and expand our geographic reach.
+
+PRINCIPAL PRODUCTS AND SERVICES
+
+Our product portfolio is categorized into several key areas of clinical focus, primarily serving the cardiovascular, orthopedic, and general surgical markets. We offer a range of implantable devices, disposable surgical instruments, and sophisticated diagnostic hardware and software systems.
+
+In our surgical portfolio, we provide specialized catheters, stents, and delivery systems used in interventional procedures. These products are designed to navigate complex anatomical structures with high precision, reducing the need for open-market surgeries and shortening patient recovery times. We also produce a line of bio-absorbable implants used in orthopedic reconstruction, which are engineered to provide structural support during the healing process before being naturally integrated by the body.
+
+Our diagnostic offerings include molecular testing platforms and high-resolution imaging equipment. These systems are utilized by clinical laboratories and hospitals to identify disease markers at an early stage, enabling more personalized treatment pathways. Additionally, we provide integrated software solutions that allow for the remote monitoring of patients with chronic conditions. These digital health tools collect and analyze physiological data, providing clinicians with real-time alerts and longitudinal trends to improve outpatient care.
+
+REPORTABLE SEGMENTS
+
+We manage our business through three reportable segments: Therapeutic Solutions, Diagnostic Systems, and Patient Management. Each segment is focused on distinct aspects of the patient care continuum and utilizes specific technological platforms.
+
+Therapeutic Solutions
+
+The Therapeutic Solutions segment is our largest operating unit and is responsible for the development of interventional medical devices. This segment focuses on high-acuity clinical environments, such as cardiac catheterization labs and surgical suites. The primary products within this segment include endovascular grafts, electrophysiology mapping tools, and advanced wound closure devices. We focus our innovation in this segment on material science and micro-mechanics to enhance the performance and safety of our implantable technologies. Revenue in this segment is driven by the volume of elective and emergency surgical procedures performed globally.
+
+Diagnostic Systems
+
+The Diagnostic Systems segment provides the hardware and consumable reagents necessary for modern clinical diagnostics. Our focus in this area is on point-of-care testing and centralized laboratory automation. We develop proprietary assays for the detection of infectious diseases, oncological markers, and genetic predispositions. This segment also includes our imaging division, which produces specialized ultrasound and optical coherence tomography systems used to guide interventional procedures. The business model for this segment relies on a "razor and blade" approach, where the placement of diagnostic instruments creates a recurring revenue stream through the sale of associated consumables and service contracts.
+
+Patient Management
+
+The Patient Management segment encompasses our digital health and remote monitoring initiatives. This segment develops wearable sensors and cloud-based data platforms that connect patients with their healthcare providers outside of traditional clinical settings. Our solutions in this area are primarily used for the management of chronic respiratory and cardiovascular diseases. By leveraging artificial intelligence and machine learning, this segment aims to predict adverse clinical events before they occur, thereby reducing hospital readmission rates. This segment represents our most significant investment area for future growth as healthcare systems transition toward value-based care models.
+
+CUSTOMERS
+
+Our primary customers include hospitals, multi-hospital systems, ambulatory surgery centers, clinical laboratories, and physician offices. We also sell our products to government-affiliated healthcare providers and large integrated delivery networks. In certain international markets, we engage with national health ministries and centralized purchasing organizations.
+
+No single customer accounted for more than ten percent of our consolidated revenue in the fiscal year ended December 31, 2024. However, the ongoing consolidation of healthcare providers, particularly in the United States, has led to the emergence of large group purchasing organizations (GPOs). These GPOs negotiate contracts on behalf of their members, often resulting in significant pricing pressure but providing us with access to a broad base of facilities. We maintain strong relationships with these organizations through our national accounts team, which focuses on demonstrating the clinical and economic value of our product offerings.
+
+SALES AND MARKETING
+
+We market and sell our products through a combination of a direct sales force and a network of independent distributors. In the United States and most major European markets, we utilize a direct sales model. Our sales representatives are highly trained professionals who often possess clinical backgrounds, allowing them to provide technical support and training to physicians and nursing staff in the operating room or laboratory setting.
+
+In emerging markets and other international territories, we frequently partner with local distributors who possess deep knowledge of the regional regulatory environment and established relationships with local healthcare providers. These distributors are responsible for local inventory management, logistics, and first-line technical support, while our regional management teams provide oversight and strategic guidance.
+
+Our marketing efforts are focused on clinical education and evidence-based promotion. We participate in major medical congresses and sponsor clinical trials to validate the efficacy of our technologies. We also engage in digital marketing initiatives and peer-to-peer training programs to increase awareness of our solutions among key opinion leaders and medical practitioners.
+
+COMPETITION
+
+The medical technology industry is characterized by rapid innovation and intense competition. We compete with a range of companies, from large multinational corporations with extensive product lines and significant financial resources to smaller, specialized firms that focus on niche technologies.
+
+Our competitive position is based on several factors, including product performance, clinical outcomes, ease of use, reliability, and price. We also compete on the basis of our ability to provide comprehensive service and support to our customers. In many of our product categories, the ability to integrate hardware with proprietary software and data analytics is becoming an increasingly important competitive differentiator.
+
+To maintain our market position, we must continuously invest in research and development to introduce new products and enhance our existing portfolio. Failure to innovate or to respond to technological shifts could result in a loss of market share to competitors who develop more effective or lower-cost alternatives. Additionally, the increasing focus on healthcare cost containment has intensified competition based on the economic value and cost-effectiveness of our products.
+
+SEASONALITY
+
+Our business experiences a degree of seasonality, particularly in our Therapeutic Solutions segment. We typically observe higher sales volumes in the fourth quarter of our fiscal year, as hospitals and other healthcare providers often exhaust their annual capital budgets and patients seek to undergo elective procedures before their insurance deductibles reset at the beginning of the new calendar year. Conversely, the first quarter often sees a relative decline in procedure volumes.
+
+Furthermore, our international operations can be affected by regional holiday schedules and summer vacation periods, particularly in Europe, which may result in lower surgical volumes during the third quarter. While these seasonal patterns are generally predictable, they can be influenced by broader economic conditions or public health events that disrupt standard healthcare utilization patterns.
+
+INTELLECTUAL PROPERTY
+
+Our success depends significantly on our ability to protect our proprietary technology and operate without infringing the intellectual property rights of others. We rely on a combination of patents, trademarks, copyrights, and trade secret laws, as well as confidentiality agreements and licensing arrangements.
+
+We maintain an extensive portfolio of issued patents and pending patent applications in the United States and various international jurisdictions. These patents cover a wide range of technologies, including device designs, manufacturing processes, and software algorithms. The duration of our patent protection varies by jurisdiction and the date of filing, generally lasting for twenty years from the earliest effective filing date. We actively monitor the competitive landscape and take legal action when necessary to defend our intellectual property from infringement.
+
+In addition to our own patents, we license certain technologies from third parties, including academic institutions and other medical technology companies. These licenses may require us to pay royalties based on the sale of products incorporating the licensed technology. We also rely on trade secrets and unpatented "know-how" to maintain our competitive advantage, particularly in our manufacturing processes. We protect this information through strict internal security [...]
+>>>
+
+TASK
+Write Item 1A. Risk Factors for Zennov Medical, Inc.'s annual report for the fiscal year ended 2024-12-31. List the material risks, grouped under sub-headings (for example risks related to the business and industry, to operations, to financing and capital structure, to legal and regulatory matters, and general risks). Each risk starts with a one-sentence heading line, followed by one or two paragraphs. Make the risks specific to this company's sector, cost structure and balance sheet. Do not quote dollar amounts or percentages; describe exposures in words, as real risk factors do.
+Length: about 3500 words. Start with the line "Item 1A. Risk Factors" and output only the section text.

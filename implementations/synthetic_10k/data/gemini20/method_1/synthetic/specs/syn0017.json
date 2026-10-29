@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0017",
+  "name": "Orris Aerospace, Inc.",
+  "ticker": "OSRR",
+  "sector": "Industrials",
+  "state_of_incorporation": "DE",
+  "headquarters_state": "OH",
+  "fiscal_year": 2024,
+  "fiscal_year_end": "2024-12-31",
+  "revenue": 10928,
+  "revenue_growth": 0.0409,
+  "employees": 27000,
+  "ratios": {
+    "gross_margin": 0.2734,
+    "operating_margin": 0.1741,
+    "sga_ratio": 0.0619,
+    "da_ratio": 0.0546,
+    "capex_ratio": 0.0278,
+    "tax_rate": 0.1951,
+    "asset_turnover": 0.665,
+    "equity_ratio": 0.28,
+    "current_assets_ratio": 0.2415,
+    "current_ratio": 0.734,
+    "cash_ratio": 0.0296,
+    "ppe_ratio": 0.6426,
+    "debt_ratio": 0.1149,
+    "receivables_ratio": 0.1303,
+    "rd_ratio": 0.0374,
+    "inventory_ratio": 0.2433,
+    "goodwill_ratio": 0.072,
+    "dividend_payout": 0.2143,
+    "other_operating_cash_ratio": 0.0173
+  },
+  "statements": {
+    "units": "USD millions",
+    "fiscal_years": [
+      2024,
+      2023
+    ],
+    "income_statement": {
+      "2024": {
+        "revenue": 10928,
+        "cost_of_revenue": 7940,
+        "gross_profit": 2988,
+        "research_and_development": 409,
+        "selling_general_and_administrative": 676,
+        "other_operating_expense": 0,
+        "operating_income": 1903,
+        "interest_expense": 85,
+        "pretax_income": 1818,
+        "income_tax": 355,
+        "net_income": 1463
+      },
+      "2023": {
+        "revenue": 10499,
+        "cost_of_revenue": 7730,
+        "gross_profit": 2769,
+        "research_and_development": 370,
+        "selling_general_and_administrative": 557,
+        "other_operating_expense": 1,
+        "operating_income": 1841,
+        "interest_expense": 86,
+        "pretax_income": 1755,
+        "income_tax": 362,
+        "net_income": 1393
+      }
+    },
+    "balance_sheet": {
+      "2024": {
+        "cash": 401,
+        "receivables": 1175,
+        "inventory": 2194,
+        "total_current_assets": 3969,
+        "property_plant_and_equipment": 10560,
+        "goodwill": 1183,
+        "total_assets": 16433,
+        "total_current_liabilities": 5407,
+        "long_term_debt": 1888,
+        "total_equity": 4601,
+        "other_current_assets": 199,
+        "other_noncurrent_assets": 721,
+        "other_noncurrent_liabilities": 4537,
+        "total_liabilities": 11832,
+        "total_liabilities_and_equity": 16433
+      },
+      "2023": {
+        "cash": 375,
+        "receivables": 1158,
+        "inventory": 2036,
+        "total_current_assets": 3757,
+        "property_plant_and_equipment": 10128,
+        "goodwill": 1118,
+        "total_assets": 16121,
+        "total_current_liabilities": 5171,
+        "long_term_debt": 1913,
+        "total_equity": 4413,
+        "other_current_assets": 188,
+        "other_noncurrent_assets": 1118,
+        "other_noncurrent_liabilities": 4624,
+        "total_liabilities": 11708,
+        "total_liabilities_and_equity": 16121
+      }
+    },
+    "cash_flow_statement": {
+      "2024": {
+        "net_income": 1463,
+        "depreciation_and_amortization": 597,
+        "other_operating_items": 189,
+        "net_cash_from_operating_activities": 2249,
+        "capital_expenditures": -304,
+        "other_investing_activities": -619,
+        "net_cash_from_investing_activities": -923,
+        "net_change_in_long_term_debt": -25,
+        "dividends_paid": -314,
+        "share_repurchases_net": -961,
+        "net_cash_from_financing_activities": -1300,
+        "net_change_in_cash": 26,
+        "cash_beginning_of_year": 375,
+        "cash_end_of_year": 401
+      }
+    }
+  }
+}

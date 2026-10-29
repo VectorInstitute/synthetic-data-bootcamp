@@ -1,0 +1,35 @@
+source,ticker,fiscal_year,item,style,question,answer,gold_chunk_id,gold_chunk_ids,kind,qa_id
+synthetic,AMED,2023,7,factual,"What was Riverton Energy Group, Inc.'s operating margin for fiscal 2023?",10.3%,s:AMED_2023_7_18,s:AMED_2023_7_18,core,m2_gemini_0000
+synthetic,BFJ,2025,7,factual,"What was Stonegate Systems Holdings, Inc.'s net margin for fiscal 2025?",11.8%,s:BFJ_2025_7_6,s:BFJ_2025_7_6,core,m2_gemini_0001
+synthetic,CIG,2024,7,factual,What was Crestline Energy Inc.'s net margin for fiscal 2024?,25.3%,s:CIG_2024_7_17,s:CIG_2024_7_17,core,m2_gemini_0002
+synthetic,CIG,2024,7,factual,What was Crestline Energy Inc.'s operating margin for fiscal 2024?,28.1%,s:CIG_2024_7_17,s:CIG_2024_7_17;s:CIG_2024_7_25,core,m2_gemini_0003
+synthetic,DLBG,2023,7,factual,What was Ironwood Resources Corp.'s net margin for fiscal 2023?,28.5%,s:DLBG_2023_7_17,s:DLBG_2023_7_17;s:DLBG_2023_8_34,core,m2_gemini_0004
+synthetic,DNP,2023,1a,factual,"What were Silverlake Materials Holdings, Inc.'s total revenues for fiscal 2023?",$9.5 billion,s:DNP_2023_1a_45,s:DNP_2023_1a_45;s:DNP_2023_7_35,core,m2_gemini_0005
+synthetic,DNP,2023,7,factual,"What was Silverlake Materials Holdings, Inc.'s operating margin for fiscal 2023?",11.6%,s:DNP_2023_7_18,s:DNP_2023_7_18,core,m2_gemini_0006
+synthetic,KMKE,2023,7,factual,"What was Stonegate Networks Group, Inc.'s operating margin for fiscal 2023?",55.1%,s:KMKE_2023_7_5,s:KMKE_2023_7_5;s:KMKE_2023_7_17,core,m2_gemini_0007
+synthetic,NAL,2024,1,factual,What were Amberwood Partners Co.'s total revenues for fiscal 2024?,$11 billion,s:NAL_2024_1_19,s:NAL_2024_1_19;s:NAL_2024_1a_8;s:NAL_2024_1c_11;s:NAL_2024_7_12,core,m2_gemini_0008
+synthetic,NAL,2024,1a,factual,What were Amberwood Partners Co.'s total assets as of the end of fiscal 2024?,$10.7 billion,s:NAL_2024_1a_34,s:NAL_2024_1a_34,core,m2_gemini_0009
+synthetic,NAL,2024,7,factual,What was Amberwood Partners Co.'s net margin for fiscal 2024?,10.2%,s:NAL_2024_7_16,s:NAL_2024_7_16;s:NAL_2024_7_41;s:NAL_2024_8_41,core,m2_gemini_0010
+synthetic,NAL,2024,7,factual,What was Amberwood Partners Co.'s operating margin for fiscal 2024?,11.3%,s:NAL_2024_7_14,s:NAL_2024_7_14,core,m2_gemini_0011
+synthetic,NWSH,2025,7,factual,What were Meridian Technologies Co.'s total revenues for fiscal 2025?,$26.0 billion,s:NWSH_2025_7_54,s:NWSH_2025_7_54,core,m2_gemini_0012
+synthetic,NWSH,2025,7,factual,What was Meridian Technologies Co.'s net income for fiscal 2025?,$3.7 billion,s:NWSH_2025_7_54,s:NWSH_2025_7_54,core,m2_gemini_0013
+synthetic,NWSH,2025,7,factual,What was Meridian Technologies Co.'s net margin for fiscal 2025?,14.2%,s:NWSH_2025_7_16,s:NWSH_2025_7_16,core,m2_gemini_0014
+synthetic,NWSH,2025,7,factual,What was Meridian Technologies Co.'s operating margin for fiscal 2025?,19.7%,s:NWSH_2025_7_4,s:NWSH_2025_7_4,core,m2_gemini_0015
+synthetic,OQM,2025,1,factual,What were Bluestone Systems Co.'s total revenues for fiscal 2025?,$18.8 billion,s:OQM_2025_1_38,s:OQM_2025_1_38;s:OQM_2025_7_85,core,m2_gemini_0016
+synthetic,OQM,2025,7,factual,What was Bluestone Systems Co.'s operating margin for fiscal 2025?,14.2%,s:OQM_2025_7_20,s:OQM_2025_7_20,core,m2_gemini_0017
+synthetic,QXVM,2024,1,factual,What were Bluestone Analytics Inc.'s total revenues for fiscal 2024?,$18.5 billion,s:QXVM_2024_1_44,s:QXVM_2024_1_44;s:QXVM_2024_1a_13;s:QXVM_2024_1c_9;s:QXVM_2024_1c_11;s:QXVM_2024_7_42;s:QXVM_2024_7_48,core,m2_gemini_0018
+synthetic,QXVM,2024,1a,factual,What were Bluestone Analytics Inc.'s total assets as of the end of fiscal 2024?,$15.1 billion,s:QXVM_2024_1a_17,s:QXVM_2024_1a_17;s:QXVM_2024_1a_43;s:QXVM_2024_1c_11;s:QXVM_2024_7_57,core,m2_gemini_0019
+synthetic,QXVM,2024,7,factual,What was Bluestone Analytics Inc.'s net margin for fiscal 2024?,14.2%,s:QXVM_2024_7_31,s:QXVM_2024_7_31,core,m2_gemini_0020
+synthetic,RJOD,2025,7,factual,What was Redcanyon Enterprises Co.'s net margin for fiscal 2025?,10%,s:RJOD_2025_7_53,s:RJOD_2025_7_53,core,m2_gemini_0021
+synthetic,RJOD,2025,7,factual,What was Redcanyon Enterprises Co.'s operating margin for fiscal 2025?,10.6%,s:RJOD_2025_7_15,s:RJOD_2025_7_15,core,m2_gemini_0022
+synthetic,SGJ,2023,1,factual,"What were Northbridge Robotics Holdings, Inc.'s total revenues for fiscal 2023?",$258.4 billion,s:SGJ_2023_1_22,s:SGJ_2023_1_22;s:SGJ_2023_1a_6;s:SGJ_2023_1a_11;s:SGJ_2023_1a_20;s:SGJ_2023_1a_28;s:SGJ_2023_1a_37;s:SGJ_2023_1a_44;s:SGJ_2023_1a_53;s:SGJ_2023_1c_14;s:SGJ_2023_7_9;s:SGJ_2023_7_15;s:SGJ_2023_7_23;s:SGJ_2023_7_31;s:SGJ_2023_7_44;s:SGJ_2023_7_52,core,m2_gemini_0023
+synthetic,SGJ,2023,1a,factual,"What were Northbridge Robotics Holdings, Inc.'s total assets as of the end of fiscal 2023?",$178.8 billion,s:SGJ_2023_1a_35,s:SGJ_2023_1a_35;s:SGJ_2023_1a_44;s:SGJ_2023_7_29;s:SGJ_2023_7_52,core,m2_gemini_0024
+synthetic,SGJ,2023,7,factual,"What was Northbridge Robotics Holdings, Inc.'s net margin for fiscal 2023?",2.1%,s:SGJ_2023_7_29,s:SGJ_2023_7_29,core,m2_gemini_0025
+synthetic,SGJ,2023,7,factual,"What was Northbridge Robotics Holdings, Inc.'s operating margin for fiscal 2023?",3.9%,s:SGJ_2023_7_23,s:SGJ_2023_7_23,core,m2_gemini_0026
+synthetic,SLN,2023,1,factual,What were Cedarfield Enterprises Co.'s total revenues for fiscal 2023?,$33.7 billion,s:SLN_2023_1_16,s:SLN_2023_1_16;s:SLN_2023_7_14;s:SLN_2023_7_27,core,m2_gemini_0027
+synthetic,SLN,2023,1c,factual,What were Cedarfield Enterprises Co.'s total assets as of the end of fiscal 2023?,$674.45 billion,s:SLN_2023_1c_4,s:SLN_2023_1c_4;s:SLN_2023_1c_26;s:SLN_2023_7_50,core,m2_gemini_0028
+synthetic,TIO,2025,1,factual,"What were Fieldstone Solutions Holdings, Inc.'s total revenues for fiscal 2025?",$96 billion,s:TIO_2025_1_65,s:TIO_2025_1_65,core,m2_gemini_0029
+synthetic,UCOG,2025,8,factual,What were Amberwood Robotics Co.'s total assets as of the end of fiscal 2025?,$15.88 billion,s:UCOG_2025_8_71,s:UCOG_2025_8_71,core,m2_gemini_0030
+synthetic,UZK,2023,7,factual,"What were Silverlake Instruments Holdings, Inc.'s total revenues for fiscal 2023?",$19.37 billion,s:UZK_2023_7_20,s:UZK_2023_7_20;s:UZK_2023_7_22,core,m2_gemini_0031
+synthetic,WHKJ,2024,7,factual,What were Stonegate Materials Corp.'s total revenues for fiscal 2024?,$20.5 billion,s:WHKJ_2024_7_31,s:WHKJ_2024_7_31,core,m2_gemini_0032
+synthetic,WHKJ,2024,8,factual,What was Stonegate Materials Corp.'s operating margin for fiscal 2024?,4.8%,s:WHKJ_2024_8_68,s:WHKJ_2024_8_68,core,m2_gemini_0033

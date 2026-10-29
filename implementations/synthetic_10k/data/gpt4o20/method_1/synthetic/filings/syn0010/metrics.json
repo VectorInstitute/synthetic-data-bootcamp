@@ -1,0 +1,210 @@
+{
+  "company_id": "syn0010",
+  "name": "Kalondra Machinery, Inc.",
+  "sector": "Industrials",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 120.58,
+  "totals": {
+    "seconds": 120.15,
+    "prompt_tokens": 42618,
+    "completion_tokens": 13710,
+    "total_tokens": 56328,
+    "reasoning_tokens": 0,
+    "calls": 10
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1226,
+      "prompt_chars": 14166,
+      "words": 809,
+      "attempts": 3,
+      "exemplar_overlap": 0.0,
+      "issues": [
+        "The section has 809 words; write at least 1800 (target 3000)."
+      ]
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1290,
+      "prompt_chars": 20953,
+      "words": 1039,
+      "attempts": 3,
+      "exemplar_overlap": 0.0106,
+      "issues": [
+        "The section has 1039 words; write at least 2100 (target 3500)."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1231,
+      "prompt_chars": 28282,
+      "words": 1402,
+      "attempts": 3,
+      "exemplar_overlap": 0.0158,
+      "issues": [
+        "The section has 1402 words; write at least 1800 (target 3000)."
+      ]
+    },
+    "1C": {
+      "target_words": 860,
+      "exemplar_words": 284,
+      "prompt_chars": 31743,
+      "words": 740,
+      "attempts": 1,
+      "exemplar_overlap": 0.0054,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 12.01,
+      "prompt_tokens": 2933,
+      "completion_tokens": 1266,
+      "total_tokens": 4199,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1037,
+      "issues": [
+        "The section has 1037 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 10.74,
+      "prompt_tokens": 2966,
+      "completion_tokens": 1207,
+      "total_tokens": 4173,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 990,
+      "issues": [
+        "The section has 990 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 8.9,
+      "prompt_tokens": 2965,
+      "completion_tokens": 1003,
+      "total_tokens": 3968,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 809,
+      "issues": [
+        "The section has 809 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 11.27,
+      "prompt_tokens": 3979,
+      "completion_tokens": 1023,
+      "total_tokens": 5002,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 854,
+      "issues": [
+        "The section has 854 words; write at least 2100 (target 3500)."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 11.62,
+      "prompt_tokens": 4011,
+      "completion_tokens": 1129,
+      "total_tokens": 5140,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 934,
+      "issues": [
+        "The section has 934 words; write at least 2100 (target 3500)."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 12.5,
+      "prompt_tokens": 4011,
+      "completion_tokens": 1247,
+      "total_tokens": 5258,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1039,
+      "issues": [
+        "The section has 1039 words; write at least 2100 (target 3500)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 14.76,
+      "prompt_tokens": 5296,
+      "completion_tokens": 1860,
+      "total_tokens": 7156,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1404,
+      "issues": [
+        "The section has 1404 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 16.07,
+      "prompt_tokens": 5329,
+      "completion_tokens": 2214,
+      "total_tokens": 7543,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1708,
+      "issues": [
+        "The section has 1708 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 3,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 14.17,
+      "prompt_tokens": 5329,
+      "completion_tokens": 1887,
+      "total_tokens": 7216,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 1402,
+      "issues": [
+        "The section has 1402 words; write at least 1800 (target 3000)."
+      ]
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gpt-4o-2024-08-06",
+      "seconds": 8.11,
+      "prompt_tokens": 5799,
+      "completion_tokens": 874,
+      "total_tokens": 6673,
+      "reasoning_tokens": 0,
+      "finish_reason": "stop",
+      "words": 740,
+      "issues": []
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+You write sections of annual reports on Form 10-K for a fictional US public company, in the register of real SEC filings: formal, specific, and organised under sub-headings.
+Rules:
+- Plain text only. No markdown: no #, no ** and no bullet symbols other than "-". Sub-headings go on their own line.
+- The company and its numbers are given in the facts sheet. Never invent other dollar amounts or percentages; when you cite a figure, copy it from the facts sheet (amounts in millions as "$1,234 million", or billions with one decimal as "$1.2 billion").
+- Never name a real company, including the one in the style example. Describe competitors, customers and suppliers generically.
+- Do not copy sentences from the style example, not even its opening boilerplate; follow its structure and tone only.
+- Write decreases as positive amounts with a word ("decreased 0.5%"), never with a minus sign.
+
+FACTS SHEET (all figures in USD millions)
+Company name: Talven Therapeutics, Inc. (ticker TANL)
+Sector: Health Care
+Incorporated in: Delaware
+Headquarters: Atlanta, Georgia
+Fiscal year: 2024 (ended 2024-12-31)
+Employees: about 852,000
+
+Talven Therapeutics, Inc.
+Consolidated Statements of Operations
+(in millions)                                FY2024        FY2023
+Revenue                                     251,691       220,202
+Cost of revenue                             178,097       155,371
+Gross profit                                 73,594        64,831
+Research and development                     13,642        11,808
+Selling, general and administrative          35,764        30,626
+Other operating expense                           0           517
+Operating income                             24,188        21,880
+Interest expense                              1,001           908
+Income before income taxes                   23,187        20,972
+Provision for income taxes                    4,686         4,480
+Net income                                   18,501        16,492
+
+Talven Therapeutics, Inc.
+Consolidated Balance Sheets
+(in millions)                                       FY2024        FY2023
+Cash and cash equivalents                            1,904         1,857
+Accounts receivable, net                            21,719        19,973
+Inventories                                         13,735        12,391
+Other current assets                                 1,966         1,801
+Total current assets                                39,324        36,022
+Property, plant and equipment, net                  23,117        20,620
+Goodwill                                            49,708        46,078
+Other non-current assets                            12,809        10,186
+Total assets                                       124,958       112,906
+Total current liabilities                            8,156         7,319
+Long-term debt                                      22,255        20,169
+Other non-current liabilities                       38,703        36,755
+Total liabilities                                   69,114        64,243
+Total stockholders' equity                          55,844        48,663
+Total liabilities and stockholders' equity         124,958       112,906
+
+Talven Therapeutics, Inc.
+Consolidated Statement of Cash Flows
+(in millions)                                         FY2024
+Net income                                            18,501
+Depreciation and amortization                          1,988
+Changes in working capital and other                   3,775
+Net cash provided by operating activities             24,264
+Purchases of property and equipment                  (4,077)
+Other investing activities, net                     (10,906)
+Net cash used in investing activities               (14,983)
+Net change in long-term debt                           2,086
+Dividends paid                                       (3,339)
+Share repurchases, net of issuances                  (7,981)
+Net cash used in financing activities                (9,234)
+Net change in cash and cash equivalents                   47
+Cash and cash equivalents, beginning of year           1,857
+Cash and cash equivalents, end of year                 1,904
+
+Derived percentages:
+Revenue growth, fiscal 2024 versus 2023: 14.3%
+Net income growth, fiscal 2024 versus 2023: 12.2%
+Operating income growth, fiscal 2024 versus 2023: 10.5%
+Gross margin, fiscal 2024: 29.2%
+Operating margin, fiscal 2024: 9.6%
+Net margin, fiscal 2024: 7.4%
+Effective tax rate, fiscal 2024: 20.2%
+Research and development as a share of revenue, fiscal 2024: 5.4%
+Selling, general and administrative as a share of revenue, fiscal 2024: 14.2%
+Gross margin, fiscal 2023: 29.4%
+Operating margin, fiscal 2023: 9.9%
+Net margin, fiscal 2023: 7.5%
+Effective tax rate, fiscal 2023: 21.4%
+Research and development as a share of revenue, fiscal 2023: 5.4%
+Selling, general and administrative as a share of revenue, fiscal 2023: 13.9%
+
+STYLE EXAMPLE: the start of Item 1 from a real Health Care company's 10-K. Follow its structure and tone; do not copy its wording, names or numbers.
+<<<
+Item 1. Business
+Overview
+We are a leading global oncology company discovering and developing innovative treatments that are more accessible and affordable to cancer patients worldwide. In 2024, we generated total global revenue of approximately $3.8 billion, increasing revenue by approximately $1.4 billion from the prior year, while reducing our operating loss from the prior year by approximately $0.6 billion.
+We are serial innovators in hematology and have built a differentiated, wholly-owned, franchise. This includes a proven best-in-class Bruton’s Tyrosine Kinase inhibitor (“BTKi”), BRUKINSA®, and two late-stage assets, sonrotoclax (“BCL2i”) and our first-in-class BTK-CDAC, both of which have the potential to be best-in-class medicines.
+BRUKINSA was designed for complete sustainable inhibition of BTK with the belief that this would improve patient outcomes. This hypothesis was supported in the ALPINE trial, where BRUKINSA demonstrated sustained superior efficacy and lower cardiac toxicity in an all-comers relapsed/refractory (“R/R”) chronic lymphocytic leukemia (“CLL”) population against ibrutinib. BRUKINSA is the only BTKi to prove superior efficacy to ibrutinib. BRUKINSA has the broadest label in the class, with U.S. approvals in CLL, mantle cell lymphoma (“MCL”), Waldenström’s macroglobulinemia (“WM”), marginal zone lymphoma (“MZL”) and follicular lymphoma (“FL”). In less than two years from its first approval in CLL, and despite being the third entrant to the market, BRUKINSA has become the leader in new patients starts in the U.S., in both frontline and R/R CLL, as well as all other approved indications. BRUKINSA generated $2.6 billion in sales in 2024, is approved in over 70 markets and remains in the early stage of its launch in many key markets, including Europe, Japan, Korea and Brazil.
+Sonrotoclax, our BCL2 inhibitor, is a selective BCL2i designed to have greater potency and selectivity, and potential for better tolerability than venetoclax. Our clinical program for sonrotoclax has enrolled over 1,800 patients to date. It is being tested in late-stage clinical trials with BRUKINSA, including as a fixed duration therapy in the Phase 3 CELESTIAL trial of BRUKINSA + sonrotoclax in 1L CLL, which is fully enrolled.
+Our BTK-CDAC, which is designed to promote the degradation, of both wildtype and mutant forms of BTK, including those that commonly result in resistance to BTK inhibitors in patients who experience progressive disease, has enrolled over 500 patients and is the most advanced BTK degrader in the clinic. Data presented at the American Society of Hematology (“ASH”) meeting in 2024 showed significant early efficacy signals and safety data in a heavily pretreated population. We plan to initiate a Phase 3 head-to-head trial in 2025 against pirtobrutinib, consistent with our strategy to develop medicines that have potential to meaningfully improve upon the current practice of care. With these three differentiated and synergistic assets, we believe we are uniquely positioned to provide the best solution for all CLL patients along their treatment journey and build a sustainable franchise in the $12 billion global CLL market.
+We are a company built to address the long-lived challenges to return on investment in the pharmaceutical industry. Clinical trials represent more than 75% of the total cost of bringing an oncology medicine to patients, yet the industry continues to outsource this function to contract research organizations (“CROs”) at an ever-increasing cost per patient. Regulatory policies such as Project Optimus, while well intended, lead to meaningful program delays and increasing Phase 1 trial costs due to increased patient requirements and time. Increased competition exists for nearly every validated target, and pricing reform, such as the Inflation Reduction Act (“IRA”) in the U.S., is placing direct and indirect pressure on innovators. Since inception, we have focused on building unique and hard to replicate competitive advantages that address these industry-wide challenges. Most importantly, our internal clinical team of approximately 3,700 colleagues across the globe allows us to break from the traditional CRO model and develop medicines with greater speed and at a lower cost than many of our industry peers while maintaining quality. This capability paired with our internal research and manufacturing capabilities enables a “fast to proof-of-concept” (“PoC”) approach that can reduce time in early-stage development. We are innovating with intentionality and building best in class combinations to win in the increasingly competitive commercial landscape.
+3
+Table of Contents
+We have a deep and innovative solid tumor pipeline. In 2024 alone, we advanced 13 differentiated new molecular entities (“NMEs”) into the clinic, each of which have the potential to be first-in-class or best-in-class. Our intention is to build depth in the most prevalent cancers, including breast/gynecologic, lung and gastrointestinal. We have main PoC catalysts in the next six to eighteen months for key programs, including, our next-generation CDK4 inhibitor and potentially first-in-class B7H4 antibody-drug conjugate (“ADC”) in breast/gynecologic cancers, potential best-in-class pan-KRAS inhibitor in gastrointestinal (“GI”) cancer, differentiated mechanism of action (“MoA”) and first-in-class EGFR-CDAC in lung cancer, as well as our synergistic and potentially best-in-class PRMT5 and MAT2A inhibitors combination in lung cancer. We also have several exciting early stage assets, including CDK2i, B7H3 ADC, CEA-ADC, FGFR2b ADC, EGFRxMET TsAb, and IRAK4 CDAC.
+Since our inception in 2010, we have become a fully integrated global organization with more than 11,000 employees worldwide.
+Our Holding Company Structure
+We are a holding company currently incorporated in the Cayman Islands with operations primarily conducted through our subsidiaries in the U.S., China, the UK, Switzerland, and Australia. The following diagram depicts a summary of our corporate structure. Our corporate structure contains no variable interest entities. In 2024, we announced plans to redomicile our holding company to Switzerland in 2025.
+Our Strategy
+We were founded with the vision to create an integrated biopharmaceutical company to address challenges in the pharmaceutical industry, creating impactful medicines that will be affordable and accessible to far more patients around the world. We are uniquely built to address an increasingly challenged industry and improve R&D returns.
+We have built a substantial global clinical team of approximately 3,700 people on six continents, allowing us to run clinical trials predominantly without reliance on CROs. We believe independence from traditional CRO models allows us to execute more cost-efficient development and achieve faster time to clinical proof-of-concept. It also allows us to expand the reach of our clinical sites, which supports diverse participation and the collection of robust data across all patient demographics. Our demonstrated ability to complete large-scale, multi-regional clinical trials is an important strategic competitive advantage and addresses an immense challenge in the pharmaceutical industry.
+4
+Table of Contents
+We have built a highly productive and cost-effective oncology research teams with 1,100+ scientists, allowing us to drive serial innovation to enable sustained market leadership. Our efforts have been validated by commercial approvals, clinical data, and collaborations that have secured $1.5 billion in collaboration payments to our company. We design each research program with a differentiated biological hypothesis MoA, which has resulted in multiple commercially approved medicines and a pipeline of wholly-owned assets with potential for combinations and depth in key tumor types. We have invested in diverse technology platforms to pursue innovation, including CDAC protein degraders, bispecific antibodies, tri-specific antibodies, and ADCs allowing us access to diverse modalities and to advance science with urgency and agility. Our CDAC platform, in particular, offers a differentiated approach from small molecules with its catalytic activity, higher barrier to resistance, and scaffold function disruption, and we believe it has the potential to emerge as a best-in-class [...]
+>>>
+
+TASK
+Write Item 1. Business for Talven Therapeutics, Inc.'s annual report for the fiscal year ended 2024-12-31. Describe the business: overview, principal products and services, two or three reportable segments described qualitatively, customers, sales and marketing, competition, seasonality, intellectual property, government regulation, human capital (state the number of employees from the facts sheet) and available information. The only dollar figure you may cite is total revenue.
+Length: about 3000 words. Start with the line "Item 1. Business" and output only the section text.

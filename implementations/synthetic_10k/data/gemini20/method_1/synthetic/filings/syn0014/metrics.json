@@ -1,0 +1,108 @@
+{
+  "company_id": "syn0014",
+  "name": "Kator Minerals, Inc.",
+  "sector": "Materials",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 116.73,
+  "totals": {
+    "seconds": 116.38,
+    "prompt_tokens": 23424,
+    "completion_tokens": 20397,
+    "total_tokens": 43821,
+    "reasoning_tokens": 8424,
+    "calls": 4
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1225,
+      "prompt_chars": 14394,
+      "words": 1824,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1222,
+      "prompt_chars": 25435,
+      "words": 4258,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1235,
+      "prompt_chars": 36189,
+      "words": 3013,
+      "attempts": 1,
+      "exemplar_overlap": 0.0039,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 550,
+      "exemplar_words": 935,
+      "prompt_chars": 44392,
+      "words": 612,
+      "attempts": 1,
+      "exemplar_overlap": 0.0099,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 23.79,
+      "prompt_tokens": 3015,
+      "completion_tokens": 3946,
+      "total_tokens": 6961,
+      "reasoning_tokens": 1724,
+      "finish_reason": "stop",
+      "words": 1824,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 42.6,
+      "prompt_tokens": 4833,
+      "completion_tokens": 7224,
+      "total_tokens": 12057,
+      "reasoning_tokens": 2279,
+      "finish_reason": "stop",
+      "words": 4258,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 34.16,
+      "prompt_tokens": 7164,
+      "completion_tokens": 6924,
+      "total_tokens": 14088,
+      "reasoning_tokens": 2822,
+      "finish_reason": "stop",
+      "words": 3013,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 15.83,
+      "prompt_tokens": 8412,
+      "completion_tokens": 2303,
+      "total_tokens": 10715,
+      "reasoning_tokens": 1599,
+      "finish_reason": "stop",
+      "words": 612,
+      "issues": []
+    }
+  ]
+}

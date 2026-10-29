@@ -1,0 +1,142 @@
+{
+  "company_id": "syn0008",
+  "name": "Novqua Retail, Inc.",
+  "sector": "Consumer Discretionary",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 180.49,
+  "totals": {
+    "seconds": 179.9,
+    "prompt_tokens": 33633,
+    "completion_tokens": 32144,
+    "total_tokens": 65777,
+    "reasoning_tokens": 10241,
+    "calls": 6
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1221,
+      "prompt_chars": 13640,
+      "words": 2107,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 998,
+      "prompt_chars": 23650,
+      "words": 4784,
+      "attempts": 3,
+      "exemplar_overlap": 0.0,
+      "issues": [
+        "Item 1A cites 17 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1407,
+      "prompt_chars": 36791,
+      "words": 2698,
+      "attempts": 1,
+      "exemplar_overlap": 0.015,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 890,
+      "exemplar_words": 840,
+      "prompt_chars": 43433,
+      "words": 1012,
+      "attempts": 1,
+      "exemplar_overlap": 0.0253,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 28.91,
+      "prompt_tokens": 3218,
+      "completion_tokens": 4598,
+      "total_tokens": 7816,
+      "reasoning_tokens": 1973,
+      "finish_reason": "stop",
+      "words": 2107,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 31.11,
+      "prompt_tokens": 4654,
+      "completion_tokens": 5799,
+      "total_tokens": 10453,
+      "reasoning_tokens": 2009,
+      "finish_reason": "stop",
+      "words": 3110,
+      "issues": [
+        "Item 1A cites 17 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 37.26,
+      "prompt_tokens": 4699,
+      "completion_tokens": 6422,
+      "total_tokens": 11121,
+      "reasoning_tokens": 1763,
+      "finish_reason": "stop",
+      "words": 3940,
+      "issues": [
+        "Item 1A cites 5 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gemini-3-flash-preview",
+      "seconds": 40.78,
+      "prompt_tokens": 4698,
+      "completion_tokens": 7327,
+      "total_tokens": 12025,
+      "reasoning_tokens": 1584,
+      "finish_reason": "stop",
+      "words": 4784,
+      "issues": [
+        "Item 1A cites 17 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 24.97,
+      "prompt_tokens": 7696,
+      "completion_tokens": 5261,
+      "total_tokens": 12957,
+      "reasoning_tokens": 1373,
+      "finish_reason": "stop",
+      "words": 2698,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 16.87,
+      "prompt_tokens": 8668,
+      "completion_tokens": 2737,
+      "total_tokens": 11405,
+      "reasoning_tokens": 1539,
+      "finish_reason": "stop",
+      "words": 1012,
+      "issues": []
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Financial generation comparison</title><link rel="stylesheet" href="/style.css"><script defer src="/vendor/d3.js"></script><script defer src="/statistics.js"></script><script defer src="/evaluation.js"></script><script defer src="/app.js"></script></head>
+<body>
+<nav class="sitenav" aria-label="Dashboard pages">
+ <a href="index.html">Results dashboard</a>
+ <a href="scorecard.html">Scorecard</a>
+ <a href="financial_method_comparison.html" aria-current="page">Financial method comparison</a>
+ <a href="chatbot.html">Chatbot</a>
+</nav>
+<header><div><span class="mark" aria-hidden="true">∿</span><h1>Financial generation comparison</h1><span class="badge">Local data lab</span></div><div class="actions"><button id="downloadCsv" disabled>Export metrics CSV</button><button id="downloadJson" disabled>Export statements JSON</button></div></header>
+<main>
+<section class="controls" aria-label="Generation settings">
+ <label>Sector<select id="sector"><option value="all">All non-financial sectors</option></select></label>
+ <label class="slider-label">Synthetic samples per method <strong id="countLabel">200</strong><input id="sampleCount" type="range" min="20" max="2000" step="10" value="200"><span class="range-label"><span>20</span><span>2,000</span></span></label>
+ <label>Random seed<input id="seed" type="number" min="0" max="4294967295" value="42"></label>
+ <button id="regenerate" class="primary">Generate again</button>
+ <div id="status" role="status" aria-live="polite">Loading real data…</div>
+</section>
+<div id="error" role="alert" hidden></div>
+<div class="scope"><span id="scopeLabel">The real reference stays fixed. All three methods use the same sector mix.</span><button id="sourceToggle" aria-expanded="false" aria-controls="source">Sources and methodology ↗</button></div>
+<section id="source" class="source" hidden></section>
+
+<nav class="jump" aria-label="Jump to section">
+ <a href="#fidelity">Fidelity</a>
+ <a href="#utility">Utility</a>
+ <a href="#privacy">Privacy</a>
+</nav>
+
+<div class="workspace" id="workspace-overview" aria-busy="true">
+ <section id="synthetic" aria-label="All synthetic methods"><div class="column-heading"><h2>Synthetic financial data</h2><span id="syntheticCount"></span></div><div id="methodHeadings" class="three"></div></section>
+ <aside id="real" aria-label="Real data distribution"><div class="column-heading"><h2>Real report distributions</h2><span id="realCount"></span></div><div id="realHeading"></div></aside>
+</div>
+
+<section class="phase" id="fidelity">
+ <div class="phase-hdr">
+  <div class="eyebrow">Fidelity</div>
+  <h2>Does synthetic data match the real distribution?</h2>
+  <p>Marginal distributions, pairwise relationships, and the two SDMetrics-aligned quality scores
+  (KSComplement and Column Pair Trends) that summarize them, for all three generation methods
+  against the same fixed real reports.</p>
+ </div>
+ <div class="workspace" id="workspace-fidelity" aria-busy="true">
+  <section class="section-title"><h2>Metric distributions</h2><div class="inline-controls"><label>Metric<select id="metric"></select></label><label class="check"><input type="checkbox" id="logScale">Symmetric log scale for amounts</label></div><p>All four groups share bins and axes. Bars show the share of available observations; missing values are excluded.</p></section>
+  <div id="syntheticHist" class="three"></div><div id="realHist"></div>
+  <section class="section-title"><h2>Relationships between metrics</h2><div class="inline-controls"><label>X axis<select id="scatterX"></select></label><label>Y axis<select id="scatterY"></select></label></div><p>Scatter plots show up to 500 evenly selected samples. Correlations use all available pairs. <span id="correlationScope"></span></p></section>
+  <div id="syntheticScatter" class="three"></div><div id="realScatter"></div>
+  <div id="syntheticCorr" class="three"></div><div id="realCorr"></div>
+  <section class="section-title"><h2>Distribution quality · KSComplement &amp; Column Pair Trends</h2><p>Scores range from 0 to 1; higher means closer agreement. <a href="https://docs.sdv.dev/sdmetrics/data-metrics/quality/kscomplement" target="_blank" rel="noopener">KSComplement</a> = 1 − KS distance, averaged across the 16 displayed financial metrics (missing values excluded). Numeric <a href="https://docs.sdv.dev/sdmetrics/data-metrics/quality/correlationsimilarity" target="_blank" rel="noopener">Column Pair Trends</a> averages 1 − |real Pearson r − synthetic Pearson r| / 2 across the 15 unique pairs in the six-ratio correlation matrix, with no correlation threshold. Constant or insufficient pairs are unavailable. These are JavaScript implementations of the documented formulas on these feature subsets, not a full SDMetrics QualityReport. Correlation agreement does not establish full joint-distribution agreement.</p></section>
+  <section class="section-title"><h2>Column Pair Trends · visual comparison</h2><div class="inline-controls"><label>Column pair<select id="trendPair"></select></label></div><p>Each chart overlays real and synthetic observations with separate least-squares trend lines. Axes are shared across methods. Up to 500 points per population are shown; trend lines, Pearson correlations and the selected pair’s similarity score use all complete observations. This pair score is separate from the 15-pair average below.</p></section>
+  <div id="syntheticTrends" class="three"></div><div id="realTrends"></div>
+  <div id="syntheticQuality" class="three"></div><div id="realQuality"></div>
+ </div>
+</section>
+
+<section class="phase" id="utility">
+ <div class="phase-hdr">
+  <div class="eyebrow">Utility</div>
+  <h2>Are the numbers usable, and do they span what real 10-Ks show?</h2>
+  <p>Two separate questions. <b>Usable:</b> do the statements reconcile (accounting identities hold,
+  the tables read like a real filing's), not just whether their distribution matches real data.
+  <b>Diverse:</b> does the sample draw on a range of real-world company situations rather than one
+  narrow slice — here, sector coverage of the real reports behind the model, since Method 3 (and
+  Method 1) condition on sector rather than hand-authored scenarios the way Method 2 does.</p>
+ </div>
+ <div class="card" id="sectorCoverage"><h3>Real-report sector coverage behind this sample</h3></div>
+ <div class="workspace" id="workspace-utility" aria-busy="true">
+  <section class="section-title"><h2>Inspect company statements</h2><div class="inline-controls"><label>Statement<select id="statement"><option value="income_statement">Income statement</option><option value="balance_sheet">Balance sheet</option><option value="cash_flow_statement">Cash flow statement</option></select></label></div><p>Methods 1 and 3 use USD millions; Method 2 and real data use USD. Units are shown on each table. Unreported real values are marked as missing.</p></section>
+  <div id="syntheticStatements" class="three"></div><div id="realStatements"></div>
+  <section class="section-title"><h2>Generation quality and constraints</h2><p>Reconciliation confirms accounting identities, not economic realism. Review adjustments alongside distribution differences.</p></section>
+  <div id="diagnostics" class="three"></div><div id="realDiagnostics"></div>
+ </div>
+</section>
+
+<section class="phase" id="privacy">
+ <div class="phase-hdr">
+  <div class="eyebrow">Privacy</div>
+  <h2>How close does synthetic data sit to the real reports it's drawn from?</h2>
+  <p>Distance to Closest Record (DCR): for every synthetic row, its nearest real row on five
+  normalized features. This is a closeness diagnostic, not a privacy guarantee — see the note below
+  on what it doesn't establish.</p>
+ </div>
+ <div class="workspace" id="workspace-privacy" aria-busy="true">
+  <section class="section-title"><h2>Privacy diagnostic · Distance to Closest Record (DCR)</h2><p>For every synthetic row, DCR is its smallest mean absolute feature distance to any real row, normalized by each real column’s range. Features: revenue, asset turnover, operating margin, equity / assets, and cash / assets. Constant or entirely missing real columns are excluded. Missing matches missing at distance 0 and observed at distance 1. Identifiers and names are excluded. Plots share bins and axes.</p><p><a href="https://docs.sdv.dev/sdmetrics/data-metrics/privacy/dcrbaselineprotection" target="_blank" rel="noopener">DCR baseline protection</a> = min(1, median synthetic DCR / median uniform-random DCR). The shared seeded baseline has the same sample count and draws observed numeric ranges without missing values. Higher means farther from the reference relative to this baseline, not necessarily better financial data or guaranteed privacy. Zero DCR means a match on the active features only. The real panel excludes each row itself (leave-one-out); it is a contextual reference, not held-out validation. <strong>Overfitting protection is unavailable: no independent held-out real set was used.</strong></p></section>
+  <div id="syntheticPrivacy" class="three"></div><div id="realPrivacy"></div>
+ </div>
+</section>
+
+</main>
+<footer>Gaussian copula joint generation · Python accounting engine · Original methods remain separate <span>All comparisons measure in-sample fidelity</span></footer>
+<div id="tooltip" role="tooltip" hidden></div>
+</body></html>

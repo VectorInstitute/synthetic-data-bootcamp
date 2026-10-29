@@ -1,0 +1,108 @@
+{
+  "company_id": "syn0001",
+  "name": "Talven Therapeutics, Inc.",
+  "sector": "Health Care",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 317.35,
+  "totals": {
+    "seconds": 316.79,
+    "prompt_tokens": 37818,
+    "completion_tokens": 33924,
+    "total_tokens": 71742,
+    "reasoning_tokens": 0,
+    "calls": 4
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1220,
+      "prompt_chars": 14036,
+      "words": 3986,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1243,
+      "prompt_chars": 25478,
+      "words": 4410,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1213,
+      "prompt_chars": 36647,
+      "words": 4396,
+      "attempts": 1,
+      "exemplar_overlap": 0.0016,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 1213,
+      "prompt_chars": 47775,
+      "words": 1132,
+      "attempts": 1,
+      "exemplar_overlap": 0.0187,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 87.11,
+      "prompt_tokens": 4669,
+      "completion_tokens": 9069,
+      "total_tokens": 13738,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 3986,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 108.32,
+      "prompt_tokens": 7624,
+      "completion_tokens": 11283,
+      "total_tokens": 18907,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4410,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 93.27,
+      "prompt_tokens": 11169,
+      "completion_tokens": 10883,
+      "total_tokens": 22052,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4396,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 28.09,
+      "prompt_tokens": 14356,
+      "completion_tokens": 2689,
+      "total_tokens": 17045,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 1132,
+      "issues": []
+    }
+  ]
+}

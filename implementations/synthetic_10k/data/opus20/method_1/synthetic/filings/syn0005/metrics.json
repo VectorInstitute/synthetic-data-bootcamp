@@ -1,0 +1,123 @@
+{
+  "company_id": "syn0005",
+  "name": "Merqua Land, Inc.",
+  "sector": "Real Estate",
+  "dry_run": false,
+  "passed": true,
+  "wall_seconds": 428.73,
+  "totals": {
+    "seconds": 428.09,
+    "prompt_tokens": 47054,
+    "completion_tokens": 46461,
+    "total_tokens": 93515,
+    "reasoning_tokens": 0,
+    "calls": 5
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1251,
+      "prompt_chars": 14367,
+      "words": 3914,
+      "attempts": 1,
+      "exemplar_overlap": 0.0018,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1301,
+      "prompt_chars": 25598,
+      "words": 4836,
+      "attempts": 1,
+      "exemplar_overlap": 0.0023,
+      "issues": []
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1453,
+      "prompt_chars": 37491,
+      "words": 4376,
+      "attempts": 2,
+      "exemplar_overlap": 0.0016,
+      "issues": []
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 670,
+      "prompt_chars": 40073,
+      "words": 1134,
+      "attempts": 1,
+      "exemplar_overlap": 0.0088,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 88.42,
+      "prompt_tokens": 4459,
+      "completion_tokens": 9088,
+      "total_tokens": 13547,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 3914,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 104.16,
+      "prompt_tokens": 7654,
+      "completion_tokens": 10994,
+      "total_tokens": 18648,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4836,
+      "issues": []
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 108.24,
+      "prompt_tokens": 11549,
+      "completion_tokens": 12188,
+      "total_tokens": 23737,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4582,
+      "issues": [
+        "The section has 4582 words; keep it under 4500 (target 3000)."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "claude-opus-5-5",
+      "seconds": 97.34,
+      "prompt_tokens": 11591,
+      "completion_tokens": 11211,
+      "total_tokens": 22802,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 4376,
+      "issues": []
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "claude-opus-5-5",
+      "seconds": 29.93,
+      "prompt_tokens": 11801,
+      "completion_tokens": 2980,
+      "total_tokens": 14781,
+      "reasoning_tokens": 0,
+      "finish_reason": "end_turn",
+      "words": 1134,
+      "issues": []
+    }
+  ]
+}

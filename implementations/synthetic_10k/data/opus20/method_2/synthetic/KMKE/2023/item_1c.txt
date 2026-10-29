@@ -1,0 +1,51 @@
+# ITEM 1C. CYBERSECURITY
+
+## Risk Management and Strategy
+
+We process, store, and transmit large volumes of sensitive information. This includes payment card data, bank account information, personal information of consumers and business clients, and confidential information of our clients and partners. Our clients rely on our platforms for mission-critical services, so we treat cybersecurity risk as a core enterprise risk.
+
+We manage cybersecurity risk within an internal enterprise risk management framework aligned to the National Institute of Standards and Technology ("NIST") Cybersecurity Framework. Our program is organized around the framework's core functions: identify, protect, detect, respond, and recover. Cybersecurity is one of the principal risk categories in our broader enterprise risk management framework, and it follows the same three-lines-of-defense model described in Item 1, "Business—Enterprise Risk Management":
+
+- **First line.** Our business, technology, and operating units own and manage cybersecurity risks arising from their activities.
+- **Second line.** Our information security and independent risk management functions set policies and standards, monitor risk levels against our defined risk appetite, and provide oversight and challenge.
+- **Third line.** Our internal audit function provides independent assurance over the design and operating effectiveness of our cybersecurity controls.
+
+Key elements of our cybersecurity risk management program include the following:
+
+- **Risk assessment.** We conduct periodic cybersecurity risk assessments to identify threats to our systems and data and to evaluate the likelihood and potential impact of those threats. Results inform our security priorities, control investments, and the enterprise risk profile reported to management and the Board.
+- **Layered security controls.** We employ defense-in-depth controls, including:
+  - network segmentation;
+  - encryption of data in transit and at rest;
+  - tokenization;
+  - multi-factor authentication;
+  - privileged access management; and
+  - endpoint protection.
+  
+  We design these controls to meet the requirements of regulated payment environments, including as we migrate appropriate workloads to cloud infrastructure.
+- **Threat intelligence, monitoring, and detection.** We monitor activity across our environment to detect anomalous or malicious behavior. We use internal and external threat intelligence, including information shared through industry channels, to anticipate and respond to emerging attack techniques. These include techniques targeting payment infrastructure and those that use artificial intelligence.
+- **Vulnerability management and secure development.** We conduct vulnerability scanning, penetration testing, and secure code reviews, and we prioritize and remediate identified vulnerabilities according to risk. Our software development practices include security requirements and testing intended to reduce the introduction of vulnerabilities as we modernize and consolidate our platforms.
+- **Incident response and recovery.** We maintain documented incident response plans that define roles, escalation paths, and procedures for containing, investigating, remediating, and recovering from cybersecurity incidents. These plans include processes for assessing the materiality of incidents and for evaluating notification obligations to regulators, clients, payment networks, and other parties. We test the plans through tabletop exercises and simulations involving technical teams and senior management. They are coordinated with our business continuity and disaster recovery programs.
+- **Third-party risk management.** Many vendors, partners, and service providers access our systems or data, including cloud and colocation providers, software suppliers, and distribution partners. We assess their security practices before onboarding and periodically thereafter, according to risk. We include security and incident notification requirements in our contracts and monitor critical providers for changes in their risk profiles.
+- **Workforce awareness.** We provide security awareness training to employees and contractors, conduct periodic phishing simulations, and maintain policies governing acceptable use, data handling, and the use of generative artificial intelligence tools.
+
+We periodically engage third-party assessors, consultants, and auditors to evaluate elements of our program. We maintain compliance with the Payment Card Industry Data Security Standard and undergo periodic independent assessments against it. As a provider of technology services to financial institutions, we are also subject to examination by federal banking agencies. Those examinations include assessments of our information security practices, and their findings are shared with our financial institution clients. In addition, our clients regularly review our controls through audits, due diligence reviews, and contractual reporting requirements. Certain of our subsidiaries are subject to state cybersecurity regulations, including the cybersecurity regulation of the New York State Department of Financial Services.
+
+As of the date of this report, we have not identified any cybersecurity threats, including any previous cybersecurity incidents, that have materially affected or are reasonably likely to materially affect our business strategy, results of operations, or financial condition. Like other companies in our industry, we face frequent attempted cyberattacks, and we cannot provide assurance that we will not experience a material incident in the future. See Item 1A, "Risk Factors—Risks Related to Technology, Cybersecurity, Data, and Operations," for a discussion of cybersecurity risks that could adversely affect us.
+
+## Governance
+
+### Board Oversight
+
+Our Board of Directors oversees risk through its committees. The Audit Committee has primary responsibility for overseeing cybersecurity risk. In that role, the Audit Committee:
+
+- receives regular reports from our Chief Information Security Officer on the cybersecurity threat landscape, the status of key security initiatives, results of risk assessments and independent testing, regulatory examination matters, and significant incidents or emerging risks;
+- receives reports from internal audit on its assessments of cybersecurity controls; and
+- reviews cybersecurity in the context of our enterprise risk profile.
+
+Management escalates significant cybersecurity incidents to the Audit Committee under our incident response and escalation procedures. The Audit Committee reports to the full Board on cybersecurity matters, and the full Board periodically discusses cybersecurity risk as part of its oversight of our strategy and enterprise risks.
+
+### Management's Role
+
+Our Chief Information Security Officer leads our information security program and is responsible for assessing and managing cybersecurity risk across the enterprise. The Chief Information Security Officer reports to senior management and is supported by a team of security professionals with expertise in security architecture, threat detection and response, vulnerability management, identity and access management, third-party risk, and security governance.
+
+Our management risk committees, which include senior leaders from technology, risk, compliance, legal, and the business segments, review significant cybersecurity risks, metrics, and remediation efforts on a regular basis. Through these committees and our incident response processes, the Chief Information Security Officer and other members of management are informed about, and monitor, the prevention, detection, mitigation, and remediation of cybersecurity incidents. Legal and compliance personnel participate in incident assessment to support timely evaluation of materiality and disclosure obligations.

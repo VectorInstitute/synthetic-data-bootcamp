@@ -1,0 +1,374 @@
+fictional_id,fiscal_year,check,item,status,detail
+BAI,2025,substantive,1,PASS,357 words
+BAI,2025,length_vs_real,1,INFO,2571 chars vs real median 61281 chars (4%)
+BAI,2025,real_company_leak,1,PASS,none found
+BAI,2025,substantive,1a,PASS,457 words
+BAI,2025,length_vs_real,1a,INFO,3151 chars vs real median 80672 chars (4%)
+BAI,2025,real_company_leak,1a,PASS,none found
+BAI,2025,substantive,1c,PASS,273 words
+BAI,2025,length_vs_real,1c,INFO,2070 chars vs real median 6000 chars (34%)
+BAI,2025,real_company_leak,1c,PASS,none found
+BAI,2025,substantive,7,PASS,563 words
+BAI,2025,length_vs_real,7,INFO,3827 chars vs real median 66970 chars (6%)
+BAI,2025,real_company_leak,7,PASS,none found
+BAI,2025,substantive,8,PASS,465 words
+BAI,2025,length_vs_real,8,INFO,3199 chars vs real median 171195 chars (2%)
+BAI,2025,real_company_leak,8,PASS,none found
+BAI,2025,required_headings,8,PASS,all present
+BAI,2025,scenario_grounding,1/1a/7/8,PASS,"[regulatory_rate_case] matched: ['rate case', 'rate increase', 'rate proceeding']"
+BAI,2025,numeric_consistency,7,PASS,32/32 figures traced
+BAI,2025,numeric_consistency,8,PASS,36/36 figures traced
+BIDZ,2025,substantive,1,PASS,362 words
+BIDZ,2025,length_vs_real,1,INFO,2695 chars vs real median 61281 chars (4%)
+BIDZ,2025,real_company_leak,1,PASS,none found
+BIDZ,2025,substantive,1a,PASS,509 words
+BIDZ,2025,length_vs_real,1a,INFO,3473 chars vs real median 80672 chars (4%)
+BIDZ,2025,real_company_leak,1a,PASS,none found
+BIDZ,2025,substantive,1c,PASS,280 words
+BIDZ,2025,length_vs_real,1c,INFO,2083 chars vs real median 6000 chars (35%)
+BIDZ,2025,real_company_leak,1c,PASS,none found
+BIDZ,2025,substantive,7,PASS,547 words
+BIDZ,2025,length_vs_real,7,INFO,3739 chars vs real median 66970 chars (6%)
+BIDZ,2025,real_company_leak,7,PASS,none found
+BIDZ,2025,substantive,8,PASS,419 words
+BIDZ,2025,length_vs_real,8,INFO,2928 chars vs real median 171195 chars (2%)
+BIDZ,2025,real_company_leak,8,PASS,none found
+BIDZ,2025,required_headings,8,PASS,all present
+BIDZ,2025,scenario_grounding,1/1a/7/8,PASS,[margin_crisis] matched: ['reimbursement']
+BIDZ,2025,numeric_consistency,7,PASS,39/39 figures traced
+BIDZ,2025,numeric_consistency,8,PASS,39/39 figures traced
+CRJ,2024,substantive,1,PASS,323 words
+CRJ,2024,length_vs_real,1,INFO,2354 chars vs real median 61281 chars (4%)
+CRJ,2024,real_company_leak,1,PASS,none found
+CRJ,2024,substantive,1a,PASS,420 words
+CRJ,2024,length_vs_real,1a,INFO,2920 chars vs real median 80672 chars (4%)
+CRJ,2024,real_company_leak,1a,PASS,none found
+CRJ,2024,substantive,1c,PASS,270 words
+CRJ,2024,length_vs_real,1c,INFO,2052 chars vs real median 6000 chars (34%)
+CRJ,2024,real_company_leak,1c,PASS,none found
+CRJ,2024,substantive,7,PASS,522 words
+CRJ,2024,length_vs_real,7,INFO,3574 chars vs real median 66970 chars (5%)
+CRJ,2024,real_company_leak,7,PASS,none found
+CRJ,2024,substantive,8,PASS,436 words
+CRJ,2024,length_vs_real,8,INFO,3010 chars vs real median 171195 chars (2%)
+CRJ,2024,real_company_leak,8,PASS,none found
+CRJ,2024,required_headings,8,PASS,all present
+CRJ,2024,numeric_consistency,7,PASS,32/32 figures traced
+CRJ,2024,numeric_consistency,8,PASS,35/35 figures traced
+EASS,2025,substantive,1,PASS,324 words
+EASS,2025,length_vs_real,1,INFO,2402 chars vs real median 61281 chars (4%)
+EASS,2025,real_company_leak,1,PASS,none found
+EASS,2025,substantive,1a,PASS,533 words
+EASS,2025,length_vs_real,1a,INFO,3692 chars vs real median 80672 chars (5%)
+EASS,2025,real_company_leak,1a,PASS,none found
+EASS,2025,substantive,1c,PASS,233 words
+EASS,2025,length_vs_real,1c,INFO,1765 chars vs real median 6000 chars (29%)
+EASS,2025,real_company_leak,1c,PASS,none found
+EASS,2025,substantive,7,PASS,506 words
+EASS,2025,length_vs_real,7,INFO,3396 chars vs real median 66970 chars (5%)
+EASS,2025,real_company_leak,7,PASS,none found
+EASS,2025,substantive,8,PASS,463 words
+EASS,2025,length_vs_real,8,INFO,3188 chars vs real median 171195 chars (2%)
+EASS,2025,real_company_leak,8,PASS,none found
+EASS,2025,required_headings,8,PASS,all present
+EASS,2025,scenario_grounding,1/1a/7/8,PASS,[mergers_and_acquisitions] 'Thornridge Packaging Corp.' found
+EASS,2025,numeric_consistency,7,PASS,39/39 figures traced
+EASS,2025,numeric_consistency,8,PASS,40/40 figures traced
+FAI,2025,substantive,1,PASS,245 words
+FAI,2025,length_vs_real,1,INFO,1732 chars vs real median 61281 chars (3%)
+FAI,2025,real_company_leak,1,PASS,none found
+FAI,2025,substantive,1a,PASS,336 words
+FAI,2025,length_vs_real,1a,INFO,2321 chars vs real median 80672 chars (3%)
+FAI,2025,real_company_leak,1a,PASS,none found
+FAI,2025,substantive,1c,PASS,233 words
+FAI,2025,length_vs_real,1c,INFO,1769 chars vs real median 6000 chars (29%)
+FAI,2025,real_company_leak,1c,PASS,none found
+FAI,2025,substantive,7,PASS,445 words
+FAI,2025,length_vs_real,7,INFO,2998 chars vs real median 66970 chars (4%)
+FAI,2025,real_company_leak,7,PASS,none found
+FAI,2025,substantive,8,PASS,444 words
+FAI,2025,length_vs_real,8,INFO,3026 chars vs real median 171195 chars (2%)
+FAI,2025,real_company_leak,8,PASS,none found
+FAI,2025,required_headings,8,PASS,all present
+FAI,2025,numeric_consistency,7,PASS,39/39 figures traced
+FAI,2025,numeric_consistency,8,PASS,42/42 figures traced
+FTC,2024,substantive,1,PASS,330 words
+FTC,2024,length_vs_real,1,INFO,2520 chars vs real median 61281 chars (4%)
+FTC,2024,real_company_leak,1,PASS,none found
+FTC,2024,substantive,1a,PASS,475 words
+FTC,2024,length_vs_real,1a,INFO,3320 chars vs real median 80672 chars (4%)
+FTC,2024,real_company_leak,1a,PASS,none found
+FTC,2024,substantive,1c,PASS,245 words
+FTC,2024,length_vs_real,1c,INFO,1811 chars vs real median 6000 chars (30%)
+FTC,2024,real_company_leak,1c,PASS,none found
+FTC,2024,substantive,7,PASS,505 words
+FTC,2024,length_vs_real,7,INFO,3368 chars vs real median 66970 chars (5%)
+FTC,2024,real_company_leak,7,PASS,none found
+FTC,2024,substantive,8,PASS,466 words
+FTC,2024,length_vs_real,8,INFO,3246 chars vs real median 171195 chars (2%)
+FTC,2024,real_company_leak,8,PASS,none found
+FTC,2024,required_headings,8,PASS,all present
+FTC,2024,scenario_grounding,1/1a/7/8,PASS,"[mergers_and_acquisitions] 'Carrowgate Capital Partners, Inc.' found"
+FTC,2024,numeric_consistency,7,PASS,42/42 figures traced
+FTC,2024,numeric_consistency,8,PASS,39/39 figures traced
+GKRH,2025,substantive,1,PASS,390 words
+GKRH,2025,length_vs_real,1,INFO,2935 chars vs real median 61281 chars (5%)
+GKRH,2025,real_company_leak,1,PASS,none found
+GKRH,2025,substantive,1a,PASS,540 words
+GKRH,2025,length_vs_real,1a,INFO,3684 chars vs real median 80672 chars (5%)
+GKRH,2025,real_company_leak,1a,PASS,none found
+GKRH,2025,substantive,1c,PASS,268 words
+GKRH,2025,length_vs_real,1c,INFO,1989 chars vs real median 6000 chars (33%)
+GKRH,2025,real_company_leak,1c,PASS,none found
+GKRH,2025,substantive,7,PASS,536 words
+GKRH,2025,length_vs_real,7,INFO,3693 chars vs real median 66970 chars (6%)
+GKRH,2025,real_company_leak,7,PASS,none found
+GKRH,2025,substantive,8,PASS,349 words
+GKRH,2025,length_vs_real,8,INFO,2418 chars vs real median 171195 chars (1%)
+GKRH,2025,real_company_leak,8,PASS,none found
+GKRH,2025,required_headings,8,PASS,all present
+GKRH,2025,scenario_grounding,1/1a/7/8,PASS,[regulatory_consent_order] matched: ['consent order']
+GKRH,2025,numeric_consistency,7,PASS,31/31 figures traced
+GKRH,2025,numeric_consistency,8,PASS,28/28 figures traced
+GOG,2023,substantive,1,PASS,323 words
+GOG,2023,length_vs_real,1,INFO,2421 chars vs real median 61281 chars (4%)
+GOG,2023,real_company_leak,1,PASS,none found
+GOG,2023,substantive,1a,PASS,555 words
+GOG,2023,length_vs_real,1a,INFO,3648 chars vs real median 80672 chars (5%)
+GOG,2023,real_company_leak,1a,PASS,none found
+GOG,2023,substantive,1c,PASS,237 words
+GOG,2023,length_vs_real,1c,INFO,1755 chars vs real median 6000 chars (29%)
+GOG,2023,real_company_leak,1c,PASS,none found
+GOG,2023,substantive,7,PASS,508 words
+GOG,2023,length_vs_real,7,INFO,3422 chars vs real median 66970 chars (5%)
+GOG,2023,real_company_leak,7,PASS,none found
+GOG,2023,substantive,8,PASS,399 words
+GOG,2023,length_vs_real,8,INFO,2689 chars vs real median 171195 chars (2%)
+GOG,2023,real_company_leak,8,PASS,none found
+GOG,2023,required_headings,8,PASS,all present
+GOG,2023,scenario_grounding,1/1a/7/8,PASS,[product_launch] 'SentinelFlow' found
+GOG,2023,numeric_consistency,7,PASS,39/39 figures traced
+GOG,2023,numeric_consistency,8,PASS,38/38 figures traced
+HZP,2025,substantive,1,PASS,302 words
+HZP,2025,length_vs_real,1,INFO,2258 chars vs real median 61281 chars (4%)
+HZP,2025,real_company_leak,1,PASS,none found
+HZP,2025,substantive,1a,PASS,544 words
+HZP,2025,length_vs_real,1a,INFO,3577 chars vs real median 80672 chars (4%)
+HZP,2025,real_company_leak,1a,PASS,none found
+HZP,2025,substantive,1c,PASS,234 words
+HZP,2025,length_vs_real,1c,INFO,1714 chars vs real median 6000 chars (29%)
+HZP,2025,real_company_leak,1c,PASS,none found
+HZP,2025,substantive,7,PASS,494 words
+HZP,2025,length_vs_real,7,INFO,3301 chars vs real median 66970 chars (5%)
+HZP,2025,real_company_leak,7,PASS,none found
+HZP,2025,substantive,8,PASS,399 words
+HZP,2025,length_vs_real,8,INFO,2681 chars vs real median 171195 chars (2%)
+HZP,2025,real_company_leak,8,PASS,none found
+HZP,2025,required_headings,8,PASS,all present
+HZP,2025,scenario_grounding,1/1a/7/8,PASS,"[competitive_displacement] matched: ['migrat', 'competing', 'displac']"
+HZP,2025,numeric_consistency,7,PASS,39/39 figures traced
+HZP,2025,numeric_consistency,8,PASS,38/38 figures traced
+JFG,2024,substantive,1,PASS,297 words
+JFG,2024,length_vs_real,1,INFO,2170 chars vs real median 61281 chars (4%)
+JFG,2024,real_company_leak,1,PASS,none found
+JFG,2024,substantive,1a,PASS,389 words
+JFG,2024,length_vs_real,1a,INFO,2729 chars vs real median 80672 chars (3%)
+JFG,2024,real_company_leak,1a,PASS,none found
+JFG,2024,substantive,1c,PASS,218 words
+JFG,2024,length_vs_real,1c,INFO,1635 chars vs real median 6000 chars (27%)
+JFG,2024,real_company_leak,1c,PASS,none found
+JFG,2024,substantive,7,PASS,454 words
+JFG,2024,length_vs_real,7,INFO,3004 chars vs real median 66970 chars (4%)
+JFG,2024,real_company_leak,7,PASS,none found
+JFG,2024,substantive,8,PASS,409 words
+JFG,2024,length_vs_real,8,INFO,2709 chars vs real median 171195 chars (2%)
+JFG,2024,real_company_leak,8,PASS,none found
+JFG,2024,required_headings,8,PASS,all present
+JFG,2024,numeric_consistency,7,PASS,43/43 figures traced
+JFG,2024,numeric_consistency,8,PASS,43/43 figures traced
+KMW,2024,substantive,1,PASS,396 words
+KMW,2024,length_vs_real,1,INFO,2932 chars vs real median 61281 chars (5%)
+KMW,2024,real_company_leak,1,PASS,none found
+KMW,2024,substantive,1a,PASS,492 words
+KMW,2024,length_vs_real,1a,INFO,3329 chars vs real median 80672 chars (4%)
+KMW,2024,real_company_leak,1a,PASS,none found
+KMW,2024,substantive,1c,PASS,275 words
+KMW,2024,length_vs_real,1c,INFO,2044 chars vs real median 6000 chars (34%)
+KMW,2024,real_company_leak,1c,PASS,none found
+KMW,2024,substantive,7,PASS,572 words
+KMW,2024,length_vs_real,7,INFO,3885 chars vs real median 66970 chars (6%)
+KMW,2024,real_company_leak,7,PASS,none found
+KMW,2024,substantive,8,PASS,422 words
+KMW,2024,length_vs_real,8,INFO,2958 chars vs real median 171195 chars (2%)
+KMW,2024,real_company_leak,8,PASS,none found
+KMW,2024,required_headings,8,PASS,all present
+KMW,2024,scenario_grounding,1/1a/7/8,PASS,"[regulatory_pricing_pressure] matched: ['pricing', 'pharmacy benefit', 'drug pricing']"
+KMW,2024,numeric_consistency,7,PASS,40/40 figures traced
+KMW,2024,numeric_consistency,8,PASS,39/39 figures traced
+NDE,2025,substantive,1,PASS,454 words
+NDE,2025,length_vs_real,1,INFO,3256 chars vs real median 61281 chars (5%)
+NDE,2025,real_company_leak,1,PASS,none found
+NDE,2025,substantive,1a,PASS,491 words
+NDE,2025,length_vs_real,1a,INFO,3435 chars vs real median 80672 chars (4%)
+NDE,2025,real_company_leak,1a,PASS,none found
+NDE,2025,substantive,1c,PASS,270 words
+NDE,2025,length_vs_real,1c,INFO,2055 chars vs real median 6000 chars (34%)
+NDE,2025,real_company_leak,1c,PASS,none found
+NDE,2025,substantive,7,PASS,534 words
+NDE,2025,length_vs_real,7,INFO,3633 chars vs real median 66970 chars (5%)
+NDE,2025,real_company_leak,7,PASS,none found
+NDE,2025,substantive,8,PASS,464 words
+NDE,2025,length_vs_real,8,INFO,3159 chars vs real median 171195 chars (2%)
+NDE,2025,real_company_leak,8,PASS,none found
+NDE,2025,required_headings,8,PASS,all present
+NDE,2025,scenario_grounding,1/1a/7/8,PASS,[capital_structure] matched: ['repurchase']
+NDE,2025,numeric_consistency,7,PASS,43/43 figures traced
+NDE,2025,numeric_consistency,8,PASS,44/44 figures traced
+PKPM,2025,substantive,1,PASS,271 words
+PKPM,2025,length_vs_real,1,INFO,1982 chars vs real median 61281 chars (3%)
+PKPM,2025,real_company_leak,1,PASS,none found
+PKPM,2025,substantive,1a,PASS,347 words
+PKPM,2025,length_vs_real,1a,INFO,2313 chars vs real median 80672 chars (3%)
+PKPM,2025,real_company_leak,1a,PASS,none found
+PKPM,2025,substantive,1c,PASS,236 words
+PKPM,2025,length_vs_real,1c,INFO,1719 chars vs real median 6000 chars (29%)
+PKPM,2025,real_company_leak,1c,PASS,none found
+PKPM,2025,substantive,7,PASS,453 words
+PKPM,2025,length_vs_real,7,INFO,3073 chars vs real median 66970 chars (5%)
+PKPM,2025,real_company_leak,7,PASS,none found
+PKPM,2025,substantive,8,PASS,394 words
+PKPM,2025,length_vs_real,8,INFO,2680 chars vs real median 171195 chars (2%)
+PKPM,2025,real_company_leak,8,PASS,none found
+PKPM,2025,required_headings,8,PASS,all present
+PKPM,2025,numeric_consistency,7,PASS,43/43 figures traced
+PKPM,2025,numeric_consistency,8,PASS,38/38 figures traced
+PRG,2024,substantive,1,PASS,407 words
+PRG,2024,length_vs_real,1,INFO,3062 chars vs real median 61281 chars (5%)
+PRG,2024,real_company_leak,1,PASS,none found
+PRG,2024,substantive,1a,PASS,747 words
+PRG,2024,length_vs_real,1a,INFO,5106 chars vs real median 80672 chars (6%)
+PRG,2024,real_company_leak,1a,PASS,none found
+PRG,2024,substantive,1c,PASS,303 words
+PRG,2024,length_vs_real,1c,INFO,2193 chars vs real median 6000 chars (37%)
+PRG,2024,real_company_leak,1c,PASS,none found
+PRG,2024,substantive,7,PASS,618 words
+PRG,2024,length_vs_real,7,INFO,4285 chars vs real median 66970 chars (6%)
+PRG,2024,real_company_leak,7,PASS,none found
+PRG,2024,substantive,8,PASS,507 words
+PRG,2024,length_vs_real,8,INFO,3495 chars vs real median 171195 chars (2%)
+PRG,2024,real_company_leak,8,PASS,none found
+PRG,2024,required_headings,8,PASS,all present
+PRG,2024,scenario_grounding,1/1a/7/8,PASS,"[mergers_and_acquisitions] 'Dunmore Technologies, Inc.' found"
+PRG,2024,numeric_consistency,7,PASS,44/44 figures traced
+PRG,2024,numeric_consistency,8,PASS,45/45 figures traced
+SKR,2023,substantive,1,PASS,298 words
+SKR,2023,length_vs_real,1,INFO,2263 chars vs real median 61281 chars (4%)
+SKR,2023,real_company_leak,1,PASS,none found
+SKR,2023,substantive,1a,PASS,399 words
+SKR,2023,length_vs_real,1a,INFO,2655 chars vs real median 80672 chars (3%)
+SKR,2023,real_company_leak,1a,PASS,none found
+SKR,2023,substantive,1c,PASS,268 words
+SKR,2023,length_vs_real,1c,INFO,1983 chars vs real median 6000 chars (33%)
+SKR,2023,real_company_leak,1c,PASS,none found
+SKR,2023,substantive,7,PASS,493 words
+SKR,2023,length_vs_real,7,INFO,3389 chars vs real median 66970 chars (5%)
+SKR,2023,real_company_leak,7,PASS,none found
+SKR,2023,substantive,8,PASS,320 words
+SKR,2023,length_vs_real,8,INFO,2231 chars vs real median 171195 chars (1%)
+SKR,2023,real_company_leak,8,PASS,none found
+SKR,2023,required_headings,8,PASS,all present
+SKR,2023,numeric_consistency,7,PASS,33/33 figures traced
+SKR,2023,numeric_consistency,8,PASS,30/30 figures traced
+TOUN,2023,substantive,1,PASS,264 words
+TOUN,2023,length_vs_real,1,INFO,1938 chars vs real median 61281 chars (3%)
+TOUN,2023,real_company_leak,1,PASS,none found
+TOUN,2023,substantive,1a,PASS,370 words
+TOUN,2023,length_vs_real,1a,INFO,2609 chars vs real median 80672 chars (3%)
+TOUN,2023,real_company_leak,1a,PASS,none found
+TOUN,2023,substantive,1c,PASS,264 words
+TOUN,2023,length_vs_real,1c,INFO,1977 chars vs real median 6000 chars (33%)
+TOUN,2023,real_company_leak,1c,PASS,none found
+TOUN,2023,substantive,7,PASS,425 words
+TOUN,2023,length_vs_real,7,INFO,2858 chars vs real median 66970 chars (4%)
+TOUN,2023,real_company_leak,7,PASS,none found
+TOUN,2023,substantive,8,PASS,404 words
+TOUN,2023,length_vs_real,8,INFO,2803 chars vs real median 171195 chars (2%)
+TOUN,2023,real_company_leak,8,PASS,none found
+TOUN,2023,required_headings,8,PASS,all present
+TOUN,2023,numeric_consistency,7,PASS,36/36 figures traced
+TOUN,2023,numeric_consistency,8,PASS,34/34 figures traced
+TVZ,2024,substantive,1,PASS,360 words
+TVZ,2024,length_vs_real,1,INFO,2580 chars vs real median 61281 chars (4%)
+TVZ,2024,real_company_leak,1,PASS,none found
+TVZ,2024,substantive,1a,PASS,422 words
+TVZ,2024,length_vs_real,1a,INFO,2948 chars vs real median 80672 chars (4%)
+TVZ,2024,real_company_leak,1a,PASS,none found
+TVZ,2024,substantive,1c,PASS,233 words
+TVZ,2024,length_vs_real,1c,INFO,1774 chars vs real median 6000 chars (30%)
+TVZ,2024,real_company_leak,1c,PASS,none found
+TVZ,2024,substantive,7,PASS,515 words
+TVZ,2024,length_vs_real,7,INFO,3511 chars vs real median 66970 chars (5%)
+TVZ,2024,real_company_leak,7,PASS,none found
+TVZ,2024,substantive,8,PASS,463 words
+TVZ,2024,length_vs_real,8,INFO,3153 chars vs real median 171195 chars (2%)
+TVZ,2024,real_company_leak,8,PASS,none found
+TVZ,2024,required_headings,8,PASS,all present
+TVZ,2024,scenario_grounding,1/1a/7/8,PASS,[capital_structure] matched: ['repurchase']
+TVZ,2024,numeric_consistency,7,PASS,41/41 figures traced
+TVZ,2024,numeric_consistency,8,PASS,44/44 figures traced
+VQWP,2023,substantive,1,PASS,341 words
+VQWP,2023,length_vs_real,1,INFO,2510 chars vs real median 61281 chars (4%)
+VQWP,2023,real_company_leak,1,PASS,none found
+VQWP,2023,substantive,1a,PASS,464 words
+VQWP,2023,length_vs_real,1a,INFO,3245 chars vs real median 80672 chars (4%)
+VQWP,2023,real_company_leak,1a,PASS,none found
+VQWP,2023,substantive,1c,PASS,270 words
+VQWP,2023,length_vs_real,1c,INFO,2052 chars vs real median 6000 chars (34%)
+VQWP,2023,real_company_leak,1c,PASS,none found
+VQWP,2023,substantive,7,PASS,589 words
+VQWP,2023,length_vs_real,7,INFO,4033 chars vs real median 66970 chars (6%)
+VQWP,2023,real_company_leak,7,PASS,none found
+VQWP,2023,substantive,8,PASS,446 words
+VQWP,2023,length_vs_real,8,INFO,3062 chars vs real median 171195 chars (2%)
+VQWP,2023,real_company_leak,8,PASS,none found
+VQWP,2023,required_headings,8,PASS,all present
+VQWP,2023,scenario_grounding,1/1a/7/8,PASS,[weather_event] matched: ['storm']
+VQWP,2023,numeric_consistency,7,PASS,39/39 figures traced
+VQWP,2023,numeric_consistency,8,PASS,38/38 figures traced
+WJE,2025,substantive,1,PASS,248 words
+WJE,2025,length_vs_real,1,INFO,1866 chars vs real median 61281 chars (3%)
+WJE,2025,real_company_leak,1,PASS,none found
+WJE,2025,substantive,1a,PASS,475 words
+WJE,2025,length_vs_real,1a,INFO,3168 chars vs real median 80672 chars (4%)
+WJE,2025,real_company_leak,1a,PASS,none found
+WJE,2025,substantive,1c,PASS,252 words
+WJE,2025,length_vs_real,1c,INFO,1840 chars vs real median 6000 chars (31%)
+WJE,2025,real_company_leak,1c,PASS,none found
+WJE,2025,substantive,7,PASS,484 words
+WJE,2025,length_vs_real,7,INFO,3215 chars vs real median 66970 chars (5%)
+WJE,2025,real_company_leak,7,PASS,none found
+WJE,2025,substantive,8,PASS,422 words
+WJE,2025,length_vs_real,8,INFO,2842 chars vs real median 171195 chars (2%)
+WJE,2025,real_company_leak,8,PASS,none found
+WJE,2025,required_headings,8,PASS,all present
+WJE,2025,scenario_grounding,1/1a/7/8,PASS,[cash_burn] matched: ['profitability']
+WJE,2025,numeric_consistency,7,PASS,38/38 figures traced
+WJE,2025,numeric_consistency,8,PASS,41/41 figures traced
+XTE,2025,substantive,1,PASS,252 words
+XTE,2025,length_vs_real,1,INFO,1865 chars vs real median 61281 chars (3%)
+XTE,2025,real_company_leak,1,PASS,none found
+XTE,2025,substantive,1a,PASS,353 words
+XTE,2025,length_vs_real,1a,INFO,2490 chars vs real median 80672 chars (3%)
+XTE,2025,real_company_leak,1a,PASS,none found
+XTE,2025,substantive,1c,PASS,206 words
+XTE,2025,length_vs_real,1c,INFO,1539 chars vs real median 6000 chars (26%)
+XTE,2025,real_company_leak,1c,PASS,none found
+XTE,2025,substantive,7,PASS,440 words
+XTE,2025,length_vs_real,7,INFO,2991 chars vs real median 66970 chars (4%)
+XTE,2025,real_company_leak,7,PASS,none found
+XTE,2025,substantive,8,PASS,438 words
+XTE,2025,length_vs_real,8,INFO,3019 chars vs real median 171195 chars (2%)
+XTE,2025,real_company_leak,8,PASS,none found
+XTE,2025,required_headings,8,PASS,all present
+XTE,2025,numeric_consistency,7,PASS,36/36 figures traced
+XTE,2025,numeric_consistency,8,PASS,44/44 figures traced

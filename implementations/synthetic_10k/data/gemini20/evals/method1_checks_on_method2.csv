@@ -1,0 +1,505 @@
+fictional_id,fiscal_year,check,item,status,detail,note
+AMED,2023,company_name,1,PASS,,
+AMED,2023,real_names,1,PASS,,
+AMED,2023,number_density,1,PASS,,
+AMED,2023,identifiers,1,PASS,,
+AMED,2023,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $1,982,571,143.",0 of 1 flagged figures are accepted by Method 2's step09 check
+AMED,2023,exemplar_overlap,1,SKIP,,
+AMED,2023,real_names,1A,PASS,,
+AMED,2023,number_density,1A,FAIL,Item 1A cites 16 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+AMED,2023,identifiers,1A,PASS,,
+AMED,2023,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $1,982,571,143, $4,049,858,186, $1,668,931,175, $2,380,927,011, $1,668,931,175,.",0 of 5 flagged figures are accepted by Method 2's step09 check
+AMED,2023,exemplar_overlap,1A,SKIP,,
+AMED,2023,real_names,1C,PASS,,
+AMED,2023,number_density,1C,FAIL,Item 1C cites 6 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+AMED,2023,identifiers,1C,PASS,,
+AMED,2023,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $403,165,603, $4,049,858,186, $1,982,571,143, $571,857,714, $143,997,493, $1,668,931,175.",0 of 6 flagged figures are accepted by Method 2's step09 check
+AMED,2023,exemplar_overlap,1C,SKIP,,
+AMED,2023,company_name,7,PASS,,
+AMED,2023,real_names,7,PASS,,
+AMED,2023,identifiers,7,PASS,,
+AMED,2023,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $1,982,571,143,, $203,907,274, $210,544,521, $6,637,247,, $403,165,603, $740,770,190, $4,049,858,186, $1,982,571,143, $274,888,695, $659,643,059,, $571,857,714, $143,997,493, $203,907,274,, $785,521,524, $6,637,247, $246,861,080, $210,544,521,, $24,866,838, $11,449,721, $82,374,359, $17,319,576, $69,401,522,, $86,721,098, $44,711,660, $274,888,695,, $222,141,365,, $63,118,771, $24,857,570, $2,724,081,595,, $2,380,927,011,, $256,975,163, $1,256,055,965,, $1,668,931,175,, $1,374,842,094, $473,109,467,, $222,141,365.",0 of 36 flagged figures are accepted by Method 2's step09 check
+AMED,2023,exemplar_overlap,7,SKIP,,
+AMED,2023,real_names,8,PASS,,
+AMED,2023,identifiers,8,PASS,,
+AMED,2023,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $ 1,982,571,143, $ 210,544,521, $ 207,589,521, $ 740,770,190, $ 4,049,858,186, $ 82,374,359, $740,770,190, $274,888,695, $222,141,365, $63,118,771, $24,857,570, $403,165,603, $6,637,247, $1,982,571,143, $ 1,030,937,000, $ 112,450,000, $ 274,888,695, $ 18,500,000, $ 222,141,365, $21,120,000, $ 35,000,000, $ 16,500,000, $ 52,500,000, $ 24,857,570, $3,746,838, $ 500,000,000, $ 785,521,524, $203,907,274, $ 42,500,000, $45,200,000, $4,257,773, $30,526,274, $12,706,280, $166,314,106, $ 555,120,000, $ 396,514,143, $ 115,400,000, $ 52,300,000, $ 36,207,274, $ 203,907,274, $ 2,150,000,000, $ 1,120,000,000, $ 779,858,186.",0 of 43 flagged figures are accepted by Method 2's step09 check
+AMED,2023,exemplar_overlap,8,SKIP,,
+BFJ,2025,company_name,1,PASS,,
+BFJ,2025,real_names,1,FAIL,Remove these real company names and describe them generically: Northern.,
+BFJ,2025,number_density,1,FAIL,Item 1 cites 10 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+BFJ,2025,identifiers,1,PASS,,
+BFJ,2025,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $18,321,342,217.",0 of 1 flagged figures are accepted by Method 2's step09 check
+BFJ,2025,exemplar_overlap,1,SKIP,,
+BFJ,2025,real_names,1A,PASS,,
+BFJ,2025,number_density,1A,FAIL,Item 1A cites 24 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+BFJ,2025,identifiers,1A,PASS,,
+BFJ,2025,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $125,286,265,226, $92,339,055,242, $32,947,209,984, $18,321,342,217.",0 of 4 flagged figures are accepted by Method 2's step09 check
+BFJ,2025,exemplar_overlap,1A,SKIP,,
+BFJ,2025,real_names,1C,PASS,,
+BFJ,2025,number_density,1C,FAIL,Item 1C cites 5 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+BFJ,2025,identifiers,1C,PASS,,
+BFJ,2025,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $18,321,342,217, $125,286,265,226, $32,947,209,984.",0 of 3 flagged figures are accepted by Method 2's step09 check
+BFJ,2025,exemplar_overlap,1C,SKIP,,
+BFJ,2025,company_name,7,PASS,,
+BFJ,2025,real_names,7,PASS,,
+BFJ,2025,identifiers,7,PASS,,
+BFJ,2025,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $18,321,342,217, $2,160,945,770, $125,286,265,226, $32,947,209,984, $2,423,959,314, $2,160,945,770,, $2,423,959,314,, $4,361,348,895, $125,286,265,226,, $1,140,871,605, $18,321,342, $2,160,946, $15,286,748,433,, $3,039,298,451,, $12,247,449,982, $299,219,392, $6,402,885,077, $574,428,622, $2,735,374,392, $2,423,959, $2,437,721,833, $2,174,708,289, $2,206,546,697, $2,206,546,697,, $5,112,649,362, $4,361,348,595, $751,300,767, $92,339,055,242, $85,936,170,165, $66,593,499,962, $27,475,339,519, $1,126,869,246, $2,540,919,699,, $120,477,604,676,, $120,477,604,676, $2,540,919,699, $3,401,258,681.",0 of 37 flagged figures are accepted by Method 2's step09 check
+BFJ,2025,exemplar_overlap,7,SKIP,,
+BFJ,2025,real_names,8,PASS,,
+BFJ,2025,identifiers,8,PASS,,
+BFJ,2025,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $85,936,170,165, $120,477,604,676, $15,842,910, $2,160,946, $886,296, $1,140,872, $125,286,266, $6,402,885, $125,286,265,226, $15,400,200, $120,400, $15,170,400, $122,097,655, $2,921,650, $120,477,605, $2,143,594,000,, $3,401,258,681, $1,250,400, $1,126,869, $2,437,721,833, $2,540,919,699, $1,150,450,000, $640,200,000, $450,269,699, $300,000,000, $87,891,179, $85,936,170, $12,247,449,982, $6,402,885,077,, $2,500,000,000, $2,000,000,000, $1,902,885,077, $299,219,392, $4,361,348,595, $66,593,499,962, $424,200, $574,429, $8,244,604, $4,580,335, $3,664,269, $1,832,134, $18,321,342, $1,230,918, $683,844, $547,075, $273,538, $2,735,375, $125,400,000, $118,200,000, $110,500,000, $105,800,000, $450,200,000, $4,580,336, $540,236, $540,237.",1 of 55 flagged figures are accepted by Method 2's step09 check
+BFJ,2025,exemplar_overlap,8,SKIP,,
+BFOD,2024,company_name,1,PASS,,
+BFOD,2024,real_names,1,PASS,,
+BFOD,2024,number_density,1,FAIL,Item 1 cites 4 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+BFOD,2024,identifiers,1,PASS,,
+BFOD,2024,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $2,999,501,569, $2,999,501,569,.",0 of 2 flagged figures are accepted by Method 2's step09 check
+BFOD,2024,exemplar_overlap,1,SKIP,,
+BFOD,2024,real_names,1A,PASS,,
+BFOD,2024,number_density,1A,FAIL,Item 1A cites 33 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+BFOD,2024,identifiers,1A,PASS,,
+BFOD,2024,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $59,990,031,374,, $47,557,166,451,, $12,432,864,923, $47,557,166,451, $2,999,501,569, $59,990,031,374.",0 of 6 flagged figures are accepted by Method 2's step09 check
+BFOD,2024,exemplar_overlap,1A,SKIP,,
+BFOD,2024,real_names,1C,PASS,,
+BFOD,2024,number_density,1C,FAIL,Item 1C cites 8 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+BFOD,2024,identifiers,1C,PASS,,
+BFOD,2024,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $59,990,031,374,, $47,557,166,451, $9,934,124,419, $12,432,864,923, $274,391,448,, $57,108,420,995, $59,990,031,374.",0 of 7 flagged figures are accepted by Method 2's step09 check
+BFOD,2024,exemplar_overlap,1C,SKIP,,
+BFOD,2024,company_name,7,PASS,,
+BFOD,2024,real_names,7,PASS,,
+BFOD,2024,identifiers,7,PASS,,
+BFOD,2024,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $2,999,501,569, $2,699,551,412, $59,990,031,374, $12,432,864,923, $2,741,879,459, $1,848,086,750, $167,160,660, $57,108,420,995, $9,934,124,419, $10,735,306,346, $383,529,810, $3,588,091,206, $717,602,274, $11,346,702,583, $2,699,551,412,, $640,061,918, $8,007,089,253, $47,557,166,451, $8,067,337,827, $274,391,448,, $668,621,268, $4,097,708,957, $1,355,829,498, $818,344,201,, $1,556,779,528, $489,048,923, $1,848,086,750,.",0 of 27 flagged figures are accepted by Method 2's step09 check
+BFOD,2024,exemplar_overlap,7,SKIP,,
+BFOD,2024,real_names,8,FAIL,Remove these real company names and describe them generically: Hartford.,
+BFOD,2024,identifiers,8,PASS,,
+BFOD,2024,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $47,557,166,451, $10,735,306,346,, $2,999,501,569, $2,699,551,412, $851,464,662, $167,160,660, $59,990,031,374, $3,588,091,206, $14,323,279,720, $12,432,864,923, $57,108,420,995, $1,848,086,750, $668,621,268, $1,556,779,528, $489,048,923, $43,969,075,245, $10,735,306,346, $383,529,810, $717,602,274, $3,417,153,686,, $2,741,879,459, $1,829,695,957, $869,855,455, $299,950,157, $3,800,683,496.",0 of 25 flagged figures are accepted by Method 2's step09 check
+BFOD,2024,exemplar_overlap,8,SKIP,,
+CIG,2024,company_name,1,PASS,,
+CIG,2024,real_names,1,PASS,,
+CIG,2024,number_density,1,FAIL,Item 1 cites 4 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+CIG,2024,identifiers,1,PASS,,
+CIG,2024,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $7,425,482,275,, $7,425,482,275.",0 of 2 flagged figures are accepted by Method 2's step09 check
+CIG,2024,exemplar_overlap,1,SKIP,,
+CIG,2024,real_names,1A,PASS,,
+CIG,2024,number_density,1A,FAIL,Item 1A cites 20 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+CIG,2024,identifiers,1A,PASS,,
+CIG,2024,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $13,943,582,430, $29,921,956,490, $7,425,482,275, $15,978,374,060, $15,978,374,060,.",0 of 5 flagged figures are accepted by Method 2's step09 check
+CIG,2024,exemplar_overlap,1A,SKIP,,
+CIG,2024,real_names,1C,PASS,,
+CIG,2024,number_density,1C,FAIL,Item 1C cites 3 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+CIG,2024,identifiers,1C,PASS,,
+CIG,2024,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $7,425,482,275, $29,921,956,490, $15,978,374,060.",0 of 3 flagged figures are accepted by Method 2's step09 check
+CIG,2024,exemplar_overlap,1C,SKIP,,
+CIG,2024,company_name,7,PASS,,
+CIG,2024,real_names,7,PASS,,
+CIG,2024,identifiers,7,PASS,,
+CIG,2024,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $7,425,482,275,, $1,876,085,370,, $870,321,394, $7,425,482,275, $2,084,884,454, $1,876,085,370, $2,384,760,713, $29,921,956,490, $15,978,374,060, $1,056,121,878, $7,425,482, $1,876,085, $3.56 billion, $5,107,056,229,, $2,318,426,046,, $3,207,972,259,, $870,321,394,, $2,084,884,454,, $208,799,084,, $172,715,767, $2,384,761, $11,234, $928,396,068, $419,720,725, $771,537,803, $3,403,897,499, $1,030,369,893, $1,342,332,737, $311,962,844, $13,943,582,430, $1,064,539,201,, $5,648,764,304,, $7,230,278,925,, $17,560,625,189, $19,261,194,429, $8,934,374,934, $107,289,672,, $165,670,954,, $6,713,303,505. These percentages are not in the facts sheet; use only the derived percentages given: 48%.",0 of 40 flagged figures are accepted by Method 2's step09 check
+CIG,2024,exemplar_overlap,7,SKIP,,
+CIG,2024,real_names,8,PASS,,
+CIG,2024,identifiers,8,PASS,,
+CIG,2024,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $7,425,482, $1,876,086, $1,710,415, $172,716, $29,921,957, $1,064,539, $1,876,085, $172,715,767, $7,425,482,275, $62,450, $15,110, $29,730, $107,290, $19,261,194,429, $8,934,374,934, $928,396,068, $6,713,303,505,, $1,064,539,201, $5,648,764,304, $208,799,084, $2,084,884,454,, $15,978,374,060, $17,560,625,189, $311,962,844, $1,056,121,878.",1 of 25 flagged figures are accepted by Method 2's step09 check
+CIG,2024,exemplar_overlap,8,SKIP,,
+DLBG,2023,company_name,1,PASS,,
+DLBG,2023,real_names,1,PASS,,
+DLBG,2023,number_density,1,PASS,,
+DLBG,2023,identifiers,1,PASS,,
+DLBG,2023,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $8,038,599,569.",0 of 1 flagged figures are accepted by Method 2's step09 check
+DLBG,2023,exemplar_overlap,1,SKIP,,
+DLBG,2023,real_names,1A,PASS,,
+DLBG,2023,number_density,1A,FAIL,Item 1A cites 14 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+DLBG,2023,identifiers,1A,PASS,,
+DLBG,2023,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $146,654,991,211, $14,117,000,176, $8,038,599,569, $160,771,991,387, $146,654,991,211,, $14,117,000,176,.",0 of 6 flagged figures are accepted by Method 2's step09 check
+DLBG,2023,exemplar_overlap,1A,SKIP,,
+DLBG,2023,real_names,1C,PASS,,
+DLBG,2023,number_density,1C,FAIL,Item 1C cites 6 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+DLBG,2023,identifiers,1C,PASS,,
+DLBG,2023,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $160,771,991,387, $146,654,991,211, $8,038,599,569, $2,299,536,868, $198,384,173, $14,117,000,176.",0 of 6 flagged figures are accepted by Method 2's step09 check
+DLBG,2023,exemplar_overlap,1C,SKIP,,
+DLBG,2023,company_name,7,PASS,,
+DLBG,2023,real_names,7,PASS,,
+DLBG,2023,identifiers,7,PASS,,
+DLBG,2023,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $8,038,599,569, $2,299,536,868, $160,771,991,387,, $153,681,110,474,, $14,117,000,176, $4,823,159,741, $146,654,991,211, $198,384,173, $153,681,110,474, $3,215,439,828, $915,902,960, $1,087,044,472,, $160,771,991,387, $5,787,758,603, $595,929,094, $707,192,941,, $14,701,552,743, $1,364,171,146, $4,494,443,551, $2,299,536,868,, $1,087,044,472, $1,107,862,211, $9,040,614,656, $9,238,998,829, $14,817,025,073, $14,164,807,796,, $652,217,277, $1,281,966,866, $1,126,680,837,, $707,192,941.",0 of 30 flagged figures are accepted by Method 2's step09 check
+DLBG,2023,exemplar_overlap,7,SKIP,,
+DLBG,2023,real_names,8,PASS,,
+DLBG,2023,identifiers,8,PASS,,
+DLBG,2023,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $8,038,599,569, $2,299,536,868, $935,365,722, $5,787,758,603, $160,771,991,387, $1,087,044,472,, $707,192,941, $153,681,110,749, $146,654,991,211, $915,902,960, $3,215,439,828, $652,217,277, $1,364,171,146,, $14,117,000,176.",0 of 14 flagged figures are accepted by Method 2's step09 check
+DLBG,2023,exemplar_overlap,8,SKIP,,
+DNP,2023,company_name,1,PASS,,
+DNP,2023,real_names,1,PASS,,
+DNP,2023,number_density,1,FAIL,Item 1 cites 4 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+DNP,2023,identifiers,1,PASS,,
+DNP,2023,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $9,578,919,389, $9,578,919,389,.",0 of 2 flagged figures are accepted by Method 2's step09 check
+DNP,2023,exemplar_overlap,1,SKIP,,
+DNP,2023,real_names,1A,PASS,,
+DNP,2023,number_density,1A,FAIL,Item 1A cites 17 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+DNP,2023,identifiers,1A,PASS,,
+DNP,2023,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $12,028,898,687, $12,028,898,687,, $2,604,498,806, $14,633,397,493, $9,578,919,389, $9.5 billion.",1 of 6 flagged figures are accepted by Method 2's step09 check
+DNP,2023,exemplar_overlap,1A,SKIP,,
+DNP,2023,real_names,1C,PASS,,
+DNP,2023,number_density,1C,FAIL,Item 1C cites 3 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+DNP,2023,identifiers,1C,PASS,,
+DNP,2023,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $9,578,919,389, $14,633,397,493.",0 of 2 flagged figures are accepted by Method 2's step09 check
+DNP,2023,exemplar_overlap,1C,SKIP,,
+DNP,2023,company_name,7,PASS,,
+DNP,2023,real_names,7,PASS,,
+DNP,2023,identifiers,7,PASS,,
+DNP,2023,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $9,578,919,389, $481,982,008, $1,111,355,274, $1,688,569,008, $953,392,382, $3,231,087,238, $14,633,397,493, $12,028,898,687, $510,971,135, $412,616,782,, $37,958,479, $8,016,988,854,, $629,373,266, $313,157,498, $481,982,008,, $463,391,860, $743,195,140,, $1,159,406,365, $1,333,872,520, $926,738,062, $26,654,320, $448,673,448, $2,403,229, $446,270,219,, $12,028,898,687,, $712,818,390, $2,398,289,686, $2,604,498,806, $7,568,076,426, $14,633,397,493,, $829,983,809.",0 of 31 flagged figures are accepted by Method 2's step09 check
+DNP,2023,exemplar_overlap,7,SKIP,,
+DNP,2023,real_names,8,PASS,,
+DNP,2023,identifiers,8,PASS,,
+DNP,2023,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $510,971,135, $14,633,397,493, $2,398,289,686, $9,578,919,389, $481,982,008, $383,145,598, $1,159,406,365, $1,333,872,520, $953,392,382, $3,231,087,238, $829,983,809, $629,373,266,, $712,818,390, $5,225,110,902, $415,220,000, $2,403,229, $755,256,617, $5,268,405,664, $2,873,675,817, $1,436,837,908, $655,700,000, $311,155,274, $144,500,000, $1,111,355,274, $245,600,000, $148,291,860, $69,500,000, $463,391,860, $588,410,000, $412,500,000, $42,305,000.",0 of 31 flagged figures are accepted by Method 2's step09 check
+DNP,2023,exemplar_overlap,8,SKIP,,
+FMT,2023,company_name,1,PASS,,
+FMT,2023,real_names,1,PASS,,
+FMT,2023,number_density,1,FAIL,Item 1 cites 8 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+FMT,2023,identifiers,1,PASS,,
+FMT,2023,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $21,006,222,039.",0 of 1 flagged figures are accepted by Method 2's step09 check
+FMT,2023,exemplar_overlap,1,SKIP,,
+FMT,2023,real_names,1A,PASS,,
+FMT,2023,number_density,1A,FAIL,Item 1A cites 31 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+FMT,2023,identifiers,1A,PASS,,
+FMT,2023,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $136,747,486,447, $113,004,344,000, $21,006,222,039, $23,743,142,447.",0 of 4 flagged figures are accepted by Method 2's step09 check
+FMT,2023,exemplar_overlap,1A,SKIP,,
+FMT,2023,real_names,1C,PASS,,
+FMT,2023,number_density,1C,FAIL,Item 1C cites 5 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+FMT,2023,identifiers,1C,PASS,,
+FMT,2023,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $21,006,222,039, $113,004,344,000, $136,747,486,447.",0 of 3 flagged figures are accepted by Method 2's step09 check
+FMT,2023,exemplar_overlap,1C,SKIP,,
+FMT,2023,company_name,7,PASS,,
+FMT,2023,real_names,7,PASS,,
+FMT,2023,identifiers,7,PASS,,
+FMT,2023,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $21,006,222,039,, $5,411,069,160,, $136,747,486,447,, $23,743,142,447,, $3,583,852,443,, $113,004,344,000, $21,006,222,039, $3,485,565,096, $10,455,204,072, $13,940,769,168, $215,996,238, $6,849,456,633, $1,438,385,473, $5,411,069,160, $1,438,385,473,, $136,747,486,447, $130,997,706,005, $5,262,465,075, $23,743,142,447, $4,954,272,868, $3,583,852,443, $829,238,060, $4,699,597,268, $286,506,765, $49,771,573, $1,876,988,290, $1,207,424,837, $2,922,938,765, $569,233,666, $2,781,007,510, $53,979,187,121,, $27,754,587,109, $506,375,254, $289,132,320.",0 of 34 flagged figures are accepted by Method 2's step09 check
+FMT,2023,exemplar_overlap,7,SKIP,,
+FMT,2023,real_names,8,PASS,,
+FMT,2023,identifiers,8,PASS,,
+FMT,2023,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $16,804,976,031, $4,201,246,008, $21,006,222,039, $10,455,204,072, $3,485,565,096, $13,940,769,168, $7,065,452,871, $215,996,238, $6,849,456,633, $1,438,385,473, $5,411,069,160, $5,104,591,123, $157,873,952, $5,262,465,075, $148,604,085, $4,954,272,868, $506,375,254, $289,132,320, $130,997,706,005, $136,747,486,447, $113,004,344,000, $2,781,007,510, $53,979,187,121, $27,754,587,109, $23,743,142,447, $49,771,573, $1,876,988,290, $3,583,852,443, $829,238,060, $1,207,424,837, $2,922,938,765, $569,233,666, $4,699,597,268, $286,506,765, $5,240,779,633, $5,262,465,075,, $420,550,200, $285,110,450, $92,440,177, $798,100,827, $291,725,573, $9,452,800,000, $6,101,816,412, $3,991,185,184, $1,460,420,443, $27,754,587,109,.",0 of 46 flagged figures are accepted by Method 2's step09 check
+FMT,2023,exemplar_overlap,8,SKIP,,
+IJMU,2023,company_name,1,PASS,,
+IJMU,2023,real_names,1,PASS,,
+IJMU,2023,number_density,1,FAIL,Item 1 cites 4 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+IJMU,2023,identifiers,1,PASS,,
+IJMU,2023,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $26,768,075,128.",0 of 1 flagged figures are accepted by Method 2's step09 check
+IJMU,2023,exemplar_overlap,1,SKIP,,
+IJMU,2023,real_names,1A,PASS,,
+IJMU,2023,number_density,1A,FAIL,Item 1A cites 19 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+IJMU,2023,identifiers,1A,PASS,,
+IJMU,2023,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $480,507,188,381, $535,361,502,568, $54,854,314,187, $535,361,502,568,, $26,768,075,128, $480,507,188,381,.",0 of 6 flagged figures are accepted by Method 2's step09 check
+IJMU,2023,exemplar_overlap,1A,SKIP,,
+IJMU,2023,real_names,1C,PASS,,
+IJMU,2023,number_density,1C,FAIL,Item 1C cites 6 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+IJMU,2023,identifiers,1C,PASS,,
+IJMU,2023,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $535,361,502,568, $26,768,075,128, $480,507,188,381, $3,478,889,508, $54,854,314,187.",0 of 5 flagged figures are accepted by Method 2's step09 check
+IJMU,2023,exemplar_overlap,1C,SKIP,,
+IJMU,2023,company_name,7,PASS,,
+IJMU,2023,real_names,7,PASS,,
+IJMU,2023,identifiers,7,PASS,,
+IJMU,2023,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $26,768,075,128, $3,478,889,508, $26,768,075,128,, $5,119,284,654, $2,687,344,796, $54,854,314,187, $535,361,502,568,, $529,032,092,003, $14,098,949,191, $21,865,523,428,, $5,605,305,936, $16,260,217,492, $498,894,095, $10,872,612,943, $924,768,097,, $1,639,287,606,, $1,735,063,912, $3,128,763,338,, $1,488,368,192, $7,592,952,988, $834,380,728, $3,521,725,524, $67,417,794,979, $40,174,042,66, $14,098,949,191,, $38,639,035,867,, $535,361,502,568, $1,055,773,007,, $3,538,573,646,, $480,507,188,381, $469,634,575,438, $3,538,573,646.",0 of 32 flagged figures are accepted by Method 2's step09 check
+IJMU,2023,exemplar_overlap,7,SKIP,,
+IJMU,2023,real_names,8,PASS,,
+IJMU,2023,identifiers,8,PASS,,
+IJMU,2023,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $469,634,575,438, $529,032,092,003, $ 1,735,063,912, $ 535,361,502,568, $ 10,872,612,943, $ 26,768,075,128, $ 3,478,889,508, $1,735,063,912, $1,055,773,007, $3,538,573,646, $26,768,075,128, $924,768,097, $480,507,188,381, $14,098,949,191, $ 125,000,000, $ 1,055,773,007, $3,128,763,338, $ 2,500,000,000, $498,894,095, $54,854,314,187, $67,417,794,979,, $40,174,504,266,, $38,639,035,867, $2,687,344,796, $3,478,889,508.",0 of 25 flagged figures are accepted by Method 2's step09 check
+IJMU,2023,exemplar_overlap,8,SKIP,,
+KMKE,2023,company_name,1,PASS,,
+KMKE,2023,real_names,1,PASS,,
+KMKE,2023,number_density,1,FAIL,Item 1 cites 6 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+KMKE,2023,identifiers,1,PASS,,
+KMKE,2023,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $34,182,102,995, $34,182,102,995,.",0 of 2 flagged figures are accepted by Method 2's step09 check
+KMKE,2023,exemplar_overlap,1,SKIP,,
+KMKE,2023,real_names,1A,PASS,,
+KMKE,2023,number_density,1A,FAIL,Item 1A cites 18 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+KMKE,2023,identifiers,1A,PASS,,
+KMKE,2023,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $44,939,949,922, $55,243,583,038, $34,182,102,995, $10,303,633,116, $10,303,633,116,.",0 of 5 flagged figures are accepted by Method 2's step09 check
+KMKE,2023,exemplar_overlap,1A,SKIP,,
+KMKE,2023,real_names,1C,PASS,,
+KMKE,2023,number_density,1C,FAIL,Item 1C cites 6 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+KMKE,2023,identifiers,1C,PASS,,
+KMKE,2023,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $34,182,102,995, $55,243,583,038, $10,303,633,116.",0 of 3 flagged figures are accepted by Method 2's step09 check
+KMKE,2023,exemplar_overlap,1C,SKIP,,
+KMKE,2023,company_name,7,PASS,,
+KMKE,2023,real_names,7,PASS,,
+KMKE,2023,identifiers,7,PASS,,
+KMKE,2023,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $34,182,102,995,, $18,829,982,675,, $16,343,775,370,, $16,508,452,354, $561,736,785, $14,108,837,913, $2,871,306,870, $11,237,531,043, $55,243,583,038,, $12,288,864,079, $44,939,949,922,, $20,127,341,520, $34,182,102,995, $15,352,120,320, $11,099,558,793, $6,030,710,915, $55,243,583,038, $34,182,103, $16,343,775, $15,352,120,320,, $18,829,982,675, $794,819,179, $1,515,152,536, $1,691,388,126,, $18,035,163,496, $16,343,775,370, $16,508,452, $2,777,936, $1,011,495,080, $846,818,096, $1,966,909,221, $561,736,785,, $1,405,172,436, $11,763,606,886, $2,345,231,027, $10,303,633,116,, $68,903,810,344, $4,978,731,881, $2,326,541,347, $18,519,176,023, $11,037,790,009,, $950,482,314, $10,303,633,116, $8,281,030,651, $72,346,090,902, $1,419,678,093, $21,642,494,056, $44,939,949,922.",0 of 48 flagged figures are accepted by Method 2's step09 check
+KMKE,2023,exemplar_overlap,7,SKIP,,
+KMKE,2023,real_names,8,PASS,,
+KMKE,2023,identifiers,8,PASS,,
+KMKE,2023,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $34,182,102,995, $11,099,558,793, $12,288,864, $55,243,583, $950,482, $34,182,103, $16,343,776, $16,218,336, $16,343,775, $12,288,864,079, $4,978,731,881, $2,326,541,347, $6,030,710,915, $18,799,157, $3,550,230, $2,326,541, $1,011,495,080, $5,500,000, $4,000,000, $9,030,711, $6,030,711, $650,000,000, $18,500,000, $21,642,495, $794,819,179, $1,691,388,126, $18,035,163,496, $11,237,531,043, $68,903,810,344, $2,871,306,870, $11,037,790,009, $6,500,000,000, $2,100,000,000, $2,437,790,009, $785,420, $1,590,330, $846,818,096, $18,116,514,587, $16,065,588,408, $425,000,000,, $19,800,000,000, $20,127,341,520, $8,203,700, $8,442,500, $8,545,900, $8,990,003, $4,512,000, $4,643,000, $4,700,200, $4,994,783, $3,922,500, $4,030,600, $4,080,400, $4,310,275, $16,343,775,370.",0 of 55 flagged figures are accepted by Method 2's step09 check
+KMKE,2023,exemplar_overlap,8,SKIP,,
+NAL,2024,company_name,1,PASS,,
+NAL,2024,real_names,1,PASS,,
+NAL,2024,number_density,1,FAIL,Item 1 cites 8 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+NAL,2024,identifiers,1,PASS,,
+NAL,2024,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $11,063,613,016.",0 of 1 flagged figures are accepted by Method 2's step09 check
+NAL,2024,exemplar_overlap,1,SKIP,,
+NAL,2024,real_names,1A,PASS,,
+NAL,2024,number_density,1A,FAIL,Item 1A cites 21 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+NAL,2024,identifiers,1A,PASS,,
+NAL,2024,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $8,631,798,738, $11,063,613,016, $2,098,428,814,, $10,730,227,552, $8,631,798,738,, $2,098,428,814, $10,730,227,552,.",0 of 7 flagged figures are accepted by Method 2's step09 check
+NAL,2024,exemplar_overlap,1A,SKIP,,
+NAL,2024,real_names,1C,PASS,,
+NAL,2024,number_density,1C,FAIL,Item 1C cites 3 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+NAL,2024,identifiers,1C,PASS,,
+NAL,2024,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $11,063,613,016, $10,730,227,552.",0 of 2 flagged figures are accepted by Method 2's step09 check
+NAL,2024,exemplar_overlap,1C,SKIP,,
+NAL,2024,company_name,7,PASS,,
+NAL,2024,real_names,7,PASS,,
+NAL,2024,identifiers,7,PASS,,
+NAL,2024,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $11,063,613,016, $1,246,144,469,, $1,119,218,609,, $1,246,144,469, $1,119,218,609, $1,529,770,861, $10,730,227,552, $2,098,428,814, $531,834,013, $458,233,957, $9,817,468,547,, $1,191,400,742, $126,925,860, $174,174,725, $410,552,252, $1,182,016,294, $534,956,682, $647,059,612, $526,657,130, $463,410,840,, $1,293,700,944,, $8,873,155,181, $8,631,798,738, $335,540,984,, $1,191,400,742,, $7,104,857,012,, $32,007,418,, $2,105,533,716, $249,025,16, $1,293,700,944, $15,432,858, $9,817,468,547, $8,631,798,738,.",0 of 33 flagged figures are accepted by Method 2's step09 check
+NAL,2024,exemplar_overlap,7,SKIP,,
+NAL,2024,real_names,8,PASS,,
+NAL,2024,identifiers,8,PASS,,
+NAL,2024,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $1,293,700,944, $ 174,174,725, $ 10,730,227,552, $ 335,540,984, $ 11,063,613,016, $ 1,119,218,609, $287,670,049, $7,104,857,012, $8,873,155,181, $4,210,000,000, $4,580,000,000, $83,155,181, $400,000,000, $6,504,857,012, $200,000,000, $10,000,000, $5,432,858, $15,432,858, $410,552,252, $1,191,400,742, $1,246,144,469, $126,925,860, $458,233,957, $531,834,013, $32,007,418, $1,119,218,609.",0 of 26 flagged figures are accepted by Method 2's step09 check
+NAL,2024,exemplar_overlap,8,SKIP,,
+NWSH,2025,company_name,1,PASS,,
+NWSH,2025,real_names,1,FAIL,Remove these real company names and describe them generically: Northern.,
+NWSH,2025,number_density,1,FAIL,Item 1 cites 14 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+NWSH,2025,identifiers,1,PASS,,
+NWSH,2025,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $26,026,305,540, $10,410,522,216, $7,807,891,662, $5,205,261,108, $2,602,630,554.",0 of 5 flagged figures are accepted by Method 2's step09 check
+NWSH,2025,exemplar_overlap,1,SKIP,,
+NWSH,2025,real_names,1A,PASS,,
+NWSH,2025,number_density,1A,FAIL,Item 1A cites 18 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+NWSH,2025,identifiers,1A,PASS,,
+NWSH,2025,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $36,684,937,271, $26,026,305,540, $10,410,522,216, $5,205,261,108, $2,602,630,554, $36,684,937,271,, $5,194,666,786, $41,879,604,057, $10.4 billion, $26,026,305,540,.",0 of 10 flagged figures are accepted by Method 2's step09 check
+NWSH,2025,exemplar_overlap,1A,SKIP,,
+NWSH,2025,real_names,1C,PASS,,
+NWSH,2025,number_density,1C,FAIL,Item 1C cites 5 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+NWSH,2025,identifiers,1C,PASS,,
+NWSH,2025,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $26,026,305,540, $10.4 billion, $2,602,630,554, $3,077,563,692, $41,879,604,057.",0 of 5 flagged figures are accepted by Method 2's step09 check
+NWSH,2025,exemplar_overlap,1C,SKIP,,
+NWSH,2025,company_name,7,PASS,,
+NWSH,2025,real_names,7,PASS,,
+NWSH,2025,identifiers,7,PASS,,
+NWSH,2025,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $26,026,305,540, $3,689,897,510, $5,117,362,936,, $41,879,604,057, $36,684,937,271, $5,194,666,786, $3,624,589,386,, $6,437,167,396, $10,410,522,216, $7,807,891,662, $5,205,261,108, $2,602,630,554, $13,747,870,066,, $12,278,435,474, $1,333,250,655, $4,083,508,846,, $3,077,563,692, $5,117,362,936, $1,427,465,426,, $3,689,897,510,, $2,530,787,595, $2,492,360,570, $3,416,419,968, $3,743,948,133, $1,612,912,070, $2,552,852,840, $939,940,770, $3,684,841,906, $3,624,589,386, $60,252,520, $13,926,901,769,, $1,893,025,795, $12,033,875,974, $46,379,406,792,, $5,103,518,448,, $3,390,754,948,, $19,367,280,554, $6,513,637,295, $1,089,173,806, $13.9 billion. These percentages are not in the facts sheet; use only the derived percentages given: 70%, 40%, 30%, 10%.",1 of 44 flagged figures are accepted by Method 2's step09 check
+NWSH,2025,exemplar_overlap,7,SKIP,,
+NWSH,2025,real_names,8,PASS,,
+NWSH,2025,identifiers,8,PASS,,
+NWSH,2025,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $10,410,522,216, $7,807,891,662, $6,513,637,295, $26,026,305,540, $3,689,897,510, $6,437,167,396, $41,879,604,057, $3,390,754,948, $3,416,419,968,, $3,743,948,133, $939,940,770,, $1,089,173,806, $3,077,563,692, $1,427,465,426, $5,117,362,936, $5,205,261,108, $2,602,630,554, $450,000,000, $8,280,884,378, $1,150,000,000, $1,333,250,655, $2,605,454,918, $1,250,000,000, $709,500,000, $1,930,000,000, $1,893,025,795, $12,033,875,974, $950,465,426, $3,624,589,386, $46,379,406,792, $2,082,104,443, $12,398,373,081, $4,213,040,000, $8,185,333,081, $19,367,280,554, $4,500,120,000, $14,867,160,554, $1,250,500,000, $145,000,000, $450 million, $6,246,313,330, $6,506,576,385, $6,766,839,440, $26,026,305,540,, $12,278,435,474,.",0 of 45 flagged figures are accepted by Method 2's step09 check
+NWSH,2025,exemplar_overlap,8,SKIP,,
+OQM,2025,company_name,1,PASS,,
+OQM,2025,real_names,1,FAIL,"Remove these real company names and describe them generically: American Electric, Public Service.",
+OQM,2025,number_density,1,FAIL,Item 1 cites 20 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+OQM,2025,identifiers,1,PASS,,
+OQM,2025,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $18,769,652,835, $15,766,508,381, $1,126,179,170, $14,114,778,932, $4,654,873,903, $2,984,374,800, $72,450,112,000, $28,115,000,000, $4.2 billion, $1.1 billion, $950 million, $1.2 billion, $500 million, $450 million.",0 of 14 flagged figures are accepted by Method 2's step09 check
+OQM,2025,exemplar_overlap,1,SKIP,,
+OQM,2025,real_names,1A,FAIL,Remove these real company names and describe them generically: Public Service.,
+OQM,2025,number_density,1A,FAIL,Item 1A cites 20 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+OQM,2025,identifiers,1A,PASS,,
+OQM,2025,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $18,769,652,835, $52,436,493,164,, $37,541,862,406,, $14,894,630,758, $950 million, $500 million, $4.2 billion, $52,436,493,164, $37,541,862,406, $450 million, $15,766,508,381, $1,126,179,170.",0 of 12 flagged figures are accepted by Method 2's step09 check
+OQM,2025,exemplar_overlap,1A,SKIP,,
+OQM,2025,real_names,1C,FAIL,Remove these real company names and describe them generically: American Electric.,
+OQM,2025,number_density,1C,FAIL,Item 1C cites 5 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+OQM,2025,identifiers,1C,PASS,,
+OQM,2025,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $450 million, $18,769,652,835, $4.2 billion, $950 million, $52,436,493,164.",0 of 5 flagged figures are accepted by Method 2's step09 check
+OQM,2025,exemplar_overlap,1C,SKIP,,
+OQM,2025,company_name,7,PASS,,
+OQM,2025,real_names,7,FAIL,Remove these real company names and describe them generically: Public Service.,
+OQM,2025,identifiers,7,PASS,,
+OQM,2025,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $18,769,652,835, $1,967,628,458, $52,436,493,164, $2,662,358,924, $4,034,724,131, $2,479,256,223, $14,894,630,758, $15,766,508,381,, $1,876,965,284, $1,126,179,170,, $16,107,293,911, $2,387,687,932,, $19,032,618,565, $694,730,466, $15,766,508,381, $950 million, $1,126,179,170, $3,237,502,332,, $722,328,554, $1,967,628,458,, $2,387,687,932, $320,592,259, $3,719,016,281, $2,915,607,014, $436,350,791,, $396,788,563, $286,618,056, $110,170,507, $4.2 billion, $37,541,862,406,, $78,667,880, $6,142,118,776, $6,089,199,681, $10,988,684,466, $2,183,253,389,, $3,237,502,332, $1,762,592,194, $2,516,149,234, $2.05 billion, $1.2 billion, $500 million, $450 million, $1.1 billion, $1.13 billion, $24,154,557,269, $348,941,256, $181,265,267. These percentages are not in the facts sheet; use only the derived percentages given: 84%, 42%, 35%, 23%, 15%.",0 of 52 flagged figures are accepted by Method 2's step09 check
+OQM,2025,exemplar_overlap,7,SKIP,,
+OQM,2025,real_names,8,FAIL,Remove these real company names and describe them generically: Public Service.,
+OQM,2025,identifiers,8,PASS,,
+OQM,2025,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $18,769,652,835, $1,967,628,458, $1,739,708,458, $3,237,502,332, $52,436,493,164, $2,516,149,234, $24,154,557,269, $3,719,016,281, $1,762,592,194, $2,387,687,932, $19,032,618,565, $348,941,256, $181,265,267, $694,730,466, $15,766,508,381, $1,876,965,284, $1,126,179,170, $12,450,800,000, $2,479,256,223,, $78,667,880, $6,220,786,656, $14,894,630,758, $6,089,199,681, $2,183,253,389, $10,988,684,466, $286,618,056, $2,662,358,924, $1,652,807,905, $196,762,846, $118,057,707, $44,046,654,258, $5,243,649,316, $3,146,189,590.",0 of 33 flagged figures are accepted by Method 2's step09 check
+OQM,2025,exemplar_overlap,8,SKIP,,
+QXVM,2024,company_name,1,PASS,,
+QXVM,2024,real_names,1,PASS,,
+QXVM,2024,number_density,1,FAIL,Item 1 cites 5 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+QXVM,2024,identifiers,1,PASS,,
+QXVM,2024,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $18,529,777,843.",0 of 1 flagged figures are accepted by Method 2's step09 check
+QXVM,2024,exemplar_overlap,1,SKIP,,
+QXVM,2024,real_names,1A,PASS,,
+QXVM,2024,number_density,1A,FAIL,Item 1A cites 23 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+QXVM,2024,identifiers,1A,PASS,,
+QXVM,2024,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $14,836,983,822, $302,795,588, $15,139,779,410, $18,529,777,843, $302,795,588,, $18,529,777,843,.",0 of 6 flagged figures are accepted by Method 2's step09 check
+QXVM,2024,exemplar_overlap,1A,SKIP,,
+QXVM,2024,real_names,1C,PASS,,
+QXVM,2024,number_density,1C,FAIL,Item 1C cites 9 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+QXVM,2024,identifiers,1C,PASS,,
+QXVM,2024,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $15,139,779,410, $18,529,777,843, $302,795,588, $14,836,983,822,.",0 of 4 flagged figures are accepted by Method 2's step09 check
+QXVM,2024,exemplar_overlap,1C,SKIP,,
+QXVM,2024,company_name,7,PASS,,
+QXVM,2024,real_names,7,PASS,,
+QXVM,2024,identifiers,7,PASS,,
+QXVM,2024,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $18,529,777,843,, $2,625,875,247,, $15,139,779,410,, $4,882,231,701, $3,200,289,873, $302,795,588, $14,836,983,822, $18,529,777,843, $4,294,588,789, $5,901,686,575, $240,929,582, $3,207,792,907, $48.8 million, $243,849,920, $302,795,588,, $1,668,713,542, $4,294,588,789,, $8,574,432,061,, $9,955,345,782,, $1,668,713,542,, $2,625,875,247, $296,432,117,, $626,514,674, $44,597,014, $1,155,738,520, $1,234,760,180,, $79,021,660, $1,584,427,266, $1,615,862,607, $15,139,779,410, $5,426,829,563, $3,759,249,838, $7,665,483,624, $6,290,996,188, $3,625,544,811,, $1,637,364,163,, $345,901,316, $531,186,271. These percentages are not in the facts sheet; use only the derived percentages given: 90%.",0 of 39 flagged figures are accepted by Method 2's step09 check
+QXVM,2024,exemplar_overlap,7,SKIP,,
+QXVM,2024,real_names,8,PASS,,
+QXVM,2024,identifiers,8,PASS,,
+QXVM,2024,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $4,882,231,701, $243,849,920, $302,795,588, $14,836,983,822, $296,432,117, $531,186,271, $5,426,829,563, $18,529,777,843, $1,668,713,542, $626,514,674,, $3,759,249,838, $6,290,996,188, $3,200,289,873, $3,625,544,811, $2,636,877,552, $345,901,316,, $1.5 billion, $1,526,250,000, $2,100,000,000.",0 of 19 flagged figures are accepted by Method 2's step09 check
+QXVM,2024,exemplar_overlap,8,SKIP,,
+RJOD,2025,company_name,1,PASS,,
+RJOD,2025,real_names,1,PASS,,
+RJOD,2025,number_density,1,FAIL,Item 1 cites 5 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+RJOD,2025,identifiers,1,PASS,,
+RJOD,2025,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $29,209,366,257.",0 of 1 flagged figures are accepted by Method 2's step09 check
+RJOD,2025,exemplar_overlap,1,SKIP,,
+RJOD,2025,real_names,1A,PASS,,
+RJOD,2025,number_density,1A,FAIL,Item 1A cites 18 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+RJOD,2025,identifiers,1A,PASS,,
+RJOD,2025,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $15,526,877,909, $29,209,366,257, $26,150,105,204, $41,676,983,113, $15,526,877,909,.",0 of 5 flagged figures are accepted by Method 2's step09 check
+RJOD,2025,exemplar_overlap,1A,SKIP,,
+RJOD,2025,real_names,1C,PASS,,
+RJOD,2025,number_density,1C,FAIL,Item 1C cites 4 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+RJOD,2025,identifiers,1C,PASS,,
+RJOD,2025,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $29,209,366,257, $41,676,983,113, $2,990,930,156.",0 of 3 flagged figures are accepted by Method 2's step09 check
+RJOD,2025,exemplar_overlap,1C,SKIP,,
+RJOD,2025,company_name,7,PASS,,
+RJOD,2025,real_names,7,PASS,,
+RJOD,2025,identifiers,7,PASS,,
+RJOD,2025,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $29,209,366,257,, $2,990,930,156,, $3,108,021,251, $41,676,983,113,, $4,073,938,444, $3,699,717,778, $1,001,732,659, $787,680,672, $29,209,366,257, $26,101,345,006, $25,313,664,334,, $3,108,021,251,, $11,035,390,946,, $117,091,095,, $2,990,930,156, $1,078,710,699, $369,923,077, $1,141,894,233, $1,075,301,415, $742,914,908, $929,328,838,, $186,413,930, $2,543,109,714, $1,541,377,055, $26,150,105,204, $479,017,794, $11,035,390,946, $15,526,877,909,, $41,676,983,113, $2,630,533,008, $12,265,727,702, $172,990,412, $9,562,608,317, $12,005,163,456, $13,384,522,590. These percentages are not in the facts sheet; use only the derived percentages given: 72%, 28%.",0 of 37 flagged figures are accepted by Method 2's step09 check
+RJOD,2025,exemplar_overlap,7,SKIP,,
+RJOD,2025,real_names,8,PASS,,
+RJOD,2025,identifiers,8,PASS,,
+RJOD,2025,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $29,209,366,257, $ 29,209,366,257, $ 2,990,930,156, $ 2,898,352,706, $ 4,073,938,444, $ 41,676,983,113, $ 2,630,533,008, $ 8,819,846,009, $ 4,810,411,853, $ 13,630,257,862, $ 11,810,776,165, $ 3,808,679,194, $ 15,526,877,909, $4,073,938,444, $1,141,894,233, $1,075,301,415, $9,562,608,317, $12,265,727,702, $172,990,412,, $787,680,672,, $25,313,664,334,, $ 485,200,000, $ 9,562,608,317, $1,078,710,699, $479,017,794,, $11,035,390,946,, $117,091,095, $12,005,163,456, $92,577,450, $1,001,732,659, $15,526,877,909, $41,676,983,113, $2,630,533,008,.",0 of 33 flagged figures are accepted by Method 2's step09 check
+RJOD,2025,exemplar_overlap,8,SKIP,,
+SGJ,2023,company_name,1,PASS,,
+SGJ,2023,real_names,1,PASS,,
+SGJ,2023,number_density,1,FAIL,Item 1 cites 5 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+SGJ,2023,identifiers,1,PASS,,
+SGJ,2023,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $258,399,461,658.",0 of 1 flagged figures are accepted by Method 2's step09 check
+SGJ,2023,exemplar_overlap,1,SKIP,,
+SGJ,2023,real_names,1A,PASS,,
+SGJ,2023,number_density,1A,FAIL,Item 1A cites 21 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+SGJ,2023,identifiers,1A,PASS,,
+SGJ,2023,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $116,537,187,910, $258,399,461,658, $62,309,765,848, $178,846,953,758, $62,309,765,848,.",0 of 5 flagged figures are accepted by Method 2's step09 check
+SGJ,2023,exemplar_overlap,1A,SKIP,,
+SGJ,2023,real_names,1C,PASS,,
+SGJ,2023,number_density,1C,FAIL,Item 1C cites 4 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+SGJ,2023,identifiers,1C,PASS,,
+SGJ,2023,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $258,399,461,658,, $178,846,953,758.",0 of 2 flagged figures are accepted by Method 2's step09 check
+SGJ,2023,exemplar_overlap,1C,SKIP,,
+SGJ,2023,company_name,7,PASS,,
+SGJ,2023,real_names,7,PASS,,
+SGJ,2023,identifiers,7,PASS,,
+SGJ,2023,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $258,399,461,658, $10,054,273,533, $5,387,445,237,, $11,146,788,099, $178,846,953,758, $65,812,759,316, $23,666,784,864, $62,309,765,848,, $116,537,187,910,, $164,872,574,156, $83,472,613,969, $2,979,397,514, $10,054,273,533,, $1,804,524,678, $116,537,187,910, $2,862,303,618, $8,249,748,855, $5,387,445,237, $6,079,925,037,, $2,779,945,348,, $24,617,066,867, $13,232,945,682, $17,332,188,965, $2,354,510,956, $14,977,678,009, $1,689,688,734, $1,971,971,134, $1,434,957,944, $5,096,617,812, $9,722,185,368, $17,932,911,361, $88,882,091,181,, $62,309,765,848, $40,660,097,252, $21,855,720,241,, $206,051,645, $6,079,925,037.",0 of 37 flagged figures are accepted by Method 2's step09 check
+SGJ,2023,exemplar_overlap,7,SKIP,,
+SGJ,2023,real_names,8,PASS,,
+SGJ,2023,identifiers,8,PASS,,
+SGJ,2023,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $258,399,461,658, $5,387,445,237, $5,181,393,592, $6,079,925,037, $178,846,953,758, $9,722,185,368, $23,290,678,185, $37,244,623,149, $60,535,301,334, $21,855,720,241, $40,660,097,252, $62,309,765,848, $65,812,759,316, $23,666,784,864, $2,862,303,618, $24,617,066,867,, $13,232,945,682, $2,979,397,514, $116,537,187,910, $88,882,091,181, $1,804,524,678,, $8,249,748,855, $2,862,303,618,, $40,660,097,252,, $21,855,720,241,, $1,971,971,134, $1,434,957,944, $11,146,788,099, $17,332,188,965,, $2,354,510,956, $14,977,678,009, $1,689,688,734,, $5,096,617,812, $258,399,461,658,.",0 of 34 flagged figures are accepted by Method 2's step09 check
+SGJ,2023,exemplar_overlap,8,SKIP,,
+SLN,2023,company_name,1,PASS,,
+SLN,2023,real_names,1,PASS,,
+SLN,2023,number_density,1,FAIL,Item 1 cites 5 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+SLN,2023,identifiers,1,PASS,,
+SLN,2023,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $33,722,698,026.",0 of 1 flagged figures are accepted by Method 2's step09 check
+SLN,2023,exemplar_overlap,1,SKIP,,
+SLN,2023,real_names,1A,PASS,,
+SLN,2023,number_density,1A,FAIL,Item 1A cites 32 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+SLN,2023,identifiers,1A,PASS,,
+SLN,2023,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $674,453,960,530, $625,791,390,923, $674,453,960,530,, $33,722,698,026, $625,791,390,923,, $48,662,569,607.",0 of 6 flagged figures are accepted by Method 2's step09 check
+SLN,2023,exemplar_overlap,1A,SKIP,,
+SLN,2023,real_names,1C,PASS,,
+SLN,2023,number_density,1C,FAIL,Item 1C cites 7 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+SLN,2023,identifiers,1C,PASS,,
+SLN,2023,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $674,453,960,530,, $625,791,390,923, $13,007,722,219, $48,662,569,607.",0 of 4 flagged figures are accepted by Method 2's step09 check
+SLN,2023,exemplar_overlap,1C,SKIP,,
+SLN,2023,company_name,7,PASS,,
+SLN,2023,real_names,7,PASS,,
+SLN,2023,identifiers,7,PASS,,
+SLN,2023,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $5,653,031,855, $33,722,698,026,, $7,155,736,525,, $1,502,704,670,, $674,453,960,530, $625,791,390,923, $56,850,278,555, $48,662,569,607,, $9,861,111,799,, $13,007,722,219, $13,559,239,282, $598,814,205,667, $33,722,698,026, $26,566,961,501, $7,155,736,525, $1,502,704,670, $674,453,960,530,, $11,801,098,195, $6,988,378,113, $48,662,569,607, $9,823,649,716, $83,811,070,784,, $9,861,111,799, $35,111,039,094, $10,670,738,246, $23,436,041,579, $27,464,523,077, $6,642,256,748, $5,653,031,855,, $5,017,706,391, $27,382,795,313, $81,727,764. These percentages are not in the facts sheet; use only the derived percentages given: 8.4%.",1 of 33 flagged figures are accepted by Method 2's step09 check
+SLN,2023,exemplar_overlap,7,SKIP,,
+SLN,2023,real_names,8,PASS,,
+SLN,2023,identifiers,8,PASS,,
+SLN,2023,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $33,722,698,026, $5,653,031,855, $4,208,079,944, $56,850,278,555, $674,453,960,530, $625,791,390,923, $11,801,098,195, $6,988,378,113, $598,814,205,667,, $1,502,704,670, $598,814,205,667, $9,861,111,799, $18,789,476,308, $13,559,239,282, $48,662,569,607, $83,811,070,784, $35,111,039,094, $81,727,764, $9,823,649,716, $1,250,550,000, $23,436,041,579,, $27,464,523,077, $27,382,795,313.",0 of 23 flagged figures are accepted by Method 2's step09 check
+SLN,2023,exemplar_overlap,8,SKIP,,
+TIO,2025,company_name,1,PASS,,
+TIO,2025,real_names,1,PASS,,
+TIO,2025,number_density,1,FAIL,Item 1 cites 5 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+TIO,2025,identifiers,1,PASS,,
+TIO,2025,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $96,117,208,650, $96,117,208,650,.",0 of 2 flagged figures are accepted by Method 2's step09 check
+TIO,2025,exemplar_overlap,1,PASS,,
+TIO,2025,real_names,1A,PASS,,
+TIO,2025,number_density,1A,FAIL,Item 1A cites 22 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+TIO,2025,identifiers,1A,PASS,,
+TIO,2025,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $231,579,414,603, $123,732,574,484, $96,117,208,650, $123,732,574,484,, $107,846,840,119, $96,117,208,650,, $107,846,840,119,.",0 of 7 flagged figures are accepted by Method 2's step09 check
+TIO,2025,exemplar_overlap,1A,FAIL,"6% of the text repeats the style example word for word; rewrite it in your own words. Copied sentences include: ""RISK FACTORS**
+
+Our business, operations and financial results are subject to various risks and uncertainties, including...""; ""The following material factors, among others, could cause our actual results to differ materially from historical result...""; ""Additional risks, trends and uncertainties not presently known to us or that we currently believe are immaterial may als...""",
+TIO,2025,real_names,1C,PASS,,
+TIO,2025,number_density,1C,FAIL,Item 1C cites 3 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+TIO,2025,identifiers,1C,PASS,,
+TIO,2025,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $96,117,208,650, $231,579,414,603, $107,846,840,119.",0 of 3 flagged figures are accepted by Method 2's step09 check
+TIO,2025,exemplar_overlap,1C,PASS,,
+TIO,2025,company_name,7,PASS,,
+TIO,2025,real_names,7,PASS,,
+TIO,2025,identifiers,7,PASS,,
+TIO,2025,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $96,117,208,650,, $35,016,742,988,, $38,197,138,353,, $46,466,894,333, $19,249,414,456, $15,576,100,938, $3,673,313,518, $22,909,037,661, $96,117,208,650, $31,956,264,834, $15,046,256,039,, $6,748,995,838, $7,348,948,951,, $35,016,742,988, $3,180,395,365, $38,197,138,353, $8,269,755,980, $963,206,223, $975,042,071,, $26,577,163,261, $7,327,748,805, $231,579,414,603, $138,865,995,150, $49,434,807,713, $123,732,574,484, $3,774,135,029, $118,078,581,468, $107,846,840,119,, $134,228,334,484, $85,139,606,879,, $3,364,823,388. These percentages are not in the facts sheet; use only the derived percentages given: 1%.",1 of 33 flagged figures are accepted by Method 2's step09 check
+TIO,2025,exemplar_overlap,7,PASS,,
+TIO,2025,real_names,8,PASS,,
+TIO,2025,identifiers,8,PASS,,
+TIO,2025,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $ 22,909,038, $ 231,579,414, $ 1,879,858, $ 96,117,209, $ 38,197,138, $96,117,208,650,, $3,364,823,388, $138,865,995,150, $49,434,807,131,, $3,180,395,365,, $38,197,138,353,, $35,016,742,988, $123,732,574,484, $3,774,135,029, $1,879,857,987, $118,078,581,468, $15,576,100,938, $3,673,313,518, $107,846,840,119, $85,139,606,879, $13,422,833,484, $22,106, $23,508, $24,850, $25,653, $8,054, $8,404, $9,004, $9,555, $8,785, $9,167, $9,825, $10,420.",1 of 33 flagged figures are accepted by Method 2's step09 check
+TIO,2025,exemplar_overlap,8,SKIP,,
+UCOG,2025,company_name,1,PASS,,
+UCOG,2025,real_names,1,PASS,,
+UCOG,2025,number_density,1,PASS,,
+UCOG,2025,identifiers,1,PASS,,
+UCOG,2025,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $16,591,900,553.",0 of 1 flagged figures are accepted by Method 2's step09 check
+UCOG,2025,exemplar_overlap,1,PASS,,
+UCOG,2025,real_names,1A,PASS,,
+UCOG,2025,number_density,1A,FAIL,Item 1A cites 13 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+UCOG,2025,identifiers,1A,PASS,,
+UCOG,2025,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $15,566,129,213,, $317,676,106, $15,566,129,213, $16,591,900,553, $15,883,805,319,, $15,883,805,319.",0 of 6 flagged figures are accepted by Method 2's step09 check
+UCOG,2025,exemplar_overlap,1A,FAIL,"5% of the text repeats the style example word for word; rewrite it in your own words. Copied sentences include: ""Risk Factors**
+
+Our business is subject to a variety of risks and uncertainties....""; ""The risks and uncertainties described below could materially and adversely affect our business, financial condition, res...""; ""The following information should be read in conjunction with the other information contained in this report and other fi...""; ""These risks and uncertainties are not the only ones we face....""",
+UCOG,2025,real_names,1C,PASS,,
+UCOG,2025,number_density,1C,FAIL,Item 1C cites 3 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+UCOG,2025,identifiers,1C,PASS,,
+UCOG,2025,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $15,883,805,319, $4,906,875,511, $16,591,900,553.",0 of 3 flagged figures are accepted by Method 2's step09 check
+UCOG,2025,exemplar_overlap,1C,PASS,,
+UCOG,2025,company_name,7,PASS,,
+UCOG,2025,real_names,7,PASS,,
+UCOG,2025,identifiers,7,PASS,,
+UCOG,2025,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $16,591,900,553, $2,997,683,663,, $2,225,755,391, $1,416,846,858,, $15,566,129,213, $317,676,106, $2,442,726,186, $7,333,433,703, $4,906,875,511, $8,763,850,438, $16,591,901, $2,225,756, $7,828,050,115,, $6,243,469,387,, $1,413,102,935, $2,997,683,663, $771,928,272,, $217,939,148, $544,561,143,, $327,590,348, $1,089,768,404, $1,279,507,113,, $189,738,709, $1,442,329,486, $1,416,846,858, $25,482,628, $15,883,805,319,, $6,267,201,993, $15,566,129,213,, $6,115,802,914, $2,782,805,782, $1,013,388,545, $1,103,504,051, $258,579,593.",0 of 34 flagged figures are accepted by Method 2's step09 check
+UCOG,2025,exemplar_overlap,7,PASS,,
+UCOG,2025,real_names,8,PASS,,
+UCOG,2025,identifiers,8,PASS,,
+UCOG,2025,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $4,906,875,511, $1,416,846,858, $317,676,106, $16,591,901, $2,225,756, $2,205,249, $217,939, $15,883,805, $6,115,803, $12.4 million, $9,457,383, $1,413,102,935, $1.25 billion, $163.1 million, $525,499, $513,099, $3,680,157, $4,906,876, $842.5 million, $845,210, $6,267,202, $258,579,593, $412,500, $1,013,389, $3,500,000, $7,333,434, $612,405, $771,929, $2,782,805,782, $4.8 billion.",0 of 30 flagged figures are accepted by Method 2's step09 check
+UCOG,2025,exemplar_overlap,8,SKIP,,
+UZK,2023,company_name,1,PASS,,
+UZK,2023,real_names,1,FAIL,Remove these real company names and describe them generically: Waste Management.,
+UZK,2023,number_density,1,PASS,,
+UZK,2023,identifiers,1,PASS,,
+UZK,2023,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $19,366,186,883.",0 of 1 flagged figures are accepted by Method 2's step09 check
+UZK,2023,exemplar_overlap,1,SKIP,,
+UZK,2023,real_names,1A,PASS,,
+UZK,2023,number_density,1A,FAIL,Item 1A cites 15 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+UZK,2023,identifiers,1A,PASS,,
+UZK,2023,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $19,366,186,883,, $19,366,186,883, $58,017,279,538, $35,021,283,686, $22,995,995,852,, $22,995,995,852.",0 of 6 flagged figures are accepted by Method 2's step09 check
+UZK,2023,exemplar_overlap,1A,SKIP,,
+UZK,2023,real_names,1C,PASS,,
+UZK,2023,number_density,1C,FAIL,Item 1C cites 4 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+UZK,2023,identifiers,1C,PASS,,
+UZK,2023,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $58,017,279,538, $19,366,186,883, $22,995,995,852.",0 of 3 flagged figures are accepted by Method 2's step09 check
+UZK,2023,exemplar_overlap,1C,SKIP,,
+UZK,2023,company_name,7,PASS,,
+UZK,2023,real_names,7,PASS,,
+UZK,2023,identifiers,7,PASS,,
+UZK,2023,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $19,366,186,883, $3,561,778,717, $19,366,186,883,, $4,508,580,654, $3,561,778,717,, $11,726,708,150,, $5,360,991,270,, $1,662,897,947, $1,251,692,766, $22,995,995,852,, $58,017,279,538, $2,524,758,516, $35,021,283,686,, $13,776,238,125, $11,726,708,150, $5,360,991,270, $14,857,606,229, $852,618,989, $11,480,228,724, $4,819,174,601, $946,801,937, $3,345,754,832, $2,727,170,575, $3,200,282,125, $6,361,543,108, $1,000,551,838, $4,543,123,678, $2,880,225,731, $22,995,995,852. These percentages are not in the facts sheet; use only the derived percentages given: 37.5%.",0 of 30 flagged figures are accepted by Method 2's step09 check
+UZK,2023,exemplar_overlap,7,SKIP,,
+UZK,2023,real_names,8,PASS,,
+UZK,2023,identifiers,8,PASS,,
+UZK,2023,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $4,819,174,601, $1,251,692,766, $58,017,279,538, $3,200,282,125, $35,021,283,686, $19,366,186,883, $3,561,778,717, $2,727,170,575, $1,756,637,753, $56,120,442,100, $52,281,778,444, $1,150,550,000, $2,758,494,375, $13,776,238,125, $946,801,937,, $4,508,580,654, $812,400,000, $946,801,937, $240,425,144, $1,215,600,000, $1,398,000,000, $15,286,269,061, $1,662,897,947, $5,953,002,851, $795,500,000, $745,250,000, $44.8 billion, $4,720,546,720, $4,912,234,510, $4,855,102,123, $4,878,303,530, $867,590,000, $902,570,000, $891,430,000, $900,188,717.",0 of 35 flagged figures are accepted by Method 2's step09 check
+UZK,2023,exemplar_overlap,8,SKIP,,
+WHKJ,2024,company_name,1,PASS,,
+WHKJ,2024,real_names,1,FAIL,Remove these real company names and describe them generically: Paper.,
+WHKJ,2024,number_density,1,FAIL,Item 1 cites 9 dollar amounts; real filings cite few in this Item. Keep at most 3 and describe exposure in words.,
+WHKJ,2024,identifiers,1,PASS,,
+WHKJ,2024,numbers,1,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $20,489,294,899, $20,489,294,899,.",0 of 2 flagged figures are accepted by Method 2's step09 check
+WHKJ,2024,exemplar_overlap,1,SKIP,,
+WHKJ,2024,real_names,1A,FAIL,Remove these real company names and describe them generically: Paper.,
+WHKJ,2024,number_density,1A,FAIL,Item 1A cites 23 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words.,
+WHKJ,2024,identifiers,1A,PASS,,
+WHKJ,2024,numbers,1A,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $23,528,234,266, $38,216,064,255, $20,489,294,899, $38,216,064,255,, $14,687,829,989, $14,687,829,989,.",0 of 6 flagged figures are accepted by Method 2's step09 check
+WHKJ,2024,exemplar_overlap,1A,SKIP,,
+WHKJ,2024,real_names,1C,FAIL,Remove these real company names and describe them generically: Paper.,
+WHKJ,2024,number_density,1C,FAIL,Item 1C cites 8 dollar amounts; real filings cite few in this Item. Keep at most 0 and describe exposure in words.,
+WHKJ,2024,identifiers,1C,PASS,,
+WHKJ,2024,numbers,1C,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $20,489,294,899, $38,216,064,255, $18,183,605,081, $2,435,429,988, $1,567,004,669, $6,727,882,081, $14,687,829,989.",0 of 7 flagged figures are accepted by Method 2's step09 check
+WHKJ,2024,exemplar_overlap,1C,SKIP,,
+WHKJ,2024,company_name,7,PASS,,
+WHKJ,2024,real_names,7,FAIL,Remove these real company names and describe them generically: Paper.,
+WHKJ,2024,identifiers,7,PASS,,
+WHKJ,2024,numbers,7,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $20,489,294,899,, $18,183,605,081, $640,245,230, $1,567,004,669, $1,092,277,444,, $23,528,234,266, $20,489,294,899, $18,183,605,081,, $2,435,429,988, $1,092,277,444, $962,537,274, $691,862,293, $962,537,274,, $270,674,981, $270,674,981,, $1,555,983,628, $38,216,064,255, $259,653,940,, $1,884,251,291, $504,985,840, $623,404,080, $24,675,721, $1,153,065,641,, $3,850,671,541,, $2,944,239,093,, $6,727,882,081, $1,063,960,062, $22,989,066,248,, $3,187,071,813, $1,005,347,990, $10,604,523,002, $8,731,291,461,, $14,687,829,989,, $15,128,627,654, $2,273,422,764, $1,403,831,388, $1,310,389,041, $11,609,870,992, $2,944,239,093. These percentages are not in the facts sheet; use only the derived percentages given: 35%, 42%, 10%.",1 of 42 flagged figures are accepted by Method 2's step09 check
+WHKJ,2024,exemplar_overlap,7,SKIP,,
+WHKJ,2024,real_names,8,FAIL,Remove these real company names and describe them generically: Paper.,
+WHKJ,2024,identifiers,8,PASS,,
+WHKJ,2024,numbers,8,FAIL,"These dollar amounts are not in the financial statements; use only figures from the facts sheet: $6,727,882,081, $20,489,294,899, $640,245,230, $38,216,064,255, $3,187,071,813, $270,674,981, $15,128,627,654, $2,650,827,584, $16,493,741,918, $2,273,422,764, $14,687,829,989, $3,850,671,541, $2,944,239,093, $1,555,983,628, $1,063,960,062, $18,183,605,081, $1,092,277,444,, $691,862,293, $8,605.5 million, $7,171.3 million, $4,712.5 million, $1,207,138,028, $441,635,864, $1,295,465,201, $6,152,430,100, $1,425,000,000, $860,000,000, $1,741,460,062, $1,005,347,990, $11,609,870,992, $2.5 billion, $288.8 million, $673.7 million, $455,200,000, $1,092,277,444, $623,404,080, $24,675,721, $412,500,000, $548,200,000, $185,000,000.",0 of 41 flagged figures are accepted by Method 2's step09 check
+WHKJ,2024,exemplar_overlap,8,SKIP,,

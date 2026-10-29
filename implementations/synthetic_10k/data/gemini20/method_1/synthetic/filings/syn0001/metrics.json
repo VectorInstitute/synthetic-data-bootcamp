@@ -1,0 +1,177 @@
+{
+  "company_id": "syn0001",
+  "name": "Talven Therapeutics, Inc.",
+  "sector": "Health Care",
+  "dry_run": false,
+  "passed": false,
+  "wall_seconds": 236.51,
+  "totals": {
+    "seconds": 235.73,
+    "prompt_tokens": 47848,
+    "completion_tokens": 44256,
+    "total_tokens": 92104,
+    "reasoning_tokens": 17792,
+    "calls": 8
+  },
+  "sections": {
+    "1": {
+      "target_words": 3000,
+      "exemplar_words": 1220,
+      "prompt_chars": 14036,
+      "words": 2138,
+      "attempts": 1,
+      "exemplar_overlap": 0.0,
+      "issues": []
+    },
+    "1A": {
+      "target_words": 3500,
+      "exemplar_words": 1243,
+      "prompt_chars": 25158,
+      "words": 3506,
+      "attempts": 3,
+      "exemplar_overlap": 0.0017,
+      "issues": [
+        "Item 1A cites 7 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    "7": {
+      "target_words": 3000,
+      "exemplar_words": 1213,
+      "prompt_chars": 35976,
+      "words": 1941,
+      "attempts": 3,
+      "exemplar_overlap": 0.004,
+      "issues": [
+        "These percentages are not in the facts sheet; use only the derived percentages given: 1.2%, 40%."
+      ]
+    },
+    "1C": {
+      "target_words": 900,
+      "exemplar_words": 1213,
+      "prompt_chars": 46414,
+      "words": 1186,
+      "attempts": 1,
+      "exemplar_overlap": 0.0227,
+      "issues": []
+    }
+  },
+  "calls": [
+    {
+      "item": "1",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 23.45,
+      "prompt_tokens": 3260,
+      "completion_tokens": 3979,
+      "total_tokens": 7239,
+      "reasoning_tokens": 1380,
+      "finish_reason": "stop",
+      "words": 2138,
+      "issues": []
+    },
+    {
+      "item": "1A",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 34.18,
+      "prompt_tokens": 4889,
+      "completion_tokens": 5954,
+      "total_tokens": 10843,
+      "reasoning_tokens": 1738,
+      "finish_reason": "stop",
+      "words": 3511,
+      "issues": [
+        "Item 1A cites 11 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 33.27,
+      "prompt_tokens": 4934,
+      "completion_tokens": 5769,
+      "total_tokens": 10703,
+      "reasoning_tokens": 1980,
+      "finish_reason": "stop",
+      "words": 3224,
+      "issues": [
+        "Item 1A cites 7 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "1A",
+      "attempt": 3,
+      "model": "gemini-3-flash-preview",
+      "seconds": 36.1,
+      "prompt_tokens": 4933,
+      "completion_tokens": 6230,
+      "total_tokens": 11163,
+      "reasoning_tokens": 2078,
+      "finish_reason": "stop",
+      "words": 3506,
+      "issues": [
+        "Item 1A cites 7 dollar amounts; real filings cite few in this Item. Keep at most 4 and describe exposure in words."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 26.24,
+      "prompt_tokens": 6896,
+      "completion_tokens": 5555,
+      "total_tokens": 12451,
+      "reasoning_tokens": 2001,
+      "finish_reason": "stop",
+      "words": 2499,
+      "issues": [
+        "These percentages are not in the facts sheet; use only the derived percentages given: 1.2%."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 2,
+      "model": "gemini-3-flash-preview",
+      "seconds": 35.27,
+      "prompt_tokens": 6932,
+      "completion_tokens": 7693,
+      "total_tokens": 14625,
+      "reasoning_tokens": 3763,
+      "finish_reason": "stop",
+      "words": 2858,
+      "issues": [
+        "These dollar amounts are not in the financial statements; use only figures from the facts sheet: $11,320 million.",
+        "These percentages are not in the facts sheet; use only the derived percentages given: 1.2%, 40%."
+      ]
+    },
+    {
+      "item": "7",
+      "attempt": 3,
+      "model": "gemini-3-flash-preview",
+      "seconds": 25.94,
+      "prompt_tokens": 6965,
+      "completion_tokens": 5864,
+      "total_tokens": 12829,
+      "reasoning_tokens": 3014,
+      "finish_reason": "stop",
+      "words": 1941,
+      "issues": [
+        "These percentages are not in the facts sheet; use only the derived percentages given: 1.2%, 40%."
+      ]
+    },
+    {
+      "item": "1C",
+      "attempt": 1,
+      "model": "gemini-3-flash-preview",
+      "seconds": 21.28,
+      "prompt_tokens": 9039,
+      "completion_tokens": 3212,
+      "total_tokens": 12251,
+      "reasoning_tokens": 1838,
+      "finish_reason": "stop",
+      "words": 1186,
+      "issues": []
+    }
+  ]
+}
