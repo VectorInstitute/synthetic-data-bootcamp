@@ -46,7 +46,7 @@ privacy_financials, privacy_text), plus the real sample's QA pairs.
 Run from implementations/synthetic_10k, in the repo's uv environment:
     uv run python -m evals.compare_sets
     uv run python -m evals.compare_sets \
-        --set method1_gemini=method_1/data/runs/gemini20/synthetic/filings \
+        --set method1_gemini=data/gemini20/method_1/synthetic/filings \
         --set method2_claude=method_2/data/synthetic --real-sample 10
 """
 
@@ -96,8 +96,8 @@ from evals import method1_checks, method2_gates  # noqa: E402
 logger = setup_logging("compare_sets")
 
 DEFAULT_SETS = {
-    "method1_gemini": ROOT / "method_1" / "data" / "runs" / "gemini20" / "synthetic" / "filings",
-    "method2_gemini": ROOT / "method_2" / "data" / "runs" / "gemini20" / "synthetic",
+    "method1_gemini": ROOT / "data" / "gemini20" / "method_1" / "synthetic" / "filings",
+    "method2_gemini": ROOT / "data" / "gemini20" / "method_2" / "synthetic",
     "method2_claude": ROOT / "method_2" / "data" / "synthetic",
 }
 SET_LABELS = {

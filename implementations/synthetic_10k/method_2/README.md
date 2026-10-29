@@ -232,11 +232,11 @@ Steps 06 to 09 read and write `data/synthetic/` unless `SYNTHETIC_DIR` is set, s
 batch can sit next to the committed 20 companies:
 
 ```bash
-export SYNTHETIC_DIR=data/runs/gemini20/synthetic
+export SYNTHETIC_DIR=data/gemini20/method_2/synthetic
 uv run python -m method_2.step06_make_specs --n 20 --seed 7
 uv run python -m method_2.step07_make_financials
 uv run python -m method_2.step08_generate_filings --backend openai --model gemini-3-flash-preview --workers 4
-uv run python -m method_2.step09_validate_filings   # report: data/runs/gemini20/validation_report.csv
+uv run python -m method_2.step09_validate_filings   # report: data/gemini20/method_2/validation_report.csv
 ```
 
 `--backend openai` calls any OpenAI-compatible endpoint, such as Vector's proxy on the

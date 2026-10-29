@@ -45,7 +45,7 @@ The semantic retriever uses `text-embedding-3-small` through Vector's proxy (key
 uv run python -m evals.compare_sets
 ```
 
-By default it compares Method 1's gemini20 filings (`method_1/data/runs/gemini20/synthetic/filings`), Method 2's gemini20 batch (`method_2/data/runs/gemini20/synthetic`) and Method 2's Claude filings (`method_2/data/synthetic`), against the real filings in `method_2/data/parsed/` with XBRL figures from Method 1's `data/sec10k/financials.csv` and Method 2's `calibration.json`. `--set NAME=PATH` (repeatable), `--real-dir`, `--real-sample`, `--embedding-models` and `--out` change those. The script's docstring describes each measure.
+By default it compares Method 1's gemini20 filings (`data/gemini20/method_1/synthetic/filings`), Method 2's gemini20 batch (`data/gemini20/method_2/synthetic`) and Method 2's Claude filings (`method_2/data/synthetic`), against the real filings in `method_2/data/parsed/` with XBRL figures from Method 1's `data/sec10k/financials.csv` and Method 2's `calibration.json`. `--set NAME=PATH` (repeatable), `--real-dir`, `--real-sample`, `--embedding-models` and `--out` change those. The script's docstring describes each measure.
 
 ## What each script adapts
 
@@ -82,8 +82,8 @@ The real row's `traced_pct` traces real filings against their own XBRL headline 
 
 ```bash
 uv run python -m evals.section_scorecard \
-    --set m1_gemini=method_1/data/runs/gemini20/synthetic/filings \
-    --set m2_gemini=method_2/data/runs/gemini20/synthetic \
+    --set m1_gemini=data/gemini20/method_1/synthetic/filings \
+    --set m2_gemini=data/gemini20/method_2/synthetic \
     --set m2_claude=method_2/data/synthetic
 ```
 
