@@ -1,11 +1,6 @@
 # Filing text is large (about 1.3 GB) and can be re-downloaded with method_2.step01_download_10k.
 # Metadata.json and download_status.csv are small and tracked, so the team can see
 # exactly what was downloaded.
-data/raw/**/10k.htm
-data/raw/**/10k.txt
-data/raw/**/ex13_*
-data/raw/**/*.tmp
-data/parsed/*
 !data/parsed/.gitkeep
 data/index.csv
 # Companyfacts JSON is large (about 180 MB) and can be re-downloaded with
@@ -28,10 +23,6 @@ config.local.yaml
 
 # Logs
 logs/
-
-# Rendered PDFs are a derived artifact of the narrative text; regenerate with
-# method_2.step10_build_pdfs rather than tracking them.
-data/pdf_reports/
 
 # Cached embedding vectors from RAG.retrieval's hosted models; rebuilt on demand.
 data/embedding_cache/
